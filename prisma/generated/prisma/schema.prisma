@@ -1,0 +1,306 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ========================================
+// BETTER AUTH MODELS
+// ========================================
+
+model User {
+  id            String   @id @unique
+  name          String
+  email         String   @unique
+  emailVerified Boolean
+  image         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Better Auth Relations
+  userData UserData?
+  accounts Account[]
+  sessions Session[]
+
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime
+  updatedAt DateTime
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime
+  updatedAt             DateTime
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime?
+  updatedAt  DateTime?
+
+  @@map("verification")
+}
+
+// ========================================
+// USER DATA MODEL (Bridge between Better Auth and Legacy System)
+// ========================================
+
+model UserData {
+  id             String    @id @unique @default(cuid())
+  userId         String    @unique
+  academicYearId String?
+  address        String?
+  avatarUrl      String?
+  birthDate      DateTime?
+  birthPlace     String?
+  classId        String?
+  employeeId     String?
+  endDate        DateTime?
+  enrollmentDate DateTime?
+  gender         String?
+  graduationDate DateTime?
+  majorId        String?
+  nik            String?
+  nisn           String?
+  parentPhone    String?
+  position       String?
+  relation       String?
+  roleId         String?
+  startDate      DateTime?
+  status         String?   @default("active")
+  studentIds     String[]
+
+  // Relations
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  attendances  Attendance[]  @relation("StudentAttendance")
+  payments     Payment[]     @relation("StudentPayment")
+  schedules    Schedule[]    @relation("TeacherSchedule")
+  academicYear AcademicYear? @relation("UserAcademicYear", fields: [academicYearId], references: [id])
+  class        Class?        @relation("UserClass", fields: [classId], references: [id])
+  major        Major?        @relation("UserMajor", fields: [majorId], references: [id])
+  role         Role?         @relation(fields: [roleId], references: [id])
+  violations   Violation[]   @relation("StudentViolation")
+  parents      UserData[]    @relation("ParentStudent")
+  children     UserData[]    @relation("ParentStudent")
+
+  @@map("user_data")
+}
+
+// ========================================
+// LEGACY MODELS (Unchanged)
+// ========================================
+
+model Role {
+  id          String     @id @default(cuid())
+  name        String     @unique
+  description String
+  permissions String[]
+  isActive    Boolean    @default(true)
+  userData    UserData[]
+
+  @@map("roles")
+}
+
+model AcademicYear {
+  id             String          @id @default(cuid())
+  year           String          @unique
+  startDate      DateTime
+  endDate        DateTime
+  isActive       Boolean         @default(false)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  calendarEvents CalendarEvent[]
+  classes        Class[]
+  schedules      Schedule[]
+  students       UserData[]      @relation("UserAcademicYear")
+  violationTypes ViolationType[]
+
+  @@map("academic_years")
+}
+
+model Major {
+  id          String     @id @default(cuid())
+  code        String     @unique
+  name        String
+  description String?
+  isActive    Boolean    @default(true)
+  classes     Class[]
+  subjects    Subject[]
+  students    UserData[] @relation("UserMajor")
+
+  @@map("majors")
+}
+
+model Class {
+  id             String       @id @default(cuid())
+  name           String
+  grade          Int
+  majorId        String
+  academicYearId String
+  capacity       Int          @default(36)
+  academicYear   AcademicYear @relation(fields: [academicYearId], references: [id])
+  major          Major        @relation(fields: [majorId], references: [id])
+  schedules      Schedule[]
+  students       UserData[]   @relation("UserClass")
+  violations     Violation[]
+
+  @@unique([name, academicYearId])
+  @@map("classes")
+}
+
+model Subject {
+  id          String     @id @default(cuid())
+  code        String     @unique
+  name        String
+  description String?
+  majorId     String?
+  credits     Int        @default(2)
+  isActive    Boolean    @default(true)
+  schedules   Schedule[]
+  major       Major?     @relation(fields: [majorId], references: [id])
+
+  @@map("subjects")
+}
+
+model Schedule {
+  id             String       @id @default(cuid())
+  classId        String
+  subjectId      String
+  teacherId      String
+  academicYearId String
+  dayOfWeek      Int
+  startTime      String
+  endTime        String
+  room           String?
+  attendances    Attendance[]
+  academicYear   AcademicYear @relation(fields: [academicYearId], references: [id])
+  class          Class        @relation(fields: [classId], references: [id])
+  subject        Subject      @relation(fields: [subjectId], references: [id])
+  teacher        UserData     @relation("TeacherSchedule", fields: [teacherId], references: [id])
+
+  @@unique([classId, subjectId, teacherId, dayOfWeek, startTime])
+  @@map("schedules")
+}
+
+model Attendance {
+  id         String   @id @default(cuid())
+  studentId  String
+  scheduleId String
+  status     String
+  notes      String?
+  createdAt  DateTime @default(now())
+  date       DateTime
+  schedule   Schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+  student    UserData @relation("StudentAttendance", fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, scheduleId, date])
+  @@map("attendances")
+}
+
+model ViolationType {
+  id             String       @id @default(cuid())
+  name           String
+  description    String
+  points         Int
+  category       String
+  academicYearId String
+  academicYear   AcademicYear @relation(fields: [academicYearId], references: [id])
+  violations     Violation[]
+
+  @@map("violation_types")
+}
+
+model Violation {
+  id              String        @id @default(cuid())
+  studentId       String
+  violationTypeId String
+  classId         String
+  description     String?
+  status          String        @default("active")
+  reportedBy      String
+  createdAt       DateTime      @default(now())
+  date            DateTime
+  resolutionDate  DateTime?
+  resolutionNotes String?
+  class           Class         @relation(fields: [classId], references: [id])
+  student         UserData      @relation("StudentViolation", fields: [studentId], references: [id], onDelete: Cascade)
+  violationType   ViolationType @relation(fields: [violationTypeId], references: [id])
+
+  @@map("violations")
+}
+
+model PaymentType {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  description String
+  amount      Decimal
+  isMonthly   Boolean   @default(false)
+  isActive    Boolean   @default(true)
+  payments    Payment[]
+
+  @@map("payment_types")
+}
+
+model Payment {
+  id            String      @id @default(cuid())
+  studentId     String
+  paymentTypeId String
+  amount        Decimal
+  dueDate       DateTime?
+  status        String      @default("pending")
+  notes         String?
+  createdAt     DateTime    @default(now())
+  paymentDate   DateTime
+  receiptNumber String?
+  paymentType   PaymentType @relation(fields: [paymentTypeId], references: [id])
+  student       UserData    @relation("StudentPayment", fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("payments")
+}
+
+model CalendarEvent {
+  id             String       @id @default(cuid())
+  title          String
+  description    String?
+  eventDate      DateTime
+  eventType      String
+  isPublished    Boolean      @default(false)
+  academicYearId String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  academicYear   AcademicYear @relation(fields: [academicYearId], references: [id])
+
+  @@map("calendar_events")
+}

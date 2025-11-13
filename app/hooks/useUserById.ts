@@ -1,0 +1,25 @@
+"use client";
+
+// app/api/users/route.ts
+
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+
+export const useGetUserById = (id: string) => {
+  return useQuery({
+    queryKey: ["users", id],
+    queryFn: async () => {
+      try {
+        const res = await axios.get(`/api/usersdatas/id/${id}`);
+        return res.data;
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          console.error("Error fetching user:", error.response?.data || error.message);
+        } else {
+          console.error("Unexpected error:", error);
+        }
+        throw new Error("Failed to fetch user");
+      }
+    },
+  });
+};
