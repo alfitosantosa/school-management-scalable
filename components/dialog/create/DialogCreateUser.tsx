@@ -29,7 +29,7 @@ import Image from "next/image";
 // Type definitions
 export type UserData = {
   id: string;
-  BetterauthId?: string;
+  userId?: string;
   roleId: string;
   name: string;
   email?: string;
@@ -101,7 +101,7 @@ const userSchema = z.object({
       message: "Email tidak valid",
     }),
   roleId: z.string().min(1, "Role wajib dipilih"),
-  BetterauthId: z.string().optional(),
+  userId: z.string().optional(),
   gender: z.string().optional(),
   avatarUrl: z.string().optional(),
 
@@ -383,7 +383,7 @@ function AvatarUpload({ currentAvatarUrl, onUploadSuccess, disabled = false }: {
 }
 
 // Betterauth User Selector Component
-function BetterAuthSelector({ onSelect, selectedBetterauthId, disabled = false }: { onSelect: (betterAuth: BetterAuthUser | null) => void; selectedBetterauthId?: string; disabled?: boolean }) {
+function BetterAuthSelector({ onSelect, selecteduserId, disabled = false }: { onSelect: (betterAuth: BetterAuthUser | null) => void; selecteduserId?: string; disabled?: boolean }) {
   const [open, setOpen] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
   const { data: betterAuths = [], isLoading: betterAuthsLoading } = useGetBetterAuth();
@@ -399,9 +399,9 @@ function BetterAuthSelector({ onSelect, selectedBetterauthId, disabled = false }
   }, [betterAuths, searchTerm]);
 
   const selectedUser = React.useMemo(() => {
-    if (!selectedBetterauthId) return null;
-    return betterAuths.find((user: BetterAuthUser) => user.id === selectedBetterauthId);
-  }, [betterAuths, selectedBetterauthId]);
+    if (!selecteduserId) return null;
+    return betterAuths.find((user: BetterAuthUser) => user.id === selecteduserId);
+  }, [betterAuths, selecteduserId]);
 
   const handleSelect = (betterAuth: BetterAuthUser) => {
     onSelect(betterAuth);
@@ -450,7 +450,7 @@ function BetterAuthSelector({ onSelect, selectedBetterauthId, disabled = false }
               ) : (
                 filteredbetterAuths.map((user: BetterAuthUser) => (
                   <div key={user.id} className="flex items-center space-x-3 p-3 rounded-lg border hover:bg-muted cursor-pointer" onClick={() => handleSelect(user)}>
-                    <div className="flex-shrink-0">
+                    <div className="flex">
                       {user.image ? (
                         <Image src={user.image} alt={`${user.name}`} width={20} height={20} className="h-10 w-10 rounded-full" />
                       ) : (
@@ -463,8 +463,8 @@ function BetterAuthSelector({ onSelect, selectedBetterauthId, disabled = false }
                       <p className="text-sm font-medium truncate">{user.name}</p>
                       <p className="text-sm text-muted-foreground truncate">{user.email || "No email"}</p>
                     </div>
-                    {selectedBetterauthId === user.id && (
-                      <div className="flex-shrink-0">
+                    {selecteduserId === user.id && (
+                      <div className="flex">
                         <Badge variant="default">Selected</Badge>
                       </div>
                     )}
@@ -511,7 +511,7 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
   });
 
   const selectedRoleId = watch("roleId");
-  const selectedBetterauthId = watch("BetterauthId");
+  const selecteduserId = watch("userId");
   const selectedStudentIds = watch("studentIds") || [];
   const selectedRole = roles.find((role: any) => role.id === selectedRoleId);
 
@@ -520,7 +520,7 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
       setValue("name", editData.name);
       setValue("email", editData.email || "");
       setValue("roleId", editData.roleId);
-      setValue("BetterauthId", editData.BetterauthId || "");
+      setValue("userId", editData.userId || "");
       setValue("gender", editData.gender || "");
       setValue("avatarUrl", editData.avatarUrl || "");
       setValue("nisn", editData.nisn || "");
@@ -547,12 +547,12 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
 
   const handlebetterAuthSelect = (betterAuth: BetterAuthUser | null) => {
     if (betterAuth) {
-      setValue("BetterauthId", betterAuth.id);
+      setValue("userId", betterAuth.id);
       setValue("email", betterAuth.email || "");
       setValue("name", betterAuth.name || "");
       setValue("avatarUrl", betterAuth.image || "");
     } else {
-      setValue("BetterauthId", "");
+      setValue("userId", "");
     }
   };
 
@@ -562,16 +562,52 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
 
   const onSubmit = async (data: UserFormValues) => {
     try {
-      const submitData = {
-        ...data,
-        birthDate: data.birthDate ? new Date(data.birthDate) : undefined,
-        enrollmentDate: selectedRole?.name === "Student" ? new Date() : undefined,
-        startDate: selectedRole?.name === "Teacher" ? new Date() : undefined,
+      // Prepare base data - HANYA field yang ada di UserData schema
+      const submitData: any = {
+        name: data.name,
+        roleId: data.roleId || null,
+        gender: data.gender || null,
+        avatarUrl: data.avatarUrl || null,
+        birthDate: data.birthDate ? new Date(data.birthDate) : null,
+        status: data.status,
         // Ubah string kosong ke null supaya backend tahu ini tidak ada nilai
-        classId: data.classId === "" ? null : data.classId,
-        academicYearId: data.academicYearId === "" ? null : data.academicYearId,
-        majorId: data.majorId === "" ? null : data.majorId,
+        classId: data.classId && data.classId !== "" ? data.classId : null,
+        academicYearId: data.academicYearId && data.academicYearId !== "" ? data.academicYearId : null,
+        majorId: data.majorId && data.majorId !== "" ? data.majorId : null,
       };
+
+      console.log(submitData);
+
+      // Add role-specific fields
+      if (selectedRole?.name === "Student") {
+        submitData.nisn = data.nisn || null;
+        submitData.birthPlace = data.birthPlace || null;
+        submitData.nik = data.nik || null;
+        submitData.address = data.address || null;
+        submitData.parentPhone = data.parentPhone || null;
+        submitData.enrollmentDate = new Date();
+      } else if (selectedRole?.name === "Teacher") {
+        submitData.employeeId = data.employeeId || null;
+        submitData.position = data.position || null;
+        submitData.birthPlace = data.birthPlace || null;
+        submitData.address = data.address || null;
+        submitData.parentPhone = data.parentPhone || null;
+        submitData.startDate = new Date();
+      } else if (selectedRole?.name === "Parent") {
+        submitData.studentIds = data.studentIds || [];
+        submitData.relation = data.relation || null;
+        submitData.address = data.address || null;
+        submitData.parentPhone = data.parentPhone || null;
+      }
+
+      // Handle Better Auth User connection
+      // Hanya kirim userId jika ada dan tidak kosong
+      if (data.userId && data.userId !== "") {
+        submitData.userId = data.userId;
+      }
+
+      // PENTING: name dan email TIDAK dikirim ke UserData
+      // Karena field ini ada di tabel User (Better Auth), bukan UserData
 
       if (editData) {
         await updateUser.mutateAsync({ id: editData.id, ...submitData });
@@ -584,6 +620,7 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
       onOpenChange(false);
       onSuccess();
     } catch (error: any) {
+      console.error("Error details:", error);
       toast.error(error.message || "Terjadi kesalahan");
     }
   };
@@ -821,7 +858,7 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
             <h3 className="text-lg font-medium">Informasi Dasar</h3>
 
             {/* Betterauth User Selector */}
-            <BetterAuthSelector onSelect={handlebetterAuthSelect} selectedBetterauthId={selectedBetterauthId} disabled={createUser.isPending || updateUser.isPending} />
+            <BetterAuthSelector onSelect={handlebetterAuthSelect} selecteduserId={selecteduserId} disabled={createUser.isPending || updateUser.isPending} />
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">

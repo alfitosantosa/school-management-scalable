@@ -18,7 +18,7 @@ import { useGetClasses } from "@/app/hooks/useClass";
 import { useGetStudentById } from "@/app/hooks/useGetStudentById";
 import Navbar from "@/components/navbar";
 import { useUser } from "@clerk/clerk-react";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdClerk";
+import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
 import Image from "next/image";
 
 export type ViolationData = {

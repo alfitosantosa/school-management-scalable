@@ -30,7 +30,7 @@ import { useGetSchedulesByIdClass } from "@/app/hooks/useScheduleByIdClass";
 import { useClassByIdUser } from "@/app/hooks/useClassByIdUser";
 import { useGetStudentById } from "@/app/hooks/useGetStudentById";
 import { useUser } from "@clerk/clerk-react";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdClerk";
+import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
 
 // Type definitions
 export type ScheduleData = {

@@ -15,7 +15,7 @@ import Navbar from "@/components/navbar";
 import { useGetAttendanceByIdStudent } from "@/app/hooks/useAttendaceByIdStudent";
 import { useGetStudentById } from "@/app/hooks/useGetStudentById";
 import { useUser } from "@clerk/clerk-react";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdClerk";
+import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
 
 // Type definitions
 export type AttendanceData = {

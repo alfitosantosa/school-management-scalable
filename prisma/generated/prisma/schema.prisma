@@ -92,6 +92,8 @@ model UserData {
   gender         String?
   graduationDate DateTime?
   majorId        String?
+  email          String?
+  name           String
   nik            String?
   nisn           String?
   parentPhone    String?

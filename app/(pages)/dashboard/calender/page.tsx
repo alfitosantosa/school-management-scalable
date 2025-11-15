@@ -6,7 +6,7 @@ import Navbar from "@/components/navbar";
 import { useGetSpecialSchedules } from "@/app/hooks/useSpecialSchedule";
 import { useGetSchedulesByStudent } from "@/app/hooks/useSchedules";
 import { useUser } from "@clerk/clerk-react";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdClerk";
+import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
 
 // Type definitions berdasarkan JSON
 type Schedule = {

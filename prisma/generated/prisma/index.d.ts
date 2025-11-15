@@ -7191,6 +7191,8 @@ export namespace Prisma {
     gender: string | null
     graduationDate: Date | null
     majorId: string | null
+    email: string | null
+    name: string | null
     nik: string | null
     nisn: string | null
     parentPhone: string | null
@@ -7216,6 +7218,8 @@ export namespace Prisma {
     gender: string | null
     graduationDate: Date | null
     majorId: string | null
+    email: string | null
+    name: string | null
     nik: string | null
     nisn: string | null
     parentPhone: string | null
@@ -7241,6 +7245,8 @@ export namespace Prisma {
     gender: number
     graduationDate: number
     majorId: number
+    email: number
+    name: number
     nik: number
     nisn: number
     parentPhone: number
@@ -7269,6 +7275,8 @@ export namespace Prisma {
     gender?: true
     graduationDate?: true
     majorId?: true
+    email?: true
+    name?: true
     nik?: true
     nisn?: true
     parentPhone?: true
@@ -7294,6 +7302,8 @@ export namespace Prisma {
     gender?: true
     graduationDate?: true
     majorId?: true
+    email?: true
+    name?: true
     nik?: true
     nisn?: true
     parentPhone?: true
@@ -7319,6 +7329,8 @@ export namespace Prisma {
     gender?: true
     graduationDate?: true
     majorId?: true
+    email?: true
+    name?: true
     nik?: true
     nisn?: true
     parentPhone?: true
@@ -7418,6 +7430,8 @@ export namespace Prisma {
     gender: string | null
     graduationDate: Date | null
     majorId: string | null
+    email: string | null
+    name: string
     nik: string | null
     nisn: string | null
     parentPhone: string | null
@@ -7461,6 +7475,8 @@ export namespace Prisma {
     gender?: boolean
     graduationDate?: boolean
     majorId?: boolean
+    email?: boolean
+    name?: boolean
     nik?: boolean
     nisn?: boolean
     parentPhone?: boolean
@@ -7499,6 +7515,8 @@ export namespace Prisma {
     gender?: boolean
     graduationDate?: boolean
     majorId?: boolean
+    email?: boolean
+    name?: boolean
     nik?: boolean
     nisn?: boolean
     parentPhone?: boolean
@@ -7530,6 +7548,8 @@ export namespace Prisma {
     gender?: boolean
     graduationDate?: boolean
     majorId?: boolean
+    email?: boolean
+    name?: boolean
     nik?: boolean
     nisn?: boolean
     parentPhone?: boolean
@@ -7561,6 +7581,8 @@ export namespace Prisma {
     gender?: boolean
     graduationDate?: boolean
     majorId?: boolean
+    email?: boolean
+    name?: boolean
     nik?: boolean
     nisn?: boolean
     parentPhone?: boolean
@@ -7572,7 +7594,7 @@ export namespace Prisma {
     studentIds?: boolean
   }
 
-  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "academicYearId" | "address" | "avatarUrl" | "birthDate" | "birthPlace" | "classId" | "employeeId" | "endDate" | "enrollmentDate" | "gender" | "graduationDate" | "majorId" | "nik" | "nisn" | "parentPhone" | "position" | "relation" | "roleId" | "startDate" | "status" | "studentIds", ExtArgs["result"]["userData"]>
+  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "academicYearId" | "address" | "avatarUrl" | "birthDate" | "birthPlace" | "classId" | "employeeId" | "endDate" | "enrollmentDate" | "gender" | "graduationDate" | "majorId" | "email" | "name" | "nik" | "nisn" | "parentPhone" | "position" | "relation" | "roleId" | "startDate" | "status" | "studentIds", ExtArgs["result"]["userData"]>
   export type UserDataInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     attendances?: boolean | UserData$attendancesArgs<ExtArgs>
@@ -7632,6 +7654,8 @@ export namespace Prisma {
       gender: string | null
       graduationDate: Date | null
       majorId: string | null
+      email: string | null
+      name: string
       nik: string | null
       nisn: string | null
       parentPhone: string | null
@@ -8089,6 +8113,8 @@ export namespace Prisma {
     readonly gender: FieldRef<"UserData", 'String'>
     readonly graduationDate: FieldRef<"UserData", 'DateTime'>
     readonly majorId: FieldRef<"UserData", 'String'>
+    readonly email: FieldRef<"UserData", 'String'>
+    readonly name: FieldRef<"UserData", 'String'>
     readonly nik: FieldRef<"UserData", 'String'>
     readonly nisn: FieldRef<"UserData", 'String'>
     readonly parentPhone: FieldRef<"UserData", 'String'>
@@ -22558,6 +22584,8 @@ export namespace Prisma {
     gender: 'gender',
     graduationDate: 'graduationDate',
     majorId: 'majorId',
+    email: 'email',
+    name: 'name',
     nik: 'nik',
     nisn: 'nisn',
     parentPhone: 'parentPhone',
@@ -23152,6 +23180,8 @@ export namespace Prisma {
     gender?: StringNullableFilter<"UserData"> | string | null
     graduationDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     majorId?: StringNullableFilter<"UserData"> | string | null
+    email?: StringNullableFilter<"UserData"> | string | null
+    name?: StringFilter<"UserData"> | string
     nik?: StringNullableFilter<"UserData"> | string | null
     nisn?: StringNullableFilter<"UserData"> | string | null
     parentPhone?: StringNullableFilter<"UserData"> | string | null
@@ -23189,6 +23219,8 @@ export namespace Prisma {
     gender?: SortOrderInput | SortOrder
     graduationDate?: SortOrderInput | SortOrder
     majorId?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    name?: SortOrder
     nik?: SortOrderInput | SortOrder
     nisn?: SortOrderInput | SortOrder
     parentPhone?: SortOrderInput | SortOrder
@@ -23229,6 +23261,8 @@ export namespace Prisma {
     gender?: StringNullableFilter<"UserData"> | string | null
     graduationDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     majorId?: StringNullableFilter<"UserData"> | string | null
+    email?: StringNullableFilter<"UserData"> | string | null
+    name?: StringFilter<"UserData"> | string
     nik?: StringNullableFilter<"UserData"> | string | null
     nisn?: StringNullableFilter<"UserData"> | string | null
     parentPhone?: StringNullableFilter<"UserData"> | string | null
@@ -23266,6 +23300,8 @@ export namespace Prisma {
     gender?: SortOrderInput | SortOrder
     graduationDate?: SortOrderInput | SortOrder
     majorId?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
+    name?: SortOrder
     nik?: SortOrderInput | SortOrder
     nisn?: SortOrderInput | SortOrder
     parentPhone?: SortOrderInput | SortOrder
@@ -23298,6 +23334,8 @@ export namespace Prisma {
     gender?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     graduationDate?: DateTimeNullableWithAggregatesFilter<"UserData"> | Date | string | null
     majorId?: StringNullableWithAggregatesFilter<"UserData"> | string | null
+    email?: StringNullableWithAggregatesFilter<"UserData"> | string | null
+    name?: StringWithAggregatesFilter<"UserData"> | string
     nik?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     nisn?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     parentPhone?: StringNullableWithAggregatesFilter<"UserData"> | string | null
@@ -24527,6 +24565,8 @@ export namespace Prisma {
     enrollmentDate?: Date | string | null
     gender?: string | null
     graduationDate?: Date | string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -24563,6 +24603,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -24591,6 +24633,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24627,6 +24671,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24659,6 +24705,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -24681,6 +24729,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24706,6 +24756,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26028,6 +26080,8 @@ export namespace Prisma {
     gender?: SortOrder
     graduationDate?: SortOrder
     majorId?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
     nik?: SortOrder
     nisn?: SortOrder
     parentPhone?: SortOrder
@@ -26054,6 +26108,8 @@ export namespace Prisma {
     gender?: SortOrder
     graduationDate?: SortOrder
     majorId?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
     nik?: SortOrder
     nisn?: SortOrder
     parentPhone?: SortOrder
@@ -26079,6 +26135,8 @@ export namespace Prisma {
     gender?: SortOrder
     graduationDate?: SortOrder
     majorId?: SortOrder
+    email?: SortOrder
+    name?: SortOrder
     nik?: SortOrder
     nisn?: SortOrder
     parentPhone?: SortOrder
@@ -28292,6 +28350,8 @@ export namespace Prisma {
     enrollmentDate?: Date | string | null
     gender?: string | null
     graduationDate?: Date | string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -28326,6 +28386,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -28440,6 +28502,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28474,6 +28538,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28962,6 +29028,8 @@ export namespace Prisma {
     enrollmentDate?: Date | string | null
     gender?: string | null
     graduationDate?: Date | string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -28997,6 +29065,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -29029,6 +29099,8 @@ export namespace Prisma {
     enrollmentDate?: Date | string | null
     gender?: string | null
     graduationDate?: Date | string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -29064,6 +29136,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -29409,6 +29483,8 @@ export namespace Prisma {
     gender?: StringNullableFilter<"UserData"> | string | null
     graduationDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     majorId?: StringNullableFilter<"UserData"> | string | null
+    email?: StringNullableFilter<"UserData"> | string | null
+    name?: StringFilter<"UserData"> | string
     nik?: StringNullableFilter<"UserData"> | string | null
     nisn?: StringNullableFilter<"UserData"> | string | null
     parentPhone?: StringNullableFilter<"UserData"> | string | null
@@ -29447,6 +29523,8 @@ export namespace Prisma {
     enrollmentDate?: Date | string | null
     gender?: string | null
     graduationDate?: Date | string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -29482,6 +29560,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -29633,6 +29713,8 @@ export namespace Prisma {
     enrollmentDate?: Date | string | null
     gender?: string | null
     graduationDate?: Date | string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -29667,6 +29749,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -29914,6 +29998,8 @@ export namespace Prisma {
     enrollmentDate?: Date | string | null
     gender?: string | null
     graduationDate?: Date | string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -29948,6 +30034,8 @@ export namespace Prisma {
     enrollmentDate?: Date | string | null
     gender?: string | null
     graduationDate?: Date | string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -30139,6 +30227,8 @@ export namespace Prisma {
     enrollmentDate?: Date | string | null
     gender?: string | null
     graduationDate?: Date | string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -30173,6 +30263,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -30584,6 +30676,8 @@ export namespace Prisma {
     enrollmentDate?: Date | string | null
     gender?: string | null
     graduationDate?: Date | string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -30619,6 +30713,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -30781,6 +30877,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30816,6 +30914,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30872,6 +30972,8 @@ export namespace Prisma {
     enrollmentDate?: Date | string | null
     gender?: string | null
     graduationDate?: Date | string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -30907,6 +31009,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -30985,6 +31089,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31020,6 +31126,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31198,6 +31306,8 @@ export namespace Prisma {
     enrollmentDate?: Date | string | null
     gender?: string | null
     graduationDate?: Date | string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -31233,6 +31343,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -31332,6 +31444,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31367,6 +31481,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31496,6 +31612,8 @@ export namespace Prisma {
     enrollmentDate?: Date | string | null
     gender?: string | null
     graduationDate?: Date | string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -31531,6 +31649,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -31603,6 +31723,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31638,6 +31760,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32019,6 +32143,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32054,6 +32180,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32085,6 +32213,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32107,6 +32237,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32142,6 +32274,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32173,6 +32307,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32199,6 +32335,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -32220,6 +32358,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32255,6 +32395,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32286,6 +32428,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32340,6 +32484,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -32468,6 +32614,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32502,6 +32650,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32533,6 +32683,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32601,6 +32753,8 @@ export namespace Prisma {
     enrollmentDate?: Date | string | null
     gender?: string | null
     graduationDate?: Date | string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -32682,6 +32836,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32716,6 +32872,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32747,6 +32905,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32783,6 +32943,8 @@ export namespace Prisma {
     gender?: string | null
     graduationDate?: Date | string | null
     majorId?: string | null
+    email?: string | null
+    name: string
     nik?: string | null
     nisn?: string | null
     parentPhone?: string | null
@@ -32853,6 +33015,8 @@ export namespace Prisma {
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32887,6 +33051,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32918,6 +33084,8 @@ export namespace Prisma {
     gender?: NullableStringFieldUpdateOperationsInput | string | null
     graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     nisn?: NullableStringFieldUpdateOperationsInput | string | null
     parentPhone?: NullableStringFieldUpdateOperationsInput | string | null

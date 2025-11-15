@@ -182,6 +182,8 @@ exports.Prisma.UserDataScalarFieldEnum = {
   gender: 'gender',
   graduationDate: 'graduationDate',
   majorId: 'majorId',
+  email: 'email',
+  name: 'name',
   nik: 'nik',
   nisn: 'nisn',
   parentPhone: 'parentPhone',
