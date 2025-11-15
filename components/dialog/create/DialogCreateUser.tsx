@@ -565,6 +565,7 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
       // Prepare base data - HANYA field yang ada di UserData schema
       const submitData: any = {
         name: data.name,
+        email: data.email || null,
         roleId: data.roleId || null,
         gender: data.gender || null,
         avatarUrl: data.avatarUrl || null,

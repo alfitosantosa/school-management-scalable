@@ -69,7 +69,7 @@ model Verification {
 
 model UserData {
   id             String        @id @unique @default(cuid())
-  userId         String        @unique
+  userId         String?       @unique
   academicYearId String?
   address        String?
   avatarUrl      String?
@@ -100,7 +100,7 @@ model UserData {
   class          Class?        @relation("UserClass", fields: [classId], references: [id])
   major          Major?        @relation("UserMajor", fields: [majorId], references: [id])
   role           Role?         @relation(fields: [roleId], references: [id])
-  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user           User?          @relation(fields: [userId], references: [id], onDelete: Cascade)
   violations     Violation[]   @relation("StudentViolation")
   user_data_A    UserData[]    @relation("ParentStudent")
   user_data_B    UserData[]    @relation("ParentStudent")

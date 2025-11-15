@@ -92,7 +92,7 @@ export const useGetUserById = (id: string) => {
     queryKey: ["users", id],
     queryFn: async () => {
       try {
-        const res = await axios.get(`/api/usersdatas/${id}`);
+        const res = await axios.get(`/api/userdata/id/${id}`);
         return res.data;
       } catch (error) {
         if (axios.isAxiosError(error)) {
