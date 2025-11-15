@@ -576,8 +576,6 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
         majorId: data.majorId && data.majorId !== "" ? data.majorId : null,
       };
 
-      console.log(submitData);
-
       // Add role-specific fields
       if (selectedRole?.name === "Student") {
         submitData.nisn = data.nisn || null;
