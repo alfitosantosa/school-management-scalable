@@ -8,23 +8,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ========================================
-// BETTER AUTH MODELS
-// ========================================
-
 model User {
-  id            String        @id @unique
+  id            String    @id @unique
   name          String
-  email         String        @unique
+  email         String    @unique
   emailVerified Boolean
   image         String?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  
-  // Better Auth Relations
-  userData      UserData?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
+  userData      UserData?
 
   @@map("user")
 }
@@ -73,10 +67,6 @@ model Verification {
   @@map("verification")
 }
 
-// ========================================
-// USER DATA MODEL (Bridge between Better Auth and Legacy System)
-// ========================================
-
 model UserData {
   id             String        @id @unique @default(cuid())
   userId         String        @unique
@@ -101,9 +91,8 @@ model UserData {
   startDate      DateTime?
   status         String?       @default("active")
   studentIds     String[]
-  
-  // Relations
-  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  email          String?
+  name           String
   attendances    Attendance[]  @relation("StudentAttendance")
   payments       Payment[]     @relation("StudentPayment")
   schedules      Schedule[]    @relation("TeacherSchedule")
@@ -111,16 +100,13 @@ model UserData {
   class          Class?        @relation("UserClass", fields: [classId], references: [id])
   major          Major?        @relation("UserMajor", fields: [majorId], references: [id])
   role           Role?         @relation(fields: [roleId], references: [id])
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   violations     Violation[]   @relation("StudentViolation")
-  parents        UserData[]    @relation("ParentStudent")
-  children       UserData[]    @relation("ParentStudent")
+  user_data_A    UserData[]    @relation("ParentStudent")
+  user_data_B    UserData[]    @relation("ParentStudent")
 
   @@map("user_data")
 }
-
-// ========================================
-// LEGACY MODELS (Unchanged)
-// ========================================
 
 model Role {
   id          String     @id @default(cuid())

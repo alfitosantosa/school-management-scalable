@@ -5,7 +5,7 @@ import { CalendarBody, CalendarDate, CalendarDatePagination, CalendarDatePicker,
 import Navbar from "@/components/navbar";
 import { useGetSpecialSchedules } from "@/app/hooks/useSpecialSchedule";
 import { useUser } from "@clerk/clerk-react";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdClerk";
+import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
 import { useGetScheduleByIdTeacher } from "@/app/hooks/useGetScheduleById";
 
 // Type definitions berdasarkan JSON

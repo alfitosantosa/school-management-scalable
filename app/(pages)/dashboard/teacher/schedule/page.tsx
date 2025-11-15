@@ -14,7 +14,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useGetAttendance } from "@/app/hooks/useAttendance";
 import { useUser } from "@clerk/clerk-react";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdClerk";
+import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
 
 export default function TeacherAttendancePage() {
   const today = new Date().getDay();

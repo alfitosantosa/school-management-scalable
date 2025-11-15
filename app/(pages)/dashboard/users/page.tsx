@@ -19,6 +19,7 @@ import Navbar from "@/components/navbar";
 // Import dialog components
 import { UserFormDialog, DeleteUserDialog, UserData, BetterAuthUser } from "@/components/dialog/create/DialogCreateUser";
 import Image from "next/image";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
 
 // Main DataTable Component
 export default function UserDataTable() {
@@ -94,21 +95,25 @@ export default function UserDataTable() {
           return (
             <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
               <User className="mr-2 h-4 w-4" />
-              Akun Clerk
+              BetterAuth
               <ArrowUpDown className="ml-2 h-4 w-4" />
             </Button>
           );
         },
         cell: ({ row }) => {
-          const clerkInfo = getClerkUserInfo(row.original.id);
+          const { data: BetterAuthInfo } = useGetUserByIdBetterAuth(row.original.userId || "");
+          console.log(BetterAuthInfo?.user.image);
+          console.log(row.original.userId);
           const name = row.getValue("name") as string;
 
           return (
             <div className="flex items-center space-x-2">
-              {clerkInfo?.image_url && (
+              {BetterAuthInfo?.user?.image && (
                 <Image
-                  src={clerkInfo.image_url}
+                  src={BetterAuthInfo?.user?.image}
                   alt={name || "User"}
+                  width={40}
+                  height={40}
                   className="h-8 w-8 rounded-full object-cover"
                   onError={(e) => {
                     (e.target as HTMLImageElement).style.display = "none";
@@ -117,7 +122,7 @@ export default function UserDataTable() {
               )}
               <div>
                 <div className="font-medium">{name || "-"}</div>
-                {clerkInfo ? <div className="text-xs text-muted-foreground">Clerk Assigned</div> : <div className="text-xs text-red-600">No Clerk Assigned</div>}
+                {BetterAuthInfo?.user ? <div className="text-xs text-muted-foreground">BetterAuth Assigned</div> : <div className="text-xs text-red-600">No BetterAuth Assigned</div>}
               </div>
             </div>
           );
@@ -233,20 +238,18 @@ export default function UserDataTable() {
         },
       },
       {
-        accessorKey: "clerkId",
-        header: "Clerk Status",
+        accessorKey: "userId",
+        header: "BetterAuth Status",
         cell: ({ row }) => {
-          const clerkId = row.getValue("clerkId") as string;
-          const clerkInfo = getClerkUserInfo(clerkId);
-
-          if (!clerkId) {
-            return <Badge variant="outline">No Clerk</Badge>;
+          const userId = row.getValue("userId") as string;
+          // const userInfo = useGetUserByIdBetterAuth(userId);
+          if (!userId) {
+            return <Badge variant="outline">No BetterAuth</Badge>;
           }
 
           return (
             <div className="flex items-center space-x-2">
               <Badge variant="default">Linked</Badge>
-              {clerkInfo && <span className="text-xs text-muted-foreground truncate max-w-32">{clerkInfo.email_addresses?.[0]?.email_address || "No email"}</span>}
             </div>
           );
         },
@@ -512,7 +515,7 @@ export default function UserDataTable() {
                         class: "Kelas",
                         major: "Jurusan",
                         status: "Status",
-                        "clerk name": "Akun Clerk",
+                        user: "BetterAuth",
                       };
                       return labels[columnId] || columnId;
                     };

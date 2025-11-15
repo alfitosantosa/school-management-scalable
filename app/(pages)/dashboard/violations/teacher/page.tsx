@@ -32,7 +32,7 @@ import Navbar from "@/components/navbar";
 import { useGetUsers } from "@/app/hooks/useUsers";
 import { object } from "zod";
 import { useGetViolationsByIdTeacher } from "@/app/hooks/useViolationsByIdTeacher";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdClerk";
+import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
 import { useGetUserByIdTeacher } from "@/app/hooks/useGetUserByIdTeacher";
 
 // Type definitions

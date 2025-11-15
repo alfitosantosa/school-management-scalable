@@ -15,7 +15,7 @@ import { useGetUserById } from "@/app/hooks/useUserById";
 import { useGetViolationsByIdStudent } from "@/app/hooks/useViolationsByIdStudent";
 import Navbar from "@/components/navbar";
 import { useUser } from "@clerk/clerk-react";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdClerk";
+import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
 
 // Simple Table Component
 function SimpleTable({ columns, data, emptyMessage = "Tidak ada data" }: any) {
