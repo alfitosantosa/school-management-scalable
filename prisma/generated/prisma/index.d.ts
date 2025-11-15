@@ -7417,7 +7417,7 @@ export namespace Prisma {
 
   export type UserDataGroupByOutputType = {
     id: string
-    userId: string
+    userId: string | null
     academicYearId: string | null
     address: string | null
     avatarUrl: string | null
@@ -7493,7 +7493,7 @@ export namespace Prisma {
     class?: boolean | UserData$classArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserData$userArgs<ExtArgs>
     violations?: boolean | UserData$violationsArgs<ExtArgs>
     user_data_A?: boolean | UserData$user_data_AArgs<ExtArgs>
     user_data_B?: boolean | UserData$user_data_BArgs<ExtArgs>
@@ -7530,7 +7530,7 @@ export namespace Prisma {
     class?: boolean | UserData$classArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserData$userArgs<ExtArgs>
   }, ExtArgs["result"]["userData"]>
 
   export type UserDataSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7563,7 +7563,7 @@ export namespace Prisma {
     class?: boolean | UserData$classArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserData$userArgs<ExtArgs>
   }, ExtArgs["result"]["userData"]>
 
   export type UserDataSelectScalar = {
@@ -7603,7 +7603,7 @@ export namespace Prisma {
     class?: boolean | UserData$classArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserData$userArgs<ExtArgs>
     violations?: boolean | UserData$violationsArgs<ExtArgs>
     user_data_A?: boolean | UserData$user_data_AArgs<ExtArgs>
     user_data_B?: boolean | UserData$user_data_BArgs<ExtArgs>
@@ -7614,14 +7614,14 @@ export namespace Prisma {
     class?: boolean | UserData$classArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserData$userArgs<ExtArgs>
   }
   export type UserDataIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserData$userArgs<ExtArgs>
   }
 
   export type $UserDataPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7634,14 +7634,14 @@ export namespace Prisma {
       class: Prisma.$ClassPayload<ExtArgs> | null
       major: Prisma.$MajorPayload<ExtArgs> | null
       role: Prisma.$RolePayload<ExtArgs> | null
-      user: Prisma.$UserPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs> | null
       violations: Prisma.$ViolationPayload<ExtArgs>[]
       user_data_A: Prisma.$UserDataPayload<ExtArgs>[]
       user_data_B: Prisma.$UserDataPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      userId: string
+      userId: string | null
       academicYearId: string | null
       address: string | null
       avatarUrl: string | null
@@ -8066,7 +8066,7 @@ export namespace Prisma {
     class<T extends UserData$classArgs<ExtArgs> = {}>(args?: Subset<T, UserData$classArgs<ExtArgs>>): Prisma__ClassClient<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     major<T extends UserData$majorArgs<ExtArgs> = {}>(args?: Subset<T, UserData$majorArgs<ExtArgs>>): Prisma__MajorClient<$Result.GetResult<Prisma.$MajorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     role<T extends UserData$roleArgs<ExtArgs> = {}>(args?: Subset<T, UserData$roleArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserData$userArgs<ExtArgs> = {}>(args?: Subset<T, UserData$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     violations<T extends UserData$violationsArgs<ExtArgs> = {}>(args?: Subset<T, UserData$violationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViolationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user_data_A<T extends UserData$user_data_AArgs<ExtArgs> = {}>(args?: Subset<T, UserData$user_data_AArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user_data_B<T extends UserData$user_data_BArgs<ExtArgs> = {}>(args?: Subset<T, UserData$user_data_BArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -8665,6 +8665,25 @@ export namespace Prisma {
      */
     include?: RoleInclude<ExtArgs> | null
     where?: RoleWhereInput
+  }
+
+  /**
+   * UserData.user
+   */
+  export type UserData$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
   }
 
   /**
@@ -23167,7 +23186,7 @@ export namespace Prisma {
     OR?: UserDataWhereInput[]
     NOT?: UserDataWhereInput | UserDataWhereInput[]
     id?: StringFilter<"UserData"> | string
-    userId?: StringFilter<"UserData"> | string
+    userId?: StringNullableFilter<"UserData"> | string | null
     academicYearId?: StringNullableFilter<"UserData"> | string | null
     address?: StringNullableFilter<"UserData"> | string | null
     avatarUrl?: StringNullableFilter<"UserData"> | string | null
@@ -23198,7 +23217,7 @@ export namespace Prisma {
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
     major?: XOR<MajorNullableScalarRelationFilter, MajorWhereInput> | null
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     violations?: ViolationListRelationFilter
     user_data_A?: UserDataListRelationFilter
     user_data_B?: UserDataListRelationFilter
@@ -23206,7 +23225,7 @@ export namespace Prisma {
 
   export type UserDataOrderByWithRelationInput = {
     id?: SortOrder
-    userId?: SortOrder
+    userId?: SortOrderInput | SortOrder
     academicYearId?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     avatarUrl?: SortOrderInput | SortOrder
@@ -23279,7 +23298,7 @@ export namespace Prisma {
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
     major?: XOR<MajorNullableScalarRelationFilter, MajorWhereInput> | null
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     violations?: ViolationListRelationFilter
     user_data_A?: UserDataListRelationFilter
     user_data_B?: UserDataListRelationFilter
@@ -23287,7 +23306,7 @@ export namespace Prisma {
 
   export type UserDataOrderByWithAggregationInput = {
     id?: SortOrder
-    userId?: SortOrder
+    userId?: SortOrderInput | SortOrder
     academicYearId?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     avatarUrl?: SortOrderInput | SortOrder
@@ -23321,7 +23340,7 @@ export namespace Prisma {
     OR?: UserDataScalarWhereWithAggregatesInput[]
     NOT?: UserDataScalarWhereWithAggregatesInput | UserDataScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"UserData"> | string
-    userId?: StringWithAggregatesFilter<"UserData"> | string
+    userId?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     academicYearId?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     address?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     avatarUrl?: StringNullableWithAggregatesFilter<"UserData"> | string | null
@@ -24582,7 +24601,7 @@ export namespace Prisma {
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
-    user: UserCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
     user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
     user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
@@ -24590,7 +24609,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedCreateInput = {
     id?: string
-    userId: string
+    userId?: string | null
     academicYearId?: string | null
     address?: string | null
     avatarUrl?: string | null
@@ -24650,7 +24669,7 @@ export namespace Prisma {
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
-    user?: UserUpdateOneRequiredWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
     user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
     user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
@@ -24658,7 +24677,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24692,7 +24711,7 @@ export namespace Prisma {
 
   export type UserDataCreateManyInput = {
     id?: string
-    userId: string
+    userId?: string | null
     academicYearId?: string | null
     address?: string | null
     avatarUrl?: string | null
@@ -24743,7 +24762,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26033,6 +26052,11 @@ export namespace Prisma {
     isNot?: RoleWhereInput | null
   }
 
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
   export type ViolationListRelationFilter = {
     every?: ViolationWhereInput
     some?: ViolationWhereInput
@@ -27085,10 +27109,12 @@ export namespace Prisma {
     update?: XOR<XOR<RoleUpdateToOneWithWhereWithoutUserDataInput, RoleUpdateWithoutUserDataInput>, RoleUncheckedUpdateWithoutUserDataInput>
   }
 
-  export type UserUpdateOneRequiredWithoutUserDataNestedInput = {
+  export type UserUpdateOneWithoutUserDataNestedInput = {
     create?: XOR<UserCreateWithoutUserDataInput, UserUncheckedCreateWithoutUserDataInput>
     connectOrCreate?: UserCreateOrConnectWithoutUserDataInput
     upsert?: UserUpsertWithoutUserDataInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserDataInput, UserUpdateWithoutUserDataInput>, UserUncheckedUpdateWithoutUserDataInput>
   }
@@ -29045,14 +29071,14 @@ export namespace Prisma {
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
-    user: UserCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
     user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
   }
 
   export type UserDataUncheckedCreateWithoutUser_data_BInput = {
     id?: string
-    userId: string
+    userId?: string | null
     academicYearId?: string | null
     address?: string | null
     avatarUrl?: string | null
@@ -29116,14 +29142,14 @@ export namespace Prisma {
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
-    user: UserCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
     user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
   }
 
   export type UserDataUncheckedCreateWithoutUser_data_AInput = {
     id?: string
-    userId: string
+    userId?: string | null
     academicYearId?: string | null
     address?: string | null
     avatarUrl?: string | null
@@ -29470,7 +29496,7 @@ export namespace Prisma {
     OR?: UserDataScalarWhereInput[]
     NOT?: UserDataScalarWhereInput | UserDataScalarWhereInput[]
     id?: StringFilter<"UserData"> | string
-    userId?: StringFilter<"UserData"> | string
+    userId?: StringNullableFilter<"UserData"> | string | null
     academicYearId?: StringNullableFilter<"UserData"> | string | null
     address?: StringNullableFilter<"UserData"> | string | null
     avatarUrl?: StringNullableFilter<"UserData"> | string | null
@@ -29539,7 +29565,7 @@ export namespace Prisma {
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
-    user: UserCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
     user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
     user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
@@ -29547,7 +29573,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedCreateWithoutRoleInput = {
     id?: string
-    userId: string
+    userId?: string | null
     academicYearId?: string | null
     address?: string | null
     avatarUrl?: string | null
@@ -29729,7 +29755,7 @@ export namespace Prisma {
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
-    user: UserCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
     user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
     user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
@@ -29737,7 +29763,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedCreateWithoutAcademicYearInput = {
     id?: string
-    userId: string
+    userId?: string | null
     address?: string | null
     avatarUrl?: string | null
     birthDate?: Date | string | null
@@ -30014,7 +30040,7 @@ export namespace Prisma {
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
-    user: UserCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
     user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
     user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
@@ -30022,7 +30048,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedCreateWithoutMajorInput = {
     id?: string
-    userId: string
+    userId?: string | null
     academicYearId?: string | null
     address?: string | null
     avatarUrl?: string | null
@@ -30243,7 +30269,7 @@ export namespace Prisma {
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
-    user: UserCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
     user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
     user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
@@ -30251,7 +30277,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedCreateWithoutClassInput = {
     id?: string
-    userId: string
+    userId?: string | null
     academicYearId?: string | null
     address?: string | null
     avatarUrl?: string | null
@@ -30692,7 +30718,7 @@ export namespace Prisma {
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
-    user: UserCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
     user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
     user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
@@ -30700,7 +30726,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedCreateWithoutSchedulesInput = {
     id?: string
-    userId: string
+    userId?: string | null
     academicYearId?: string | null
     address?: string | null
     avatarUrl?: string | null
@@ -30893,7 +30919,7 @@ export namespace Prisma {
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
-    user?: UserUpdateOneRequiredWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
     user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
     user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
@@ -30901,7 +30927,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateWithoutSchedulesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -30988,7 +31014,7 @@ export namespace Prisma {
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
-    user: UserCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
     user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
     user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
@@ -30996,7 +31022,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedCreateWithoutAttendancesInput = {
     id?: string
-    userId: string
+    userId?: string | null
     academicYearId?: string | null
     address?: string | null
     avatarUrl?: string | null
@@ -31105,7 +31131,7 @@ export namespace Prisma {
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
-    user?: UserUpdateOneRequiredWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
     user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
     user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
@@ -31113,7 +31139,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateWithoutAttendancesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31323,14 +31349,14 @@ export namespace Prisma {
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
-    user: UserCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
     user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
     user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
   }
 
   export type UserDataUncheckedCreateWithoutViolationsInput = {
     id?: string
-    userId: string
+    userId?: string | null
     academicYearId?: string | null
     address?: string | null
     avatarUrl?: string | null
@@ -31461,14 +31487,14 @@ export namespace Prisma {
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
-    user?: UserUpdateOneRequiredWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
     user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
     user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutViolationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -31628,7 +31654,7 @@ export namespace Prisma {
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
-    user: UserCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
     user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
     user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
@@ -31636,7 +31662,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedCreateWithoutPaymentsInput = {
     id?: string
-    userId: string
+    userId?: string | null
     academicYearId?: string | null
     address?: string | null
     avatarUrl?: string | null
@@ -31739,7 +31765,7 @@ export namespace Prisma {
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
-    user?: UserUpdateOneRequiredWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
     user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
     user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
@@ -31747,7 +31773,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateWithoutPaymentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32160,14 +32186,14 @@ export namespace Prisma {
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
-    user?: UserUpdateOneRequiredWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
     user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutUser_data_BInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32200,7 +32226,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateManyWithoutUser_data_BInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32254,14 +32280,14 @@ export namespace Prisma {
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
-    user?: UserUpdateOneRequiredWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
     user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutUser_data_AInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32294,7 +32320,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateManyWithoutUser_data_AInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32322,7 +32348,7 @@ export namespace Prisma {
 
   export type UserDataCreateManyRoleInput = {
     id?: string
-    userId: string
+    userId?: string | null
     academicYearId?: string | null
     address?: string | null
     avatarUrl?: string | null
@@ -32374,7 +32400,7 @@ export namespace Prisma {
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
-    user?: UserUpdateOneRequiredWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
     user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
     user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
@@ -32382,7 +32408,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateWithoutRoleInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32415,7 +32441,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateManyWithoutRoleInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32472,7 +32498,7 @@ export namespace Prisma {
 
   export type UserDataCreateManyAcademicYearInput = {
     id?: string
-    userId: string
+    userId?: string | null
     address?: string | null
     avatarUrl?: string | null
     birthDate?: Date | string | null
@@ -32630,7 +32656,7 @@ export namespace Prisma {
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
-    user?: UserUpdateOneRequiredWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
     user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
     user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
@@ -32638,7 +32664,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateWithoutAcademicYearInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -32671,7 +32697,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateManyWithoutAcademicYearInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -32741,7 +32767,7 @@ export namespace Prisma {
 
   export type UserDataCreateManyMajorInput = {
     id?: string
-    userId: string
+    userId?: string | null
     academicYearId?: string | null
     address?: string | null
     avatarUrl?: string | null
@@ -32852,7 +32878,7 @@ export namespace Prisma {
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
-    user?: UserUpdateOneRequiredWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
     user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
     user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
@@ -32860,7 +32886,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateWithoutMajorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32893,7 +32919,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateManyWithoutMajorInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -32931,7 +32957,7 @@ export namespace Prisma {
 
   export type UserDataCreateManyClassInput = {
     id?: string
-    userId: string
+    userId?: string | null
     academicYearId?: string | null
     address?: string | null
     avatarUrl?: string | null
@@ -33031,7 +33057,7 @@ export namespace Prisma {
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
-    user?: UserUpdateOneRequiredWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
     user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
     user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
@@ -33039,7 +33065,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -33072,7 +33098,7 @@ export namespace Prisma {
 
   export type UserDataUncheckedUpdateManyWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
     academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null

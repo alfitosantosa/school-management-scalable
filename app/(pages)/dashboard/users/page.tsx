@@ -20,6 +20,7 @@ import Navbar from "@/components/navbar";
 import { UserFormDialog, DeleteUserDialog, UserData, BetterAuthUser } from "@/components/dialog/create/DialogCreateUser";
 import Image from "next/image";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
+import { useGetUserById } from "@/app/hooks/useUserById";
 
 // Main DataTable Component
 export default function UserDataTable() {
@@ -41,15 +42,15 @@ export default function UserDataTable() {
 
   // Fetch data with proper error handling
   const { data: usersData = [], isLoading, refetch, error } = useGetUsers();
-  const { data: clerkUsers = [] } = useGetBetterAuth();
+  const { data: betterAuthUsers = [] } = useGetBetterAuth();
 
-  // Helper function to get clerk user info
-  const getClerkUserInfo = React.useCallback(
-    (clerkId?: string) => {
-      if (!clerkId || !clerkUsers.length) return null;
-      return clerkUsers.find((user: BetterAuthUser) => user.id === clerkId) || null;
+  // Helper function to get betterAuth user info
+  //if better auth null dont fetch betterauth user info
+  const getBetterAuthUserInfo = React.useCallback(
+    (userId: string): BetterAuthUser | undefined => {
+      return betterAuthUsers.find((user: any) => user.id === userId);
     },
-    [clerkUsers]
+    [betterAuthUsers]
   );
 
   // Get unique values for filters
@@ -79,7 +80,7 @@ export default function UserDataTable() {
         accessorKey: "avatarUrl",
         header: "Avatar",
         cell: ({ row }) => {
-          const betterAuthUser = getClerkUserInfo(row.original.id);
+          const { data: betterAuthUser } = useGetUserById(row.original.id);
           const avatarUrl = betterAuthUser?.profile_image_url || betterAuthUser?.image_url || row.original.avatarUrl || "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png";
           return <Image src={avatarUrl} alt="Avatar" className="w-10 h-10 rounded-full object-cover" width={40} height={40} />;
         },
@@ -101,31 +102,43 @@ export default function UserDataTable() {
           );
         },
         cell: ({ row }) => {
-          const { data: BetterAuthInfo } = useGetUserByIdBetterAuth(row.original.userId || "");
-          console.log(BetterAuthInfo?.user.image);
-          console.log(row.original.userId);
-          const name = row.getValue("name") as string;
-
-          return (
-            <div className="flex items-center space-x-2">
-              {BetterAuthInfo?.user?.image && (
-                <Image
-                  src={BetterAuthInfo?.user?.image}
-                  alt={name || "User"}
-                  width={40}
-                  height={40}
-                  className="h-8 w-8 rounded-full object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                  }}
-                />
-              )}
-              <div>
-                <div className="font-medium">{name || "-"}</div>
-                {BetterAuthInfo?.user ? <div className="text-xs text-muted-foreground">BetterAuth Assigned</div> : <div className="text-xs text-red-600">No BetterAuth Assigned</div>}
+          //if userId is null don't fetch betterauth user info
+          if (!row.original.userId) {
+            return (
+              <div className="flex items-center space-x-2">
+                <div>
+                  <div className="font-medium">{row.original.name || "-"}</div>
+                  <div className="text-xs text-red-600">No BetterAuth Assigned</div>
+                </div>
               </div>
-            </div>
-          );
+            );
+          } else {
+            const { data: BetterAuthInfo } = useGetUserByIdBetterAuth(row.original.userId || "");
+            console.log(BetterAuthInfo?.user.image);
+            console.log(row.original.userId);
+            const name = row.getValue("name") as string;
+
+            return (
+              <div className="flex items-center space-x-2">
+                {BetterAuthInfo?.user?.image && (
+                  <Image
+                    src={BetterAuthInfo?.user?.image}
+                    alt={name || "User"}
+                    width={40}
+                    height={40}
+                    className="h-8 w-8 rounded-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = "none";
+                    }}
+                  />
+                )}
+                <div>
+                  <div className="font-medium">{name || "-"}</div>
+                  {BetterAuthInfo?.user ? <div className="text-xs text-muted-foreground">BetterAuth Assigned</div> : <div className="text-xs text-red-600">No BetterAuth Assigned</div>}
+                </div>
+              </div>
+            );
+          }
         },
       },
       {
@@ -298,7 +311,7 @@ export default function UserDataTable() {
         },
       },
     ],
-    [getClerkUserInfo, setSelectedUser, setEditDialogOpen, setDeleteDialogOpen]
+    [getBetterAuthUserInfo, setSelectedUser, setEditDialogOpen, setDeleteDialogOpen]
   );
 
   // Initialize table
