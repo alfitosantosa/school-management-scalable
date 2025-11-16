@@ -161,14 +161,15 @@ export default function Navbar() {
                   </DropdownMenu>
                 </div>
               ) : (
-                <div>Loading...</div>
                 // Signed Out
-                // <div className="flex items-center space-x-2">
-                //   <Button variant="ghost" onClick={() => router.push("/auth/sign-in")}>
-                //     Sign In
-                //   </Button>
-                //   <Button onClick={() => router.push("/auth/sign-up")}>Sign Up</Button>
-                // </div>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    router.push("/auth/sign-in");
+                  }}
+                >
+                  Sign In
+                </Button>
               )}
             </div>
           </div>

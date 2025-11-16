@@ -287,11 +287,7 @@ export default function DataTableBetterAuth() {
       <Dialog open={isDetailOpen} onOpenChange={setIsDetailOpen}>
         <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="flex items-center justify-between">
-              <span>User Details</span>
-              <Button variant="ghost" size="sm" onClick={() => setIsDetailOpen(false)}></Button>
-            </DialogTitle>
-            <DialogDescription>Complete information about the selected user</DialogDescription>
+            <DialogTitle>User Details</DialogTitle>
           </DialogHeader>
 
           {selectedUser && (
@@ -344,7 +340,7 @@ export default function DataTableBetterAuth() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Phone Numbers</p>
-                    <p className="text-sm">{selectedUser.userData.parentPhone}</p>
+                    <p className="text-sm">{selectedUser?.userData?.parentPhone ? selectedUser?.userData?.parentPhone : "-"}</p>
                   </div>
                 </div>
               </div>
@@ -366,7 +362,7 @@ export default function DataTableBetterAuth() {
               </div>
 
               {/* Roles */}
-              {selectedUser.userData.role.name ? (
+              {selectedUser?.userData?.role?.name ? (
                 <>
                   <Separator />
                   <div className="space-y-3">
