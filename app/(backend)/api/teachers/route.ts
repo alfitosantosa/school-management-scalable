@@ -61,7 +61,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const users = await prisma.user.findMany({
+    const users = await prisma.userData.findMany({
       include: {
         role: true,
         class: true,
@@ -111,7 +111,7 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: "ID, name, and role are required" }, { status: 400 });
     }
 
-    const updatedUser = await prisma.user.update({
+    const updatedUser = await prisma.userData.update({
       where: { id },
       data: {
         name,
@@ -134,7 +134,7 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: "ID is required" }, { status: 400 });
     }
 
-    const deletedUser = await prisma.user.delete({
+    const deletedUser = await prisma.userData.delete({
       where: { id },
     });
 

@@ -17,8 +17,8 @@ import { useGetViolationsByIdStudent } from "@/app/hooks/useViolationsByIdStuden
 import { useGetClasses } from "@/app/hooks/useClass";
 import { useGetStudentById } from "@/app/hooks/useGetStudentById";
 import Navbar from "@/components/navbar";
-import { useUser } from "@clerk/clerk-react";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
+import { useSession } from "@/lib/auth-client";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
 import Image from "next/image";
 
 export type ViolationData = {
@@ -68,8 +68,9 @@ export default function ViolationDataTable() {
   const [classFilter, setClassFilter] = React.useState<string>("all");
   const [globalFilter, setGlobalFilter] = React.useState<string>("");
 
-  const { user } = useUser();
-  const { data: userData } = useGetUserByIdClerk(user?.id ?? "");
+  // Get session from Better Auth
+  const { data: session, isPending } = useSession();
+  const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
   const { data: violations = [], isLoading } = useGetViolationsByIdStudent(userData?.id ?? "");
   const { data: classes } = useGetClasses();

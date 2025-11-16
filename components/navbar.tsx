@@ -9,11 +9,14 @@ import Logo from "@/public/logo-smkfajarsentosa.svg";
 import { useSession, signOut } from "@/lib/auth-client";
 import { LogOut, User } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarFallback } from "./ui/avatar";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
 
 const permissionLabels: Record<string, string> = {
   "/": "Home",
   "/dashboard": "Dashboard ",
+  "/dashboard/betterauth": "BetterAuth Management",
+  "/dashboard/profile": "Profile",
   "/dashboard/roles": "Roles Management",
   "/dashboard/users": "Users Management",
   "/dashboard/academicyear": "Tahun Ajaran Management",
@@ -43,8 +46,9 @@ export default function Navbar() {
 
   // Get session from Better Auth
   const { data: session, isPending } = useSession();
-  const user = session?.user;
-  const userRoles = user?.role?.name;
+  const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
+
+  const userRoles = userData?.role?.name;
 
   const handleNavigate = (value: string) => {
     router.push(value);
@@ -56,7 +60,7 @@ export default function Navbar() {
     router.refresh();
   };
 
-  const navigationItems = (user?.role?.permissions || []).map((permission: string) => ({
+  const navigationItems = (userData?.role?.permissions || []).map((permission: string) => ({
     href: permission,
     label: permissionLabels[permission] || permission,
   }));
@@ -71,6 +75,19 @@ export default function Navbar() {
       .toUpperCase()
       .slice(0, 2);
   };
+
+  if (isPending) {
+    return (
+      <div className="w-full">
+        <div className="flex items-center justify-center h-32">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+            <p className="mt-2 text-sm text-muted-foreground">Memuat data anda...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <header className="bg-white shadow-sm border-b">
@@ -87,7 +104,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center space-x-4">
-            {user && navigationItems.length > 0 && (
+            {userData && navigationItems.length > 0 && (
               <Select onValueChange={handleNavigate} value={pathname}>
                 <SelectTrigger className="w-[200px]">
                   <SelectValue placeholder="Pilih Menu" />
@@ -105,11 +122,11 @@ export default function Navbar() {
             <div className="flex items-center space-x-2">
               {isPending ? (
                 <div className="h-8 w-8 animate-pulse bg-gray-200 rounded-full" />
-              ) : user ? (
+              ) : userData ? (
                 // Signed In
                 <div className="flex items-center space-x-2">
                   <div className="hidden md:block">
-                    <Badge variant="secondary" className="text-sm">
+                    <Badge variant="default" className="px-3 py-1">
                       {userRoles || "User"}
                     </Badge>
                   </div>
@@ -118,20 +135,20 @@ export default function Navbar() {
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" className="relative h-10 w-10 rounded-full">
                         <Avatar className="h-10 w-10">
-                          <AvatarImage src={user.image || undefined} alt={user.name || "User"} />
-                          <AvatarFallback>{getUserInitials(user.name)}</AvatarFallback>
+                          <Image width={40} height={40} src={userData.avatarUrl || undefined} alt={userData.name || "User"} />
+                          <AvatarFallback>{getUserInitials(userData.name)}</AvatarFallback>
                         </Avatar>
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-56" align="end">
                       <DropdownMenuLabel>
                         <div className="flex flex-col space-y-1">
-                          <p className="text-sm font-medium leading-none">{user.name || "User"}</p>
-                          <p className="text-xs leading-none text-muted-foreground">{user.email}</p>
+                          <p className="text-sm font-medium leading-none">{userData.name || "User"}</p>
+                          <p className="text-xs leading-none text-muted-foreground">{userData.email}</p>
                         </div>
                       </DropdownMenuLabel>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem onClick={() => router.push("/profile")}>
+                      <DropdownMenuItem onClick={() => router.push("/dashboard/profile")}>
                         <User className="mr-2 h-4 w-4" />
                         <span>Profile</span>
                       </DropdownMenuItem>
@@ -144,13 +161,14 @@ export default function Navbar() {
                   </DropdownMenu>
                 </div>
               ) : (
+                <div>Loading...</div>
                 // Signed Out
-                <div className="flex items-center space-x-2">
-                  <Button variant="ghost" onClick={() => router.push("/auth/sign-in")}>
-                    Sign In
-                  </Button>
-                  <Button onClick={() => router.push("/auth/sign-up")}>Sign Up</Button>
-                </div>
+                // <div className="flex items-center space-x-2">
+                //   <Button variant="ghost" onClick={() => router.push("/auth/sign-in")}>
+                //     Sign In
+                //   </Button>
+                //   <Button onClick={() => router.push("/auth/sign-up")}>Sign Up</Button>
+                // </div>
               )}
             </div>
           </div>

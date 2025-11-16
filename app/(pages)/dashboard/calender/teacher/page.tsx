@@ -4,8 +4,8 @@ import { useMemo } from "react";
 import { CalendarBody, CalendarDate, CalendarDatePagination, CalendarDatePicker, CalendarHeader, CalendarItem, CalendarMonthPicker, CalendarProvider, CalendarYearPicker } from "@/components/ui/kibo-ui/calendar";
 import Navbar from "@/components/navbar";
 import { useGetSpecialSchedules } from "@/app/hooks/useSpecialSchedule";
-import { useUser } from "@clerk/clerk-react";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
+import { useSession } from "@/lib/auth-client";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
 import { useGetScheduleByIdTeacher } from "@/app/hooks/useGetScheduleById";
 
 // Type definitions berdasarkan JSON
@@ -63,8 +63,9 @@ type CalendarFeature = {
 };
 
 export default function CalendarPage() {
-  const { user } = useUser();
-  const { data: userData } = useGetUserByIdClerk(user?.id ?? "");
+  // Get session from Better Auth
+  const { data: session, isPending } = useSession();
+  const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
   const { data: schedules = [], isLoading: schedulesLoading } = useGetScheduleByIdTeacher(userData?.id ?? "");
   const { data: specialSchedules = [], isLoading: specialSchedulesLoading } = useGetSpecialSchedules();

@@ -29,8 +29,8 @@ import Navbar from "@/components/navbar";
 import { useGetSchedulesByIdClass } from "@/app/hooks/useScheduleByIdClass";
 import { useClassByIdUser } from "@/app/hooks/useClassByIdUser";
 import { useGetStudentById } from "@/app/hooks/useGetStudentById";
-import { useUser } from "@clerk/clerk-react";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
+import { useSession } from "@/lib/auth-client";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
 
 // Type definitions
 export type ScheduleData = {
@@ -365,11 +365,9 @@ export default function ScheduleDataTable() {
   const [dayFilter, setDayFilter] = React.useState<string>("all");
   const [globalFilter, setGlobalFilter] = React.useState<string>("");
 
-  //use get class by id user for get class id
-  // Get class data for the current user (replace with actual user id or get from auth/session)
-
-  const { user } = useUser();
-  const { data: userData } = useGetUserByIdClerk(user?.id ?? "");
+  // Get session from Better Auth
+  const { data: session, isPending } = useSession();
+  const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
   const studentId = userData?.id;
 

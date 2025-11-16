@@ -13,15 +13,17 @@ import { CalendarDays, Clock, MapPin, BookOpen, Users, GraduationCap, Eye, Plus 
 import Link from "next/link";
 import { useState } from "react";
 import { useGetAttendance } from "@/app/hooks/useAttendance";
-import { useUser } from "@clerk/clerk-react";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
+
+import { useSession } from "@/lib/auth-client";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
 
 export default function TeacherAttendancePage() {
   const today = new Date().getDay();
   const [selectedDay, setSelectedDay] = useState<string>(today.toString());
 
-  const { user } = useUser();
-  const { data: userData } = useGetUserByIdClerk(user?.id ?? "");
+  // Get session from Better Auth
+  const { data: session, isPending } = useSession();
+  const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
   const { data: scheduleData = [], isLoading: isLoadingSchedule, error: scheduleError } = useGetScheduleByIdTeacher(userData?.id ?? "");
 
@@ -102,7 +104,7 @@ export default function TeacherAttendancePage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 ">
+      <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 ">
         <div className="max-w-7xl mx-auto px-4 py-8">
           {/* Header Section */}
           <div className="mb-8">

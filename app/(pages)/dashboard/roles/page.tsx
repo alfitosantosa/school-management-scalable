@@ -33,7 +33,7 @@ export type RoleData = {
   createdAt: string;
   updatedAt: string;
   _count?: {
-    users: number;
+    userData: number;
   };
 };
 
@@ -51,7 +51,7 @@ type RoleFormValues = z.infer<typeof roleSchema>;
 //   { href: "/", label: "Home" },
 //   { href: "/dashboard", label: "Dashboard" },
 //   { href: "/dashboard/roles", label: "Roles" },
-//   { href: "/dashboard/clerk", label: "Clerk" },
+//   { href: "/dashboard/BetterAuth", label: "BetterAuth" },
 //   { href: "/dashboard/users", label: "Users" },
 //   { href: "/dashboard/academicyear", label: "Tahun Akademik" },
 //   { href: "/dashboard/majors", label: "Jurusan" },
@@ -76,8 +76,9 @@ type RoleFormValues = z.infer<typeof roleSchema>;
 const availablePermissions = [
   { id: "/", label: "Home" },
   { id: "/dashboard", label: "Dashboard Management" },
+  { id: "/dashboard/profile", label: "Profile" },
   { id: "/dashboard/roles", label: "Roles Management" },
-  { id: "/dashboard/clerk", label: "Clerk Management" },
+  { id: "/dashboard/betterauth", label: "BetterAuth Management" },
   { id: "/dashboard/users", label: "Users Management" },
   { id: "/dashboard/academicyear", label: "Academic Year Management" },
   { id: "/dashboard/majors", label: "Major Management" },
@@ -246,7 +247,7 @@ function DeleteRoleDialog({ open, onOpenChange, roleData, onSuccess }: { open: b
           <AlertDialogTitle>Hapus Role</AlertDialogTitle>
           <AlertDialogDescription>
             Apakah Anda yakin ingin menghapus role <strong>{roleData?.name}</strong>?
-            {roleData?._count?.users && roleData._count.users > 0 && <span className="block mt-2 text-amber-600">Peringatan: Role ini sedang digunakan oleh {roleData._count.users} user.</span>}
+            {roleData?._count?.userData && roleData._count.userData > 0 && <span className="block mt-2 text-amber-600">Peringatan: Role ini sedang digunakan oleh {roleData._count.userData} user.</span>}
             Tindakan ini tidak dapat dibatalkan.
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -358,7 +359,7 @@ export default function RoleDataTable() {
         );
       },
       cell: ({ row }) => {
-        const userCount = row.original._count?.users || 0;
+        const userCount = row.original._count?.userData || 0;
         return (
           <div className="text-center">
             <Badge variant="secondary" className="font-medium">
