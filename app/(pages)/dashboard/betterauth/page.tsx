@@ -13,29 +13,49 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import Navbar from "@/components/navbar";
-import { useGetClerk } from "@/app/hooks/useBetterAuth";
+import { useGetBetterAuth } from "@/app/hooks/useBetterAuth";
 import Image from "next/image";
 
 export type User = {
   id: string;
-  first_name?: string | null;
-  last_name?: string | null;
-  profile_image_url?: string | null;
-  image_url?: string | null;
-  email_addresses?: { email_address: string }[];
-  phone_numbers?: any[];
-  username?: string | null;
-  created_at?: number;
-  last_sign_in_at?: number;
-  external_accounts?: any[];
-  parent?: { id: string } | null;
-  student?: { id: string } | null;
-  teacher?: { id: string } | null;
-  roles?: { role: string }[];
+  name: string;
+  email: string;
+  emailVerified: boolean;
+  image: string | null;
+  createdAt: string;
+  updatedAt: string;
+  userData: {
+    id: string;
+    userId: string;
+    academicYearId: string | null;
+    address: string | null;
+    avatarUrl: string | null;
+    birthDate: string | null;
+    birthPlace: string | null;
+    classId: string | null;
+    employeeId: string | null;
+    endDate: string | null;
+    enrollmentDate: string | null;
+    gender: string | null;
+    graduationDate: string | null;
+    majorId: string | null;
+    nik: string | null;
+    nisn: string | null;
+    parentPhone: string | null;
+    position: string | null;
+    relation: string | null;
+    roleId: string;
+    startDate: string | null;
+    status: string;
+    studentIds: [];
+    email: string | null;
+    name: string | null;
+    role: { name: string };
+  };
 };
 
-export default function DataTableClerk() {
-  const { data, isLoading, error } = useGetClerk();
+export default function DataTableBetterAuth() {
+  const { data, isLoading, error } = useGetBetterAuth();
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -57,7 +77,7 @@ export default function DataTableClerk() {
       header: "Avatar",
       cell: ({ row }) => (
         <Image
-          src={row.original.profile_image_url || row.original.image_url || "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"}
+          src={row.original.image || row.original.image || "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"}
           alt="Avatar"
           className="w-10 h-10 rounded-full object-cover"
           width={40}
@@ -66,7 +86,7 @@ export default function DataTableClerk() {
       ),
     },
     {
-      accessorKey: "first_name",
+      accessorKey: "name",
       header: ({ column }) => {
         return (
           <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
@@ -76,28 +96,18 @@ export default function DataTableClerk() {
         );
       },
       cell: ({ row }) => {
-        const firstName = row.original.first_name || "";
-        const lastName = row.original.last_name || "";
-        const fullName = `${firstName} ${lastName}`.trim() || "-";
-        return <div className="font-medium">{fullName}</div>;
+        return <div className="font-medium">{row.original.name}</div>;
       },
       // Custom filter function untuk search berdasarkan first_name + last_name
       filterFn: (row, id, value) => {
-        const firstName = row.original.first_name || "";
-        const lastName = row.original.last_name || "";
-        const fullName = `${firstName} ${lastName}`.toLowerCase();
+        const fullName = `${row.original.name}`.toLowerCase();
         return fullName.includes(value.toLowerCase());
       },
     },
     {
       id: "email",
       header: "Email",
-      cell: ({ row }) => <div className="text-sm">{row.original.email_addresses?.[0]?.email_address || "-"}</div>,
-    },
-    {
-      id: "username",
-      header: "Username",
-      cell: ({ row }) => <div className="text-sm text-muted-foreground">{row.original.username || "-"}</div>,
+      cell: ({ row }) => <div className="text-sm">{row.original.email || "-"}</div>,
     },
     {
       id: "actions",
@@ -197,13 +207,13 @@ export default function DataTableClerk() {
       <Navbar />
       <Card className="max-w-7xl mx-auto my-8 p-6">
         <CardHeader className="px-0 pt-0">
-          <CardTitle className="text-3xl font-bold">Clerk Users</CardTitle>
-          <CardDescription>Manage and view all Clerk users from the database.</CardDescription>
+          <CardTitle className="text-3xl font-bold">BetterAuth Users</CardTitle>
+          <CardDescription>Manage and view all BetterAuth users from the database.</CardDescription>
         </CardHeader>
 
         <CardContent className="px-0">
           <div className="flex items-center py-4 gap-4">
-            <Input placeholder="Search by name..." value={(table.getColumn("first_name")?.getFilterValue() as string) ?? ""} onChange={(event) => table.getColumn("first_name")?.setFilterValue(event.target.value)} className="max-w-sm" />
+            <Input placeholder="Search by name..." value={(table.getColumn("name")?.getFilterValue() as string) ?? ""} onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)} className="max-w-sm" />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="ml-auto">
@@ -237,7 +247,7 @@ export default function DataTableClerk() {
               <TableBody>
                 {table.getRowModel().rows?.length ? (
                   table.getRowModel().rows.map((row) => (
-                    <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                    <TableRow key={row.original.id} data-state={row.getIsSelected() && "selected"}>
                       {row.getVisibleCells().map((cell) => (
                         <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                       ))}
@@ -279,9 +289,7 @@ export default function DataTableClerk() {
           <DialogHeader>
             <DialogTitle className="flex items-center justify-between">
               <span>User Details</span>
-              <Button variant="ghost" size="sm" onClick={() => setIsDetailOpen(false)}>
-                <X className="h-4 w-4" />
-              </Button>
+              <Button variant="ghost" size="sm" onClick={() => setIsDetailOpen(false)}></Button>
             </DialogTitle>
             <DialogDescription>Complete information about the selected user</DialogDescription>
           </DialogHeader>
@@ -291,16 +299,16 @@ export default function DataTableClerk() {
               {/* Profile Section */}
               <div className="flex items-start gap-4">
                 <Image
-                  src={selectedUser.profile_image_url || selectedUser.image_url || "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"}
+                  width={40}
+                  height={40}
+                  src={selectedUser.image ? selectedUser.image : "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"}
                   alt="Avatar"
                   className="w-20 h-20 rounded-full object-cover"
                 />
                 <div className="flex-1 space-y-1">
-                  <h3 className="text-xl font-semibold">
-                    {selectedUser.first_name} {selectedUser.last_name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">{selectedUser.email_addresses?.[0]?.email_address}</p>
-                  <div className="flex gap-2 mt-2">{selectedUser.username && <Badge variant="secondary">@{selectedUser.username}</Badge>}</div>
+                  <h3 className="text-xl font-semibold">{selectedUser.name}</h3>
+                  <p className="text-sm text-muted-foreground">{selectedUser.email}</p>
+                  <div className="flex gap-2 mt-2">{selectedUser.name && <Badge variant="secondary">@{selectedUser.name}</Badge>}</div>
                 </div>
               </div>
 
@@ -316,19 +324,14 @@ export default function DataTableClerk() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Username</p>
-                    <p className="text-sm">{selectedUser.username || "-"}</p>
+                    <p className="text-sm">{selectedUser.name || "-"}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">First Name</p>
-                    <p className="text-sm">{selectedUser.first_name || "-"}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Last Name</p>
-                    <p className="text-sm">{selectedUser.last_name || "-"}</p>
+                    <p className="text-sm text-muted-foreground">Name</p>
+                    <p className="text-sm">{selectedUser.name || "-"}</p>
                   </div>
                 </div>
               </div>
-
               <Separator />
 
               {/* Contact Info */}
@@ -337,19 +340,11 @@ export default function DataTableClerk() {
                 <div className="space-y-2">
                   <div>
                     <p className="text-sm text-muted-foreground">Email Addresses</p>
-                    {selectedUser.email_addresses && selectedUser.email_addresses.length > 0 ? (
-                      selectedUser.email_addresses.map((email, idx) => (
-                        <p key={idx} className="text-sm">
-                          {email.email_address}
-                        </p>
-                      ))
-                    ) : (
-                      <p className="text-sm">-</p>
-                    )}
+                    <p className="text-sm">{selectedUser.email ? selectedUser.email : "-"}</p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Phone Numbers</p>
-                    <p className="text-sm">{selectedUser.phone_numbers && selectedUser.phone_numbers.length > 0 ? selectedUser.phone_numbers.length + " phone number(s)" : "-"}</p>
+                    <p className="text-sm">{selectedUser.userData.parentPhone}</p>
                   </div>
                 </div>
               </div>
@@ -362,51 +357,28 @@ export default function DataTableClerk() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-sm text-muted-foreground">Created At</p>
-                    <p className="text-sm">{selectedUser.created_at ? new Date(selectedUser.created_at).toLocaleString() : "-"}</p>
+                    <p className="text-sm">{new Date(selectedUser.createdAt).toLocaleString()}</p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Last Sign In</p>
-                    <p className="text-sm">{selectedUser.last_sign_in_at ? new Date(selectedUser.last_sign_in_at).toLocaleString() : "-"}</p>
                   </div>
                 </div>
               </div>
 
-              {/* External Accounts */}
-              {selectedUser.external_accounts && selectedUser.external_accounts.length > 0 && (
-                <>
-                  <Separator />
-                  <div className="space-y-3">
-                    <h4 className="font-semibold">External Accounts</h4>
-                    <div className="space-y-2">
-                      {selectedUser.external_accounts.map((account: any, idx: number) => (
-                        <div key={idx} className="p-3 border rounded-lg">
-                          <div className="flex items-center gap-2 mb-2">
-                            <Badge>{account.provider || "Unknown"}</Badge>
-                          </div>
-                          <p className="text-sm text-muted-foreground">Email: {account.email_address || "-"}</p>
-                          {account.username && <p className="text-sm text-muted-foreground">Username: {account.username}</p>}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </>
-              )}
-
               {/* Roles */}
-              {selectedUser.roles && selectedUser.roles.length > 0 && (
+              {selectedUser.userData.role.name ? (
                 <>
                   <Separator />
                   <div className="space-y-3">
                     <h4 className="font-semibold">Roles</h4>
-                    <div className="flex gap-2 flex-wrap">
-                      {selectedUser.roles.map((role, idx) => (
-                        <Badge key={idx} variant="outline">
-                          {role.role}
-                        </Badge>
-                      ))}
+                    <div>
+                      <p className="text-sm text-muted-foreground">Role</p>
+                      <p className="text-sm">{selectedUser.userData.role.name}</p>
                     </div>
                   </div>
                 </>
+              ) : (
+                <p>-</p>
               )}
             </div>
           )}

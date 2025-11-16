@@ -3,7 +3,8 @@
 import * as React from "react";
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, Calendar, User, AlertTriangle, Search, X, Check } from "lucide-react";
-import { useUser } from "@clerk/clerk-react";
+import { useSession } from "@/lib/auth-client";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -32,7 +33,6 @@ import Navbar from "@/components/navbar";
 import { useGetUsers } from "@/app/hooks/useUsers";
 import { object } from "zod";
 import { useGetViolationsByIdTeacher } from "@/app/hooks/useViolationsByIdTeacher";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
 import { useGetUserByIdTeacher } from "@/app/hooks/useGetUserByIdTeacher";
 
 // Type definitions
@@ -447,8 +447,9 @@ export default function ViolationDataTable() {
   const [globalFilter, setGlobalFilter] = React.useState<string>("");
 
   //get violation from id teacher
-  const { user } = useUser();
-  const { data: userData } = useGetUserByIdClerk(user?.id ?? "");
+  // Get session from Better Auth
+  const { data: session, isPending } = useSession();
+  const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
   // get profile teacher
 

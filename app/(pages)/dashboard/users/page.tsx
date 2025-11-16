@@ -91,7 +91,7 @@ export default function UserDataTable() {
         cell: ({ row }) => <div>{row.original.name ?? "-"}</div>,
       },
       {
-        accessorKey: "clerk name",
+        accessorKey: "BetterAuth name",
         header: ({ column }) => {
           return (
             <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
@@ -521,7 +521,7 @@ export default function UserDataTable() {
                     const getColumnLabel = (columnId: string) => {
                       const labels: Record<string, string> = {
                         avatarUrl: "Avatar",
-                        clerkId: "Clerk Status",
+                        BetterAuthId: "BetterAuth Status",
                         name: "Nama",
                         email: "Email",
                         role: "Role",

@@ -1,6 +1,6 @@
 // model User {
 //   id          String    @id @default(cuid())
-//   clerkId     String?   @unique  // ID dari Clerk
+//   userId     String?   @unique  // ID dari Clerk
 //   roleId      String    // Foreign key ke Role (WAJIB)
 //   name        String    // Nama (WAJIB untuk semua)
 //   email       String?   @unique
@@ -63,7 +63,7 @@ import { prisma } from "@/lib/prisma";
 export async function GET(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   try {
-    const student = await prisma.user.findUnique({
+    const student = await prisma.userData.findUnique({
       where: { id: id },
       include: {
         role: true,
@@ -79,8 +79,6 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ id: st
             attendances: true,
             payments: true,
             violations: true,
-            // parents: true,
-            // parentOf: true,
           },
         },
       },

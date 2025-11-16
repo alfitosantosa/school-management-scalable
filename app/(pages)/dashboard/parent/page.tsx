@@ -14,8 +14,8 @@ import { useGetStudentsByIds } from "@/app/hooks/useStudentByIds";
 import { useGetUserById } from "@/app/hooks/useUserById";
 import { useGetViolationsByIdStudent } from "@/app/hooks/useViolationsByIdStudent";
 import Navbar from "@/components/navbar";
-import { useUser } from "@clerk/clerk-react";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
+import { useSession } from "@/lib/auth-client";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
 
 // Simple Table Component
 function SimpleTable({ columns, data, emptyMessage = "Tidak ada data" }: any) {
@@ -107,11 +107,10 @@ function SimpleTable({ columns, data, emptyMessage = "Tidak ada data" }: any) {
 }
 
 export default function ParentPage() {
-  const { user } = useUser();
-  const { data: userData } = useGetUserByIdClerk(user?.id ?? "");
+  const { data: session, isPending } = useSession();
+  const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
-  const { data: parentData, isLoading: loadingParent } = useGetUserById(userData?.id ?? "");
-  const studentIds = parentData?.studentIds || [];
+  const studentIds = userData?.studentIds || [];
 
   const { data: students = [], isLoading: loadingStudents } = useGetStudentsByIds(studentIds);
   const [selectedStudent, setSelectedStudent] = useState<any>(null);
@@ -262,7 +261,7 @@ export default function ParentPage() {
   ];
 
   // Loading state
-  if (loadingParent || loadingStudents || !selectedStudent) {
+  if (isPending || loadingStudents || !selectedStudent) {
     return (
       <>
         <Navbar />
@@ -303,11 +302,11 @@ export default function ParentPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm">{parentData?.email || "-"}</span>
+                  <span className="text-sm">{userData?.email || "-"}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Phone className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm">{parentData?.parentPhone || "-"}</span>
+                  <span className="text-sm">{userData?.parentPhone || "-"}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <User className="h-4 w-4 text-muted-foreground" />

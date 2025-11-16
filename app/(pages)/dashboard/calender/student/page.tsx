@@ -5,8 +5,8 @@ import { CalendarBody, CalendarDate, CalendarDatePagination, CalendarDatePicker,
 import Navbar from "@/components/navbar";
 import { useGetSpecialSchedules } from "@/app/hooks/useSpecialSchedule";
 import { useGetSchedulesByStudent } from "@/app/hooks/useSchedules";
-import { useUser } from "@clerk/clerk-react";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
+import { useSession } from "@/lib/auth-client";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
 
 // Type definitions berdasarkan JSON
 type Schedule = {
@@ -63,8 +63,11 @@ type CalendarFeature = {
 };
 
 export default function CalendarPage() {
-  const { user } = useUser();
-  const { data: userData } = useGetUserByIdClerk(user?.id ?? "");
+  // Get session from Better Auth
+  const { data: session, isPending } = useSession();
+  console.log(session?.user?.id);
+
+  const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
   const { data: schedules = [], isLoading: schedulesLoading } = useGetSchedulesByStudent(userData?.id ?? "");
   const { data: specialSchedules = [], isLoading: specialSchedulesLoading } = useGetSpecialSchedules();

@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
 
     const ids = idsParam.split(",");
 
-    const students = await prisma.user.findMany({
+    const students = await prisma.userData.findMany({
       where: {
         id: {
           in: ids,

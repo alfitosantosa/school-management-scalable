@@ -14,8 +14,9 @@ import { useGetSchedules } from "@/app/hooks/useSchedules";
 import Navbar from "@/components/navbar";
 import { useGetAttendanceByIdStudent } from "@/app/hooks/useAttendaceByIdStudent";
 import { useGetStudentById } from "@/app/hooks/useGetStudentById";
-import { useUser } from "@clerk/clerk-react";
-import { useGetUserByIdClerk } from "@/app/hooks/useUsersByIdBetterAuth";
+
+import { useSession } from "@/lib/auth-client";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
 
 // Type definitions
 export type AttendanceData = {
@@ -87,8 +88,9 @@ export default function AttendanceDataTable() {
   const [dateFilter, setDateFilter] = React.useState<string>("");
   const [globalFilter, setGlobalFilter] = React.useState<string>("");
 
-  const { user } = useUser();
-  const { data: userData } = useGetUserByIdClerk(user?.id ?? "");
+  // Get session from Better Auth
+  const { data: session, isPending } = useSession();
+  const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
   const { data: attendances = [], isLoading, refetch } = useGetAttendanceByIdStudent(userData?.id ?? "");
   const { data: schedules = [] } = useGetSchedules();
@@ -485,7 +487,7 @@ export default function AttendanceDataTable() {
 
             {/* Subject Filter */}
             <Select value={subjectFilter} onValueChange={setSubjectFilter}>
-              <SelectTrigger className="w-[160px]">
+              <SelectTrigger className="w-40">
                 <SelectValue placeholder="Filter Mata Pelajaran" />
               </SelectTrigger>
               <SelectContent>
