@@ -13,7 +13,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 
-const NoUserDataComponent = ({ clerkUser }: { clerkUser: any }) => {
+const NoUserDataComponent = ({ BetterAuthUser }: { BetterAuthUser: any }) => {
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Navbar />
@@ -30,26 +30,26 @@ const NoUserDataComponent = ({ clerkUser }: { clerkUser: any }) => {
                 </div>
                 <div>
                   <h1 className="text-2xl lg:text-4xl font-bold text-white mb-2">Akun Belum Terhubung</h1>
-                  <p className="text-white/90 text-base lg:text-lg">Akun Clerk Anda belum terhubung dengan sistem sekolah</p>
+                  <p className="text-white/90 text-base lg:text-lg">Akun BetterAuth Anda belum terhubung dengan sistem sekolah</p>
                 </div>
               </div>
             </div>
 
             <CardContent className="p-6 lg:p-8 space-y-6">
-              {/* User Info from Clerk */}
-              {clerkUser && (
+              {/* User Info from BetterAuth */}
+              {BetterAuthUser && (
                 <Alert className="border-blue-200 bg-blue-50/50">
                   <Shield className="h-5 w-5 text-blue-600" />
-                  <AlertTitle className="text-blue-900 font-semibold">Informasi Akun Clerk</AlertTitle>
+                  <AlertTitle className="text-blue-900 font-semibold">Informasi Akun BetterAuth</AlertTitle>
                   <AlertDescription className="text-blue-800 mt-2 space-y-1">
                     <p>
-                      <strong>Nama:</strong> {clerkUser.fullName || clerkUser.firstName}
+                      <strong>Nama:</strong> {BetterAuthUser.name}
                     </p>
                     <p>
-                      <strong>Email:</strong> {clerkUser.primaryEmailAddress?.emailAddress}
+                      <strong>Email:</strong> {BetterAuthUser.email}
                     </p>
                     <p>
-                      <strong>Clerk ID:</strong> <code className="bg-blue-100 px-2 py-1 rounded text-xs">{clerkUser.id}</code>
+                      <strong>BetterAuth ID:</strong> <code className="bg-blue-100 px-2 py-1 rounded text-xs">{BetterAuthUser.id}</code>
                     </p>
                   </AlertDescription>
                 </Alert>
@@ -63,12 +63,12 @@ const NoUserDataComponent = ({ clerkUser }: { clerkUser: any }) => {
                 </h2>
                 <div className="bg-gray-50 rounded-xl p-5 space-y-3">
                   <p className="text-gray-700 leading-relaxed">
-                    Anda telah berhasil login menggunakan akun Clerk, namun akun Anda
+                    Anda telah berhasil login menggunakan akun BetterAuth, namun akun Anda
                     <strong className="text-orange-600"> belum terdaftar </strong>
                     dalam sistem database sekolah kami.
                   </p>
                   <p className="text-gray-700 leading-relaxed">
-                    Untuk dapat mengakses fitur-fitur sistem seperti absensi, jadwal, dan data akademik, akun Clerk Anda perlu
+                    Untuk dapat mengakses fitur-fitur sistem seperti absensi, jadwal, dan data akademik, akun BetterAuth Anda perlu
                     <strong className="text-blue-600"> dihubungkan dengan data user </strong>
                     di sistem oleh administrator.
                   </p>
@@ -86,13 +86,13 @@ const NoUserDataComponent = ({ clerkUser }: { clerkUser: any }) => {
                     {
                       number: "1",
                       title: "Hubungi Administrator",
-                      description: "Kirimkan permintaan ke admin untuk menghubungkan akun Clerk Anda",
+                      description: "Kirimkan permintaan ke admin untuk menghubungkan akun BetterAuth Anda",
                       color: "from-blue-500 to-cyan-500",
                     },
                     {
                       number: "2",
                       title: "Berikan Informasi",
-                      description: "Sampaikan Clerk ID dan email Anda kepada administrator",
+                      description: "Sampaikan BetterAuth ID dan email Anda kepada administrator",
                       color: "from-purple-500 to-pink-500",
                     },
                     {
@@ -165,7 +165,7 @@ const NoUserDataComponent = ({ clerkUser }: { clerkUser: any }) => {
                 <UserCog className="h-5 w-5 text-purple-600" />
                 <AlertTitle className="text-purple-900 font-semibold">Untuk Administrator</AlertTitle>
                 <AlertDescription className="text-purple-800 mt-2">
-                  <p className="mb-3">Jika Anda adalah administrator, silakan hubungkan akun Clerk ini dengan user di dashboard.</p>
+                  <p className="mb-3">Jika Anda adalah administrator, silakan hubungkan akun BetterAuth ini dengan user di dashboard.</p>
                   <Button variant="outline" size="sm" className="border-purple-300 text-purple-600 hover:bg-purple-100" onClick={() => (window.location.href = "/dashboard/users")}>
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Buka Dashboard Users
@@ -191,7 +191,7 @@ const NoUserDataComponent = ({ clerkUser }: { clerkUser: any }) => {
                 Butuh Bantuan Lebih Lanjut?
               </h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Jika Anda mengalami kesulitan atau memiliki pertanyaan, silakan hubungi bagian IT Support sekolah atau datang langsung ke ruang admin. Bawa informasi akun Clerk Anda untuk mempercepat proses aktivasi.
+                Jika Anda mengalami kesulitan atau memiliki pertanyaan, silakan hubungi bagian IT Support sekolah atau datang langsung ke ruang admin. Bawa informasi akun BetterAuth Anda untuk mempercepat proses aktivasi.
               </p>
             </CardContent>
           </Card>
@@ -343,7 +343,7 @@ export default function Home() {
 
   // Add this check
   if (!user || !user.id) {
-    return <NoUserDataComponent clerkUser={session?.user} />;
+    return <NoUserDataComponent BetterAuthUser={session?.user} />;
   }
 
   if (user?.error) return <ErrorComponent error={user?.error} />;
