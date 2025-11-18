@@ -13,9 +13,10 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import Navbar from "@/components/navbar";
-import { useGetBetterAuth } from "@/app/hooks/useBetterAuth";
 import Image from "next/image";
 import { ChangePasswordDialog } from "@/components/dialog/change/ChangePasswordDialog";
+import { useSession } from "@/lib/auth-client";
+import { useGetBetterAuth } from "@/app/hooks/useBetterAuth";
 
 export type User = {
   id: string;
@@ -57,6 +58,10 @@ export type User = {
 
 export default function DataTableBetterAuth() {
   const { data, isLoading, error } = useGetBetterAuth();
+
+  //get session better auth
+  const session = useSession();
+  console.log(session.data);
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);

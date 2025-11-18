@@ -313,9 +313,8 @@ export default function ViolationDataTable() {
         {dataStudent && (
           <div className="bg-card rounded-lg border p-6 mb-6">
             <div className="flex items-center space-x-4">
-              <div className="bg-primary/10 rounded-full p-3">
-                <Image src={dataStudent.avatarUrl} alt="Avatar" width={50} height={50} />
-              </div>
+              <Image className="rounded-full " src={dataStudent.avatarUrl} alt="Avatar" width={50} height={50} />
+
               <div className="flex-1">
                 <h2 className="text-xl font-semibold">{dataStudent.name || "Nama Siswa"}</h2>
                 <p className="text-muted-foreground">{dataStudent.email || "Email tidak tersedia"}</p>

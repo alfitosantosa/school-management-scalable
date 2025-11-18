@@ -25,6 +25,8 @@ import { useGetAcademicYears } from "@/app/hooks/useAcademicYear";
 import { useGetMajors } from "@/app/hooks/useMajors";
 import { useGetBetterAuth } from "@/app/hooks/useBetterAuth";
 import Image from "next/image";
+import { auth } from "@/lib/auth";
+import { authClient } from "@/lib/auth-client";
 
 // Type definitions
 export type UserData = {
