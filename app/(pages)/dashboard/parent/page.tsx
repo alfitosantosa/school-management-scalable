@@ -109,10 +109,13 @@ function SimpleTable({ columns, data, emptyMessage = "Tidak ada data" }: any) {
 export default function ParentPage() {
   const { data: session, isPending } = useSession();
   const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
+  // console.log(session);
 
   const studentIds = userData?.studentIds || [];
 
-  const { data: students = [], isLoading: loadingStudents } = useGetStudentsByIds(studentIds);
+  const { data: students = [], isLoading: loadingStudents, isError } = useGetStudentsByIds(studentIds);
+  console.log(students);
+
   const [selectedStudent, setSelectedStudent] = useState<any>(null);
 
   // Set selected student once data is loaded
@@ -261,7 +264,7 @@ export default function ParentPage() {
   ];
 
   // Loading state
-  if (isPending || loadingStudents || !selectedStudent) {
+  if (isPending || loadingStudents) {
     return (
       <>
         <Navbar />
@@ -269,8 +272,24 @@ export default function ParentPage() {
           <div className="max-w-7xl mx-auto p-6 space-y-6">
             <div className="flex items-center justify-center min-h-[400px]">
               <div className="text-center space-y-4">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
                 <p className="text-muted-foreground">Memuat data...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  if (!selectedStudent) {
+    return (
+      <>
+        <Navbar />
+        <div className="min-h-screen bg-background">
+          <div className="max-w-7xl mx-auto p-6 space-y-6">
+            <div className="flex items-center justify-center min-h-[400px]">
+              <div className="text-center space-y-4">
+                <p className="text-muted-foreground">Anda Bukan Orang Tua...</p>
               </div>
             </div>
           </div>
