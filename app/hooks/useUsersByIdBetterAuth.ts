@@ -13,7 +13,7 @@ export const useGetUserByIdBetterAuth = (id: string) => {
         const res = await axios.get(`/api/userdata/betterauth/id/${id}`);
         return res.data;
       } catch (error: any) {
-        throw new Error(error?.response?.data?.message || "Failed to fetch user");
+        console.error(error);
       }
     },
   });

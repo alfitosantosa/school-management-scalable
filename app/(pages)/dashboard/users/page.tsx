@@ -92,53 +92,9 @@ export default function UserDataTable() {
       },
       {
         accessorKey: "BetterAuth name",
-        header: ({ column }) => {
-          return (
-            <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-              <User className="mr-2 h-4 w-4" />
-              BetterAuth
-              <ArrowUpDown className="ml-2 h-4 w-4" />
-            </Button>
-          );
-        },
+        header: "BetterAuth",
         cell: ({ row }) => {
-          //if userId is null don't fetch betterauth user info
-          if (!row.original.userId) {
-            return (
-              <div className="flex items-center space-x-2">
-                <div>
-                  <div className="font-medium">{row.original.name || "-"}</div>
-                  <div className="text-xs text-red-600">No BetterAuth Assigned</div>
-                </div>
-              </div>
-            );
-          } else {
-            const { data: BetterAuthInfo } = useGetUserByIdBetterAuth(row.original.userId || "");
-            console.log(BetterAuthInfo?.user.image);
-            console.log(row.original.userId);
-            const name = row.getValue("name") as string;
-
-            return (
-              <div className="flex items-center space-x-2">
-                {BetterAuthInfo?.user?.image && (
-                  <Image
-                    src={BetterAuthInfo?.user?.image}
-                    alt={name || "User"}
-                    width={40}
-                    height={40}
-                    className="h-8 w-8 rounded-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = "none";
-                    }}
-                  />
-                )}
-                <div>
-                  <div className="font-medium">{name || "-"}</div>
-                  {BetterAuthInfo?.user ? <div className="text-xs text-muted-foreground">BetterAuth Assigned</div> : <div className="text-xs text-red-600">No BetterAuth Assigned</div>}
-                </div>
-              </div>
-            );
-          }
+          return <div>{row.original.userId ? <Badge variant="default">Linked</Badge> : <Badge variant="outline">No BetterAuth</Badge>}</div>;
         },
       },
       {

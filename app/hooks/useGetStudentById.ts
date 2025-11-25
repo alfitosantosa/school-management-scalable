@@ -10,12 +10,7 @@ export const useGetStudentById = (id: string) => {
         const res = await axios.get(`/api/students/${id}`);
         return res.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching student:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch student");
+        console.error(error);
       }
     },
   });

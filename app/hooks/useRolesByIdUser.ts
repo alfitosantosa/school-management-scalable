@@ -11,12 +11,7 @@ export const useRolesByIdUser = (id: string) => {
         const res = await axios.get(`/api/roles/user/id/${id}`);
         return res.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching class:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch class");
+        console.error(error);
       }
     },
   });

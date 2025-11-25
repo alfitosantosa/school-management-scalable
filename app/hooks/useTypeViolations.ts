@@ -9,12 +9,7 @@ export const useGetTypeViolations = () => {
         const response = await axios.get("/api/typeviolations");
         return response.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching violation types:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch violation types");
+        console.error(error);
       }
     },
   });
@@ -31,12 +26,7 @@ export const useCreateTypeViolation = () => {
       queryClient.invalidateQueries({ queryKey: ["typeViolations"] });
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) {
-        console.error("Error creating violation type:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to create violation type");
+      console.error(error);
     },
   });
 };
@@ -52,12 +42,7 @@ export const useUpdateTypeViolation = () => {
       queryClient.invalidateQueries({ queryKey: ["typeViolations"] });
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) {
-        console.error("Error updating violation type:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to update violation type");
+      console.error(error);
     },
   });
 };
@@ -73,12 +58,7 @@ export const useDeleteTypeViolation = () => {
       queryClient.invalidateQueries({ queryKey: ["typeViolations"] });
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) {
-        console.error("Error deleting violation type:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to delete violation type");
+      console.error(error);
     },
   });
 };

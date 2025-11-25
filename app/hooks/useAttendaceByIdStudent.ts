@@ -11,12 +11,7 @@ export const useGetAttendanceByIdStudent = (id: string) => {
         const res = await axios.get(`/api/attendance/student/${id}`);
         return res.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching attendance by student:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch attendance by student");
+        console.error(error);
       }
     },
   });

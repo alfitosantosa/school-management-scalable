@@ -22,6 +22,9 @@ export const useCreateSpecialSchedule = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["specialSchedules"] });
     },
+    onError: (error) => {
+      console.error(error);
+    },
   });
 };
 
@@ -35,6 +38,9 @@ export const useUpdateSpecialSchedule = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["specialSchedules"] });
     },
+    onError: (error) => {
+      console.error(error);
+    },
   });
 };
 
@@ -47,6 +53,9 @@ export const useDeleteSpecialSchedule = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["specialSchedules"] });
+    },
+    onError: (error) => {
+      console.error(error);
     },
   });
 };

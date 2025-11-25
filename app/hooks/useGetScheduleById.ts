@@ -11,12 +11,7 @@ export const useGetScheduleById = (id: string) => {
         const res = await axios.get(`/api/schedules/${id}`);
         return res.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching schedule:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch schedule");
+        console.error(error);
       }
     },
   });
@@ -30,12 +25,7 @@ export const useGetScheduleByIdTeacher = (id: string) => {
         const res = await axios.get(`/api/schedules/teacher/${id}`);
         return res.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching schedule:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch schedule");
+        console.error(error);
       }
     },
   });

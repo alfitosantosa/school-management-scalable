@@ -22,6 +22,9 @@ export const useCreateSubject = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["subjects"] });
     },
+    onError: (error) => {
+      console.error(error);
+    },
   });
 };
 
@@ -35,6 +38,9 @@ export const useUpdateSubject = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["subjects"] });
     },
+    onError: (error) => {
+      console.error(error);
+    },
   });
 };
 
@@ -47,6 +53,9 @@ export const useDeleteSubject = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["subjects"] });
+    },
+    onError: (error) => {
+      console.error(error);
     },
   });
 };

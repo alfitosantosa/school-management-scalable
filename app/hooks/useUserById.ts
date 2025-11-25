@@ -13,12 +13,7 @@ export const useGetUserById = (id: string) => {
         const res = await axios.get(`/api/userdata/id/${id}`);
         return res.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching user:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch user");
+        console.error(error);
       }
     },
   });

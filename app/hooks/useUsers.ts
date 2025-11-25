@@ -13,12 +13,7 @@ export const useGetUsers = () => {
         const res = await axios.get("/api/userdata");
         return res.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching users:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch users");
+        console.error(error);
       }
     },
   });
@@ -35,12 +30,7 @@ export const useCreateUser = () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) {
-        console.error("Error creating user:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to create user");
+      console.error(error);
     },
   });
 };
@@ -56,12 +46,7 @@ export const useUpdateUser = () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) {
-        console.error("Error updating user:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to update user");
+      console.error(error);
     },
   });
 };
@@ -77,12 +62,7 @@ export const useDeleteUser = () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) {
-        console.error("Error deleting user:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to delete user");
+      console.error(error);
     },
   });
 };
@@ -95,12 +75,7 @@ export const useGetUserById = (id: string) => {
         const res = await axios.get(`/api/userdata/id/${id}`);
         return res.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching user:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch user");
+        console.error(error);
       }
     },
     enabled: !!id, // Only run query if id exists

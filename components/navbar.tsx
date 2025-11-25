@@ -55,9 +55,8 @@ export default function Navbar() {
   };
 
   const handleSignOut = async () => {
-    await signOut();
     router.push("/auth/sign-in");
-    router.refresh();
+    await signOut();
   };
 
   const navigationItems = (userData?.role?.permissions || []).map((permission: string) => ({

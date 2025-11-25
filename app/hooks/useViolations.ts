@@ -9,12 +9,7 @@ export const useGetViolations = () => {
         const response = await axios.get("/api/violations");
         return response.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching violations:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch violations");
+        console.error(error);
       }
     },
   });
@@ -31,12 +26,7 @@ export const useCreateViolation = () => {
       queryClient.invalidateQueries({ queryKey: ["violations"] });
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) {
-        console.error("Error creating violation:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to create violation");
+      console.error(error);
     },
   });
 };
@@ -52,12 +42,7 @@ export const useUpdateViolation = () => {
       queryClient.invalidateQueries({ queryKey: ["violations"] });
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) {
-        console.error("Error updating violation:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to update violation");
+      console.error(error);
     },
   });
 };
@@ -71,6 +56,9 @@ export const useDeleteViolation = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["violations"] });
+    },
+    onError: (error) => {
+      console.error(error);
     },
   });
 };

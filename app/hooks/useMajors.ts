@@ -9,12 +9,7 @@ export const useGetMajors = () => {
         const res = await axios.get("/api/major");
         return res.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching majors:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch majors");
+        console.error(error);
       }
     },
   });
@@ -31,12 +26,7 @@ export const useCreateMajor = () => {
       queryClient.invalidateQueries({ queryKey: ["majors"] });
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) {
-        console.error("Error creating major:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to create major");
+      console.error(error);
     },
   });
 };
@@ -52,12 +42,7 @@ export const useUpdateMajor = () => {
       queryClient.invalidateQueries({ queryKey: ["majors"] });
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) {
-        console.error("Error updating major:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to update major");
+      console.error(error);
     },
   });
 };
@@ -73,12 +58,7 @@ export const useDeleteMajor = () => {
       queryClient.invalidateQueries({ queryKey: ["majors"] });
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) {
-        console.error("Error deleting major:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to delete major");
+      console.error(error);
     },
   });
 };

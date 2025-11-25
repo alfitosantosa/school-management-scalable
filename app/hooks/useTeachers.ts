@@ -10,12 +10,7 @@ export const useGetTeachers = () => {
         const res = await axios.get("/api/teachers");
         return res.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching teachers:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch teachers");
+        console.error(error);
       }
     },
   });
@@ -27,12 +22,7 @@ export const useCreateTeacher = () => {
       const res = await axios.post("/api/teachers", data);
       return res.data;
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error("Error creating teacher:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to create teacher");
+      console.error(error);
     }
   };
 };
@@ -43,12 +33,7 @@ export const useUpdateTeacher = () => {
       const res = await axios.put("/api/teachers", data);
       return res.data;
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error("Error updating teacher:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to update teacher");
+      console.error(error);
     }
   };
 };
@@ -59,12 +44,7 @@ export const useDeleteTeacher = () => {
       const res = await axios.delete(`/api/teachers`, { data: { id } });
       return res.data;
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error("Error deleting teacher:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to delete teacher");
+      console.error(error);
     }
   };
 };

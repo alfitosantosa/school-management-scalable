@@ -10,12 +10,7 @@ export const useGetAcademicYears = () => {
         const res = await axios.get("/api/academicyear");
         return res.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching academic years:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch academic years");
+        console.error(error);
       }
     },
   });
@@ -32,12 +27,7 @@ export const useCreateAcademicYear = () => {
       queryClient.invalidateQueries({ queryKey: ["academicYears"] });
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) {
-        console.error("Error creating academic year:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to create academic year");
+      console.error(error);
     },
   });
 };
@@ -53,12 +43,7 @@ export const useUpdateAcademicYear = () => {
       queryClient.invalidateQueries({ queryKey: ["academicYears"] });
     },
     onError: (error) => {
-      if (axios.isAxiosError(error)) {
-        console.error("Error updating academic year:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to update academic year");
+      console.error(error);
     },
   });
 };
@@ -75,12 +60,7 @@ export const useDeleteAcademicYear = () => {
       queryClient.invalidateQueries({ queryKey: ["academicYears"] });
     },
     onError: (error) => {
-        if (axios.isAxiosError(error)) {
-        console.error("Error deleting academic year:", error.response?.data || error.message);
-      } else {
-        console.error("Unexpected error:", error);
-      }
-      throw new Error("Failed to delete academic year");
+      console.error(error);
     },
   });
 };

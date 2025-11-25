@@ -11,12 +11,7 @@ export const useGetClassById = (id: string) => {
         const res = await axios.get(`/api/class/${id}`);
         return res.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching class:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch class");
+        console.error(error);
       }
     },
   });

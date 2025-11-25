@@ -13,12 +13,7 @@ export const useGetViolationsByIdStudent = (id: string) => {
         const res = await axios.get(`/api/violations/student/${id}`);
         return res.data;
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          console.error("Error fetching violations:", error.response?.data || error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-        throw new Error("Failed to fetch violations");
+        console.error(error);
       }
     },
   });
