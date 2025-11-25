@@ -31,7 +31,7 @@ export default function SignIn() {
               <Input
                 id="email"
                 type="email"
-                placeholder="user@fajaesentosa.com"
+                placeholder="user@fajarsentosa.com"
                 required
                 onChange={(e) => {
                   setEmail(e.target.value);

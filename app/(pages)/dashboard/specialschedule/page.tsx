@@ -615,48 +615,51 @@ function SpecialScheduleDataTable() {
             )}
           </div>
 
-          <div className="flex items-center space-x-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline">
-                  Kolom <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {table
-                  .getAllColumns()
-                  .filter((column) => column.getCanHide())
-                  .map((column) => {
-                    const getColumnLabel = (columnId: string) => {
-                      switch (columnId) {
-                        case "title":
-                          return "Judul Acara";
-                        case "eventType":
-                          return "Jenis Acara";
-                        case "eventDate":
-                          return "Tanggal Acara";
-                        case "isPublished":
-                          return "Status";
-                        case "academicYear":
-                          return "Tahun Akademik";
-                        default:
-                          return columnId;
-                      }
-                    };
+          <div className="grid lg:grid-cols-3 space-x-2  md:mt-0">
+            <div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline">
+                    Kolom <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  {table
+                    .getAllColumns()
+                    .filter((column) => column.getCanHide())
+                    .map((column) => {
+                      const getColumnLabel = (columnId: string) => {
+                        switch (columnId) {
+                          case "title":
+                            return "Judul Acara";
+                          case "eventType":
+                            return "Jenis Acara";
+                          case "eventDate":
+                            return "Tanggal Acara";
+                          case "isPublished":
+                            return "Status";
+                          case "academicYear":
+                            return "Tahun Akademik";
+                          default:
+                            return columnId;
+                        }
+                      };
 
-                    return (
-                      <DropdownMenuCheckboxItem key={column.id} className="capitalize" checked={column.getIsVisible()} onCheckedChange={(value) => column.toggleVisibility(!!value)}>
-                        {getColumnLabel(column.id)}
-                      </DropdownMenuCheckboxItem>
-                    );
-                  })}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <Button onClick={() => setCreateDialogOpen(true)}>
-              <Plus className="mr-2 h-4 w-4" />
-              Tambah Acara
-            </Button>
+                      return (
+                        <DropdownMenuCheckboxItem key={column.id} className="capitalize" checked={column.getIsVisible()} onCheckedChange={(value) => column.toggleVisibility(!!value)}>
+                          {getColumnLabel(column.id)}
+                        </DropdownMenuCheckboxItem>
+                      );
+                    })}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+            <div>
+              <Button onClick={() => setCreateDialogOpen(true)}>
+                <Plus className="mr-2 h-4 w-4" />
+                Tambah Acara
+              </Button>
+            </div>
           </div>
         </div>
 

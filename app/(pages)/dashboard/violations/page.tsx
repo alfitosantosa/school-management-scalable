@@ -709,97 +709,103 @@ export default function ViolationDataTable() {
         <div className="font-bold text-3xl mb-6">Data Pelanggaran</div>
         <div className="mx-auto">
           <div className="flex items-center justify-between py-4">
-            <div className="flex items-center space-x-2">
-              <div className="relative">
-                <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="Cari siswa, kelas, pelanggaran..." value={globalFilter ?? ""} onChange={(event) => setGlobalFilter(event.target.value)} className="max-w-sm pl-8" disabled={isLoading} />
+            <div className="relative">
+              <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input placeholder="Cari siswa, kelas, pelanggaran..." value={globalFilter ?? ""} onChange={(event) => setGlobalFilter(event.target.value)} className="max-w-sm pl-8" disabled={isLoading} />
+            </div>
+            <div className="grid lg:grid-cols-3 space-x-2  md:mt-0">
+              <div>
+                <Select value={statusFilter} onValueChange={setStatusFilter}>
+                  <SelectTrigger className="w-[140px]">
+                    <SelectValue placeholder="Status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Semua Status</SelectItem>
+                    {violationStatuses.map((status) => (
+                      <SelectItem key={status.value} value={status.value}>
+                        {status.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
-
-              <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-[140px]">
-                  <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Semua Status</SelectItem>
-                  {violationStatuses.map((status) => (
-                    <SelectItem key={status.value} value={status.value}>
-                      {status.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              <Select value={classFilter} onValueChange={setClassFilter}>
-                <SelectTrigger className="w-[140px]">
-                  <SelectValue placeholder="Kelas" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Semua Kelas</SelectItem>
-                  {classes?.map((classItem: any) => (
-                    <SelectItem key={classItem.id} value={classItem.id}>
-                      {classItem.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-
-              {/* Clear all filters button */}
-              {(globalFilter || statusFilter !== "all" || classFilter !== "all") && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => {
-                    setGlobalFilter("");
-                    setStatusFilter("all");
-                    setClassFilter("all");
-                    table.resetColumnFilters();
-                  }}
-                >
-                  <X className="mr-2 h-4 w-4" />
-                  Reset Filter
-                </Button>
-              )}
+              <div>
+                <Select value={classFilter} onValueChange={setClassFilter}>
+                  <SelectTrigger className="w-[140px]">
+                    <SelectValue placeholder="Kelas" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Semua Kelas</SelectItem>
+                    {classes?.map((classItem: any) => (
+                      <SelectItem key={classItem.id} value={classItem.id}>
+                        {classItem.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                {/* Clear all filters button */}
+                {(globalFilter || statusFilter !== "all" || classFilter !== "all") && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setGlobalFilter("");
+                      setStatusFilter("all");
+                      setClassFilter("all");
+                      table.resetColumnFilters();
+                    }}
+                  >
+                    <X className="mr-2 h-4 w-4" />
+                    Reset Filter
+                  </Button>
+                )}
+              </div>
             </div>
 
-            <div className="flex items-center space-x-2">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline">
-                    Kolom <ChevronDown className="ml-2 h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  {table
-                    .getAllColumns()
-                    .filter((column) => column.getCanHide())
-                    .map((column) => {
-                      return (
-                        <DropdownMenuCheckboxItem key={column.id} className="capitalize" checked={column.getIsVisible()} onCheckedChange={(value) => column.toggleVisibility(!!value)}>
-                          {column.id === "student"
-                            ? "Siswa"
-                            : column.id === "class"
-                            ? "Kelas"
-                            : column.id === "violationType"
-                            ? "Jenis Pelanggaran"
-                            : column.id === "date"
-                            ? "Tanggal"
-                            : column.id === "status"
-                            ? "Status"
-                            : column.id === "reportedBy"
-                            ? "Dilaporkan Oleh"
-                            : column.id === "description"
-                            ? "Deskripsi"
-                            : column.id}
-                        </DropdownMenuCheckboxItem>
-                      );
-                    })}
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              <Button onClick={() => setCreateDialogOpen(true)}>
-                <Plus className="mr-2 h-4 w-4" />
-                Tambah Pelanggaran
-              </Button>
+            <div className="grid lg:grid-cols-3 space-x-2  md:mt-0">
+              <div>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline">
+                      Kolom <ChevronDown className="ml-2 h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    {table
+                      .getAllColumns()
+                      .filter((column) => column.getCanHide())
+                      .map((column) => {
+                        return (
+                          <DropdownMenuCheckboxItem key={column.id} className="capitalize" checked={column.getIsVisible()} onCheckedChange={(value) => column.toggleVisibility(!!value)}>
+                            {column.id === "student"
+                              ? "Siswa"
+                              : column.id === "class"
+                              ? "Kelas"
+                              : column.id === "violationType"
+                              ? "Jenis Pelanggaran"
+                              : column.id === "date"
+                              ? "Tanggal"
+                              : column.id === "status"
+                              ? "Status"
+                              : column.id === "reportedBy"
+                              ? "Dilaporkan Oleh"
+                              : column.id === "description"
+                              ? "Deskripsi"
+                              : column.id}
+                          </DropdownMenuCheckboxItem>
+                        );
+                      })}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+              <div>
+                <Button onClick={() => setCreateDialogOpen(true)}>
+                  <Plus className="mr-2 h-4 w-4" />
+                  Tambah Pelanggaran
+                </Button>
+              </div>
             </div>
           </div>
 

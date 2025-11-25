@@ -109,12 +109,10 @@ function SimpleTable({ columns, data, emptyMessage = "Tidak ada data" }: any) {
 export default function ParentPage() {
   const { data: session, isPending } = useSession();
   const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
-  // console.log(session);
 
   const studentIds = userData?.studentIds || [];
 
   const { data: students = [], isLoading: loadingStudents, isError } = useGetStudentsByIds(studentIds);
-  console.log(students);
 
   const [selectedStudent, setSelectedStudent] = useState<any>(null);
 
