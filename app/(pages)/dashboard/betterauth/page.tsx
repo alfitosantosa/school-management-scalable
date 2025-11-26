@@ -2,20 +2,23 @@
 
 import * as React from "react";
 import { ColumnDef, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable, ColumnFiltersState, SortingState, VisibilityState } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal, Eye, Copy, X, KeyRound } from "lucide-react";
+import { ArrowUpDown, ChevronDown, MoreHorizontal, Eye, Copy, KeyRound, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Navbar from "@/components/navbar";
 import { useGetBetterAuth } from "@/app/hooks/useBetterAuth";
 import Image from "next/image";
-import { ChangePasswordDialog } from "@/components/dialog/change/ChangePasswordDialog";
+import { authClient, useSession } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 export type User = {
   id: string;
@@ -25,7 +28,11 @@ export type User = {
   image: string | null;
   createdAt: string;
   updatedAt: string;
-  userData: {
+  role: string;
+  banned?: boolean;
+  banReason?: string | null;
+  banExpires?: string | null;
+  userData?: {
     id: string;
     userId: string;
     academicYearId: string | null;
@@ -56,7 +63,8 @@ export type User = {
 };
 
 export default function DataTableBetterAuth() {
-  const { data, isLoading, error } = useGetBetterAuth();
+  const { data: session } = useSession();
+  const { data, isLoading, error, refetch } = useGetBetterAuth();
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -65,7 +73,104 @@ export default function DataTableBetterAuth() {
   const [selectedUser, setSelectedUser] = React.useState<User | null>(null);
   const [isDetailOpen, setIsDetailOpen] = React.useState(false);
   const [isChangePasswordOpen, setIsChangePasswordOpen] = React.useState(false);
+  const [isChangeRoleOpen, setIsChangeRoleOpen] = React.useState(false);
   const [userToChangePassword, setUserToChangePassword] = React.useState<{ id: string; name: string } | null>(null);
+  const [userToChangeRole, setUserToChangeRole] = React.useState<{ id: string; name: string; currentRole: string } | null>(null);
+
+  // Form states
+  const [newPassword, setNewPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [selectedRole, setSelectedRole] = React.useState<"user" | "admin" | "">("");
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  // Check if current user is admin
+  const isAdmin = session?.user?.role === "admin";
+
+  // Set User Password
+  const handleSetPassword = async () => {
+    if (!userToChangePassword) return;
+
+    if (newPassword.length < 8) {
+      toast.error("Password must be at least 8 characters long");
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await authClient.admin.setUserPassword({
+        newPassword: newPassword,
+        userId: userToChangePassword.id,
+      });
+
+      if (error) {
+        console.error("Error:", error);
+        toast.error(error.message || "Failed to change password");
+      } else {
+        console.log("Success:", data);
+        toast.success(`Password for ${userToChangePassword.name} has been updated successfully`);
+        setIsChangePasswordOpen(false);
+        setNewPassword("");
+        setConfirmPassword("");
+        setUserToChangePassword(null);
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      toast.error("An unexpected error occurred");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Set User Role
+  const handleSetRole = async () => {
+    if (!userToChangeRole || !selectedRole) return;
+
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await authClient.admin.setRole({
+        userId: userToChangeRole.id,
+        role: selectedRole,
+      });
+
+      if (error) {
+        console.error("Error:", error);
+        toast.error(error.message || "Failed to change role");
+      } else {
+        console.log("Success:", data);
+        toast.success(`Role for ${userToChangeRole.name} has been updated to ${selectedRole}`);
+        setIsChangeRoleOpen(false);
+        setSelectedRole("");
+        setUserToChangeRole(null);
+        // Refresh data
+        refetch();
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      toast.error("An unexpected error occurred");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const getRoleBadgeVariant = (role: string) => {
+    switch (role?.toLowerCase()) {
+      case "admin":
+        return "destructive";
+      case "moderator":
+        return "default";
+      case "user":
+        return "secondary";
+      default:
+        return "outline";
+    }
+  };
 
   const columns: ColumnDef<User>[] = [
     {
@@ -106,9 +211,20 @@ export default function DataTableBetterAuth() {
       cell: ({ row }) => <div className="text-sm">{row.original.email || "-"}</div>,
     },
     {
-      id: "roles",
-      header: "Roles",
-      cell: ({ row }) => <div className="text-sm">{row.original.userData.role.name || "-"}</div>,
+      id: "role",
+      header: "Role",
+      cell: ({ row }) => {
+        const role = row.original.role || "user";
+        return <Badge variant={getRoleBadgeVariant(role)}>{role}</Badge>;
+      },
+    },
+    {
+      id: "emailVerified",
+      header: "Verified",
+      cell: ({ row }) => {
+        const verified = row.original.emailVerified;
+        return <Badge variant={verified ? "default" : "secondary"}>{verified ? "Verified" : "Not Verified"}</Badge>;
+      },
     },
     {
       id: "actions",
@@ -129,7 +245,7 @@ export default function DataTableBetterAuth() {
               <DropdownMenuItem
                 onClick={() => {
                   navigator.clipboard.writeText(user.id);
-                  alert("User ID copied to clipboard!");
+                  toast.success("User ID copied to clipboard");
                 }}
               >
                 <Copy className="mr-2 h-4 w-4" />
@@ -145,15 +261,35 @@ export default function DataTableBetterAuth() {
                 <Eye className="mr-2 h-4 w-4" />
                 View Details
               </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => {
-                  setUserToChangePassword({ id: user.id, name: user.name });
-                  setIsChangePasswordOpen(true);
-                }}
-              >
-                <KeyRound className="mr-2 h-4 w-4" />
-                Change Password
-              </DropdownMenuItem>
+              {isAdmin && (
+                <>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={() => {
+                      setUserToChangeRole({
+                        id: user.id,
+                        name: user.name,
+                        currentRole: user.role || "user",
+                      });
+                      // map any non-admin role to "user" to match the API's allowed values
+                      setSelectedRole(user.role === "admin" ? "admin" : "user");
+                      setIsChangeRoleOpen(true);
+                    }}
+                  >
+                    <Shield className="mr-2 h-4 w-4" />
+                    Change Role
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => {
+                      setUserToChangePassword({ id: user.id, name: user.name });
+                      setIsChangePasswordOpen(true);
+                    }}
+                  >
+                    <KeyRound className="mr-2 h-4 w-4" />
+                    Reset Password
+                  </DropdownMenuItem>
+                </>
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         );
@@ -217,8 +353,18 @@ export default function DataTableBetterAuth() {
       <Navbar />
       <Card className="max-w-7xl mx-auto my-8 p-6">
         <CardHeader className="px-0 pt-0">
-          <CardTitle className="text-3xl font-bold">BetterAuth Users</CardTitle>
-          <CardDescription>Manage and view all BetterAuth users from the database.</CardDescription>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle className="text-3xl font-bold">BetterAuth Users</CardTitle>
+              <CardDescription>Manage and view all BetterAuth users from the database.</CardDescription>
+            </div>
+            {isAdmin && (
+              <Badge variant="destructive" className="h-6">
+                <Shield className="mr-1 h-3 w-3" />
+                Admin Access
+              </Badge>
+            )}
+          </div>
         </CardHeader>
 
         <CardContent className="px-0">
@@ -298,6 +444,7 @@ export default function DataTableBetterAuth() {
         <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>User Details</DialogTitle>
+            <DialogDescription>Complete information about the user</DialogDescription>
           </DialogHeader>
 
           {selectedUser && (
@@ -307,7 +454,10 @@ export default function DataTableBetterAuth() {
                 <div className="flex-1 space-y-1">
                   <h3 className="text-xl font-semibold">{selectedUser.name}</h3>
                   <p className="text-sm text-muted-foreground">{selectedUser.email}</p>
-                  <div className="flex gap-2 mt-2">{selectedUser.name && <Badge variant="secondary">@{selectedUser.name}</Badge>}</div>
+                  <div className="flex gap-2 mt-2">
+                    <Badge variant={getRoleBadgeVariant(selectedUser.role)}>{selectedUser.role || "user"}</Badge>
+                    <Badge variant={selectedUser.emailVerified ? "default" : "secondary"}>{selectedUser.emailVerified ? "Verified" : "Not Verified"}</Badge>
+                  </div>
                 </div>
               </div>
 
@@ -321,27 +471,16 @@ export default function DataTableBetterAuth() {
                     <p className="text-sm font-mono break-all">{selectedUser.id}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Username</p>
-                    <p className="text-sm">{selectedUser.name || "-"}</p>
-                  </div>
-                  <div>
                     <p className="text-sm text-muted-foreground">Name</p>
                     <p className="text-sm">{selectedUser.name || "-"}</p>
                   </div>
-                </div>
-              </div>
-              <Separator />
-
-              <div className="space-y-3">
-                <h4 className="font-semibold">Contact Information</h4>
-                <div className="space-y-2">
                   <div>
-                    <p className="text-sm text-muted-foreground">Email Addresses</p>
+                    <p className="text-sm text-muted-foreground">Email</p>
                     <p className="text-sm">{selectedUser.email || "-"}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">Phone Numbers</p>
-                    <p className="text-sm">{selectedUser?.userData?.parentPhone || "-"}</p>
+                    <p className="text-sm text-muted-foreground">Role</p>
+                    <p className="text-sm">{selectedUser.role || "user"}</p>
                   </div>
                 </div>
               </div>
@@ -355,17 +494,31 @@ export default function DataTableBetterAuth() {
                     <p className="text-sm text-muted-foreground">Created At</p>
                     <p className="text-sm">{new Date(selectedUser.createdAt).toLocaleString()}</p>
                   </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Updated At</p>
+                    <p className="text-sm">{new Date(selectedUser.updatedAt).toLocaleString()}</p>
+                  </div>
                 </div>
               </div>
 
-              {selectedUser?.userData?.role?.name && (
+              {selectedUser?.userData && (
                 <>
                   <Separator />
                   <div className="space-y-3">
-                    <h4 className="font-semibold">Roles</h4>
-                    <div>
-                      <p className="text-sm text-muted-foreground">Role</p>
-                      <p className="text-sm">{selectedUser.userData.role.name}</p>
+                    <h4 className="font-semibold">Additional Information</h4>
+                    <div className="grid grid-cols-2 gap-4">
+                      {selectedUser.userData.parentPhone && (
+                        <div>
+                          <p className="text-sm text-muted-foreground">Phone Number</p>
+                          <p className="text-sm">{selectedUser.userData.parentPhone}</p>
+                        </div>
+                      )}
+                      {selectedUser.userData.role?.name && (
+                        <div>
+                          <p className="text-sm text-muted-foreground">System Role</p>
+                          <p className="text-sm">{selectedUser.userData.role.name}</p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </>
@@ -376,7 +529,94 @@ export default function DataTableBetterAuth() {
       </Dialog>
 
       {/* Change Password Dialog */}
-      {userToChangePassword && <ChangePasswordDialog open={isChangePasswordOpen} onOpenChange={setIsChangePasswordOpen} userId={userToChangePassword.id} userName={userToChangePassword.name} />}
+      <Dialog open={isChangePasswordOpen} onOpenChange={setIsChangePasswordOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Reset User Password</DialogTitle>
+            <DialogDescription>
+              Set a new password for <strong>{userToChangePassword?.name}</strong>
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="new-password">New Password</Label>
+              <Input id="new-password" type="password" placeholder="Enter new password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} disabled={isSubmitting} />
+              <p className="text-xs text-muted-foreground">Minimum 8 characters</p>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="confirm-password">Confirm Password</Label>
+              <Input id="confirm-password" type="password" placeholder="Confirm new password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} disabled={isSubmitting} />
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setIsChangePasswordOpen(false);
+                setNewPassword("");
+                setConfirmPassword("");
+                setUserToChangePassword(null);
+              }}
+              disabled={isSubmitting}
+            >
+              Cancel
+            </Button>
+            <Button onClick={handleSetPassword} disabled={isSubmitting || !newPassword || !confirmPassword}>
+              {isSubmitting ? "Changing..." : "Change Password"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Change Role Dialog */}
+      <Dialog open={isChangeRoleOpen} onOpenChange={setIsChangeRoleOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Change User Role</DialogTitle>
+            <DialogDescription>
+              Update the role for <strong>{userToChangeRole?.name}</strong>
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="role-select">Select Role</Label>
+              <Select value={selectedRole} onValueChange={(value) => setSelectedRole(value as "user" | "admin" | "")} disabled={isSubmitting}>
+                <SelectTrigger id="role-select">
+                  <SelectValue placeholder="Select a role" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="user">User</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem>
+                </SelectContent>
+              </Select>
+              <p className="text-xs text-muted-foreground">
+                Current role: <strong>{userToChangeRole?.currentRole || "user"}</strong>
+              </p>
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setIsChangeRoleOpen(false);
+                setSelectedRole("");
+                setUserToChangeRole(null);
+              }}
+              disabled={isSubmitting}
+            >
+              Cancel
+            </Button>
+            <Button onClick={handleSetRole} disabled={isSubmitting || !selectedRole}>
+              {isSubmitting ? "Changing..." : "Change Role"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }

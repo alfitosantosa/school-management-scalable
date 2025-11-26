@@ -23,9 +23,11 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     },
   },
-});
-
-admin({
-  defaultRole: "regular",
-  adminRoles: ["admin", "superadmin"],
+  plugins: [
+    admin({
+      // Optional: configure admin settings
+      defaultRole: "user",
+      adminRole: "admin",
+    }),
+  ],
 });

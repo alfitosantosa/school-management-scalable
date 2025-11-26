@@ -19,7 +19,7 @@ model User {
   banExpires    DateTime?
   banReason     String?
   banned        Boolean?  @default(false)
-  role          String?
+  role          String?   @default("user")
   accounts      Account[]
   sessions      Session[]
   userData      UserData?
@@ -39,6 +39,7 @@ model Session {
   impersonatedBy String?
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([userId])
   @@map("session")
 }
 
@@ -58,6 +59,7 @@ model Account {
   updatedAt             DateTime
   user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([userId])
   @@map("account")
 }
 
@@ -69,6 +71,7 @@ model Verification {
   createdAt  DateTime?
   updatedAt  DateTime?
 
+  @@index([identifier])
   @@map("verification")
 }
 
