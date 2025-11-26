@@ -32,6 +32,7 @@ import { useGetClasses } from "@/app/hooks/useClass";
 import Navbar from "@/components/navbar";
 import { useGetUsers } from "@/app/hooks/useUsers";
 import { useSession } from "@/lib/auth-client";
+import { useGetStudents } from "@/app/hooks/useStudents";
 
 // Type definitions
 export type ViolationData = {
@@ -201,11 +202,11 @@ function ViolationFormDialog({ open, onOpenChange, editData, onSuccess }: { open
   const updateViolation = useUpdateViolation();
   const { data: violationTypes } = useGetTypeViolations();
   const { data: classes } = useGetClasses();
-  const { data: usersData = [], isLoading: usersLoading } = useGetUsers();
+  const { data: usersData = [], isLoading: usersLoading } = useGetStudents();
 
   // Filter students from users data (role.name === "Student")
   const students = React.useMemo(() => {
-    return usersData.filter((user: any) => user.role?.name === "Student");
+    return usersData.filter((user: any) => user?.role?.name === "Student");
   }, [usersData]);
 
   const {

@@ -65,7 +65,7 @@ type CalendarFeature = {
 export default function CalendarPage() {
   // Get session from Better Auth
   const { data: session, isPending } = useSession();
-  console.log(session?.user?.id);
+  
 
   const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
