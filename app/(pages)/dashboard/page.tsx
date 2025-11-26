@@ -181,7 +181,7 @@ export default function DashboardPage() {
       <div className="min-h-screen  from-slate-50 to-slate-100 p-6">
         <div className="max-w-7xl mx-auto space-y-6">
           {/* Header */}
-          <Card className="shadow-lg border-0  from-blue-600 via-purple-600 to-indigo-600 text-white">
+          <Card className="shadow-lg border-0  text-white bg-blue-600">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div>

@@ -209,25 +209,7 @@ const UserProfileSkeleton = () => (
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header Skeleton */}
         <Card className="overflow-hidden shadow-2xl border-0 backdrop-blur-sm bg-white/90">
-          <div className="bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 h-40 lg:h-48 relative">
-            <div className="absolute inset-0 bg-black/10"></div>
-          </div>
-          <CardContent className="pt-0 px-6 lg:px-8">
-            <div className="flex flex-col xl:flex-row items-center xl:items-end gap-6 xl:gap-8 -mt-20 lg:-mt-24">
-              <Skeleton className="w-32 h-32 lg:w-40 lg:h-40 rounded-full border-4 border-white shadow-2xl" />
-              <div className="text-center xl:text-left space-y-4 flex-1">
-                <div className="space-y-3">
-                  <Skeleton className="h-12 lg:h-16 w-72 lg:w-96 mx-auto xl:mx-0" />
-                  <Skeleton className="h-6 lg:h-8 w-56 lg:w-72 mx-auto xl:mx-0" />
-                </div>
-                <div className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-3">
-                  <Skeleton className="h-9 w-28" />
-                  <Skeleton className="h-9 w-36" />
-                  <Skeleton className="h-9 w-32" />
-                </div>
-              </div>
-            </div>
-          </CardContent>
+          <div className=" h-20 lg:h-24 relative overflow-hidden ">{/* Decorative elements */}</div>
         </Card>
 
         {/* Content Skeletons */}
