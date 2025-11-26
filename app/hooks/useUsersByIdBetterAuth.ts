@@ -7,7 +7,7 @@ import axios from "axios";
 
 export const useGetUserByIdBetterAuth = (id: string) => {
   return useQuery({
-    queryKey: ["users", id],
+    queryKey: ["users"],
     queryFn: async () => {
       try {
         const res = await axios.get(`/api/userdata/betterauth/id/${id}`);

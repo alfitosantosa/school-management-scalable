@@ -142,7 +142,7 @@ export default function DashboardPage() {
 
   if (attendanceIsError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+      <div className="min-h-screen  from-slate-50 to-slate-100 p-6">
         <div className="max-w-7xl mx-auto">
           <Alert className="border-red-200 bg-red-50">
             <AlertTriangle className="h-4 w-4 text-red-600" />
@@ -155,7 +155,7 @@ export default function DashboardPage() {
 
   if (attendanceIsLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+      <div className="min-h-screen  from-slate-50 to-slate-100 p-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {Array.from({ length: 6 }).map((_, i) => (
@@ -178,10 +178,10 @@ export default function DashboardPage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+      <div className="min-h-screen  from-slate-50 to-slate-100 p-6">
         <div className="max-w-7xl mx-auto space-y-6">
           {/* Header */}
-          <Card className="shadow-lg border-0 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white">
+          <Card className="shadow-lg border-0  from-blue-600 via-purple-600 to-indigo-600 text-white">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <div>

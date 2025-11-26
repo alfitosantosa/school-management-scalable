@@ -3,8 +3,6 @@
 import * as React from "react";
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, Calendar, User, AlertTriangle, Search, X, Check } from "lucide-react";
-import { useSession } from "@/lib/auth-client";
-import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -27,13 +25,13 @@ import { cn } from "@/lib/utils";
 
 // Import hooks
 import { useGetViolations, useCreateViolation, useUpdateViolation, useDeleteViolation } from "@/app/hooks/useViolations";
+import { useGetViolationsByIdTeacher } from "@/app/hooks/useViolationsByIdTeacher";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
 import { useGetTypeViolations } from "@/app/hooks/useTypeViolations";
 import { useGetClasses } from "@/app/hooks/useClass";
 import Navbar from "@/components/navbar";
 import { useGetUsers } from "@/app/hooks/useUsers";
-import { object } from "zod";
-import { useGetViolationsByIdTeacher } from "@/app/hooks/useViolationsByIdTeacher";
-import { useGetUserByIdTeacher } from "@/app/hooks/useGetUserByIdTeacher";
+import { useSession } from "@/lib/auth-client";
 
 // Type definitions
 export type ViolationData = {
@@ -52,7 +50,6 @@ export type ViolationData = {
     id: string;
     name: string;
     email: string;
-    avatarUrl: string;
   };
   violationType?: {
     id: string;
@@ -226,10 +223,11 @@ function ViolationFormDialog({ open, onOpenChange, editData, onSuccess }: { open
     },
   });
 
-  const selectedStudentId = watch("studentId");
-  const selectedViolationTypeId = watch("violationTypeId");
-  const selectedClassId = watch("classId");
-  const selectedStatus = watch("status");
+  const watchedValues = watch();
+  const selectedStudentId = watchedValues.studentId;
+  const selectedViolationTypeId = watchedValues.violationTypeId;
+  const selectedClassId = watchedValues.classId;
+  const selectedStatus = watchedValues.status;
 
   React.useEffect(() => {
     if (editData) {
@@ -446,17 +444,11 @@ export default function ViolationDataTable() {
   const [classFilter, setClassFilter] = React.useState<string>("all");
   const [globalFilter, setGlobalFilter] = React.useState<string>("");
 
-  //get violation from id teacher
-  // Get session from Better Auth
   const { data: session, isPending } = useSession();
-  const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
-  // get profile teacher
-
-  const { data: usersData, isLoading: isLoadingUser } = useGetUserByIdTeacher(userData?.id ?? "");
-
-  //get class from id techer
-  const { data: violations = [], isLoading, refetch } = useGetViolationsByIdTeacher(usersData?.id ?? "");
+  const { data: user } = useGetUserByIdBetterAuth(session?.user.id || "");
+  const teacherId = user?.id || "";
+  const { data: violations = [], isLoading, refetch } = useGetViolationsByIdTeacher(teacherId);
 
   // const { data: violations = [], isLoading, refetch } = useGetViolations();
   const { data: classes } = useGetClasses();
@@ -722,9 +714,10 @@ export default function ViolationDataTable() {
     <>
       <Navbar />
       <div className="mx-auto my-8 p-6 max-w-7xl">
-        <div className="font-bold text-3xl mb-6">Data Pelanggaran</div>
+        <div className="font-bold text-3xl mb-2">Data Pelanggaran</div>
+        <p>Data Berdasarkan kelas yang Anda ampu</p>
         <div className="mx-auto">
-          <div className="flex items-center justify-between w-full py-4">
+          <div className="flex items-center justify-between py-4">
             <div className="relative">
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input placeholder="Cari siswa, kelas, pelanggaran..." value={globalFilter ?? ""} onChange={(event) => setGlobalFilter(event.target.value)} className="max-w-sm pl-8" disabled={isLoading} />
@@ -780,7 +773,7 @@ export default function ViolationDataTable() {
               </div>
             </div>
 
-            <div className="grid lg:grid-cols-3 space-x-2 justify-end  md:mt-0">
+            <div className="grid lg:grid-cols-3 space-x-2  md:mt-0">
               <div>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
