@@ -1,0 +1,41 @@
+# services:
+#   app:
+#     environment:
+#       - DATABASE_URL="postgres://fajarsentosa:fajarsentosa123@202.10.47.75:7676/fajarsentosa?schema=public"
+#       - NEXT_PUBLIC_FILESERVER_URL='https://file.pasarjaya.cloud/api/upload'
+#       - BETTER_AUTH_SECRET=4QtwZpUIJm4GRKDQvNWc70cMv3MeC1FG
+#       - BETTER_AUTH_URL=http://localhost:3000
+#       - GOOGLE_CLIENT_ID=408914771276-fq1g4o3s8o56jp8amcfev2f0u1nei8vp.apps.googleusercontent.com
+#       - GOOGLE_CLIENT_SECRET=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
+#     build:
+#       context: .
+
+#       dockerfile: Dockerfile
+
+#     ports:
+#       - "3000:3000"
+#     volumes:
+#       - .:/src
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    environment:
+      DATABASE_URL: postgres://fajarsentosa:fajarsentosa123@202.10.47.75:7676/fajarsentosa?schema=public
+      NEXT_PUBLIC_FILESERVER_URL: https://file.pasarjaya.cloud/api/upload
+
+      BETTER_AUTH_SECRET: 4QtwZpUIJm4GRKDQvNWc70cMv3MeC1FG
+      BETTER_AUTH_URL: http://localhost:3000
+
+      GOOGLE_CLIENT_ID: 408914771276-fq1g4o3s8o56jp8amcfev2f0u1nei8vp.apps.googleusercontent.com
+      GOOGLE_CLIENT_SECRET: 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
+
+    ports:
+      - "3000:3000"
+
+    # Jangan pakai volumes di production!
+    # volumes:
+    #   - .:/app
