@@ -43,10 +43,7 @@
     "react-hook-form": "^7.66.0",
     "recharts": "^3.4.1",
     "sonner": "^2.0.7",
-    "tailwind-merge": "^3.3.1",
-    "lightningcss-linux-arm64-musl": "^1.30.2",
-    "lightningcss-linux-x64-gnu": "^1.30.2",
-    "lightningcss-linux-x64-musl": "^1.30.2"
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
