@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "prebuild": "rm -rf node_modules/.cache && rm -rf .next",
     "build": "next build",
     "start": "next start"
   },
@@ -43,7 +44,8 @@
     "react-hook-form": "^7.66.0",
     "recharts": "^3.4.1",
     "sonner": "^2.0.7",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.3.1",
+    "@tailwindcss/oxide": "4.0.0-alpha.25"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
