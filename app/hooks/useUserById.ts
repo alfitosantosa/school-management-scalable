@@ -16,5 +16,6 @@ export const useGetUserById = (id: string) => {
         console.error(error);
       }
     },
+    enabled: !!id,
   });
 };

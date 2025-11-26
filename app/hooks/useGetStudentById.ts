@@ -13,5 +13,6 @@ export const useGetStudentById = (id: string) => {
         console.error(error);
       }
     },
+    enabled: !!id,
   });
 };

@@ -14,5 +14,6 @@ export const useGetAttendanceByIdSchedule = (id: string) => {
         console.error(error);
       }
     },
+    enabled: !!id,
   });
 };

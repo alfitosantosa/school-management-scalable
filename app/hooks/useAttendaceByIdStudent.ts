@@ -14,5 +14,6 @@ export const useGetAttendanceByIdStudent = (id: string) => {
         console.error(error);
       }
     },
+    enabled: !!id,
   });
 };

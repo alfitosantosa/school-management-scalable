@@ -14,5 +14,6 @@ export const useClassByIdUser = (id: string) => {
         console.error(error);
       }
     },
+    enabled: !!id,
   });
 };

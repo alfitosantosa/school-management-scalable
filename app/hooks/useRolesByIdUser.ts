@@ -14,5 +14,6 @@ export const useRolesByIdUser = (id: string) => {
         console.error(error);
       }
     },
+    enabled: !!id,
   });
 };

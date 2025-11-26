@@ -14,6 +14,7 @@ export const useGetScheduleById = (id: string) => {
         console.error(error);
       }
     },
+    enabled: !!id,
   });
 };
 
