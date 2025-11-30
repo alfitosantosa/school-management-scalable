@@ -21,8 +21,6 @@ export type typeData = {
   name: string;
 };
 
-export const title = "File Upload with List";
-
 export default function UploadUsers() {
   const [files, setFiles] = useState<File[]>([]);
   const [isUploading, setIsUploading] = useState(false);
