@@ -422,7 +422,7 @@ export default function RoleDataTable() {
 
   return (
     <>
-      <div className="w-max-7xl mx-auto my-8 p-6 min-h-screen">
+      <div className="w-7xl mx-auto my-8 p-6 min-h-screen">
         <div className="font-bold text-3xl">Roles Menu</div>
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center space-x-2">
@@ -457,7 +457,7 @@ export default function RoleDataTable() {
           </div>
         </div>
 
-        <div className="rounded-md border w-max-7xl">
+        <div className="rounded-md border ">
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (

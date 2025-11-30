@@ -301,7 +301,7 @@ export default function MajorDataTable() {
           </Button>
         );
       },
-      cell: ({ row }) => <div className="font-mono font-medium text-center">{row.getValue("code")}</div>,
+      cell: ({ row }) => <div className="font-mono font-medium ">{row.getValue("code")}</div>,
     },
     {
       accessorKey: "name",
@@ -446,7 +446,7 @@ export default function MajorDataTable() {
 
   return (
     <>
-      <div className="w-max-7xl mx-auto my-8 p-6 min-h-screen">
+      <div className="max-w-7xl mx-auto my-8 p-6 min-h-screen">
         <div className="font-bold text-3xl">Jurusan</div>
         <div className="max-w-7xl justify-center mx-auto">
           <div className="flex items-center justify-between py-4">
