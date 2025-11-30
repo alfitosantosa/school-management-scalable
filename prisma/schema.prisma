@@ -124,7 +124,7 @@ model Role {
   id          String     @id @default(cuid())
   name        String     @unique
   description String
-  permissions String[]
+  permissions String[] 
   isActive    Boolean    @default(true)
   userData    UserData[]
 

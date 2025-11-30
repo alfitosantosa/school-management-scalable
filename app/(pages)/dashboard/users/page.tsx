@@ -88,21 +88,6 @@ export default function UserDataTable() {
         cell: ({ row }) => <div>{row.original.name ?? "-"}</div>,
       },
       {
-        accessorKey: "BetterAuth name",
-        header: "BetterAuth",
-        cell: ({ row }) => {
-          return <div>{row.original.userId ? <Badge variant="default">Linked</Badge> : <Badge variant="outline">No BetterAuth</Badge>}</div>;
-        },
-      },
-      {
-        accessorKey: "email",
-        header: "Email",
-        cell: ({ row }) => {
-          const email = row.getValue("email") as string;
-          return <div className="lowercase">{email || "-"}</div>;
-        },
-      },
-      {
         accessorKey: "role",
         header: "Role",
         cell: ({ row }) => {
@@ -121,6 +106,16 @@ export default function UserDataTable() {
           return role?.name === filterValue;
         },
       },
+
+      {
+        accessorKey: "email",
+        header: "Email",
+        cell: ({ row }) => {
+          const email = row.getValue("email") as string;
+          return <div className="lowercase">{email || "-"}</div>;
+        },
+      },
+
       {
         accessorKey: "class",
         header: ({ column }) => {
@@ -173,7 +168,7 @@ export default function UserDataTable() {
         accessorKey: "status",
         header: "Status",
         cell: ({ row }) => {
-          const status = row.getValue("status") as string;
+          const status = row.original.status as string;
           const getStatusVariant = (status: string) => {
             switch (status?.toLowerCase()) {
               case "active":
@@ -205,7 +200,7 @@ export default function UserDataTable() {
       },
       {
         accessorKey: "userId",
-        header: "BetterAuth Status",
+        header: "BetterAuth",
         cell: ({ row }) => {
           const userId = row.getValue("userId") as string;
 
@@ -388,7 +383,7 @@ export default function UserDataTable() {
   return (
     <>
       <div className="min-h-screen w-full max-w-7xl mx-auto my-8 p-6">
-        <div className="font-bold text-3xl mb-6">Users Menu</div>
+        <div className="font-bold text-3xl ">Users Menu</div>
 
         <div className="flex items-start justify-between py-4 gap-4 flex-wrap">
           <div className="flex items-center gap-2 flex-wrap">

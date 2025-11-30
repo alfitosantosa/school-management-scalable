@@ -46,31 +46,6 @@ const roleSchema = z.object({
 
 type RoleFormValues = z.infer<typeof roleSchema>;
 
-// const navigationItems = [
-//   { href: "/", label: "Home" },
-//   { href: "/dashboard", label: "Dashboard" },
-//   { href: "/dashboard/roles", label: "Roles" },
-//   { href: "/dashboard/BetterAuth", label: "BetterAuth" },
-//   { href: "/dashboard/users", label: "Users" },
-//   { href: "/dashboard/academicyear", label: "Tahun Akademik" },
-//   { href: "/dashboard/majors", label: "Jurusan" },
-//   { href: "/dashboard/classes", label: "Kelas" },
-//   { href: "/dashboard/subjects", label: "Mata Pelajaran" },
-//   { href: "/dashboard/schedules", label: "Jadwal Pelajaran" },
-//   { href: "/dashboard/attendance", label: "Absensi" },
-//   { href: "/dashboard/typeviolations", label: "Jenis Pelanggaran" },
-//   { href: "/dashboard/violations", label: "Pelanggaran" },
-//   { href: "/dashboard/payments", label: "Pembayaran" },
-//   { href: "/teacher/schedule", label: "Schedule for Teacher" },
-//   { href: "/dashboard/specialschedule", label: "Special Schedule" },
-//   { href: "/student/attendance/cmftrvnq5000lgq1tauteunhn", label: "Attendance for Student" },
-//   { href: "/student/schedule/cmftrvnq5000lgq1tauteunhn", label: "Schedule for Student" },
-//   { href: "/dashboard/calender", label: "Calendar for user" },
-//   { href: "/dashboard/violations/student", label: "Pelanggaran for Siswa" },
-//   { href: "/dashboard/violations/teacher", label: "Pelanggaran for teacher" },
-//   { href: "/dashboard/parent", label: "Parent Page" },
-// ];
-
 // Available permissions (sesuaikan dengan sistem Anda)
 const availablePermissions = [
   { id: "/", label: "Home" },
@@ -98,6 +73,7 @@ const availablePermissions = [
   { id: "/dashboard/student/attendance", label: "Attendance for Student" },
   { id: "/dashboard/student/schedule", label: "Schedule for Student" },
   { id: "/dashboard/parent", label: "Dashboard Parent" },
+  { id: "/dashboard/upload/users", label: "Upload Users" },
 ];
 
 // Create/Edit Dialog Component

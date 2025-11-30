@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { Search, User, X, Upload, Eye } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -23,10 +22,8 @@ import { useGetRoles } from "@/app/hooks/Roles/useRoles";
 import { useGetClasses } from "@/app/hooks/Classes/useClass";
 import { useGetAcademicYears } from "@/app/hooks/AcademicYears/useAcademicYear";
 import { useGetMajors } from "@/app/hooks/Majors/useMajors";
-import { useGetBetterAuth } from "@/app/hooks/Users/useBetterAuth";
+import { useGetBetterAuthWithoutUserData } from "@/app/hooks/Users/useBetterAuth";
 import Image from "next/image";
-import { auth } from "@/lib/auth";
-import { authClient } from "@/lib/auth-client";
 
 // Type definitions
 export type UserData = {
@@ -388,7 +385,7 @@ function AvatarUpload({ currentAvatarUrl, onUploadSuccess, disabled = false }: {
 function BetterAuthSelector({ onSelect, selecteduserId, disabled = false }: { onSelect: (betterAuth: BetterAuthUser | null) => void; selecteduserId?: string; disabled?: boolean }) {
   const [open, setOpen] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
-  const { data: betterAuths = [], isLoading: betterAuthsLoading } = useGetBetterAuth();
+  const { data: betterAuths = [], isLoading: betterAuthsLoading } = useGetBetterAuthWithoutUserData();
 
   const filteredbetterAuths = React.useMemo(() => {
     if (!searchTerm) return betterAuths;
@@ -900,6 +897,19 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
                   <SelectContent>
                     <SelectItem value="L">Laki-laki</SelectItem>
                     <SelectItem value="P">Perempuan</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label>Status *</Label>
+                <Select onValueChange={(value) => setValue("status", value)} value={watch("status")}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Pilih status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="active">Aktif</SelectItem>
+                    <SelectItem value="inactive">Tidak Aktif</SelectItem>
+                    <SelectItem value="graduated">Sudah Lulus</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
