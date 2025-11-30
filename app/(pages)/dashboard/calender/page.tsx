@@ -2,11 +2,11 @@
 
 import { useMemo } from "react";
 import { CalendarBody, CalendarDate, CalendarDatePagination, CalendarDatePicker, CalendarHeader, CalendarItem, CalendarMonthPicker, CalendarProvider, CalendarYearPicker } from "@/components/ui/kibo-ui/calendar";
-import Navbar from "@/components/navbar";
-import { useGetSpecialSchedules } from "@/app/hooks/useSpecialSchedule";
-import { useGetSchedulesByStudent } from "@/app/hooks/useSchedules";
+
+import { useGetSpecialSchedules } from "@/app/hooks/SpecialSchedules/useSpecialSchedule";
+import { useGetSchedulesByStudent } from "@/app/hooks/Schedules/useSchedules";
 import { useSession } from "@/lib/auth-client";
-import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 
 // Type definitions berdasarkan JSON
 type Schedule = {
@@ -184,8 +184,7 @@ export default function CalendarPage() {
   if (schedulesLoading || specialSchedulesLoading) {
     return (
       <>
-        <Navbar />
-        <div className="w-max-7xl mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+        <div className="w-max-7xl mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
@@ -199,8 +198,7 @@ export default function CalendarPage() {
 
   return (
     <>
-      <Navbar />
-      <div className="w-max-7xl mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+      <div className="w-max-7xl mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
         {/* Header Info */}
         <div className="mb-6 space-y-4">
           <div>

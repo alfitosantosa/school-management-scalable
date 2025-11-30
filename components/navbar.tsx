@@ -10,7 +10,7 @@ import { useSession, signOut } from "@/lib/auth-client";
 import { LogOut, User } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "./ui/avatar";
-import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 
 const permissionLabels: Record<string, string> = {
   "/": "Home",

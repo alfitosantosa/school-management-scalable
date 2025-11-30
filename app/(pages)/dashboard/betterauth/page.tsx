@@ -14,8 +14,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import Navbar from "@/components/navbar";
-import { useGetBetterAuth } from "@/app/hooks/useBetterAuth";
+
+import { useGetBetterAuth } from "@/app/hooks/Users/useBetterAuth";
 import Image from "next/image";
 import { authClient, useSession } from "@/lib/auth-client";
 import { toast } from "sonner";
@@ -319,7 +319,6 @@ export default function DataTableBetterAuth() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
-        <Navbar />
         <div className="flex items-center justify-center h-[calc(100vh-4rem)]">
           <div className="text-center space-y-4">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
@@ -333,7 +332,6 @@ export default function DataTableBetterAuth() {
   if (error) {
     return (
       <div className="min-h-screen bg-background">
-        <Navbar />
         <div className="max-w-7xl mx-auto my-8 p-6">
           <Card className="border-destructive">
             <CardContent className="pt-6">
@@ -350,8 +348,7 @@ export default function DataTableBetterAuth() {
 
   return (
     <>
-      <Navbar />
-      <Card className="max-w-7xl mx-auto my-8 p-6">
+      <Card className="min-h-screen max-w-7xl mx-auto my-8 p-6">
         <CardHeader className="px-0 pt-0">
           <div className="flex items-center justify-between">
             <div>

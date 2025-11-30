@@ -1,16 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
-import { useGetClassById } from "@/app/hooks/useGetClassById";
-import { useGetScheduleById } from "@/app/hooks/useGetScheduleById";
-import Navbar from "@/components/navbar";
+import { useGetClassById } from "@/app/hooks/Classes/useGetClassById";
+import { useGetScheduleById } from "@/app/hooks/Schedules/useGetScheduleById";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Smartphone, Clock, AlertTriangle, CheckCircle, User, BookOpen, Users } from "lucide-react";
 import { useParams } from "next/navigation";
-import { useCreateAttendanceBulk } from "@/app/hooks/useBulkAttendance";
+import { useCreateAttendanceBulk } from "@/app/hooks/Attendances/useBulkAttendance";
 
 interface Student {
   id: string;
@@ -124,8 +123,7 @@ export default function AttendanceModule() {
   if (isErrorSchedule || isErrorClass) {
     return (
       <>
-        <Navbar />
-        <div className="max-w-7xl mx-auto p-6">
+        <div className="max-w-7xl mx-auto p-6 min-h-screen">
           <Alert className="max-w-2xl">
             <AlertTriangle className="h-4 w-4" />
             <AlertDescription>Error loading data. Please try refreshing the page or contact support.</AlertDescription>
@@ -137,8 +135,7 @@ export default function AttendanceModule() {
 
   return (
     <>
-      <Navbar />
-      <div className="max-w-7xl mx-auto p-6 space-y-6">
+      <div className="max-w-7xl mx-auto p-6 space-y-6 min-h-screen">
         {/* Mobile Attendance Interface */}
         <Card>
           <CardHeader>

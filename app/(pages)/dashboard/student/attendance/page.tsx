@@ -10,13 +10,13 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { useGetSchedules } from "@/app/hooks/useSchedules";
-import Navbar from "@/components/navbar";
-import { useGetAttendanceByIdStudent } from "@/app/hooks/useAttendaceByIdStudent";
-import { useGetStudentById } from "@/app/hooks/useGetStudentById";
+import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules";
+
+import { useGetAttendanceByIdStudent } from "@/app/hooks/Attendances/useAttendaceByIdStudent";
+import { useGetStudentById } from "@/app/hooks/Users/useGetStudentById";
 
 import { useSession } from "@/lib/auth-client";
-import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 
 // Type definitions
 export type AttendanceData = {
@@ -430,7 +430,7 @@ export default function AttendanceDataTable() {
 
   if (isLoading) {
     return (
-      <div className="w-full">
+      <div className="w-full min-h-screen">
         <div className="flex items-center justify-center h-32">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
@@ -443,8 +443,7 @@ export default function AttendanceDataTable() {
 
   return (
     <>
-      <Navbar />
-      <div className="mx-auto my-8 p-6 max-w-7xl">
+      <div className="mx-auto my-8 p-6 max-w-7xl min-h-screen">
         <div className="font-bold text-3xl mb-2">Data Kehadiran Siswa</div>
         {studentData && (
           <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">

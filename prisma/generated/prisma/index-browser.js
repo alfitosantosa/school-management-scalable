@@ -197,7 +197,8 @@ exports.Prisma.UserDataScalarFieldEnum = {
   status: 'status',
   studentIds: 'studentIds',
   email: 'email',
-  name: 'name'
+  name: 'name',
+  isActive: 'isActive'
 };
 
 exports.Prisma.RoleScalarFieldEnum = {
@@ -232,7 +233,8 @@ exports.Prisma.ClassScalarFieldEnum = {
   grade: 'grade',
   majorId: 'majorId',
   academicYearId: 'academicYearId',
-  capacity: 'capacity'
+  capacity: 'capacity',
+  isActive: 'isActive'
 };
 
 exports.Prisma.SubjectScalarFieldEnum = {
@@ -254,7 +256,8 @@ exports.Prisma.ScheduleScalarFieldEnum = {
   dayOfWeek: 'dayOfWeek',
   startTime: 'startTime',
   endTime: 'endTime',
-  room: 'room'
+  room: 'room',
+  isActive: 'isActive'
 };
 
 exports.Prisma.AttendanceScalarFieldEnum = {
@@ -324,9 +327,88 @@ exports.Prisma.CalendarEventScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.GradeScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  scheduleId: 'scheduleId',
+  subjectId: 'subjectId',
+  gradeType: 'gradeType',
+  score: 'score',
+  maxScore: 'maxScore',
+  weight: 'weight',
+  description: 'description',
+  date: 'date',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  message: 'message',
+  type: 'type',
+  category: 'category',
+  isRead: 'isRead',
+  link: 'link',
+  data: 'data',
+  createdAt: 'createdAt',
+  readAt: 'readAt'
+};
+
+exports.Prisma.DashboardContentScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  imageUrl: 'imageUrl',
+  linkUrl: 'linkUrl',
+  order: 'order',
+  isActive: 'isActive',
+  isPublished: 'isPublished',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
+exports.Prisma.AnnouncementScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  content: 'content',
+  imageUrl: 'imageUrl',
+  linkUrl: 'linkUrl',
+  isActive: 'isActive',
+  isPublished: 'isPublished',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
+exports.Prisma.TahfidzRecordScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  surah: 'surah',
+  startVerse: 'startVerse',
+  endVerse: 'endVerse',
+  grade: 'grade',
+  date: 'date',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -337,6 +419,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 
 
@@ -357,7 +445,12 @@ exports.Prisma.ModelName = {
   Violation: 'Violation',
   PaymentType: 'PaymentType',
   Payment: 'Payment',
-  CalendarEvent: 'CalendarEvent'
+  CalendarEvent: 'CalendarEvent',
+  Grade: 'Grade',
+  Notification: 'Notification',
+  DashboardContent: 'DashboardContent',
+  Announcement: 'Announcement',
+  TahfidzRecord: 'TahfidzRecord'
 };
 
 /**

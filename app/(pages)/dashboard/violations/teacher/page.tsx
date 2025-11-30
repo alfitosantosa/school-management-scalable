@@ -24,15 +24,14 @@ import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
 // Import hooks
-import { useGetViolations, useCreateViolation, useUpdateViolation, useDeleteViolation } from "@/app/hooks/useViolations";
-import { useGetViolationsByIdTeacher } from "@/app/hooks/useViolationsByIdTeacher";
-import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
-import { useGetTypeViolations } from "@/app/hooks/useTypeViolations";
-import { useGetClasses } from "@/app/hooks/useClass";
-import Navbar from "@/components/navbar";
-import { useGetUsers } from "@/app/hooks/useUsers";
+import { useGetViolations, useCreateViolation, useUpdateViolation, useDeleteViolation } from "@/app/hooks/Violations/useViolations";
+import { useGetViolationsByIdTeacher } from "@/app/hooks/Violations/useViolationsByIdTeacher";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
+import { useGetTypeViolations } from "@/app/hooks/Violations/useTypeViolations";
+import { useGetClasses } from "@/app/hooks/Classes/useClass";
+import { useGetUsers } from "@/app/hooks/Users/useUsers";
 import { useSession } from "@/lib/auth-client";
-import { useGetStudents } from "@/app/hooks/useStudents";
+import { useGetStudents } from "@/app/hooks/Users/useStudents";
 
 // Type definitions
 export type ViolationData = {
@@ -700,7 +699,7 @@ export default function ViolationDataTable() {
 
   if (isLoading) {
     return (
-      <div className="w-full">
+      <div className="w-full min-h-screen">
         <div className="flex items-center justify-center h-32">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
@@ -713,8 +712,7 @@ export default function ViolationDataTable() {
 
   return (
     <>
-      <Navbar />
-      <div className="mx-auto my-8 p-6 max-w-7xl">
+      <div className="mx-auto my-8 p-6 max-w-7xl min-h-screen">
         <div className="font-bold text-3xl mb-2">Data Pelanggaran</div>
         <p>Data Berdasarkan kelas yang Anda ampu</p>
         <div className="mx-auto">

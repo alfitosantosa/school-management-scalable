@@ -2,11 +2,10 @@
 
 import { useMemo } from "react";
 import { CalendarBody, CalendarDate, CalendarDatePagination, CalendarDatePicker, CalendarHeader, CalendarItem, CalendarMonthPicker, CalendarProvider, CalendarYearPicker } from "@/components/ui/kibo-ui/calendar";
-import Navbar from "@/components/navbar";
-import { useGetSpecialSchedules } from "@/app/hooks/useSpecialSchedule";
+import { useGetSpecialSchedules } from "@/app/hooks/SpecialSchedules/useSpecialSchedule";
 import { useSession } from "@/lib/auth-client";
-import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
-import { useGetScheduleByIdTeacher } from "@/app/hooks/useGetScheduleById";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
+import { useGetScheduleByIdTeacher } from "@/app/hooks/Schedules/useGetScheduleById";
 
 // Type definitions berdasarkan JSON
 type Schedule = {
@@ -185,7 +184,6 @@ export default function CalendarPage() {
   if (schedulesLoading || specialSchedulesLoading) {
     return (
       <>
-        <Navbar />
         <div className="w-max-7xl mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
@@ -200,7 +198,6 @@ export default function CalendarPage() {
 
   return (
     <>
-      <Navbar />
       <div className="w-max-7xl mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
         {/* Header Info */}
         <div className="mb-6 space-y-4">

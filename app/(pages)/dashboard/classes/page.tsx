@@ -20,10 +20,9 @@ import * as z from "zod";
 import { toast } from "sonner";
 
 // Import hooks
-import { useGetClasses, useCreateClass, useUpdateClass, useDeleteClass } from "@/app/hooks/useClass";
-import { useGetMajors } from "@/app/hooks/useMajors";
-import { useGetAcademicYears } from "@/app/hooks/useAcademicYear";
-import Navbar from "@/components/navbar";
+import { useGetClasses, useCreateClass, useUpdateClass, useDeleteClass } from "@/app/hooks/Classes/useClass";
+import { useGetMajors } from "@/app/hooks/Majors/useMajors";
+import { useGetAcademicYears } from "@/app/hooks/AcademicYears/useAcademicYear";
 
 // Type definitions
 export type ClassData = {
@@ -380,12 +379,10 @@ export default function ClassDataTable() {
 
   if (isLoading) {
     return (
-      <div className="w-full">
-        <div className="flex items-center justify-center h-32">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-2 text-sm text-muted-foreground">Memuat data kelas...</p>
-          </div>
+      <div className="w-full min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-2 text-sm text-muted-foreground">Memuat data kelas...</p>
         </div>
       </div>
     );
@@ -393,8 +390,7 @@ export default function ClassDataTable() {
 
   return (
     <>
-      <Navbar />
-      <div className=" mx-auto my-8 p-6 max-w-7xl">
+      <div className=" min-h-screen mx-auto my-8 p-6 max-w-7xl">
         <div className="font-bold text-3xl">Kelas </div>
         <div className=" mx-auto">
           <div className="flex items-center justify-between py-4">

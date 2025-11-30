@@ -1,7 +1,6 @@
 "use client";
 
-import { useGetScheduleByIdTeacher } from "@/app/hooks/useGetScheduleById";
-import Navbar from "@/components/navbar";
+import { useGetScheduleByIdTeacher } from "@/app/hooks/Schedules/useGetScheduleById";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,10 +11,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { CalendarDays, Clock, MapPin, BookOpen, Users, GraduationCap, Eye, Plus } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { useGetAttendance } from "@/app/hooks/useAttendance";
+import { useGetAttendance } from "@/app/hooks/Attendances/useAttendance";
 
 import { useSession } from "@/lib/auth-client";
-import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 
 export default function TeacherAttendancePage() {
   const today = new Date().getDay();
@@ -103,7 +102,7 @@ export default function TeacherAttendancePage() {
 
   return (
     <>
-      <Navbar />
+      
       <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 ">
         <div className="max-w-7xl mx-auto px-4 py-8">
           {/* Header Section */}

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, User, BookOpen, GraduationCap } from "lucide-react";
+import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, BookOpen, GraduationCap } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -12,15 +12,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 
 // Import hooks
-import { useGetUsers } from "@/app/hooks/useUsers";
-import { useGetBetterAuth } from "@/app/hooks/useBetterAuth";
-import Navbar from "@/components/navbar";
+import { useGetUsers } from "@/app/hooks/Users/useUsers";
+import { useGetBetterAuth } from "@/app/hooks/Users/useBetterAuth";
 
 // Import dialog components
 import { UserFormDialog, DeleteUserDialog, UserData, BetterAuthUser } from "@/components/dialog/create/DialogCreateUser";
 import Image from "next/image";
-import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
-import { useGetUserById } from "@/app/hooks/useUserById";
+import { useGetUserById } from "@/app/hooks/Users/useUserById";
 
 // Main DataTable Component
 export default function UserDataTable() {
@@ -80,8 +78,7 @@ export default function UserDataTable() {
         accessorKey: "avatarUrl",
         header: "Avatar",
         cell: ({ row }) => {
-          const { data: betterAuthUser } = useGetUserById(row.original.id);
-          const avatarUrl = betterAuthUser?.profile_image_url || betterAuthUser?.image_url || row.original.avatarUrl || "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png";
+          const avatarUrl = row.original.avatarUrl || "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png";
           return <Image src={avatarUrl} alt="Avatar" className="w-10 h-10 rounded-full object-cover" width={40} height={40} />;
         },
       },
@@ -211,7 +208,7 @@ export default function UserDataTable() {
         header: "BetterAuth Status",
         cell: ({ row }) => {
           const userId = row.getValue("userId") as string;
-          // const userInfo = useGetUserByIdBetterAuth(userId);
+
           if (!userId) {
             return <Badge variant="outline">No BetterAuth</Badge>;
           }
@@ -360,8 +357,7 @@ export default function UserDataTable() {
   if (isLoading) {
     return (
       <>
-        <Navbar />
-        <div className="w-full">
+        <div className="w-full min-h-screen">
           <div className="flex items-center justify-center h-32">
             <div className="text-center">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
@@ -377,15 +373,12 @@ export default function UserDataTable() {
   if (error) {
     return (
       <>
-        <Navbar />
-        <div className="w-full">
-          <div className="flex items-center justify-center h-32">
-            <div className="text-center text-red-600">
-              <p>Error loading users: {error.message}</p>
-              <Button onClick={() => refetch()} className="mt-2">
-                Retry
-              </Button>
-            </div>
+        <div className="w-full min-h-screen items-center justify-center h-32">
+          <div className="text-center text-red-600">
+            <p>Error loading users: {error.message}</p>
+            <Button onClick={() => refetch()} className="mt-2">
+              Retry
+            </Button>
           </div>
         </div>
       </>
@@ -394,8 +387,7 @@ export default function UserDataTable() {
 
   return (
     <>
-      <Navbar />
-      <div className="w-full max-w-7xl mx-auto my-8 p-6">
+      <div className="min-h-screen w-full max-w-7xl mx-auto my-8 p-6">
         <div className="font-bold text-3xl mb-6">Users Menu</div>
 
         <div className="flex items-start justify-between py-4 gap-4 flex-wrap">

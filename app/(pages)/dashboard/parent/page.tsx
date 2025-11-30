@@ -9,13 +9,13 @@ import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { User, Calendar, CheckCircle, XCircle, AlertCircle, Clock, AlertTriangle, BookOpen, GraduationCap, Mail, Phone, FileText, Award, ChevronLeft, ChevronRight, ArrowUpDown, TrendingUp, TrendingDown } from "lucide-react";
 import { useState, useMemo } from "react";
-import { useGetAttendanceByIdStudent } from "@/app/hooks/useAttendaceByIdStudent";
-import { useGetStudentsByIds } from "@/app/hooks/useStudentByIds";
-import { useGetUserById } from "@/app/hooks/useUserById";
-import { useGetViolationsByIdStudent } from "@/app/hooks/useViolationsByIdStudent";
-import Navbar from "@/components/navbar";
+import { useGetAttendanceByIdStudent } from "@/app/hooks/Attendances/useAttendaceByIdStudent";
+import { useGetStudentsByIds } from "@/app/hooks/Users/useStudentByIds";
+import { useGetUserById } from "@/app/hooks/Users/useUserById";
+import { useGetViolationsByIdStudent } from "@/app/hooks/Violations/useViolationsByIdStudent";
+
 import { useSession } from "@/lib/auth-client";
-import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 
 // Simple Table Component
 function SimpleTable({ columns, data, emptyMessage = "Tidak ada data" }: any) {
@@ -265,7 +265,7 @@ export default function ParentPage() {
   if (isPending || loadingStudents) {
     return (
       <>
-        <Navbar />
+        
         <div className="min-h-screen bg-background">
           <div className="max-w-7xl mx-auto p-6 space-y-6">
             <div className="flex items-center justify-center min-h-[400px]">
@@ -282,7 +282,7 @@ export default function ParentPage() {
   if (!selectedStudent) {
     return (
       <>
-        <Navbar />
+        
         <div className="min-h-screen bg-background">
           <div className="max-w-7xl mx-auto p-6 space-y-6">
             <div className="flex items-center justify-center min-h-[400px]">
@@ -298,7 +298,7 @@ export default function ParentPage() {
 
   return (
     <>
-      <Navbar />
+      
       <div className="min-h-screen bg-background">
         <div className="max-w-7xl mx-auto p-6 space-y-6">
           {/* Header */}

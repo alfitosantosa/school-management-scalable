@@ -22,9 +22,8 @@ import * as z from "zod";
 import { toast } from "sonner";
 
 // Import hooks
-import { useGetSubjects, useCreateSubject, useUpdateSubject, useDeleteSubject } from "@/app/hooks/useSubjects";
-import { useGetMajors } from "@/app/hooks/useMajors";
-import Navbar from "@/components/navbar";
+import { useGetSubjects, useCreateSubject, useUpdateSubject, useDeleteSubject } from "@/app/hooks/Subjects/useSubjects";
+import { useGetMajors } from "@/app/hooks/Majors/useMajors";
 
 // Type definitions
 export type SubjectData = {
@@ -459,7 +458,7 @@ export default function SubjectDataTable() {
 
   if (isLoading) {
     return (
-      <div className="w-full">
+      <div className="w-full min-h-screen">
         <div className="flex items-center justify-center h-32">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
@@ -472,8 +471,7 @@ export default function SubjectDataTable() {
 
   return (
     <>
-      <Navbar />
-      <div className="mx-auto my-8 p-6 max-w-7xl">
+      <div className="mx-auto my-8 p-6 max-w-7xl min-h-screen">
         <div className="font-bold text-3xl mb-6">Data Mata Pelajaran</div>
 
         <div className="flex items-center justify-between py-4">
@@ -486,7 +484,7 @@ export default function SubjectDataTable() {
 
             {/* Major Filter */}
             <Select value={majorFilter} onValueChange={setMajorFilter}>
-              <SelectTrigger className="w-[160px]">
+              <SelectTrigger className="w-40">
                 <SelectValue placeholder="Filter Jurusan" />
               </SelectTrigger>
               <SelectContent>

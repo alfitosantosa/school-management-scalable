@@ -21,9 +21,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
 // Import hooks
-import { useGetSpecialSchedules, useCreateSpecialSchedule, useUpdateSpecialSchedule, useDeleteSpecialSchedule } from "@/app/hooks/useSpecialSchedule";
-import { useGetAcademicYears } from "@/app/hooks/useAcademicYear";
-import Navbar from "@/components/navbar";
+import { useGetSpecialSchedules, useCreateSpecialSchedule, useUpdateSpecialSchedule, useDeleteSpecialSchedule } from "@/app/hooks/SpecialSchedules/useSpecialSchedule";
+import { useGetAcademicYears } from "@/app/hooks/AcademicYears/useAcademicYear";
 
 // Type definitions
 export type SpecialScheduleData = {
@@ -533,7 +532,7 @@ function SpecialScheduleDataTable() {
 
   if (isLoading) {
     return (
-      <div className="w-full">
+      <div className="w-full min-h-screen">
         <div className="flex items-center justify-center h-32">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
@@ -546,8 +545,7 @@ function SpecialScheduleDataTable() {
 
   return (
     <>
-      <Navbar />
-      <div className="mx-auto my-8 p-6 max-w-7xl">
+      <div className="mx-auto my-8 p-6 max-w-7xl min-h-screen">
         <div className="font-bold text-3xl mb-6">Acara Khusus</div>
 
         <div className="flex items-center justify-between py-4">
@@ -560,7 +558,7 @@ function SpecialScheduleDataTable() {
 
             {/* Event Type Filter */}
             <Select value={eventTypeFilter} onValueChange={setEventTypeFilter}>
-              <SelectTrigger className="w-[160px]">
+              <SelectTrigger className="w-40">
                 <SelectValue placeholder="Jenis Acara" />
               </SelectTrigger>
               <SelectContent>

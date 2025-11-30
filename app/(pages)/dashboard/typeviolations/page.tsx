@@ -21,9 +21,8 @@ import * as z from "zod";
 import { toast } from "sonner";
 
 // Import hooks
-import { useGetTypeViolations, useCreateTypeViolation, useUpdateTypeViolation, useDeleteTypeViolation } from "@/app/hooks/useTypeViolations";
-import { useGetAcademicYears } from "@/app/hooks/useAcademicYear";
-import Navbar from "@/components/navbar";
+import { useGetTypeViolations, useCreateTypeViolation, useUpdateTypeViolation, useDeleteTypeViolation } from "@/app/hooks/Violations/useTypeViolations";
+import { useGetAcademicYears } from "@/app/hooks/AcademicYears/useAcademicYear";
 
 // Type definitions
 export type ViolationTypeData = {
@@ -405,7 +404,7 @@ export default function ViolationTypeDataTable() {
 
   if (isLoading) {
     return (
-      <div className="w-full">
+      <div className="w-full min-h-screen">
         <div className="flex items-center justify-center h-32">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
@@ -418,8 +417,7 @@ export default function ViolationTypeDataTable() {
 
   return (
     <>
-      <Navbar />
-      <div className="mx-auto my-8 p-6 max-w-7xl">
+      <div className="mx-auto my-8 p-6 max-w-7xl min-h-screen">
         <div className="font-bold text-3xl">Jenis Pelanggaran</div>
         <div className="mx-auto">
           <div className="flex items-center justify-between py-4">

@@ -20,17 +20,17 @@ import * as z from "zod";
 import { toast } from "sonner";
 
 // Import hooks
-import { useGetSchedules, useCreateSchedule, useUpdateSchedule, useDeleteSchedule } from "@/app/hooks/useSchedules";
-import { useGetClasses } from "@/app/hooks/useClass";
-import { useGetSubjects } from "@/app/hooks/useSubjects";
-import { useGetTeachers } from "@/app/hooks/useTeachers";
-import { useGetAcademicYears } from "@/app/hooks/useAcademicYear";
-import Navbar from "@/components/navbar";
-import { useGetSchedulesByIdClass } from "@/app/hooks/useScheduleByIdClass";
-import { useClassByIdUser } from "@/app/hooks/useClassByIdUser";
-import { useGetStudentById } from "@/app/hooks/useGetStudentById";
+import { useGetSchedules, useCreateSchedule, useUpdateSchedule, useDeleteSchedule } from "@/app/hooks/Schedules/useSchedules";
+import { useGetClasses } from "@/app/hooks/Classes/useClass";
+import { useGetSubjects } from "@/app/hooks/Subjects/useSubjects";
+import { useGetTeachers } from "@/app/hooks/Users/useTeachers";
+import { useGetAcademicYears } from "@/app/hooks/AcademicYears/useAcademicYear";
+
+import { useGetSchedulesByIdClass } from "@/app/hooks/Schedules/useScheduleByIdClass";
+import { useClassByIdUser } from "@/app/hooks/Classes/useClassByIdUser";
+import { useGetStudentById } from "@/app/hooks/Users/useGetStudentById";
 import { useSession } from "@/lib/auth-client";
-import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 
 // Type definitions
 export type ScheduleData = {
@@ -587,7 +587,7 @@ export default function ScheduleDataTable() {
 
   if (isLoading) {
     return (
-      <div className="w-full">
+      <div className="w-full min-h-screen">
         <div className="flex items-center justify-center h-32">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
@@ -600,8 +600,7 @@ export default function ScheduleDataTable() {
 
   return (
     <>
-      <Navbar />
-      <div className="mx-auto my-8 p-6 max-w-7xl">
+      <div className="mx-auto my-8 p-6 max-w-7xl min-h-screen">
         <div className="font-bold text-3xl mb-6">Jadwal Pelajaran</div>
         {/* student data  */}
 

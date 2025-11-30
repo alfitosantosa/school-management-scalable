@@ -13,12 +13,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
-import { useGetViolationsByIdStudent } from "@/app/hooks/useViolationsByIdStudent";
-import { useGetClasses } from "@/app/hooks/useClass";
-import { useGetStudentById } from "@/app/hooks/useGetStudentById";
-import Navbar from "@/components/navbar";
+import { useGetViolationsByIdStudent } from "@/app/hooks/Violations/useViolationsByIdStudent";
+import { useGetClasses } from "@/app/hooks/Classes/useClass";
+import { useGetStudentById } from "@/app/hooks/Users/useGetStudentById";
+
 import { useSession } from "@/lib/auth-client";
-import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import Image from "next/image";
 
 export type ViolationData = {
@@ -291,8 +291,8 @@ export default function ViolationDataTable() {
   if (isLoading) {
     return (
       <>
-        <Navbar />
-        <div className="w-full">
+        
+        <div className="w-full min-h-screen">
           <div className="flex items-center justify-center h-screen">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
@@ -306,7 +306,7 @@ export default function ViolationDataTable() {
 
   return (
     <>
-      <Navbar />
+      
       <div className="mx-auto my-8 p-6 max-w-7xl">
         <div className="font-bold text-3xl mb-6">Data Pelanggaran</div>
 

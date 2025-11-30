@@ -1,9 +1,9 @@
 // app/page.tsx
 "use client";
 
-import Navbar from "@/components/navbar";
+
 import { useSession } from "@/lib/auth-client";
-import { useGetUserByIdBetterAuth } from "@/app/hooks/useUsersByIdBetterAuth";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 const NoUserDataComponent = ({ BetterAuthUser }: { BetterAuthUser: any }) => {
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
-      <Navbar />
+      
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-20">
         <div className="max-w-4xl mx-auto">
@@ -204,7 +204,7 @@ const NoUserDataComponent = ({ BetterAuthUser }: { BetterAuthUser: any }) => {
 // Loading Component
 const UserProfileSkeleton = () => (
   <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
-    <Navbar />
+    
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header Skeleton */}
@@ -269,7 +269,7 @@ const UserProfileSkeleton = () => (
 // Error Component
 const ErrorComponent = ({ error }: { error: any }) => (
   <div className="min-h-screen bg-linear-to-r from-red-50 via-pink-50 to-rose-50">
-    <Navbar />
+    
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <div className="max-w-lg mx-auto">
         <Card className="border-red-200 shadow-2xl bg-white/90 backdrop-blur-sm">
@@ -364,7 +364,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
-      <Navbar />
+      
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
         <div className="max-w-7xl mx-auto space-y-8">

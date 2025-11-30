@@ -21,12 +21,10 @@ import * as z from "zod";
 import { toast } from "sonner";
 
 // Import hooks
-import { useGetAttendance, useCreateAttendance, useUpdateAttendance, useDeleteAttendance } from "@/app/hooks/useAttendance";
-import { useGetSchedules } from "@/app/hooks/useSchedules";
-import { useGetUsers } from "@/app/hooks/useUsers"; // Assuming you have this hook for students
-import Navbar from "@/components/navbar";
-import { useGetStudents } from "@/app/hooks/useStudents";
-import { useGetAttendanceByIdSchedule } from "@/app/hooks/useAttendanceByIdShcedule";
+import { useGetAttendance, useCreateAttendance, useUpdateAttendance, useDeleteAttendance } from "@/app/hooks/Attendances/useAttendance";
+import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules";
+import { useGetStudents } from "@/app/hooks/Users/useStudents";
+import { useGetAttendanceByIdSchedule } from "@/app/hooks/Attendances/useAttendanceByIdShcedule";
 import { useParams } from "next/navigation";
 
 // Type definitions
@@ -615,7 +613,7 @@ export default function AttendanceDataTable() {
 
   if (isLoading) {
     return (
-      <div className="w-full">
+      <div className="w-full min-h-screen">
         <div className="flex items-center justify-center h-32">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
@@ -628,8 +626,8 @@ export default function AttendanceDataTable() {
 
   return (
     <>
-      <Navbar />
-      <div className="mx-auto my-8 p-6 max-w-7xl">
+      
+      <div className="mx-auto my-8 p-6 max-w-7xl min-hscreen">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-2">
           <div>
             <div className="font-bold text-4xl md:text-3xl">Data Kehadiran Siswa</div>

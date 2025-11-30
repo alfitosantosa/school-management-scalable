@@ -98,6 +98,31 @@ export type Payment = $Result.DefaultSelection<Prisma.$PaymentPayload>
  * 
  */
 export type CalendarEvent = $Result.DefaultSelection<Prisma.$CalendarEventPayload>
+/**
+ * Model Grade
+ * 
+ */
+export type Grade = $Result.DefaultSelection<Prisma.$GradePayload>
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
+/**
+ * Model DashboardContent
+ * 
+ */
+export type DashboardContent = $Result.DefaultSelection<Prisma.$DashboardContentPayload>
+/**
+ * Model Announcement
+ * 
+ */
+export type Announcement = $Result.DefaultSelection<Prisma.$AnnouncementPayload>
+/**
+ * Model TahfidzRecord
+ * 
+ */
+export type TahfidzRecord = $Result.DefaultSelection<Prisma.$TahfidzRecordPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -386,6 +411,56 @@ export class PrismaClient<
     * ```
     */
   get calendarEvent(): Prisma.CalendarEventDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.grade`: Exposes CRUD operations for the **Grade** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Grades
+    * const grades = await prisma.grade.findMany()
+    * ```
+    */
+  get grade(): Prisma.GradeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.notification`: Exposes CRUD operations for the **Notification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Notifications
+    * const notifications = await prisma.notification.findMany()
+    * ```
+    */
+  get notification(): Prisma.NotificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dashboardContent`: Exposes CRUD operations for the **DashboardContent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DashboardContents
+    * const dashboardContents = await prisma.dashboardContent.findMany()
+    * ```
+    */
+  get dashboardContent(): Prisma.DashboardContentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.announcement`: Exposes CRUD operations for the **Announcement** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Announcements
+    * const announcements = await prisma.announcement.findMany()
+    * ```
+    */
+  get announcement(): Prisma.AnnouncementDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.tahfidzRecord`: Exposes CRUD operations for the **TahfidzRecord** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TahfidzRecords
+    * const tahfidzRecords = await prisma.tahfidzRecord.findMany()
+    * ```
+    */
+  get tahfidzRecord(): Prisma.TahfidzRecordDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -843,7 +918,12 @@ export namespace Prisma {
     Violation: 'Violation',
     PaymentType: 'PaymentType',
     Payment: 'Payment',
-    CalendarEvent: 'CalendarEvent'
+    CalendarEvent: 'CalendarEvent',
+    Grade: 'Grade',
+    Notification: 'Notification',
+    DashboardContent: 'DashboardContent',
+    Announcement: 'Announcement',
+    TahfidzRecord: 'TahfidzRecord'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -862,7 +942,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "userData" | "role" | "academicYear" | "major" | "class" | "subject" | "schedule" | "attendance" | "violationType" | "violation" | "paymentType" | "payment" | "calendarEvent"
+      modelProps: "user" | "session" | "account" | "verification" | "userData" | "role" | "academicYear" | "major" | "class" | "subject" | "schedule" | "attendance" | "violationType" | "violation" | "paymentType" | "payment" | "calendarEvent" | "grade" | "notification" | "dashboardContent" | "announcement" | "tahfidzRecord"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2124,6 +2204,376 @@ export namespace Prisma {
           }
         }
       }
+      Grade: {
+        payload: Prisma.$GradePayload<ExtArgs>
+        fields: Prisma.GradeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GradeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GradePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GradeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>
+          }
+          findFirst: {
+            args: Prisma.GradeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GradePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GradeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>
+          }
+          findMany: {
+            args: Prisma.GradeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>[]
+          }
+          create: {
+            args: Prisma.GradeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>
+          }
+          createMany: {
+            args: Prisma.GradeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GradeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>[]
+          }
+          delete: {
+            args: Prisma.GradeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>
+          }
+          update: {
+            args: Prisma.GradeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>
+          }
+          deleteMany: {
+            args: Prisma.GradeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GradeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GradeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>[]
+          }
+          upsert: {
+            args: Prisma.GradeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GradePayload>
+          }
+          aggregate: {
+            args: Prisma.GradeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGrade>
+          }
+          groupBy: {
+            args: Prisma.GradeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GradeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GradeCountArgs<ExtArgs>
+            result: $Utils.Optional<GradeCountAggregateOutputType> | number
+          }
+        }
+      }
+      Notification: {
+        payload: Prisma.$NotificationPayload<ExtArgs>
+        fields: Prisma.NotificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NotificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NotificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          findFirst: {
+            args: Prisma.NotificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NotificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          findMany: {
+            args: Prisma.NotificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          create: {
+            args: Prisma.NotificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          createMany: {
+            args: Prisma.NotificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NotificationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          delete: {
+            args: Prisma.NotificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          update: {
+            args: Prisma.NotificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.NotificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NotificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NotificationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          upsert: {
+            args: Prisma.NotificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          aggregate: {
+            args: Prisma.NotificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNotification>
+          }
+          groupBy: {
+            args: Prisma.NotificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NotificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NotificationCountArgs<ExtArgs>
+            result: $Utils.Optional<NotificationCountAggregateOutputType> | number
+          }
+        }
+      }
+      DashboardContent: {
+        payload: Prisma.$DashboardContentPayload<ExtArgs>
+        fields: Prisma.DashboardContentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DashboardContentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DashboardContentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DashboardContentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DashboardContentPayload>
+          }
+          findFirst: {
+            args: Prisma.DashboardContentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DashboardContentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DashboardContentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DashboardContentPayload>
+          }
+          findMany: {
+            args: Prisma.DashboardContentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DashboardContentPayload>[]
+          }
+          create: {
+            args: Prisma.DashboardContentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DashboardContentPayload>
+          }
+          createMany: {
+            args: Prisma.DashboardContentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DashboardContentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DashboardContentPayload>[]
+          }
+          delete: {
+            args: Prisma.DashboardContentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DashboardContentPayload>
+          }
+          update: {
+            args: Prisma.DashboardContentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DashboardContentPayload>
+          }
+          deleteMany: {
+            args: Prisma.DashboardContentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DashboardContentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DashboardContentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DashboardContentPayload>[]
+          }
+          upsert: {
+            args: Prisma.DashboardContentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DashboardContentPayload>
+          }
+          aggregate: {
+            args: Prisma.DashboardContentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDashboardContent>
+          }
+          groupBy: {
+            args: Prisma.DashboardContentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DashboardContentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DashboardContentCountArgs<ExtArgs>
+            result: $Utils.Optional<DashboardContentCountAggregateOutputType> | number
+          }
+        }
+      }
+      Announcement: {
+        payload: Prisma.$AnnouncementPayload<ExtArgs>
+        fields: Prisma.AnnouncementFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AnnouncementFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnouncementPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AnnouncementFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnouncementPayload>
+          }
+          findFirst: {
+            args: Prisma.AnnouncementFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnouncementPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AnnouncementFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnouncementPayload>
+          }
+          findMany: {
+            args: Prisma.AnnouncementFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnouncementPayload>[]
+          }
+          create: {
+            args: Prisma.AnnouncementCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnouncementPayload>
+          }
+          createMany: {
+            args: Prisma.AnnouncementCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AnnouncementCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnouncementPayload>[]
+          }
+          delete: {
+            args: Prisma.AnnouncementDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnouncementPayload>
+          }
+          update: {
+            args: Prisma.AnnouncementUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnouncementPayload>
+          }
+          deleteMany: {
+            args: Prisma.AnnouncementDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AnnouncementUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AnnouncementUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnouncementPayload>[]
+          }
+          upsert: {
+            args: Prisma.AnnouncementUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnouncementPayload>
+          }
+          aggregate: {
+            args: Prisma.AnnouncementAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAnnouncement>
+          }
+          groupBy: {
+            args: Prisma.AnnouncementGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AnnouncementGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AnnouncementCountArgs<ExtArgs>
+            result: $Utils.Optional<AnnouncementCountAggregateOutputType> | number
+          }
+        }
+      }
+      TahfidzRecord: {
+        payload: Prisma.$TahfidzRecordPayload<ExtArgs>
+        fields: Prisma.TahfidzRecordFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TahfidzRecordFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzRecordPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TahfidzRecordFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzRecordPayload>
+          }
+          findFirst: {
+            args: Prisma.TahfidzRecordFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzRecordPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TahfidzRecordFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzRecordPayload>
+          }
+          findMany: {
+            args: Prisma.TahfidzRecordFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzRecordPayload>[]
+          }
+          create: {
+            args: Prisma.TahfidzRecordCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzRecordPayload>
+          }
+          createMany: {
+            args: Prisma.TahfidzRecordCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TahfidzRecordCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzRecordPayload>[]
+          }
+          delete: {
+            args: Prisma.TahfidzRecordDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzRecordPayload>
+          }
+          update: {
+            args: Prisma.TahfidzRecordUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzRecordPayload>
+          }
+          deleteMany: {
+            args: Prisma.TahfidzRecordDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TahfidzRecordUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TahfidzRecordUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzRecordPayload>[]
+          }
+          upsert: {
+            args: Prisma.TahfidzRecordUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzRecordPayload>
+          }
+          aggregate: {
+            args: Prisma.TahfidzRecordAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTahfidzRecord>
+          }
+          groupBy: {
+            args: Prisma.TahfidzRecordGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TahfidzRecordGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TahfidzRecordCountArgs<ExtArgs>
+            result: $Utils.Optional<TahfidzRecordCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2237,6 +2687,11 @@ export namespace Prisma {
     paymentType?: PaymentTypeOmit
     payment?: PaymentOmit
     calendarEvent?: CalendarEventOmit
+    grade?: GradeOmit
+    notification?: NotificationOmit
+    dashboardContent?: DashboardContentOmit
+    announcement?: AnnouncementOmit
+    tahfidzRecord?: TahfidzRecordOmit
   }
 
   /* Types for Logging */
@@ -2358,20 +2813,26 @@ export namespace Prisma {
 
   export type UserDataCountOutputType = {
     attendances: number
+    grades: number
+    notifications: number
     payments: number
     schedules: number
     violations: number
-    user_data_A: number
-    user_data_B: number
+    tahfidzRecords: number
+    DashboardContents: number
+    Announcements: number
   }
 
   export type UserDataCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     attendances?: boolean | UserDataCountOutputTypeCountAttendancesArgs
+    grades?: boolean | UserDataCountOutputTypeCountGradesArgs
+    notifications?: boolean | UserDataCountOutputTypeCountNotificationsArgs
     payments?: boolean | UserDataCountOutputTypeCountPaymentsArgs
     schedules?: boolean | UserDataCountOutputTypeCountSchedulesArgs
     violations?: boolean | UserDataCountOutputTypeCountViolationsArgs
-    user_data_A?: boolean | UserDataCountOutputTypeCountUser_data_AArgs
-    user_data_B?: boolean | UserDataCountOutputTypeCountUser_data_BArgs
+    tahfidzRecords?: boolean | UserDataCountOutputTypeCountTahfidzRecordsArgs
+    DashboardContents?: boolean | UserDataCountOutputTypeCountDashboardContentsArgs
+    Announcements?: boolean | UserDataCountOutputTypeCountAnnouncementsArgs
   }
 
   // Custom InputTypes
@@ -2390,6 +2851,20 @@ export namespace Prisma {
    */
   export type UserDataCountOutputTypeCountAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AttendanceWhereInput
+  }
+
+  /**
+   * UserDataCountOutputType without action
+   */
+  export type UserDataCountOutputTypeCountGradesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GradeWhereInput
+  }
+
+  /**
+   * UserDataCountOutputType without action
+   */
+  export type UserDataCountOutputTypeCountNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationWhereInput
   }
 
   /**
@@ -2416,15 +2891,22 @@ export namespace Prisma {
   /**
    * UserDataCountOutputType without action
    */
-  export type UserDataCountOutputTypeCountUser_data_AArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserDataWhereInput
+  export type UserDataCountOutputTypeCountTahfidzRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TahfidzRecordWhereInput
   }
 
   /**
    * UserDataCountOutputType without action
    */
-  export type UserDataCountOutputTypeCountUser_data_BArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserDataWhereInput
+  export type UserDataCountOutputTypeCountDashboardContentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DashboardContentWhereInput
+  }
+
+  /**
+   * UserDataCountOutputType without action
+   */
+  export type UserDataCountOutputTypeCountAnnouncementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnnouncementWhereInput
   }
 
 
@@ -2629,10 +3111,12 @@ export namespace Prisma {
    */
 
   export type SubjectCountOutputType = {
+    grades: number
     schedules: number
   }
 
   export type SubjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    grades?: boolean | SubjectCountOutputTypeCountGradesArgs
     schedules?: boolean | SubjectCountOutputTypeCountSchedulesArgs
   }
 
@@ -2650,6 +3134,13 @@ export namespace Prisma {
   /**
    * SubjectCountOutputType without action
    */
+  export type SubjectCountOutputTypeCountGradesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GradeWhereInput
+  }
+
+  /**
+   * SubjectCountOutputType without action
+   */
   export type SubjectCountOutputTypeCountSchedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ScheduleWhereInput
   }
@@ -2661,10 +3152,12 @@ export namespace Prisma {
 
   export type ScheduleCountOutputType = {
     attendances: number
+    grades: number
   }
 
   export type ScheduleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     attendances?: boolean | ScheduleCountOutputTypeCountAttendancesArgs
+    grades?: boolean | ScheduleCountOutputTypeCountGradesArgs
   }
 
   // Custom InputTypes
@@ -2683,6 +3176,13 @@ export namespace Prisma {
    */
   export type ScheduleCountOutputTypeCountAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AttendanceWhereInput
+  }
+
+  /**
+   * ScheduleCountOutputType without action
+   */
+  export type ScheduleCountOutputTypeCountGradesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GradeWhereInput
   }
 
 
@@ -7266,6 +7766,7 @@ export namespace Prisma {
     status: string | null
     email: string | null
     name: string | null
+    isActive: boolean | null
   }
 
   export type UserDataMaxAggregateOutputType = {
@@ -7293,6 +7794,7 @@ export namespace Prisma {
     status: string | null
     email: string | null
     name: string | null
+    isActive: boolean | null
   }
 
   export type UserDataCountAggregateOutputType = {
@@ -7321,6 +7823,7 @@ export namespace Prisma {
     studentIds: number
     email: number
     name: number
+    isActive: number
     _all: number
   }
 
@@ -7350,6 +7853,7 @@ export namespace Prisma {
     status?: true
     email?: true
     name?: true
+    isActive?: true
   }
 
   export type UserDataMaxAggregateInputType = {
@@ -7377,6 +7881,7 @@ export namespace Prisma {
     status?: true
     email?: true
     name?: true
+    isActive?: true
   }
 
   export type UserDataCountAggregateInputType = {
@@ -7405,6 +7910,7 @@ export namespace Prisma {
     studentIds?: true
     email?: true
     name?: true
+    isActive?: true
     _all?: true
   }
 
@@ -7506,6 +8012,7 @@ export namespace Prisma {
     studentIds: string[]
     email: string | null
     name: string
+    isActive: boolean
     _count: UserDataCountAggregateOutputType | null
     _min: UserDataMinAggregateOutputType | null
     _max: UserDataMaxAggregateOutputType | null
@@ -7551,7 +8058,10 @@ export namespace Prisma {
     studentIds?: boolean
     email?: boolean
     name?: boolean
+    isActive?: boolean
     attendances?: boolean | UserData$attendancesArgs<ExtArgs>
+    grades?: boolean | UserData$gradesArgs<ExtArgs>
+    notifications?: boolean | UserData$notificationsArgs<ExtArgs>
     payments?: boolean | UserData$paymentsArgs<ExtArgs>
     schedules?: boolean | UserData$schedulesArgs<ExtArgs>
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
@@ -7560,8 +8070,9 @@ export namespace Prisma {
     role?: boolean | UserData$roleArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
     violations?: boolean | UserData$violationsArgs<ExtArgs>
-    user_data_A?: boolean | UserData$user_data_AArgs<ExtArgs>
-    user_data_B?: boolean | UserData$user_data_BArgs<ExtArgs>
+    tahfidzRecords?: boolean | UserData$tahfidzRecordsArgs<ExtArgs>
+    DashboardContents?: boolean | UserData$DashboardContentsArgs<ExtArgs>
+    Announcements?: boolean | UserData$AnnouncementsArgs<ExtArgs>
     _count?: boolean | UserDataCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userData"]>
 
@@ -7591,6 +8102,7 @@ export namespace Prisma {
     studentIds?: boolean
     email?: boolean
     name?: boolean
+    isActive?: boolean
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
@@ -7624,6 +8136,7 @@ export namespace Prisma {
     studentIds?: boolean
     email?: boolean
     name?: boolean
+    isActive?: boolean
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
@@ -7657,11 +8170,14 @@ export namespace Prisma {
     studentIds?: boolean
     email?: boolean
     name?: boolean
+    isActive?: boolean
   }
 
-  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "academicYearId" | "address" | "avatarUrl" | "birthDate" | "birthPlace" | "classId" | "employeeId" | "endDate" | "enrollmentDate" | "gender" | "graduationDate" | "majorId" | "nik" | "nisn" | "parentPhone" | "position" | "relation" | "roleId" | "startDate" | "status" | "studentIds" | "email" | "name", ExtArgs["result"]["userData"]>
+  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "academicYearId" | "address" | "avatarUrl" | "birthDate" | "birthPlace" | "classId" | "employeeId" | "endDate" | "enrollmentDate" | "gender" | "graduationDate" | "majorId" | "nik" | "nisn" | "parentPhone" | "position" | "relation" | "roleId" | "startDate" | "status" | "studentIds" | "email" | "name" | "isActive", ExtArgs["result"]["userData"]>
   export type UserDataInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     attendances?: boolean | UserData$attendancesArgs<ExtArgs>
+    grades?: boolean | UserData$gradesArgs<ExtArgs>
+    notifications?: boolean | UserData$notificationsArgs<ExtArgs>
     payments?: boolean | UserData$paymentsArgs<ExtArgs>
     schedules?: boolean | UserData$schedulesArgs<ExtArgs>
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
@@ -7670,8 +8186,9 @@ export namespace Prisma {
     role?: boolean | UserData$roleArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
     violations?: boolean | UserData$violationsArgs<ExtArgs>
-    user_data_A?: boolean | UserData$user_data_AArgs<ExtArgs>
-    user_data_B?: boolean | UserData$user_data_BArgs<ExtArgs>
+    tahfidzRecords?: boolean | UserData$tahfidzRecordsArgs<ExtArgs>
+    DashboardContents?: boolean | UserData$DashboardContentsArgs<ExtArgs>
+    Announcements?: boolean | UserData$AnnouncementsArgs<ExtArgs>
     _count?: boolean | UserDataCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserDataIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7693,6 +8210,8 @@ export namespace Prisma {
     name: "UserData"
     objects: {
       attendances: Prisma.$AttendancePayload<ExtArgs>[]
+      grades: Prisma.$GradePayload<ExtArgs>[]
+      notifications: Prisma.$NotificationPayload<ExtArgs>[]
       payments: Prisma.$PaymentPayload<ExtArgs>[]
       schedules: Prisma.$SchedulePayload<ExtArgs>[]
       academicYear: Prisma.$AcademicYearPayload<ExtArgs> | null
@@ -7701,8 +8220,9 @@ export namespace Prisma {
       role: Prisma.$RolePayload<ExtArgs> | null
       user: Prisma.$UserPayload<ExtArgs> | null
       violations: Prisma.$ViolationPayload<ExtArgs>[]
-      user_data_A: Prisma.$UserDataPayload<ExtArgs>[]
-      user_data_B: Prisma.$UserDataPayload<ExtArgs>[]
+      tahfidzRecords: Prisma.$TahfidzRecordPayload<ExtArgs>[]
+      DashboardContents: Prisma.$DashboardContentPayload<ExtArgs>[]
+      Announcements: Prisma.$AnnouncementPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7730,6 +8250,7 @@ export namespace Prisma {
       studentIds: string[]
       email: string | null
       name: string
+      isActive: boolean
     }, ExtArgs["result"]["userData"]>
     composites: {}
   }
@@ -8125,6 +8646,8 @@ export namespace Prisma {
   export interface Prisma__UserDataClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     attendances<T extends UserData$attendancesArgs<ExtArgs> = {}>(args?: Subset<T, UserData$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    grades<T extends UserData$gradesArgs<ExtArgs> = {}>(args?: Subset<T, UserData$gradesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    notifications<T extends UserData$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, UserData$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     payments<T extends UserData$paymentsArgs<ExtArgs> = {}>(args?: Subset<T, UserData$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     schedules<T extends UserData$schedulesArgs<ExtArgs> = {}>(args?: Subset<T, UserData$schedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     academicYear<T extends UserData$academicYearArgs<ExtArgs> = {}>(args?: Subset<T, UserData$academicYearArgs<ExtArgs>>): Prisma__AcademicYearClient<$Result.GetResult<Prisma.$AcademicYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -8133,8 +8656,9 @@ export namespace Prisma {
     role<T extends UserData$roleArgs<ExtArgs> = {}>(args?: Subset<T, UserData$roleArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     user<T extends UserData$userArgs<ExtArgs> = {}>(args?: Subset<T, UserData$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     violations<T extends UserData$violationsArgs<ExtArgs> = {}>(args?: Subset<T, UserData$violationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViolationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    user_data_A<T extends UserData$user_data_AArgs<ExtArgs> = {}>(args?: Subset<T, UserData$user_data_AArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    user_data_B<T extends UserData$user_data_BArgs<ExtArgs> = {}>(args?: Subset<T, UserData$user_data_BArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tahfidzRecords<T extends UserData$tahfidzRecordsArgs<ExtArgs> = {}>(args?: Subset<T, UserData$tahfidzRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TahfidzRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    DashboardContents<T extends UserData$DashboardContentsArgs<ExtArgs> = {}>(args?: Subset<T, UserData$DashboardContentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DashboardContentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Announcements<T extends UserData$AnnouncementsArgs<ExtArgs> = {}>(args?: Subset<T, UserData$AnnouncementsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8189,6 +8713,7 @@ export namespace Prisma {
     readonly studentIds: FieldRef<"UserData", 'String[]'>
     readonly email: FieldRef<"UserData", 'String'>
     readonly name: FieldRef<"UserData", 'String'>
+    readonly isActive: FieldRef<"UserData", 'Boolean'>
   }
     
 
@@ -8609,6 +9134,54 @@ export namespace Prisma {
   }
 
   /**
+   * UserData.grades
+   */
+  export type UserData$gradesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeInclude<ExtArgs> | null
+    where?: GradeWhereInput
+    orderBy?: GradeOrderByWithRelationInput | GradeOrderByWithRelationInput[]
+    cursor?: GradeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GradeScalarFieldEnum | GradeScalarFieldEnum[]
+  }
+
+  /**
+   * UserData.notifications
+   */
+  export type UserData$notificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    where?: NotificationWhereInput
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    cursor?: NotificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
    * UserData.payments
    */
   export type UserData$paymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8776,51 +9349,75 @@ export namespace Prisma {
   }
 
   /**
-   * UserData.user_data_A
+   * UserData.tahfidzRecords
    */
-  export type UserData$user_data_AArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserData$tahfidzRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UserData
+     * Select specific fields to fetch from the TahfidzRecord
      */
-    select?: UserDataSelect<ExtArgs> | null
+    select?: TahfidzRecordSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the UserData
+     * Omit specific fields from the TahfidzRecord
      */
-    omit?: UserDataOmit<ExtArgs> | null
+    omit?: TahfidzRecordOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserDataInclude<ExtArgs> | null
-    where?: UserDataWhereInput
-    orderBy?: UserDataOrderByWithRelationInput | UserDataOrderByWithRelationInput[]
-    cursor?: UserDataWhereUniqueInput
+    include?: TahfidzRecordInclude<ExtArgs> | null
+    where?: TahfidzRecordWhereInput
+    orderBy?: TahfidzRecordOrderByWithRelationInput | TahfidzRecordOrderByWithRelationInput[]
+    cursor?: TahfidzRecordWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: UserDataScalarFieldEnum | UserDataScalarFieldEnum[]
+    distinct?: TahfidzRecordScalarFieldEnum | TahfidzRecordScalarFieldEnum[]
   }
 
   /**
-   * UserData.user_data_B
+   * UserData.DashboardContents
    */
-  export type UserData$user_data_BArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserData$DashboardContentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the UserData
+     * Select specific fields to fetch from the DashboardContent
      */
-    select?: UserDataSelect<ExtArgs> | null
+    select?: DashboardContentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the UserData
+     * Omit specific fields from the DashboardContent
      */
-    omit?: UserDataOmit<ExtArgs> | null
+    omit?: DashboardContentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: UserDataInclude<ExtArgs> | null
-    where?: UserDataWhereInput
-    orderBy?: UserDataOrderByWithRelationInput | UserDataOrderByWithRelationInput[]
-    cursor?: UserDataWhereUniqueInput
+    include?: DashboardContentInclude<ExtArgs> | null
+    where?: DashboardContentWhereInput
+    orderBy?: DashboardContentOrderByWithRelationInput | DashboardContentOrderByWithRelationInput[]
+    cursor?: DashboardContentWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: UserDataScalarFieldEnum | UserDataScalarFieldEnum[]
+    distinct?: DashboardContentScalarFieldEnum | DashboardContentScalarFieldEnum[]
+  }
+
+  /**
+   * UserData.Announcements
+   */
+  export type UserData$AnnouncementsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Announcement
+     */
+    select?: AnnouncementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Announcement
+     */
+    omit?: AnnouncementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnnouncementInclude<ExtArgs> | null
+    where?: AnnouncementWhereInput
+    orderBy?: AnnouncementOrderByWithRelationInput | AnnouncementOrderByWithRelationInput[]
+    cursor?: AnnouncementWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AnnouncementScalarFieldEnum | AnnouncementScalarFieldEnum[]
   }
 
   /**
@@ -12271,6 +12868,7 @@ export namespace Prisma {
     majorId: string | null
     academicYearId: string | null
     capacity: number | null
+    isActive: boolean | null
   }
 
   export type ClassMaxAggregateOutputType = {
@@ -12280,6 +12878,7 @@ export namespace Prisma {
     majorId: string | null
     academicYearId: string | null
     capacity: number | null
+    isActive: boolean | null
   }
 
   export type ClassCountAggregateOutputType = {
@@ -12289,6 +12888,7 @@ export namespace Prisma {
     majorId: number
     academicYearId: number
     capacity: number
+    isActive: number
     _all: number
   }
 
@@ -12310,6 +12910,7 @@ export namespace Prisma {
     majorId?: true
     academicYearId?: true
     capacity?: true
+    isActive?: true
   }
 
   export type ClassMaxAggregateInputType = {
@@ -12319,6 +12920,7 @@ export namespace Prisma {
     majorId?: true
     academicYearId?: true
     capacity?: true
+    isActive?: true
   }
 
   export type ClassCountAggregateInputType = {
@@ -12328,6 +12930,7 @@ export namespace Prisma {
     majorId?: true
     academicYearId?: true
     capacity?: true
+    isActive?: true
     _all?: true
   }
 
@@ -12424,6 +13027,7 @@ export namespace Prisma {
     majorId: string
     academicYearId: string
     capacity: number
+    isActive: boolean
     _count: ClassCountAggregateOutputType | null
     _avg: ClassAvgAggregateOutputType | null
     _sum: ClassSumAggregateOutputType | null
@@ -12452,6 +13056,7 @@ export namespace Prisma {
     majorId?: boolean
     academicYearId?: boolean
     capacity?: boolean
+    isActive?: boolean
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
     major?: boolean | MajorDefaultArgs<ExtArgs>
     schedules?: boolean | Class$schedulesArgs<ExtArgs>
@@ -12467,6 +13072,7 @@ export namespace Prisma {
     majorId?: boolean
     academicYearId?: boolean
     capacity?: boolean
+    isActive?: boolean
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
     major?: boolean | MajorDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["class"]>
@@ -12478,6 +13084,7 @@ export namespace Prisma {
     majorId?: boolean
     academicYearId?: boolean
     capacity?: boolean
+    isActive?: boolean
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
     major?: boolean | MajorDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["class"]>
@@ -12489,9 +13096,10 @@ export namespace Prisma {
     majorId?: boolean
     academicYearId?: boolean
     capacity?: boolean
+    isActive?: boolean
   }
 
-  export type ClassOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "grade" | "majorId" | "academicYearId" | "capacity", ExtArgs["result"]["class"]>
+  export type ClassOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "grade" | "majorId" | "academicYearId" | "capacity" | "isActive", ExtArgs["result"]["class"]>
   export type ClassInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
     major?: boolean | MajorDefaultArgs<ExtArgs>
@@ -12525,6 +13133,7 @@ export namespace Prisma {
       majorId: string
       academicYearId: string
       capacity: number
+      isActive: boolean
     }, ExtArgs["result"]["class"]>
     composites: {}
   }
@@ -12959,6 +13568,7 @@ export namespace Prisma {
     readonly majorId: FieldRef<"Class", 'String'>
     readonly academicYearId: FieldRef<"Class", 'String'>
     readonly capacity: FieldRef<"Class", 'Int'>
+    readonly isActive: FieldRef<"Class", 'Boolean'>
   }
     
 
@@ -13659,6 +14269,7 @@ export namespace Prisma {
     majorId?: boolean
     credits?: boolean
     isActive?: boolean
+    grades?: boolean | Subject$gradesArgs<ExtArgs>
     schedules?: boolean | Subject$schedulesArgs<ExtArgs>
     major?: boolean | Subject$majorArgs<ExtArgs>
     _count?: boolean | SubjectCountOutputTypeDefaultArgs<ExtArgs>
@@ -13698,6 +14309,7 @@ export namespace Prisma {
 
   export type SubjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "description" | "majorId" | "credits" | "isActive", ExtArgs["result"]["subject"]>
   export type SubjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    grades?: boolean | Subject$gradesArgs<ExtArgs>
     schedules?: boolean | Subject$schedulesArgs<ExtArgs>
     major?: boolean | Subject$majorArgs<ExtArgs>
     _count?: boolean | SubjectCountOutputTypeDefaultArgs<ExtArgs>
@@ -13712,6 +14324,7 @@ export namespace Prisma {
   export type $SubjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Subject"
     objects: {
+      grades: Prisma.$GradePayload<ExtArgs>[]
       schedules: Prisma.$SchedulePayload<ExtArgs>[]
       major: Prisma.$MajorPayload<ExtArgs> | null
     }
@@ -14117,6 +14730,7 @@ export namespace Prisma {
    */
   export interface Prisma__SubjectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    grades<T extends Subject$gradesArgs<ExtArgs> = {}>(args?: Subset<T, Subject$gradesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     schedules<T extends Subject$schedulesArgs<ExtArgs> = {}>(args?: Subset<T, Subject$schedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     major<T extends Subject$majorArgs<ExtArgs> = {}>(args?: Subset<T, Subject$majorArgs<ExtArgs>>): Prisma__MajorClient<$Result.GetResult<Prisma.$MajorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
@@ -14551,6 +15165,30 @@ export namespace Prisma {
   }
 
   /**
+   * Subject.grades
+   */
+  export type Subject$gradesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeInclude<ExtArgs> | null
+    where?: GradeWhereInput
+    orderBy?: GradeOrderByWithRelationInput | GradeOrderByWithRelationInput[]
+    cursor?: GradeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GradeScalarFieldEnum | GradeScalarFieldEnum[]
+  }
+
+  /**
    * Subject.schedules
    */
   export type Subject$schedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -14642,6 +15280,7 @@ export namespace Prisma {
     startTime: string | null
     endTime: string | null
     room: string | null
+    isActive: boolean | null
   }
 
   export type ScheduleMaxAggregateOutputType = {
@@ -14654,6 +15293,7 @@ export namespace Prisma {
     startTime: string | null
     endTime: string | null
     room: string | null
+    isActive: boolean | null
   }
 
   export type ScheduleCountAggregateOutputType = {
@@ -14666,6 +15306,7 @@ export namespace Prisma {
     startTime: number
     endTime: number
     room: number
+    isActive: number
     _all: number
   }
 
@@ -14688,6 +15329,7 @@ export namespace Prisma {
     startTime?: true
     endTime?: true
     room?: true
+    isActive?: true
   }
 
   export type ScheduleMaxAggregateInputType = {
@@ -14700,6 +15342,7 @@ export namespace Prisma {
     startTime?: true
     endTime?: true
     room?: true
+    isActive?: true
   }
 
   export type ScheduleCountAggregateInputType = {
@@ -14712,6 +15355,7 @@ export namespace Prisma {
     startTime?: true
     endTime?: true
     room?: true
+    isActive?: true
     _all?: true
   }
 
@@ -14811,6 +15455,7 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room: string | null
+    isActive: boolean
     _count: ScheduleCountAggregateOutputType | null
     _avg: ScheduleAvgAggregateOutputType | null
     _sum: ScheduleSumAggregateOutputType | null
@@ -14842,7 +15487,9 @@ export namespace Prisma {
     startTime?: boolean
     endTime?: boolean
     room?: boolean
+    isActive?: boolean
     attendances?: boolean | Schedule$attendancesArgs<ExtArgs>
+    grades?: boolean | Schedule$gradesArgs<ExtArgs>
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
     class?: boolean | ClassDefaultArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
@@ -14860,6 +15507,7 @@ export namespace Prisma {
     startTime?: boolean
     endTime?: boolean
     room?: boolean
+    isActive?: boolean
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
     class?: boolean | ClassDefaultArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
@@ -14876,6 +15524,7 @@ export namespace Prisma {
     startTime?: boolean
     endTime?: boolean
     room?: boolean
+    isActive?: boolean
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
     class?: boolean | ClassDefaultArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
@@ -14892,11 +15541,13 @@ export namespace Prisma {
     startTime?: boolean
     endTime?: boolean
     room?: boolean
+    isActive?: boolean
   }
 
-  export type ScheduleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "classId" | "subjectId" | "teacherId" | "academicYearId" | "dayOfWeek" | "startTime" | "endTime" | "room", ExtArgs["result"]["schedule"]>
+  export type ScheduleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "classId" | "subjectId" | "teacherId" | "academicYearId" | "dayOfWeek" | "startTime" | "endTime" | "room" | "isActive", ExtArgs["result"]["schedule"]>
   export type ScheduleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     attendances?: boolean | Schedule$attendancesArgs<ExtArgs>
+    grades?: boolean | Schedule$gradesArgs<ExtArgs>
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
     class?: boolean | ClassDefaultArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
@@ -14920,6 +15571,7 @@ export namespace Prisma {
     name: "Schedule"
     objects: {
       attendances: Prisma.$AttendancePayload<ExtArgs>[]
+      grades: Prisma.$GradePayload<ExtArgs>[]
       academicYear: Prisma.$AcademicYearPayload<ExtArgs>
       class: Prisma.$ClassPayload<ExtArgs>
       subject: Prisma.$SubjectPayload<ExtArgs>
@@ -14935,6 +15587,7 @@ export namespace Prisma {
       startTime: string
       endTime: string
       room: string | null
+      isActive: boolean
     }, ExtArgs["result"]["schedule"]>
     composites: {}
   }
@@ -15330,6 +15983,7 @@ export namespace Prisma {
   export interface Prisma__ScheduleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     attendances<T extends Schedule$attendancesArgs<ExtArgs> = {}>(args?: Subset<T, Schedule$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    grades<T extends Schedule$gradesArgs<ExtArgs> = {}>(args?: Subset<T, Schedule$gradesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     academicYear<T extends AcademicYearDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AcademicYearDefaultArgs<ExtArgs>>): Prisma__AcademicYearClient<$Result.GetResult<Prisma.$AcademicYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     class<T extends ClassDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClassDefaultArgs<ExtArgs>>): Prisma__ClassClient<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     subject<T extends SubjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubjectDefaultArgs<ExtArgs>>): Prisma__SubjectClient<$Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -15372,6 +16026,7 @@ export namespace Prisma {
     readonly startTime: FieldRef<"Schedule", 'String'>
     readonly endTime: FieldRef<"Schedule", 'String'>
     readonly room: FieldRef<"Schedule", 'String'>
+    readonly isActive: FieldRef<"Schedule", 'Boolean'>
   }
     
 
@@ -15789,6 +16444,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AttendanceScalarFieldEnum | AttendanceScalarFieldEnum[]
+  }
+
+  /**
+   * Schedule.grades
+   */
+  export type Schedule$gradesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeInclude<ExtArgs> | null
+    where?: GradeWhereInput
+    orderBy?: GradeOrderByWithRelationInput | GradeOrderByWithRelationInput[]
+    cursor?: GradeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GradeScalarFieldEnum | GradeScalarFieldEnum[]
   }
 
   /**
@@ -22582,6 +23261,5921 @@ export namespace Prisma {
 
 
   /**
+   * Model Grade
+   */
+
+  export type AggregateGrade = {
+    _count: GradeCountAggregateOutputType | null
+    _avg: GradeAvgAggregateOutputType | null
+    _sum: GradeSumAggregateOutputType | null
+    _min: GradeMinAggregateOutputType | null
+    _max: GradeMaxAggregateOutputType | null
+  }
+
+  export type GradeAvgAggregateOutputType = {
+    score: Decimal | null
+    maxScore: Decimal | null
+    weight: number | null
+  }
+
+  export type GradeSumAggregateOutputType = {
+    score: Decimal | null
+    maxScore: Decimal | null
+    weight: number | null
+  }
+
+  export type GradeMinAggregateOutputType = {
+    id: string | null
+    studentId: string | null
+    scheduleId: string | null
+    subjectId: string | null
+    gradeType: string | null
+    score: Decimal | null
+    maxScore: Decimal | null
+    weight: number | null
+    description: string | null
+    date: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    createdBy: string | null
+  }
+
+  export type GradeMaxAggregateOutputType = {
+    id: string | null
+    studentId: string | null
+    scheduleId: string | null
+    subjectId: string | null
+    gradeType: string | null
+    score: Decimal | null
+    maxScore: Decimal | null
+    weight: number | null
+    description: string | null
+    date: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    createdBy: string | null
+  }
+
+  export type GradeCountAggregateOutputType = {
+    id: number
+    studentId: number
+    scheduleId: number
+    subjectId: number
+    gradeType: number
+    score: number
+    maxScore: number
+    weight: number
+    description: number
+    date: number
+    createdAt: number
+    updatedAt: number
+    createdBy: number
+    _all: number
+  }
+
+
+  export type GradeAvgAggregateInputType = {
+    score?: true
+    maxScore?: true
+    weight?: true
+  }
+
+  export type GradeSumAggregateInputType = {
+    score?: true
+    maxScore?: true
+    weight?: true
+  }
+
+  export type GradeMinAggregateInputType = {
+    id?: true
+    studentId?: true
+    scheduleId?: true
+    subjectId?: true
+    gradeType?: true
+    score?: true
+    maxScore?: true
+    weight?: true
+    description?: true
+    date?: true
+    createdAt?: true
+    updatedAt?: true
+    createdBy?: true
+  }
+
+  export type GradeMaxAggregateInputType = {
+    id?: true
+    studentId?: true
+    scheduleId?: true
+    subjectId?: true
+    gradeType?: true
+    score?: true
+    maxScore?: true
+    weight?: true
+    description?: true
+    date?: true
+    createdAt?: true
+    updatedAt?: true
+    createdBy?: true
+  }
+
+  export type GradeCountAggregateInputType = {
+    id?: true
+    studentId?: true
+    scheduleId?: true
+    subjectId?: true
+    gradeType?: true
+    score?: true
+    maxScore?: true
+    weight?: true
+    description?: true
+    date?: true
+    createdAt?: true
+    updatedAt?: true
+    createdBy?: true
+    _all?: true
+  }
+
+  export type GradeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Grade to aggregate.
+     */
+    where?: GradeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Grades to fetch.
+     */
+    orderBy?: GradeOrderByWithRelationInput | GradeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GradeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Grades from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Grades.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Grades
+    **/
+    _count?: true | GradeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GradeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GradeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GradeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GradeMaxAggregateInputType
+  }
+
+  export type GetGradeAggregateType<T extends GradeAggregateArgs> = {
+        [P in keyof T & keyof AggregateGrade]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGrade[P]>
+      : GetScalarType<T[P], AggregateGrade[P]>
+  }
+
+
+
+
+  export type GradeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GradeWhereInput
+    orderBy?: GradeOrderByWithAggregationInput | GradeOrderByWithAggregationInput[]
+    by: GradeScalarFieldEnum[] | GradeScalarFieldEnum
+    having?: GradeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GradeCountAggregateInputType | true
+    _avg?: GradeAvgAggregateInputType
+    _sum?: GradeSumAggregateInputType
+    _min?: GradeMinAggregateInputType
+    _max?: GradeMaxAggregateInputType
+  }
+
+  export type GradeGroupByOutputType = {
+    id: string
+    studentId: string
+    scheduleId: string
+    subjectId: string
+    gradeType: string
+    score: Decimal
+    maxScore: Decimal
+    weight: number
+    description: string | null
+    date: Date
+    createdAt: Date
+    updatedAt: Date
+    createdBy: string
+    _count: GradeCountAggregateOutputType | null
+    _avg: GradeAvgAggregateOutputType | null
+    _sum: GradeSumAggregateOutputType | null
+    _min: GradeMinAggregateOutputType | null
+    _max: GradeMaxAggregateOutputType | null
+  }
+
+  type GetGradeGroupByPayload<T extends GradeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GradeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GradeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GradeGroupByOutputType[P]>
+            : GetScalarType<T[P], GradeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GradeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentId?: boolean
+    scheduleId?: boolean
+    subjectId?: boolean
+    gradeType?: boolean
+    score?: boolean
+    maxScore?: boolean
+    weight?: boolean
+    description?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdBy?: boolean
+    schedule?: boolean | ScheduleDefaultArgs<ExtArgs>
+    student?: boolean | UserDataDefaultArgs<ExtArgs>
+    subject?: boolean | SubjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["grade"]>
+
+  export type GradeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentId?: boolean
+    scheduleId?: boolean
+    subjectId?: boolean
+    gradeType?: boolean
+    score?: boolean
+    maxScore?: boolean
+    weight?: boolean
+    description?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdBy?: boolean
+    schedule?: boolean | ScheduleDefaultArgs<ExtArgs>
+    student?: boolean | UserDataDefaultArgs<ExtArgs>
+    subject?: boolean | SubjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["grade"]>
+
+  export type GradeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    studentId?: boolean
+    scheduleId?: boolean
+    subjectId?: boolean
+    gradeType?: boolean
+    score?: boolean
+    maxScore?: boolean
+    weight?: boolean
+    description?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdBy?: boolean
+    schedule?: boolean | ScheduleDefaultArgs<ExtArgs>
+    student?: boolean | UserDataDefaultArgs<ExtArgs>
+    subject?: boolean | SubjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["grade"]>
+
+  export type GradeSelectScalar = {
+    id?: boolean
+    studentId?: boolean
+    scheduleId?: boolean
+    subjectId?: boolean
+    gradeType?: boolean
+    score?: boolean
+    maxScore?: boolean
+    weight?: boolean
+    description?: boolean
+    date?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    createdBy?: boolean
+  }
+
+  export type GradeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "studentId" | "scheduleId" | "subjectId" | "gradeType" | "score" | "maxScore" | "weight" | "description" | "date" | "createdAt" | "updatedAt" | "createdBy", ExtArgs["result"]["grade"]>
+  export type GradeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    schedule?: boolean | ScheduleDefaultArgs<ExtArgs>
+    student?: boolean | UserDataDefaultArgs<ExtArgs>
+    subject?: boolean | SubjectDefaultArgs<ExtArgs>
+  }
+  export type GradeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    schedule?: boolean | ScheduleDefaultArgs<ExtArgs>
+    student?: boolean | UserDataDefaultArgs<ExtArgs>
+    subject?: boolean | SubjectDefaultArgs<ExtArgs>
+  }
+  export type GradeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    schedule?: boolean | ScheduleDefaultArgs<ExtArgs>
+    student?: boolean | UserDataDefaultArgs<ExtArgs>
+    subject?: boolean | SubjectDefaultArgs<ExtArgs>
+  }
+
+  export type $GradePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Grade"
+    objects: {
+      schedule: Prisma.$SchedulePayload<ExtArgs>
+      student: Prisma.$UserDataPayload<ExtArgs>
+      subject: Prisma.$SubjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      studentId: string
+      scheduleId: string
+      subjectId: string
+      gradeType: string
+      score: Prisma.Decimal
+      maxScore: Prisma.Decimal
+      weight: number
+      description: string | null
+      date: Date
+      createdAt: Date
+      updatedAt: Date
+      createdBy: string
+    }, ExtArgs["result"]["grade"]>
+    composites: {}
+  }
+
+  type GradeGetPayload<S extends boolean | null | undefined | GradeDefaultArgs> = $Result.GetResult<Prisma.$GradePayload, S>
+
+  type GradeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GradeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GradeCountAggregateInputType | true
+    }
+
+  export interface GradeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Grade'], meta: { name: 'Grade' } }
+    /**
+     * Find zero or one Grade that matches the filter.
+     * @param {GradeFindUniqueArgs} args - Arguments to find a Grade
+     * @example
+     * // Get one Grade
+     * const grade = await prisma.grade.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GradeFindUniqueArgs>(args: SelectSubset<T, GradeFindUniqueArgs<ExtArgs>>): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Grade that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GradeFindUniqueOrThrowArgs} args - Arguments to find a Grade
+     * @example
+     * // Get one Grade
+     * const grade = await prisma.grade.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GradeFindUniqueOrThrowArgs>(args: SelectSubset<T, GradeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Grade that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GradeFindFirstArgs} args - Arguments to find a Grade
+     * @example
+     * // Get one Grade
+     * const grade = await prisma.grade.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GradeFindFirstArgs>(args?: SelectSubset<T, GradeFindFirstArgs<ExtArgs>>): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Grade that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GradeFindFirstOrThrowArgs} args - Arguments to find a Grade
+     * @example
+     * // Get one Grade
+     * const grade = await prisma.grade.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GradeFindFirstOrThrowArgs>(args?: SelectSubset<T, GradeFindFirstOrThrowArgs<ExtArgs>>): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Grades that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GradeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Grades
+     * const grades = await prisma.grade.findMany()
+     * 
+     * // Get first 10 Grades
+     * const grades = await prisma.grade.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const gradeWithIdOnly = await prisma.grade.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GradeFindManyArgs>(args?: SelectSubset<T, GradeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Grade.
+     * @param {GradeCreateArgs} args - Arguments to create a Grade.
+     * @example
+     * // Create one Grade
+     * const Grade = await prisma.grade.create({
+     *   data: {
+     *     // ... data to create a Grade
+     *   }
+     * })
+     * 
+     */
+    create<T extends GradeCreateArgs>(args: SelectSubset<T, GradeCreateArgs<ExtArgs>>): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Grades.
+     * @param {GradeCreateManyArgs} args - Arguments to create many Grades.
+     * @example
+     * // Create many Grades
+     * const grade = await prisma.grade.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GradeCreateManyArgs>(args?: SelectSubset<T, GradeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Grades and returns the data saved in the database.
+     * @param {GradeCreateManyAndReturnArgs} args - Arguments to create many Grades.
+     * @example
+     * // Create many Grades
+     * const grade = await prisma.grade.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Grades and only return the `id`
+     * const gradeWithIdOnly = await prisma.grade.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GradeCreateManyAndReturnArgs>(args?: SelectSubset<T, GradeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Grade.
+     * @param {GradeDeleteArgs} args - Arguments to delete one Grade.
+     * @example
+     * // Delete one Grade
+     * const Grade = await prisma.grade.delete({
+     *   where: {
+     *     // ... filter to delete one Grade
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GradeDeleteArgs>(args: SelectSubset<T, GradeDeleteArgs<ExtArgs>>): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Grade.
+     * @param {GradeUpdateArgs} args - Arguments to update one Grade.
+     * @example
+     * // Update one Grade
+     * const grade = await prisma.grade.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GradeUpdateArgs>(args: SelectSubset<T, GradeUpdateArgs<ExtArgs>>): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Grades.
+     * @param {GradeDeleteManyArgs} args - Arguments to filter Grades to delete.
+     * @example
+     * // Delete a few Grades
+     * const { count } = await prisma.grade.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GradeDeleteManyArgs>(args?: SelectSubset<T, GradeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Grades.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GradeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Grades
+     * const grade = await prisma.grade.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GradeUpdateManyArgs>(args: SelectSubset<T, GradeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Grades and returns the data updated in the database.
+     * @param {GradeUpdateManyAndReturnArgs} args - Arguments to update many Grades.
+     * @example
+     * // Update many Grades
+     * const grade = await prisma.grade.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Grades and only return the `id`
+     * const gradeWithIdOnly = await prisma.grade.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GradeUpdateManyAndReturnArgs>(args: SelectSubset<T, GradeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Grade.
+     * @param {GradeUpsertArgs} args - Arguments to update or create a Grade.
+     * @example
+     * // Update or create a Grade
+     * const grade = await prisma.grade.upsert({
+     *   create: {
+     *     // ... data to create a Grade
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Grade we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GradeUpsertArgs>(args: SelectSubset<T, GradeUpsertArgs<ExtArgs>>): Prisma__GradeClient<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Grades.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GradeCountArgs} args - Arguments to filter Grades to count.
+     * @example
+     * // Count the number of Grades
+     * const count = await prisma.grade.count({
+     *   where: {
+     *     // ... the filter for the Grades we want to count
+     *   }
+     * })
+    **/
+    count<T extends GradeCountArgs>(
+      args?: Subset<T, GradeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GradeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Grade.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GradeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GradeAggregateArgs>(args: Subset<T, GradeAggregateArgs>): Prisma.PrismaPromise<GetGradeAggregateType<T>>
+
+    /**
+     * Group by Grade.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GradeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GradeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GradeGroupByArgs['orderBy'] }
+        : { orderBy?: GradeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GradeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGradeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Grade model
+   */
+  readonly fields: GradeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Grade.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GradeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    schedule<T extends ScheduleDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ScheduleDefaultArgs<ExtArgs>>): Prisma__ScheduleClient<$Result.GetResult<Prisma.$SchedulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    student<T extends UserDataDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDataDefaultArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    subject<T extends SubjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubjectDefaultArgs<ExtArgs>>): Prisma__SubjectClient<$Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Grade model
+   */
+  interface GradeFieldRefs {
+    readonly id: FieldRef<"Grade", 'String'>
+    readonly studentId: FieldRef<"Grade", 'String'>
+    readonly scheduleId: FieldRef<"Grade", 'String'>
+    readonly subjectId: FieldRef<"Grade", 'String'>
+    readonly gradeType: FieldRef<"Grade", 'String'>
+    readonly score: FieldRef<"Grade", 'Decimal'>
+    readonly maxScore: FieldRef<"Grade", 'Decimal'>
+    readonly weight: FieldRef<"Grade", 'Int'>
+    readonly description: FieldRef<"Grade", 'String'>
+    readonly date: FieldRef<"Grade", 'DateTime'>
+    readonly createdAt: FieldRef<"Grade", 'DateTime'>
+    readonly updatedAt: FieldRef<"Grade", 'DateTime'>
+    readonly createdBy: FieldRef<"Grade", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Grade findUnique
+   */
+  export type GradeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * Filter, which Grade to fetch.
+     */
+    where: GradeWhereUniqueInput
+  }
+
+  /**
+   * Grade findUniqueOrThrow
+   */
+  export type GradeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * Filter, which Grade to fetch.
+     */
+    where: GradeWhereUniqueInput
+  }
+
+  /**
+   * Grade findFirst
+   */
+  export type GradeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * Filter, which Grade to fetch.
+     */
+    where?: GradeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Grades to fetch.
+     */
+    orderBy?: GradeOrderByWithRelationInput | GradeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Grades.
+     */
+    cursor?: GradeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Grades from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Grades.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Grades.
+     */
+    distinct?: GradeScalarFieldEnum | GradeScalarFieldEnum[]
+  }
+
+  /**
+   * Grade findFirstOrThrow
+   */
+  export type GradeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * Filter, which Grade to fetch.
+     */
+    where?: GradeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Grades to fetch.
+     */
+    orderBy?: GradeOrderByWithRelationInput | GradeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Grades.
+     */
+    cursor?: GradeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Grades from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Grades.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Grades.
+     */
+    distinct?: GradeScalarFieldEnum | GradeScalarFieldEnum[]
+  }
+
+  /**
+   * Grade findMany
+   */
+  export type GradeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * Filter, which Grades to fetch.
+     */
+    where?: GradeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Grades to fetch.
+     */
+    orderBy?: GradeOrderByWithRelationInput | GradeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Grades.
+     */
+    cursor?: GradeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Grades from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Grades.
+     */
+    skip?: number
+    distinct?: GradeScalarFieldEnum | GradeScalarFieldEnum[]
+  }
+
+  /**
+   * Grade create
+   */
+  export type GradeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Grade.
+     */
+    data: XOR<GradeCreateInput, GradeUncheckedCreateInput>
+  }
+
+  /**
+   * Grade createMany
+   */
+  export type GradeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Grades.
+     */
+    data: GradeCreateManyInput | GradeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Grade createManyAndReturn
+   */
+  export type GradeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * The data used to create many Grades.
+     */
+    data: GradeCreateManyInput | GradeCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Grade update
+   */
+  export type GradeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Grade.
+     */
+    data: XOR<GradeUpdateInput, GradeUncheckedUpdateInput>
+    /**
+     * Choose, which Grade to update.
+     */
+    where: GradeWhereUniqueInput
+  }
+
+  /**
+   * Grade updateMany
+   */
+  export type GradeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Grades.
+     */
+    data: XOR<GradeUpdateManyMutationInput, GradeUncheckedUpdateManyInput>
+    /**
+     * Filter which Grades to update
+     */
+    where?: GradeWhereInput
+    /**
+     * Limit how many Grades to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Grade updateManyAndReturn
+   */
+  export type GradeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * The data used to update Grades.
+     */
+    data: XOR<GradeUpdateManyMutationInput, GradeUncheckedUpdateManyInput>
+    /**
+     * Filter which Grades to update
+     */
+    where?: GradeWhereInput
+    /**
+     * Limit how many Grades to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Grade upsert
+   */
+  export type GradeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Grade to update in case it exists.
+     */
+    where: GradeWhereUniqueInput
+    /**
+     * In case the Grade found by the `where` argument doesn't exist, create a new Grade with this data.
+     */
+    create: XOR<GradeCreateInput, GradeUncheckedCreateInput>
+    /**
+     * In case the Grade was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GradeUpdateInput, GradeUncheckedUpdateInput>
+  }
+
+  /**
+   * Grade delete
+   */
+  export type GradeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeInclude<ExtArgs> | null
+    /**
+     * Filter which Grade to delete.
+     */
+    where: GradeWhereUniqueInput
+  }
+
+  /**
+   * Grade deleteMany
+   */
+  export type GradeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Grades to delete
+     */
+    where?: GradeWhereInput
+    /**
+     * Limit how many Grades to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Grade without action
+   */
+  export type GradeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Grade
+     */
+    select?: GradeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Grade
+     */
+    omit?: GradeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GradeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Notification
+   */
+
+  export type AggregateNotification = {
+    _count: NotificationCountAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  export type NotificationMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    title: string | null
+    message: string | null
+    type: string | null
+    category: string | null
+    isRead: boolean | null
+    link: string | null
+    createdAt: Date | null
+    readAt: Date | null
+  }
+
+  export type NotificationMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    title: string | null
+    message: string | null
+    type: string | null
+    category: string | null
+    isRead: boolean | null
+    link: string | null
+    createdAt: Date | null
+    readAt: Date | null
+  }
+
+  export type NotificationCountAggregateOutputType = {
+    id: number
+    userId: number
+    title: number
+    message: number
+    type: number
+    category: number
+    isRead: number
+    link: number
+    data: number
+    createdAt: number
+    readAt: number
+    _all: number
+  }
+
+
+  export type NotificationMinAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    message?: true
+    type?: true
+    category?: true
+    isRead?: true
+    link?: true
+    createdAt?: true
+    readAt?: true
+  }
+
+  export type NotificationMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    message?: true
+    type?: true
+    category?: true
+    isRead?: true
+    link?: true
+    createdAt?: true
+    readAt?: true
+  }
+
+  export type NotificationCountAggregateInputType = {
+    id?: true
+    userId?: true
+    title?: true
+    message?: true
+    type?: true
+    category?: true
+    isRead?: true
+    link?: true
+    data?: true
+    createdAt?: true
+    readAt?: true
+    _all?: true
+  }
+
+  export type NotificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Notification to aggregate.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Notifications
+    **/
+    _count?: true | NotificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NotificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type GetNotificationAggregateType<T extends NotificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateNotification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNotification[P]>
+      : GetScalarType<T[P], AggregateNotification[P]>
+  }
+
+
+
+
+  export type NotificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationWhereInput
+    orderBy?: NotificationOrderByWithAggregationInput | NotificationOrderByWithAggregationInput[]
+    by: NotificationScalarFieldEnum[] | NotificationScalarFieldEnum
+    having?: NotificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NotificationCountAggregateInputType | true
+    _min?: NotificationMinAggregateInputType
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type NotificationGroupByOutputType = {
+    id: string
+    userId: string
+    title: string
+    message: string
+    type: string
+    category: string | null
+    isRead: boolean
+    link: string | null
+    data: JsonValue | null
+    createdAt: Date
+    readAt: Date | null
+    _count: NotificationCountAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  type GetNotificationGroupByPayload<T extends NotificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NotificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NotificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+            : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NotificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    message?: boolean
+    type?: boolean
+    category?: boolean
+    isRead?: boolean
+    link?: boolean
+    data?: boolean
+    createdAt?: boolean
+    readAt?: boolean
+    user?: boolean | UserDataDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    message?: boolean
+    type?: boolean
+    category?: boolean
+    isRead?: boolean
+    link?: boolean
+    data?: boolean
+    createdAt?: boolean
+    readAt?: boolean
+    user?: boolean | UserDataDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    message?: boolean
+    type?: boolean
+    category?: boolean
+    isRead?: boolean
+    link?: boolean
+    data?: boolean
+    createdAt?: boolean
+    readAt?: boolean
+    user?: boolean | UserDataDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    title?: boolean
+    message?: boolean
+    type?: boolean
+    category?: boolean
+    isRead?: boolean
+    link?: boolean
+    data?: boolean
+    createdAt?: boolean
+    readAt?: boolean
+  }
+
+  export type NotificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "title" | "message" | "type" | "category" | "isRead" | "link" | "data" | "createdAt" | "readAt", ExtArgs["result"]["notification"]>
+  export type NotificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDataDefaultArgs<ExtArgs>
+  }
+  export type NotificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDataDefaultArgs<ExtArgs>
+  }
+  export type NotificationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDataDefaultArgs<ExtArgs>
+  }
+
+  export type $NotificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Notification"
+    objects: {
+      user: Prisma.$UserDataPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      title: string
+      message: string
+      type: string
+      category: string | null
+      isRead: boolean
+      link: string | null
+      data: Prisma.JsonValue | null
+      createdAt: Date
+      readAt: Date | null
+    }, ExtArgs["result"]["notification"]>
+    composites: {}
+  }
+
+  type NotificationGetPayload<S extends boolean | null | undefined | NotificationDefaultArgs> = $Result.GetResult<Prisma.$NotificationPayload, S>
+
+  type NotificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NotificationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NotificationCountAggregateInputType | true
+    }
+
+  export interface NotificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Notification'], meta: { name: 'Notification' } }
+    /**
+     * Find zero or one Notification that matches the filter.
+     * @param {NotificationFindUniqueArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NotificationFindUniqueArgs>(args: SelectSubset<T, NotificationFindUniqueArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Notification that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NotificationFindUniqueOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NotificationFindUniqueOrThrowArgs>(args: SelectSubset<T, NotificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindFirstArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NotificationFindFirstArgs>(args?: SelectSubset<T, NotificationFindFirstArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindFirstOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NotificationFindFirstOrThrowArgs>(args?: SelectSubset<T, NotificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Notifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Notifications
+     * const notifications = await prisma.notification.findMany()
+     * 
+     * // Get first 10 Notifications
+     * const notifications = await prisma.notification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const notificationWithIdOnly = await prisma.notification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NotificationFindManyArgs>(args?: SelectSubset<T, NotificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Notification.
+     * @param {NotificationCreateArgs} args - Arguments to create a Notification.
+     * @example
+     * // Create one Notification
+     * const Notification = await prisma.notification.create({
+     *   data: {
+     *     // ... data to create a Notification
+     *   }
+     * })
+     * 
+     */
+    create<T extends NotificationCreateArgs>(args: SelectSubset<T, NotificationCreateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Notifications.
+     * @param {NotificationCreateManyArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NotificationCreateManyArgs>(args?: SelectSubset<T, NotificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Notifications and returns the data saved in the database.
+     * @param {NotificationCreateManyAndReturnArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Notifications and only return the `id`
+     * const notificationWithIdOnly = await prisma.notification.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NotificationCreateManyAndReturnArgs>(args?: SelectSubset<T, NotificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Notification.
+     * @param {NotificationDeleteArgs} args - Arguments to delete one Notification.
+     * @example
+     * // Delete one Notification
+     * const Notification = await prisma.notification.delete({
+     *   where: {
+     *     // ... filter to delete one Notification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NotificationDeleteArgs>(args: SelectSubset<T, NotificationDeleteArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Notification.
+     * @param {NotificationUpdateArgs} args - Arguments to update one Notification.
+     * @example
+     * // Update one Notification
+     * const notification = await prisma.notification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NotificationUpdateArgs>(args: SelectSubset<T, NotificationUpdateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Notifications.
+     * @param {NotificationDeleteManyArgs} args - Arguments to filter Notifications to delete.
+     * @example
+     * // Delete a few Notifications
+     * const { count } = await prisma.notification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NotificationDeleteManyArgs>(args?: SelectSubset<T, NotificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NotificationUpdateManyArgs>(args: SelectSubset<T, NotificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications and returns the data updated in the database.
+     * @param {NotificationUpdateManyAndReturnArgs} args - Arguments to update many Notifications.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Notifications and only return the `id`
+     * const notificationWithIdOnly = await prisma.notification.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NotificationUpdateManyAndReturnArgs>(args: SelectSubset<T, NotificationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Notification.
+     * @param {NotificationUpsertArgs} args - Arguments to update or create a Notification.
+     * @example
+     * // Update or create a Notification
+     * const notification = await prisma.notification.upsert({
+     *   create: {
+     *     // ... data to create a Notification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Notification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NotificationUpsertArgs>(args: SelectSubset<T, NotificationUpsertArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationCountArgs} args - Arguments to filter Notifications to count.
+     * @example
+     * // Count the number of Notifications
+     * const count = await prisma.notification.count({
+     *   where: {
+     *     // ... the filter for the Notifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends NotificationCountArgs>(
+      args?: Subset<T, NotificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NotificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NotificationAggregateArgs>(args: Subset<T, NotificationAggregateArgs>): Prisma.PrismaPromise<GetNotificationAggregateType<T>>
+
+    /**
+     * Group by Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NotificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NotificationGroupByArgs['orderBy'] }
+        : { orderBy?: NotificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NotificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Notification model
+   */
+  readonly fields: NotificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Notification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NotificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDataDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDataDefaultArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Notification model
+   */
+  interface NotificationFieldRefs {
+    readonly id: FieldRef<"Notification", 'String'>
+    readonly userId: FieldRef<"Notification", 'String'>
+    readonly title: FieldRef<"Notification", 'String'>
+    readonly message: FieldRef<"Notification", 'String'>
+    readonly type: FieldRef<"Notification", 'String'>
+    readonly category: FieldRef<"Notification", 'String'>
+    readonly isRead: FieldRef<"Notification", 'Boolean'>
+    readonly link: FieldRef<"Notification", 'String'>
+    readonly data: FieldRef<"Notification", 'Json'>
+    readonly createdAt: FieldRef<"Notification", 'DateTime'>
+    readonly readAt: FieldRef<"Notification", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Notification findUnique
+   */
+  export type NotificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification findUniqueOrThrow
+   */
+  export type NotificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification findFirst
+   */
+  export type NotificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification findFirstOrThrow
+   */
+  export type NotificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification findMany
+   */
+  export type NotificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notifications to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification create
+   */
+  export type NotificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Notification.
+     */
+    data: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
+  }
+
+  /**
+   * Notification createMany
+   */
+  export type NotificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Notifications.
+     */
+    data: NotificationCreateManyInput | NotificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Notification createManyAndReturn
+   */
+  export type NotificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Notifications.
+     */
+    data: NotificationCreateManyInput | NotificationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Notification update
+   */
+  export type NotificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Notification.
+     */
+    data: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
+    /**
+     * Choose, which Notification to update.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification updateMany
+   */
+  export type NotificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Notifications.
+     */
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Notifications to update
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification updateManyAndReturn
+   */
+  export type NotificationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data used to update Notifications.
+     */
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Notifications to update
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Notification upsert
+   */
+  export type NotificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Notification to update in case it exists.
+     */
+    where: NotificationWhereUniqueInput
+    /**
+     * In case the Notification found by the `where` argument doesn't exist, create a new Notification with this data.
+     */
+    create: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
+    /**
+     * In case the Notification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
+  }
+
+  /**
+   * Notification delete
+   */
+  export type NotificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter which Notification to delete.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification deleteMany
+   */
+  export type NotificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Notifications to delete
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification without action
+   */
+  export type NotificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DashboardContent
+   */
+
+  export type AggregateDashboardContent = {
+    _count: DashboardContentCountAggregateOutputType | null
+    _avg: DashboardContentAvgAggregateOutputType | null
+    _sum: DashboardContentSumAggregateOutputType | null
+    _min: DashboardContentMinAggregateOutputType | null
+    _max: DashboardContentMaxAggregateOutputType | null
+  }
+
+  export type DashboardContentAvgAggregateOutputType = {
+    order: number | null
+  }
+
+  export type DashboardContentSumAggregateOutputType = {
+    order: number | null
+  }
+
+  export type DashboardContentMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    imageUrl: string | null
+    linkUrl: string | null
+    order: number | null
+    isActive: boolean | null
+    isPublished: boolean | null
+    startDate: Date | null
+    endDate: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+  }
+
+  export type DashboardContentMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    description: string | null
+    imageUrl: string | null
+    linkUrl: string | null
+    order: number | null
+    isActive: boolean | null
+    isPublished: boolean | null
+    startDate: Date | null
+    endDate: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+  }
+
+  export type DashboardContentCountAggregateOutputType = {
+    id: number
+    title: number
+    description: number
+    imageUrl: number
+    linkUrl: number
+    order: number
+    isActive: number
+    isPublished: number
+    startDate: number
+    endDate: number
+    createdAt: number
+    updatedAt: number
+    userId: number
+    _all: number
+  }
+
+
+  export type DashboardContentAvgAggregateInputType = {
+    order?: true
+  }
+
+  export type DashboardContentSumAggregateInputType = {
+    order?: true
+  }
+
+  export type DashboardContentMinAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    imageUrl?: true
+    linkUrl?: true
+    order?: true
+    isActive?: true
+    isPublished?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+  }
+
+  export type DashboardContentMaxAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    imageUrl?: true
+    linkUrl?: true
+    order?: true
+    isActive?: true
+    isPublished?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+  }
+
+  export type DashboardContentCountAggregateInputType = {
+    id?: true
+    title?: true
+    description?: true
+    imageUrl?: true
+    linkUrl?: true
+    order?: true
+    isActive?: true
+    isPublished?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type DashboardContentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DashboardContent to aggregate.
+     */
+    where?: DashboardContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DashboardContents to fetch.
+     */
+    orderBy?: DashboardContentOrderByWithRelationInput | DashboardContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DashboardContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DashboardContents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DashboardContents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DashboardContents
+    **/
+    _count?: true | DashboardContentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DashboardContentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DashboardContentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DashboardContentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DashboardContentMaxAggregateInputType
+  }
+
+  export type GetDashboardContentAggregateType<T extends DashboardContentAggregateArgs> = {
+        [P in keyof T & keyof AggregateDashboardContent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDashboardContent[P]>
+      : GetScalarType<T[P], AggregateDashboardContent[P]>
+  }
+
+
+
+
+  export type DashboardContentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DashboardContentWhereInput
+    orderBy?: DashboardContentOrderByWithAggregationInput | DashboardContentOrderByWithAggregationInput[]
+    by: DashboardContentScalarFieldEnum[] | DashboardContentScalarFieldEnum
+    having?: DashboardContentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DashboardContentCountAggregateInputType | true
+    _avg?: DashboardContentAvgAggregateInputType
+    _sum?: DashboardContentSumAggregateInputType
+    _min?: DashboardContentMinAggregateInputType
+    _max?: DashboardContentMaxAggregateInputType
+  }
+
+  export type DashboardContentGroupByOutputType = {
+    id: string
+    title: string
+    description: string | null
+    imageUrl: string
+    linkUrl: string | null
+    order: number
+    isActive: boolean
+    isPublished: boolean
+    startDate: Date | null
+    endDate: Date | null
+    createdAt: Date
+    updatedAt: Date
+    userId: string | null
+    _count: DashboardContentCountAggregateOutputType | null
+    _avg: DashboardContentAvgAggregateOutputType | null
+    _sum: DashboardContentSumAggregateOutputType | null
+    _min: DashboardContentMinAggregateOutputType | null
+    _max: DashboardContentMaxAggregateOutputType | null
+  }
+
+  type GetDashboardContentGroupByPayload<T extends DashboardContentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DashboardContentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DashboardContentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DashboardContentGroupByOutputType[P]>
+            : GetScalarType<T[P], DashboardContentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DashboardContentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    linkUrl?: boolean
+    order?: boolean
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | DashboardContent$userArgs<ExtArgs>
+  }, ExtArgs["result"]["dashboardContent"]>
+
+  export type DashboardContentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    linkUrl?: boolean
+    order?: boolean
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | DashboardContent$userArgs<ExtArgs>
+  }, ExtArgs["result"]["dashboardContent"]>
+
+  export type DashboardContentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    linkUrl?: boolean
+    order?: boolean
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | DashboardContent$userArgs<ExtArgs>
+  }, ExtArgs["result"]["dashboardContent"]>
+
+  export type DashboardContentSelectScalar = {
+    id?: boolean
+    title?: boolean
+    description?: boolean
+    imageUrl?: boolean
+    linkUrl?: boolean
+    order?: boolean
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+  }
+
+  export type DashboardContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "imageUrl" | "linkUrl" | "order" | "isActive" | "isPublished" | "startDate" | "endDate" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["dashboardContent"]>
+  export type DashboardContentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | DashboardContent$userArgs<ExtArgs>
+  }
+  export type DashboardContentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | DashboardContent$userArgs<ExtArgs>
+  }
+  export type DashboardContentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | DashboardContent$userArgs<ExtArgs>
+  }
+
+  export type $DashboardContentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DashboardContent"
+    objects: {
+      user: Prisma.$UserDataPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      description: string | null
+      imageUrl: string
+      linkUrl: string | null
+      order: number
+      isActive: boolean
+      isPublished: boolean
+      startDate: Date | null
+      endDate: Date | null
+      createdAt: Date
+      updatedAt: Date
+      userId: string | null
+    }, ExtArgs["result"]["dashboardContent"]>
+    composites: {}
+  }
+
+  type DashboardContentGetPayload<S extends boolean | null | undefined | DashboardContentDefaultArgs> = $Result.GetResult<Prisma.$DashboardContentPayload, S>
+
+  type DashboardContentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DashboardContentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DashboardContentCountAggregateInputType | true
+    }
+
+  export interface DashboardContentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DashboardContent'], meta: { name: 'DashboardContent' } }
+    /**
+     * Find zero or one DashboardContent that matches the filter.
+     * @param {DashboardContentFindUniqueArgs} args - Arguments to find a DashboardContent
+     * @example
+     * // Get one DashboardContent
+     * const dashboardContent = await prisma.dashboardContent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DashboardContentFindUniqueArgs>(args: SelectSubset<T, DashboardContentFindUniqueArgs<ExtArgs>>): Prisma__DashboardContentClient<$Result.GetResult<Prisma.$DashboardContentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DashboardContent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DashboardContentFindUniqueOrThrowArgs} args - Arguments to find a DashboardContent
+     * @example
+     * // Get one DashboardContent
+     * const dashboardContent = await prisma.dashboardContent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DashboardContentFindUniqueOrThrowArgs>(args: SelectSubset<T, DashboardContentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DashboardContentClient<$Result.GetResult<Prisma.$DashboardContentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DashboardContent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DashboardContentFindFirstArgs} args - Arguments to find a DashboardContent
+     * @example
+     * // Get one DashboardContent
+     * const dashboardContent = await prisma.dashboardContent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DashboardContentFindFirstArgs>(args?: SelectSubset<T, DashboardContentFindFirstArgs<ExtArgs>>): Prisma__DashboardContentClient<$Result.GetResult<Prisma.$DashboardContentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DashboardContent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DashboardContentFindFirstOrThrowArgs} args - Arguments to find a DashboardContent
+     * @example
+     * // Get one DashboardContent
+     * const dashboardContent = await prisma.dashboardContent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DashboardContentFindFirstOrThrowArgs>(args?: SelectSubset<T, DashboardContentFindFirstOrThrowArgs<ExtArgs>>): Prisma__DashboardContentClient<$Result.GetResult<Prisma.$DashboardContentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DashboardContents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DashboardContentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DashboardContents
+     * const dashboardContents = await prisma.dashboardContent.findMany()
+     * 
+     * // Get first 10 DashboardContents
+     * const dashboardContents = await prisma.dashboardContent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const dashboardContentWithIdOnly = await prisma.dashboardContent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DashboardContentFindManyArgs>(args?: SelectSubset<T, DashboardContentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DashboardContentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DashboardContent.
+     * @param {DashboardContentCreateArgs} args - Arguments to create a DashboardContent.
+     * @example
+     * // Create one DashboardContent
+     * const DashboardContent = await prisma.dashboardContent.create({
+     *   data: {
+     *     // ... data to create a DashboardContent
+     *   }
+     * })
+     * 
+     */
+    create<T extends DashboardContentCreateArgs>(args: SelectSubset<T, DashboardContentCreateArgs<ExtArgs>>): Prisma__DashboardContentClient<$Result.GetResult<Prisma.$DashboardContentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DashboardContents.
+     * @param {DashboardContentCreateManyArgs} args - Arguments to create many DashboardContents.
+     * @example
+     * // Create many DashboardContents
+     * const dashboardContent = await prisma.dashboardContent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DashboardContentCreateManyArgs>(args?: SelectSubset<T, DashboardContentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DashboardContents and returns the data saved in the database.
+     * @param {DashboardContentCreateManyAndReturnArgs} args - Arguments to create many DashboardContents.
+     * @example
+     * // Create many DashboardContents
+     * const dashboardContent = await prisma.dashboardContent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DashboardContents and only return the `id`
+     * const dashboardContentWithIdOnly = await prisma.dashboardContent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DashboardContentCreateManyAndReturnArgs>(args?: SelectSubset<T, DashboardContentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DashboardContentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DashboardContent.
+     * @param {DashboardContentDeleteArgs} args - Arguments to delete one DashboardContent.
+     * @example
+     * // Delete one DashboardContent
+     * const DashboardContent = await prisma.dashboardContent.delete({
+     *   where: {
+     *     // ... filter to delete one DashboardContent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DashboardContentDeleteArgs>(args: SelectSubset<T, DashboardContentDeleteArgs<ExtArgs>>): Prisma__DashboardContentClient<$Result.GetResult<Prisma.$DashboardContentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DashboardContent.
+     * @param {DashboardContentUpdateArgs} args - Arguments to update one DashboardContent.
+     * @example
+     * // Update one DashboardContent
+     * const dashboardContent = await prisma.dashboardContent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DashboardContentUpdateArgs>(args: SelectSubset<T, DashboardContentUpdateArgs<ExtArgs>>): Prisma__DashboardContentClient<$Result.GetResult<Prisma.$DashboardContentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DashboardContents.
+     * @param {DashboardContentDeleteManyArgs} args - Arguments to filter DashboardContents to delete.
+     * @example
+     * // Delete a few DashboardContents
+     * const { count } = await prisma.dashboardContent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DashboardContentDeleteManyArgs>(args?: SelectSubset<T, DashboardContentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DashboardContents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DashboardContentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DashboardContents
+     * const dashboardContent = await prisma.dashboardContent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DashboardContentUpdateManyArgs>(args: SelectSubset<T, DashboardContentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DashboardContents and returns the data updated in the database.
+     * @param {DashboardContentUpdateManyAndReturnArgs} args - Arguments to update many DashboardContents.
+     * @example
+     * // Update many DashboardContents
+     * const dashboardContent = await prisma.dashboardContent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DashboardContents and only return the `id`
+     * const dashboardContentWithIdOnly = await prisma.dashboardContent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DashboardContentUpdateManyAndReturnArgs>(args: SelectSubset<T, DashboardContentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DashboardContentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DashboardContent.
+     * @param {DashboardContentUpsertArgs} args - Arguments to update or create a DashboardContent.
+     * @example
+     * // Update or create a DashboardContent
+     * const dashboardContent = await prisma.dashboardContent.upsert({
+     *   create: {
+     *     // ... data to create a DashboardContent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DashboardContent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DashboardContentUpsertArgs>(args: SelectSubset<T, DashboardContentUpsertArgs<ExtArgs>>): Prisma__DashboardContentClient<$Result.GetResult<Prisma.$DashboardContentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DashboardContents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DashboardContentCountArgs} args - Arguments to filter DashboardContents to count.
+     * @example
+     * // Count the number of DashboardContents
+     * const count = await prisma.dashboardContent.count({
+     *   where: {
+     *     // ... the filter for the DashboardContents we want to count
+     *   }
+     * })
+    **/
+    count<T extends DashboardContentCountArgs>(
+      args?: Subset<T, DashboardContentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DashboardContentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DashboardContent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DashboardContentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DashboardContentAggregateArgs>(args: Subset<T, DashboardContentAggregateArgs>): Prisma.PrismaPromise<GetDashboardContentAggregateType<T>>
+
+    /**
+     * Group by DashboardContent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DashboardContentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DashboardContentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DashboardContentGroupByArgs['orderBy'] }
+        : { orderBy?: DashboardContentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DashboardContentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDashboardContentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DashboardContent model
+   */
+  readonly fields: DashboardContentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DashboardContent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DashboardContentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends DashboardContent$userArgs<ExtArgs> = {}>(args?: Subset<T, DashboardContent$userArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DashboardContent model
+   */
+  interface DashboardContentFieldRefs {
+    readonly id: FieldRef<"DashboardContent", 'String'>
+    readonly title: FieldRef<"DashboardContent", 'String'>
+    readonly description: FieldRef<"DashboardContent", 'String'>
+    readonly imageUrl: FieldRef<"DashboardContent", 'String'>
+    readonly linkUrl: FieldRef<"DashboardContent", 'String'>
+    readonly order: FieldRef<"DashboardContent", 'Int'>
+    readonly isActive: FieldRef<"DashboardContent", 'Boolean'>
+    readonly isPublished: FieldRef<"DashboardContent", 'Boolean'>
+    readonly startDate: FieldRef<"DashboardContent", 'DateTime'>
+    readonly endDate: FieldRef<"DashboardContent", 'DateTime'>
+    readonly createdAt: FieldRef<"DashboardContent", 'DateTime'>
+    readonly updatedAt: FieldRef<"DashboardContent", 'DateTime'>
+    readonly userId: FieldRef<"DashboardContent", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DashboardContent findUnique
+   */
+  export type DashboardContentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DashboardContent
+     */
+    select?: DashboardContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DashboardContent
+     */
+    omit?: DashboardContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DashboardContentInclude<ExtArgs> | null
+    /**
+     * Filter, which DashboardContent to fetch.
+     */
+    where: DashboardContentWhereUniqueInput
+  }
+
+  /**
+   * DashboardContent findUniqueOrThrow
+   */
+  export type DashboardContentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DashboardContent
+     */
+    select?: DashboardContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DashboardContent
+     */
+    omit?: DashboardContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DashboardContentInclude<ExtArgs> | null
+    /**
+     * Filter, which DashboardContent to fetch.
+     */
+    where: DashboardContentWhereUniqueInput
+  }
+
+  /**
+   * DashboardContent findFirst
+   */
+  export type DashboardContentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DashboardContent
+     */
+    select?: DashboardContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DashboardContent
+     */
+    omit?: DashboardContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DashboardContentInclude<ExtArgs> | null
+    /**
+     * Filter, which DashboardContent to fetch.
+     */
+    where?: DashboardContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DashboardContents to fetch.
+     */
+    orderBy?: DashboardContentOrderByWithRelationInput | DashboardContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DashboardContents.
+     */
+    cursor?: DashboardContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DashboardContents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DashboardContents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DashboardContents.
+     */
+    distinct?: DashboardContentScalarFieldEnum | DashboardContentScalarFieldEnum[]
+  }
+
+  /**
+   * DashboardContent findFirstOrThrow
+   */
+  export type DashboardContentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DashboardContent
+     */
+    select?: DashboardContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DashboardContent
+     */
+    omit?: DashboardContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DashboardContentInclude<ExtArgs> | null
+    /**
+     * Filter, which DashboardContent to fetch.
+     */
+    where?: DashboardContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DashboardContents to fetch.
+     */
+    orderBy?: DashboardContentOrderByWithRelationInput | DashboardContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DashboardContents.
+     */
+    cursor?: DashboardContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DashboardContents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DashboardContents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DashboardContents.
+     */
+    distinct?: DashboardContentScalarFieldEnum | DashboardContentScalarFieldEnum[]
+  }
+
+  /**
+   * DashboardContent findMany
+   */
+  export type DashboardContentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DashboardContent
+     */
+    select?: DashboardContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DashboardContent
+     */
+    omit?: DashboardContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DashboardContentInclude<ExtArgs> | null
+    /**
+     * Filter, which DashboardContents to fetch.
+     */
+    where?: DashboardContentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DashboardContents to fetch.
+     */
+    orderBy?: DashboardContentOrderByWithRelationInput | DashboardContentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DashboardContents.
+     */
+    cursor?: DashboardContentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DashboardContents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DashboardContents.
+     */
+    skip?: number
+    distinct?: DashboardContentScalarFieldEnum | DashboardContentScalarFieldEnum[]
+  }
+
+  /**
+   * DashboardContent create
+   */
+  export type DashboardContentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DashboardContent
+     */
+    select?: DashboardContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DashboardContent
+     */
+    omit?: DashboardContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DashboardContentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DashboardContent.
+     */
+    data: XOR<DashboardContentCreateInput, DashboardContentUncheckedCreateInput>
+  }
+
+  /**
+   * DashboardContent createMany
+   */
+  export type DashboardContentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DashboardContents.
+     */
+    data: DashboardContentCreateManyInput | DashboardContentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DashboardContent createManyAndReturn
+   */
+  export type DashboardContentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DashboardContent
+     */
+    select?: DashboardContentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DashboardContent
+     */
+    omit?: DashboardContentOmit<ExtArgs> | null
+    /**
+     * The data used to create many DashboardContents.
+     */
+    data: DashboardContentCreateManyInput | DashboardContentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DashboardContentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DashboardContent update
+   */
+  export type DashboardContentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DashboardContent
+     */
+    select?: DashboardContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DashboardContent
+     */
+    omit?: DashboardContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DashboardContentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DashboardContent.
+     */
+    data: XOR<DashboardContentUpdateInput, DashboardContentUncheckedUpdateInput>
+    /**
+     * Choose, which DashboardContent to update.
+     */
+    where: DashboardContentWhereUniqueInput
+  }
+
+  /**
+   * DashboardContent updateMany
+   */
+  export type DashboardContentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DashboardContents.
+     */
+    data: XOR<DashboardContentUpdateManyMutationInput, DashboardContentUncheckedUpdateManyInput>
+    /**
+     * Filter which DashboardContents to update
+     */
+    where?: DashboardContentWhereInput
+    /**
+     * Limit how many DashboardContents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DashboardContent updateManyAndReturn
+   */
+  export type DashboardContentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DashboardContent
+     */
+    select?: DashboardContentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DashboardContent
+     */
+    omit?: DashboardContentOmit<ExtArgs> | null
+    /**
+     * The data used to update DashboardContents.
+     */
+    data: XOR<DashboardContentUpdateManyMutationInput, DashboardContentUncheckedUpdateManyInput>
+    /**
+     * Filter which DashboardContents to update
+     */
+    where?: DashboardContentWhereInput
+    /**
+     * Limit how many DashboardContents to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DashboardContentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DashboardContent upsert
+   */
+  export type DashboardContentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DashboardContent
+     */
+    select?: DashboardContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DashboardContent
+     */
+    omit?: DashboardContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DashboardContentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DashboardContent to update in case it exists.
+     */
+    where: DashboardContentWhereUniqueInput
+    /**
+     * In case the DashboardContent found by the `where` argument doesn't exist, create a new DashboardContent with this data.
+     */
+    create: XOR<DashboardContentCreateInput, DashboardContentUncheckedCreateInput>
+    /**
+     * In case the DashboardContent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DashboardContentUpdateInput, DashboardContentUncheckedUpdateInput>
+  }
+
+  /**
+   * DashboardContent delete
+   */
+  export type DashboardContentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DashboardContent
+     */
+    select?: DashboardContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DashboardContent
+     */
+    omit?: DashboardContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DashboardContentInclude<ExtArgs> | null
+    /**
+     * Filter which DashboardContent to delete.
+     */
+    where: DashboardContentWhereUniqueInput
+  }
+
+  /**
+   * DashboardContent deleteMany
+   */
+  export type DashboardContentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DashboardContents to delete
+     */
+    where?: DashboardContentWhereInput
+    /**
+     * Limit how many DashboardContents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DashboardContent.user
+   */
+  export type DashboardContent$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserData
+     */
+    select?: UserDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserData
+     */
+    omit?: UserDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserDataInclude<ExtArgs> | null
+    where?: UserDataWhereInput
+  }
+
+  /**
+   * DashboardContent without action
+   */
+  export type DashboardContentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DashboardContent
+     */
+    select?: DashboardContentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DashboardContent
+     */
+    omit?: DashboardContentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DashboardContentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Announcement
+   */
+
+  export type AggregateAnnouncement = {
+    _count: AnnouncementCountAggregateOutputType | null
+    _min: AnnouncementMinAggregateOutputType | null
+    _max: AnnouncementMaxAggregateOutputType | null
+  }
+
+  export type AnnouncementMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    content: string | null
+    imageUrl: string | null
+    linkUrl: string | null
+    isActive: boolean | null
+    isPublished: boolean | null
+    startDate: Date | null
+    endDate: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+  }
+
+  export type AnnouncementMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    content: string | null
+    imageUrl: string | null
+    linkUrl: string | null
+    isActive: boolean | null
+    isPublished: boolean | null
+    startDate: Date | null
+    endDate: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+  }
+
+  export type AnnouncementCountAggregateOutputType = {
+    id: number
+    title: number
+    content: number
+    imageUrl: number
+    linkUrl: number
+    isActive: number
+    isPublished: number
+    startDate: number
+    endDate: number
+    createdAt: number
+    updatedAt: number
+    userId: number
+    _all: number
+  }
+
+
+  export type AnnouncementMinAggregateInputType = {
+    id?: true
+    title?: true
+    content?: true
+    imageUrl?: true
+    linkUrl?: true
+    isActive?: true
+    isPublished?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+  }
+
+  export type AnnouncementMaxAggregateInputType = {
+    id?: true
+    title?: true
+    content?: true
+    imageUrl?: true
+    linkUrl?: true
+    isActive?: true
+    isPublished?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+  }
+
+  export type AnnouncementCountAggregateInputType = {
+    id?: true
+    title?: true
+    content?: true
+    imageUrl?: true
+    linkUrl?: true
+    isActive?: true
+    isPublished?: true
+    startDate?: true
+    endDate?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type AnnouncementAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Announcement to aggregate.
+     */
+    where?: AnnouncementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Announcements to fetch.
+     */
+    orderBy?: AnnouncementOrderByWithRelationInput | AnnouncementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AnnouncementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Announcements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Announcements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Announcements
+    **/
+    _count?: true | AnnouncementCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AnnouncementMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AnnouncementMaxAggregateInputType
+  }
+
+  export type GetAnnouncementAggregateType<T extends AnnouncementAggregateArgs> = {
+        [P in keyof T & keyof AggregateAnnouncement]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAnnouncement[P]>
+      : GetScalarType<T[P], AggregateAnnouncement[P]>
+  }
+
+
+
+
+  export type AnnouncementGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnnouncementWhereInput
+    orderBy?: AnnouncementOrderByWithAggregationInput | AnnouncementOrderByWithAggregationInput[]
+    by: AnnouncementScalarFieldEnum[] | AnnouncementScalarFieldEnum
+    having?: AnnouncementScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AnnouncementCountAggregateInputType | true
+    _min?: AnnouncementMinAggregateInputType
+    _max?: AnnouncementMaxAggregateInputType
+  }
+
+  export type AnnouncementGroupByOutputType = {
+    id: string
+    title: string
+    content: string
+    imageUrl: string | null
+    linkUrl: string | null
+    isActive: boolean
+    isPublished: boolean
+    startDate: Date | null
+    endDate: Date | null
+    createdAt: Date
+    updatedAt: Date
+    userId: string | null
+    _count: AnnouncementCountAggregateOutputType | null
+    _min: AnnouncementMinAggregateOutputType | null
+    _max: AnnouncementMaxAggregateOutputType | null
+  }
+
+  type GetAnnouncementGroupByPayload<T extends AnnouncementGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AnnouncementGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AnnouncementGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AnnouncementGroupByOutputType[P]>
+            : GetScalarType<T[P], AnnouncementGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AnnouncementSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    content?: boolean
+    imageUrl?: boolean
+    linkUrl?: boolean
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | Announcement$userArgs<ExtArgs>
+  }, ExtArgs["result"]["announcement"]>
+
+  export type AnnouncementSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    content?: boolean
+    imageUrl?: boolean
+    linkUrl?: boolean
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | Announcement$userArgs<ExtArgs>
+  }, ExtArgs["result"]["announcement"]>
+
+  export type AnnouncementSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    content?: boolean
+    imageUrl?: boolean
+    linkUrl?: boolean
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | Announcement$userArgs<ExtArgs>
+  }, ExtArgs["result"]["announcement"]>
+
+  export type AnnouncementSelectScalar = {
+    id?: boolean
+    title?: boolean
+    content?: boolean
+    imageUrl?: boolean
+    linkUrl?: boolean
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+  }
+
+  export type AnnouncementOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "imageUrl" | "linkUrl" | "isActive" | "isPublished" | "startDate" | "endDate" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["announcement"]>
+  export type AnnouncementInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Announcement$userArgs<ExtArgs>
+  }
+  export type AnnouncementIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Announcement$userArgs<ExtArgs>
+  }
+  export type AnnouncementIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Announcement$userArgs<ExtArgs>
+  }
+
+  export type $AnnouncementPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Announcement"
+    objects: {
+      user: Prisma.$UserDataPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      content: string
+      imageUrl: string | null
+      linkUrl: string | null
+      isActive: boolean
+      isPublished: boolean
+      startDate: Date | null
+      endDate: Date | null
+      createdAt: Date
+      updatedAt: Date
+      userId: string | null
+    }, ExtArgs["result"]["announcement"]>
+    composites: {}
+  }
+
+  type AnnouncementGetPayload<S extends boolean | null | undefined | AnnouncementDefaultArgs> = $Result.GetResult<Prisma.$AnnouncementPayload, S>
+
+  type AnnouncementCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AnnouncementFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AnnouncementCountAggregateInputType | true
+    }
+
+  export interface AnnouncementDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Announcement'], meta: { name: 'Announcement' } }
+    /**
+     * Find zero or one Announcement that matches the filter.
+     * @param {AnnouncementFindUniqueArgs} args - Arguments to find a Announcement
+     * @example
+     * // Get one Announcement
+     * const announcement = await prisma.announcement.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AnnouncementFindUniqueArgs>(args: SelectSubset<T, AnnouncementFindUniqueArgs<ExtArgs>>): Prisma__AnnouncementClient<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Announcement that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AnnouncementFindUniqueOrThrowArgs} args - Arguments to find a Announcement
+     * @example
+     * // Get one Announcement
+     * const announcement = await prisma.announcement.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AnnouncementFindUniqueOrThrowArgs>(args: SelectSubset<T, AnnouncementFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AnnouncementClient<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Announcement that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnouncementFindFirstArgs} args - Arguments to find a Announcement
+     * @example
+     * // Get one Announcement
+     * const announcement = await prisma.announcement.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AnnouncementFindFirstArgs>(args?: SelectSubset<T, AnnouncementFindFirstArgs<ExtArgs>>): Prisma__AnnouncementClient<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Announcement that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnouncementFindFirstOrThrowArgs} args - Arguments to find a Announcement
+     * @example
+     * // Get one Announcement
+     * const announcement = await prisma.announcement.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AnnouncementFindFirstOrThrowArgs>(args?: SelectSubset<T, AnnouncementFindFirstOrThrowArgs<ExtArgs>>): Prisma__AnnouncementClient<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Announcements that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnouncementFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Announcements
+     * const announcements = await prisma.announcement.findMany()
+     * 
+     * // Get first 10 Announcements
+     * const announcements = await prisma.announcement.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const announcementWithIdOnly = await prisma.announcement.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AnnouncementFindManyArgs>(args?: SelectSubset<T, AnnouncementFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Announcement.
+     * @param {AnnouncementCreateArgs} args - Arguments to create a Announcement.
+     * @example
+     * // Create one Announcement
+     * const Announcement = await prisma.announcement.create({
+     *   data: {
+     *     // ... data to create a Announcement
+     *   }
+     * })
+     * 
+     */
+    create<T extends AnnouncementCreateArgs>(args: SelectSubset<T, AnnouncementCreateArgs<ExtArgs>>): Prisma__AnnouncementClient<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Announcements.
+     * @param {AnnouncementCreateManyArgs} args - Arguments to create many Announcements.
+     * @example
+     * // Create many Announcements
+     * const announcement = await prisma.announcement.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AnnouncementCreateManyArgs>(args?: SelectSubset<T, AnnouncementCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Announcements and returns the data saved in the database.
+     * @param {AnnouncementCreateManyAndReturnArgs} args - Arguments to create many Announcements.
+     * @example
+     * // Create many Announcements
+     * const announcement = await prisma.announcement.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Announcements and only return the `id`
+     * const announcementWithIdOnly = await prisma.announcement.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AnnouncementCreateManyAndReturnArgs>(args?: SelectSubset<T, AnnouncementCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Announcement.
+     * @param {AnnouncementDeleteArgs} args - Arguments to delete one Announcement.
+     * @example
+     * // Delete one Announcement
+     * const Announcement = await prisma.announcement.delete({
+     *   where: {
+     *     // ... filter to delete one Announcement
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AnnouncementDeleteArgs>(args: SelectSubset<T, AnnouncementDeleteArgs<ExtArgs>>): Prisma__AnnouncementClient<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Announcement.
+     * @param {AnnouncementUpdateArgs} args - Arguments to update one Announcement.
+     * @example
+     * // Update one Announcement
+     * const announcement = await prisma.announcement.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AnnouncementUpdateArgs>(args: SelectSubset<T, AnnouncementUpdateArgs<ExtArgs>>): Prisma__AnnouncementClient<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Announcements.
+     * @param {AnnouncementDeleteManyArgs} args - Arguments to filter Announcements to delete.
+     * @example
+     * // Delete a few Announcements
+     * const { count } = await prisma.announcement.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AnnouncementDeleteManyArgs>(args?: SelectSubset<T, AnnouncementDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Announcements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnouncementUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Announcements
+     * const announcement = await prisma.announcement.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AnnouncementUpdateManyArgs>(args: SelectSubset<T, AnnouncementUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Announcements and returns the data updated in the database.
+     * @param {AnnouncementUpdateManyAndReturnArgs} args - Arguments to update many Announcements.
+     * @example
+     * // Update many Announcements
+     * const announcement = await prisma.announcement.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Announcements and only return the `id`
+     * const announcementWithIdOnly = await prisma.announcement.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AnnouncementUpdateManyAndReturnArgs>(args: SelectSubset<T, AnnouncementUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Announcement.
+     * @param {AnnouncementUpsertArgs} args - Arguments to update or create a Announcement.
+     * @example
+     * // Update or create a Announcement
+     * const announcement = await prisma.announcement.upsert({
+     *   create: {
+     *     // ... data to create a Announcement
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Announcement we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AnnouncementUpsertArgs>(args: SelectSubset<T, AnnouncementUpsertArgs<ExtArgs>>): Prisma__AnnouncementClient<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Announcements.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnouncementCountArgs} args - Arguments to filter Announcements to count.
+     * @example
+     * // Count the number of Announcements
+     * const count = await prisma.announcement.count({
+     *   where: {
+     *     // ... the filter for the Announcements we want to count
+     *   }
+     * })
+    **/
+    count<T extends AnnouncementCountArgs>(
+      args?: Subset<T, AnnouncementCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AnnouncementCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Announcement.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnouncementAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AnnouncementAggregateArgs>(args: Subset<T, AnnouncementAggregateArgs>): Prisma.PrismaPromise<GetAnnouncementAggregateType<T>>
+
+    /**
+     * Group by Announcement.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnouncementGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AnnouncementGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AnnouncementGroupByArgs['orderBy'] }
+        : { orderBy?: AnnouncementGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AnnouncementGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAnnouncementGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Announcement model
+   */
+  readonly fields: AnnouncementFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Announcement.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AnnouncementClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends Announcement$userArgs<ExtArgs> = {}>(args?: Subset<T, Announcement$userArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Announcement model
+   */
+  interface AnnouncementFieldRefs {
+    readonly id: FieldRef<"Announcement", 'String'>
+    readonly title: FieldRef<"Announcement", 'String'>
+    readonly content: FieldRef<"Announcement", 'String'>
+    readonly imageUrl: FieldRef<"Announcement", 'String'>
+    readonly linkUrl: FieldRef<"Announcement", 'String'>
+    readonly isActive: FieldRef<"Announcement", 'Boolean'>
+    readonly isPublished: FieldRef<"Announcement", 'Boolean'>
+    readonly startDate: FieldRef<"Announcement", 'DateTime'>
+    readonly endDate: FieldRef<"Announcement", 'DateTime'>
+    readonly createdAt: FieldRef<"Announcement", 'DateTime'>
+    readonly updatedAt: FieldRef<"Announcement", 'DateTime'>
+    readonly userId: FieldRef<"Announcement", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Announcement findUnique
+   */
+  export type AnnouncementFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Announcement
+     */
+    select?: AnnouncementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Announcement
+     */
+    omit?: AnnouncementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnnouncementInclude<ExtArgs> | null
+    /**
+     * Filter, which Announcement to fetch.
+     */
+    where: AnnouncementWhereUniqueInput
+  }
+
+  /**
+   * Announcement findUniqueOrThrow
+   */
+  export type AnnouncementFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Announcement
+     */
+    select?: AnnouncementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Announcement
+     */
+    omit?: AnnouncementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnnouncementInclude<ExtArgs> | null
+    /**
+     * Filter, which Announcement to fetch.
+     */
+    where: AnnouncementWhereUniqueInput
+  }
+
+  /**
+   * Announcement findFirst
+   */
+  export type AnnouncementFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Announcement
+     */
+    select?: AnnouncementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Announcement
+     */
+    omit?: AnnouncementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnnouncementInclude<ExtArgs> | null
+    /**
+     * Filter, which Announcement to fetch.
+     */
+    where?: AnnouncementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Announcements to fetch.
+     */
+    orderBy?: AnnouncementOrderByWithRelationInput | AnnouncementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Announcements.
+     */
+    cursor?: AnnouncementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Announcements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Announcements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Announcements.
+     */
+    distinct?: AnnouncementScalarFieldEnum | AnnouncementScalarFieldEnum[]
+  }
+
+  /**
+   * Announcement findFirstOrThrow
+   */
+  export type AnnouncementFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Announcement
+     */
+    select?: AnnouncementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Announcement
+     */
+    omit?: AnnouncementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnnouncementInclude<ExtArgs> | null
+    /**
+     * Filter, which Announcement to fetch.
+     */
+    where?: AnnouncementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Announcements to fetch.
+     */
+    orderBy?: AnnouncementOrderByWithRelationInput | AnnouncementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Announcements.
+     */
+    cursor?: AnnouncementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Announcements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Announcements.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Announcements.
+     */
+    distinct?: AnnouncementScalarFieldEnum | AnnouncementScalarFieldEnum[]
+  }
+
+  /**
+   * Announcement findMany
+   */
+  export type AnnouncementFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Announcement
+     */
+    select?: AnnouncementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Announcement
+     */
+    omit?: AnnouncementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnnouncementInclude<ExtArgs> | null
+    /**
+     * Filter, which Announcements to fetch.
+     */
+    where?: AnnouncementWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Announcements to fetch.
+     */
+    orderBy?: AnnouncementOrderByWithRelationInput | AnnouncementOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Announcements.
+     */
+    cursor?: AnnouncementWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Announcements from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Announcements.
+     */
+    skip?: number
+    distinct?: AnnouncementScalarFieldEnum | AnnouncementScalarFieldEnum[]
+  }
+
+  /**
+   * Announcement create
+   */
+  export type AnnouncementCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Announcement
+     */
+    select?: AnnouncementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Announcement
+     */
+    omit?: AnnouncementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnnouncementInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Announcement.
+     */
+    data: XOR<AnnouncementCreateInput, AnnouncementUncheckedCreateInput>
+  }
+
+  /**
+   * Announcement createMany
+   */
+  export type AnnouncementCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Announcements.
+     */
+    data: AnnouncementCreateManyInput | AnnouncementCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Announcement createManyAndReturn
+   */
+  export type AnnouncementCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Announcement
+     */
+    select?: AnnouncementSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Announcement
+     */
+    omit?: AnnouncementOmit<ExtArgs> | null
+    /**
+     * The data used to create many Announcements.
+     */
+    data: AnnouncementCreateManyInput | AnnouncementCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnnouncementIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Announcement update
+   */
+  export type AnnouncementUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Announcement
+     */
+    select?: AnnouncementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Announcement
+     */
+    omit?: AnnouncementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnnouncementInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Announcement.
+     */
+    data: XOR<AnnouncementUpdateInput, AnnouncementUncheckedUpdateInput>
+    /**
+     * Choose, which Announcement to update.
+     */
+    where: AnnouncementWhereUniqueInput
+  }
+
+  /**
+   * Announcement updateMany
+   */
+  export type AnnouncementUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Announcements.
+     */
+    data: XOR<AnnouncementUpdateManyMutationInput, AnnouncementUncheckedUpdateManyInput>
+    /**
+     * Filter which Announcements to update
+     */
+    where?: AnnouncementWhereInput
+    /**
+     * Limit how many Announcements to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Announcement updateManyAndReturn
+   */
+  export type AnnouncementUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Announcement
+     */
+    select?: AnnouncementSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Announcement
+     */
+    omit?: AnnouncementOmit<ExtArgs> | null
+    /**
+     * The data used to update Announcements.
+     */
+    data: XOR<AnnouncementUpdateManyMutationInput, AnnouncementUncheckedUpdateManyInput>
+    /**
+     * Filter which Announcements to update
+     */
+    where?: AnnouncementWhereInput
+    /**
+     * Limit how many Announcements to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnnouncementIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Announcement upsert
+   */
+  export type AnnouncementUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Announcement
+     */
+    select?: AnnouncementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Announcement
+     */
+    omit?: AnnouncementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnnouncementInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Announcement to update in case it exists.
+     */
+    where: AnnouncementWhereUniqueInput
+    /**
+     * In case the Announcement found by the `where` argument doesn't exist, create a new Announcement with this data.
+     */
+    create: XOR<AnnouncementCreateInput, AnnouncementUncheckedCreateInput>
+    /**
+     * In case the Announcement was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AnnouncementUpdateInput, AnnouncementUncheckedUpdateInput>
+  }
+
+  /**
+   * Announcement delete
+   */
+  export type AnnouncementDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Announcement
+     */
+    select?: AnnouncementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Announcement
+     */
+    omit?: AnnouncementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnnouncementInclude<ExtArgs> | null
+    /**
+     * Filter which Announcement to delete.
+     */
+    where: AnnouncementWhereUniqueInput
+  }
+
+  /**
+   * Announcement deleteMany
+   */
+  export type AnnouncementDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Announcements to delete
+     */
+    where?: AnnouncementWhereInput
+    /**
+     * Limit how many Announcements to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Announcement.user
+   */
+  export type Announcement$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserData
+     */
+    select?: UserDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserData
+     */
+    omit?: UserDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserDataInclude<ExtArgs> | null
+    where?: UserDataWhereInput
+  }
+
+  /**
+   * Announcement without action
+   */
+  export type AnnouncementDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Announcement
+     */
+    select?: AnnouncementSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Announcement
+     */
+    omit?: AnnouncementOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AnnouncementInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TahfidzRecord
+   */
+
+  export type AggregateTahfidzRecord = {
+    _count: TahfidzRecordCountAggregateOutputType | null
+    _avg: TahfidzRecordAvgAggregateOutputType | null
+    _sum: TahfidzRecordSumAggregateOutputType | null
+    _min: TahfidzRecordMinAggregateOutputType | null
+    _max: TahfidzRecordMaxAggregateOutputType | null
+  }
+
+  export type TahfidzRecordAvgAggregateOutputType = {
+    startVerse: number | null
+    endVerse: number | null
+  }
+
+  export type TahfidzRecordSumAggregateOutputType = {
+    startVerse: number | null
+    endVerse: number | null
+  }
+
+  export type TahfidzRecordMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    surah: string | null
+    startVerse: number | null
+    endVerse: number | null
+    grade: string | null
+    date: Date | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TahfidzRecordMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    surah: string | null
+    startVerse: number | null
+    endVerse: number | null
+    grade: string | null
+    date: Date | null
+    notes: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TahfidzRecordCountAggregateOutputType = {
+    id: number
+    userId: number
+    surah: number
+    startVerse: number
+    endVerse: number
+    grade: number
+    date: number
+    notes: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TahfidzRecordAvgAggregateInputType = {
+    startVerse?: true
+    endVerse?: true
+  }
+
+  export type TahfidzRecordSumAggregateInputType = {
+    startVerse?: true
+    endVerse?: true
+  }
+
+  export type TahfidzRecordMinAggregateInputType = {
+    id?: true
+    userId?: true
+    surah?: true
+    startVerse?: true
+    endVerse?: true
+    grade?: true
+    date?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TahfidzRecordMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    surah?: true
+    startVerse?: true
+    endVerse?: true
+    grade?: true
+    date?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TahfidzRecordCountAggregateInputType = {
+    id?: true
+    userId?: true
+    surah?: true
+    startVerse?: true
+    endVerse?: true
+    grade?: true
+    date?: true
+    notes?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TahfidzRecordAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TahfidzRecord to aggregate.
+     */
+    where?: TahfidzRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TahfidzRecords to fetch.
+     */
+    orderBy?: TahfidzRecordOrderByWithRelationInput | TahfidzRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TahfidzRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TahfidzRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TahfidzRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TahfidzRecords
+    **/
+    _count?: true | TahfidzRecordCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TahfidzRecordAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TahfidzRecordSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TahfidzRecordMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TahfidzRecordMaxAggregateInputType
+  }
+
+  export type GetTahfidzRecordAggregateType<T extends TahfidzRecordAggregateArgs> = {
+        [P in keyof T & keyof AggregateTahfidzRecord]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTahfidzRecord[P]>
+      : GetScalarType<T[P], AggregateTahfidzRecord[P]>
+  }
+
+
+
+
+  export type TahfidzRecordGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TahfidzRecordWhereInput
+    orderBy?: TahfidzRecordOrderByWithAggregationInput | TahfidzRecordOrderByWithAggregationInput[]
+    by: TahfidzRecordScalarFieldEnum[] | TahfidzRecordScalarFieldEnum
+    having?: TahfidzRecordScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TahfidzRecordCountAggregateInputType | true
+    _avg?: TahfidzRecordAvgAggregateInputType
+    _sum?: TahfidzRecordSumAggregateInputType
+    _min?: TahfidzRecordMinAggregateInputType
+    _max?: TahfidzRecordMaxAggregateInputType
+  }
+
+  export type TahfidzRecordGroupByOutputType = {
+    id: string
+    userId: string | null
+    surah: string | null
+    startVerse: number | null
+    endVerse: number | null
+    grade: string | null
+    date: Date
+    notes: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: TahfidzRecordCountAggregateOutputType | null
+    _avg: TahfidzRecordAvgAggregateOutputType | null
+    _sum: TahfidzRecordSumAggregateOutputType | null
+    _min: TahfidzRecordMinAggregateOutputType | null
+    _max: TahfidzRecordMaxAggregateOutputType | null
+  }
+
+  type GetTahfidzRecordGroupByPayload<T extends TahfidzRecordGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TahfidzRecordGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TahfidzRecordGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TahfidzRecordGroupByOutputType[P]>
+            : GetScalarType<T[P], TahfidzRecordGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TahfidzRecordSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    surah?: boolean
+    startVerse?: boolean
+    endVerse?: boolean
+    grade?: boolean
+    date?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | TahfidzRecord$userArgs<ExtArgs>
+  }, ExtArgs["result"]["tahfidzRecord"]>
+
+  export type TahfidzRecordSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    surah?: boolean
+    startVerse?: boolean
+    endVerse?: boolean
+    grade?: boolean
+    date?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | TahfidzRecord$userArgs<ExtArgs>
+  }, ExtArgs["result"]["tahfidzRecord"]>
+
+  export type TahfidzRecordSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    surah?: boolean
+    startVerse?: boolean
+    endVerse?: boolean
+    grade?: boolean
+    date?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | TahfidzRecord$userArgs<ExtArgs>
+  }, ExtArgs["result"]["tahfidzRecord"]>
+
+  export type TahfidzRecordSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    surah?: boolean
+    startVerse?: boolean
+    endVerse?: boolean
+    grade?: boolean
+    date?: boolean
+    notes?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TahfidzRecordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "surah" | "startVerse" | "endVerse" | "grade" | "date" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["tahfidzRecord"]>
+  export type TahfidzRecordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | TahfidzRecord$userArgs<ExtArgs>
+  }
+  export type TahfidzRecordIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | TahfidzRecord$userArgs<ExtArgs>
+  }
+  export type TahfidzRecordIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | TahfidzRecord$userArgs<ExtArgs>
+  }
+
+  export type $TahfidzRecordPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TahfidzRecord"
+    objects: {
+      user: Prisma.$UserDataPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string | null
+      surah: string | null
+      startVerse: number | null
+      endVerse: number | null
+      grade: string | null
+      date: Date
+      notes: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["tahfidzRecord"]>
+    composites: {}
+  }
+
+  type TahfidzRecordGetPayload<S extends boolean | null | undefined | TahfidzRecordDefaultArgs> = $Result.GetResult<Prisma.$TahfidzRecordPayload, S>
+
+  type TahfidzRecordCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TahfidzRecordFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TahfidzRecordCountAggregateInputType | true
+    }
+
+  export interface TahfidzRecordDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TahfidzRecord'], meta: { name: 'TahfidzRecord' } }
+    /**
+     * Find zero or one TahfidzRecord that matches the filter.
+     * @param {TahfidzRecordFindUniqueArgs} args - Arguments to find a TahfidzRecord
+     * @example
+     * // Get one TahfidzRecord
+     * const tahfidzRecord = await prisma.tahfidzRecord.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TahfidzRecordFindUniqueArgs>(args: SelectSubset<T, TahfidzRecordFindUniqueArgs<ExtArgs>>): Prisma__TahfidzRecordClient<$Result.GetResult<Prisma.$TahfidzRecordPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TahfidzRecord that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TahfidzRecordFindUniqueOrThrowArgs} args - Arguments to find a TahfidzRecord
+     * @example
+     * // Get one TahfidzRecord
+     * const tahfidzRecord = await prisma.tahfidzRecord.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TahfidzRecordFindUniqueOrThrowArgs>(args: SelectSubset<T, TahfidzRecordFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TahfidzRecordClient<$Result.GetResult<Prisma.$TahfidzRecordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TahfidzRecord that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TahfidzRecordFindFirstArgs} args - Arguments to find a TahfidzRecord
+     * @example
+     * // Get one TahfidzRecord
+     * const tahfidzRecord = await prisma.tahfidzRecord.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TahfidzRecordFindFirstArgs>(args?: SelectSubset<T, TahfidzRecordFindFirstArgs<ExtArgs>>): Prisma__TahfidzRecordClient<$Result.GetResult<Prisma.$TahfidzRecordPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TahfidzRecord that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TahfidzRecordFindFirstOrThrowArgs} args - Arguments to find a TahfidzRecord
+     * @example
+     * // Get one TahfidzRecord
+     * const tahfidzRecord = await prisma.tahfidzRecord.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TahfidzRecordFindFirstOrThrowArgs>(args?: SelectSubset<T, TahfidzRecordFindFirstOrThrowArgs<ExtArgs>>): Prisma__TahfidzRecordClient<$Result.GetResult<Prisma.$TahfidzRecordPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TahfidzRecords that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TahfidzRecordFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TahfidzRecords
+     * const tahfidzRecords = await prisma.tahfidzRecord.findMany()
+     * 
+     * // Get first 10 TahfidzRecords
+     * const tahfidzRecords = await prisma.tahfidzRecord.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tahfidzRecordWithIdOnly = await prisma.tahfidzRecord.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TahfidzRecordFindManyArgs>(args?: SelectSubset<T, TahfidzRecordFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TahfidzRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TahfidzRecord.
+     * @param {TahfidzRecordCreateArgs} args - Arguments to create a TahfidzRecord.
+     * @example
+     * // Create one TahfidzRecord
+     * const TahfidzRecord = await prisma.tahfidzRecord.create({
+     *   data: {
+     *     // ... data to create a TahfidzRecord
+     *   }
+     * })
+     * 
+     */
+    create<T extends TahfidzRecordCreateArgs>(args: SelectSubset<T, TahfidzRecordCreateArgs<ExtArgs>>): Prisma__TahfidzRecordClient<$Result.GetResult<Prisma.$TahfidzRecordPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TahfidzRecords.
+     * @param {TahfidzRecordCreateManyArgs} args - Arguments to create many TahfidzRecords.
+     * @example
+     * // Create many TahfidzRecords
+     * const tahfidzRecord = await prisma.tahfidzRecord.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TahfidzRecordCreateManyArgs>(args?: SelectSubset<T, TahfidzRecordCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TahfidzRecords and returns the data saved in the database.
+     * @param {TahfidzRecordCreateManyAndReturnArgs} args - Arguments to create many TahfidzRecords.
+     * @example
+     * // Create many TahfidzRecords
+     * const tahfidzRecord = await prisma.tahfidzRecord.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TahfidzRecords and only return the `id`
+     * const tahfidzRecordWithIdOnly = await prisma.tahfidzRecord.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TahfidzRecordCreateManyAndReturnArgs>(args?: SelectSubset<T, TahfidzRecordCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TahfidzRecordPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TahfidzRecord.
+     * @param {TahfidzRecordDeleteArgs} args - Arguments to delete one TahfidzRecord.
+     * @example
+     * // Delete one TahfidzRecord
+     * const TahfidzRecord = await prisma.tahfidzRecord.delete({
+     *   where: {
+     *     // ... filter to delete one TahfidzRecord
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TahfidzRecordDeleteArgs>(args: SelectSubset<T, TahfidzRecordDeleteArgs<ExtArgs>>): Prisma__TahfidzRecordClient<$Result.GetResult<Prisma.$TahfidzRecordPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TahfidzRecord.
+     * @param {TahfidzRecordUpdateArgs} args - Arguments to update one TahfidzRecord.
+     * @example
+     * // Update one TahfidzRecord
+     * const tahfidzRecord = await prisma.tahfidzRecord.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TahfidzRecordUpdateArgs>(args: SelectSubset<T, TahfidzRecordUpdateArgs<ExtArgs>>): Prisma__TahfidzRecordClient<$Result.GetResult<Prisma.$TahfidzRecordPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TahfidzRecords.
+     * @param {TahfidzRecordDeleteManyArgs} args - Arguments to filter TahfidzRecords to delete.
+     * @example
+     * // Delete a few TahfidzRecords
+     * const { count } = await prisma.tahfidzRecord.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TahfidzRecordDeleteManyArgs>(args?: SelectSubset<T, TahfidzRecordDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TahfidzRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TahfidzRecordUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TahfidzRecords
+     * const tahfidzRecord = await prisma.tahfidzRecord.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TahfidzRecordUpdateManyArgs>(args: SelectSubset<T, TahfidzRecordUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TahfidzRecords and returns the data updated in the database.
+     * @param {TahfidzRecordUpdateManyAndReturnArgs} args - Arguments to update many TahfidzRecords.
+     * @example
+     * // Update many TahfidzRecords
+     * const tahfidzRecord = await prisma.tahfidzRecord.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TahfidzRecords and only return the `id`
+     * const tahfidzRecordWithIdOnly = await prisma.tahfidzRecord.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TahfidzRecordUpdateManyAndReturnArgs>(args: SelectSubset<T, TahfidzRecordUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TahfidzRecordPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TahfidzRecord.
+     * @param {TahfidzRecordUpsertArgs} args - Arguments to update or create a TahfidzRecord.
+     * @example
+     * // Update or create a TahfidzRecord
+     * const tahfidzRecord = await prisma.tahfidzRecord.upsert({
+     *   create: {
+     *     // ... data to create a TahfidzRecord
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TahfidzRecord we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TahfidzRecordUpsertArgs>(args: SelectSubset<T, TahfidzRecordUpsertArgs<ExtArgs>>): Prisma__TahfidzRecordClient<$Result.GetResult<Prisma.$TahfidzRecordPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TahfidzRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TahfidzRecordCountArgs} args - Arguments to filter TahfidzRecords to count.
+     * @example
+     * // Count the number of TahfidzRecords
+     * const count = await prisma.tahfidzRecord.count({
+     *   where: {
+     *     // ... the filter for the TahfidzRecords we want to count
+     *   }
+     * })
+    **/
+    count<T extends TahfidzRecordCountArgs>(
+      args?: Subset<T, TahfidzRecordCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TahfidzRecordCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TahfidzRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TahfidzRecordAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TahfidzRecordAggregateArgs>(args: Subset<T, TahfidzRecordAggregateArgs>): Prisma.PrismaPromise<GetTahfidzRecordAggregateType<T>>
+
+    /**
+     * Group by TahfidzRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TahfidzRecordGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TahfidzRecordGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TahfidzRecordGroupByArgs['orderBy'] }
+        : { orderBy?: TahfidzRecordGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TahfidzRecordGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTahfidzRecordGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TahfidzRecord model
+   */
+  readonly fields: TahfidzRecordFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TahfidzRecord.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TahfidzRecordClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends TahfidzRecord$userArgs<ExtArgs> = {}>(args?: Subset<T, TahfidzRecord$userArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TahfidzRecord model
+   */
+  interface TahfidzRecordFieldRefs {
+    readonly id: FieldRef<"TahfidzRecord", 'String'>
+    readonly userId: FieldRef<"TahfidzRecord", 'String'>
+    readonly surah: FieldRef<"TahfidzRecord", 'String'>
+    readonly startVerse: FieldRef<"TahfidzRecord", 'Int'>
+    readonly endVerse: FieldRef<"TahfidzRecord", 'Int'>
+    readonly grade: FieldRef<"TahfidzRecord", 'String'>
+    readonly date: FieldRef<"TahfidzRecord", 'DateTime'>
+    readonly notes: FieldRef<"TahfidzRecord", 'String'>
+    readonly createdAt: FieldRef<"TahfidzRecord", 'DateTime'>
+    readonly updatedAt: FieldRef<"TahfidzRecord", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TahfidzRecord findUnique
+   */
+  export type TahfidzRecordFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzRecord
+     */
+    select?: TahfidzRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzRecord
+     */
+    omit?: TahfidzRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which TahfidzRecord to fetch.
+     */
+    where: TahfidzRecordWhereUniqueInput
+  }
+
+  /**
+   * TahfidzRecord findUniqueOrThrow
+   */
+  export type TahfidzRecordFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzRecord
+     */
+    select?: TahfidzRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzRecord
+     */
+    omit?: TahfidzRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which TahfidzRecord to fetch.
+     */
+    where: TahfidzRecordWhereUniqueInput
+  }
+
+  /**
+   * TahfidzRecord findFirst
+   */
+  export type TahfidzRecordFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzRecord
+     */
+    select?: TahfidzRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzRecord
+     */
+    omit?: TahfidzRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which TahfidzRecord to fetch.
+     */
+    where?: TahfidzRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TahfidzRecords to fetch.
+     */
+    orderBy?: TahfidzRecordOrderByWithRelationInput | TahfidzRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TahfidzRecords.
+     */
+    cursor?: TahfidzRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TahfidzRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TahfidzRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TahfidzRecords.
+     */
+    distinct?: TahfidzRecordScalarFieldEnum | TahfidzRecordScalarFieldEnum[]
+  }
+
+  /**
+   * TahfidzRecord findFirstOrThrow
+   */
+  export type TahfidzRecordFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzRecord
+     */
+    select?: TahfidzRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzRecord
+     */
+    omit?: TahfidzRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which TahfidzRecord to fetch.
+     */
+    where?: TahfidzRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TahfidzRecords to fetch.
+     */
+    orderBy?: TahfidzRecordOrderByWithRelationInput | TahfidzRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TahfidzRecords.
+     */
+    cursor?: TahfidzRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TahfidzRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TahfidzRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TahfidzRecords.
+     */
+    distinct?: TahfidzRecordScalarFieldEnum | TahfidzRecordScalarFieldEnum[]
+  }
+
+  /**
+   * TahfidzRecord findMany
+   */
+  export type TahfidzRecordFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzRecord
+     */
+    select?: TahfidzRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzRecord
+     */
+    omit?: TahfidzRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which TahfidzRecords to fetch.
+     */
+    where?: TahfidzRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TahfidzRecords to fetch.
+     */
+    orderBy?: TahfidzRecordOrderByWithRelationInput | TahfidzRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TahfidzRecords.
+     */
+    cursor?: TahfidzRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TahfidzRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TahfidzRecords.
+     */
+    skip?: number
+    distinct?: TahfidzRecordScalarFieldEnum | TahfidzRecordScalarFieldEnum[]
+  }
+
+  /**
+   * TahfidzRecord create
+   */
+  export type TahfidzRecordCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzRecord
+     */
+    select?: TahfidzRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzRecord
+     */
+    omit?: TahfidzRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzRecordInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TahfidzRecord.
+     */
+    data: XOR<TahfidzRecordCreateInput, TahfidzRecordUncheckedCreateInput>
+  }
+
+  /**
+   * TahfidzRecord createMany
+   */
+  export type TahfidzRecordCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TahfidzRecords.
+     */
+    data: TahfidzRecordCreateManyInput | TahfidzRecordCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TahfidzRecord createManyAndReturn
+   */
+  export type TahfidzRecordCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzRecord
+     */
+    select?: TahfidzRecordSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzRecord
+     */
+    omit?: TahfidzRecordOmit<ExtArgs> | null
+    /**
+     * The data used to create many TahfidzRecords.
+     */
+    data: TahfidzRecordCreateManyInput | TahfidzRecordCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzRecordIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TahfidzRecord update
+   */
+  export type TahfidzRecordUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzRecord
+     */
+    select?: TahfidzRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzRecord
+     */
+    omit?: TahfidzRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzRecordInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TahfidzRecord.
+     */
+    data: XOR<TahfidzRecordUpdateInput, TahfidzRecordUncheckedUpdateInput>
+    /**
+     * Choose, which TahfidzRecord to update.
+     */
+    where: TahfidzRecordWhereUniqueInput
+  }
+
+  /**
+   * TahfidzRecord updateMany
+   */
+  export type TahfidzRecordUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TahfidzRecords.
+     */
+    data: XOR<TahfidzRecordUpdateManyMutationInput, TahfidzRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which TahfidzRecords to update
+     */
+    where?: TahfidzRecordWhereInput
+    /**
+     * Limit how many TahfidzRecords to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TahfidzRecord updateManyAndReturn
+   */
+  export type TahfidzRecordUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzRecord
+     */
+    select?: TahfidzRecordSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzRecord
+     */
+    omit?: TahfidzRecordOmit<ExtArgs> | null
+    /**
+     * The data used to update TahfidzRecords.
+     */
+    data: XOR<TahfidzRecordUpdateManyMutationInput, TahfidzRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which TahfidzRecords to update
+     */
+    where?: TahfidzRecordWhereInput
+    /**
+     * Limit how many TahfidzRecords to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzRecordIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TahfidzRecord upsert
+   */
+  export type TahfidzRecordUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzRecord
+     */
+    select?: TahfidzRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzRecord
+     */
+    omit?: TahfidzRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzRecordInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TahfidzRecord to update in case it exists.
+     */
+    where: TahfidzRecordWhereUniqueInput
+    /**
+     * In case the TahfidzRecord found by the `where` argument doesn't exist, create a new TahfidzRecord with this data.
+     */
+    create: XOR<TahfidzRecordCreateInput, TahfidzRecordUncheckedCreateInput>
+    /**
+     * In case the TahfidzRecord was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TahfidzRecordUpdateInput, TahfidzRecordUncheckedUpdateInput>
+  }
+
+  /**
+   * TahfidzRecord delete
+   */
+  export type TahfidzRecordDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzRecord
+     */
+    select?: TahfidzRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzRecord
+     */
+    omit?: TahfidzRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzRecordInclude<ExtArgs> | null
+    /**
+     * Filter which TahfidzRecord to delete.
+     */
+    where: TahfidzRecordWhereUniqueInput
+  }
+
+  /**
+   * TahfidzRecord deleteMany
+   */
+  export type TahfidzRecordDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TahfidzRecords to delete
+     */
+    where?: TahfidzRecordWhereInput
+    /**
+     * Limit how many TahfidzRecords to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TahfidzRecord.user
+   */
+  export type TahfidzRecord$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserData
+     */
+    select?: UserDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserData
+     */
+    omit?: UserDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserDataInclude<ExtArgs> | null
+    where?: UserDataWhereInput
+  }
+
+  /**
+   * TahfidzRecord without action
+   */
+  export type TahfidzRecordDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzRecord
+     */
+    select?: TahfidzRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzRecord
+     */
+    omit?: TahfidzRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzRecordInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -22683,7 +29277,8 @@ export namespace Prisma {
     status: 'status',
     studentIds: 'studentIds',
     email: 'email',
-    name: 'name'
+    name: 'name',
+    isActive: 'isActive'
   };
 
   export type UserDataScalarFieldEnum = (typeof UserDataScalarFieldEnum)[keyof typeof UserDataScalarFieldEnum]
@@ -22730,7 +29325,8 @@ export namespace Prisma {
     grade: 'grade',
     majorId: 'majorId',
     academicYearId: 'academicYearId',
-    capacity: 'capacity'
+    capacity: 'capacity',
+    isActive: 'isActive'
   };
 
   export type ClassScalarFieldEnum = (typeof ClassScalarFieldEnum)[keyof typeof ClassScalarFieldEnum]
@@ -22758,7 +29354,8 @@ export namespace Prisma {
     dayOfWeek: 'dayOfWeek',
     startTime: 'startTime',
     endTime: 'endTime',
-    room: 'room'
+    room: 'room',
+    isActive: 'isActive'
   };
 
   export type ScheduleScalarFieldEnum = (typeof ScheduleScalarFieldEnum)[keyof typeof ScheduleScalarFieldEnum]
@@ -22849,12 +29446,109 @@ export namespace Prisma {
   export type CalendarEventScalarFieldEnum = (typeof CalendarEventScalarFieldEnum)[keyof typeof CalendarEventScalarFieldEnum]
 
 
+  export const GradeScalarFieldEnum: {
+    id: 'id',
+    studentId: 'studentId',
+    scheduleId: 'scheduleId',
+    subjectId: 'subjectId',
+    gradeType: 'gradeType',
+    score: 'score',
+    maxScore: 'maxScore',
+    weight: 'weight',
+    description: 'description',
+    date: 'date',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    createdBy: 'createdBy'
+  };
+
+  export type GradeScalarFieldEnum = (typeof GradeScalarFieldEnum)[keyof typeof GradeScalarFieldEnum]
+
+
+  export const NotificationScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    title: 'title',
+    message: 'message',
+    type: 'type',
+    category: 'category',
+    isRead: 'isRead',
+    link: 'link',
+    data: 'data',
+    createdAt: 'createdAt',
+    readAt: 'readAt'
+  };
+
+  export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+  export const DashboardContentScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    description: 'description',
+    imageUrl: 'imageUrl',
+    linkUrl: 'linkUrl',
+    order: 'order',
+    isActive: 'isActive',
+    isPublished: 'isPublished',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    userId: 'userId'
+  };
+
+  export type DashboardContentScalarFieldEnum = (typeof DashboardContentScalarFieldEnum)[keyof typeof DashboardContentScalarFieldEnum]
+
+
+  export const AnnouncementScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    content: 'content',
+    imageUrl: 'imageUrl',
+    linkUrl: 'linkUrl',
+    isActive: 'isActive',
+    isPublished: 'isPublished',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    userId: 'userId'
+  };
+
+  export type AnnouncementScalarFieldEnum = (typeof AnnouncementScalarFieldEnum)[keyof typeof AnnouncementScalarFieldEnum]
+
+
+  export const TahfidzRecordScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    surah: 'surah',
+    startVerse: 'startVerse',
+    endVerse: 'endVerse',
+    grade: 'grade',
+    date: 'date',
+    notes: 'notes',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TahfidzRecordScalarFieldEnum = (typeof TahfidzRecordScalarFieldEnum)[keyof typeof TahfidzRecordScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const QueryMode: {
@@ -22871,6 +29565,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -22938,6 +29641,20 @@ export namespace Prisma {
    * Reference to a field of type 'Decimal[]'
    */
   export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -23305,7 +30022,10 @@ export namespace Prisma {
     studentIds?: StringNullableListFilter<"UserData">
     email?: StringNullableFilter<"UserData"> | string | null
     name?: StringFilter<"UserData"> | string
+    isActive?: BoolFilter<"UserData"> | boolean
     attendances?: AttendanceListRelationFilter
+    grades?: GradeListRelationFilter
+    notifications?: NotificationListRelationFilter
     payments?: PaymentListRelationFilter
     schedules?: ScheduleListRelationFilter
     academicYear?: XOR<AcademicYearNullableScalarRelationFilter, AcademicYearWhereInput> | null
@@ -23314,8 +30034,9 @@ export namespace Prisma {
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     violations?: ViolationListRelationFilter
-    user_data_A?: UserDataListRelationFilter
-    user_data_B?: UserDataListRelationFilter
+    tahfidzRecords?: TahfidzRecordListRelationFilter
+    DashboardContents?: DashboardContentListRelationFilter
+    Announcements?: AnnouncementListRelationFilter
   }
 
   export type UserDataOrderByWithRelationInput = {
@@ -23344,7 +30065,10 @@ export namespace Prisma {
     studentIds?: SortOrder
     email?: SortOrderInput | SortOrder
     name?: SortOrder
+    isActive?: SortOrder
     attendances?: AttendanceOrderByRelationAggregateInput
+    grades?: GradeOrderByRelationAggregateInput
+    notifications?: NotificationOrderByRelationAggregateInput
     payments?: PaymentOrderByRelationAggregateInput
     schedules?: ScheduleOrderByRelationAggregateInput
     academicYear?: AcademicYearOrderByWithRelationInput
@@ -23353,8 +30077,9 @@ export namespace Prisma {
     role?: RoleOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
     violations?: ViolationOrderByRelationAggregateInput
-    user_data_A?: UserDataOrderByRelationAggregateInput
-    user_data_B?: UserDataOrderByRelationAggregateInput
+    tahfidzRecords?: TahfidzRecordOrderByRelationAggregateInput
+    DashboardContents?: DashboardContentOrderByRelationAggregateInput
+    Announcements?: AnnouncementOrderByRelationAggregateInput
   }
 
   export type UserDataWhereUniqueInput = Prisma.AtLeast<{
@@ -23386,7 +30111,10 @@ export namespace Prisma {
     studentIds?: StringNullableListFilter<"UserData">
     email?: StringNullableFilter<"UserData"> | string | null
     name?: StringFilter<"UserData"> | string
+    isActive?: BoolFilter<"UserData"> | boolean
     attendances?: AttendanceListRelationFilter
+    grades?: GradeListRelationFilter
+    notifications?: NotificationListRelationFilter
     payments?: PaymentListRelationFilter
     schedules?: ScheduleListRelationFilter
     academicYear?: XOR<AcademicYearNullableScalarRelationFilter, AcademicYearWhereInput> | null
@@ -23395,8 +30123,9 @@ export namespace Prisma {
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     violations?: ViolationListRelationFilter
-    user_data_A?: UserDataListRelationFilter
-    user_data_B?: UserDataListRelationFilter
+    tahfidzRecords?: TahfidzRecordListRelationFilter
+    DashboardContents?: DashboardContentListRelationFilter
+    Announcements?: AnnouncementListRelationFilter
   }, "id" | "id" | "userId">
 
   export type UserDataOrderByWithAggregationInput = {
@@ -23425,6 +30154,7 @@ export namespace Prisma {
     studentIds?: SortOrder
     email?: SortOrderInput | SortOrder
     name?: SortOrder
+    isActive?: SortOrder
     _count?: UserDataCountOrderByAggregateInput
     _max?: UserDataMaxOrderByAggregateInput
     _min?: UserDataMinOrderByAggregateInput
@@ -23459,6 +30189,7 @@ export namespace Prisma {
     studentIds?: StringNullableListFilter<"UserData">
     email?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     name?: StringWithAggregatesFilter<"UserData"> | string
+    isActive?: BoolWithAggregatesFilter<"UserData"> | boolean
   }
 
   export type RoleWhereInput = {
@@ -23664,6 +30395,7 @@ export namespace Prisma {
     majorId?: StringFilter<"Class"> | string
     academicYearId?: StringFilter<"Class"> | string
     capacity?: IntFilter<"Class"> | number
+    isActive?: BoolFilter<"Class"> | boolean
     academicYear?: XOR<AcademicYearScalarRelationFilter, AcademicYearWhereInput>
     major?: XOR<MajorScalarRelationFilter, MajorWhereInput>
     schedules?: ScheduleListRelationFilter
@@ -23678,6 +30410,7 @@ export namespace Prisma {
     majorId?: SortOrder
     academicYearId?: SortOrder
     capacity?: SortOrder
+    isActive?: SortOrder
     academicYear?: AcademicYearOrderByWithRelationInput
     major?: MajorOrderByWithRelationInput
     schedules?: ScheduleOrderByRelationAggregateInput
@@ -23696,6 +30429,7 @@ export namespace Prisma {
     majorId?: StringFilter<"Class"> | string
     academicYearId?: StringFilter<"Class"> | string
     capacity?: IntFilter<"Class"> | number
+    isActive?: BoolFilter<"Class"> | boolean
     academicYear?: XOR<AcademicYearScalarRelationFilter, AcademicYearWhereInput>
     major?: XOR<MajorScalarRelationFilter, MajorWhereInput>
     schedules?: ScheduleListRelationFilter
@@ -23710,6 +30444,7 @@ export namespace Prisma {
     majorId?: SortOrder
     academicYearId?: SortOrder
     capacity?: SortOrder
+    isActive?: SortOrder
     _count?: ClassCountOrderByAggregateInput
     _avg?: ClassAvgOrderByAggregateInput
     _max?: ClassMaxOrderByAggregateInput
@@ -23727,6 +30462,7 @@ export namespace Prisma {
     majorId?: StringWithAggregatesFilter<"Class"> | string
     academicYearId?: StringWithAggregatesFilter<"Class"> | string
     capacity?: IntWithAggregatesFilter<"Class"> | number
+    isActive?: BoolWithAggregatesFilter<"Class"> | boolean
   }
 
   export type SubjectWhereInput = {
@@ -23740,6 +30476,7 @@ export namespace Prisma {
     majorId?: StringNullableFilter<"Subject"> | string | null
     credits?: IntFilter<"Subject"> | number
     isActive?: BoolFilter<"Subject"> | boolean
+    grades?: GradeListRelationFilter
     schedules?: ScheduleListRelationFilter
     major?: XOR<MajorNullableScalarRelationFilter, MajorWhereInput> | null
   }
@@ -23752,6 +30489,7 @@ export namespace Prisma {
     majorId?: SortOrderInput | SortOrder
     credits?: SortOrder
     isActive?: SortOrder
+    grades?: GradeOrderByRelationAggregateInput
     schedules?: ScheduleOrderByRelationAggregateInput
     major?: MajorOrderByWithRelationInput
   }
@@ -23767,6 +30505,7 @@ export namespace Prisma {
     majorId?: StringNullableFilter<"Subject"> | string | null
     credits?: IntFilter<"Subject"> | number
     isActive?: BoolFilter<"Subject"> | boolean
+    grades?: GradeListRelationFilter
     schedules?: ScheduleListRelationFilter
     major?: XOR<MajorNullableScalarRelationFilter, MajorWhereInput> | null
   }, "id" | "code">
@@ -23812,7 +30551,9 @@ export namespace Prisma {
     startTime?: StringFilter<"Schedule"> | string
     endTime?: StringFilter<"Schedule"> | string
     room?: StringNullableFilter<"Schedule"> | string | null
+    isActive?: BoolFilter<"Schedule"> | boolean
     attendances?: AttendanceListRelationFilter
+    grades?: GradeListRelationFilter
     academicYear?: XOR<AcademicYearScalarRelationFilter, AcademicYearWhereInput>
     class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
     subject?: XOR<SubjectScalarRelationFilter, SubjectWhereInput>
@@ -23829,7 +30570,9 @@ export namespace Prisma {
     startTime?: SortOrder
     endTime?: SortOrder
     room?: SortOrderInput | SortOrder
+    isActive?: SortOrder
     attendances?: AttendanceOrderByRelationAggregateInput
+    grades?: GradeOrderByRelationAggregateInput
     academicYear?: AcademicYearOrderByWithRelationInput
     class?: ClassOrderByWithRelationInput
     subject?: SubjectOrderByWithRelationInput
@@ -23850,7 +30593,9 @@ export namespace Prisma {
     startTime?: StringFilter<"Schedule"> | string
     endTime?: StringFilter<"Schedule"> | string
     room?: StringNullableFilter<"Schedule"> | string | null
+    isActive?: BoolFilter<"Schedule"> | boolean
     attendances?: AttendanceListRelationFilter
+    grades?: GradeListRelationFilter
     academicYear?: XOR<AcademicYearScalarRelationFilter, AcademicYearWhereInput>
     class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
     subject?: XOR<SubjectScalarRelationFilter, SubjectWhereInput>
@@ -23867,6 +30612,7 @@ export namespace Prisma {
     startTime?: SortOrder
     endTime?: SortOrder
     room?: SortOrderInput | SortOrder
+    isActive?: SortOrder
     _count?: ScheduleCountOrderByAggregateInput
     _avg?: ScheduleAvgOrderByAggregateInput
     _max?: ScheduleMaxOrderByAggregateInput
@@ -23887,6 +30633,7 @@ export namespace Prisma {
     startTime?: StringWithAggregatesFilter<"Schedule"> | string
     endTime?: StringWithAggregatesFilter<"Schedule"> | string
     room?: StringNullableWithAggregatesFilter<"Schedule"> | string | null
+    isActive?: BoolWithAggregatesFilter<"Schedule"> | boolean
   }
 
   export type AttendanceWhereInput = {
@@ -24336,6 +31083,463 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"CalendarEvent"> | Date | string
   }
 
+  export type GradeWhereInput = {
+    AND?: GradeWhereInput | GradeWhereInput[]
+    OR?: GradeWhereInput[]
+    NOT?: GradeWhereInput | GradeWhereInput[]
+    id?: StringFilter<"Grade"> | string
+    studentId?: StringFilter<"Grade"> | string
+    scheduleId?: StringFilter<"Grade"> | string
+    subjectId?: StringFilter<"Grade"> | string
+    gradeType?: StringFilter<"Grade"> | string
+    score?: DecimalFilter<"Grade"> | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFilter<"Grade"> | Decimal | DecimalJsLike | number | string
+    weight?: IntFilter<"Grade"> | number
+    description?: StringNullableFilter<"Grade"> | string | null
+    date?: DateTimeFilter<"Grade"> | Date | string
+    createdAt?: DateTimeFilter<"Grade"> | Date | string
+    updatedAt?: DateTimeFilter<"Grade"> | Date | string
+    createdBy?: StringFilter<"Grade"> | string
+    schedule?: XOR<ScheduleScalarRelationFilter, ScheduleWhereInput>
+    student?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
+    subject?: XOR<SubjectScalarRelationFilter, SubjectWhereInput>
+  }
+
+  export type GradeOrderByWithRelationInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    scheduleId?: SortOrder
+    subjectId?: SortOrder
+    gradeType?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    weight?: SortOrder
+    description?: SortOrderInput | SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdBy?: SortOrder
+    schedule?: ScheduleOrderByWithRelationInput
+    student?: UserDataOrderByWithRelationInput
+    subject?: SubjectOrderByWithRelationInput
+  }
+
+  export type GradeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: GradeWhereInput | GradeWhereInput[]
+    OR?: GradeWhereInput[]
+    NOT?: GradeWhereInput | GradeWhereInput[]
+    studentId?: StringFilter<"Grade"> | string
+    scheduleId?: StringFilter<"Grade"> | string
+    subjectId?: StringFilter<"Grade"> | string
+    gradeType?: StringFilter<"Grade"> | string
+    score?: DecimalFilter<"Grade"> | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFilter<"Grade"> | Decimal | DecimalJsLike | number | string
+    weight?: IntFilter<"Grade"> | number
+    description?: StringNullableFilter<"Grade"> | string | null
+    date?: DateTimeFilter<"Grade"> | Date | string
+    createdAt?: DateTimeFilter<"Grade"> | Date | string
+    updatedAt?: DateTimeFilter<"Grade"> | Date | string
+    createdBy?: StringFilter<"Grade"> | string
+    schedule?: XOR<ScheduleScalarRelationFilter, ScheduleWhereInput>
+    student?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
+    subject?: XOR<SubjectScalarRelationFilter, SubjectWhereInput>
+  }, "id">
+
+  export type GradeOrderByWithAggregationInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    scheduleId?: SortOrder
+    subjectId?: SortOrder
+    gradeType?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    weight?: SortOrder
+    description?: SortOrderInput | SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdBy?: SortOrder
+    _count?: GradeCountOrderByAggregateInput
+    _avg?: GradeAvgOrderByAggregateInput
+    _max?: GradeMaxOrderByAggregateInput
+    _min?: GradeMinOrderByAggregateInput
+    _sum?: GradeSumOrderByAggregateInput
+  }
+
+  export type GradeScalarWhereWithAggregatesInput = {
+    AND?: GradeScalarWhereWithAggregatesInput | GradeScalarWhereWithAggregatesInput[]
+    OR?: GradeScalarWhereWithAggregatesInput[]
+    NOT?: GradeScalarWhereWithAggregatesInput | GradeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Grade"> | string
+    studentId?: StringWithAggregatesFilter<"Grade"> | string
+    scheduleId?: StringWithAggregatesFilter<"Grade"> | string
+    subjectId?: StringWithAggregatesFilter<"Grade"> | string
+    gradeType?: StringWithAggregatesFilter<"Grade"> | string
+    score?: DecimalWithAggregatesFilter<"Grade"> | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalWithAggregatesFilter<"Grade"> | Decimal | DecimalJsLike | number | string
+    weight?: IntWithAggregatesFilter<"Grade"> | number
+    description?: StringNullableWithAggregatesFilter<"Grade"> | string | null
+    date?: DateTimeWithAggregatesFilter<"Grade"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"Grade"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Grade"> | Date | string
+    createdBy?: StringWithAggregatesFilter<"Grade"> | string
+  }
+
+  export type NotificationWhereInput = {
+    AND?: NotificationWhereInput | NotificationWhereInput[]
+    OR?: NotificationWhereInput[]
+    NOT?: NotificationWhereInput | NotificationWhereInput[]
+    id?: StringFilter<"Notification"> | string
+    userId?: StringFilter<"Notification"> | string
+    title?: StringFilter<"Notification"> | string
+    message?: StringFilter<"Notification"> | string
+    type?: StringFilter<"Notification"> | string
+    category?: StringNullableFilter<"Notification"> | string | null
+    isRead?: BoolFilter<"Notification"> | boolean
+    link?: StringNullableFilter<"Notification"> | string | null
+    data?: JsonNullableFilter<"Notification">
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+    readAt?: DateTimeNullableFilter<"Notification"> | Date | string | null
+    user?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
+  }
+
+  export type NotificationOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    category?: SortOrderInput | SortOrder
+    isRead?: SortOrder
+    link?: SortOrderInput | SortOrder
+    data?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    readAt?: SortOrderInput | SortOrder
+    user?: UserDataOrderByWithRelationInput
+  }
+
+  export type NotificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: NotificationWhereInput | NotificationWhereInput[]
+    OR?: NotificationWhereInput[]
+    NOT?: NotificationWhereInput | NotificationWhereInput[]
+    userId?: StringFilter<"Notification"> | string
+    title?: StringFilter<"Notification"> | string
+    message?: StringFilter<"Notification"> | string
+    type?: StringFilter<"Notification"> | string
+    category?: StringNullableFilter<"Notification"> | string | null
+    isRead?: BoolFilter<"Notification"> | boolean
+    link?: StringNullableFilter<"Notification"> | string | null
+    data?: JsonNullableFilter<"Notification">
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+    readAt?: DateTimeNullableFilter<"Notification"> | Date | string | null
+    user?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
+  }, "id">
+
+  export type NotificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    category?: SortOrderInput | SortOrder
+    isRead?: SortOrder
+    link?: SortOrderInput | SortOrder
+    data?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    readAt?: SortOrderInput | SortOrder
+    _count?: NotificationCountOrderByAggregateInput
+    _max?: NotificationMaxOrderByAggregateInput
+    _min?: NotificationMinOrderByAggregateInput
+  }
+
+  export type NotificationScalarWhereWithAggregatesInput = {
+    AND?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
+    OR?: NotificationScalarWhereWithAggregatesInput[]
+    NOT?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Notification"> | string
+    userId?: StringWithAggregatesFilter<"Notification"> | string
+    title?: StringWithAggregatesFilter<"Notification"> | string
+    message?: StringWithAggregatesFilter<"Notification"> | string
+    type?: StringWithAggregatesFilter<"Notification"> | string
+    category?: StringNullableWithAggregatesFilter<"Notification"> | string | null
+    isRead?: BoolWithAggregatesFilter<"Notification"> | boolean
+    link?: StringNullableWithAggregatesFilter<"Notification"> | string | null
+    data?: JsonNullableWithAggregatesFilter<"Notification">
+    createdAt?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
+    readAt?: DateTimeNullableWithAggregatesFilter<"Notification"> | Date | string | null
+  }
+
+  export type DashboardContentWhereInput = {
+    AND?: DashboardContentWhereInput | DashboardContentWhereInput[]
+    OR?: DashboardContentWhereInput[]
+    NOT?: DashboardContentWhereInput | DashboardContentWhereInput[]
+    id?: StringFilter<"DashboardContent"> | string
+    title?: StringFilter<"DashboardContent"> | string
+    description?: StringNullableFilter<"DashboardContent"> | string | null
+    imageUrl?: StringFilter<"DashboardContent"> | string
+    linkUrl?: StringNullableFilter<"DashboardContent"> | string | null
+    order?: IntFilter<"DashboardContent"> | number
+    isActive?: BoolFilter<"DashboardContent"> | boolean
+    isPublished?: BoolFilter<"DashboardContent"> | boolean
+    startDate?: DateTimeNullableFilter<"DashboardContent"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"DashboardContent"> | Date | string | null
+    createdAt?: DateTimeFilter<"DashboardContent"> | Date | string
+    updatedAt?: DateTimeFilter<"DashboardContent"> | Date | string
+    userId?: StringNullableFilter<"DashboardContent"> | string | null
+    user?: XOR<UserDataNullableScalarRelationFilter, UserDataWhereInput> | null
+  }
+
+  export type DashboardContentOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    imageUrl?: SortOrder
+    linkUrl?: SortOrderInput | SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    isPublished?: SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    user?: UserDataOrderByWithRelationInput
+  }
+
+  export type DashboardContentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: DashboardContentWhereInput | DashboardContentWhereInput[]
+    OR?: DashboardContentWhereInput[]
+    NOT?: DashboardContentWhereInput | DashboardContentWhereInput[]
+    title?: StringFilter<"DashboardContent"> | string
+    description?: StringNullableFilter<"DashboardContent"> | string | null
+    imageUrl?: StringFilter<"DashboardContent"> | string
+    linkUrl?: StringNullableFilter<"DashboardContent"> | string | null
+    order?: IntFilter<"DashboardContent"> | number
+    isActive?: BoolFilter<"DashboardContent"> | boolean
+    isPublished?: BoolFilter<"DashboardContent"> | boolean
+    startDate?: DateTimeNullableFilter<"DashboardContent"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"DashboardContent"> | Date | string | null
+    createdAt?: DateTimeFilter<"DashboardContent"> | Date | string
+    updatedAt?: DateTimeFilter<"DashboardContent"> | Date | string
+    userId?: StringNullableFilter<"DashboardContent"> | string | null
+    user?: XOR<UserDataNullableScalarRelationFilter, UserDataWhereInput> | null
+  }, "id">
+
+  export type DashboardContentOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrderInput | SortOrder
+    imageUrl?: SortOrder
+    linkUrl?: SortOrderInput | SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    isPublished?: SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    _count?: DashboardContentCountOrderByAggregateInput
+    _avg?: DashboardContentAvgOrderByAggregateInput
+    _max?: DashboardContentMaxOrderByAggregateInput
+    _min?: DashboardContentMinOrderByAggregateInput
+    _sum?: DashboardContentSumOrderByAggregateInput
+  }
+
+  export type DashboardContentScalarWhereWithAggregatesInput = {
+    AND?: DashboardContentScalarWhereWithAggregatesInput | DashboardContentScalarWhereWithAggregatesInput[]
+    OR?: DashboardContentScalarWhereWithAggregatesInput[]
+    NOT?: DashboardContentScalarWhereWithAggregatesInput | DashboardContentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"DashboardContent"> | string
+    title?: StringWithAggregatesFilter<"DashboardContent"> | string
+    description?: StringNullableWithAggregatesFilter<"DashboardContent"> | string | null
+    imageUrl?: StringWithAggregatesFilter<"DashboardContent"> | string
+    linkUrl?: StringNullableWithAggregatesFilter<"DashboardContent"> | string | null
+    order?: IntWithAggregatesFilter<"DashboardContent"> | number
+    isActive?: BoolWithAggregatesFilter<"DashboardContent"> | boolean
+    isPublished?: BoolWithAggregatesFilter<"DashboardContent"> | boolean
+    startDate?: DateTimeNullableWithAggregatesFilter<"DashboardContent"> | Date | string | null
+    endDate?: DateTimeNullableWithAggregatesFilter<"DashboardContent"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"DashboardContent"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"DashboardContent"> | Date | string
+    userId?: StringNullableWithAggregatesFilter<"DashboardContent"> | string | null
+  }
+
+  export type AnnouncementWhereInput = {
+    AND?: AnnouncementWhereInput | AnnouncementWhereInput[]
+    OR?: AnnouncementWhereInput[]
+    NOT?: AnnouncementWhereInput | AnnouncementWhereInput[]
+    id?: StringFilter<"Announcement"> | string
+    title?: StringFilter<"Announcement"> | string
+    content?: StringFilter<"Announcement"> | string
+    imageUrl?: StringNullableFilter<"Announcement"> | string | null
+    linkUrl?: StringNullableFilter<"Announcement"> | string | null
+    isActive?: BoolFilter<"Announcement"> | boolean
+    isPublished?: BoolFilter<"Announcement"> | boolean
+    startDate?: DateTimeNullableFilter<"Announcement"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Announcement"> | Date | string | null
+    createdAt?: DateTimeFilter<"Announcement"> | Date | string
+    updatedAt?: DateTimeFilter<"Announcement"> | Date | string
+    userId?: StringNullableFilter<"Announcement"> | string | null
+    user?: XOR<UserDataNullableScalarRelationFilter, UserDataWhereInput> | null
+  }
+
+  export type AnnouncementOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    linkUrl?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    isPublished?: SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    user?: UserDataOrderByWithRelationInput
+  }
+
+  export type AnnouncementWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AnnouncementWhereInput | AnnouncementWhereInput[]
+    OR?: AnnouncementWhereInput[]
+    NOT?: AnnouncementWhereInput | AnnouncementWhereInput[]
+    title?: StringFilter<"Announcement"> | string
+    content?: StringFilter<"Announcement"> | string
+    imageUrl?: StringNullableFilter<"Announcement"> | string | null
+    linkUrl?: StringNullableFilter<"Announcement"> | string | null
+    isActive?: BoolFilter<"Announcement"> | boolean
+    isPublished?: BoolFilter<"Announcement"> | boolean
+    startDate?: DateTimeNullableFilter<"Announcement"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Announcement"> | Date | string | null
+    createdAt?: DateTimeFilter<"Announcement"> | Date | string
+    updatedAt?: DateTimeFilter<"Announcement"> | Date | string
+    userId?: StringNullableFilter<"Announcement"> | string | null
+    user?: XOR<UserDataNullableScalarRelationFilter, UserDataWhereInput> | null
+  }, "id">
+
+  export type AnnouncementOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    linkUrl?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    isPublished?: SortOrder
+    startDate?: SortOrderInput | SortOrder
+    endDate?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    _count?: AnnouncementCountOrderByAggregateInput
+    _max?: AnnouncementMaxOrderByAggregateInput
+    _min?: AnnouncementMinOrderByAggregateInput
+  }
+
+  export type AnnouncementScalarWhereWithAggregatesInput = {
+    AND?: AnnouncementScalarWhereWithAggregatesInput | AnnouncementScalarWhereWithAggregatesInput[]
+    OR?: AnnouncementScalarWhereWithAggregatesInput[]
+    NOT?: AnnouncementScalarWhereWithAggregatesInput | AnnouncementScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Announcement"> | string
+    title?: StringWithAggregatesFilter<"Announcement"> | string
+    content?: StringWithAggregatesFilter<"Announcement"> | string
+    imageUrl?: StringNullableWithAggregatesFilter<"Announcement"> | string | null
+    linkUrl?: StringNullableWithAggregatesFilter<"Announcement"> | string | null
+    isActive?: BoolWithAggregatesFilter<"Announcement"> | boolean
+    isPublished?: BoolWithAggregatesFilter<"Announcement"> | boolean
+    startDate?: DateTimeNullableWithAggregatesFilter<"Announcement"> | Date | string | null
+    endDate?: DateTimeNullableWithAggregatesFilter<"Announcement"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Announcement"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Announcement"> | Date | string
+    userId?: StringNullableWithAggregatesFilter<"Announcement"> | string | null
+  }
+
+  export type TahfidzRecordWhereInput = {
+    AND?: TahfidzRecordWhereInput | TahfidzRecordWhereInput[]
+    OR?: TahfidzRecordWhereInput[]
+    NOT?: TahfidzRecordWhereInput | TahfidzRecordWhereInput[]
+    id?: StringFilter<"TahfidzRecord"> | string
+    userId?: StringNullableFilter<"TahfidzRecord"> | string | null
+    surah?: StringNullableFilter<"TahfidzRecord"> | string | null
+    startVerse?: IntNullableFilter<"TahfidzRecord"> | number | null
+    endVerse?: IntNullableFilter<"TahfidzRecord"> | number | null
+    grade?: StringNullableFilter<"TahfidzRecord"> | string | null
+    date?: DateTimeFilter<"TahfidzRecord"> | Date | string
+    notes?: StringNullableFilter<"TahfidzRecord"> | string | null
+    createdAt?: DateTimeFilter<"TahfidzRecord"> | Date | string
+    updatedAt?: DateTimeFilter<"TahfidzRecord"> | Date | string
+    user?: XOR<UserDataNullableScalarRelationFilter, UserDataWhereInput> | null
+  }
+
+  export type TahfidzRecordOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    surah?: SortOrderInput | SortOrder
+    startVerse?: SortOrderInput | SortOrder
+    endVerse?: SortOrderInput | SortOrder
+    grade?: SortOrderInput | SortOrder
+    date?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserDataOrderByWithRelationInput
+  }
+
+  export type TahfidzRecordWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TahfidzRecordWhereInput | TahfidzRecordWhereInput[]
+    OR?: TahfidzRecordWhereInput[]
+    NOT?: TahfidzRecordWhereInput | TahfidzRecordWhereInput[]
+    userId?: StringNullableFilter<"TahfidzRecord"> | string | null
+    surah?: StringNullableFilter<"TahfidzRecord"> | string | null
+    startVerse?: IntNullableFilter<"TahfidzRecord"> | number | null
+    endVerse?: IntNullableFilter<"TahfidzRecord"> | number | null
+    grade?: StringNullableFilter<"TahfidzRecord"> | string | null
+    date?: DateTimeFilter<"TahfidzRecord"> | Date | string
+    notes?: StringNullableFilter<"TahfidzRecord"> | string | null
+    createdAt?: DateTimeFilter<"TahfidzRecord"> | Date | string
+    updatedAt?: DateTimeFilter<"TahfidzRecord"> | Date | string
+    user?: XOR<UserDataNullableScalarRelationFilter, UserDataWhereInput> | null
+  }, "id">
+
+  export type TahfidzRecordOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    surah?: SortOrderInput | SortOrder
+    startVerse?: SortOrderInput | SortOrder
+    endVerse?: SortOrderInput | SortOrder
+    grade?: SortOrderInput | SortOrder
+    date?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TahfidzRecordCountOrderByAggregateInput
+    _avg?: TahfidzRecordAvgOrderByAggregateInput
+    _max?: TahfidzRecordMaxOrderByAggregateInput
+    _min?: TahfidzRecordMinOrderByAggregateInput
+    _sum?: TahfidzRecordSumOrderByAggregateInput
+  }
+
+  export type TahfidzRecordScalarWhereWithAggregatesInput = {
+    AND?: TahfidzRecordScalarWhereWithAggregatesInput | TahfidzRecordScalarWhereWithAggregatesInput[]
+    OR?: TahfidzRecordScalarWhereWithAggregatesInput[]
+    NOT?: TahfidzRecordScalarWhereWithAggregatesInput | TahfidzRecordScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TahfidzRecord"> | string
+    userId?: StringNullableWithAggregatesFilter<"TahfidzRecord"> | string | null
+    surah?: StringNullableWithAggregatesFilter<"TahfidzRecord"> | string | null
+    startVerse?: IntNullableWithAggregatesFilter<"TahfidzRecord"> | number | null
+    endVerse?: IntNullableWithAggregatesFilter<"TahfidzRecord"> | number | null
+    grade?: StringNullableWithAggregatesFilter<"TahfidzRecord"> | string | null
+    date?: DateTimeWithAggregatesFilter<"TahfidzRecord"> | Date | string
+    notes?: StringNullableWithAggregatesFilter<"TahfidzRecord"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"TahfidzRecord"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TahfidzRecord"> | Date | string
+  }
+
   export type UserCreateInput = {
     id: string
     name: string
@@ -24724,7 +31928,10 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
@@ -24733,8 +31940,9 @@ export namespace Prisma {
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
   }
 
   export type UserDataUncheckedCreateInput = {
@@ -24763,12 +31971,16 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataUncheckedCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataUncheckedCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserDataUpdateInput = {
@@ -24792,7 +32004,10 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
@@ -24801,8 +32016,9 @@ export namespace Prisma {
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataUncheckedUpdateInput = {
@@ -24831,12 +32047,16 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUncheckedUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUncheckedUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataCreateManyInput = {
@@ -24865,6 +32085,7 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
   }
 
   export type UserDataUpdateManyMutationInput = {
@@ -24888,6 +32109,7 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserDataUncheckedUpdateManyInput = {
@@ -24916,6 +32138,7 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type RoleCreateInput = {
@@ -25141,6 +32364,7 @@ export namespace Prisma {
     name: string
     grade: number
     capacity?: number
+    isActive?: boolean
     academicYear: AcademicYearCreateNestedOneWithoutClassesInput
     major: MajorCreateNestedOneWithoutClassesInput
     schedules?: ScheduleCreateNestedManyWithoutClassInput
@@ -25155,6 +32379,7 @@ export namespace Prisma {
     majorId: string
     academicYearId: string
     capacity?: number
+    isActive?: boolean
     schedules?: ScheduleUncheckedCreateNestedManyWithoutClassInput
     students?: UserDataUncheckedCreateNestedManyWithoutClassInput
     violations?: ViolationUncheckedCreateNestedManyWithoutClassInput
@@ -25165,6 +32390,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     academicYear?: AcademicYearUpdateOneRequiredWithoutClassesNestedInput
     major?: MajorUpdateOneRequiredWithoutClassesNestedInput
     schedules?: ScheduleUpdateManyWithoutClassNestedInput
@@ -25179,6 +32405,7 @@ export namespace Prisma {
     majorId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     schedules?: ScheduleUncheckedUpdateManyWithoutClassNestedInput
     students?: UserDataUncheckedUpdateManyWithoutClassNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutClassNestedInput
@@ -25191,6 +32418,7 @@ export namespace Prisma {
     majorId: string
     academicYearId: string
     capacity?: number
+    isActive?: boolean
   }
 
   export type ClassUpdateManyMutationInput = {
@@ -25198,6 +32426,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ClassUncheckedUpdateManyInput = {
@@ -25207,6 +32436,7 @@ export namespace Prisma {
     majorId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SubjectCreateInput = {
@@ -25216,6 +32446,7 @@ export namespace Prisma {
     description?: string | null
     credits?: number
     isActive?: boolean
+    grades?: GradeCreateNestedManyWithoutSubjectInput
     schedules?: ScheduleCreateNestedManyWithoutSubjectInput
     major?: MajorCreateNestedOneWithoutSubjectsInput
   }
@@ -25228,6 +32459,7 @@ export namespace Prisma {
     majorId?: string | null
     credits?: number
     isActive?: boolean
+    grades?: GradeUncheckedCreateNestedManyWithoutSubjectInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutSubjectInput
   }
 
@@ -25238,6 +32470,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     credits?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    grades?: GradeUpdateManyWithoutSubjectNestedInput
     schedules?: ScheduleUpdateManyWithoutSubjectNestedInput
     major?: MajorUpdateOneWithoutSubjectsNestedInput
   }
@@ -25250,6 +32483,7 @@ export namespace Prisma {
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
     credits?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    grades?: GradeUncheckedUpdateManyWithoutSubjectNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutSubjectNestedInput
   }
 
@@ -25288,7 +32522,9 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
+    grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
     class: ClassCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
@@ -25305,7 +32541,9 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
     attendances?: AttendanceUncheckedCreateNestedManyWithoutScheduleInput
+    grades?: GradeUncheckedCreateNestedManyWithoutScheduleInput
   }
 
   export type ScheduleUpdateInput = {
@@ -25314,7 +32552,9 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
+    grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
     class?: ClassUpdateOneRequiredWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
@@ -25331,7 +32571,9 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUncheckedUpdateManyWithoutScheduleNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutScheduleNestedInput
   }
 
   export type ScheduleCreateManyInput = {
@@ -25344,6 +32586,7 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
   }
 
   export type ScheduleUpdateManyMutationInput = {
@@ -25352,6 +32595,7 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ScheduleUncheckedUpdateManyInput = {
@@ -25364,6 +32608,7 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AttendanceCreateInput = {
@@ -25834,6 +33079,517 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type GradeCreateInput = {
+    id?: string
+    gradeType: string
+    score: Decimal | DecimalJsLike | number | string
+    maxScore?: Decimal | DecimalJsLike | number | string
+    weight?: number
+    description?: string | null
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+    schedule: ScheduleCreateNestedOneWithoutGradesInput
+    student: UserDataCreateNestedOneWithoutGradesInput
+    subject: SubjectCreateNestedOneWithoutGradesInput
+  }
+
+  export type GradeUncheckedCreateInput = {
+    id?: string
+    studentId: string
+    scheduleId: string
+    subjectId: string
+    gradeType: string
+    score: Decimal | DecimalJsLike | number | string
+    maxScore?: Decimal | DecimalJsLike | number | string
+    weight?: number
+    description?: string | null
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+  }
+
+  export type GradeUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    gradeType?: StringFieldUpdateOperationsInput | string
+    score?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    weight?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    schedule?: ScheduleUpdateOneRequiredWithoutGradesNestedInput
+    student?: UserDataUpdateOneRequiredWithoutGradesNestedInput
+    subject?: SubjectUpdateOneRequiredWithoutGradesNestedInput
+  }
+
+  export type GradeUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    scheduleId?: StringFieldUpdateOperationsInput | string
+    subjectId?: StringFieldUpdateOperationsInput | string
+    gradeType?: StringFieldUpdateOperationsInput | string
+    score?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    weight?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GradeCreateManyInput = {
+    id?: string
+    studentId: string
+    scheduleId: string
+    subjectId: string
+    gradeType: string
+    score: Decimal | DecimalJsLike | number | string
+    maxScore?: Decimal | DecimalJsLike | number | string
+    weight?: number
+    description?: string | null
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+  }
+
+  export type GradeUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    gradeType?: StringFieldUpdateOperationsInput | string
+    score?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    weight?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GradeUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    scheduleId?: StringFieldUpdateOperationsInput | string
+    subjectId?: StringFieldUpdateOperationsInput | string
+    gradeType?: StringFieldUpdateOperationsInput | string
+    score?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    weight?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type NotificationCreateInput = {
+    id?: string
+    title: string
+    message: string
+    type: string
+    category?: string | null
+    isRead?: boolean
+    link?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    readAt?: Date | string | null
+    user: UserDataCreateNestedOneWithoutNotificationsInput
+  }
+
+  export type NotificationUncheckedCreateInput = {
+    id?: string
+    userId: string
+    title: string
+    message: string
+    type: string
+    category?: string | null
+    isRead?: boolean
+    link?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    readAt?: Date | string | null
+  }
+
+  export type NotificationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user?: UserDataUpdateOneRequiredWithoutNotificationsNestedInput
+  }
+
+  export type NotificationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type NotificationCreateManyInput = {
+    id?: string
+    userId: string
+    title: string
+    message: string
+    type: string
+    category?: string | null
+    isRead?: boolean
+    link?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    readAt?: Date | string | null
+  }
+
+  export type NotificationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type NotificationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type DashboardContentCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    imageUrl: string
+    linkUrl?: string | null
+    order?: number
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserDataCreateNestedOneWithoutDashboardContentsInput
+  }
+
+  export type DashboardContentUncheckedCreateInput = {
+    id?: string
+    title: string
+    description?: string | null
+    imageUrl: string
+    linkUrl?: string | null
+    order?: number
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+  }
+
+  export type DashboardContentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserDataUpdateOneWithoutDashboardContentsNestedInput
+  }
+
+  export type DashboardContentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DashboardContentCreateManyInput = {
+    id?: string
+    title: string
+    description?: string | null
+    imageUrl: string
+    linkUrl?: string | null
+    order?: number
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+  }
+
+  export type DashboardContentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DashboardContentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AnnouncementCreateInput = {
+    id?: string
+    title: string
+    content: string
+    imageUrl?: string | null
+    linkUrl?: string | null
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserDataCreateNestedOneWithoutAnnouncementsInput
+  }
+
+  export type AnnouncementUncheckedCreateInput = {
+    id?: string
+    title: string
+    content: string
+    imageUrl?: string | null
+    linkUrl?: string | null
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+  }
+
+  export type AnnouncementUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserDataUpdateOneWithoutAnnouncementsNestedInput
+  }
+
+  export type AnnouncementUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type AnnouncementCreateManyInput = {
+    id?: string
+    title: string
+    content: string
+    imageUrl?: string | null
+    linkUrl?: string | null
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+  }
+
+  export type AnnouncementUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnnouncementUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TahfidzRecordCreateInput = {
+    id?: string
+    surah?: string | null
+    startVerse?: number | null
+    endVerse?: number | null
+    grade?: string | null
+    date: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserDataCreateNestedOneWithoutTahfidzRecordsInput
+  }
+
+  export type TahfidzRecordUncheckedCreateInput = {
+    id?: string
+    userId?: string | null
+    surah?: string | null
+    startVerse?: number | null
+    endVerse?: number | null
+    grade?: string | null
+    date: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TahfidzRecordUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surah?: NullableStringFieldUpdateOperationsInput | string | null
+    startVerse?: NullableIntFieldUpdateOperationsInput | number | null
+    endVerse?: NullableIntFieldUpdateOperationsInput | number | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserDataUpdateOneWithoutTahfidzRecordsNestedInput
+  }
+
+  export type TahfidzRecordUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    surah?: NullableStringFieldUpdateOperationsInput | string | null
+    startVerse?: NullableIntFieldUpdateOperationsInput | number | null
+    endVerse?: NullableIntFieldUpdateOperationsInput | number | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TahfidzRecordCreateManyInput = {
+    id?: string
+    userId?: string | null
+    surah?: string | null
+    startVerse?: number | null
+    endVerse?: number | null
+    grade?: string | null
+    date: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TahfidzRecordUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    surah?: NullableStringFieldUpdateOperationsInput | string | null
+    startVerse?: NullableIntFieldUpdateOperationsInput | number | null
+    endVerse?: NullableIntFieldUpdateOperationsInput | number | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TahfidzRecordUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    surah?: NullableStringFieldUpdateOperationsInput | string | null
+    startVerse?: NullableIntFieldUpdateOperationsInput | number | null
+    endVerse?: NullableIntFieldUpdateOperationsInput | number | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -26178,6 +33934,18 @@ export namespace Prisma {
     none?: AttendanceWhereInput
   }
 
+  export type GradeListRelationFilter = {
+    every?: GradeWhereInput
+    some?: GradeWhereInput
+    none?: GradeWhereInput
+  }
+
+  export type NotificationListRelationFilter = {
+    every?: NotificationWhereInput
+    some?: NotificationWhereInput
+    none?: NotificationWhereInput
+  }
+
   export type PaymentListRelationFilter = {
     every?: PaymentWhereInput
     some?: PaymentWhereInput
@@ -26221,13 +33989,33 @@ export namespace Prisma {
     none?: ViolationWhereInput
   }
 
-  export type UserDataListRelationFilter = {
-    every?: UserDataWhereInput
-    some?: UserDataWhereInput
-    none?: UserDataWhereInput
+  export type TahfidzRecordListRelationFilter = {
+    every?: TahfidzRecordWhereInput
+    some?: TahfidzRecordWhereInput
+    none?: TahfidzRecordWhereInput
+  }
+
+  export type DashboardContentListRelationFilter = {
+    every?: DashboardContentWhereInput
+    some?: DashboardContentWhereInput
+    none?: DashboardContentWhereInput
+  }
+
+  export type AnnouncementListRelationFilter = {
+    every?: AnnouncementWhereInput
+    some?: AnnouncementWhereInput
+    none?: AnnouncementWhereInput
   }
 
   export type AttendanceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GradeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type NotificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -26243,7 +34031,15 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type UserDataOrderByRelationAggregateInput = {
+  export type TahfidzRecordOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DashboardContentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AnnouncementOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -26273,6 +34069,7 @@ export namespace Prisma {
     studentIds?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    isActive?: SortOrder
   }
 
   export type UserDataMaxOrderByAggregateInput = {
@@ -26300,6 +34097,7 @@ export namespace Prisma {
     status?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    isActive?: SortOrder
   }
 
   export type UserDataMinOrderByAggregateInput = {
@@ -26327,6 +34125,17 @@ export namespace Prisma {
     status?: SortOrder
     email?: SortOrder
     name?: SortOrder
+    isActive?: SortOrder
+  }
+
+  export type UserDataListRelationFilter = {
+    every?: UserDataWhereInput
+    some?: UserDataWhereInput
+    none?: UserDataWhereInput
+  }
+
+  export type UserDataOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type RoleCountOrderByAggregateInput = {
@@ -26478,6 +34287,7 @@ export namespace Prisma {
     majorId?: SortOrder
     academicYearId?: SortOrder
     capacity?: SortOrder
+    isActive?: SortOrder
   }
 
   export type ClassAvgOrderByAggregateInput = {
@@ -26492,6 +34302,7 @@ export namespace Prisma {
     majorId?: SortOrder
     academicYearId?: SortOrder
     capacity?: SortOrder
+    isActive?: SortOrder
   }
 
   export type ClassMinOrderByAggregateInput = {
@@ -26501,6 +34312,7 @@ export namespace Prisma {
     majorId?: SortOrder
     academicYearId?: SortOrder
     capacity?: SortOrder
+    isActive?: SortOrder
   }
 
   export type ClassSumOrderByAggregateInput = {
@@ -26595,6 +34407,7 @@ export namespace Prisma {
     startTime?: SortOrder
     endTime?: SortOrder
     room?: SortOrder
+    isActive?: SortOrder
   }
 
   export type ScheduleAvgOrderByAggregateInput = {
@@ -26611,6 +34424,7 @@ export namespace Prisma {
     startTime?: SortOrder
     endTime?: SortOrder
     room?: SortOrder
+    isActive?: SortOrder
   }
 
   export type ScheduleMinOrderByAggregateInput = {
@@ -26623,6 +34437,7 @@ export namespace Prisma {
     startTime?: SortOrder
     endTime?: SortOrder
     room?: SortOrder
+    isActive?: SortOrder
   }
 
   export type ScheduleSumOrderByAggregateInput = {
@@ -26902,6 +34717,332 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type GradeCountOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    scheduleId?: SortOrder
+    subjectId?: SortOrder
+    gradeType?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    weight?: SortOrder
+    description?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdBy?: SortOrder
+  }
+
+  export type GradeAvgOrderByAggregateInput = {
+    score?: SortOrder
+    maxScore?: SortOrder
+    weight?: SortOrder
+  }
+
+  export type GradeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    scheduleId?: SortOrder
+    subjectId?: SortOrder
+    gradeType?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    weight?: SortOrder
+    description?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdBy?: SortOrder
+  }
+
+  export type GradeMinOrderByAggregateInput = {
+    id?: SortOrder
+    studentId?: SortOrder
+    scheduleId?: SortOrder
+    subjectId?: SortOrder
+    gradeType?: SortOrder
+    score?: SortOrder
+    maxScore?: SortOrder
+    weight?: SortOrder
+    description?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    createdBy?: SortOrder
+  }
+
+  export type GradeSumOrderByAggregateInput = {
+    score?: SortOrder
+    maxScore?: SortOrder
+    weight?: SortOrder
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NotificationCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    category?: SortOrder
+    isRead?: SortOrder
+    link?: SortOrder
+    data?: SortOrder
+    createdAt?: SortOrder
+    readAt?: SortOrder
+  }
+
+  export type NotificationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    category?: SortOrder
+    isRead?: SortOrder
+    link?: SortOrder
+    createdAt?: SortOrder
+    readAt?: SortOrder
+  }
+
+  export type NotificationMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    title?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    category?: SortOrder
+    isRead?: SortOrder
+    link?: SortOrder
+    createdAt?: SortOrder
+    readAt?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type DashboardContentCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    imageUrl?: SortOrder
+    linkUrl?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    isPublished?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type DashboardContentAvgOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type DashboardContentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    imageUrl?: SortOrder
+    linkUrl?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    isPublished?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type DashboardContentMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    imageUrl?: SortOrder
+    linkUrl?: SortOrder
+    order?: SortOrder
+    isActive?: SortOrder
+    isPublished?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type DashboardContentSumOrderByAggregateInput = {
+    order?: SortOrder
+  }
+
+  export type AnnouncementCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    imageUrl?: SortOrder
+    linkUrl?: SortOrder
+    isActive?: SortOrder
+    isPublished?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type AnnouncementMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    imageUrl?: SortOrder
+    linkUrl?: SortOrder
+    isActive?: SortOrder
+    isPublished?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type AnnouncementMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    content?: SortOrder
+    imageUrl?: SortOrder
+    linkUrl?: SortOrder
+    isActive?: SortOrder
+    isPublished?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type TahfidzRecordCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    surah?: SortOrder
+    startVerse?: SortOrder
+    endVerse?: SortOrder
+    grade?: SortOrder
+    date?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TahfidzRecordAvgOrderByAggregateInput = {
+    startVerse?: SortOrder
+    endVerse?: SortOrder
+  }
+
+  export type TahfidzRecordMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    surah?: SortOrder
+    startVerse?: SortOrder
+    endVerse?: SortOrder
+    grade?: SortOrder
+    date?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TahfidzRecordMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    surah?: SortOrder
+    startVerse?: SortOrder
+    endVerse?: SortOrder
+    grade?: SortOrder
+    date?: SortOrder
+    notes?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TahfidzRecordSumOrderByAggregateInput = {
+    startVerse?: SortOrder
+    endVerse?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -27081,6 +35222,20 @@ export namespace Prisma {
     connect?: AttendanceWhereUniqueInput | AttendanceWhereUniqueInput[]
   }
 
+  export type GradeCreateNestedManyWithoutStudentInput = {
+    create?: XOR<GradeCreateWithoutStudentInput, GradeUncheckedCreateWithoutStudentInput> | GradeCreateWithoutStudentInput[] | GradeUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: GradeCreateOrConnectWithoutStudentInput | GradeCreateOrConnectWithoutStudentInput[]
+    createMany?: GradeCreateManyStudentInputEnvelope
+    connect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+  }
+
+  export type NotificationCreateNestedManyWithoutUserInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+  }
+
   export type PaymentCreateNestedManyWithoutStudentInput = {
     create?: XOR<PaymentCreateWithoutStudentInput, PaymentUncheckedCreateWithoutStudentInput> | PaymentCreateWithoutStudentInput[] | PaymentUncheckedCreateWithoutStudentInput[]
     connectOrCreate?: PaymentCreateOrConnectWithoutStudentInput | PaymentCreateOrConnectWithoutStudentInput[]
@@ -27132,16 +35287,25 @@ export namespace Prisma {
     connect?: ViolationWhereUniqueInput | ViolationWhereUniqueInput[]
   }
 
-  export type UserDataCreateNestedManyWithoutUser_data_BInput = {
-    create?: XOR<UserDataCreateWithoutUser_data_BInput, UserDataUncheckedCreateWithoutUser_data_BInput> | UserDataCreateWithoutUser_data_BInput[] | UserDataUncheckedCreateWithoutUser_data_BInput[]
-    connectOrCreate?: UserDataCreateOrConnectWithoutUser_data_BInput | UserDataCreateOrConnectWithoutUser_data_BInput[]
-    connect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+  export type TahfidzRecordCreateNestedManyWithoutUserInput = {
+    create?: XOR<TahfidzRecordCreateWithoutUserInput, TahfidzRecordUncheckedCreateWithoutUserInput> | TahfidzRecordCreateWithoutUserInput[] | TahfidzRecordUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TahfidzRecordCreateOrConnectWithoutUserInput | TahfidzRecordCreateOrConnectWithoutUserInput[]
+    createMany?: TahfidzRecordCreateManyUserInputEnvelope
+    connect?: TahfidzRecordWhereUniqueInput | TahfidzRecordWhereUniqueInput[]
   }
 
-  export type UserDataCreateNestedManyWithoutUser_data_AInput = {
-    create?: XOR<UserDataCreateWithoutUser_data_AInput, UserDataUncheckedCreateWithoutUser_data_AInput> | UserDataCreateWithoutUser_data_AInput[] | UserDataUncheckedCreateWithoutUser_data_AInput[]
-    connectOrCreate?: UserDataCreateOrConnectWithoutUser_data_AInput | UserDataCreateOrConnectWithoutUser_data_AInput[]
-    connect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+  export type DashboardContentCreateNestedManyWithoutUserInput = {
+    create?: XOR<DashboardContentCreateWithoutUserInput, DashboardContentUncheckedCreateWithoutUserInput> | DashboardContentCreateWithoutUserInput[] | DashboardContentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DashboardContentCreateOrConnectWithoutUserInput | DashboardContentCreateOrConnectWithoutUserInput[]
+    createMany?: DashboardContentCreateManyUserInputEnvelope
+    connect?: DashboardContentWhereUniqueInput | DashboardContentWhereUniqueInput[]
+  }
+
+  export type AnnouncementCreateNestedManyWithoutUserInput = {
+    create?: XOR<AnnouncementCreateWithoutUserInput, AnnouncementUncheckedCreateWithoutUserInput> | AnnouncementCreateWithoutUserInput[] | AnnouncementUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AnnouncementCreateOrConnectWithoutUserInput | AnnouncementCreateOrConnectWithoutUserInput[]
+    createMany?: AnnouncementCreateManyUserInputEnvelope
+    connect?: AnnouncementWhereUniqueInput | AnnouncementWhereUniqueInput[]
   }
 
   export type AttendanceUncheckedCreateNestedManyWithoutStudentInput = {
@@ -27149,6 +35313,20 @@ export namespace Prisma {
     connectOrCreate?: AttendanceCreateOrConnectWithoutStudentInput | AttendanceCreateOrConnectWithoutStudentInput[]
     createMany?: AttendanceCreateManyStudentInputEnvelope
     connect?: AttendanceWhereUniqueInput | AttendanceWhereUniqueInput[]
+  }
+
+  export type GradeUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<GradeCreateWithoutStudentInput, GradeUncheckedCreateWithoutStudentInput> | GradeCreateWithoutStudentInput[] | GradeUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: GradeCreateOrConnectWithoutStudentInput | GradeCreateOrConnectWithoutStudentInput[]
+    createMany?: GradeCreateManyStudentInputEnvelope
+    connect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+  }
+
+  export type NotificationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
   }
 
   export type PaymentUncheckedCreateNestedManyWithoutStudentInput = {
@@ -27172,16 +35350,25 @@ export namespace Prisma {
     connect?: ViolationWhereUniqueInput | ViolationWhereUniqueInput[]
   }
 
-  export type UserDataUncheckedCreateNestedManyWithoutUser_data_BInput = {
-    create?: XOR<UserDataCreateWithoutUser_data_BInput, UserDataUncheckedCreateWithoutUser_data_BInput> | UserDataCreateWithoutUser_data_BInput[] | UserDataUncheckedCreateWithoutUser_data_BInput[]
-    connectOrCreate?: UserDataCreateOrConnectWithoutUser_data_BInput | UserDataCreateOrConnectWithoutUser_data_BInput[]
-    connect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+  export type TahfidzRecordUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<TahfidzRecordCreateWithoutUserInput, TahfidzRecordUncheckedCreateWithoutUserInput> | TahfidzRecordCreateWithoutUserInput[] | TahfidzRecordUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TahfidzRecordCreateOrConnectWithoutUserInput | TahfidzRecordCreateOrConnectWithoutUserInput[]
+    createMany?: TahfidzRecordCreateManyUserInputEnvelope
+    connect?: TahfidzRecordWhereUniqueInput | TahfidzRecordWhereUniqueInput[]
   }
 
-  export type UserDataUncheckedCreateNestedManyWithoutUser_data_AInput = {
-    create?: XOR<UserDataCreateWithoutUser_data_AInput, UserDataUncheckedCreateWithoutUser_data_AInput> | UserDataCreateWithoutUser_data_AInput[] | UserDataUncheckedCreateWithoutUser_data_AInput[]
-    connectOrCreate?: UserDataCreateOrConnectWithoutUser_data_AInput | UserDataCreateOrConnectWithoutUser_data_AInput[]
-    connect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+  export type DashboardContentUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<DashboardContentCreateWithoutUserInput, DashboardContentUncheckedCreateWithoutUserInput> | DashboardContentCreateWithoutUserInput[] | DashboardContentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DashboardContentCreateOrConnectWithoutUserInput | DashboardContentCreateOrConnectWithoutUserInput[]
+    createMany?: DashboardContentCreateManyUserInputEnvelope
+    connect?: DashboardContentWhereUniqueInput | DashboardContentWhereUniqueInput[]
+  }
+
+  export type AnnouncementUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<AnnouncementCreateWithoutUserInput, AnnouncementUncheckedCreateWithoutUserInput> | AnnouncementCreateWithoutUserInput[] | AnnouncementUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AnnouncementCreateOrConnectWithoutUserInput | AnnouncementCreateOrConnectWithoutUserInput[]
+    createMany?: AnnouncementCreateManyUserInputEnvelope
+    connect?: AnnouncementWhereUniqueInput | AnnouncementWhereUniqueInput[]
   }
 
   export type UserDataUpdatestudentIdsInput = {
@@ -27201,6 +35388,34 @@ export namespace Prisma {
     update?: AttendanceUpdateWithWhereUniqueWithoutStudentInput | AttendanceUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: AttendanceUpdateManyWithWhereWithoutStudentInput | AttendanceUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: AttendanceScalarWhereInput | AttendanceScalarWhereInput[]
+  }
+
+  export type GradeUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<GradeCreateWithoutStudentInput, GradeUncheckedCreateWithoutStudentInput> | GradeCreateWithoutStudentInput[] | GradeUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: GradeCreateOrConnectWithoutStudentInput | GradeCreateOrConnectWithoutStudentInput[]
+    upsert?: GradeUpsertWithWhereUniqueWithoutStudentInput | GradeUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: GradeCreateManyStudentInputEnvelope
+    set?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    disconnect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    delete?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    connect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    update?: GradeUpdateWithWhereUniqueWithoutStudentInput | GradeUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: GradeUpdateManyWithWhereWithoutStudentInput | GradeUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: GradeScalarWhereInput | GradeScalarWhereInput[]
+  }
+
+  export type NotificationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    upsert?: NotificationUpsertWithWhereUniqueWithoutUserInput | NotificationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    update?: NotificationUpdateWithWhereUniqueWithoutUserInput | NotificationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: NotificationUpdateManyWithWhereWithoutUserInput | NotificationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
   }
 
   export type PaymentUpdateManyWithoutStudentNestedInput = {
@@ -27295,30 +35510,46 @@ export namespace Prisma {
     deleteMany?: ViolationScalarWhereInput | ViolationScalarWhereInput[]
   }
 
-  export type UserDataUpdateManyWithoutUser_data_BNestedInput = {
-    create?: XOR<UserDataCreateWithoutUser_data_BInput, UserDataUncheckedCreateWithoutUser_data_BInput> | UserDataCreateWithoutUser_data_BInput[] | UserDataUncheckedCreateWithoutUser_data_BInput[]
-    connectOrCreate?: UserDataCreateOrConnectWithoutUser_data_BInput | UserDataCreateOrConnectWithoutUser_data_BInput[]
-    upsert?: UserDataUpsertWithWhereUniqueWithoutUser_data_BInput | UserDataUpsertWithWhereUniqueWithoutUser_data_BInput[]
-    set?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    disconnect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    delete?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    connect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    update?: UserDataUpdateWithWhereUniqueWithoutUser_data_BInput | UserDataUpdateWithWhereUniqueWithoutUser_data_BInput[]
-    updateMany?: UserDataUpdateManyWithWhereWithoutUser_data_BInput | UserDataUpdateManyWithWhereWithoutUser_data_BInput[]
-    deleteMany?: UserDataScalarWhereInput | UserDataScalarWhereInput[]
+  export type TahfidzRecordUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TahfidzRecordCreateWithoutUserInput, TahfidzRecordUncheckedCreateWithoutUserInput> | TahfidzRecordCreateWithoutUserInput[] | TahfidzRecordUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TahfidzRecordCreateOrConnectWithoutUserInput | TahfidzRecordCreateOrConnectWithoutUserInput[]
+    upsert?: TahfidzRecordUpsertWithWhereUniqueWithoutUserInput | TahfidzRecordUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TahfidzRecordCreateManyUserInputEnvelope
+    set?: TahfidzRecordWhereUniqueInput | TahfidzRecordWhereUniqueInput[]
+    disconnect?: TahfidzRecordWhereUniqueInput | TahfidzRecordWhereUniqueInput[]
+    delete?: TahfidzRecordWhereUniqueInput | TahfidzRecordWhereUniqueInput[]
+    connect?: TahfidzRecordWhereUniqueInput | TahfidzRecordWhereUniqueInput[]
+    update?: TahfidzRecordUpdateWithWhereUniqueWithoutUserInput | TahfidzRecordUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TahfidzRecordUpdateManyWithWhereWithoutUserInput | TahfidzRecordUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TahfidzRecordScalarWhereInput | TahfidzRecordScalarWhereInput[]
   }
 
-  export type UserDataUpdateManyWithoutUser_data_ANestedInput = {
-    create?: XOR<UserDataCreateWithoutUser_data_AInput, UserDataUncheckedCreateWithoutUser_data_AInput> | UserDataCreateWithoutUser_data_AInput[] | UserDataUncheckedCreateWithoutUser_data_AInput[]
-    connectOrCreate?: UserDataCreateOrConnectWithoutUser_data_AInput | UserDataCreateOrConnectWithoutUser_data_AInput[]
-    upsert?: UserDataUpsertWithWhereUniqueWithoutUser_data_AInput | UserDataUpsertWithWhereUniqueWithoutUser_data_AInput[]
-    set?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    disconnect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    delete?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    connect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    update?: UserDataUpdateWithWhereUniqueWithoutUser_data_AInput | UserDataUpdateWithWhereUniqueWithoutUser_data_AInput[]
-    updateMany?: UserDataUpdateManyWithWhereWithoutUser_data_AInput | UserDataUpdateManyWithWhereWithoutUser_data_AInput[]
-    deleteMany?: UserDataScalarWhereInput | UserDataScalarWhereInput[]
+  export type DashboardContentUpdateManyWithoutUserNestedInput = {
+    create?: XOR<DashboardContentCreateWithoutUserInput, DashboardContentUncheckedCreateWithoutUserInput> | DashboardContentCreateWithoutUserInput[] | DashboardContentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DashboardContentCreateOrConnectWithoutUserInput | DashboardContentCreateOrConnectWithoutUserInput[]
+    upsert?: DashboardContentUpsertWithWhereUniqueWithoutUserInput | DashboardContentUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: DashboardContentCreateManyUserInputEnvelope
+    set?: DashboardContentWhereUniqueInput | DashboardContentWhereUniqueInput[]
+    disconnect?: DashboardContentWhereUniqueInput | DashboardContentWhereUniqueInput[]
+    delete?: DashboardContentWhereUniqueInput | DashboardContentWhereUniqueInput[]
+    connect?: DashboardContentWhereUniqueInput | DashboardContentWhereUniqueInput[]
+    update?: DashboardContentUpdateWithWhereUniqueWithoutUserInput | DashboardContentUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: DashboardContentUpdateManyWithWhereWithoutUserInput | DashboardContentUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: DashboardContentScalarWhereInput | DashboardContentScalarWhereInput[]
+  }
+
+  export type AnnouncementUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AnnouncementCreateWithoutUserInput, AnnouncementUncheckedCreateWithoutUserInput> | AnnouncementCreateWithoutUserInput[] | AnnouncementUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AnnouncementCreateOrConnectWithoutUserInput | AnnouncementCreateOrConnectWithoutUserInput[]
+    upsert?: AnnouncementUpsertWithWhereUniqueWithoutUserInput | AnnouncementUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AnnouncementCreateManyUserInputEnvelope
+    set?: AnnouncementWhereUniqueInput | AnnouncementWhereUniqueInput[]
+    disconnect?: AnnouncementWhereUniqueInput | AnnouncementWhereUniqueInput[]
+    delete?: AnnouncementWhereUniqueInput | AnnouncementWhereUniqueInput[]
+    connect?: AnnouncementWhereUniqueInput | AnnouncementWhereUniqueInput[]
+    update?: AnnouncementUpdateWithWhereUniqueWithoutUserInput | AnnouncementUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AnnouncementUpdateManyWithWhereWithoutUserInput | AnnouncementUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AnnouncementScalarWhereInput | AnnouncementScalarWhereInput[]
   }
 
   export type AttendanceUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -27333,6 +35564,34 @@ export namespace Prisma {
     update?: AttendanceUpdateWithWhereUniqueWithoutStudentInput | AttendanceUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: AttendanceUpdateManyWithWhereWithoutStudentInput | AttendanceUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: AttendanceScalarWhereInput | AttendanceScalarWhereInput[]
+  }
+
+  export type GradeUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<GradeCreateWithoutStudentInput, GradeUncheckedCreateWithoutStudentInput> | GradeCreateWithoutStudentInput[] | GradeUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: GradeCreateOrConnectWithoutStudentInput | GradeCreateOrConnectWithoutStudentInput[]
+    upsert?: GradeUpsertWithWhereUniqueWithoutStudentInput | GradeUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: GradeCreateManyStudentInputEnvelope
+    set?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    disconnect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    delete?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    connect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    update?: GradeUpdateWithWhereUniqueWithoutStudentInput | GradeUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: GradeUpdateManyWithWhereWithoutStudentInput | GradeUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: GradeScalarWhereInput | GradeScalarWhereInput[]
+  }
+
+  export type NotificationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    upsert?: NotificationUpsertWithWhereUniqueWithoutUserInput | NotificationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    update?: NotificationUpdateWithWhereUniqueWithoutUserInput | NotificationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: NotificationUpdateManyWithWhereWithoutUserInput | NotificationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
   }
 
   export type PaymentUncheckedUpdateManyWithoutStudentNestedInput = {
@@ -27377,30 +35636,46 @@ export namespace Prisma {
     deleteMany?: ViolationScalarWhereInput | ViolationScalarWhereInput[]
   }
 
-  export type UserDataUncheckedUpdateManyWithoutUser_data_BNestedInput = {
-    create?: XOR<UserDataCreateWithoutUser_data_BInput, UserDataUncheckedCreateWithoutUser_data_BInput> | UserDataCreateWithoutUser_data_BInput[] | UserDataUncheckedCreateWithoutUser_data_BInput[]
-    connectOrCreate?: UserDataCreateOrConnectWithoutUser_data_BInput | UserDataCreateOrConnectWithoutUser_data_BInput[]
-    upsert?: UserDataUpsertWithWhereUniqueWithoutUser_data_BInput | UserDataUpsertWithWhereUniqueWithoutUser_data_BInput[]
-    set?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    disconnect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    delete?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    connect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    update?: UserDataUpdateWithWhereUniqueWithoutUser_data_BInput | UserDataUpdateWithWhereUniqueWithoutUser_data_BInput[]
-    updateMany?: UserDataUpdateManyWithWhereWithoutUser_data_BInput | UserDataUpdateManyWithWhereWithoutUser_data_BInput[]
-    deleteMany?: UserDataScalarWhereInput | UserDataScalarWhereInput[]
+  export type TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TahfidzRecordCreateWithoutUserInput, TahfidzRecordUncheckedCreateWithoutUserInput> | TahfidzRecordCreateWithoutUserInput[] | TahfidzRecordUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TahfidzRecordCreateOrConnectWithoutUserInput | TahfidzRecordCreateOrConnectWithoutUserInput[]
+    upsert?: TahfidzRecordUpsertWithWhereUniqueWithoutUserInput | TahfidzRecordUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TahfidzRecordCreateManyUserInputEnvelope
+    set?: TahfidzRecordWhereUniqueInput | TahfidzRecordWhereUniqueInput[]
+    disconnect?: TahfidzRecordWhereUniqueInput | TahfidzRecordWhereUniqueInput[]
+    delete?: TahfidzRecordWhereUniqueInput | TahfidzRecordWhereUniqueInput[]
+    connect?: TahfidzRecordWhereUniqueInput | TahfidzRecordWhereUniqueInput[]
+    update?: TahfidzRecordUpdateWithWhereUniqueWithoutUserInput | TahfidzRecordUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TahfidzRecordUpdateManyWithWhereWithoutUserInput | TahfidzRecordUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TahfidzRecordScalarWhereInput | TahfidzRecordScalarWhereInput[]
   }
 
-  export type UserDataUncheckedUpdateManyWithoutUser_data_ANestedInput = {
-    create?: XOR<UserDataCreateWithoutUser_data_AInput, UserDataUncheckedCreateWithoutUser_data_AInput> | UserDataCreateWithoutUser_data_AInput[] | UserDataUncheckedCreateWithoutUser_data_AInput[]
-    connectOrCreate?: UserDataCreateOrConnectWithoutUser_data_AInput | UserDataCreateOrConnectWithoutUser_data_AInput[]
-    upsert?: UserDataUpsertWithWhereUniqueWithoutUser_data_AInput | UserDataUpsertWithWhereUniqueWithoutUser_data_AInput[]
-    set?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    disconnect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    delete?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    connect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
-    update?: UserDataUpdateWithWhereUniqueWithoutUser_data_AInput | UserDataUpdateWithWhereUniqueWithoutUser_data_AInput[]
-    updateMany?: UserDataUpdateManyWithWhereWithoutUser_data_AInput | UserDataUpdateManyWithWhereWithoutUser_data_AInput[]
-    deleteMany?: UserDataScalarWhereInput | UserDataScalarWhereInput[]
+  export type DashboardContentUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<DashboardContentCreateWithoutUserInput, DashboardContentUncheckedCreateWithoutUserInput> | DashboardContentCreateWithoutUserInput[] | DashboardContentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DashboardContentCreateOrConnectWithoutUserInput | DashboardContentCreateOrConnectWithoutUserInput[]
+    upsert?: DashboardContentUpsertWithWhereUniqueWithoutUserInput | DashboardContentUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: DashboardContentCreateManyUserInputEnvelope
+    set?: DashboardContentWhereUniqueInput | DashboardContentWhereUniqueInput[]
+    disconnect?: DashboardContentWhereUniqueInput | DashboardContentWhereUniqueInput[]
+    delete?: DashboardContentWhereUniqueInput | DashboardContentWhereUniqueInput[]
+    connect?: DashboardContentWhereUniqueInput | DashboardContentWhereUniqueInput[]
+    update?: DashboardContentUpdateWithWhereUniqueWithoutUserInput | DashboardContentUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: DashboardContentUpdateManyWithWhereWithoutUserInput | DashboardContentUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: DashboardContentScalarWhereInput | DashboardContentScalarWhereInput[]
+  }
+
+  export type AnnouncementUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AnnouncementCreateWithoutUserInput, AnnouncementUncheckedCreateWithoutUserInput> | AnnouncementCreateWithoutUserInput[] | AnnouncementUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AnnouncementCreateOrConnectWithoutUserInput | AnnouncementCreateOrConnectWithoutUserInput[]
+    upsert?: AnnouncementUpsertWithWhereUniqueWithoutUserInput | AnnouncementUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AnnouncementCreateManyUserInputEnvelope
+    set?: AnnouncementWhereUniqueInput | AnnouncementWhereUniqueInput[]
+    disconnect?: AnnouncementWhereUniqueInput | AnnouncementWhereUniqueInput[]
+    delete?: AnnouncementWhereUniqueInput | AnnouncementWhereUniqueInput[]
+    connect?: AnnouncementWhereUniqueInput | AnnouncementWhereUniqueInput[]
+    update?: AnnouncementUpdateWithWhereUniqueWithoutUserInput | AnnouncementUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AnnouncementUpdateManyWithWhereWithoutUserInput | AnnouncementUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AnnouncementScalarWhereInput | AnnouncementScalarWhereInput[]
   }
 
   export type RoleCreatepermissionsInput = {
@@ -27952,6 +36227,13 @@ export namespace Prisma {
     deleteMany?: ViolationScalarWhereInput | ViolationScalarWhereInput[]
   }
 
+  export type GradeCreateNestedManyWithoutSubjectInput = {
+    create?: XOR<GradeCreateWithoutSubjectInput, GradeUncheckedCreateWithoutSubjectInput> | GradeCreateWithoutSubjectInput[] | GradeUncheckedCreateWithoutSubjectInput[]
+    connectOrCreate?: GradeCreateOrConnectWithoutSubjectInput | GradeCreateOrConnectWithoutSubjectInput[]
+    createMany?: GradeCreateManySubjectInputEnvelope
+    connect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+  }
+
   export type ScheduleCreateNestedManyWithoutSubjectInput = {
     create?: XOR<ScheduleCreateWithoutSubjectInput, ScheduleUncheckedCreateWithoutSubjectInput> | ScheduleCreateWithoutSubjectInput[] | ScheduleUncheckedCreateWithoutSubjectInput[]
     connectOrCreate?: ScheduleCreateOrConnectWithoutSubjectInput | ScheduleCreateOrConnectWithoutSubjectInput[]
@@ -27965,11 +36247,32 @@ export namespace Prisma {
     connect?: MajorWhereUniqueInput
   }
 
+  export type GradeUncheckedCreateNestedManyWithoutSubjectInput = {
+    create?: XOR<GradeCreateWithoutSubjectInput, GradeUncheckedCreateWithoutSubjectInput> | GradeCreateWithoutSubjectInput[] | GradeUncheckedCreateWithoutSubjectInput[]
+    connectOrCreate?: GradeCreateOrConnectWithoutSubjectInput | GradeCreateOrConnectWithoutSubjectInput[]
+    createMany?: GradeCreateManySubjectInputEnvelope
+    connect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+  }
+
   export type ScheduleUncheckedCreateNestedManyWithoutSubjectInput = {
     create?: XOR<ScheduleCreateWithoutSubjectInput, ScheduleUncheckedCreateWithoutSubjectInput> | ScheduleCreateWithoutSubjectInput[] | ScheduleUncheckedCreateWithoutSubjectInput[]
     connectOrCreate?: ScheduleCreateOrConnectWithoutSubjectInput | ScheduleCreateOrConnectWithoutSubjectInput[]
     createMany?: ScheduleCreateManySubjectInputEnvelope
     connect?: ScheduleWhereUniqueInput | ScheduleWhereUniqueInput[]
+  }
+
+  export type GradeUpdateManyWithoutSubjectNestedInput = {
+    create?: XOR<GradeCreateWithoutSubjectInput, GradeUncheckedCreateWithoutSubjectInput> | GradeCreateWithoutSubjectInput[] | GradeUncheckedCreateWithoutSubjectInput[]
+    connectOrCreate?: GradeCreateOrConnectWithoutSubjectInput | GradeCreateOrConnectWithoutSubjectInput[]
+    upsert?: GradeUpsertWithWhereUniqueWithoutSubjectInput | GradeUpsertWithWhereUniqueWithoutSubjectInput[]
+    createMany?: GradeCreateManySubjectInputEnvelope
+    set?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    disconnect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    delete?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    connect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    update?: GradeUpdateWithWhereUniqueWithoutSubjectInput | GradeUpdateWithWhereUniqueWithoutSubjectInput[]
+    updateMany?: GradeUpdateManyWithWhereWithoutSubjectInput | GradeUpdateManyWithWhereWithoutSubjectInput[]
+    deleteMany?: GradeScalarWhereInput | GradeScalarWhereInput[]
   }
 
   export type ScheduleUpdateManyWithoutSubjectNestedInput = {
@@ -27996,6 +36299,20 @@ export namespace Prisma {
     update?: XOR<XOR<MajorUpdateToOneWithWhereWithoutSubjectsInput, MajorUpdateWithoutSubjectsInput>, MajorUncheckedUpdateWithoutSubjectsInput>
   }
 
+  export type GradeUncheckedUpdateManyWithoutSubjectNestedInput = {
+    create?: XOR<GradeCreateWithoutSubjectInput, GradeUncheckedCreateWithoutSubjectInput> | GradeCreateWithoutSubjectInput[] | GradeUncheckedCreateWithoutSubjectInput[]
+    connectOrCreate?: GradeCreateOrConnectWithoutSubjectInput | GradeCreateOrConnectWithoutSubjectInput[]
+    upsert?: GradeUpsertWithWhereUniqueWithoutSubjectInput | GradeUpsertWithWhereUniqueWithoutSubjectInput[]
+    createMany?: GradeCreateManySubjectInputEnvelope
+    set?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    disconnect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    delete?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    connect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    update?: GradeUpdateWithWhereUniqueWithoutSubjectInput | GradeUpdateWithWhereUniqueWithoutSubjectInput[]
+    updateMany?: GradeUpdateManyWithWhereWithoutSubjectInput | GradeUpdateManyWithWhereWithoutSubjectInput[]
+    deleteMany?: GradeScalarWhereInput | GradeScalarWhereInput[]
+  }
+
   export type ScheduleUncheckedUpdateManyWithoutSubjectNestedInput = {
     create?: XOR<ScheduleCreateWithoutSubjectInput, ScheduleUncheckedCreateWithoutSubjectInput> | ScheduleCreateWithoutSubjectInput[] | ScheduleUncheckedCreateWithoutSubjectInput[]
     connectOrCreate?: ScheduleCreateOrConnectWithoutSubjectInput | ScheduleCreateOrConnectWithoutSubjectInput[]
@@ -28015,6 +36332,13 @@ export namespace Prisma {
     connectOrCreate?: AttendanceCreateOrConnectWithoutScheduleInput | AttendanceCreateOrConnectWithoutScheduleInput[]
     createMany?: AttendanceCreateManyScheduleInputEnvelope
     connect?: AttendanceWhereUniqueInput | AttendanceWhereUniqueInput[]
+  }
+
+  export type GradeCreateNestedManyWithoutScheduleInput = {
+    create?: XOR<GradeCreateWithoutScheduleInput, GradeUncheckedCreateWithoutScheduleInput> | GradeCreateWithoutScheduleInput[] | GradeUncheckedCreateWithoutScheduleInput[]
+    connectOrCreate?: GradeCreateOrConnectWithoutScheduleInput | GradeCreateOrConnectWithoutScheduleInput[]
+    createMany?: GradeCreateManyScheduleInputEnvelope
+    connect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
   }
 
   export type AcademicYearCreateNestedOneWithoutSchedulesInput = {
@@ -28048,6 +36372,13 @@ export namespace Prisma {
     connect?: AttendanceWhereUniqueInput | AttendanceWhereUniqueInput[]
   }
 
+  export type GradeUncheckedCreateNestedManyWithoutScheduleInput = {
+    create?: XOR<GradeCreateWithoutScheduleInput, GradeUncheckedCreateWithoutScheduleInput> | GradeCreateWithoutScheduleInput[] | GradeUncheckedCreateWithoutScheduleInput[]
+    connectOrCreate?: GradeCreateOrConnectWithoutScheduleInput | GradeCreateOrConnectWithoutScheduleInput[]
+    createMany?: GradeCreateManyScheduleInputEnvelope
+    connect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+  }
+
   export type AttendanceUpdateManyWithoutScheduleNestedInput = {
     create?: XOR<AttendanceCreateWithoutScheduleInput, AttendanceUncheckedCreateWithoutScheduleInput> | AttendanceCreateWithoutScheduleInput[] | AttendanceUncheckedCreateWithoutScheduleInput[]
     connectOrCreate?: AttendanceCreateOrConnectWithoutScheduleInput | AttendanceCreateOrConnectWithoutScheduleInput[]
@@ -28060,6 +36391,20 @@ export namespace Prisma {
     update?: AttendanceUpdateWithWhereUniqueWithoutScheduleInput | AttendanceUpdateWithWhereUniqueWithoutScheduleInput[]
     updateMany?: AttendanceUpdateManyWithWhereWithoutScheduleInput | AttendanceUpdateManyWithWhereWithoutScheduleInput[]
     deleteMany?: AttendanceScalarWhereInput | AttendanceScalarWhereInput[]
+  }
+
+  export type GradeUpdateManyWithoutScheduleNestedInput = {
+    create?: XOR<GradeCreateWithoutScheduleInput, GradeUncheckedCreateWithoutScheduleInput> | GradeCreateWithoutScheduleInput[] | GradeUncheckedCreateWithoutScheduleInput[]
+    connectOrCreate?: GradeCreateOrConnectWithoutScheduleInput | GradeCreateOrConnectWithoutScheduleInput[]
+    upsert?: GradeUpsertWithWhereUniqueWithoutScheduleInput | GradeUpsertWithWhereUniqueWithoutScheduleInput[]
+    createMany?: GradeCreateManyScheduleInputEnvelope
+    set?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    disconnect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    delete?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    connect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    update?: GradeUpdateWithWhereUniqueWithoutScheduleInput | GradeUpdateWithWhereUniqueWithoutScheduleInput[]
+    updateMany?: GradeUpdateManyWithWhereWithoutScheduleInput | GradeUpdateManyWithWhereWithoutScheduleInput[]
+    deleteMany?: GradeScalarWhereInput | GradeScalarWhereInput[]
   }
 
   export type AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput = {
@@ -28106,6 +36451,20 @@ export namespace Prisma {
     update?: AttendanceUpdateWithWhereUniqueWithoutScheduleInput | AttendanceUpdateWithWhereUniqueWithoutScheduleInput[]
     updateMany?: AttendanceUpdateManyWithWhereWithoutScheduleInput | AttendanceUpdateManyWithWhereWithoutScheduleInput[]
     deleteMany?: AttendanceScalarWhereInput | AttendanceScalarWhereInput[]
+  }
+
+  export type GradeUncheckedUpdateManyWithoutScheduleNestedInput = {
+    create?: XOR<GradeCreateWithoutScheduleInput, GradeUncheckedCreateWithoutScheduleInput> | GradeCreateWithoutScheduleInput[] | GradeUncheckedCreateWithoutScheduleInput[]
+    connectOrCreate?: GradeCreateOrConnectWithoutScheduleInput | GradeCreateOrConnectWithoutScheduleInput[]
+    upsert?: GradeUpsertWithWhereUniqueWithoutScheduleInput | GradeUpsertWithWhereUniqueWithoutScheduleInput[]
+    createMany?: GradeCreateManyScheduleInputEnvelope
+    set?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    disconnect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    delete?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    connect?: GradeWhereUniqueInput | GradeWhereUniqueInput[]
+    update?: GradeUpdateWithWhereUniqueWithoutScheduleInput | GradeUpdateWithWhereUniqueWithoutScheduleInput[]
+    updateMany?: GradeUpdateManyWithWhereWithoutScheduleInput | GradeUpdateManyWithWhereWithoutScheduleInput[]
+    deleteMany?: GradeScalarWhereInput | GradeScalarWhereInput[]
   }
 
   export type ScheduleCreateNestedOneWithoutAttendancesInput = {
@@ -28326,6 +36685,118 @@ export namespace Prisma {
     update?: XOR<XOR<AcademicYearUpdateToOneWithWhereWithoutCalendarEventsInput, AcademicYearUpdateWithoutCalendarEventsInput>, AcademicYearUncheckedUpdateWithoutCalendarEventsInput>
   }
 
+  export type ScheduleCreateNestedOneWithoutGradesInput = {
+    create?: XOR<ScheduleCreateWithoutGradesInput, ScheduleUncheckedCreateWithoutGradesInput>
+    connectOrCreate?: ScheduleCreateOrConnectWithoutGradesInput
+    connect?: ScheduleWhereUniqueInput
+  }
+
+  export type UserDataCreateNestedOneWithoutGradesInput = {
+    create?: XOR<UserDataCreateWithoutGradesInput, UserDataUncheckedCreateWithoutGradesInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutGradesInput
+    connect?: UserDataWhereUniqueInput
+  }
+
+  export type SubjectCreateNestedOneWithoutGradesInput = {
+    create?: XOR<SubjectCreateWithoutGradesInput, SubjectUncheckedCreateWithoutGradesInput>
+    connectOrCreate?: SubjectCreateOrConnectWithoutGradesInput
+    connect?: SubjectWhereUniqueInput
+  }
+
+  export type ScheduleUpdateOneRequiredWithoutGradesNestedInput = {
+    create?: XOR<ScheduleCreateWithoutGradesInput, ScheduleUncheckedCreateWithoutGradesInput>
+    connectOrCreate?: ScheduleCreateOrConnectWithoutGradesInput
+    upsert?: ScheduleUpsertWithoutGradesInput
+    connect?: ScheduleWhereUniqueInput
+    update?: XOR<XOR<ScheduleUpdateToOneWithWhereWithoutGradesInput, ScheduleUpdateWithoutGradesInput>, ScheduleUncheckedUpdateWithoutGradesInput>
+  }
+
+  export type UserDataUpdateOneRequiredWithoutGradesNestedInput = {
+    create?: XOR<UserDataCreateWithoutGradesInput, UserDataUncheckedCreateWithoutGradesInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutGradesInput
+    upsert?: UserDataUpsertWithoutGradesInput
+    connect?: UserDataWhereUniqueInput
+    update?: XOR<XOR<UserDataUpdateToOneWithWhereWithoutGradesInput, UserDataUpdateWithoutGradesInput>, UserDataUncheckedUpdateWithoutGradesInput>
+  }
+
+  export type SubjectUpdateOneRequiredWithoutGradesNestedInput = {
+    create?: XOR<SubjectCreateWithoutGradesInput, SubjectUncheckedCreateWithoutGradesInput>
+    connectOrCreate?: SubjectCreateOrConnectWithoutGradesInput
+    upsert?: SubjectUpsertWithoutGradesInput
+    connect?: SubjectWhereUniqueInput
+    update?: XOR<XOR<SubjectUpdateToOneWithWhereWithoutGradesInput, SubjectUpdateWithoutGradesInput>, SubjectUncheckedUpdateWithoutGradesInput>
+  }
+
+  export type UserDataCreateNestedOneWithoutNotificationsInput = {
+    create?: XOR<UserDataCreateWithoutNotificationsInput, UserDataUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutNotificationsInput
+    connect?: UserDataWhereUniqueInput
+  }
+
+  export type UserDataUpdateOneRequiredWithoutNotificationsNestedInput = {
+    create?: XOR<UserDataCreateWithoutNotificationsInput, UserDataUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutNotificationsInput
+    upsert?: UserDataUpsertWithoutNotificationsInput
+    connect?: UserDataWhereUniqueInput
+    update?: XOR<XOR<UserDataUpdateToOneWithWhereWithoutNotificationsInput, UserDataUpdateWithoutNotificationsInput>, UserDataUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type UserDataCreateNestedOneWithoutDashboardContentsInput = {
+    create?: XOR<UserDataCreateWithoutDashboardContentsInput, UserDataUncheckedCreateWithoutDashboardContentsInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutDashboardContentsInput
+    connect?: UserDataWhereUniqueInput
+  }
+
+  export type UserDataUpdateOneWithoutDashboardContentsNestedInput = {
+    create?: XOR<UserDataCreateWithoutDashboardContentsInput, UserDataUncheckedCreateWithoutDashboardContentsInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutDashboardContentsInput
+    upsert?: UserDataUpsertWithoutDashboardContentsInput
+    disconnect?: UserDataWhereInput | boolean
+    delete?: UserDataWhereInput | boolean
+    connect?: UserDataWhereUniqueInput
+    update?: XOR<XOR<UserDataUpdateToOneWithWhereWithoutDashboardContentsInput, UserDataUpdateWithoutDashboardContentsInput>, UserDataUncheckedUpdateWithoutDashboardContentsInput>
+  }
+
+  export type UserDataCreateNestedOneWithoutAnnouncementsInput = {
+    create?: XOR<UserDataCreateWithoutAnnouncementsInput, UserDataUncheckedCreateWithoutAnnouncementsInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutAnnouncementsInput
+    connect?: UserDataWhereUniqueInput
+  }
+
+  export type UserDataUpdateOneWithoutAnnouncementsNestedInput = {
+    create?: XOR<UserDataCreateWithoutAnnouncementsInput, UserDataUncheckedCreateWithoutAnnouncementsInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutAnnouncementsInput
+    upsert?: UserDataUpsertWithoutAnnouncementsInput
+    disconnect?: UserDataWhereInput | boolean
+    delete?: UserDataWhereInput | boolean
+    connect?: UserDataWhereUniqueInput
+    update?: XOR<XOR<UserDataUpdateToOneWithWhereWithoutAnnouncementsInput, UserDataUpdateWithoutAnnouncementsInput>, UserDataUncheckedUpdateWithoutAnnouncementsInput>
+  }
+
+  export type UserDataCreateNestedOneWithoutTahfidzRecordsInput = {
+    create?: XOR<UserDataCreateWithoutTahfidzRecordsInput, UserDataUncheckedCreateWithoutTahfidzRecordsInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutTahfidzRecordsInput
+    connect?: UserDataWhereUniqueInput
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserDataUpdateOneWithoutTahfidzRecordsNestedInput = {
+    create?: XOR<UserDataCreateWithoutTahfidzRecordsInput, UserDataUncheckedCreateWithoutTahfidzRecordsInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutTahfidzRecordsInput
+    upsert?: UserDataUpsertWithoutTahfidzRecordsInput
+    disconnect?: UserDataWhereInput | boolean
+    delete?: UserDataWhereInput | boolean
+    connect?: UserDataWhereUniqueInput
+    update?: XOR<XOR<UserDataUpdateToOneWithWhereWithoutTahfidzRecordsInput, UserDataUpdateWithoutTahfidzRecordsInput>, UserDataUncheckedUpdateWithoutTahfidzRecordsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -28539,6 +37010,56 @@ export namespace Prisma {
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
   }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
 
   export type AccountCreateWithoutUserInput = {
     id: string
@@ -28633,7 +37154,10 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
@@ -28641,8 +37165,9 @@ export namespace Prisma {
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
   }
 
   export type UserDataUncheckedCreateWithoutUserInput = {
@@ -28670,12 +37195,16 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataUncheckedCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataUncheckedCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserDataCreateOrConnectWithoutUserInput = {
@@ -28781,7 +37310,10 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
@@ -28789,8 +37321,9 @@ export namespace Prisma {
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutUserInput = {
@@ -28818,12 +37351,16 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUncheckedUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUncheckedUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -29014,6 +37551,82 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type GradeCreateWithoutStudentInput = {
+    id?: string
+    gradeType: string
+    score: Decimal | DecimalJsLike | number | string
+    maxScore?: Decimal | DecimalJsLike | number | string
+    weight?: number
+    description?: string | null
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+    schedule: ScheduleCreateNestedOneWithoutGradesInput
+    subject: SubjectCreateNestedOneWithoutGradesInput
+  }
+
+  export type GradeUncheckedCreateWithoutStudentInput = {
+    id?: string
+    scheduleId: string
+    subjectId: string
+    gradeType: string
+    score: Decimal | DecimalJsLike | number | string
+    maxScore?: Decimal | DecimalJsLike | number | string
+    weight?: number
+    description?: string | null
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+  }
+
+  export type GradeCreateOrConnectWithoutStudentInput = {
+    where: GradeWhereUniqueInput
+    create: XOR<GradeCreateWithoutStudentInput, GradeUncheckedCreateWithoutStudentInput>
+  }
+
+  export type GradeCreateManyStudentInputEnvelope = {
+    data: GradeCreateManyStudentInput | GradeCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type NotificationCreateWithoutUserInput = {
+    id?: string
+    title: string
+    message: string
+    type: string
+    category?: string | null
+    isRead?: boolean
+    link?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    readAt?: Date | string | null
+  }
+
+  export type NotificationUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    message: string
+    type: string
+    category?: string | null
+    isRead?: boolean
+    link?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    readAt?: Date | string | null
+  }
+
+  export type NotificationCreateOrConnectWithoutUserInput = {
+    where: NotificationWhereUniqueInput
+    create: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput>
+  }
+
+  export type NotificationCreateManyUserInputEnvelope = {
+    data: NotificationCreateManyUserInput | NotificationCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PaymentCreateWithoutStudentInput = {
     id?: string
     amount: Decimal | DecimalJsLike | number | string
@@ -29054,7 +37667,9 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
+    grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
     class: ClassCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
@@ -29069,7 +37684,9 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
     attendances?: AttendanceUncheckedCreateNestedManyWithoutScheduleInput
+    grades?: GradeUncheckedCreateNestedManyWithoutScheduleInput
   }
 
   export type ScheduleCreateOrConnectWithoutTeacherInput = {
@@ -29120,6 +37737,7 @@ export namespace Prisma {
     name: string
     grade: number
     capacity?: number
+    isActive?: boolean
     academicYear: AcademicYearCreateNestedOneWithoutClassesInput
     major: MajorCreateNestedOneWithoutClassesInput
     schedules?: ScheduleCreateNestedManyWithoutClassInput
@@ -29133,6 +37751,7 @@ export namespace Prisma {
     majorId: string
     academicYearId: string
     capacity?: number
+    isActive?: boolean
     schedules?: ScheduleUncheckedCreateNestedManyWithoutClassInput
     violations?: ViolationUncheckedCreateNestedManyWithoutClassInput
   }
@@ -29261,146 +37880,116 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserDataCreateWithoutUser_data_BInput = {
+  export type TahfidzRecordCreateWithoutUserInput = {
     id?: string
-    address?: string | null
-    avatarUrl?: string | null
-    birthDate?: Date | string | null
-    birthPlace?: string | null
-    employeeId?: string | null
-    endDate?: Date | string | null
-    enrollmentDate?: Date | string | null
-    gender?: string | null
-    graduationDate?: Date | string | null
-    nik?: string | null
-    nisn?: string | null
-    parentPhone?: string | null
-    position?: string | null
-    relation?: string | null
-    startDate?: Date | string | null
-    status?: string | null
-    studentIds?: UserDataCreatestudentIdsInput | string[]
-    email?: string | null
-    name: string
-    attendances?: AttendanceCreateNestedManyWithoutStudentInput
-    payments?: PaymentCreateNestedManyWithoutStudentInput
-    schedules?: ScheduleCreateNestedManyWithoutTeacherInput
-    academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
-    class?: ClassCreateNestedOneWithoutStudentsInput
-    major?: MajorCreateNestedOneWithoutStudentsInput
-    role?: RoleCreateNestedOneWithoutUserDataInput
-    user?: UserCreateNestedOneWithoutUserDataInput
-    violations?: ViolationCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
+    surah?: string | null
+    startVerse?: number | null
+    endVerse?: number | null
+    grade?: string | null
+    date: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type UserDataUncheckedCreateWithoutUser_data_BInput = {
+  export type TahfidzRecordUncheckedCreateWithoutUserInput = {
     id?: string
-    userId?: string | null
-    academicYearId?: string | null
-    address?: string | null
-    avatarUrl?: string | null
-    birthDate?: Date | string | null
-    birthPlace?: string | null
-    classId?: string | null
-    employeeId?: string | null
-    endDate?: Date | string | null
-    enrollmentDate?: Date | string | null
-    gender?: string | null
-    graduationDate?: Date | string | null
-    majorId?: string | null
-    nik?: string | null
-    nisn?: string | null
-    parentPhone?: string | null
-    position?: string | null
-    relation?: string | null
-    roleId?: string | null
-    startDate?: Date | string | null
-    status?: string | null
-    studentIds?: UserDataCreatestudentIdsInput | string[]
-    email?: string | null
-    name: string
-    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
-    payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
-    schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataUncheckedCreateNestedManyWithoutUser_data_BInput
+    surah?: string | null
+    startVerse?: number | null
+    endVerse?: number | null
+    grade?: string | null
+    date: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type UserDataCreateOrConnectWithoutUser_data_BInput = {
-    where: UserDataWhereUniqueInput
-    create: XOR<UserDataCreateWithoutUser_data_BInput, UserDataUncheckedCreateWithoutUser_data_BInput>
+  export type TahfidzRecordCreateOrConnectWithoutUserInput = {
+    where: TahfidzRecordWhereUniqueInput
+    create: XOR<TahfidzRecordCreateWithoutUserInput, TahfidzRecordUncheckedCreateWithoutUserInput>
   }
 
-  export type UserDataCreateWithoutUser_data_AInput = {
+  export type TahfidzRecordCreateManyUserInputEnvelope = {
+    data: TahfidzRecordCreateManyUserInput | TahfidzRecordCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DashboardContentCreateWithoutUserInput = {
     id?: string
-    address?: string | null
-    avatarUrl?: string | null
-    birthDate?: Date | string | null
-    birthPlace?: string | null
-    employeeId?: string | null
-    endDate?: Date | string | null
-    enrollmentDate?: Date | string | null
-    gender?: string | null
-    graduationDate?: Date | string | null
-    nik?: string | null
-    nisn?: string | null
-    parentPhone?: string | null
-    position?: string | null
-    relation?: string | null
+    title: string
+    description?: string | null
+    imageUrl: string
+    linkUrl?: string | null
+    order?: number
+    isActive?: boolean
+    isPublished?: boolean
     startDate?: Date | string | null
-    status?: string | null
-    studentIds?: UserDataCreatestudentIdsInput | string[]
-    email?: string | null
-    name: string
-    attendances?: AttendanceCreateNestedManyWithoutStudentInput
-    payments?: PaymentCreateNestedManyWithoutStudentInput
-    schedules?: ScheduleCreateNestedManyWithoutTeacherInput
-    academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
-    class?: ClassCreateNestedOneWithoutStudentsInput
-    major?: MajorCreateNestedOneWithoutStudentsInput
-    role?: RoleCreateNestedOneWithoutUserDataInput
-    user?: UserCreateNestedOneWithoutUserDataInput
-    violations?: ViolationCreateNestedManyWithoutStudentInput
-    user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type UserDataUncheckedCreateWithoutUser_data_AInput = {
+  export type DashboardContentUncheckedCreateWithoutUserInput = {
     id?: string
-    userId?: string | null
-    academicYearId?: string | null
-    address?: string | null
-    avatarUrl?: string | null
-    birthDate?: Date | string | null
-    birthPlace?: string | null
-    classId?: string | null
-    employeeId?: string | null
-    endDate?: Date | string | null
-    enrollmentDate?: Date | string | null
-    gender?: string | null
-    graduationDate?: Date | string | null
-    majorId?: string | null
-    nik?: string | null
-    nisn?: string | null
-    parentPhone?: string | null
-    position?: string | null
-    relation?: string | null
-    roleId?: string | null
+    title: string
+    description?: string | null
+    imageUrl: string
+    linkUrl?: string | null
+    order?: number
+    isActive?: boolean
+    isPublished?: boolean
     startDate?: Date | string | null
-    status?: string | null
-    studentIds?: UserDataCreatestudentIdsInput | string[]
-    email?: string | null
-    name: string
-    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
-    payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
-    schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    user_data_B?: UserDataUncheckedCreateNestedManyWithoutUser_data_AInput
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type UserDataCreateOrConnectWithoutUser_data_AInput = {
-    where: UserDataWhereUniqueInput
-    create: XOR<UserDataCreateWithoutUser_data_AInput, UserDataUncheckedCreateWithoutUser_data_AInput>
+  export type DashboardContentCreateOrConnectWithoutUserInput = {
+    where: DashboardContentWhereUniqueInput
+    create: XOR<DashboardContentCreateWithoutUserInput, DashboardContentUncheckedCreateWithoutUserInput>
+  }
+
+  export type DashboardContentCreateManyUserInputEnvelope = {
+    data: DashboardContentCreateManyUserInput | DashboardContentCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AnnouncementCreateWithoutUserInput = {
+    id?: string
+    title: string
+    content: string
+    imageUrl?: string | null
+    linkUrl?: string | null
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AnnouncementUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    content: string
+    imageUrl?: string | null
+    linkUrl?: string | null
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AnnouncementCreateOrConnectWithoutUserInput = {
+    where: AnnouncementWhereUniqueInput
+    create: XOR<AnnouncementCreateWithoutUserInput, AnnouncementUncheckedCreateWithoutUserInput>
+  }
+
+  export type AnnouncementCreateManyUserInputEnvelope = {
+    data: AnnouncementCreateManyUserInput | AnnouncementCreateManyUserInput[]
+    skipDuplicates?: boolean
   }
 
   export type AttendanceUpsertWithWhereUniqueWithoutStudentInput = {
@@ -29430,6 +38019,74 @@ export namespace Prisma {
     notes?: StringNullableFilter<"Attendance"> | string | null
     createdAt?: DateTimeFilter<"Attendance"> | Date | string
     date?: DateTimeFilter<"Attendance"> | Date | string
+  }
+
+  export type GradeUpsertWithWhereUniqueWithoutStudentInput = {
+    where: GradeWhereUniqueInput
+    update: XOR<GradeUpdateWithoutStudentInput, GradeUncheckedUpdateWithoutStudentInput>
+    create: XOR<GradeCreateWithoutStudentInput, GradeUncheckedCreateWithoutStudentInput>
+  }
+
+  export type GradeUpdateWithWhereUniqueWithoutStudentInput = {
+    where: GradeWhereUniqueInput
+    data: XOR<GradeUpdateWithoutStudentInput, GradeUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type GradeUpdateManyWithWhereWithoutStudentInput = {
+    where: GradeScalarWhereInput
+    data: XOR<GradeUpdateManyMutationInput, GradeUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type GradeScalarWhereInput = {
+    AND?: GradeScalarWhereInput | GradeScalarWhereInput[]
+    OR?: GradeScalarWhereInput[]
+    NOT?: GradeScalarWhereInput | GradeScalarWhereInput[]
+    id?: StringFilter<"Grade"> | string
+    studentId?: StringFilter<"Grade"> | string
+    scheduleId?: StringFilter<"Grade"> | string
+    subjectId?: StringFilter<"Grade"> | string
+    gradeType?: StringFilter<"Grade"> | string
+    score?: DecimalFilter<"Grade"> | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFilter<"Grade"> | Decimal | DecimalJsLike | number | string
+    weight?: IntFilter<"Grade"> | number
+    description?: StringNullableFilter<"Grade"> | string | null
+    date?: DateTimeFilter<"Grade"> | Date | string
+    createdAt?: DateTimeFilter<"Grade"> | Date | string
+    updatedAt?: DateTimeFilter<"Grade"> | Date | string
+    createdBy?: StringFilter<"Grade"> | string
+  }
+
+  export type NotificationUpsertWithWhereUniqueWithoutUserInput = {
+    where: NotificationWhereUniqueInput
+    update: XOR<NotificationUpdateWithoutUserInput, NotificationUncheckedUpdateWithoutUserInput>
+    create: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput>
+  }
+
+  export type NotificationUpdateWithWhereUniqueWithoutUserInput = {
+    where: NotificationWhereUniqueInput
+    data: XOR<NotificationUpdateWithoutUserInput, NotificationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type NotificationUpdateManyWithWhereWithoutUserInput = {
+    where: NotificationScalarWhereInput
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type NotificationScalarWhereInput = {
+    AND?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+    OR?: NotificationScalarWhereInput[]
+    NOT?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+    id?: StringFilter<"Notification"> | string
+    userId?: StringFilter<"Notification"> | string
+    title?: StringFilter<"Notification"> | string
+    message?: StringFilter<"Notification"> | string
+    type?: StringFilter<"Notification"> | string
+    category?: StringNullableFilter<"Notification"> | string | null
+    isRead?: BoolFilter<"Notification"> | boolean
+    link?: StringNullableFilter<"Notification"> | string | null
+    data?: JsonNullableFilter<"Notification">
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+    readAt?: DateTimeNullableFilter<"Notification"> | Date | string | null
   }
 
   export type PaymentUpsertWithWhereUniqueWithoutStudentInput = {
@@ -29493,6 +38150,7 @@ export namespace Prisma {
     startTime?: StringFilter<"Schedule"> | string
     endTime?: StringFilter<"Schedule"> | string
     room?: StringNullableFilter<"Schedule"> | string | null
+    isActive?: BoolFilter<"Schedule"> | boolean
   }
 
   export type AcademicYearUpsertWithoutStudentsInput = {
@@ -29550,6 +38208,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     academicYear?: AcademicYearUpdateOneRequiredWithoutClassesNestedInput
     major?: MajorUpdateOneRequiredWithoutClassesNestedInput
     schedules?: ScheduleUpdateManyWithoutClassNestedInput
@@ -29563,6 +38222,7 @@ export namespace Prisma {
     majorId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     schedules?: ScheduleUncheckedUpdateManyWithoutClassNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutClassNestedInput
   }
@@ -29701,20 +38361,205 @@ export namespace Prisma {
     resolutionNotes?: StringNullableFilter<"Violation"> | string | null
   }
 
-  export type UserDataUpsertWithWhereUniqueWithoutUser_data_BInput = {
-    where: UserDataWhereUniqueInput
-    update: XOR<UserDataUpdateWithoutUser_data_BInput, UserDataUncheckedUpdateWithoutUser_data_BInput>
-    create: XOR<UserDataCreateWithoutUser_data_BInput, UserDataUncheckedCreateWithoutUser_data_BInput>
+  export type TahfidzRecordUpsertWithWhereUniqueWithoutUserInput = {
+    where: TahfidzRecordWhereUniqueInput
+    update: XOR<TahfidzRecordUpdateWithoutUserInput, TahfidzRecordUncheckedUpdateWithoutUserInput>
+    create: XOR<TahfidzRecordCreateWithoutUserInput, TahfidzRecordUncheckedCreateWithoutUserInput>
   }
 
-  export type UserDataUpdateWithWhereUniqueWithoutUser_data_BInput = {
-    where: UserDataWhereUniqueInput
-    data: XOR<UserDataUpdateWithoutUser_data_BInput, UserDataUncheckedUpdateWithoutUser_data_BInput>
+  export type TahfidzRecordUpdateWithWhereUniqueWithoutUserInput = {
+    where: TahfidzRecordWhereUniqueInput
+    data: XOR<TahfidzRecordUpdateWithoutUserInput, TahfidzRecordUncheckedUpdateWithoutUserInput>
   }
 
-  export type UserDataUpdateManyWithWhereWithoutUser_data_BInput = {
+  export type TahfidzRecordUpdateManyWithWhereWithoutUserInput = {
+    where: TahfidzRecordScalarWhereInput
+    data: XOR<TahfidzRecordUpdateManyMutationInput, TahfidzRecordUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type TahfidzRecordScalarWhereInput = {
+    AND?: TahfidzRecordScalarWhereInput | TahfidzRecordScalarWhereInput[]
+    OR?: TahfidzRecordScalarWhereInput[]
+    NOT?: TahfidzRecordScalarWhereInput | TahfidzRecordScalarWhereInput[]
+    id?: StringFilter<"TahfidzRecord"> | string
+    userId?: StringNullableFilter<"TahfidzRecord"> | string | null
+    surah?: StringNullableFilter<"TahfidzRecord"> | string | null
+    startVerse?: IntNullableFilter<"TahfidzRecord"> | number | null
+    endVerse?: IntNullableFilter<"TahfidzRecord"> | number | null
+    grade?: StringNullableFilter<"TahfidzRecord"> | string | null
+    date?: DateTimeFilter<"TahfidzRecord"> | Date | string
+    notes?: StringNullableFilter<"TahfidzRecord"> | string | null
+    createdAt?: DateTimeFilter<"TahfidzRecord"> | Date | string
+    updatedAt?: DateTimeFilter<"TahfidzRecord"> | Date | string
+  }
+
+  export type DashboardContentUpsertWithWhereUniqueWithoutUserInput = {
+    where: DashboardContentWhereUniqueInput
+    update: XOR<DashboardContentUpdateWithoutUserInput, DashboardContentUncheckedUpdateWithoutUserInput>
+    create: XOR<DashboardContentCreateWithoutUserInput, DashboardContentUncheckedCreateWithoutUserInput>
+  }
+
+  export type DashboardContentUpdateWithWhereUniqueWithoutUserInput = {
+    where: DashboardContentWhereUniqueInput
+    data: XOR<DashboardContentUpdateWithoutUserInput, DashboardContentUncheckedUpdateWithoutUserInput>
+  }
+
+  export type DashboardContentUpdateManyWithWhereWithoutUserInput = {
+    where: DashboardContentScalarWhereInput
+    data: XOR<DashboardContentUpdateManyMutationInput, DashboardContentUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type DashboardContentScalarWhereInput = {
+    AND?: DashboardContentScalarWhereInput | DashboardContentScalarWhereInput[]
+    OR?: DashboardContentScalarWhereInput[]
+    NOT?: DashboardContentScalarWhereInput | DashboardContentScalarWhereInput[]
+    id?: StringFilter<"DashboardContent"> | string
+    title?: StringFilter<"DashboardContent"> | string
+    description?: StringNullableFilter<"DashboardContent"> | string | null
+    imageUrl?: StringFilter<"DashboardContent"> | string
+    linkUrl?: StringNullableFilter<"DashboardContent"> | string | null
+    order?: IntFilter<"DashboardContent"> | number
+    isActive?: BoolFilter<"DashboardContent"> | boolean
+    isPublished?: BoolFilter<"DashboardContent"> | boolean
+    startDate?: DateTimeNullableFilter<"DashboardContent"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"DashboardContent"> | Date | string | null
+    createdAt?: DateTimeFilter<"DashboardContent"> | Date | string
+    updatedAt?: DateTimeFilter<"DashboardContent"> | Date | string
+    userId?: StringNullableFilter<"DashboardContent"> | string | null
+  }
+
+  export type AnnouncementUpsertWithWhereUniqueWithoutUserInput = {
+    where: AnnouncementWhereUniqueInput
+    update: XOR<AnnouncementUpdateWithoutUserInput, AnnouncementUncheckedUpdateWithoutUserInput>
+    create: XOR<AnnouncementCreateWithoutUserInput, AnnouncementUncheckedCreateWithoutUserInput>
+  }
+
+  export type AnnouncementUpdateWithWhereUniqueWithoutUserInput = {
+    where: AnnouncementWhereUniqueInput
+    data: XOR<AnnouncementUpdateWithoutUserInput, AnnouncementUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AnnouncementUpdateManyWithWhereWithoutUserInput = {
+    where: AnnouncementScalarWhereInput
+    data: XOR<AnnouncementUpdateManyMutationInput, AnnouncementUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type AnnouncementScalarWhereInput = {
+    AND?: AnnouncementScalarWhereInput | AnnouncementScalarWhereInput[]
+    OR?: AnnouncementScalarWhereInput[]
+    NOT?: AnnouncementScalarWhereInput | AnnouncementScalarWhereInput[]
+    id?: StringFilter<"Announcement"> | string
+    title?: StringFilter<"Announcement"> | string
+    content?: StringFilter<"Announcement"> | string
+    imageUrl?: StringNullableFilter<"Announcement"> | string | null
+    linkUrl?: StringNullableFilter<"Announcement"> | string | null
+    isActive?: BoolFilter<"Announcement"> | boolean
+    isPublished?: BoolFilter<"Announcement"> | boolean
+    startDate?: DateTimeNullableFilter<"Announcement"> | Date | string | null
+    endDate?: DateTimeNullableFilter<"Announcement"> | Date | string | null
+    createdAt?: DateTimeFilter<"Announcement"> | Date | string
+    updatedAt?: DateTimeFilter<"Announcement"> | Date | string
+    userId?: StringNullableFilter<"Announcement"> | string | null
+  }
+
+  export type UserDataCreateWithoutRoleInput = {
+    id?: string
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    payments?: PaymentCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleCreateNestedManyWithoutTeacherInput
+    academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    major?: MajorCreateNestedOneWithoutStudentsInput
+    user?: UserCreateNestedOneWithoutUserDataInput
+    violations?: ViolationCreateNestedManyWithoutStudentInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
+  }
+
+  export type UserDataUncheckedCreateWithoutRoleInput = {
+    id?: string
+    userId?: string | null
+    academicYearId?: string | null
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    classId?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    majorId?: string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserDataCreateOrConnectWithoutRoleInput = {
+    where: UserDataWhereUniqueInput
+    create: XOR<UserDataCreateWithoutRoleInput, UserDataUncheckedCreateWithoutRoleInput>
+  }
+
+  export type UserDataCreateManyRoleInputEnvelope = {
+    data: UserDataCreateManyRoleInput | UserDataCreateManyRoleInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserDataUpsertWithWhereUniqueWithoutRoleInput = {
+    where: UserDataWhereUniqueInput
+    update: XOR<UserDataUpdateWithoutRoleInput, UserDataUncheckedUpdateWithoutRoleInput>
+    create: XOR<UserDataCreateWithoutRoleInput, UserDataUncheckedCreateWithoutRoleInput>
+  }
+
+  export type UserDataUpdateWithWhereUniqueWithoutRoleInput = {
+    where: UserDataWhereUniqueInput
+    data: XOR<UserDataUpdateWithoutRoleInput, UserDataUncheckedUpdateWithoutRoleInput>
+  }
+
+  export type UserDataUpdateManyWithWhereWithoutRoleInput = {
     where: UserDataScalarWhereInput
-    data: XOR<UserDataUpdateManyMutationInput, UserDataUncheckedUpdateManyWithoutUser_data_BInput>
+    data: XOR<UserDataUpdateManyMutationInput, UserDataUncheckedUpdateManyWithoutRoleInput>
   }
 
   export type UserDataScalarWhereInput = {
@@ -29746,114 +38591,7 @@ export namespace Prisma {
     studentIds?: StringNullableListFilter<"UserData">
     email?: StringNullableFilter<"UserData"> | string | null
     name?: StringFilter<"UserData"> | string
-  }
-
-  export type UserDataUpsertWithWhereUniqueWithoutUser_data_AInput = {
-    where: UserDataWhereUniqueInput
-    update: XOR<UserDataUpdateWithoutUser_data_AInput, UserDataUncheckedUpdateWithoutUser_data_AInput>
-    create: XOR<UserDataCreateWithoutUser_data_AInput, UserDataUncheckedCreateWithoutUser_data_AInput>
-  }
-
-  export type UserDataUpdateWithWhereUniqueWithoutUser_data_AInput = {
-    where: UserDataWhereUniqueInput
-    data: XOR<UserDataUpdateWithoutUser_data_AInput, UserDataUncheckedUpdateWithoutUser_data_AInput>
-  }
-
-  export type UserDataUpdateManyWithWhereWithoutUser_data_AInput = {
-    where: UserDataScalarWhereInput
-    data: XOR<UserDataUpdateManyMutationInput, UserDataUncheckedUpdateManyWithoutUser_data_AInput>
-  }
-
-  export type UserDataCreateWithoutRoleInput = {
-    id?: string
-    address?: string | null
-    avatarUrl?: string | null
-    birthDate?: Date | string | null
-    birthPlace?: string | null
-    employeeId?: string | null
-    endDate?: Date | string | null
-    enrollmentDate?: Date | string | null
-    gender?: string | null
-    graduationDate?: Date | string | null
-    nik?: string | null
-    nisn?: string | null
-    parentPhone?: string | null
-    position?: string | null
-    relation?: string | null
-    startDate?: Date | string | null
-    status?: string | null
-    studentIds?: UserDataCreatestudentIdsInput | string[]
-    email?: string | null
-    name: string
-    attendances?: AttendanceCreateNestedManyWithoutStudentInput
-    payments?: PaymentCreateNestedManyWithoutStudentInput
-    schedules?: ScheduleCreateNestedManyWithoutTeacherInput
-    academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
-    class?: ClassCreateNestedOneWithoutStudentsInput
-    major?: MajorCreateNestedOneWithoutStudentsInput
-    user?: UserCreateNestedOneWithoutUserDataInput
-    violations?: ViolationCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
-  }
-
-  export type UserDataUncheckedCreateWithoutRoleInput = {
-    id?: string
-    userId?: string | null
-    academicYearId?: string | null
-    address?: string | null
-    avatarUrl?: string | null
-    birthDate?: Date | string | null
-    birthPlace?: string | null
-    classId?: string | null
-    employeeId?: string | null
-    endDate?: Date | string | null
-    enrollmentDate?: Date | string | null
-    gender?: string | null
-    graduationDate?: Date | string | null
-    majorId?: string | null
-    nik?: string | null
-    nisn?: string | null
-    parentPhone?: string | null
-    position?: string | null
-    relation?: string | null
-    startDate?: Date | string | null
-    status?: string | null
-    studentIds?: UserDataCreatestudentIdsInput | string[]
-    email?: string | null
-    name: string
-    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
-    payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
-    schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataUncheckedCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataUncheckedCreateNestedManyWithoutUser_data_AInput
-  }
-
-  export type UserDataCreateOrConnectWithoutRoleInput = {
-    where: UserDataWhereUniqueInput
-    create: XOR<UserDataCreateWithoutRoleInput, UserDataUncheckedCreateWithoutRoleInput>
-  }
-
-  export type UserDataCreateManyRoleInputEnvelope = {
-    data: UserDataCreateManyRoleInput | UserDataCreateManyRoleInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type UserDataUpsertWithWhereUniqueWithoutRoleInput = {
-    where: UserDataWhereUniqueInput
-    update: XOR<UserDataUpdateWithoutRoleInput, UserDataUncheckedUpdateWithoutRoleInput>
-    create: XOR<UserDataCreateWithoutRoleInput, UserDataUncheckedCreateWithoutRoleInput>
-  }
-
-  export type UserDataUpdateWithWhereUniqueWithoutRoleInput = {
-    where: UserDataWhereUniqueInput
-    data: XOR<UserDataUpdateWithoutRoleInput, UserDataUncheckedUpdateWithoutRoleInput>
-  }
-
-  export type UserDataUpdateManyWithWhereWithoutRoleInput = {
-    where: UserDataScalarWhereInput
-    data: XOR<UserDataUpdateManyMutationInput, UserDataUncheckedUpdateManyWithoutRoleInput>
+    isActive?: BoolFilter<"UserData"> | boolean
   }
 
   export type CalendarEventCreateWithoutAcademicYearInput = {
@@ -29893,6 +38631,7 @@ export namespace Prisma {
     name: string
     grade: number
     capacity?: number
+    isActive?: boolean
     major: MajorCreateNestedOneWithoutClassesInput
     schedules?: ScheduleCreateNestedManyWithoutClassInput
     students?: UserDataCreateNestedManyWithoutClassInput
@@ -29905,6 +38644,7 @@ export namespace Prisma {
     grade: number
     majorId: string
     capacity?: number
+    isActive?: boolean
     schedules?: ScheduleUncheckedCreateNestedManyWithoutClassInput
     students?: UserDataUncheckedCreateNestedManyWithoutClassInput
     violations?: ViolationUncheckedCreateNestedManyWithoutClassInput
@@ -29926,7 +38666,9 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
+    grades?: GradeCreateNestedManyWithoutScheduleInput
     class: ClassCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
@@ -29941,7 +38683,9 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
     attendances?: AttendanceUncheckedCreateNestedManyWithoutScheduleInput
+    grades?: GradeUncheckedCreateNestedManyWithoutScheduleInput
   }
 
   export type ScheduleCreateOrConnectWithoutAcademicYearInput = {
@@ -29975,7 +38719,10 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     class?: ClassCreateNestedOneWithoutStudentsInput
@@ -29983,8 +38730,9 @@ export namespace Prisma {
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
   }
 
   export type UserDataUncheckedCreateWithoutAcademicYearInput = {
@@ -30012,12 +38760,16 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataUncheckedCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataUncheckedCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserDataCreateOrConnectWithoutAcademicYearInput = {
@@ -30115,6 +38867,7 @@ export namespace Prisma {
     majorId?: StringFilter<"Class"> | string
     academicYearId?: StringFilter<"Class"> | string
     capacity?: IntFilter<"Class"> | number
+    isActive?: BoolFilter<"Class"> | boolean
   }
 
   export type ScheduleUpsertWithWhereUniqueWithoutAcademicYearInput = {
@@ -30182,6 +38935,7 @@ export namespace Prisma {
     name: string
     grade: number
     capacity?: number
+    isActive?: boolean
     academicYear: AcademicYearCreateNestedOneWithoutClassesInput
     schedules?: ScheduleCreateNestedManyWithoutClassInput
     students?: UserDataCreateNestedManyWithoutClassInput
@@ -30194,6 +38948,7 @@ export namespace Prisma {
     grade: number
     academicYearId: string
     capacity?: number
+    isActive?: boolean
     schedules?: ScheduleUncheckedCreateNestedManyWithoutClassInput
     students?: UserDataUncheckedCreateNestedManyWithoutClassInput
     violations?: ViolationUncheckedCreateNestedManyWithoutClassInput
@@ -30216,6 +38971,7 @@ export namespace Prisma {
     description?: string | null
     credits?: number
     isActive?: boolean
+    grades?: GradeCreateNestedManyWithoutSubjectInput
     schedules?: ScheduleCreateNestedManyWithoutSubjectInput
   }
 
@@ -30226,6 +38982,7 @@ export namespace Prisma {
     description?: string | null
     credits?: number
     isActive?: boolean
+    grades?: GradeUncheckedCreateNestedManyWithoutSubjectInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutSubjectInput
   }
 
@@ -30260,7 +39017,10 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
@@ -30268,8 +39028,9 @@ export namespace Prisma {
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
   }
 
   export type UserDataUncheckedCreateWithoutMajorInput = {
@@ -30297,12 +39058,16 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataUncheckedCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataUncheckedCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserDataCreateOrConnectWithoutMajorInput = {
@@ -30440,7 +39205,9 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
+    grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
@@ -30455,7 +39222,9 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
     attendances?: AttendanceUncheckedCreateNestedManyWithoutScheduleInput
+    grades?: GradeUncheckedCreateNestedManyWithoutScheduleInput
   }
 
   export type ScheduleCreateOrConnectWithoutClassInput = {
@@ -30489,7 +39258,10 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
@@ -30497,8 +39269,9 @@ export namespace Prisma {
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
   }
 
   export type UserDataUncheckedCreateWithoutClassInput = {
@@ -30526,12 +39299,16 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataUncheckedCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataUncheckedCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserDataCreateOrConnectWithoutClassInput = {
@@ -30698,13 +39475,55 @@ export namespace Prisma {
     data: XOR<ViolationUpdateManyMutationInput, ViolationUncheckedUpdateManyWithoutClassInput>
   }
 
+  export type GradeCreateWithoutSubjectInput = {
+    id?: string
+    gradeType: string
+    score: Decimal | DecimalJsLike | number | string
+    maxScore?: Decimal | DecimalJsLike | number | string
+    weight?: number
+    description?: string | null
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+    schedule: ScheduleCreateNestedOneWithoutGradesInput
+    student: UserDataCreateNestedOneWithoutGradesInput
+  }
+
+  export type GradeUncheckedCreateWithoutSubjectInput = {
+    id?: string
+    studentId: string
+    scheduleId: string
+    gradeType: string
+    score: Decimal | DecimalJsLike | number | string
+    maxScore?: Decimal | DecimalJsLike | number | string
+    weight?: number
+    description?: string | null
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+  }
+
+  export type GradeCreateOrConnectWithoutSubjectInput = {
+    where: GradeWhereUniqueInput
+    create: XOR<GradeCreateWithoutSubjectInput, GradeUncheckedCreateWithoutSubjectInput>
+  }
+
+  export type GradeCreateManySubjectInputEnvelope = {
+    data: GradeCreateManySubjectInput | GradeCreateManySubjectInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ScheduleCreateWithoutSubjectInput = {
     id?: string
     dayOfWeek: number
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
+    grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
     class: ClassCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
@@ -30719,7 +39538,9 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
     attendances?: AttendanceUncheckedCreateNestedManyWithoutScheduleInput
+    grades?: GradeUncheckedCreateNestedManyWithoutScheduleInput
   }
 
   export type ScheduleCreateOrConnectWithoutSubjectInput = {
@@ -30755,6 +39576,22 @@ export namespace Prisma {
   export type MajorCreateOrConnectWithoutSubjectsInput = {
     where: MajorWhereUniqueInput
     create: XOR<MajorCreateWithoutSubjectsInput, MajorUncheckedCreateWithoutSubjectsInput>
+  }
+
+  export type GradeUpsertWithWhereUniqueWithoutSubjectInput = {
+    where: GradeWhereUniqueInput
+    update: XOR<GradeUpdateWithoutSubjectInput, GradeUncheckedUpdateWithoutSubjectInput>
+    create: XOR<GradeCreateWithoutSubjectInput, GradeUncheckedCreateWithoutSubjectInput>
+  }
+
+  export type GradeUpdateWithWhereUniqueWithoutSubjectInput = {
+    where: GradeWhereUniqueInput
+    data: XOR<GradeUpdateWithoutSubjectInput, GradeUncheckedUpdateWithoutSubjectInput>
+  }
+
+  export type GradeUpdateManyWithWhereWithoutSubjectInput = {
+    where: GradeScalarWhereInput
+    data: XOR<GradeUpdateManyMutationInput, GradeUncheckedUpdateManyWithoutSubjectInput>
   }
 
   export type ScheduleUpsertWithWhereUniqueWithoutSubjectInput = {
@@ -30832,6 +39669,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type GradeCreateWithoutScheduleInput = {
+    id?: string
+    gradeType: string
+    score: Decimal | DecimalJsLike | number | string
+    maxScore?: Decimal | DecimalJsLike | number | string
+    weight?: number
+    description?: string | null
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+    student: UserDataCreateNestedOneWithoutGradesInput
+    subject: SubjectCreateNestedOneWithoutGradesInput
+  }
+
+  export type GradeUncheckedCreateWithoutScheduleInput = {
+    id?: string
+    studentId: string
+    subjectId: string
+    gradeType: string
+    score: Decimal | DecimalJsLike | number | string
+    maxScore?: Decimal | DecimalJsLike | number | string
+    weight?: number
+    description?: string | null
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+  }
+
+  export type GradeCreateOrConnectWithoutScheduleInput = {
+    where: GradeWhereUniqueInput
+    create: XOR<GradeCreateWithoutScheduleInput, GradeUncheckedCreateWithoutScheduleInput>
+  }
+
+  export type GradeCreateManyScheduleInputEnvelope = {
+    data: GradeCreateManyScheduleInput | GradeCreateManyScheduleInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AcademicYearCreateWithoutSchedulesInput = {
     id?: string
     year: string
@@ -30870,6 +39747,7 @@ export namespace Prisma {
     name: string
     grade: number
     capacity?: number
+    isActive?: boolean
     academicYear: AcademicYearCreateNestedOneWithoutClassesInput
     major: MajorCreateNestedOneWithoutClassesInput
     students?: UserDataCreateNestedManyWithoutClassInput
@@ -30883,6 +39761,7 @@ export namespace Prisma {
     majorId: string
     academicYearId: string
     capacity?: number
+    isActive?: boolean
     students?: UserDataUncheckedCreateNestedManyWithoutClassInput
     violations?: ViolationUncheckedCreateNestedManyWithoutClassInput
   }
@@ -30899,6 +39778,7 @@ export namespace Prisma {
     description?: string | null
     credits?: number
     isActive?: boolean
+    grades?: GradeCreateNestedManyWithoutSubjectInput
     major?: MajorCreateNestedOneWithoutSubjectsInput
   }
 
@@ -30910,6 +39790,7 @@ export namespace Prisma {
     majorId?: string | null
     credits?: number
     isActive?: boolean
+    grades?: GradeUncheckedCreateNestedManyWithoutSubjectInput
   }
 
   export type SubjectCreateOrConnectWithoutSchedulesInput = {
@@ -30938,7 +39819,10 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutStudentInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
@@ -30946,8 +39830,9 @@ export namespace Prisma {
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
   }
 
   export type UserDataUncheckedCreateWithoutSchedulesInput = {
@@ -30976,11 +39861,15 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataUncheckedCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataUncheckedCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserDataCreateOrConnectWithoutSchedulesInput = {
@@ -31002,6 +39891,22 @@ export namespace Prisma {
   export type AttendanceUpdateManyWithWhereWithoutScheduleInput = {
     where: AttendanceScalarWhereInput
     data: XOR<AttendanceUpdateManyMutationInput, AttendanceUncheckedUpdateManyWithoutScheduleInput>
+  }
+
+  export type GradeUpsertWithWhereUniqueWithoutScheduleInput = {
+    where: GradeWhereUniqueInput
+    update: XOR<GradeUpdateWithoutScheduleInput, GradeUncheckedUpdateWithoutScheduleInput>
+    create: XOR<GradeCreateWithoutScheduleInput, GradeUncheckedCreateWithoutScheduleInput>
+  }
+
+  export type GradeUpdateWithWhereUniqueWithoutScheduleInput = {
+    where: GradeWhereUniqueInput
+    data: XOR<GradeUpdateWithoutScheduleInput, GradeUncheckedUpdateWithoutScheduleInput>
+  }
+
+  export type GradeUpdateManyWithWhereWithoutScheduleInput = {
+    where: GradeScalarWhereInput
+    data: XOR<GradeUpdateManyMutationInput, GradeUncheckedUpdateManyWithoutScheduleInput>
   }
 
   export type AcademicYearUpsertWithoutSchedulesInput = {
@@ -31059,6 +39964,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     academicYear?: AcademicYearUpdateOneRequiredWithoutClassesNestedInput
     major?: MajorUpdateOneRequiredWithoutClassesNestedInput
     students?: UserDataUpdateManyWithoutClassNestedInput
@@ -31072,6 +39978,7 @@ export namespace Prisma {
     majorId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     students?: UserDataUncheckedUpdateManyWithoutClassNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutClassNestedInput
   }
@@ -31094,6 +40001,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     credits?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    grades?: GradeUpdateManyWithoutSubjectNestedInput
     major?: MajorUpdateOneWithoutSubjectsNestedInput
   }
 
@@ -31105,6 +40013,7 @@ export namespace Prisma {
     majorId?: NullableStringFieldUpdateOperationsInput | string | null
     credits?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    grades?: GradeUncheckedUpdateManyWithoutSubjectNestedInput
   }
 
   export type UserDataUpsertWithoutSchedulesInput = {
@@ -31139,7 +40048,10 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutStudentNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
@@ -31147,8 +40059,9 @@ export namespace Prisma {
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutSchedulesInput = {
@@ -31177,11 +40090,15 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUncheckedUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUncheckedUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ScheduleCreateWithoutAttendancesInput = {
@@ -31190,6 +40107,8 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
+    grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
     class: ClassCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
@@ -31206,6 +40125,8 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
+    grades?: GradeUncheckedCreateNestedManyWithoutScheduleInput
   }
 
   export type ScheduleCreateOrConnectWithoutAttendancesInput = {
@@ -31234,6 +40155,9 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
@@ -31242,8 +40166,9 @@ export namespace Prisma {
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
   }
 
   export type UserDataUncheckedCreateWithoutAttendancesInput = {
@@ -31272,11 +40197,15 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataUncheckedCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataUncheckedCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserDataCreateOrConnectWithoutAttendancesInput = {
@@ -31301,6 +40230,8 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
     class?: ClassUpdateOneRequiredWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
@@ -31317,6 +40248,8 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    grades?: GradeUncheckedUpdateManyWithoutScheduleNestedInput
   }
 
   export type UserDataUpsertWithoutAttendancesInput = {
@@ -31351,6 +40284,9 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
@@ -31359,8 +40295,9 @@ export namespace Prisma {
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutAttendancesInput = {
@@ -31389,11 +40326,15 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUncheckedUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUncheckedUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AcademicYearCreateWithoutViolationTypesInput = {
@@ -31525,6 +40466,7 @@ export namespace Prisma {
     name: string
     grade: number
     capacity?: number
+    isActive?: boolean
     academicYear: AcademicYearCreateNestedOneWithoutClassesInput
     major: MajorCreateNestedOneWithoutClassesInput
     schedules?: ScheduleCreateNestedManyWithoutClassInput
@@ -31538,6 +40480,7 @@ export namespace Prisma {
     majorId: string
     academicYearId: string
     capacity?: number
+    isActive?: boolean
     schedules?: ScheduleUncheckedCreateNestedManyWithoutClassInput
     students?: UserDataUncheckedCreateNestedManyWithoutClassInput
   }
@@ -31568,7 +40511,10 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
     payments?: PaymentCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
@@ -31576,8 +40522,9 @@ export namespace Prisma {
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
-    user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
   }
 
   export type UserDataUncheckedCreateWithoutViolationsInput = {
@@ -31606,11 +40553,15 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
-    user_data_A?: UserDataUncheckedCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataUncheckedCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserDataCreateOrConnectWithoutViolationsInput = {
@@ -31657,6 +40608,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     academicYear?: AcademicYearUpdateOneRequiredWithoutClassesNestedInput
     major?: MajorUpdateOneRequiredWithoutClassesNestedInput
     schedules?: ScheduleUpdateManyWithoutClassNestedInput
@@ -31670,6 +40622,7 @@ export namespace Prisma {
     majorId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     schedules?: ScheduleUncheckedUpdateManyWithoutClassNestedInput
     students?: UserDataUncheckedUpdateManyWithoutClassNestedInput
   }
@@ -31706,7 +40659,10 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
@@ -31714,8 +40670,9 @@ export namespace Prisma {
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
-    user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutViolationsInput = {
@@ -31744,11 +40701,15 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
-    user_data_A?: UserDataUncheckedUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUncheckedUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ViolationTypeUpsertWithoutViolationsInput = {
@@ -31874,7 +40835,10 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
@@ -31882,8 +40846,9 @@ export namespace Prisma {
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
   }
 
   export type UserDataUncheckedCreateWithoutPaymentsInput = {
@@ -31912,11 +40877,15 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    user_data_A?: UserDataUncheckedCreateNestedManyWithoutUser_data_BInput
-    user_data_B?: UserDataUncheckedCreateNestedManyWithoutUser_data_AInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserDataCreateOrConnectWithoutPaymentsInput = {
@@ -31985,7 +40954,10 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
@@ -31993,8 +40965,9 @@ export namespace Prisma {
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutPaymentsInput = {
@@ -32023,11 +40996,15 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUncheckedUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUncheckedUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AcademicYearCreateWithoutCalendarEventsInput = {
@@ -32100,6 +41077,958 @@ export namespace Prisma {
     schedules?: ScheduleUncheckedUpdateManyWithoutAcademicYearNestedInput
     students?: UserDataUncheckedUpdateManyWithoutAcademicYearNestedInput
     violationTypes?: ViolationTypeUncheckedUpdateManyWithoutAcademicYearNestedInput
+  }
+
+  export type ScheduleCreateWithoutGradesInput = {
+    id?: string
+    dayOfWeek: number
+    startTime: string
+    endTime: string
+    room?: string | null
+    isActive?: boolean
+    attendances?: AttendanceCreateNestedManyWithoutScheduleInput
+    academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
+    class: ClassCreateNestedOneWithoutSchedulesInput
+    subject: SubjectCreateNestedOneWithoutSchedulesInput
+    teacher: UserDataCreateNestedOneWithoutSchedulesInput
+  }
+
+  export type ScheduleUncheckedCreateWithoutGradesInput = {
+    id?: string
+    classId: string
+    subjectId: string
+    teacherId: string
+    academicYearId: string
+    dayOfWeek: number
+    startTime: string
+    endTime: string
+    room?: string | null
+    isActive?: boolean
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutScheduleInput
+  }
+
+  export type ScheduleCreateOrConnectWithoutGradesInput = {
+    where: ScheduleWhereUniqueInput
+    create: XOR<ScheduleCreateWithoutGradesInput, ScheduleUncheckedCreateWithoutGradesInput>
+  }
+
+  export type UserDataCreateWithoutGradesInput = {
+    id?: string
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    payments?: PaymentCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleCreateNestedManyWithoutTeacherInput
+    academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    major?: MajorCreateNestedOneWithoutStudentsInput
+    role?: RoleCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
+    violations?: ViolationCreateNestedManyWithoutStudentInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
+  }
+
+  export type UserDataUncheckedCreateWithoutGradesInput = {
+    id?: string
+    userId?: string | null
+    academicYearId?: string | null
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    classId?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    majorId?: string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    roleId?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserDataCreateOrConnectWithoutGradesInput = {
+    where: UserDataWhereUniqueInput
+    create: XOR<UserDataCreateWithoutGradesInput, UserDataUncheckedCreateWithoutGradesInput>
+  }
+
+  export type SubjectCreateWithoutGradesInput = {
+    id?: string
+    code: string
+    name: string
+    description?: string | null
+    credits?: number
+    isActive?: boolean
+    schedules?: ScheduleCreateNestedManyWithoutSubjectInput
+    major?: MajorCreateNestedOneWithoutSubjectsInput
+  }
+
+  export type SubjectUncheckedCreateWithoutGradesInput = {
+    id?: string
+    code: string
+    name: string
+    description?: string | null
+    majorId?: string | null
+    credits?: number
+    isActive?: boolean
+    schedules?: ScheduleUncheckedCreateNestedManyWithoutSubjectInput
+  }
+
+  export type SubjectCreateOrConnectWithoutGradesInput = {
+    where: SubjectWhereUniqueInput
+    create: XOR<SubjectCreateWithoutGradesInput, SubjectUncheckedCreateWithoutGradesInput>
+  }
+
+  export type ScheduleUpsertWithoutGradesInput = {
+    update: XOR<ScheduleUpdateWithoutGradesInput, ScheduleUncheckedUpdateWithoutGradesInput>
+    create: XOR<ScheduleCreateWithoutGradesInput, ScheduleUncheckedCreateWithoutGradesInput>
+    where?: ScheduleWhereInput
+  }
+
+  export type ScheduleUpdateToOneWithWhereWithoutGradesInput = {
+    where?: ScheduleWhereInput
+    data: XOR<ScheduleUpdateWithoutGradesInput, ScheduleUncheckedUpdateWithoutGradesInput>
+  }
+
+  export type ScheduleUpdateWithoutGradesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    dayOfWeek?: IntFieldUpdateOperationsInput | number
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
+    academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
+    class?: ClassUpdateOneRequiredWithoutSchedulesNestedInput
+    subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
+    teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
+  }
+
+  export type ScheduleUncheckedUpdateWithoutGradesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    subjectId?: StringFieldUpdateOperationsInput | string
+    teacherId?: StringFieldUpdateOperationsInput | string
+    academicYearId?: StringFieldUpdateOperationsInput | string
+    dayOfWeek?: IntFieldUpdateOperationsInput | number
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    attendances?: AttendanceUncheckedUpdateManyWithoutScheduleNestedInput
+  }
+
+  export type UserDataUpsertWithoutGradesInput = {
+    update: XOR<UserDataUpdateWithoutGradesInput, UserDataUncheckedUpdateWithoutGradesInput>
+    create: XOR<UserDataCreateWithoutGradesInput, UserDataUncheckedCreateWithoutGradesInput>
+    where?: UserDataWhereInput
+  }
+
+  export type UserDataUpdateToOneWithWhereWithoutGradesInput = {
+    where?: UserDataWhereInput
+    data: XOR<UserDataUpdateWithoutGradesInput, UserDataUncheckedUpdateWithoutGradesInput>
+  }
+
+  export type UserDataUpdateWithoutGradesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    payments?: PaymentUpdateManyWithoutStudentNestedInput
+    schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
+    academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    major?: MajorUpdateOneWithoutStudentsNestedInput
+    role?: RoleUpdateOneWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
+    violations?: ViolationUpdateManyWithoutStudentNestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserDataUncheckedUpdateWithoutGradesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type SubjectUpsertWithoutGradesInput = {
+    update: XOR<SubjectUpdateWithoutGradesInput, SubjectUncheckedUpdateWithoutGradesInput>
+    create: XOR<SubjectCreateWithoutGradesInput, SubjectUncheckedCreateWithoutGradesInput>
+    where?: SubjectWhereInput
+  }
+
+  export type SubjectUpdateToOneWithWhereWithoutGradesInput = {
+    where?: SubjectWhereInput
+    data: XOR<SubjectUpdateWithoutGradesInput, SubjectUncheckedUpdateWithoutGradesInput>
+  }
+
+  export type SubjectUpdateWithoutGradesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    credits?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    schedules?: ScheduleUpdateManyWithoutSubjectNestedInput
+    major?: MajorUpdateOneWithoutSubjectsNestedInput
+  }
+
+  export type SubjectUncheckedUpdateWithoutGradesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    credits?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    schedules?: ScheduleUncheckedUpdateManyWithoutSubjectNestedInput
+  }
+
+  export type UserDataCreateWithoutNotificationsInput = {
+    id?: string
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    payments?: PaymentCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleCreateNestedManyWithoutTeacherInput
+    academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    major?: MajorCreateNestedOneWithoutStudentsInput
+    role?: RoleCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
+    violations?: ViolationCreateNestedManyWithoutStudentInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
+  }
+
+  export type UserDataUncheckedCreateWithoutNotificationsInput = {
+    id?: string
+    userId?: string | null
+    academicYearId?: string | null
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    classId?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    majorId?: string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    roleId?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserDataCreateOrConnectWithoutNotificationsInput = {
+    where: UserDataWhereUniqueInput
+    create: XOR<UserDataCreateWithoutNotificationsInput, UserDataUncheckedCreateWithoutNotificationsInput>
+  }
+
+  export type UserDataUpsertWithoutNotificationsInput = {
+    update: XOR<UserDataUpdateWithoutNotificationsInput, UserDataUncheckedUpdateWithoutNotificationsInput>
+    create: XOR<UserDataCreateWithoutNotificationsInput, UserDataUncheckedCreateWithoutNotificationsInput>
+    where?: UserDataWhereInput
+  }
+
+  export type UserDataUpdateToOneWithWhereWithoutNotificationsInput = {
+    where?: UserDataWhereInput
+    data: XOR<UserDataUpdateWithoutNotificationsInput, UserDataUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type UserDataUpdateWithoutNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    payments?: PaymentUpdateManyWithoutStudentNestedInput
+    schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
+    academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    major?: MajorUpdateOneWithoutStudentsNestedInput
+    role?: RoleUpdateOneWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
+    violations?: ViolationUpdateManyWithoutStudentNestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserDataUncheckedUpdateWithoutNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserDataCreateWithoutDashboardContentsInput = {
+    id?: string
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    payments?: PaymentCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleCreateNestedManyWithoutTeacherInput
+    academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    major?: MajorCreateNestedOneWithoutStudentsInput
+    role?: RoleCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
+    violations?: ViolationCreateNestedManyWithoutStudentInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
+  }
+
+  export type UserDataUncheckedCreateWithoutDashboardContentsInput = {
+    id?: string
+    userId?: string | null
+    academicYearId?: string | null
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    classId?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    majorId?: string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    roleId?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserDataCreateOrConnectWithoutDashboardContentsInput = {
+    where: UserDataWhereUniqueInput
+    create: XOR<UserDataCreateWithoutDashboardContentsInput, UserDataUncheckedCreateWithoutDashboardContentsInput>
+  }
+
+  export type UserDataUpsertWithoutDashboardContentsInput = {
+    update: XOR<UserDataUpdateWithoutDashboardContentsInput, UserDataUncheckedUpdateWithoutDashboardContentsInput>
+    create: XOR<UserDataCreateWithoutDashboardContentsInput, UserDataUncheckedCreateWithoutDashboardContentsInput>
+    where?: UserDataWhereInput
+  }
+
+  export type UserDataUpdateToOneWithWhereWithoutDashboardContentsInput = {
+    where?: UserDataWhereInput
+    data: XOR<UserDataUpdateWithoutDashboardContentsInput, UserDataUncheckedUpdateWithoutDashboardContentsInput>
+  }
+
+  export type UserDataUpdateWithoutDashboardContentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    payments?: PaymentUpdateManyWithoutStudentNestedInput
+    schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
+    academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    major?: MajorUpdateOneWithoutStudentsNestedInput
+    role?: RoleUpdateOneWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
+    violations?: ViolationUpdateManyWithoutStudentNestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserDataUncheckedUpdateWithoutDashboardContentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserDataCreateWithoutAnnouncementsInput = {
+    id?: string
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    payments?: PaymentCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleCreateNestedManyWithoutTeacherInput
+    academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    major?: MajorCreateNestedOneWithoutStudentsInput
+    role?: RoleCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
+    violations?: ViolationCreateNestedManyWithoutStudentInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+  }
+
+  export type UserDataUncheckedCreateWithoutAnnouncementsInput = {
+    id?: string
+    userId?: string | null
+    academicYearId?: string | null
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    classId?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    majorId?: string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    roleId?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserDataCreateOrConnectWithoutAnnouncementsInput = {
+    where: UserDataWhereUniqueInput
+    create: XOR<UserDataCreateWithoutAnnouncementsInput, UserDataUncheckedCreateWithoutAnnouncementsInput>
+  }
+
+  export type UserDataUpsertWithoutAnnouncementsInput = {
+    update: XOR<UserDataUpdateWithoutAnnouncementsInput, UserDataUncheckedUpdateWithoutAnnouncementsInput>
+    create: XOR<UserDataCreateWithoutAnnouncementsInput, UserDataUncheckedCreateWithoutAnnouncementsInput>
+    where?: UserDataWhereInput
+  }
+
+  export type UserDataUpdateToOneWithWhereWithoutAnnouncementsInput = {
+    where?: UserDataWhereInput
+    data: XOR<UserDataUpdateWithoutAnnouncementsInput, UserDataUncheckedUpdateWithoutAnnouncementsInput>
+  }
+
+  export type UserDataUpdateWithoutAnnouncementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    payments?: PaymentUpdateManyWithoutStudentNestedInput
+    schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
+    academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    major?: MajorUpdateOneWithoutStudentsNestedInput
+    role?: RoleUpdateOneWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
+    violations?: ViolationUpdateManyWithoutStudentNestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserDataUncheckedUpdateWithoutAnnouncementsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserDataCreateWithoutTahfidzRecordsInput = {
+    id?: string
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    payments?: PaymentCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleCreateNestedManyWithoutTeacherInput
+    academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    major?: MajorCreateNestedOneWithoutStudentsInput
+    role?: RoleCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
+    violations?: ViolationCreateNestedManyWithoutStudentInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
+  }
+
+  export type UserDataUncheckedCreateWithoutTahfidzRecordsInput = {
+    id?: string
+    userId?: string | null
+    academicYearId?: string | null
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    classId?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    majorId?: string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    roleId?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserDataCreateOrConnectWithoutTahfidzRecordsInput = {
+    where: UserDataWhereUniqueInput
+    create: XOR<UserDataCreateWithoutTahfidzRecordsInput, UserDataUncheckedCreateWithoutTahfidzRecordsInput>
+  }
+
+  export type UserDataUpsertWithoutTahfidzRecordsInput = {
+    update: XOR<UserDataUpdateWithoutTahfidzRecordsInput, UserDataUncheckedUpdateWithoutTahfidzRecordsInput>
+    create: XOR<UserDataCreateWithoutTahfidzRecordsInput, UserDataUncheckedCreateWithoutTahfidzRecordsInput>
+    where?: UserDataWhereInput
+  }
+
+  export type UserDataUpdateToOneWithWhereWithoutTahfidzRecordsInput = {
+    where?: UserDataWhereInput
+    data: XOR<UserDataUpdateWithoutTahfidzRecordsInput, UserDataUncheckedUpdateWithoutTahfidzRecordsInput>
+  }
+
+  export type UserDataUpdateWithoutTahfidzRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    payments?: PaymentUpdateManyWithoutStudentNestedInput
+    schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
+    academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    major?: MajorUpdateOneWithoutStudentsNestedInput
+    role?: RoleUpdateOneWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
+    violations?: ViolationUpdateManyWithoutStudentNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserDataUncheckedUpdateWithoutTahfidzRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -32215,6 +42144,34 @@ export namespace Prisma {
     date: Date | string
   }
 
+  export type GradeCreateManyStudentInput = {
+    id?: string
+    scheduleId: string
+    subjectId: string
+    gradeType: string
+    score: Decimal | DecimalJsLike | number | string
+    maxScore?: Decimal | DecimalJsLike | number | string
+    weight?: number
+    description?: string | null
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+  }
+
+  export type NotificationCreateManyUserInput = {
+    id?: string
+    title: string
+    message: string
+    type: string
+    category?: string | null
+    isRead?: boolean
+    link?: string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    readAt?: Date | string | null
+  }
+
   export type PaymentCreateManyStudentInput = {
     id?: string
     paymentTypeId: string
@@ -32236,6 +42193,7 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
   }
 
   export type ViolationCreateManyStudentInput = {
@@ -32249,6 +42207,47 @@ export namespace Prisma {
     date: Date | string
     resolutionDate?: Date | string | null
     resolutionNotes?: string | null
+  }
+
+  export type TahfidzRecordCreateManyUserInput = {
+    id?: string
+    surah?: string | null
+    startVerse?: number | null
+    endVerse?: number | null
+    grade?: string | null
+    date: Date | string
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DashboardContentCreateManyUserInput = {
+    id?: string
+    title: string
+    description?: string | null
+    imageUrl: string
+    linkUrl?: string | null
+    order?: number
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AnnouncementCreateManyUserInput = {
+    id?: string
+    title: string
+    content: string
+    imageUrl?: string | null
+    linkUrl?: string | null
+    isActive?: boolean
+    isPublished?: boolean
+    startDate?: Date | string | null
+    endDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AttendanceUpdateWithoutStudentInput = {
@@ -32276,6 +42275,90 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GradeUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    gradeType?: StringFieldUpdateOperationsInput | string
+    score?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    weight?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    schedule?: ScheduleUpdateOneRequiredWithoutGradesNestedInput
+    subject?: SubjectUpdateOneRequiredWithoutGradesNestedInput
+  }
+
+  export type GradeUncheckedUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    scheduleId?: StringFieldUpdateOperationsInput | string
+    subjectId?: StringFieldUpdateOperationsInput | string
+    gradeType?: StringFieldUpdateOperationsInput | string
+    score?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    weight?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GradeUncheckedUpdateManyWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    scheduleId?: StringFieldUpdateOperationsInput | string
+    subjectId?: StringFieldUpdateOperationsInput | string
+    gradeType?: StringFieldUpdateOperationsInput | string
+    score?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    weight?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type NotificationUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type NotificationUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type NotificationUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: StringFieldUpdateOperationsInput | string
+    category?: NullableStringFieldUpdateOperationsInput | string | null
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    link?: NullableStringFieldUpdateOperationsInput | string | null
+    data?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    readAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type PaymentUpdateWithoutStudentInput = {
@@ -32320,7 +42403,9 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
+    grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
     class?: ClassUpdateOneRequiredWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
@@ -32335,7 +42420,9 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUncheckedUpdateManyWithoutScheduleNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutScheduleNestedInput
   }
 
   export type ScheduleUncheckedUpdateManyWithoutTeacherInput = {
@@ -32347,6 +42434,7 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ViolationUpdateWithoutStudentInput = {
@@ -32388,192 +42476,127 @@ export namespace Prisma {
     resolutionNotes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type UserDataUpdateWithoutUser_data_BInput = {
+  export type TahfidzRecordUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    gender?: NullableStringFieldUpdateOperationsInput | string | null
-    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    nik?: NullableStringFieldUpdateOperationsInput | string | null
-    nisn?: NullableStringFieldUpdateOperationsInput | string | null
-    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    position?: NullableStringFieldUpdateOperationsInput | string | null
-    relation?: NullableStringFieldUpdateOperationsInput | string | null
-    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    studentIds?: UserDataUpdatestudentIdsInput | string[]
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: StringFieldUpdateOperationsInput | string
-    attendances?: AttendanceUpdateManyWithoutStudentNestedInput
-    payments?: PaymentUpdateManyWithoutStudentNestedInput
-    schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
-    academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
-    class?: ClassUpdateOneWithoutStudentsNestedInput
-    major?: MajorUpdateOneWithoutStudentsNestedInput
-    role?: RoleUpdateOneWithoutUserDataNestedInput
-    user?: UserUpdateOneWithoutUserDataNestedInput
-    violations?: ViolationUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
+    surah?: NullableStringFieldUpdateOperationsInput | string | null
+    startVerse?: NullableIntFieldUpdateOperationsInput | number | null
+    endVerse?: NullableIntFieldUpdateOperationsInput | number | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserDataUncheckedUpdateWithoutUser_data_BInput = {
+  export type TahfidzRecordUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
-    classId?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    gender?: NullableStringFieldUpdateOperationsInput | string | null
-    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    majorId?: NullableStringFieldUpdateOperationsInput | string | null
-    nik?: NullableStringFieldUpdateOperationsInput | string | null
-    nisn?: NullableStringFieldUpdateOperationsInput | string | null
-    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    position?: NullableStringFieldUpdateOperationsInput | string | null
-    relation?: NullableStringFieldUpdateOperationsInput | string | null
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
-    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    studentIds?: UserDataUpdatestudentIdsInput | string[]
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: StringFieldUpdateOperationsInput | string
-    attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
-    payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
-    schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUncheckedUpdateManyWithoutUser_data_BNestedInput
+    surah?: NullableStringFieldUpdateOperationsInput | string | null
+    startVerse?: NullableIntFieldUpdateOperationsInput | number | null
+    endVerse?: NullableIntFieldUpdateOperationsInput | number | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserDataUncheckedUpdateManyWithoutUser_data_BInput = {
+  export type TahfidzRecordUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
-    classId?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    gender?: NullableStringFieldUpdateOperationsInput | string | null
-    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    majorId?: NullableStringFieldUpdateOperationsInput | string | null
-    nik?: NullableStringFieldUpdateOperationsInput | string | null
-    nisn?: NullableStringFieldUpdateOperationsInput | string | null
-    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    position?: NullableStringFieldUpdateOperationsInput | string | null
-    relation?: NullableStringFieldUpdateOperationsInput | string | null
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
-    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    studentIds?: UserDataUpdatestudentIdsInput | string[]
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: StringFieldUpdateOperationsInput | string
+    surah?: NullableStringFieldUpdateOperationsInput | string | null
+    startVerse?: NullableIntFieldUpdateOperationsInput | number | null
+    endVerse?: NullableIntFieldUpdateOperationsInput | number | null
+    grade?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserDataUpdateWithoutUser_data_AInput = {
+  export type DashboardContentUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    gender?: NullableStringFieldUpdateOperationsInput | string | null
-    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    nik?: NullableStringFieldUpdateOperationsInput | string | null
-    nisn?: NullableStringFieldUpdateOperationsInput | string | null
-    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    position?: NullableStringFieldUpdateOperationsInput | string | null
-    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    studentIds?: UserDataUpdatestudentIdsInput | string[]
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: StringFieldUpdateOperationsInput | string
-    attendances?: AttendanceUpdateManyWithoutStudentNestedInput
-    payments?: PaymentUpdateManyWithoutStudentNestedInput
-    schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
-    academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
-    class?: ClassUpdateOneWithoutStudentsNestedInput
-    major?: MajorUpdateOneWithoutStudentsNestedInput
-    role?: RoleUpdateOneWithoutUserDataNestedInput
-    user?: UserUpdateOneWithoutUserDataNestedInput
-    violations?: ViolationUpdateManyWithoutStudentNestedInput
-    user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserDataUncheckedUpdateWithoutUser_data_AInput = {
+  export type DashboardContentUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
-    classId?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    gender?: NullableStringFieldUpdateOperationsInput | string | null
-    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    majorId?: NullableStringFieldUpdateOperationsInput | string | null
-    nik?: NullableStringFieldUpdateOperationsInput | string | null
-    nisn?: NullableStringFieldUpdateOperationsInput | string | null
-    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    position?: NullableStringFieldUpdateOperationsInput | string | null
-    relation?: NullableStringFieldUpdateOperationsInput | string | null
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    studentIds?: UserDataUpdatestudentIdsInput | string[]
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: StringFieldUpdateOperationsInput | string
-    attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
-    payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
-    schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    user_data_B?: UserDataUncheckedUpdateManyWithoutUser_data_ANestedInput
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserDataUncheckedUpdateManyWithoutUser_data_AInput = {
+  export type DashboardContentUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
-    classId?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    gender?: NullableStringFieldUpdateOperationsInput | string | null
-    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    majorId?: NullableStringFieldUpdateOperationsInput | string | null
-    nik?: NullableStringFieldUpdateOperationsInput | string | null
-    nisn?: NullableStringFieldUpdateOperationsInput | string | null
-    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    position?: NullableStringFieldUpdateOperationsInput | string | null
-    relation?: NullableStringFieldUpdateOperationsInput | string | null
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    imageUrl?: StringFieldUpdateOperationsInput | string
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    order?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
     startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    studentIds?: UserDataUpdatestudentIdsInput | string[]
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: StringFieldUpdateOperationsInput | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnnouncementUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnnouncementUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnnouncementUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    linkUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isPublished?: BoolFieldUpdateOperationsInput | boolean
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserDataCreateManyRoleInput = {
@@ -32601,6 +42624,7 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
   }
 
   export type UserDataUpdateWithoutRoleInput = {
@@ -32624,7 +42648,10 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
@@ -32632,8 +42659,9 @@ export namespace Prisma {
     major?: MajorUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutRoleInput = {
@@ -32661,12 +42689,16 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUncheckedUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUncheckedUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataUncheckedUpdateManyWithoutRoleInput = {
@@ -32694,6 +42726,7 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CalendarEventCreateManyAcademicYearInput = {
@@ -32713,6 +42746,7 @@ export namespace Prisma {
     grade: number
     majorId: string
     capacity?: number
+    isActive?: boolean
   }
 
   export type ScheduleCreateManyAcademicYearInput = {
@@ -32724,6 +42758,7 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
   }
 
   export type UserDataCreateManyAcademicYearInput = {
@@ -32751,6 +42786,7 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
   }
 
   export type ViolationTypeCreateManyAcademicYearInput = {
@@ -32799,6 +42835,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     major?: MajorUpdateOneRequiredWithoutClassesNestedInput
     schedules?: ScheduleUpdateManyWithoutClassNestedInput
     students?: UserDataUpdateManyWithoutClassNestedInput
@@ -32811,6 +42848,7 @@ export namespace Prisma {
     grade?: IntFieldUpdateOperationsInput | number
     majorId?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     schedules?: ScheduleUncheckedUpdateManyWithoutClassNestedInput
     students?: UserDataUncheckedUpdateManyWithoutClassNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutClassNestedInput
@@ -32822,6 +42860,7 @@ export namespace Prisma {
     grade?: IntFieldUpdateOperationsInput | number
     majorId?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ScheduleUpdateWithoutAcademicYearInput = {
@@ -32830,7 +42869,9 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
+    grades?: GradeUpdateManyWithoutScheduleNestedInput
     class?: ClassUpdateOneRequiredWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
@@ -32845,7 +42886,9 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUncheckedUpdateManyWithoutScheduleNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutScheduleNestedInput
   }
 
   export type ScheduleUncheckedUpdateManyWithoutAcademicYearInput = {
@@ -32857,6 +42900,7 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserDataUpdateWithoutAcademicYearInput = {
@@ -32880,7 +42924,10 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
@@ -32888,8 +42935,9 @@ export namespace Prisma {
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutAcademicYearInput = {
@@ -32917,12 +42965,16 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUncheckedUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUncheckedUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataUncheckedUpdateManyWithoutAcademicYearInput = {
@@ -32950,6 +43002,7 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ViolationTypeUpdateWithoutAcademicYearInput = {
@@ -32984,6 +43037,7 @@ export namespace Prisma {
     grade: number
     academicYearId: string
     capacity?: number
+    isActive?: boolean
   }
 
   export type SubjectCreateManyMajorInput = {
@@ -33020,6 +43074,7 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
   }
 
   export type ClassUpdateWithoutMajorInput = {
@@ -33027,6 +43082,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     grade?: IntFieldUpdateOperationsInput | number
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     academicYear?: AcademicYearUpdateOneRequiredWithoutClassesNestedInput
     schedules?: ScheduleUpdateManyWithoutClassNestedInput
     students?: UserDataUpdateManyWithoutClassNestedInput
@@ -33039,6 +43095,7 @@ export namespace Prisma {
     grade?: IntFieldUpdateOperationsInput | number
     academicYearId?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     schedules?: ScheduleUncheckedUpdateManyWithoutClassNestedInput
     students?: UserDataUncheckedUpdateManyWithoutClassNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutClassNestedInput
@@ -33050,6 +43107,7 @@ export namespace Prisma {
     grade?: IntFieldUpdateOperationsInput | number
     academicYearId?: StringFieldUpdateOperationsInput | string
     capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type SubjectUpdateWithoutMajorInput = {
@@ -33059,6 +43117,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     credits?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    grades?: GradeUpdateManyWithoutSubjectNestedInput
     schedules?: ScheduleUpdateManyWithoutSubjectNestedInput
   }
 
@@ -33069,6 +43128,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     credits?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    grades?: GradeUncheckedUpdateManyWithoutSubjectNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutSubjectNestedInput
   }
 
@@ -33102,7 +43162,10 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
@@ -33110,8 +43173,9 @@ export namespace Prisma {
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutMajorInput = {
@@ -33139,12 +43203,16 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUncheckedUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUncheckedUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataUncheckedUpdateManyWithoutMajorInput = {
@@ -33172,6 +43240,7 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ScheduleCreateManyClassInput = {
@@ -33183,6 +43252,7 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
   }
 
   export type UserDataCreateManyClassInput = {
@@ -33210,6 +43280,7 @@ export namespace Prisma {
     studentIds?: UserDataCreatestudentIdsInput | string[]
     email?: string | null
     name: string
+    isActive?: boolean
   }
 
   export type ViolationCreateManyClassInput = {
@@ -33231,7 +43302,9 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
+    grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
@@ -33246,7 +43319,9 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUncheckedUpdateManyWithoutScheduleNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutScheduleNestedInput
   }
 
   export type ScheduleUncheckedUpdateManyWithoutClassInput = {
@@ -33258,6 +43333,7 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserDataUpdateWithoutClassInput = {
@@ -33281,7 +43357,10 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
     payments?: PaymentUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
@@ -33289,8 +43368,9 @@ export namespace Prisma {
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutClassInput = {
@@ -33318,12 +43398,16 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    user_data_A?: UserDataUncheckedUpdateManyWithoutUser_data_BNestedInput
-    user_data_B?: UserDataUncheckedUpdateManyWithoutUser_data_ANestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserDataUncheckedUpdateManyWithoutClassInput = {
@@ -33351,6 +43435,7 @@ export namespace Prisma {
     studentIds?: UserDataUpdatestudentIdsInput | string[]
     email?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ViolationUpdateWithoutClassInput = {
@@ -33392,6 +43477,21 @@ export namespace Prisma {
     resolutionNotes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type GradeCreateManySubjectInput = {
+    id?: string
+    studentId: string
+    scheduleId: string
+    gradeType: string
+    score: Decimal | DecimalJsLike | number | string
+    maxScore?: Decimal | DecimalJsLike | number | string
+    weight?: number
+    description?: string | null
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
+  }
+
   export type ScheduleCreateManySubjectInput = {
     id?: string
     classId: string
@@ -33401,6 +43501,52 @@ export namespace Prisma {
     startTime: string
     endTime: string
     room?: string | null
+    isActive?: boolean
+  }
+
+  export type GradeUpdateWithoutSubjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    gradeType?: StringFieldUpdateOperationsInput | string
+    score?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    weight?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    schedule?: ScheduleUpdateOneRequiredWithoutGradesNestedInput
+    student?: UserDataUpdateOneRequiredWithoutGradesNestedInput
+  }
+
+  export type GradeUncheckedUpdateWithoutSubjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    scheduleId?: StringFieldUpdateOperationsInput | string
+    gradeType?: StringFieldUpdateOperationsInput | string
+    score?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    weight?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GradeUncheckedUpdateManyWithoutSubjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    scheduleId?: StringFieldUpdateOperationsInput | string
+    gradeType?: StringFieldUpdateOperationsInput | string
+    score?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    weight?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
   }
 
   export type ScheduleUpdateWithoutSubjectInput = {
@@ -33409,7 +43555,9 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
+    grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
     class?: ClassUpdateOneRequiredWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
@@ -33424,7 +43572,9 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     attendances?: AttendanceUncheckedUpdateManyWithoutScheduleNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutScheduleNestedInput
   }
 
   export type ScheduleUncheckedUpdateManyWithoutSubjectInput = {
@@ -33436,6 +43586,7 @@ export namespace Prisma {
     startTime?: StringFieldUpdateOperationsInput | string
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AttendanceCreateManyScheduleInput = {
@@ -33445,6 +43596,21 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     date: Date | string
+  }
+
+  export type GradeCreateManyScheduleInput = {
+    id?: string
+    studentId: string
+    subjectId: string
+    gradeType: string
+    score: Decimal | DecimalJsLike | number | string
+    maxScore?: Decimal | DecimalJsLike | number | string
+    weight?: number
+    description?: string | null
+    date: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdBy: string
   }
 
   export type AttendanceUpdateWithoutScheduleInput = {
@@ -33472,6 +43638,51 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type GradeUpdateWithoutScheduleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    gradeType?: StringFieldUpdateOperationsInput | string
+    score?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    weight?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+    student?: UserDataUpdateOneRequiredWithoutGradesNestedInput
+    subject?: SubjectUpdateOneRequiredWithoutGradesNestedInput
+  }
+
+  export type GradeUncheckedUpdateWithoutScheduleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    subjectId?: StringFieldUpdateOperationsInput | string
+    gradeType?: StringFieldUpdateOperationsInput | string
+    score?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    weight?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GradeUncheckedUpdateManyWithoutScheduleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    subjectId?: StringFieldUpdateOperationsInput | string
+    gradeType?: StringFieldUpdateOperationsInput | string
+    score?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    maxScore?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    weight?: IntFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdBy?: StringFieldUpdateOperationsInput | string
   }
 
   export type ViolationCreateManyViolationTypeInput = {

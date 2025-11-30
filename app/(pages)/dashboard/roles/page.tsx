@@ -20,8 +20,7 @@ import * as z from "zod";
 import { toast } from "sonner";
 
 // Import hooks (Anda perlu membuat hooks ini sesuai dengan API backend)
-import { useGetRoles, useCreateRole, useUpdateRole, useDeleteRole } from "@/app/hooks/useRoles";
-import Navbar from "@/components/navbar";
+import { useGetRoles, useCreateRole, useUpdateRole, useDeleteRole } from "@/app/hooks/Roles/useRoles";
 
 // Type definitions
 export type RoleData = {
@@ -434,7 +433,7 @@ export default function RoleDataTable() {
 
   if (isLoading) {
     return (
-      <div className="w-full">
+      <div className="w-full min-h-screen">
         <div className="flex items-center justify-center h-32">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
@@ -447,8 +446,7 @@ export default function RoleDataTable() {
 
   return (
     <>
-      <Navbar />
-      <div className="w-max-7xl mx-auto my-8 p-6 max-w-7xl">
+      <div className="w-max-7xl mx-auto my-8 p-6 min-h-screen">
         <div className="font-bold text-3xl">Roles Menu</div>
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center space-x-2">

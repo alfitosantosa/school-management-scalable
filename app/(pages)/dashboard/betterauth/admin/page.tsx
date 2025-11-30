@@ -9,14 +9,14 @@ import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMe
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import Navbar from "@/components/navbar";
+
 import Image from "next/image";
 import { ChangePasswordDialog } from "@/components/dialog/change/ChangePasswordDialog";
 import { useSession } from "@/lib/auth-client";
-import { useGetBetterAuth } from "@/app/hooks/useBetterAuth";
+import { useGetBetterAuth } from "@/app/hooks/Users/useBetterAuth";
 
 export type User = {
   id: string;
@@ -186,8 +186,7 @@ export default function DataTableBetterAuth() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background">
-        <Navbar />
+      <div className="w-full min-h-screen bg-background">
         <div className="flex items-center justify-center h-[calc(100vh-4rem)]">
           <div className="text-center space-y-4">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
@@ -201,7 +200,6 @@ export default function DataTableBetterAuth() {
   if (error) {
     return (
       <div className="min-h-screen bg-background">
-        <Navbar />
         <div className="max-w-7xl mx-auto my-8 p-6">
           <Card className="border-destructive">
             <CardContent className="pt-6">
@@ -218,7 +216,6 @@ export default function DataTableBetterAuth() {
 
   return (
     <>
-      <Navbar />
       <Card className="max-w-7xl mx-auto my-8 p-6">
         <CardHeader className="px-0 pt-0">
           <CardTitle className="text-3xl font-bold">BetterAuth Users</CardTitle>

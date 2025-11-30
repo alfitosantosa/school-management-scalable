@@ -21,10 +21,10 @@ import * as z from "zod";
 import { toast } from "sonner";
 
 // Import hooks
-import { useGetAttendance, useCreateAttendance, useUpdateAttendance, useDeleteAttendance } from "@/app/hooks/useAttendance";
-import { useGetSchedules } from "@/app/hooks/useSchedules"; // Assuming you have this hook for students
-import Navbar from "@/components/navbar";
-import { useGetStudents } from "@/app/hooks/useStudents";
+import { useGetAttendance, useCreateAttendance, useUpdateAttendance, useDeleteAttendance } from "@/app/hooks/Attendances/useAttendance";
+import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules"; // Assuming you have this hook for students
+
+import { useGetStudents } from "@/app/hooks/Users/useStudents";
 
 // Type definitions
 export type AttendanceData = {
@@ -606,11 +606,11 @@ export default function AttendanceDataTable() {
       late: filteredAttendances.filter((a) => a.status === "late").length,
       excused: filteredAttendances.filter((a) => a.status === "excused").length,
     };
-  }, [table.getFilteredRowModel().rows]);
+  }, [table.getFilteredRowModel().rows]);   
 
   if (isLoading) {
     return (
-      <div className="w-full">
+      <div className="w-full min-h-screen">
         <div className="flex items-center justify-center h-32">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
@@ -623,7 +623,6 @@ export default function AttendanceDataTable() {
 
   return (
     <>
-      <Navbar />
       <div className="mx-auto my-8 p-6 max-w-7xl">
         <div className="font-bold text-3xl mb-6">Data Kehadiran Siswa</div>
 

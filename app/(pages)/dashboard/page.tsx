@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { useGetAttendance } from "../../hooks/useAttendance";
+import { useGetAttendance } from "../../hooks/Attendances/useAttendance";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Input } from "@/components/ui/input";
 import { PieChart, Pie, Cell, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import { CheckCircle, XCircle, Clock, AlertCircle, Users, Calendar, BookOpen, MapPin, Search, Filter, TrendingUp, AlertTriangle, User, UserCheck, BarChart3, PieChart as PieChartIcon } from "lucide-react";
-import Navbar from "@/components/navbar";
+
 
 // Status mapping
 const STATUS_MAP = {
@@ -177,7 +177,7 @@ export default function DashboardPage() {
 
   return (
     <>
-      <Navbar />
+      
       <div className="min-h-screen  from-slate-50 to-slate-100 p-6">
         <div className="max-w-7xl mx-auto space-y-6">
           {/* Header */}

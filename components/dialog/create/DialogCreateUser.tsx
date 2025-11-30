@@ -18,12 +18,12 @@ import * as z from "zod";
 import { toast } from "sonner";
 
 // Import hooks
-import { useGetUsers, useCreateUser, useUpdateUser, useDeleteUser } from "@/app/hooks/useUsers";
-import { useGetRoles } from "@/app/hooks/useRoles";
-import { useGetClasses } from "@/app/hooks/useClass";
-import { useGetAcademicYears } from "@/app/hooks/useAcademicYear";
-import { useGetMajors } from "@/app/hooks/useMajors";
-import { useGetBetterAuth } from "@/app/hooks/useBetterAuth";
+import { useGetUsers, useCreateUser, useUpdateUser, useDeleteUser } from "@/app/hooks/Users/useUsers";
+import { useGetRoles } from "@/app/hooks/Roles/useRoles";
+import { useGetClasses } from "@/app/hooks/Classes/useClass";
+import { useGetAcademicYears } from "@/app/hooks/AcademicYears/useAcademicYear";
+import { useGetMajors } from "@/app/hooks/Majors/useMajors";
+import { useGetBetterAuth } from "@/app/hooks/Users/useBetterAuth";
 import Image from "next/image";
 import { auth } from "@/lib/auth";
 import { authClient } from "@/lib/auth-client";
@@ -774,10 +774,10 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
                 <Textarea id="address" placeholder="Alamat lengkap guru" {...register("address")} />
                 {errors.address && <p className="text-sm text-red-500">{errors.address.message}</p>}
               </div>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="parentPhone">No. Hanphone</Label>
-              <Input id="parentPhone" placeholder="08123456789" {...register("parentPhone")} />
+              <div className="space-y-2">
+                <Label htmlFor="parentPhone">No. Hanphone</Label>
+                <Input id="parentPhone" placeholder="08123456789" {...register("parentPhone")} />
+              </div>
             </div>
           </>
         );
