@@ -327,20 +327,119 @@ exports.Prisma.CalendarEventScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.GradeTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  description: 'description',
+  weight: 'weight',
+  order: 'order',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.GradeConfigurationScalarFieldEnum = {
+  id: 'id',
+  subjectId: 'subjectId',
+  classId: 'classId',
+  academicYearId: 'academicYearId',
+  gradeTypeId: 'gradeTypeId',
+  weight: 'weight',
+  minEntries: 'minEntries',
+  isRequired: 'isRequired',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.GradeScalarFieldEnum = {
   id: 'id',
   studentId: 'studentId',
   scheduleId: 'scheduleId',
   subjectId: 'subjectId',
-  gradeType: 'gradeType',
+  gradeTypeId: 'gradeTypeId',
   score: 'score',
   maxScore: 'maxScore',
-  weight: 'weight',
+  title: 'title',
   description: 'description',
   date: 'date',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   createdBy: 'createdBy'
+};
+
+exports.Prisma.ReportCardScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  subjectId: 'subjectId',
+  classId: 'classId',
+  academicYearId: 'academicYearId',
+  semester: 'semester',
+  taskAverage: 'taskAverage',
+  dailyTestAverage: 'dailyTestAverage',
+  midExamScore: 'midExamScore',
+  finalExamScore: 'finalExamScore',
+  practiceAverage: 'practiceAverage',
+  finalScore: 'finalScore',
+  letterGrade: 'letterGrade',
+  predicate: 'predicate',
+  isPassed: 'isPassed',
+  teacherNote: 'teacherNote',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  createdBy: 'createdBy',
+  isPublished: 'isPublished',
+  publishedAt: 'publishedAt'
+};
+
+exports.Prisma.GradeScaleScalarFieldEnum = {
+  id: 'id',
+  academicYearId: 'academicYearId',
+  minScore: 'minScore',
+  maxScore: 'maxScore',
+  letterGrade: 'letterGrade',
+  predicate: 'predicate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AssignmentScalarFieldEnum = {
+  id: 'id',
+  scheduleId: 'scheduleId',
+  classId: 'classId',
+  subjectId: 'subjectId',
+  teacherId: 'teacherId',
+  title: 'title',
+  description: 'description',
+  attachments: 'attachments',
+  assignmentType: 'assignmentType',
+  assignedDate: 'assignedDate',
+  dueDate: 'dueDate',
+  allowLateSubmission: 'allowLateSubmission',
+  maxScore: 'maxScore',
+  gradeTypeId: 'gradeTypeId',
+  isPublished: 'isPublished',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.AssignmentSubmissionScalarFieldEnum = {
+  id: 'id',
+  assignmentId: 'assignmentId',
+  studentId: 'studentId',
+  attachments: 'attachments',
+  notes: 'notes',
+  submittedAt: 'submittedAt',
+  isLate: 'isLate',
+  score: 'score',
+  feedback: 'feedback',
+  gradedAt: 'gradedAt',
+  gradedBy: 'gradedBy',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.NotificationScalarFieldEnum = {
@@ -446,7 +545,13 @@ exports.Prisma.ModelName = {
   PaymentType: 'PaymentType',
   Payment: 'Payment',
   CalendarEvent: 'CalendarEvent',
+  GradeType: 'GradeType',
+  GradeConfiguration: 'GradeConfiguration',
   Grade: 'Grade',
+  ReportCard: 'ReportCard',
+  GradeScale: 'GradeScale',
+  Assignment: 'Assignment',
+  AssignmentSubmission: 'AssignmentSubmission',
   Notification: 'Notification',
   DashboardContent: 'DashboardContent',
   Announcement: 'Announcement',

@@ -626,7 +626,6 @@ export default function AttendanceDataTable() {
 
   return (
     <>
-      
       <div className="mx-auto my-8 p-6 max-w-7xl min-hscreen">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-2">
           <div>
