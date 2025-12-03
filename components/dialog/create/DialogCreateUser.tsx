@@ -282,6 +282,22 @@ function AvatarUpload({ currentAvatarUrl, onUploadSuccess, disabled = false }: {
     reader.readAsDataURL(file);
   };
 
+  const handleRemove = () => {
+    // Clear file input if present
+    if (fileInputRef.current) {
+      try {
+        fileInputRef.current.value = "";
+      } catch {
+        // ignore if setting value fails in some environments
+      }
+    }
+    // Clear preview and notify parent (send empty string to indicate removal)
+    setPreviewUrl(null);
+    setShowPreview(false);
+    onUploadSuccess("");
+    toast.success("Avatar dihapus");
+  };
+
   const handleUpload = async () => {
     const file = fileInputRef.current?.files?.[0];
     if (!file) {
@@ -300,23 +316,26 @@ function AvatarUpload({ currentAvatarUrl, onUploadSuccess, disabled = false }: {
       });
 
       if (!res.ok) {
-        throw new Error("Failed to upload avatar");
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || "Failed to upload avatar");
       }
 
       const data = await res.json();
+
+      // Pastikan fileUrl ada
+      if (!data.fileUrl) {
+        throw new Error("No file URL returned from server");
+      }
+
+      // Set preview dan callback
+      setPreviewUrl(data.fileUrl);
       onUploadSuccess(data.fileUrl);
       toast.success("Avatar berhasil diunggah!");
     } catch (error: any) {
+      console.error("Upload error:", error);
       toast.error(error.message || "Gagal mengunggah avatar");
     } finally {
       setIsUploading(false);
-    }
-  };
-
-  const handleRemove = () => {
-    setPreviewUrl(null);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
     }
   };
 
