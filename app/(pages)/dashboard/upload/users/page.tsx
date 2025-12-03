@@ -205,7 +205,7 @@ export default function UploadUsers() {
       }
 
       // Send bulk create request
-      console.log(allUsers);
+
       await bulkCreateMutation.mutateAsync({ users: allUsers });
 
       toast.success(`Berhasil upload ${allUsers.length} user`);

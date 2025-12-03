@@ -112,7 +112,6 @@ export default function DataTableBetterAuth() {
         console.error("Error:", error);
         toast.error(error.message || "Failed to change password");
       } else {
-        console.log("Success:", data);
         toast.success(`Password for ${userToChangePassword.name} has been updated successfully`);
         setIsChangePasswordOpen(false);
         setNewPassword("");
@@ -143,7 +142,6 @@ export default function DataTableBetterAuth() {
         console.error("Error:", error);
         toast.error(error.message || "Failed to change role");
       } else {
-        console.log("Success:", data);
         toast.success(`Role for ${userToChangeRole.name} has been updated to ${selectedRole}`);
         setIsChangeRoleOpen(false);
         setSelectedRole("");

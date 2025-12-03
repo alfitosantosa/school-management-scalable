@@ -16,9 +16,8 @@ import { useGetUsers } from "@/app/hooks/Users/useUsers";
 import { useGetBetterAuth } from "@/app/hooks/Users/useBetterAuth";
 
 // Import dialog components
-import { UserFormDialog, DeleteUserDialog, UserData, BetterAuthUser } from "@/components/dialog/create/DialogCreateUser";
+import { UserFormDialog, DeleteUserDialog, UserData, BetterAuthUser, DeleteUserBulkDialog } from "@/components/dialog/create/DialogCreateUser";
 import Image from "next/image";
-import { useGetUserById } from "@/app/hooks/Users/useUserById";
 
 // Main DataTable Component
 export default function UserDataTable() {
@@ -36,6 +35,7 @@ export default function UserDataTable() {
   const [createDialogOpen, setCreateDialogOpen] = React.useState(false);
   const [editDialogOpen, setEditDialogOpen] = React.useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
+  const [deleteBulkDialogOpen, setDeleteBulkDialogOpen] = React.useState(false);
   const [selectedUser, setSelectedUser] = React.useState<UserData | null>(null);
 
   // Fetch data with proper error handling
@@ -348,6 +348,19 @@ export default function UserDataTable() {
     setSelectedUser(null);
   }, []);
 
+  const handleCloseBulkDeleteDialog = React.useCallback(() => {
+    setDeleteBulkDialogOpen(false);
+    setRowSelection({});
+  }, []);
+
+  // Handle bulk delete button click
+  const handleBulkDeleteClick = React.useCallback(() => {
+    const selectedRows = table.getFilteredSelectedRowModel().rows;
+    if (selectedRows.length > 0) {
+      setDeleteBulkDialogOpen(true);
+    }
+  }, [table]);
+
   // Loading state
   if (isLoading) {
     return (
@@ -485,6 +498,12 @@ export default function UserDataTable() {
               </DropdownMenuContent>
             </DropdownMenu>
 
+            {table.getFilteredSelectedRowModel().rows.length > 0 && (
+              <Button variant="destructive" onClick={handleBulkDeleteClick} className="flex items-center gap-2">
+                <Trash2 className="h-4 w-4" />
+                Hapus {table.getFilteredSelectedRowModel().rows.length} User
+              </Button>
+            )}
             {/* Add User Button */}
             <Button onClick={() => setCreateDialogOpen(true)}>
               <Plus className="mr-2 h-4 w-4" />
@@ -546,6 +565,8 @@ export default function UserDataTable() {
         <UserFormDialog open={editDialogOpen} onOpenChange={handleCloseEditDialog} editData={selectedUser} onSuccess={handleSuccess} />
 
         <DeleteUserDialog open={deleteDialogOpen} onOpenChange={handleCloseDeleteDialog} userData={selectedUser} onSuccess={handleSuccess} />
+
+        <DeleteUserBulkDialog open={deleteBulkDialogOpen} onOpenChange={handleCloseBulkDeleteDialog} userDatas={table.getSelectedRowModel().rows.map((row) => row.original)} onSuccess={handleSuccess} />
       </div>
     </>
   );

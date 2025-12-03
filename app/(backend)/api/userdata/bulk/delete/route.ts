@@ -1,20 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function DELETE(request: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
-    const { ids } = await request.json();
-    if (!ids) {
+    const { data } = await request.json();
+
+    if (!data) {
       return NextResponse.json({ error: "ID is required" }, { status: 400 });
     }
 
     const deletedUser = await prisma.userData.deleteMany({
       where: {
-        id: {
-          in: ids, // array
-        },
+        id: { in: data },
       },
     });
+
     return NextResponse.json(deletedUser);
   } catch (error) {
     console.error("Error deleting user:", error);

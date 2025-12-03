@@ -23,13 +23,16 @@ export const useBulkDeleteUserData = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
-      const res = await axios.post("/api/userdata/bulk/delete", data);
+      const res = await axios.post("/api/userdata/bulk/delete", {
+        data, // axios DELETE harus begini
+      });
       return res.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
     onError: (error) => {
+  
       console.error(error);
     },
   });

@@ -24,6 +24,7 @@ import { useGetAcademicYears } from "@/app/hooks/AcademicYears/useAcademicYear";
 import { useGetMajors } from "@/app/hooks/Majors/useMajors";
 import { useGetBetterAuthWithoutUserData } from "@/app/hooks/Users/useBetterAuth";
 import Image from "next/image";
+import { useBulkDeleteUserData } from "@/app/hooks/Users/useBulkUsersData";
 
 // Type definitions
 export type UserData = {
@@ -993,6 +994,76 @@ export function DeleteUserDialog({ open, onOpenChange, userData, onSuccess }: { 
           <AlertDialogCancel>Batal</AlertDialogCancel>
           <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700" disabled={deleteUser.isPending}>
             {deleteUser.isPending ? "Loading..." : "Hapus"}
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+
+/// Delete Bulk Confirmation Dialog
+export function DeleteUserBulkDialog({ open, onOpenChange, userDatas, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; userDatas: UserData[]; onSuccess: () => void }) {
+  const deleteUser = useBulkDeleteUserData();
+
+  const handleDelete = async () => {
+    if (!userDatas || userDatas.length === 0) return;
+
+    try {
+      // Extract IDs for bulk delete
+      const userIds = userDatas.map((user) => user.id);
+
+      await deleteUser.mutateAsync(userIds);
+      toast.success(`${userDatas.length} user berhasil dihapus!`);
+      onOpenChange(false);
+      onSuccess();
+    } catch (error: any) {
+      toast.error(error.message || "Gagal menghapus user");
+    }
+  };
+
+  return (
+    <AlertDialog open={open} onOpenChange={onOpenChange}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Hapus {userDatas?.length || 0} User</AlertDialogTitle>
+          <AlertDialogDescription asChild>
+            <div className="space-y-3">
+              <p className="text-sm">Apakah Anda yakin ingin menghapus user berikut? Tindakan ini tidak dapat dibatalkan.</p>
+
+              {userDatas && userDatas.length > 0 && (
+                <div className="max-h-60 overflow-y-auto space-y-2 rounded-md border p-3 bg-muted/30">
+                  {userDatas.map((data) => (
+                    <div key={data.id} className="flex items-center gap-3 p-2 rounded-md bg-background border">
+                      {data.avatarUrl ? (
+                        <Image src={data.avatarUrl} alt={data.name} width={32} height={32} className="w-8 h-8 rounded-full object-cover" />
+                      ) : (
+                        <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
+                          <User className="h-4 w-4 text-muted-foreground" />
+                        </div>
+                      )}
+
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate">{data.name}</p>
+                        <div className="flex gap-2 mt-0.5">
+                          {data.role && (
+                            <Badge variant="outline" className="text-xs">
+                              {data.role.name}
+                            </Badge>
+                          )}
+                          {data.email && <span className="text-xs text-muted-foreground truncate">{data.email}</span>}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel disabled={deleteUser.isPending}>Batal</AlertDialogCancel>
+          <AlertDialogAction onClick={handleDelete} className="bg-red-600 hover:bg-red-700" disabled={deleteUser.isPending || !userDatas || userDatas.length === 0}>
+            {deleteUser.isPending ? "Menghapus..." : `Hapus ${userDatas?.length || 0} User`}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
