@@ -26,6 +26,7 @@ import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules";
 import { useGetStudents } from "@/app/hooks/Users/useStudents";
 import { useGetAttendanceByIdSchedule } from "@/app/hooks/Attendances/useAttendanceByIdShcedule";
 import { useParams } from "next/navigation";
+import Loading from "@/components/loading";
 
 // Type definitions
 export type AttendanceData = {
@@ -612,16 +613,7 @@ export default function AttendanceDataTable() {
   }, [table.getFilteredRowModel().rows]);
 
   if (isLoading) {
-    return (
-      <div className="w-full min-h-screen">
-        <div className="flex items-center justify-center h-32">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-2 text-sm text-muted-foreground">Memuat data kehadiran...</p>
-          </div>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

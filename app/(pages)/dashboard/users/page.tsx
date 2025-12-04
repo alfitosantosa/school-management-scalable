@@ -16,8 +16,9 @@ import { useGetUsers } from "@/app/hooks/Users/useUsers";
 import { useGetBetterAuth } from "@/app/hooks/Users/useBetterAuth";
 
 // Import dialog components
-import { UserFormDialog, DeleteUserDialog, UserData, BetterAuthUser, DeleteUserBulkDialog } from "@/components/dialog/create/DialogCreateUser";
+import { UserFormDialog, DeleteUserDialog, UserData, BetterAuthUser, DeleteUserBulkDialog } from "@/components/dialog/DialogUser";
 import Image from "next/image";
+import Loading from "@/components/loading";
 
 // Main DataTable Component
 export default function UserDataTable() {
@@ -363,18 +364,7 @@ export default function UserDataTable() {
 
   // Loading state
   if (isLoading) {
-    return (
-      <>
-        <div className="w-full min-h-screen">
-          <div className="flex items-center justify-center h-32">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-              <p className="mt-2 text-sm text-muted-foreground">Memuat data user...</p>
-            </div>
-          </div>
-        </div>
-      </>
-    );
+    return <Loading />;
   }
 
   // Error state

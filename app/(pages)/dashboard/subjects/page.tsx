@@ -24,6 +24,7 @@ import { toast } from "sonner";
 // Import hooks
 import { useGetSubjects, useCreateSubject, useUpdateSubject, useDeleteSubject } from "@/app/hooks/Subjects/useSubjects";
 import { useGetMajors } from "@/app/hooks/Majors/useMajors";
+import Loading from "@/components/loading";
 
 // Type definitions
 export type SubjectData = {
@@ -458,14 +459,9 @@ export default function SubjectDataTable() {
 
   if (isLoading) {
     return (
-      <div className="w-full min-h-screen">
-        <div className="flex items-center justify-center h-32">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-2 text-sm text-muted-foreground">Memuat data mata pelajaran...</p>
-          </div>
-        </div>
-      </div>
+      <>
+        <Loading />
+      </>
     );
   }
 
@@ -528,7 +524,7 @@ export default function SubjectDataTable() {
             )}
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="grid md:grid-cols-2 gap-2 items-center space-x-2">
             <div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

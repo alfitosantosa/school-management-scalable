@@ -23,6 +23,7 @@ import { toast } from "sonner";
 import { useGetClasses, useCreateClass, useUpdateClass, useDeleteClass } from "@/app/hooks/Classes/useClass";
 import { useGetMajors } from "@/app/hooks/Majors/useMajors";
 import { useGetAcademicYears } from "@/app/hooks/AcademicYears/useAcademicYear";
+import Loading from "@/components/loading";
 
 // Type definitions
 export type ClassData = {
@@ -378,14 +379,7 @@ export default function ClassDataTable() {
   });
 
   if (isLoading) {
-    return (
-      <div className="w-full min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-2 text-sm text-muted-foreground">Memuat data kelas...</p>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

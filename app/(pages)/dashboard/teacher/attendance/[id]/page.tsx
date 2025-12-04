@@ -10,6 +10,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Smartphone, Clock, AlertTriangle, CheckCircle, User, BookOpen, Users } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useCreateAttendanceBulk } from "@/app/hooks/Attendances/useBulkAttendance";
+import Loading from "@/components/loading";
 
 interface Student {
   id: string;
@@ -149,10 +150,7 @@ export default function AttendanceModule() {
           </CardHeader>
           <CardContent>
             {isLoadingSchedule || isLoadingClass ? (
-              <div className="bg-gray-50 p-4 rounded-lg mb-4 animate-pulse">
-                <div className="h-4 bg-gray-300 rounded mb-2"></div>
-                <div className="h-3 bg-gray-300 rounded w-1/2"></div>
-              </div>
+              <Loading />
             ) : currentSession ? (
               <div className="bg-blue-50 p-4 rounded-lg mb-4">
                 <div className="flex items-center justify-between">

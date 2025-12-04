@@ -23,6 +23,7 @@ import * as z from "zod";
 // Import hooks
 import { useGetSpecialSchedules, useCreateSpecialSchedule, useUpdateSpecialSchedule, useDeleteSpecialSchedule } from "@/app/hooks/SpecialSchedules/useSpecialSchedule";
 import { useGetAcademicYears } from "@/app/hooks/AcademicYears/useAcademicYear";
+import Loading from "@/components/loading";
 
 // Type definitions
 export type SpecialScheduleData = {
@@ -531,16 +532,7 @@ function SpecialScheduleDataTable() {
   }, [publishStatusFilter, table]);
 
   if (isLoading) {
-    return (
-      <div className="w-full min-h-screen">
-        <div className="flex items-center justify-center h-32">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-2 text-sm text-muted-foreground">Memuat data acara khusus...</p>
-          </div>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

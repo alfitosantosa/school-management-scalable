@@ -16,6 +16,7 @@ import { useGetViolationsByIdStudent } from "@/app/hooks/Violations/useViolation
 
 import { useSession } from "@/lib/auth-client";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
+import Loading from "@/components/loading";
 
 // Simple Table Component
 function SimpleTable({ columns, data, emptyMessage = "Tidak ada data" }: any) {
@@ -265,7 +266,6 @@ export default function ParentPage() {
   if (isPending || loadingStudents) {
     return (
       <>
-        
         <div className="min-h-screen bg-background">
           <div className="max-w-7xl mx-auto p-6 space-y-6">
             <div className="flex items-center justify-center min-h-[400px]">
@@ -282,7 +282,6 @@ export default function ParentPage() {
   if (!selectedStudent) {
     return (
       <>
-        
         <div className="min-h-screen bg-background">
           <div className="max-w-7xl mx-auto p-6 space-y-6">
             <div className="flex items-center justify-center min-h-[400px]">
@@ -298,7 +297,6 @@ export default function ParentPage() {
 
   return (
     <>
-      
       <div className="min-h-screen bg-background">
         <div className="max-w-7xl mx-auto p-6 space-y-6">
           {/* Header */}
@@ -505,16 +503,7 @@ export default function ParentPage() {
                   <CardTitle>Riwayat Kehadiran</CardTitle>
                   <CardDescription>Data kehadiran lengkap dari {selectedStudent?.name}</CardDescription>
                 </CardHeader>
-                <CardContent>
-                  {loadingAttendance ? (
-                    <div className="text-center py-12">
-                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-                      <p className="text-muted-foreground">Memuat data kehadiran...</p>
-                    </div>
-                  ) : (
-                    <SimpleTable columns={attendanceColumns} data={attendanceStudent} emptyMessage="Belum ada data kehadiran" />
-                  )}
-                </CardContent>
+                <CardContent>{loadingAttendance ? <Loading /> : <SimpleTable columns={attendanceColumns} data={attendanceStudent} emptyMessage="Belum ada data kehadiran" />}</CardContent>
               </Card>
             </TabsContent>
 

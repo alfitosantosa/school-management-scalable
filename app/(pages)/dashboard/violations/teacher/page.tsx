@@ -32,6 +32,7 @@ import { useGetClasses } from "@/app/hooks/Classes/useClass";
 import { useGetUsers } from "@/app/hooks/Users/useUsers";
 import { useSession } from "@/lib/auth-client";
 import { useGetStudents } from "@/app/hooks/Users/useStudents";
+import Loading from "@/components/loading";
 
 // Type definitions
 export type ViolationData = {
@@ -698,16 +699,7 @@ export default function ViolationDataTable() {
   }, [classFilter, table]);
 
   if (isLoading) {
-    return (
-      <div className="w-full min-h-screen">
-        <div className="flex items-center justify-center h-32">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-2 text-sm text-muted-foreground">Memuat data pelanggaran...</p>
-          </div>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

@@ -20,6 +20,7 @@ import { useGetStudentById } from "@/app/hooks/Users/useGetStudentById";
 import { useSession } from "@/lib/auth-client";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import Image from "next/image";
+import Loading from "@/components/loading";
 
 export type ViolationData = {
   id: string;
@@ -289,24 +290,11 @@ export default function ViolationDataTable() {
   }, [classFilter, table]);
 
   if (isLoading) {
-    return (
-      <>
-        
-        <div className="w-full min-h-screen">
-          <div className="flex items-center justify-center h-screen">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-              <p className="mt-4 text-sm text-muted-foreground">Memuat data pelanggaran...</p>
-            </div>
-          </div>
-        </div>
-      </>
-    );
+    return <Loading />;
   }
 
   return (
     <>
-      
       <div className="mx-auto my-8 p-6 max-w-7xl">
         <div className="font-bold text-3xl mb-6">Data Pelanggaran</div>
 

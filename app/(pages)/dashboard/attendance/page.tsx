@@ -25,6 +25,7 @@ import { useGetAttendance, useCreateAttendance, useUpdateAttendance, useDeleteAt
 import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules"; // Assuming you have this hook for students
 
 import { useGetStudents } from "@/app/hooks/Users/useStudents";
+import Loading from "@/components/loading";
 
 // Type definitions
 export type AttendanceData = {
@@ -606,19 +607,10 @@ export default function AttendanceDataTable() {
       late: filteredAttendances.filter((a) => a.status === "late").length,
       excused: filteredAttendances.filter((a) => a.status === "excused").length,
     };
-  }, [table.getFilteredRowModel().rows]);   
+  }, [table.getFilteredRowModel().rows]);
 
   if (isLoading) {
-    return (
-      <div className="w-full min-h-screen">
-        <div className="flex items-center justify-center h-32">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-2 text-sm text-muted-foreground">Memuat data kehadiran...</p>
-          </div>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
@@ -689,48 +681,51 @@ export default function AttendanceDataTable() {
             )}
           </div>
 
-          <div className="flex items-center space-x-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline">
-                  Kolom <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {table
-                  .getAllColumns()
-                  .filter((column) => column.getCanHide())
-                  .map((column) => {
-                    const getColumnLabel = (columnId: string) => {
-                      switch (columnId) {
-                        case "date":
-                          return "Tanggal";
-                        case "student":
-                          return "Siswa";
-                        case "schedule":
-                          return "Jadwal Pelajaran";
-                        case "status":
-                          return "Status";
-                        case "notes":
-                          return "Catatan";
-                        default:
-                          return columnId;
-                      }
-                    };
+          <div className="grid md:grid-cols-2 gap-2 items-center space-x-2">
+            <div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline">
+                    Kolom <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  {table
+                    .getAllColumns()
+                    .filter((column) => column.getCanHide())
+                    .map((column) => {
+                      const getColumnLabel = (columnId: string) => {
+                        switch (columnId) {
+                          case "date":
+                            return "Tanggal";
+                          case "student":
+                            return "Siswa";
+                          case "schedule":
+                            return "Jadwal Pelajaran";
+                          case "status":
+                            return "Status";
+                          case "notes":
+                            return "Catatan";
+                          default:
+                            return columnId;
+                        }
+                      };
 
-                    return (
-                      <DropdownMenuCheckboxItem key={column.id} className="capitalize" checked={column.getIsVisible()} onCheckedChange={(value) => column.toggleVisibility(!!value)}>
-                        {getColumnLabel(column.id)}
-                      </DropdownMenuCheckboxItem>
-                    );
-                  })}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <Button onClick={() => setCreateDialogOpen(true)}>
-              <Plus className="mr-2 h-4 w-4" />
-              Catat Kehadiran
-            </Button>
+                      return (
+                        <DropdownMenuCheckboxItem key={column.id} className="capitalize" checked={column.getIsVisible()} onCheckedChange={(value) => column.toggleVisibility(!!value)}>
+                          {getColumnLabel(column.id)}
+                        </DropdownMenuCheckboxItem>
+                      );
+                    })}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+            <div>
+              <Button onClick={() => setCreateDialogOpen(true)}>
+                <Plus className="mr-2 h-4 w-4" />
+                Catat Kehadiran
+              </Button>
+            </div>
           </div>
         </div>
 

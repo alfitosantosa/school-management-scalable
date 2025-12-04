@@ -25,6 +25,7 @@ import { useGetClasses } from "@/app/hooks/Classes/useClass";
 import { useGetSubjects } from "@/app/hooks/Subjects/useSubjects";
 import { useGetTeachers } from "@/app/hooks/Users/useTeachers";
 import { useGetAcademicYears } from "@/app/hooks/AcademicYears/useAcademicYear";
+import Loading from "@/components/loading";
 
 // Type definitions
 export type ScheduleData = {
@@ -585,16 +586,7 @@ export default function ScheduleDataTable() {
   }, [dayFilter, table]);
 
   if (isLoading) {
-    return (
-      <div className="w-full min-h-screen flex items-center justify-center">
-        <div className="flex items-center justify-center h-32">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-2 text-sm text-muted-foreground">Memuat data jadwal...</p>
-          </div>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
@@ -658,52 +650,55 @@ export default function ScheduleDataTable() {
             )}
           </div>
 
-          <div className="flex items-center space-x-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline">
-                  Kolom <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {table
-                  .getAllColumns()
-                  .filter((column) => column.getCanHide())
-                  .map((column) => {
-                    const getColumnLabel = (columnId: string) => {
-                      switch (columnId) {
-                        case "dayOfWeek":
-                          return "Hari";
-                        case "time":
-                          return "Waktu";
-                        case "class":
-                          return "Kelas";
-                        case "subject":
-                          return "Mata Pelajaran";
-                        case "teacher":
-                          return "Guru";
-                        case "room":
-                          return "Ruangan";
-                        case "academicYear":
-                          return "Tahun Akademik";
-                        default:
-                          return columnId;
-                      }
-                    };
+          <div className="grid md:grid-cols-2 gap-2 items-center space-x-2">
+            <div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline">
+                    Kolom <ChevronDown className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  {table
+                    .getAllColumns()
+                    .filter((column) => column.getCanHide())
+                    .map((column) => {
+                      const getColumnLabel = (columnId: string) => {
+                        switch (columnId) {
+                          case "dayOfWeek":
+                            return "Hari";
+                          case "time":
+                            return "Waktu";
+                          case "class":
+                            return "Kelas";
+                          case "subject":
+                            return "Mata Pelajaran";
+                          case "teacher":
+                            return "Guru";
+                          case "room":
+                            return "Ruangan";
+                          case "academicYear":
+                            return "Tahun Akademik";
+                          default:
+                            return columnId;
+                        }
+                      };
 
-                    return (
-                      <DropdownMenuCheckboxItem key={column.id} className="capitalize" checked={column.getIsVisible()} onCheckedChange={(value) => column.toggleVisibility(!!value)}>
-                        {getColumnLabel(column.id)}
-                      </DropdownMenuCheckboxItem>
-                    );
-                  })}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <Button onClick={() => setCreateDialogOpen(true)}>
-              <Plus className="mr-2 h-4 w-4" />
-              Tambah Jadwal
-            </Button>
+                      return (
+                        <DropdownMenuCheckboxItem key={column.id} className="capitalize" checked={column.getIsVisible()} onCheckedChange={(value) => column.toggleVisibility(!!value)}>
+                          {getColumnLabel(column.id)}
+                        </DropdownMenuCheckboxItem>
+                      );
+                    })}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+            <div>
+              <Button onClick={() => setCreateDialogOpen(true)}>
+                <Plus className="mr-2 h-4 w-4" />
+                Tambah Jadwal
+              </Button>
+            </div>
           </div>
         </div>
 

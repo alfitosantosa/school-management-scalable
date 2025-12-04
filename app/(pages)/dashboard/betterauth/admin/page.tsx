@@ -17,6 +17,7 @@ import Image from "next/image";
 import { ChangePasswordDialog } from "@/components/dialog/change/ChangePasswordDialog";
 import { useSession } from "@/lib/auth-client";
 import { useGetBetterAuth } from "@/app/hooks/Users/useBetterAuth";
+import Loading from "@/components/loading";
 
 export type User = {
   id: string;
@@ -185,16 +186,7 @@ export default function DataTableBetterAuth() {
   });
 
   if (isLoading) {
-    return (
-      <div className="w-full min-h-screen bg-background">
-        <div className="flex items-center justify-center h-[calc(100vh-4rem)]">
-          <div className="text-center space-y-4">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-            <p className="text-muted-foreground">Loading users...</p>
-          </div>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (error) {
