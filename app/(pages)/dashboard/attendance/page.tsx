@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, Calendar, Clock, Users, Search, X, CheckCircle, XCircle, AlertCircle } from "lucide-react";
+import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, Calendar, Clock, Users, Search, X, CheckCircle, XCircle, AlertCircle, Download } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -22,8 +22,7 @@ import { toast } from "sonner";
 
 // Import hooks
 import { useGetAttendance, useCreateAttendance, useUpdateAttendance, useDeleteAttendance } from "@/app/hooks/Attendances/useAttendance";
-import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules"; // Assuming you have this hook for students
-
+import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules";
 import { useGetStudents } from "@/app/hooks/Users/useStudents";
 import Loading from "@/components/loading";
 
@@ -60,6 +59,7 @@ export type AttendanceData = {
     id: string;
     name: string;
     email?: string;
+    nisn: string;
   };
 };
 
@@ -101,7 +101,6 @@ function AttendanceFormDialog({ open, onOpenChange, editData, onSuccess }: { ope
   const createAttendance = useCreateAttendance();
   const updateAttendance = useUpdateAttendance();
   const { data: schedules = [] } = useGetSchedules();
-
   const { data: students = [] } = useGetStudents();
 
   const {
@@ -122,7 +121,6 @@ function AttendanceFormDialog({ open, onOpenChange, editData, onSuccess }: { ope
   const selectedStudentId = watch("studentId");
   const selectedScheduleId = watch("scheduleId");
   const selectedStatus = watch("status");
-  const selectedDate = watch("date");
 
   React.useEffect(() => {
     if (editData) {
@@ -317,6 +315,92 @@ export default function AttendanceDataTable() {
     refetch();
   };
 
+  // Export to Excel function
+  const exportToExcel = async () => {
+    try {
+      // Dynamically import xlsx library
+      const XLSX = await import("xlsx");
+
+      // Get selected rows
+      const selectedRows = table.getFilteredSelectedRowModel().rows;
+
+      if (selectedRows.length === 0) {
+        toast.error("Pilih minimal satu data untuk diekspor");
+        return;
+      }
+
+      // Create worksheet data
+      const wsData = [
+        // Header row
+        ["Tanggal", "Hari", "Nama Siswa", "Email Siswa", "NISN", "Kelas", "Mata Pelajaran", "Kode Mapel", "Guru Pengajar", "Waktu Mulai", "Waktu Selesai", "Ruangan", "Status Kehadiran", "Catatan"],
+      ];
+
+      // Add data rows
+      selectedRows.forEach((row) => {
+        const attendance = row.original;
+        const schedule = schedules.find((s: any) => s.id === attendance.scheduleId);
+        const date = new Date(attendance.date);
+
+        wsData.push([
+          date.toLocaleDateString("id-ID", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+          }),
+          DAYS_MAP[date.getDay() as keyof typeof DAYS_MAP] || "",
+          attendance.student?.name || "",
+          attendance.student?.email || "",
+          attendance.student?.nisn || "",
+          schedule?.class?.name || "",
+          schedule?.subject?.name || "",
+          schedule?.subject?.code || "",
+          schedule?.teacher?.name || "",
+          schedule?.startTime || "",
+          schedule?.endTime || "",
+          schedule?.room || "",
+          STATUS_MAP[attendance.status as keyof typeof STATUS_MAP]?.label || attendance.status,
+          attendance.notes || "",
+        ]);
+      });
+
+      // Create workbook and worksheet
+      const wb = XLSX.utils.book_new();
+      const ws = XLSX.utils.aoa_to_sheet(wsData);
+
+      // Set column widths
+      ws["!cols"] = [
+        { wch: 12 }, // Tanggal
+        { wch: 10 }, // Hari
+        { wch: 25 }, // Nama Siswa
+        { wch: 25 }, // Email Siswa
+        { wch: 12 }, // NISN
+        { wch: 15 }, // Kelas
+        { wch: 25 }, // Mata Pelajaran
+        { wch: 12 }, // Kode Mapel
+        { wch: 25 }, // Guru Pengajar
+        { wch: 12 }, // Waktu Mulai
+        { wch: 12 }, // Waktu Selesai
+        { wch: 15 }, // Ruangan
+        { wch: 15 }, // Status Kehadiran
+        { wch: 35 }, // Catatan
+      ];
+
+      // Add worksheet to workbook
+      XLSX.utils.book_append_sheet(wb, ws, "Data Kehadiran");
+
+      // Generate filename with current date
+      const filename = `data-kehadiran-${new Date().toISOString().split("T")[0]}.xlsx`;
+
+      // Generate Excel file
+      XLSX.writeFile(wb, filename);
+
+      toast.success(`Berhasil mengekspor ${selectedRows.length} data kehadiran`);
+    } catch (error) {
+      console.error("Error exporting to Excel:", error);
+      toast.error("Gagal mengekspor data ke Excel");
+    }
+  };
+
   // Get unique classes from schedules
   const uniqueClasses = React.useMemo(() => {
     const classes = schedules
@@ -363,7 +447,6 @@ export default function AttendanceDataTable() {
     (row: any, columnId: string, filterValue: string) => {
       if (filterValue === "all") return true;
 
-      // Find the schedule for this attendance
       const scheduleId = row.original.scheduleId;
       const schedule = schedules.find((s: any) => s.id === scheduleId);
 
@@ -435,7 +518,6 @@ export default function AttendanceDataTable() {
       id: "schedule",
       header: "Jadwal Pelajaran",
       cell: ({ row }) => {
-        // Ambil data jadwal dari schedules, bukan dari attendance
         const scheduleId = row.original.scheduleId;
         const schedule = schedules.find((s: any) => s.id === scheduleId);
 
@@ -613,6 +695,8 @@ export default function AttendanceDataTable() {
     return <Loading />;
   }
 
+  const selectedRowsCount = table.getFilteredSelectedRowModel().rows.length;
+
   return (
     <>
       <div className="mx-auto my-8 p-6 max-w-7xl">
@@ -681,7 +765,16 @@ export default function AttendanceDataTable() {
             )}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-2 items-center space-x-2">
+          <div className="grid xl:grid-cols-3 sm:grid-cols-1 gap-2 items-center space-x-2">
+            <div>
+              {/* Export Excel Button - Show when rows are selected */}
+              {selectedRowsCount > 0 && (
+                <Button variant="default" onClick={exportToExcel} className="bg-green-600 hover:bg-green-700">
+                  <Download className="mr-2 h-4 w-4" />
+                  Export Excel ({selectedRowsCount})
+                </Button>
+              )}
+            </div>
             <div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
