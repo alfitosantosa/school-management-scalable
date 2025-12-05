@@ -591,7 +591,7 @@ export default function ScheduleDataTable() {
 
   return (
     <>
-      <div className="mx-auto my-8 p-6 max-w-7xl">
+      <div className="mx-auto min-h-screen my-8 p-6 max-w-7xl">
         <div className="font-bold text-3xl mb-6">Jadwal Pelajaran</div>
 
         <div className="flex items-center justify-between py-4">
