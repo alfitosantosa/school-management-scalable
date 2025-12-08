@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "npm run dev:no-hmr",
+    "dev:no-hmr": "WATCHPACK_POLLING=false FAST_REFRESH=false NODE_ENV=development next dev",
+    "dev:cache": "lsof -ti:3000 | xargs kill -9 2>/dev/null; sleep 1; npm run dev",
     "prebuild": "rm -rf node_modules/.cache && rm -rf .next",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "NODE_ENV=production next start"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",

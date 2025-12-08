@@ -11,7 +11,7 @@ import { User, Mail, Calendar, MapPin, Phone, GraduationCap, Building2, Shield, 
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import router from "next/router";
+import Link from "next/link";
 
 const NoUserDataComponent = ({ BetterAuthUser }: { BetterAuthUser: any }) => {
   return (
@@ -52,16 +52,16 @@ const NoUserDataComponent = ({ BetterAuthUser }: { BetterAuthUser: any }) => {
                     </p>
                   </AlertDescription>
                 </Alert>
-                <Button variant="outline" onClick={() => router.push("/auth/sign-in")}>
-                  Login Menggunakan Akun Lain
-                </Button>
+                <Link href="/auth/sign-in">
+              
+                </Link>
               </>
               )}
 
               {/* What's Happening */}
-              <div className="space-y-4">
+              <div className="space-y-4 ">
                 <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                  <AlertCircle className="w-6 h-6 text-orange-600" />
+                  <AlertCircle className="w-6 h-6 text-orange-600 mt-2" />
                   Apa yang Terjadi?
                 </h2>
                 <div className="bg-gray-50 rounded-xl p-5 space-y-3">

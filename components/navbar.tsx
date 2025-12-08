@@ -103,7 +103,7 @@ export default function Navbar() {
                 <p className="text-sm text-gray-500">Sistem Informasi Sekolah</p>
               </div>
             </div>
-            <Button onClick={() => router.push("/auth/sign-in")}>
+            <Button variant="outline" onClick={() => router.push("/auth/sign-in")}>
               Login
             </Button>
           </div>

@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 
+// Read NODE_ENV: if not set or "production" -> production mode
+// If set to "development" -> development mode (disable HMR/cache)
+const isDevelopment = process.env.NODE_ENV === "development";
+
 const nextConfig: NextConfig = {
   // Image optimization with modern API
   images: {
@@ -9,7 +13,8 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "file.pasarjaya.cloud" }
     ],
     formats: ["image/avif", "image/webp"],
-    minimumCacheTTL: 60 * 60 * 24, // 24 hours cache
+    // In development: shorter cache, in production: 24 hours
+    minimumCacheTTL: isDevelopment ? 0 : 60 * 60 * 24,
   },
 
   // Optimize package imports for tree-shaking
@@ -32,15 +37,33 @@ const nextConfig: NextConfig = {
       "@radix-ui/react-switch",
       "@radix-ui/react-tabs",
     ],
+    // Disable Server Components HMR cache in development
+    serverComponentsHmrCache: isDevelopment ? false : true,
   },
 
   // Remove console.log in production for cleaner bundles
   compiler: {
-    removeConsole: process.env.NODE_ENV === "production",
+    removeConsole: !isDevelopment,
   },
 
-  // Add caching headers for static assets
+  // Add caching headers for static assets (only in production)
   async headers() {
+    // In development: no aggressive caching
+    if (isDevelopment) {
+      return [
+        {
+          source: "/:path*",
+          headers: [
+            {
+              key: "Cache-Control",
+              value: "no-store, no-cache, must-revalidate, max-age=0",
+            },
+          ],
+        },
+      ];
+    }
+
+    // In production: aggressive caching
     return [
       {
         source: "/:all*(svg|jpg|png|webp|avif|woff|woff2)",
@@ -69,8 +92,20 @@ const nextConfig: NextConfig = {
   // Power by header removal for smaller response
   poweredByHeader: false,
 
-  // Generate ETags for caching
-  generateEtags: true,
+  // Generate ETags for caching (disable in development)
+  generateEtags: !isDevelopment,
+
+  // Development: disable file watching for HMR
+  ...(isDevelopment && {
+    webpackDevMiddleware: (config: { watchOptions?: { poll?: boolean; ignored?: string[] } }) => {
+      config.watchOptions = {
+        ...config.watchOptions,
+        poll: false,
+        ignored: ["**/*"],
+      };
+      return config;
+    },
+  }),
 };
 
 export default nextConfig;
