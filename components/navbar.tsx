@@ -76,6 +76,7 @@ export default function Navbar() {
       .slice(0, 2);
   };
 
+  // Loading state
   if (isPending) {
     return (
       <div className="w-full">
@@ -89,6 +90,29 @@ export default function Navbar() {
     );
   }
 
+  // Not logged in - show navbar with login button
+  if (!userData) {
+    return (
+      <header className="bg-white shadow-sm border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center space-x-2">
+              <Image src={Logo} alt="Logo SMK Fajar Sentosa" className="h-10 w-10" />
+              <div className="hidden md:block">
+                <h1 className="text-xl font-bold text-gray-900">SMK Fajar Sentosa</h1>
+                <p className="text-sm text-gray-500">Sistem Informasi Sekolah</p>
+              </div>
+            </div>
+            <Button onClick={() => router.push("/auth/sign-in")}>
+              Login
+            </Button>
+          </div>
+        </div>
+      </header>
+    );
+  }
+
+  // Logged in - show full navbar with avatar and menu
   return (
     <header className="bg-white shadow-sm border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -104,7 +128,8 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center space-x-4">
-            {userData && navigationItems.length > 0 && (
+            {/* Navigation Select */}
+            {navigationItems.length > 0 && (
               <Select onValueChange={handleNavigate} value={pathname}>
                 <SelectTrigger className="w-[200px]">
                   <SelectValue placeholder="Pilih Menu" />
@@ -119,59 +144,42 @@ export default function Navbar() {
               </Select>
             )}
 
-            <div className="flex items-center space-x-2">
-              {!userData ? (
-                <div className="h-8 w-8 animate-pulse bg-gray-200 rounded-full" />
-              ) : userData ? (
-                // Signed In
-                <div className="flex items-center space-x-2">
-                  <div className="hidden md:block">
-                    <Badge variant="default" className="px-3 py-1">
-                      {userRoles || "User"}
-                    </Badge>
-                  </div>
-
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-                        <Avatar className="h-10 w-10">
-                          <Image width={40} height={40} src={userData.avatarUrl || undefined} alt={userData.name || "User"} />
-                          <AvatarFallback>{getUserInitials(userData.name)}</AvatarFallback>
-                        </Avatar>
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-56" align="end">
-                      <DropdownMenuLabel>
-                        <div className="flex flex-col space-y-1">
-                          <p className="text-sm font-medium leading-none">{userData.name || "User"}</p>
-                          <p className="text-xs leading-none text-muted-foreground">{userData.email}</p>
-                        </div>
-                      </DropdownMenuLabel>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem onClick={() => router.push("/dashboard/profile")}>
-                        <User className="mr-2 h-4 w-4" />
-                        <span>Profile</span>
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem onClick={handleSignOut} className="text-red-600">
-                        <LogOut className="mr-2 h-4 w-4" />
-                        <span>Log out</span>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-              ) : (
-                // Signed Out
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    router.push("/auth/sign-in");
-                  }}
-                >
-                  Sign In
-                </Button>
-              )}
+            {/* Role Badge */}
+            <div className="hidden md:block">
+              <Badge variant="default" className="px-3 py-1">
+                {userRoles || "User"}
+              </Badge>
             </div>
+
+            {/* User Avatar Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+                  <Avatar className="h-10 w-10">
+                    <Image width={40} height={40} src={userData.avatarUrl || "/default-avatar.png"} alt={userData.name || "User"} />
+                    <AvatarFallback>{getUserInitials(userData.name)}</AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="end">
+                <DropdownMenuLabel>
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">{userData.name || "User"}</p>
+                    <p className="text-xs leading-none text-muted-foreground">{userData.email}</p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => router.push("/dashboard/profile")}>
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Profile</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleSignOut} className="text-red-600">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>

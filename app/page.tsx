@@ -11,12 +11,13 @@ import { User, Mail, Calendar, MapPin, Phone, GraduationCap, Building2, Shield, 
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import router from "next/router";
 
 const NoUserDataComponent = ({ BetterAuthUser }: { BetterAuthUser: any }) => {
   return (
-    <div className="max-w-7xl min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
       <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-20">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-7xl items-center mx-auto">
           {/* Main Alert Card */}
           <Card className="border-0 shadow-2xl bg-white/90 backdrop-blur-sm overflow-hidden">
             {/* Header with linear */}
@@ -35,6 +36,7 @@ const NoUserDataComponent = ({ BetterAuthUser }: { BetterAuthUser: any }) => {
             <CardContent className="p-6 lg:p-8 space-y-6">
               {/* User Info from BetterAuth */}
               {BetterAuthUser && (
+              <>
                 <Alert className="border-blue-200 bg-blue-50/50">
                   <Shield className="h-5 w-5 text-blue-600" />
                   <AlertTitle className="text-blue-900 font-semibold">Informasi Akun BetterAuth</AlertTitle>
@@ -50,6 +52,10 @@ const NoUserDataComponent = ({ BetterAuthUser }: { BetterAuthUser: any }) => {
                     </p>
                   </AlertDescription>
                 </Alert>
+                <Button variant="outline" onClick={() => router.push("/auth/sign-in")}>
+                  Login Menggunakan Akun Lain
+                </Button>
+              </>
               )}
 
               {/* What's Happening */}
