@@ -7,15 +7,19 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Smartphone, Clock, AlertTriangle, CheckCircle, User, BookOpen, Users } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Smartphone, Clock, AlertTriangle, CheckCircle, User, BookOpen, Users, MessageSquare, Send } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useCreateAttendanceBulk } from "@/app/hooks/Attendances/useBulkAttendance";
+import { useBulkSendWhatsApp } from "@/app/hooks/BotWA/useBotWA";
 import Loading from "@/components/loading";
+import { toast } from "sonner";
 
 interface Student {
   id: string;
   name: string;
   nisn?: string;
+  parentPhone?: string;
 }
 
 interface Subject {
@@ -33,7 +37,9 @@ const STATUS_MAP = {
 
 export default function AttendanceModule() {
   const params = useParams();
-  const [attendanceData, setAttendanceData] = useState<Record<string, { status: string; notes?: string; evidenceUrl?: string }>>({});
+  const [attendanceData, setAttendanceData] = useState<Record<string, { status: string; notes?: string; evidenceUrl?: string }>>({}); 
+  const [sendWhatsApp, setSendWhatsApp] = useState(false);
+  const [isSendingWA, setIsSendingWA] = useState(false);
 
   // Fetch schedule by id
   const { data: scheduleDataById = [], isLoading: isLoadingSchedule, isError: isErrorSchedule } = useGetScheduleById(params.id as string);
@@ -44,8 +50,9 @@ export default function AttendanceModule() {
   // Fetch class by id from schedule
   const { data: classData, isLoading: isLoadingClass, isError: isErrorClass } = useGetClassById(classId as string);
 
-  // Initialize mutation hook
+  // Initialize mutation hooks
   const createAttendanceMutation = useCreateAttendanceBulk();
+  const bulkSendWA = useBulkSendWhatsApp();
 
   const currentSession = scheduleDataById[0]
     ? {
@@ -63,11 +70,128 @@ export default function AttendanceModule() {
     }));
   };
 
+  // Function to format date in Indonesian
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString("id-ID", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  // Function to send WhatsApp notification to parents
+  const sendWhatsAppNotification = async (
+    students: Student[],
+    attendanceInfo: Record<string, { status: string; notes?: string }>
+  ) => {
+    const schedule = scheduleDataById[0];
+    if (!schedule || !classData) return;
+
+    // Filter students with parentPhone and attendance data
+    const studentsWithPhone = students.filter(
+      (s) => s.parentPhone && s.parentPhone.trim() !== "" && attendanceInfo[s.id]?.status
+    );
+
+    if (studentsWithPhone.length === 0) {
+      toast.warning("Tidak ada nomor HP orang tua yang valid untuk dikirim notifikasi.");
+      return;
+    }
+
+    const today = formatDate(new Date());
+
+    // Build recipients with personalized messages
+    const recipients = studentsWithPhone.map((student) => {
+      const status = attendanceInfo[student.id]?.status || "unknown";
+      const statusLabel = STATUS_MAP[status as keyof typeof STATUS_MAP]?.label || status;
+      const notes = attendanceInfo[student.id]?.notes;
+
+      return {
+        number: student.parentPhone!,
+        name: student.name,
+        // We'll use a generic message template and replace placeholders
+      };
+    });
+
+    // Create a message template with personalization
+    // {name} will be replaced by the API for each recipient
+    const messageTemplate = `📚 *NOTIFIKASI KEHADIRAN SISWA*
+
+🏫 *${classData.name || "Kelas"}*
+📅 *${today}*
+
+━━━━━━━━━━━━━━━━━━━━
+📖 *Mata Pelajaran:* ${schedule.subject?.name || "Pelajaran"}
+⏰ *Waktu:* ${schedule.startTime} - ${schedule.endTime}
+👨‍🏫 *Guru:* ${schedule.teacher?.name || "Guru"}
+━━━━━━━━━━━━━━━━━━━━
+
+Yth. Bapak/Ibu Wali Murid,
+
+Berikut adalah informasi kehadiran putra/putri Anda:
+
+👤 *Nama:* {name}
+📊 *Status:* {status}
+{notes}
+
+Terima kasih atas perhatiannya.
+
+~IT Fajarsentosa
+
+_Pesan ini dikirim otomatis oleh sistem._`;
+
+    // Send individual messages with personalized status
+    setIsSendingWA(true);
+    let successCount = 0;
+    let failCount = 0;
+
+    try {
+      for (const student of studentsWithPhone) {
+        const status = attendanceInfo[student.id]?.status || "unknown";
+        const statusLabel = STATUS_MAP[status as keyof typeof STATUS_MAP]?.label || status;
+        const notes = attendanceInfo[student.id]?.notes;
+
+        // Personalize message for each student
+        let personalizedMessage = messageTemplate
+          .replace("{name}", student.name)
+          .replace("{status}", statusLabel)
+          .replace("{notes}", notes ? `📝 *Catatan:* ${notes}` : "");
+
+        try {
+          await bulkSendWA.mutateAsync({
+            recipients: [{ number: student.parentPhone!, name: student.name }],
+            message: personalizedMessage,
+            delayMs: 500,
+          });
+          successCount++;
+        } catch (error) {
+          console.error(`Failed to send WA to ${student.name}:`, error);
+          failCount++;
+        }
+
+        // Small delay between messages
+        await new Promise((resolve) => setTimeout(resolve, 800));
+      }
+
+      if (successCount > 0) {
+        toast.success(`Berhasil mengirim ${successCount} notifikasi WhatsApp ke orang tua.`);
+      }
+      if (failCount > 0) {
+        toast.error(`Gagal mengirim ${failCount} notifikasi WhatsApp.`);
+      }
+    } catch (error) {
+      console.error("Error sending WhatsApp notifications:", error);
+      toast.error("Gagal mengirim notifikasi WhatsApp.");
+    } finally {
+      setIsSendingWA(false);
+    }
+  };
+
   const saveAttendance = async () => {
     try {
       // Validate that we have schedule data
       if (!scheduleDataById[0]?.id) {
-        alert("Error: Schedule data not available");
+        toast.error("Error: Schedule data not available");
         return;
       }
 
@@ -75,7 +199,7 @@ export default function AttendanceModule() {
       const studentsWithAttendance = Object.entries(attendanceData).filter(([_, data]) => data.status);
 
       if (studentsWithAttendance.length === 0) {
-        alert("Please set attendance status for at least one student");
+        toast.warning("Silakan set status kehadiran untuk minimal satu siswa.");
         return;
       }
 
@@ -90,16 +214,21 @@ export default function AttendanceModule() {
       // Use the mutation with proper payload structure
       await createAttendanceMutation.mutateAsync({ attendances: attendanceArray });
 
-      alert("Absensi berhasil disimpan!");
+      toast.success("Absensi berhasil disimpan!");
 
-      // Optional: Clear attendance data after successful save
-      // setAttendanceData({});
+      // Send WhatsApp notifications if enabled
+      if (sendWhatsApp && classData?.students) {
+        toast.info("Mengirim notifikasi WhatsApp ke orang tua...");
+        await sendWhatsAppNotification(classData.students, attendanceData);
+      }
 
       // Redirect to /dashboard after success
-      window.location.href = "/dashboard";
+      setTimeout(() => {
+        window.location.href = "/dashboard";
+      }, 2000);
     } catch (error) {
       console.error("Error saving attendance:", error);
-      alert("Error saving attendance: " + (error instanceof Error ? error.message : String(error)));
+      toast.error("Error saving attendance: " + (error instanceof Error ? error.message : String(error)));
     }
   };
 
@@ -226,15 +355,55 @@ export default function AttendanceModule() {
                   ))}
             </div>
 
-            <div className="mt-4 flex justify-between items-center">
-              <Button onClick={saveAttendance} disabled={isLoadingClass || createAttendanceMutation.isPending}>
-                <CheckCircle className="h-4 w-4 mr-2" />
-                {createAttendanceMutation.isPending ? "Menyimpan..." : "Simpan Absensi"}
-              </Button>
+            <div className="mt-6 space-y-4">
+              {/* WhatsApp Notification Option */}
+              <div className="flex items-center space-x-3 p-4 bg-green-50 rounded-lg border border-green-200">
+                <Checkbox
+                  id="sendWhatsApp"
+                  checked={sendWhatsApp}
+                  onCheckedChange={(checked) => setSendWhatsApp(checked as boolean)}
+                />
+                <label
+                  htmlFor="sendWhatsApp"
+                  className="flex items-center gap-2 text-sm font-medium text-green-800 cursor-pointer"
+                >
+                  <MessageSquare className="h-4 w-4" />
+                  Kirim notifikasi WhatsApp ke orang tua murid
+                </label>
+                {sendWhatsApp && (
+                  <Badge variant="secondary" className="ml-auto">
+                    <Send className="h-3 w-3 mr-1" />
+                    Aktif
+                  </Badge>
+                )}
+              </div>
 
-              {/* Show success/error states */}
-              {createAttendanceMutation.isSuccess && <span className="text-green-600 text-sm">✓ Berhasil disimpan</span>}
-              {createAttendanceMutation.isError && <span className="text-red-600 text-sm">✗ Gagal menyimpan</span>}
+              <div className="flex justify-between items-center">
+                <Button 
+                  onClick={saveAttendance} 
+                  disabled={isLoadingClass || createAttendanceMutation.isPending || isSendingWA}
+                  className="min-w-[180px]"
+                >
+                  {createAttendanceMutation.isPending || isSendingWA ? (
+                    <>
+                      <span className="animate-spin mr-2">⏳</span>
+                      {isSendingWA ? "Mengirim WA..." : "Menyimpan..."}
+                    </>
+                  ) : (
+                    <>
+                      <CheckCircle className="h-4 w-4 mr-2" />
+                      Simpan Absensi
+                      {sendWhatsApp && " & Kirim WA"}
+                    </>
+                  )}
+                </Button>
+
+                {/* Show success/error states */}
+                <div className="flex items-center gap-2">
+                  {createAttendanceMutation.isSuccess && <span className="text-green-600 text-sm">✓ Berhasil disimpan</span>}
+                  {createAttendanceMutation.isError && <span className="text-red-600 text-sm">✗ Gagal menyimpan</span>}
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>
