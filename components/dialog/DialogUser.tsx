@@ -22,7 +22,7 @@ import { useGetRoles } from "@/app/hooks/Roles/useRoles";
 import { useGetClasses } from "@/app/hooks/Classes/useClass";
 import { useGetAcademicYears } from "@/app/hooks/AcademicYears/useAcademicYear";
 import { useGetMajors } from "@/app/hooks/Majors/useMajors";
-import { useGetBetterAuthWithoutUserData } from "@/app/hooks/Users/useBetterAuth";
+import { useGetBetterAuthWithoutUserData } from "@/app/hooks/Users/useBetterAuthWithoutUserData";
 import Image from "next/image";
 import { useBulkDeleteUserData } from "@/app/hooks/Users/useBulkUsersData";
 
@@ -406,6 +406,7 @@ function BetterAuthSelector({ onSelect, selecteduserId, disabled = false }: { on
   const [open, setOpen] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
   const { data: betterAuths = [], isLoading: betterAuthsLoading } = useGetBetterAuthWithoutUserData();
+  console.error(betterAuths);
 
   const filteredbetterAuths = React.useMemo(() => {
     if (!searchTerm) return betterAuths;

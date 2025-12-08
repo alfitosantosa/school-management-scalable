@@ -2,12 +2,13 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-export const useGetBetterAuth = () => {
+export const useGetBetterAuthWithoutUserData = () => {
   return useQuery({
-    queryKey: ["betterauth", "users"],
+   queryKey: ["betterauth", "users", "withoutUserData"],
     queryFn: async () => {
       try {
-        const res = await axios.get("/api/betterauth/users");
+        const res = await axios.get("/api/betterauth/users/withoutuserdata");
+        console.log("from hooks:", res.data);
         return res.data;
       } catch (error) {
         console.error(error);
@@ -15,5 +16,3 @@ export const useGetBetterAuth = () => {
     },
   });
 };
-
-
