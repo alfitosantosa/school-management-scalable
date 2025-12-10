@@ -1,0 +1,106 @@
+# ==========================================
+# DOCKER COMPOSE - PRODUCTION READY
+# Optimized for: Fast reload, Caching, Lightweight
+# ==========================================
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # Build cache optimization
+      cache_from:
+        - type=local,src=/tmp/.buildx-cache
+      cache_to:
+        - type=local,dest=/tmp/.buildx-cache-new,mode=max
+    image: school-management:latest
+    container_name: school-management-app
+    restart: unless-stopped
+    
+    ports:
+      - "3000:3000"
+    
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+    
+    # Load environment variables from .env file
+    env_file:
+      - .env
+    
+    # Resource limits for stability
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    networks:
+      - app-network
+
+  # ==========================================
+  # DEVELOPMENT PROFILE - Fast Reload
+  # ==========================================
+  app-dev:
+    image: oven/bun:1.1-alpine
+    container_name: school-management-dev
+    working_dir: /app
+    
+    ports:
+      - "3000:3000"
+    
+    volumes:
+      # Mount source code for hot reload
+      - .:/app
+      # Persist node_modules to avoid reinstall
+      - node_modules:/app/node_modules
+      # Persist .next for faster builds
+      - next_cache:/app/.next
+      # Persist bun cache
+      - bun_cache:/root/.bun
+    
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
+      - NEXT_TELEMETRY_DISABLED=1
+    
+    env_file:
+      - .env
+    
+    # Start development server with hot reload
+    command: sh -c "bun install && bunx prisma generate && bun run dev:no-hmr"
+    
+    profiles:
+      - dev
+    
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  node_modules:
+  next_cache:
+  bun_cache:

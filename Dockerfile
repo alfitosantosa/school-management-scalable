@@ -1,75 +1,55 @@
-# syntax=docker/dockerfile:1
+# ==========================================
+# PRODUCTION-READY DOCKERFILE FOR NEXT.JS + BUN
+# Optimized for: Fast reload, Caching, Lightweight
+# ==========================================
 
-# ========================================
-# Stage 1: Dependencies
-# ========================================
-FROM node:20-alpine AS deps
+# Stage 1: Dependencies (Cached layer)
+FROM oven/bun:1.1-alpine AS deps
 WORKDIR /app
 
-# Install dependencies needed for Prisma
-RUN apk add --no-cache libc6-compat openssl
+# Copy only package files for optimal caching
+COPY package.json bun.lock* ./
 
-# Copy package files
-COPY package.json package-lock.json ./
+# Install all dependencies with frozen lockfile
+RUN bun install 
 
-# Install dependencies
-RUN npm i 
-
-# ========================================
-# Stage 2: Builder
-# ========================================
-FROM node:20-alpine AS builder
+# ==========================================
+# Stage 2: Build
+FROM oven/bun:1.1-alpine AS builder
 WORKDIR /app
 
-# Install OpenSSL for Prisma
-RUN apk add --no-cache libc6-compat openssl
-
-# Copy dependencies from deps stage
+# Copy dependencies from deps stage (cached)
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Generate Prisma Client
-RUN npx prisma generate
+# Generate Prisma client
+RUN bunx prisma generate
 
-# Set production environment for build
-ENV NODE_ENV=production
+# Build the application WITHOUT turbopack (Turbopack has issues with Bun in Docker)
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
+RUN bunx next build
 
-# Build the application
-RUN npm run build
-
-# ========================================
-# Stage 3: Production Runner
-# ========================================
-FROM node:20-alpine AS runner
+# ==========================================
+# Stage 3: Production runner (Lightweight)
+FROM oven/bun:1.1-alpine AS runner
 WORKDIR /app
-
-# Install OpenSSL for Prisma runtime
-RUN apk add --no-cache libc6-compat openssl
 
 # Set production environment
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Create non-root user for security
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# Security: Create non-root user
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
-# Copy public assets
+# Copy only required production files
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
 
-# Set correct permissions for prerender cache
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
-
-# Copy standalone build output
+# Copy standalone build (if output: 'standalone' in next.config)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-# Copy Prisma files for migrations
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 
 # Switch to non-root user
 USER nextjs
@@ -77,12 +57,13 @@ USER nextjs
 # Expose port
 EXPOSE 3000
 
+# Environment variables
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/api/health || exit 1
+# Health check endpoint
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
 
-# Start the application
-CMD ["node", "server.js"]
+# Start the server with Bun
+CMD ["bun", "server.js"]
