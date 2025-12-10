@@ -310,22 +310,8 @@ _Pesan ini dikirim otomatis oleh sistem._`;
 
             <div className="space-y-3">
               {isLoadingClass
-                ? Array.from({ length: 5 }).map((_, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 border rounded-lg animate-pulse">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-3 h-3 rounded-full bg-gray-300"></div>
-                        <div>
-                          <div className="h-4 bg-gray-300 rounded w-32 mb-1"></div>
-                          <div className="h-3 bg-gray-300 rounded w-24"></div>
-                        </div>
-                      </div>
-                      <div className="flex space-x-1">
-                        {Array.from({ length: 5 }).map((_, i) => (
-                          <div key={i} className="h-8 w-12 bg-gray-300 rounded"></div>
-                        ))}
-                      </div>
-                    </div>
-                  ))
+                ? 
+                <Loading/>
                 : classData?.students.map((student: Student) => (
                     <div key={student.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
                       <div className="flex items-center space-x-3">
@@ -412,11 +398,11 @@ _Pesan ini dikirim otomatis oleh sistem._`;
         <Card>
           <CardHeader>
             <CardTitle>Ringkasan Absensi Hari Ini</CardTitle>
-            <CardDescription>{isLoadingClass ? "Loading..." : `${classData?.students.length || 0} siswa dalam kelas ini`}</CardDescription>
+            <CardDescription>{isLoadingClass ? <Loading/> : `${classData?.students.length || 0} siswa dalam kelas ini`}</CardDescription>
           </CardHeader>
           <CardContent>
             {isLoadingClass ? (
-              <div className="text-center py-8">Loading attendance data...</div>
+            <Loading/>
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 <div className="text-center p-4 bg-green-50 rounded-lg">

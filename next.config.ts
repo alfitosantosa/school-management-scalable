@@ -1,3 +1,4 @@
+import { isProduction } from "better-auth";
 import type { NextConfig } from "next";
 
 // Read NODE_ENV: if not set or "production" -> production mode
@@ -5,6 +6,9 @@ import type { NextConfig } from "next";
 const isDevelopment = process.env.NODE_ENV === "development";
 
 const nextConfig: NextConfig = {
+  // Enable standalone output for Docker
+  output: "standalone",
+
   // Image optimization with modern API
   images: {
     remotePatterns: [
@@ -17,9 +21,9 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: isDevelopment ? 0 : 60 * 60 * 24,
   },
 
-  // Optimize package imports for tree-shaking
+  // Optimize package imports for tree-shaking (production only)
   experimental: {
-    optimizePackageImports: [
+    optimizePackageImports: isDevelopment ? [
       "lucide-react",
       "recharts",
       "date-fns",
@@ -36,7 +40,7 @@ const nextConfig: NextConfig = {
       "@radix-ui/react-slot",
       "@radix-ui/react-switch",
       "@radix-ui/react-tabs",
-    ],
+    ] : [],
     // Disable Server Components HMR cache in development
     serverComponentsHmrCache: isDevelopment ? false : true,
   },
@@ -46,10 +50,10 @@ const nextConfig: NextConfig = {
     removeConsole: !isDevelopment,
   },
 
-  // Add caching headers for static assets (only in production)
+  // Add caching headers for static assets
   async headers() {
     // In development: no aggressive caching
-    if (isDevelopment) {
+    if (!isDevelopment) {
       return [
         {
           source: "/:path*",
@@ -86,8 +90,8 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Compression
-  compress: true,
+  // Compression (production only)
+  compress: !isDevelopment,
 
   // Power by header removal for smaller response
   poweredByHeader: false,
@@ -96,7 +100,7 @@ const nextConfig: NextConfig = {
   generateEtags: !isDevelopment,
 
   // Development: disable file watching for HMR
-  ...(isDevelopment && {
+  ...(!isDevelopment && {
     webpackDevMiddleware: (config: { watchOptions?: { poll?: boolean; ignored?: string[] } }) => {
       config.watchOptions = {
         ...config.watchOptions,
