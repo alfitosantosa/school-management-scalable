@@ -132,7 +132,7 @@ function StudentSelector({ students, selectedStudentIds = [], onSelectionChange,
   const [searchTerm, setSearchTerm] = React.useState("");
 
   const filteredStudents = React.useMemo(() => {
-    if (!searchTerm) return students;
+    if (!searchTerm) return students || [];
 
     return students.filter((student) => {
       const name = student.name.toLowerCase();
@@ -406,8 +406,7 @@ function BetterAuthSelector({ onSelect, selecteduserId, disabled = false }: { on
   const [open, setOpen] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
   const { data: betterAuths = [], isLoading: betterAuthsLoading } = useGetBetterAuthWithoutUserData();
-  console.error(betterAuths);
-
+  
   const filteredbetterAuths = React.useMemo(() => {
     if (!searchTerm) return betterAuths;
 
