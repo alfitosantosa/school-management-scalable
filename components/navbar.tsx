@@ -39,6 +39,7 @@ const permissionLabels: Record<string, string> = {
   "/dashboard/student/schedule": "Jadwal untuk Siswa",
   "/dashboard/parent": "Orang Tua Page",
   "/dashboard/upload/users": "Upload Users",
+  "/dashboard/botwa": "Botwa Management",
 };
 
 export default function Navbar() {

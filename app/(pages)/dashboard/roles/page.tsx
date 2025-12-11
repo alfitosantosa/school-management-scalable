@@ -75,6 +75,7 @@ const availablePermissions = [
   { id: "/dashboard/student/schedule", label: "Schedule for Student" },
   { id: "/dashboard/parent", label: "Dashboard Parent" },
   { id: "/dashboard/upload/users", label: "Upload Users" },
+  { id: "/dashboard/botwa", label: "Botwa Management" }
 ];
 
 // Create/Edit Dialog Component
