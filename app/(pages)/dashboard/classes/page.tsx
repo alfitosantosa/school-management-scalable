@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, Eye } from "lucide-react";
+import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, Eye, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -236,7 +236,11 @@ export default function ClassDataTable() {
   const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
   const [selectedClass, setSelectedClass] = React.useState<ClassData | null>(null);
 
+  // Filter states
+  const [academicYearFilter, setAcademicYearFilter] = React.useState<string>("all");
+
   const { data: classes = [], isLoading, refetch } = useGetClasses();
+  const { data: academicYears = [] } = useGetAcademicYears();
 
   const handleSuccess = () => {
     refetch();
@@ -292,6 +296,10 @@ export default function ClassDataTable() {
       cell: ({ row }) => {
         const academicYear = row.getValue("academicYear") as ClassData["academicYear"];
         return <div>{academicYear.year}</div>;
+      },
+      filterFn: (row, id, value) => {
+        if (value === "all") return true;
+        return row.original.academicYearId === value;
       },
     },
     {
@@ -378,6 +386,16 @@ export default function ClassDataTable() {
     },
   });
 
+  // Apply academic year filter
+  React.useEffect(() => {
+    if (academicYearFilter !== "all") {
+      table.getColumn("academicYear")?.setFilterValue(academicYearFilter);
+    } else {
+      table.getColumn("academicYear")?.setFilterValue(undefined);
+    }
+  }, [academicYearFilter, table]);
+
+
   if (isLoading) {
     return <Loading />;
   }
@@ -388,8 +406,38 @@ export default function ClassDataTable() {
         <div className="font-bold text-3xl">Kelas </div>
         <div className=" mx-auto">
           <div className="flex items-center justify-between py-4">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 flex-wrap gap-y-2">
               <Input placeholder="Cari nama kelas..." value={(table.getColumn("name")?.getFilterValue() as string) ?? ""} onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)} className="max-w-sm" />
+
+              {/* Academic Year Filter */}
+              <Select value={academicYearFilter} onValueChange={setAcademicYearFilter}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Filter Tahun Ajaran" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Semua Tahun Ajaran</SelectItem>
+                  {academicYears?.map((year: any) => (
+                    <SelectItem key={year.id} value={year.id}>
+                      {year.year}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              {/* Clear Filters */}
+              {academicYearFilter !== "all" && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setAcademicYearFilter("all");
+                    table.resetColumnFilters();
+                  }}
+                >
+                  <X className="mr-2 h-4 w-4" />
+                  Reset Filter
+                </Button>
+              )}
             </div>
 
             <div className="flex items-center space-x-2">

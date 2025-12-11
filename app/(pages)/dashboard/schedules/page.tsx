@@ -358,10 +358,12 @@ export default function ScheduleDataTable() {
   // Filter states
   const [classFilter, setClassFilter] = React.useState<string>("all");
   const [dayFilter, setDayFilter] = React.useState<string>("all");
+  const [academicYearFilter, setAcademicYearFilter] = React.useState<string>("all");
   const [globalFilter, setGlobalFilter] = React.useState<string>("");
 
   const { data: schedules = [], isLoading, refetch } = useGetSchedules();
   const { data: classes = [] } = useGetClasses();
+  const { data: academicYears = [] } = useGetAcademicYears();
 
   const handleSuccess = () => {
     refetch();
@@ -500,6 +502,10 @@ export default function ScheduleDataTable() {
       accessorFn: (row) => `${row.academicYear?.year} - ${row.academicYear?.semester}` || "",
       header: "Tahun Akademik",
       cell: ({ row }) => <div className="text-sm">{row.original.academicYear?.year}</div>,
+      filterFn: (row, id, value) => {
+        if (value === "all") return true;
+        return row.original.academicYearId === value;
+      },
     },
     {
       id: "actions",
@@ -585,6 +591,15 @@ export default function ScheduleDataTable() {
     }
   }, [dayFilter, table]);
 
+  // Apply academic year filter
+  React.useEffect(() => {
+    if (academicYearFilter !== "all") {
+      table.getColumn("academicYear")?.setFilterValue(academicYearFilter);
+    } else {
+      table.getColumn("academicYear")?.setFilterValue(undefined);
+    }
+  }, [academicYearFilter, table]);
+
   if (isLoading) {
     return <Loading />;
   }
@@ -632,8 +647,23 @@ export default function ScheduleDataTable() {
               </SelectContent>
             </Select>
 
+            {/* Academic Year Filter */}
+            <Select value={academicYearFilter} onValueChange={setAcademicYearFilter}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Tahun Ajaran" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Semua Tahun Ajaran</SelectItem>
+                {academicYears?.map((year: any) => (
+                  <SelectItem key={year.id} value={year.id}>
+                    {year.year}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
             {/* Clear Filters */}
-            {(globalFilter || classFilter !== "all" || dayFilter !== "all") && (
+            {(globalFilter || classFilter !== "all" || dayFilter !== "all" || academicYearFilter !== "all") && (
               <Button
                 variant="outline"
                 size="sm"
@@ -641,6 +671,7 @@ export default function ScheduleDataTable() {
                   setGlobalFilter("");
                   setClassFilter("all");
                   setDayFilter("all");
+                  setAcademicYearFilter("all");
                   table.resetColumnFilters();
                 }}
               >
@@ -703,7 +734,7 @@ export default function ScheduleDataTable() {
         </div>
 
         {/* Active Filters Display */}
-        {(globalFilter || classFilter !== "all" || dayFilter !== "all") && (
+        {(globalFilter || classFilter !== "all" || dayFilter !== "all" || academicYearFilter !== "all") && (
           <div className="flex items-center space-x-2 py-2">
             <span className="text-sm text-muted-foreground">Filter aktif:</span>
             {globalFilter && (
@@ -722,6 +753,12 @@ export default function ScheduleDataTable() {
               <Badge variant="secondary" className="gap-1">
                 Hari: {DAYS_MAP[parseInt(dayFilter) as keyof typeof DAYS_MAP]}
                 <X className="h-3 w-3 cursor-pointer" onClick={() => setDayFilter("all")} />
+              </Badge>
+            )}
+            {academicYearFilter !== "all" && (
+              <Badge variant="secondary" className="gap-1">
+                Tahun Ajaran: {academicYears?.find((y: any) => y.id === academicYearFilter)?.year}
+                <X className="h-3 w-3 cursor-pointer" onClick={() => setAcademicYearFilter("all")} />
               </Badge>
             )}
           </div>
@@ -752,8 +789,8 @@ export default function ScheduleDataTable() {
                   <TableCell colSpan={columns.length} className="h-24 text-center">
                     <div className="flex flex-col items-center justify-center space-y-2">
                       <Calendar className="h-8 w-8 text-muted-foreground" />
-                      <p className="text-muted-foreground">{globalFilter || classFilter !== "all" || dayFilter !== "all" ? "Tidak ada jadwal yang sesuai dengan filter." : "Tidak ada jadwal yang ditemukan."}</p>
-                      {(globalFilter || classFilter !== "all" || dayFilter !== "all") && (
+                      <p className="text-muted-foreground">{globalFilter || classFilter !== "all" || dayFilter !== "all" || academicYearFilter !== "all" ? "Tidak ada jadwal yang sesuai dengan filter." : "Tidak ada jadwal yang ditemukan."}</p>
+                      {(globalFilter || classFilter !== "all" || dayFilter !== "all" || academicYearFilter !== "all") && (
                         <Button
                           variant="outline"
                           size="sm"
@@ -761,6 +798,7 @@ export default function ScheduleDataTable() {
                             setGlobalFilter("");
                             setClassFilter("all");
                             setDayFilter("all");
+                            setAcademicYearFilter("all");
                             table.resetColumnFilters();
                           }}
                         >

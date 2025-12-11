@@ -1,4 +1,3 @@
-import { isProduction } from "better-auth";
 import type { NextConfig } from "next";
 
 // Read NODE_ENV: if not set or "production" -> production mode
