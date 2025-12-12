@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
       { protocol: "https", hostname: "icons.veryicon.com" },
-      { protocol: "https", hostname: "file.pasarjaya.cloud" }
+      { protocol: "https", hostname: "file.pasarjaya.cloud" },
     ],
     formats: ["image/avif", "image/webp"],
     // In development: shorter cache, in production: 24 hours
@@ -22,24 +22,26 @@ const nextConfig: NextConfig = {
 
   // Optimize package imports for tree-shaking (production only)
   experimental: {
-    optimizePackageImports: isDevelopment ? [
-      "lucide-react",
-      "recharts",
-      "date-fns",
-      "@radix-ui/react-alert-dialog",
-      "@radix-ui/react-avatar",
-      "@radix-ui/react-checkbox",
-      "@radix-ui/react-dialog",
-      "@radix-ui/react-dropdown-menu",
-      "@radix-ui/react-label",
-      "@radix-ui/react-popover",
-      "@radix-ui/react-progress",
-      "@radix-ui/react-select",
-      "@radix-ui/react-separator",
-      "@radix-ui/react-slot",
-      "@radix-ui/react-switch",
-      "@radix-ui/react-tabs",
-    ] : [],
+    optimizePackageImports: isDevelopment
+      ? [
+          "lucide-react",
+          "recharts",
+          "date-fns",
+          "@radix-ui/react-alert-dialog",
+          "@radix-ui/react-avatar",
+          "@radix-ui/react-checkbox",
+          "@radix-ui/react-dialog",
+          "@radix-ui/react-dropdown-menu",
+          "@radix-ui/react-label",
+          "@radix-ui/react-popover",
+          "@radix-ui/react-progress",
+          "@radix-ui/react-select",
+          "@radix-ui/react-separator",
+          "@radix-ui/react-slot",
+          "@radix-ui/react-switch",
+          "@radix-ui/react-tabs",
+        ]
+      : [],
     // Disable Server Components HMR cache in development
     serverComponentsHmrCache: isDevelopment ? false : true,
   },
