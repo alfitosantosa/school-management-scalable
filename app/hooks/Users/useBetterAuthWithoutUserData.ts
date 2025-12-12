@@ -8,7 +8,6 @@ export const useGetBetterAuthWithoutUserData = () => {
     queryFn: async () => {
       try {
         const res = await axios.get("/api/betterauth/users/withoutuserdata");
-        console.log("from hooks:", res.data);
         return res.data;
       } catch (error) {
         console.error(error);

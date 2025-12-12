@@ -365,8 +365,6 @@ export default function ScheduleDataTable() {
   const { data: classes = [] } = useGetClasses();
   const { data: academicYears = [] } = useGetAcademicYears();
 
-  console.log("ScheduleDataTable rendering. AcademicYears:", academicYears);
-
   const handleSuccess = () => {
     refetch();
   };

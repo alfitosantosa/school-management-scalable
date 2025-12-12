@@ -6,6 +6,7 @@ import { useGetSpecialSchedules } from "@/app/hooks/SpecialSchedules/useSpecialS
 import { useSession } from "@/lib/auth-client";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { useGetScheduleByIdTeacher } from "@/app/hooks/Schedules/useGetScheduleById";
+import Loading from "@/components/loading";
 
 // Type definitions berdasarkan JSON
 type Schedule = {
@@ -184,14 +185,7 @@ export default function CalendarPage() {
   if (schedulesLoading || specialSchedulesLoading) {
     return (
       <>
-        <div className="w-max-7xl mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex items-center justify-center h-64">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-              <p className="mt-4 text-muted-foreground">Memuat jadwal...</p>
-            </div>
-          </div>
-        </div>
+        <Loading />
       </>
     );
   }

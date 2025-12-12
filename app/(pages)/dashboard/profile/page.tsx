@@ -1,12 +1,11 @@
 // app/page.tsx
 "use client";
 
-
+import Image from "next/image";
 import { useSession } from "@/lib/auth-client";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { User, Mail, Calendar, MapPin, Phone, GraduationCap, Building2, Shield, Clock, UserCheck, Briefcase, Award, CheckCircle, AlertCircle, UserX, MessageSquare, CheckCircle2 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -16,8 +15,6 @@ import { Button } from "@/components/ui/button";
 const NoUserDataComponent = ({ clerkUser }: { clerkUser: any }) => {
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
-      
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-20">
         <div className="max-w-4xl mx-auto">
           {/* Main Alert Card */}
@@ -204,7 +201,6 @@ const NoUserDataComponent = ({ clerkUser }: { clerkUser: any }) => {
 // Loading Component
 const UserProfileSkeleton = () => (
   <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
-    
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header Skeleton */}
@@ -287,7 +283,6 @@ const UserProfileSkeleton = () => (
 // Error Component
 const ErrorComponent = ({ error }: { error: any }) => (
   <div className="min-h-screen bg-linear-to-r from-red-50 via-pink-50 to-rose-50">
-    
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <div className="max-w-lg mx-auto">
         <Card className="border-red-200 shadow-2xl bg-white/90 backdrop-blur-sm">
@@ -382,8 +377,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
-      
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
         <div className="max-w-7xl mx-auto space-y-8">
           {/* Header Card */}
@@ -396,13 +389,15 @@ export default function Home() {
             <CardContent className="pt-0 px-6 lg:px-8 pb-8">
               <div className="flex flex-col xl:flex-row items-center xl:items-end gap-6 xl:gap-8 -mt-20 lg:-mt-24">
                 {/* Enhanced Avatar */}
-                <div className="relative group">
-                  <Avatar className="w-32 h-32 lg:w-40 lg:h-40 border-4 lg:border-6 border-white shadow-2xl ring-4 ring-blue-100 transition-all duration-300 group-hover:ring-blue-200  group-hover:shadow-3xl">
-                    <AvatarImage src={user?.avatarUrl} alt={user?.name} className="object-cover" />
-                    <Card className="absolute bottom-0 right-0">
-                      <AvatarFallback className="text-2xl lg:text-3xl bg-linear-to-br from-blue-500 to-purple-600 text-white font-bold">{getInitials(user?.name || "User")}</AvatarFallback>
-                    </Card>
-                  </Avatar>
+                <div className="relative group w-32 h-32 lg:w-40 lg:h-40">
+                  <div className="w-32 h-32 lg:w-40 lg:h-40 border-4 lg:border-6 border-white shadow-2xl ring-4 ring-blue-100 transition-all duration-300 group-hover:ring-blue-200 group-hover:shadow-3xl overflow-hidden rounded-full flex items-center justify-center bg-linear-to-br from-blue-100 to-purple-100">
+                    {user?.avatarUrl ? (
+                      <Image src={user.avatarUrl} alt={user?.name || "User Avatar"} width={160} height={160} className="w-full h-full object-cover rounded-full" priority />
+                    ) : (
+                      <Image src="https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png" alt="Default Avatar" width={160} height={160} className="w-full h-full object-cover rounded-full" />
+                    )}
+                  </div>
+
                   <div className="absolute -bottom-1 -right-2 w-10 h-10 lg:w-12 lg:h-12 bg-linear-to-r from-green-400 to-emerald-500 border-4 border-white rounded-full flex items-center justify-center shadow-lg">
                     <CheckCircle className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
                   </div>

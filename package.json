@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "bun run dev:no-hmr",
-    "dev:no-hmr": "WATCHPACK_POLLING=false FAST_REFRESH=false NODE_ENV=development next dev",
-    "dev:cache": "lsof -ti:3000 | xargs kill -9 2>/dev/null; sleep 1; npm run dev",
+    "dev": "NODE_ENV=development WATCHPACK_POLLING=false next dev",
+    "dev:fast": "NODE_ENV=development WATCHPACK_POLLING=false FAST_REFRESH=true next dev",
+    "dev:clean": "rm -rf .next && npm run dev",
     "prebuild": "rm -rf node_modules/.cache && rm -rf .next",
     "build": "next build --turbopack",
     "start": "NODE_ENV=production next start"

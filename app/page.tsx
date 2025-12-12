@@ -380,9 +380,7 @@ export default function Home() {
                 <div className="relative group">
                   <Avatar className="w-32 h-32 lg:w-40 lg:h-40 border-4 lg:border-6 border-white shadow-2xl ring-4 ring-blue-100 transition-all duration-300 group-hover:ring-blue-200  group-hover:shadow-3xl">
                     <AvatarImage src={user?.avatarUrl ? user.avatarUrl : "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"} alt={user?.name} className="object-cover" />
-                    <Card className="absolute bottom-0 right-0">
-                      <AvatarFallback className="text-2xl lg:text-3xl bg-linear-to-br from-blue-500 to-purple-600 text-white font-bold">{getInitials(user?.name || "User")}</AvatarFallback>
-                    </Card>
+                   
                   </Avatar>
                   <div className="absolute -bottom-1 -right-2 w-10 h-10 lg:w-12 lg:h-12 bg-linear-to-r from-green-400 to-emerald-500 border-4 border-white rounded-full flex items-center justify-center shadow-lg">
                     <CheckCircle className="w-5 h-5 lg:w-6 lg:h-6 text-white" />

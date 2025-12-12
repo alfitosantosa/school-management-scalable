@@ -242,8 +242,6 @@ export default function ClassDataTable() {
   const { data: classes = [], isLoading, refetch } = useGetClasses();
   const { data: academicYears = [] } = useGetAcademicYears();
 
-  console.log("ClassDataTable rendering. AcademicYears:", academicYears);
-
   const handleSuccess = () => {
     refetch();
   };
