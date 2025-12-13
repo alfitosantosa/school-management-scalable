@@ -141,11 +141,12 @@ export default function ParentPage() {
   }, [attendanceStudent]);
 
   const violationStats = useMemo(() => {
-    const activeViolations = violationStudent.filter((v: any) => v.status === "ACTIVE");
+    const activeViolations = violationStudent.filter((v: any) => v.status === "active");
     const totalPoints = activeViolations.reduce((sum: number, v: any) => sum + (v.violationType?.points || 0), 0);
     return { activeCount: activeViolations.length, totalPoints, total: violationStudent.length };
   }, [violationStudent]);
 
+  console.log(violationStats);
   // Attendance columns
   const attendanceColumns = [
     {
