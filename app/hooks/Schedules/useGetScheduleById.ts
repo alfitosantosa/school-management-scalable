@@ -18,6 +18,21 @@ export const useGetScheduleById = (id: string) => {
   });
 };
 
+export const useGetScheduleByIdTeacher = (id: string) => {
+  return useQuery({
+    queryKey: ["schedules-with-teacher"],
+    queryFn: async () => {
+      try {
+        const res = await apiGet(`/api/schedules/teacher/${id}`);
+        return res.data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    enabled: !!id,
+  });
+};
+
 export const useGetScheduleByIdAcademicYearActive = (id: string) => {
   return useQuery({
     queryKey: ["schedules-with-academic-year-active"],
