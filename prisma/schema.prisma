@@ -119,6 +119,8 @@ model UserData {
   role               Role?                  @relation(fields: [roleId], references: [id])
   user               User?                  @relation(fields: [userId], references: [id], onDelete: Cascade)
   violations         Violation[]            @relation("StudentViolation")
+  teacherAttendances TeacherAttendance[]    @relation("TeacherAttendance")
+  createdAttendances TeacherAttendance[]    @relation("CreatedAttendance")
 
   @@map("user_data")
 }
@@ -568,4 +570,24 @@ model TahfidzRecord {
   user       UserData? @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("tahfidz_records")
+}
+
+model TeacherAttendance {
+  id           String    @id @default(cuid())
+  teacherId    String
+  date         DateTime  @db.Date
+  status       String    @default("hadir") // hadir, sakit, izin, alfa
+  checkinTime  DateTime?
+  checkoutTime DateTime?
+  notes        String?
+  createdBy    String    // admin/principal ID
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  teacher      UserData  @relation("TeacherAttendance", fields: [teacherId], references: [id], onDelete: Cascade)
+  createdByUser UserData @relation("CreatedAttendance", fields: [createdBy], references: [id], onDelete: SetNull)
+
+  @@unique([teacherId, date])
+  @@index([teacherId])
+  @@index([date])
+  @@map("teacher_attendances")
 }

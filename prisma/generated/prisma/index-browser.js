@@ -357,15 +357,15 @@ exports.Prisma.GradeScalarFieldEnum = {
   studentId: 'studentId',
   scheduleId: 'scheduleId',
   subjectId: 'subjectId',
-  gradeTypeId: 'gradeTypeId',
   score: 'score',
   maxScore: 'maxScore',
-  title: 'title',
   description: 'description',
   date: 'date',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  createdBy: 'createdBy'
+  createdBy: 'createdBy',
+  gradeTypeId: 'gradeTypeId',
+  title: 'title'
 };
 
 exports.Prisma.ReportCardScalarFieldEnum = {
@@ -500,6 +500,19 @@ exports.Prisma.TahfidzRecordScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.TeacherAttendanceScalarFieldEnum = {
+  id: 'id',
+  teacherId: 'teacherId',
+  date: 'date',
+  status: 'status',
+  checkinTime: 'checkinTime',
+  checkoutTime: 'checkoutTime',
+  notes: 'notes',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -555,7 +568,8 @@ exports.Prisma.ModelName = {
   Notification: 'Notification',
   DashboardContent: 'DashboardContent',
   Announcement: 'Announcement',
-  TahfidzRecord: 'TahfidzRecord'
+  TahfidzRecord: 'TahfidzRecord',
+  TeacherAttendance: 'TeacherAttendance'
 };
 
 /**
