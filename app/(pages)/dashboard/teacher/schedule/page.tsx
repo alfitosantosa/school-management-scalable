@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetScheduleByIdTeacher } from "@/app/hooks/Schedules/useGetScheduleById";
+import { useGetScheduleByIdAcademicYearActive } from "@/app/hooks/Schedules/useGetScheduleById";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,7 +24,7 @@ export default function TeacherAttendancePage() {
   const { data: session, isPending } = useSession();
   const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
-  const { data: scheduleData = [], isLoading: isLoadingSchedule, error: scheduleError } = useGetScheduleByIdTeacher(userData?.id ?? "");
+  const { data: scheduleData = [], isLoading: isLoadingSchedule, error: scheduleError } = useGetScheduleByIdAcademicYearActive(userData?.id ?? "");
 
   const getDayName = (dayOfWeek: number) => {
     const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
@@ -102,7 +102,6 @@ export default function TeacherAttendancePage() {
 
   return (
     <>
-      
       <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 ">
         <div className="max-w-7xl mx-auto px-4 py-8">
           {/* Header Section */}

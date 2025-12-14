@@ -5,7 +5,7 @@ import { apiGet } from "@/lib/api-client";
 
 export const useGetScheduleById = (id: string) => {
   return useQuery({
-    queryKey: ["schedules", id],
+    queryKey: ["schedule", id],
     queryFn: async () => {
       try {
         const res = await apiGet(`/api/schedules/${id}`);
@@ -18,16 +18,17 @@ export const useGetScheduleById = (id: string) => {
   });
 };
 
-export const useGetScheduleByIdTeacher = (id: string) => {
+export const useGetScheduleByIdAcademicYearActive = (id: string) => {
   return useQuery({
-    queryKey: ["schedules", id],
+    queryKey: ["schedules-with-academic-year-active"],
     queryFn: async () => {
       try {
-        const res = await apiGet(`/api/schedules/teacher/${id}`);
+        const res = await apiGet(`/api/schedules/active/teacher/${id}`);
         return res.data;
       } catch (error) {
         console.error(error);
       }
     },
+    enabled: !!id,
   });
 };
