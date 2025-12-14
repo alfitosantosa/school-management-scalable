@@ -1,13 +1,13 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { apiGet } from "@/lib/api-client";
 
 export const useGetStudents = () => {
   return useQuery({
     queryKey: ["students"],
     queryFn: async () => {
       try {
-        const res = await axios.get("/api/students");
+        const res = await apiGet("/api/students");
         return res.data;
       } catch (error) {
         console.error(error);

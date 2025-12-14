@@ -146,7 +146,6 @@ export default function ParentPage() {
     return { activeCount: activeViolations.length, totalPoints, total: violationStudent.length };
   }, [violationStudent]);
 
-  console.log(violationStats);
   // Attendance columns
   const attendanceColumns = [
     {

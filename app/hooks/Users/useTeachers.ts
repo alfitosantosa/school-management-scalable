@@ -1,13 +1,13 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { apiGet, apiPost, apiPut, apiDelete } from "@/lib/api-client";
 
 export const useGetTeachers = () => {
   return useQuery({
     queryKey: ["teachers"],
     queryFn: async () => {
       try {
-        const res = await axios.get("/api/teachers");
+        const res = await apiGet("/api/teachers");
         return res.data;
       } catch (error) {
         console.error(error);
@@ -19,7 +19,7 @@ export const useGetTeachers = () => {
 export const useCreateTeacher = () => {
   return async (data: any) => {
     try {
-      const res = await axios.post("/api/teachers", data);
+      const res = await apiPost("/api/teachers", data);
       return res.data;
     } catch (error) {
       console.error(error);
@@ -30,7 +30,7 @@ export const useCreateTeacher = () => {
 export const useUpdateTeacher = () => {
   return async (data: any) => {
     try {
-      const res = await axios.put("/api/teachers", data);
+      const res = await apiPut("/api/teachers", data);
       return res.data;
     } catch (error) {
       console.error(error);
@@ -41,7 +41,7 @@ export const useUpdateTeacher = () => {
 export const useDeleteTeacher = () => {
   return async (id: string) => {
     try {
-      const res = await axios.delete(`/api/teachers`, { data: { id } });
+      const res = await apiDelete(`/api/teachers?id=${id}`);
       return res.data;
     } catch (error) {
       console.error(error);

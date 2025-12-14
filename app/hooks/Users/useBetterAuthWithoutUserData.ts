@@ -1,13 +1,13 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { apiGet } from "@/lib/api-client";
 
 export const useGetBetterAuthWithoutUserData = () => {
   return useQuery({
-   queryKey: ["betterauth", "users", "withoutUserData"],
+    queryKey: ["betterauth", "users", "withoutUserData"],
     queryFn: async () => {
       try {
-        const res = await axios.get("/api/betterauth/users/withoutuserdata");
+        const res = await apiGet("/api/betterauth/users/withoutuserdata");
         return res.data;
       } catch (error) {
         console.error(error);

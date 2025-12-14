@@ -1,11 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import { apiPost, apiPut } from "@/lib/api-client";
 
 export const useCreateAttendanceBulk = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
-      const response = await axios.post("/api/attendance/bulk", data);
+      const response = await apiPost("/api/attendance/bulk", data);
       return response.data;
     },
     onSuccess: () => {
@@ -18,7 +18,7 @@ export const useUpdateAttendanceBulk = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
-      const response = await axios.put(`/api/attendance/bulk`, data);
+      const response = await apiPut(`/api/attendance/bulk`, data);
       return response.data;
     },
     onSuccess: () => {
@@ -31,7 +31,7 @@ export const useUpdateAttendanceBulk = () => {
 //   const queryClient = useQueryClient();
 //   return useMutation({
 //     mutationFn: async (data: any) => {
-//       const response = await axios.delete(`/api/attendance/bulk`, data);
+//       const response = await apiDelete(`/api/attendance/bulk`, data);
 //       return response.data;
 //     },
 //     onSuccess: () => {

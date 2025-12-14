@@ -1,12 +1,12 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import { apiGet, apiPost, apiPut, apiDelete } from "@/lib/api-client";
 
 export const useGetMajors = () => {
   return useQuery({
     queryKey: ["majors"],
     queryFn: async () => {
       try {
-        const res = await axios.get("/api/major");
+        const res = await apiGet("/api/major");
         return res.data;
       } catch (error) {
         console.error(error);
@@ -19,7 +19,7 @@ export const useCreateMajor = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
-      const res = await axios.post("/api/major", data);
+      const res = await apiPost("/api/major", data);
       return res.data;
     },
     onSuccess: () => {
@@ -35,7 +35,7 @@ export const useUpdateMajor = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
-      const res = await axios.put("/api/major", data);
+      const res = await apiPut("/api/major", data);
       return res.data;
     },
     onSuccess: () => {
@@ -51,7 +51,7 @@ export const useDeleteMajor = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const res = await axios.delete(`/api/major/`, { data: { id } });
+      const res = await apiDelete(`/api/major/?id=${id}`);
       return res.data;
     },
     onSuccess: () => {

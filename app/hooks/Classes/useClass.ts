@@ -1,13 +1,13 @@
 "use client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import { apiGet, apiPost, apiPut, apiDelete } from "@/lib/api-client";
 
 export const useGetClasses = () => {
   return useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
       try {
-        const res = await axios.get("/api/class");
+        const res = await apiGet("/api/class");
         return res.data;
       } catch (error: any) {
         throw new Error(error?.response?.data?.message || "Failed to fetch classes");
@@ -20,7 +20,7 @@ export const useCreateClass = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
-      const res = await axios.post("/api/class", data);
+      const res = await apiPost("/api/class", data);
       return res.data;
     },
     onSuccess: () => {
@@ -37,7 +37,7 @@ export const useUpdateClass = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
-      const res = await axios.put("/api/class", data);
+      const res = await apiPut("/api/class", data);
       return res.data;
     },
     onSuccess: () => {
@@ -54,7 +54,7 @@ export const useDeleteClass = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const res = await axios.delete(`/api/class/`, { data: { id } });
+      const res = await apiDelete(`/api/class/?id=${id}`);
       return res.data;
     },
     onSuccess: () => {

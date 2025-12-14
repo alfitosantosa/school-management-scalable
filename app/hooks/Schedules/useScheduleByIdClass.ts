@@ -1,12 +1,12 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { apiGet } from "@/lib/api-client";
 
 export const useGetSchedulesByIdClass = (classId: string) => {
   return useQuery({
     queryKey: ["schedules", classId],
     queryFn: async () => {
-      const response = await axios.get(`/api/schedules/class/${classId}`);
+      const response = await apiGet(`/api/schedules/class/${classId}`);
       return response.data;
     },
   });

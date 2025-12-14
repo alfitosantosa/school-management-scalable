@@ -1,12 +1,12 @@
 "use client";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import { apiGet, apiPost, apiPut, apiDelete } from "@/lib/api-client";
 
 export const useGetSchedules = () => {
   return useQuery({
     queryKey: ["schedules"],
     queryFn: async () => {
-      const response = await axios.get("/api/schedules");
+      const response = await apiGet("/api/schedules");
       return response.data;
     },
   });
@@ -16,7 +16,7 @@ export const useCreateSchedule = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data) => {
-      const response = await axios.post("/api/schedules", data);
+      const response = await apiPost("/api/schedules", data);
       return response.data;
     },
     onSuccess: () => {
@@ -29,7 +29,7 @@ export const useUpdateSchedule = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data) => {
-      const response = await axios.put(`/api/schedules/`, data);
+      const response = await apiPut(`/api/schedules/`, data);
       return response.data;
     },
     onSuccess: () => {
@@ -42,7 +42,7 @@ export const useDeleteSchedule = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id) => {
-      const response = await axios.delete(`/api/schedules/`, { data: { id } });
+      const response = await apiDelete(`/api/schedules/?id=${id}`);
       return response.data;
     },
     onSuccess: () => {
@@ -55,7 +55,7 @@ export const useGetSchedulesByTeacher = (teacherId: string) => {
   return useQuery({
     queryKey: ["schedules", teacherId],
     queryFn: async () => {
-      const response = await axios.get(`/api/schedules/teacher/${teacherId}`);
+      const response = await apiGet(`/api/schedules/teacher/${teacherId}`);
       return response.data;
     },
     enabled: !!teacherId, // Only run the query if teacherId is provided
@@ -66,7 +66,7 @@ export const useGetSchedulesByStudent = (studentId: string) => {
   return useQuery({
     queryKey: ["schedules", studentId],
     queryFn: async () => {
-      const response = await axios.get(`/api/schedules/student/${studentId}`);
+      const response = await apiGet(`/api/schedules/student/${studentId}`);
       return response.data;
     },
     enabled: !!studentId, // Only run the query if studentId is provided

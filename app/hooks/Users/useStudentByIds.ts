@@ -2,7 +2,7 @@
 // hooks/useParentDashboard.ts
 
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { apiGet } from "@/lib/api-client";
 
 // ===== Types inferred from API responses =====
 export interface StudentData {
@@ -101,7 +101,7 @@ export const useGetStudentsByIds = (studentIds: string[]) => {
         return [];
       }
 
-      const response = await axios.get(`/api/students/by-ids`, {
+      const response = await apiGet(`/api/students/by-ids`, {
         params: { ids: studentIds.join(",") },
       });
       return response.data as StudentData[];
@@ -115,7 +115,7 @@ export const useGetStudentAttendance = (studentId: string, enabled: boolean = tr
   return useQuery({
     queryKey: ["attendance", "student", studentId],
     queryFn: async () => {
-      const response = await axios.get(`/api/attendance/student/${studentId}`);
+      const response = await apiGet(`/api/attendance/student/${studentId}`);
       return response.data as AttendanceData[];
     },
     enabled: !!studentId && enabled,
@@ -127,7 +127,7 @@ export const useGetStudentViolations = (studentId: string, enabled: boolean = tr
   return useQuery({
     queryKey: ["violations", "student", studentId],
     queryFn: async () => {
-      const response = await axios.get(`/api/violations/student/${studentId}`);
+      const response = await apiGet(`/api/violations/student/${studentId}`);
       return response.data as ViolationData[];
     },
     enabled: !!studentId && enabled,

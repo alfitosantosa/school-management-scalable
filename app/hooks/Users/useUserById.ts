@@ -3,14 +3,14 @@
 // app/api/users/route.ts
 
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { apiGet } from "@/lib/api-client";
 
 export const useGetUserById = (id: string) => {
   return useQuery({
     queryKey: ["users", id],
     queryFn: async () => {
       try {
-        const res = await axios.get(`/api/userdata/id/${id}`);
+        const res = await apiGet(`/api/userdata/id/${id}`);
         return res.data;
       } catch (error) {
         console.error(error);

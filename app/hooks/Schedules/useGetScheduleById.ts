@@ -1,14 +1,14 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { apiGet } from "@/lib/api-client";
 
 export const useGetScheduleById = (id: string) => {
   return useQuery({
     queryKey: ["schedules", id],
     queryFn: async () => {
       try {
-        const res = await axios.get(`/api/schedules/${id}`);
+        const res = await apiGet(`/api/schedules/${id}`);
         return res.data;
       } catch (error) {
         console.error(error);
@@ -23,7 +23,7 @@ export const useGetScheduleByIdTeacher = (id: string) => {
     queryKey: ["schedules", id],
     queryFn: async () => {
       try {
-        const res = await axios.get(`/api/schedules/teacher/${id}`);
+        const res = await apiGet(`/api/schedules/teacher/${id}`);
         return res.data;
       } catch (error) {
         console.error(error);

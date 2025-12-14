@@ -1,13 +1,13 @@
 "use client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import { apiGet, apiPost, apiPut, apiDelete } from "@/lib/api-client";
 
 export const useGetRoles = () => {
   return useQuery({
     queryKey: ["roles"],
     queryFn: async () => {
       try {
-        const res = await axios.get("/api/roles");
+        const res = await apiGet("/api/roles");
         return res.data;
       } catch (error: any) {
         throw new Error(error?.response?.data?.message || "Failed to fetch roles");
@@ -20,7 +20,7 @@ export const useCreateRole = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
-      const res = await axios.post("/api/roles", data);
+      const res = await apiPost("/api/roles", data);
 
       return res.data;
     },
@@ -38,7 +38,7 @@ export const useUpdateRole = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
-      const res = await axios.put("/api/roles", data);
+      const res = await apiPut("/api/roles", data);
       return res.data;
     },
     onSuccess: () => {
@@ -54,7 +54,7 @@ export const useDeleteRole = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const res = await axios.delete(`/api/roles/`, { data: { id } });
+      const res = await apiDelete(`/api/roles/?id=${id}`);
       return res.data;
     },
     onSuccess: () => {

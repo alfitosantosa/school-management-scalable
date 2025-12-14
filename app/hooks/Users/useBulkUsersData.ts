@@ -1,13 +1,13 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import { apiPost } from "@/lib/api-client";
 
 export const useBulkCreateUserData = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
-      const res = await axios.post("/api/userdata/bulk/create", data);
+      const res = await apiPost("/api/userdata/bulk/create", data);
       return res.data;
     },
     onSuccess: () => {
@@ -23,7 +23,7 @@ export const useBulkDeleteUserData = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
-      const res = await axios.post("/api/userdata/bulk/delete", {
+      const res = await apiPost("/api/userdata/bulk/delete", {
         data, // axios DELETE harus begini
       });
       return res.data;
@@ -32,7 +32,6 @@ export const useBulkDeleteUserData = () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
     onError: (error) => {
-  
       console.error(error);
     },
   });

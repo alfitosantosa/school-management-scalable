@@ -3,14 +3,14 @@
 "use client";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import { apiGet, apiPost, apiPut, apiDelete } from "@/lib/api-client";
 
 export const useGetUsers = () => {
   return useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       try {
-        const res = await axios.get("/api/userdata");
+        const res = await apiGet("/api/userdata");
         return res.data;
       } catch (error) {
         console.error(error);
@@ -23,7 +23,7 @@ export const useCreateUser = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
-      const res = await axios.post("/api/userdata", data);
+      const res = await apiPost("/api/userdata", data);
       return res.data;
     },
     onSuccess: () => {
@@ -39,7 +39,7 @@ export const useUpdateUser = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
-      const res = await axios.put("/api/userdata", data);
+      const res = await apiPut("/api/userdata", data);
       return res.data;
     },
     onSuccess: () => {
@@ -55,7 +55,7 @@ export const useDeleteUser = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const res = await axios.delete(`/api/userdata/`, { data: { id } });
+      const res = await apiDelete(`/api/userdata/?id=${id}`);
       return res.data;
     },
     onSuccess: () => {
@@ -72,7 +72,7 @@ export const useGetUserById = (id: string) => {
     queryKey: ["users", id],
     queryFn: async () => {
       try {
-        const res = await axios.get(`/api/userdata/id/${id}`);
+        const res = await apiGet(`/api/userdata/id/${id}`);
         return res.data;
       } catch (error) {
         console.error(error);
