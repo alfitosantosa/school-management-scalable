@@ -14,12 +14,15 @@ import { useCreateAttendanceBulk } from "@/app/hooks/Attendances/useBulkAttendan
 import { useBulkSendWhatsApp } from "@/app/hooks/BotWA/useBotWA";
 import Loading from "@/components/loading";
 import { toast } from "sonner";
+import Image from "next/image";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 interface Student {
   id: string;
   name: string;
   nisn?: string;
   parentPhone?: string;
+  avatarUrl?: StaticImport | undefined | string | null;
 }
 
 interface Subject {
@@ -37,7 +40,7 @@ const STATUS_MAP = {
 
 export default function AttendanceModule() {
   const params = useParams();
-  const [attendanceData, setAttendanceData] = useState<Record<string, { status: string; notes?: string; evidenceUrl?: string }>>({}); 
+  const [attendanceData, setAttendanceData] = useState<Record<string, { status: string; notes?: string; evidenceUrl?: string }>>({});
   const [sendWhatsApp, setSendWhatsApp] = useState(false);
   const [isSendingWA, setIsSendingWA] = useState(false);
 
@@ -81,17 +84,12 @@ export default function AttendanceModule() {
   };
 
   // Function to send WhatsApp notification to parents
-  const sendWhatsAppNotification = async (
-    students: Student[],
-    attendanceInfo: Record<string, { status: string; notes?: string }>
-  ) => {
+  const sendWhatsAppNotification = async (students: Student[], attendanceInfo: Record<string, { status: string; notes?: string }>) => {
     const schedule = scheduleDataById[0];
     if (!schedule || !classData) return;
 
     // Filter students with parentPhone and attendance data
-    const studentsWithPhone = students.filter(
-      (s) => s.parentPhone && s.parentPhone.trim() !== "" && attendanceInfo[s.id]?.status
-    );
+    const studentsWithPhone = students.filter((s) => s.parentPhone && s.parentPhone.trim() !== "" && attendanceInfo[s.id]?.status);
 
     if (studentsWithPhone.length === 0) {
       toast.warning("Tidak ada nomor HP orang tua yang valid untuk dikirim notifikasi.");
@@ -202,30 +200,38 @@ _Pesan ini dikirim otomatis oleh sistem._`;
         toast.warning("Silakan set status kehadiran untuk minimal satu siswa.");
         return;
       }
+      // Get total students
+      const totalStudents = classData?.students?.length || 0;
 
-      const attendanceArray = studentsWithAttendance.map(([studentId, data]) => ({
-        studentId,
-        scheduleId: scheduleDataById[0].id,
-        status: data.status, // This will now be 'present', 'absent', 'late', 'excused', or 'sick'
-        notes: data.notes || null,
-        date: new Date(), // This should match your database date field
-      }));
-
-      // Use the mutation with proper payload structure
-      await createAttendanceMutation.mutateAsync({ attendances: attendanceArray });
-
-      toast.success("Absensi berhasil disimpan!");
-
-      // Send WhatsApp notifications if enabled
-      if (sendWhatsApp && classData?.students) {
-        toast.info("Mengirim notifikasi WhatsApp ke orang tua...");
-        await sendWhatsAppNotification(classData.students, attendanceData);
+      if (totalStudents != studentsWithAttendance.length) {
+        toast.error("Ada murid yang belum di absen");
       }
 
-      // Redirect to /dashboard after success
-      setTimeout(() => {
-        window.location.href = "/dashboard";
-      }, 2000);
+      if (totalStudents === studentsWithAttendance.length) {
+        const attendanceArray = studentsWithAttendance.map(([studentId, data]) => ({
+          studentId,
+          scheduleId: scheduleDataById[0].id,
+          status: data.status, // This will now be 'present', 'absent', 'late', 'excused', or 'sick'
+          notes: data.notes || null,
+          date: new Date(), // This should match your database date field
+        }));
+
+        // Use the mutation with proper payload structure
+        await createAttendanceMutation.mutateAsync({ attendances: attendanceArray });
+
+        toast.success("Absensi berhasil disimpan!");
+
+        // Send WhatsApp notifications if enabled
+        if (sendWhatsApp && classData?.students) {
+          toast.info("Mengirim notifikasi WhatsApp ke orang tua...");
+          await sendWhatsAppNotification(classData.students, attendanceData);
+        }
+
+        // Redirect to /dashboard after success
+        setTimeout(() => {
+          window.location.href = "/dashboard";
+        }, 2000);
+      }
     } catch (error) {
       console.error("Error saving attendance:", error);
       toast.error("Error saving attendance: " + (error instanceof Error ? error.message : String(error)));
@@ -309,15 +315,23 @@ _Pesan ini dikirim otomatis oleh sistem._`;
             ) : null}
 
             <div className="space-y-3">
-              {isLoadingClass
-                ? 
-                <Loading/>
-                : classData?.students.map((student: Student) => (
-                    <div key={student.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors">
-                      <div className="flex items-center space-x-3">
-                        <div className={`w-3 h-3 rounded-full ${getStatusColor(attendanceData[student.id]?.status)}`}></div>
+              {isLoadingClass ? (
+                <Loading />
+              ) : (
+                classData?.students.map((student: Student) => (
+                  <div key={student.id} className="flex flex-wrap items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors gap-3">
+                    <div className={`w-3 h-3 rounded-xl ${getStatusColor(attendanceData[student.id]?.status)}`}></div>
+                    <div>
+                      <div className="flex flex-wrap items-center w-xs gap-2 border rounded-xl p-4">
+                        <Image
+                          src={student?.avatarUrl ? student.avatarUrl : "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"}
+                          alt="Picture of the author"
+                          width={60}
+                          height={60}
+                          className="rounded-lg"
+                        />
                         <div>
-                          <p className="font-medium flex items-center gap-2">
+                          <p className="font-medium flex items-center gap-3">
                             <User className="h-4 w-4 text-gray-400" />
                             {student.name}
                           </p>
@@ -330,29 +344,24 @@ _Pesan ini dikirim otomatis oleh sistem._`;
                           )}
                         </div>
                       </div>
-                      <div className="grid grid-cols-2 space-x-1">
-                        {Object.entries(STATUS_MAP).map(([status, config]) => (
-                          <Button key={status} size="sm" variant={attendanceData[student.id]?.status === status ? "default" : "outline"} onClick={() => updateAttendance(student.id, status)} className="text-xs px-2 py-1">
-                            {config.label}
-                          </Button>
-                        ))}
-                      </div>
                     </div>
-                  ))}
+                    <div className="flex flex-wrap gap-1 justify-center items-center">
+                      {Object.entries(STATUS_MAP).map(([status, config]) => (
+                        <Button key={status} size="sm" variant={attendanceData[student.id]?.status === status ? "default" : "outline"} onClick={() => updateAttendance(student.id, status)} className="text-xs px-2 py-1">
+                          {config.label}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
 
             <div className="mt-6 space-y-4">
               {/* WhatsApp Notification Option */}
               <div className="flex items-center space-x-3 p-4 bg-green-50 rounded-lg border border-green-200">
-                <Checkbox
-                  id="sendWhatsApp"
-                  checked={sendWhatsApp}
-                  onCheckedChange={(checked) => setSendWhatsApp(checked as boolean)}
-                />
-                <label
-                  htmlFor="sendWhatsApp"
-                  className="flex items-center gap-2 text-sm font-medium text-green-800 cursor-pointer"
-                >
+                <Checkbox id="sendWhatsApp" checked={sendWhatsApp} onCheckedChange={(checked) => setSendWhatsApp(checked as boolean)} />
+                <label htmlFor="sendWhatsApp" className="flex items-center gap-2 text-sm font-medium text-green-800 cursor-pointer">
                   <MessageSquare className="h-4 w-4" />
                   Kirim notifikasi WhatsApp ke orang tua murid
                 </label>
@@ -365,11 +374,7 @@ _Pesan ini dikirim otomatis oleh sistem._`;
               </div>
 
               <div className="flex justify-between items-center">
-                <Button 
-                  onClick={saveAttendance} 
-                  disabled={isLoadingClass || createAttendanceMutation.isPending || isSendingWA}
-                  className="min-w-[180px]"
-                >
+                <Button onClick={saveAttendance} disabled={isLoadingClass || createAttendanceMutation.isPending || isSendingWA} className="min-w-[180px]">
                   {createAttendanceMutation.isPending || isSendingWA ? (
                     <>
                       <span className="animate-spin mr-2">⏳</span>
@@ -398,11 +403,11 @@ _Pesan ini dikirim otomatis oleh sistem._`;
         <Card>
           <CardHeader>
             <CardTitle>Ringkasan Absensi Hari Ini</CardTitle>
-            <CardDescription>{isLoadingClass ? <Loading/> : `${classData?.students.length || 0} siswa dalam kelas ini`}</CardDescription>
+            <CardDescription>{isLoadingClass ? <Loading /> : `${classData?.students.length || 0} siswa dalam kelas ini`}</CardDescription>
           </CardHeader>
           <CardContent>
             {isLoadingClass ? (
-            <Loading/>
+              <Loading />
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 <div className="text-center p-4 bg-green-50 rounded-lg">
@@ -431,7 +436,7 @@ _Pesan ini dikirim otomatis oleh sistem._`;
         </Card>
 
         {/* Attendance Rules */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Card>
             <CardHeader>
               <CardTitle>Aturan Absensi</CardTitle>
@@ -482,7 +487,7 @@ _Pesan ini dikirim otomatis oleh sistem._`;
               </div>
             </CardContent>
           </Card>
-        </div>
+        </div> */}
       </div>
     </>
   );
