@@ -1,23 +1,22 @@
 // app/page.tsx
 "use client";
 
+import Image from "next/image";
 import { useSession } from "@/lib/auth-client";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { User, Mail, Calendar, MapPin, Phone, GraduationCap, Building2, Shield, Clock, UserCheck, Briefcase, Award, CheckCircle, AlertCircle, UserX, MessageSquare, CheckCircle2 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
-const NoUserDataComponent = ({ BetterAuthUser }: { BetterAuthUser: any }) => {
+const NoUserDataComponent = ({ clerkUser }: { clerkUser: any }) => {
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
-      <div className=" mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-20">
-        <div className="max-w-7xl items-center mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-20">
+        <div className="max-w-4xl mx-auto">
           {/* Main Alert Card */}
           <Card className="border-0 shadow-2xl bg-white/90 backdrop-blur-sm overflow-hidden">
             {/* Header with linear */}
@@ -28,50 +27,45 @@ const NoUserDataComponent = ({ BetterAuthUser }: { BetterAuthUser: any }) => {
                 </div>
                 <div>
                   <h1 className="text-2xl lg:text-4xl font-bold text-white mb-2">Akun Belum Terhubung</h1>
-                  <p className="text-white/90 text-base lg:text-lg">Akun BetterAuth Anda belum terhubung dengan sistem sekolah</p>
+                  <p className="text-white/90 text-base lg:text-lg">Akun Clerk Anda belum terhubung dengan sistem sekolah</p>
                 </div>
               </div>
             </div>
 
             <CardContent className="p-6 lg:p-8 space-y-6">
-              {/* User Info from BetterAuth */}
-              {BetterAuthUser && (
-              <>
+              {/* User Info from Clerk */}
+              {clerkUser && (
                 <Alert className="border-blue-200 bg-blue-50/50">
                   <Shield className="h-5 w-5 text-blue-600" />
-                  <AlertTitle className="text-blue-900 font-semibold">Informasi Akun BetterAuth</AlertTitle>
+                  <AlertTitle className="text-blue-900 font-semibold">Informasi Akun Clerk</AlertTitle>
                   <AlertDescription className="text-blue-800 mt-2 space-y-1">
                     <p>
-                      <strong>Nama:</strong> {BetterAuthUser.name}
+                      <strong>Nama:</strong> {clerkUser.fullName || clerkUser.firstName}
                     </p>
                     <p>
-                      <strong>Email:</strong> {BetterAuthUser.email}
+                      <strong>Email:</strong> {clerkUser.primaryEmailAddress?.emailAddress}
                     </p>
                     <p>
-                      <strong>BetterAuth ID:</strong> <code className="bg-blue-100 px-2 py-1 rounded text-xs">{BetterAuthUser.id}</code>
+                      <strong>Clerk ID:</strong> <code className="bg-blue-100 px-2 py-1 rounded text-xs">{clerkUser.id}</code>
                     </p>
                   </AlertDescription>
                 </Alert>
-                <Link href="/auth/sign-in">
-              
-                </Link>
-              </>
               )}
 
               {/* What's Happening */}
-              <div className="space-y-4 ">
+              <div className="space-y-4">
                 <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                  <AlertCircle className="w-6 h-6 text-orange-600 mt-2" />
+                  <AlertCircle className="w-6 h-6 text-orange-600" />
                   Apa yang Terjadi?
                 </h2>
                 <div className="bg-gray-50 rounded-xl p-5 space-y-3">
                   <p className="text-gray-700 leading-relaxed">
-                    Anda telah berhasil login menggunakan akun BetterAuth, namun akun Anda
+                    Anda telah berhasil login menggunakan akun Clerk, namun akun Anda
                     <strong className="text-orange-600"> belum terdaftar </strong>
                     dalam sistem database sekolah kami.
                   </p>
                   <p className="text-gray-700 leading-relaxed">
-                    Untuk dapat mengakses fitur-fitur sistem seperti absensi, jadwal, dan data akademik, akun BetterAuth Anda perlu
+                    Untuk dapat mengakses fitur-fitur sistem seperti absensi, jadwal, dan data akademik, akun Clerk Anda perlu
                     <strong className="text-blue-600"> dihubungkan dengan data user </strong>
                     di sistem oleh administrator.
                   </p>
@@ -89,13 +83,13 @@ const NoUserDataComponent = ({ BetterAuthUser }: { BetterAuthUser: any }) => {
                     {
                       number: "1",
                       title: "Hubungi Administrator",
-                      description: "Kirimkan permintaan ke admin untuk menghubungkan akun BetterAuth Anda",
+                      description: "Kirimkan permintaan ke admin untuk menghubungkan akun Clerk Anda",
                       color: "from-blue-500 to-cyan-500",
                     },
                     {
                       number: "2",
                       title: "Berikan Informasi",
-                      description: "Sampaikan BetterAuth ID dan email Anda kepada administrator",
+                      description: "Sampaikan Clerk ID dan email Anda kepada administrator",
                       color: "from-purple-500 to-pink-500",
                     },
                     {
@@ -168,7 +162,7 @@ const NoUserDataComponent = ({ BetterAuthUser }: { BetterAuthUser: any }) => {
                 <UserCog className="h-5 w-5 text-purple-600" />
                 <AlertTitle className="text-purple-900 font-semibold">Untuk Administrator</AlertTitle>
                 <AlertDescription className="text-purple-800 mt-2">
-                  <p className="mb-3">Jika Anda adalah administrator, silakan hubungkan akun BetterAuth ini dengan user di dashboard.</p>
+                  <p className="mb-3">Jika Anda adalah administrator, silakan hubungkan akun Clerk ini dengan user di dashboard.</p>
                   <Button variant="outline" size="sm" className="border-purple-300 text-purple-600 hover:bg-purple-100" onClick={() => (window.location.href = "/dashboard/users")}>
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Buka Dashboard Users
@@ -194,7 +188,7 @@ const NoUserDataComponent = ({ BetterAuthUser }: { BetterAuthUser: any }) => {
                 Butuh Bantuan Lebih Lanjut?
               </h3>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Jika Anda mengalami kesulitan atau memiliki pertanyaan, silakan hubungi bagian IT Support sekolah atau datang langsung ke ruang admin. Bawa informasi akun BetterAuth Anda untuk mempercepat proses aktivasi.
+                Jika Anda mengalami kesulitan atau memiliki pertanyaan, silakan hubungi bagian IT Support sekolah atau datang langsung ke ruang admin. Bawa informasi akun Clerk Anda untuk mempercepat proses aktivasi.
               </p>
             </CardContent>
           </Card>
@@ -211,7 +205,25 @@ const UserProfileSkeleton = () => (
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Header Skeleton */}
         <Card className="overflow-hidden shadow-2xl border-0 backdrop-blur-sm bg-white/90">
-          <div className=" h-20 lg:h-24 relative overflow-hidden ">{/* Decorative elements */}</div>
+          <div className="bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 h-40 lg:h-48 relative">
+            <div className="absolute inset-0 bg-black/10"></div>
+          </div>
+          <CardContent className="pt-0 px-6 lg:px-8">
+            <div className="flex flex-col xl:flex-row items-center xl:items-end gap-6 xl:gap-8 -mt-20 lg:-mt-24">
+              <Skeleton className="w-32 h-32 lg:w-40 lg:h-40 rounded-full border-4 border-white shadow-2xl" />
+              <div className="text-center xl:text-left space-y-4 flex-1">
+                <div className="space-y-3">
+                  <Skeleton className="h-12 lg:h-16 w-72 lg:w-96 mx-auto xl:mx-0" />
+                  <Skeleton className="h-6 lg:h-8 w-56 lg:w-72 mx-auto xl:mx-0" />
+                </div>
+                <div className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-3">
+                  <Skeleton className="h-9 w-28" />
+                  <Skeleton className="h-9 w-36" />
+                  <Skeleton className="h-9 w-32" />
+                </div>
+              </div>
+            </div>
+          </CardContent>
         </Card>
 
         {/* Content Skeletons */}
@@ -322,11 +334,13 @@ export default function Home() {
   const { data: session } = useSession();
   const { data: user, isPending: userLoading } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
+  console.log(user);
+
   if (userLoading) return <UserProfileSkeleton />;
 
   // Add this check
   if (!user || !user.id) {
-    return <NoUserDataComponent BetterAuthUser={session?.user} />;
+    return <NoUserDataComponent clerkUser={session?.user} />;
   }
 
   if (user?.error) return <ErrorComponent error={user?.error} />;
@@ -377,11 +391,18 @@ export default function Home() {
             <CardContent className="pt-0 px-6 lg:px-8 pb-8">
               <div className="flex flex-col xl:flex-row items-center xl:items-end gap-6 xl:gap-8 -mt-20 lg:-mt-24">
                 {/* Enhanced Avatar */}
-                <div className="relative group">
-                  <Avatar className="w-32 h-32 lg:w-40 lg:h-40 border-4 lg:border-6 border-white shadow-2xl ring-4 ring-blue-100 transition-all duration-300 group-hover:ring-blue-200  group-hover:shadow-3xl">
-                    <AvatarImage src={user?.avatarUrl ? user.avatarUrl : "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"} alt={user?.name} className="object-cover" />
-                   
-                  </Avatar>
+                <div className="relative group w-32 h-32 lg:w-40 lg:h-40">
+                  <div className="w-32 h-32 lg:w-40 lg:h-40 border-4 lg:border-6 border-white shadow-2xl ring-4 ring-blue-100 transition-all duration-300 group-hover:ring-blue-200 group-hover:shadow-3xl overflow-hidden rounded-full flex items-center justify-center bg-linear-to-br from-blue-100 to-purple-100">
+                    <Image
+                      src={user?.avatarUrl ? user.avatarUrl : "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"}
+                      alt={user?.name || "User Avatar"}
+                      width={160}
+                      height={160}
+                      className="w-full h-full object-cover rounded-full"
+                      priority
+                    />
+                  </div>
+
                   <div className="absolute -bottom-1 -right-2 w-10 h-10 lg:w-12 lg:h-12 bg-linear-to-r from-green-400 to-emerald-500 border-4 border-white rounded-full flex items-center justify-center shadow-lg">
                     <CheckCircle className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
                   </div>

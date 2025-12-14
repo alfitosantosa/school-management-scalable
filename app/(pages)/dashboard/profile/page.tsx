@@ -391,11 +391,14 @@ export default function Home() {
                 {/* Enhanced Avatar */}
                 <div className="relative group w-32 h-32 lg:w-40 lg:h-40">
                   <div className="w-32 h-32 lg:w-40 lg:h-40 border-4 lg:border-6 border-white shadow-2xl ring-4 ring-blue-100 transition-all duration-300 group-hover:ring-blue-200 group-hover:shadow-3xl overflow-hidden rounded-full flex items-center justify-center bg-linear-to-br from-blue-100 to-purple-100">
-                    {user?.avatarUrl ? (
-                      <Image src={user.avatarUrl} alt={user?.name || "User Avatar"} width={160} height={160} className="w-full h-full object-cover rounded-full" priority />
-                    ) : (
-                      <Image src="https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png" alt="Default Avatar" width={160} height={160} className="w-full h-full object-cover rounded-full" />
-                    )}
+                    <Image
+                      src={user?.avatarUrl ? user.avatarUrl : "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"}
+                      alt={user?.name || "User Avatar"}
+                      width={160}
+                      height={160}
+                      className="w-full h-full object-cover rounded-full"
+                      priority
+                    />
                   </div>
 
                   <div className="absolute -bottom-1 -right-2 w-10 h-10 lg:w-12 lg:h-12 bg-linear-to-r from-green-400 to-emerald-500 border-4 border-white rounded-full flex items-center justify-center shadow-lg">

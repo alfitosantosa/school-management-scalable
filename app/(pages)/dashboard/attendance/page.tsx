@@ -688,6 +688,7 @@ export default function AttendanceDataTable() {
       absent: filteredAttendances.filter((a) => a.status === "absent").length,
       late: filteredAttendances.filter((a) => a.status === "late").length,
       excused: filteredAttendances.filter((a) => a.status === "excused").length,
+      sick: filteredAttendances.filter((a) => a.status === "sick").length,
     };
   }, [table.getFilteredRowModel().rows]);
 
@@ -965,10 +966,10 @@ export default function AttendanceDataTable() {
           <div className="bg-card rounded-lg border p-4">
             <div className="flex items-center space-x-2">
               <AlertCircle className="h-5 w-5 text-blue-500" />
-              <h3 className="font-semibold">Izin</h3>
+              <h3 className="font-semibold">Izin dan sakit</h3>
             </div>
-            <p className="text-2xl font-bold mt-2 text-blue-600">{stats.excused}</p>
-            <p className="text-sm text-muted-foreground">{stats.total > 0 ? `${Math.round((stats.excused / stats.total) * 100)}%` : "0%"}</p>
+            <p className="text-2xl font-bold mt-2 text-blue-600">{stats.excused + stats.sick}</p>
+            <p className="text-sm text-muted-foreground">{stats.total > 0 ? `${Math.round(((stats.excused + stats.sick) / stats.total) * 100)}%` : "0%"}</p>
           </div>
         </div>
 

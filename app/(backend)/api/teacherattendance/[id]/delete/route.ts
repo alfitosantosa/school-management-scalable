@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma";
 export async function DELETE(request: NextRequest) {
   try {
     const { id } = await request.json();
-    console.log(id);
     if (!id) {
       return NextResponse.json({ error: "ID is required" }, { status: 400 });
     }
