@@ -164,3 +164,23 @@ export async function PUT(req: NextRequest) {
     return NextResponse.json({ error: "Failed to update attendance" }, { status: 500 });
   }
 }
+
+export async function DELETE(request: NextRequest) {
+  // Baca dari query parameter, bukan dari body
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  if (!id) {
+    return NextResponse.json({ error: "ID is required" }, { status: 400 });
+  }
+
+  try {
+    const attendance = await prisma.teacherAttendance.delete({
+      where: { id },
+    });
+    return NextResponse.json(attendance);
+  } catch (error) {
+    console.error("Error deleting attendance:", error);
+    return NextResponse.json({ error: "Failed to delete attendance" }, { status: 500 });
+  }
+}

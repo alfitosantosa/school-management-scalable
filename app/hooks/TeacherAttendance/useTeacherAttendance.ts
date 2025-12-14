@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { apiGet, apiPost, apiPut } from "@/lib/api-client";
+import { apiDelete, apiGet, apiPost, apiPut } from "@/lib/api-client";
 import type { CreateTeacherAttendanceInput, UpdateTeacherAttendanceInput, BulkTeacherAttendanceInput, TeacherAttendanceRecord, TeacherAttendanceReport } from "@/app/types/teacher-attendance";
 
 export const useGetTeacherAttendance = (date?: string, teacherId?: string) => {
@@ -79,7 +79,7 @@ export const useDeleteTeacherAttendance = () => {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      const response = await apiPost(`/api/teacherattendance/${id}/delete`, {});
+      const response = await apiDelete(`/api/teacherattendance/?id=${id}`);
       return response.data as TeacherAttendanceRecord;
     },
     onSuccess: () => {
