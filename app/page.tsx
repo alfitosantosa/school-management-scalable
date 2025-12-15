@@ -1,352 +1,235 @@
-// app/page.tsx
 "use client";
 
-import Image from "next/image";
+import React, { useState } from "react";
+import { User, Mail, Calendar, MapPin, Phone, GraduationCap, Building2, Shield, Clock, UserX, MessageSquare, Briefcase, Award, CheckCircle } from "lucide-react";
 import { useSession } from "@/lib/auth-client";
-import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { User, Mail, Calendar, MapPin, Phone, GraduationCap, Building2, Shield, Clock, UserCheck, Briefcase, Award, CheckCircle, AlertCircle, UserX, MessageSquare, CheckCircle2 } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
+import { useGetUserByIdBetterAuth } from "./hooks/Users/useUsersByIdBetterAuth";
 
-const NoUserDataComponent = ({ clerkUser }: { clerkUser: any }) => {
+const UserProfileSkeleton = () => (
+  <div className="min-h-screen bg-linear-to-br from-slate-50 to-blue-50 py-8 px-4">
+    <div className="max-w-7xl mx-auto space-y-6">
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="bg-linear-to-r from-blue-600 to-purple-600 h-32" />
+        <div className="px-6 pb-6">
+          <div className="flex flex-col md:flex-row items-center gap-6 -mt-16">
+            <div className="w-32 h-32 rounded-full border-4 border-white bg-gray-300 animate-pulse" />
+            <div className="space-y-3 text-center md:text-left flex-1">
+              <div className="h-10 w-64 bg-gray-300 rounded animate-pulse mx-auto md:mx-0" />
+              <div className="h-6 w-48 bg-gray-300 rounded animate-pulse mx-auto md:mx-0" />
+              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                <div className="h-8 w-28 bg-gray-300 rounded-full animate-pulse" />
+                <div className="h-8 w-32 bg-gray-300 rounded-full animate-pulse" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-6">
+        {[1, 2].map((i) => (
+          <div key={i} className="bg-white rounded-lg shadow">
+            <div className="p-6 border-b">
+              <div className="h-7 w-48 bg-gray-300 rounded animate-pulse" />
+              <div className="h-5 w-64 bg-gray-300 rounded animate-pulse mt-2" />
+            </div>
+            <div className="p-6 space-y-3">
+              {[...Array(6)].map((_, j) => (
+                <div key={j} className="h-20 w-full bg-gray-300 rounded animate-pulse" />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="bg-white rounded-lg shadow">
+        <div className="p-6 border-b">
+          <div className="h-7 w-48 bg-gray-300 rounded animate-pulse" />
+        </div>
+        <div className="p-6">
+          <div className="grid sm:grid-cols-3 gap-4">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="h-20 w-full bg-gray-300 rounded animate-pulse" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const ErrorComponent = ({ error }: { error?: { message?: string } }) => (
+  <div className="min-h-screen bg-linear-to-br from-red-50 to-pink-50 py-20 px-4">
+    <div className="max-w-md mx-auto">
+      <div className="bg-white rounded-lg shadow-lg text-center p-8">
+        <div className="w-20 h-20 mx-auto bg-linear-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center mb-4">
+          <User className="w-10 h-10 text-white" />
+        </div>
+        <h2 className="text-2xl font-bold text-red-900 mb-2">Error Loading Profile</h2>
+        <p className="text-red-700 text-lg">{error?.message || "Failed to load user data"}</p>
+      </div>
+    </div>
+  </div>
+);
+
+const NoUserDataComponent = ({ authUser }: { authUser: any }) => {
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-20">
-        <div className="max-w-4xl mx-auto">
-          {/* Main Alert Card */}
-          <Card className="border-0 shadow-2xl bg-white/90 backdrop-blur-sm overflow-hidden">
-            {/* Header with linear */}
-            <div className="bg-linear-to-r from-orange-500 via-red-500 to-pink-500 p-6 lg:p-8">
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="w-20 h-20 lg:w-24 lg:h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
-                  <UserX className="w-10 h-10 lg:w-12 lg:h-12 text-white" />
+    <div className="min-h-screen bg-linear-to-br from-slate-50 to-blue-50 py-8 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div className="bg-linear-to-r from-orange-500 to-red-500 p-8 text-white">
+              <div className="flex flex-col items-center text-center gap-4">
+                <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center">
+                  <UserX className="w-10 h-10" />
                 </div>
                 <div>
-                  <h1 className="text-2xl lg:text-4xl font-bold text-white mb-2">Akun Belum Terhubung</h1>
-                  <p className="text-white/90 text-base lg:text-lg">Akun Clerk Anda belum terhubung dengan sistem sekolah</p>
+                  <h1 className="text-3xl font-bold mb-2">Akun Belum Terhubung</h1>
+                  <p className="text-white/90">Akun Better Auth Anda belum terhubung dengan sistem sekolah</p>
                 </div>
               </div>
             </div>
 
-            <CardContent className="p-6 lg:p-8 space-y-6">
-              {/* User Info from Clerk */}
-              {clerkUser && (
-                <Alert className="border-blue-200 bg-blue-50/50">
-                  <Shield className="h-5 w-5 text-blue-600" />
-                  <AlertTitle className="text-blue-900 font-semibold">Informasi Akun Clerk</AlertTitle>
-                  <AlertDescription className="text-blue-800 mt-2 space-y-1">
-                    <p>
-                      <strong>Nama:</strong> {clerkUser.fullName || clerkUser.firstName}
-                    </p>
-                    <p>
-                      <strong>Email:</strong> {clerkUser.primaryEmailAddress?.emailAddress}
-                    </p>
-                    <p>
-                      <strong>Clerk ID:</strong> <code className="bg-blue-100 px-2 py-1 rounded text-xs">{clerkUser.id}</code>
-                    </p>
-                  </AlertDescription>
-                </Alert>
+            <div className="p-8 space-y-6">
+              {authUser && (
+                <div className="border-2 border-blue-200 bg-blue-50 rounded-lg p-4">
+                  <div className="flex gap-3">
+                    <Shield className="h-5 w-5 text-blue-600 mt-0.5" />
+                    <div>
+                      <h3 className="text-blue-900 font-semibold mb-2">Informasi Akun</h3>
+                      <div className="text-blue-800 space-y-1 text-sm">
+                        <p>
+                          <strong>Nama:</strong> {authUser.name}
+                        </p>
+                        <p>
+                          <strong>Email:</strong> {authUser.email}
+                        </p>
+                        <p>
+                          <strong>ID:</strong> <code className="bg-blue-100 px-2 py-1 rounded text-xs">{authUser.id}</code>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
 
-              {/* What's Happening */}
               <div className="space-y-4">
-                <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                  <AlertCircle className="w-6 h-6 text-orange-600" />
-                  Apa yang Terjadi?
-                </h2>
-                <div className="bg-gray-50 rounded-xl p-5 space-y-3">
-                  <p className="text-gray-700 leading-relaxed">
-                    Anda telah berhasil login menggunakan akun Clerk, namun akun Anda
+                <h2 className="text-xl font-bold text-gray-900">Apa yang Terjadi?</h2>
+                <div className="bg-gray-50 rounded-lg p-5 space-y-3 text-gray-700">
+                  <p>
+                    Anda telah berhasil login menggunakan Better Auth, namun akun Anda
                     <strong className="text-orange-600"> belum terdaftar </strong>
                     dalam sistem database sekolah kami.
                   </p>
-                  <p className="text-gray-700 leading-relaxed">
-                    Untuk dapat mengakses fitur-fitur sistem seperti absensi, jadwal, dan data akademik, akun Clerk Anda perlu
-                    <strong className="text-blue-600"> dihubungkan dengan data user </strong>
-                    di sistem oleh administrator.
+                  <p>
+                    Untuk dapat mengakses fitur-fitur sistem seperti absensi, jadwal, dan data akademik, akun Anda perlu <strong className="text-blue-600">dihubungkan dengan data user</strong> di sistem oleh administrator.
                   </p>
                 </div>
               </div>
 
-              {/* Steps to Resolve */}
               <div className="space-y-4">
-                <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                  <CheckCircle2 className="w-6 h-6 text-green-600" />
-                  Langkah Selanjutnya
-                </h2>
-                <div className="space-y-3">
+                <h2 className="text-xl font-bold text-gray-900">Langkah Selanjutnya</h2>
+                <ol className="space-y-3">
                   {[
-                    {
-                      number: "1",
-                      title: "Hubungi Administrator",
-                      description: "Kirimkan permintaan ke admin untuk menghubungkan akun Clerk Anda",
-                      color: "from-blue-500 to-cyan-500",
-                    },
-                    {
-                      number: "2",
-                      title: "Berikan Informasi",
-                      description: "Sampaikan Clerk ID dan email Anda kepada administrator",
-                      color: "from-purple-500 to-pink-500",
-                    },
-                    {
-                      number: "3",
-                      title: "Tunggu Konfirmasi",
-                      description: "Admin akan menghubungkan akun Anda dengan data di sistem",
-                      color: "from-green-500 to-emerald-500",
-                    },
-                  ].map((step) => (
-                    <div key={step.number} className="flex gap-4 p-4 rounded-xl bg-linear-to-r from-gray-50 to-gray-100 hover:shadow-md transition-all duration-300">
-                      <div className={`shrink-0 w-10 h-10 rounded-full bg-linear-to-r ${step.color} flex items-center justify-center text-white font-bold shadow-lg`}>{step.number}</div>
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-gray-900 mb-1">{step.title}</h3>
-                        <p className="text-sm text-gray-600">{step.description}</p>
+                    { title: "Hubungi Administrator", desc: "Kirimkan permintaan ke admin untuk menghubungkan akun Anda" },
+                    { title: "Berikan Informasi", desc: "Sampaikan ID dan email Anda kepada administrator" },
+                    { title: "Tunggu Konfirmasi", desc: "Admin akan menghubungkan akun Anda dengan data di sistem" },
+                  ].map((step, i) => (
+                    <li key={i} className="flex gap-4 p-4 rounded-lg bg-linear-to-r from-gray-50 to-gray-100">
+                      <div className="shrink-0 w-8 h-8 rounded-full bg-linear-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-sm">{i + 1}</div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">{step.title}</h3>
+                        <p className="text-sm text-gray-600">{step.desc}</p>
                       </div>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ol>
               </div>
 
-              {/* Contact Information */}
               <div className="space-y-4">
                 <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                   <MessageSquare className="w-6 h-6 text-blue-600" />
                   Hubungi Administrator
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* Email Card */}
-                  <Card className="border-2 border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg">
-                    <CardContent className="p-5">
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 bg-blue-100 rounded-lg">
-                          <Mail className="w-6 h-6 text-blue-600" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                          <p className="text-sm text-gray-600 mb-3">Kirim email ke administrator</p>
-                          <Button variant="outline" size="sm" className="w-full border-blue-300 text-blue-600 hover:bg-blue-50" onClick={() => (window.location.href = "mailto:admin@school.com")}>
-                            <Mail className="w-4 h-4 mr-2" />
-                            admin@school.com
-                          </Button>
-                        </div>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="border-2 border-blue-100 rounded-lg p-5 bg-white">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-blue-100 rounded-lg">
+                        <Mail className="w-6 h-6 text-blue-600" />
                       </div>
-                    </CardContent>
-                  </Card>
+                      <div className="flex-1">
+                        <h3 className="font-semibold mb-1">Email</h3>
+                        <p className="text-sm text-gray-600 mb-3">Kirim email ke administrator</p>
+                        <button className="w-full px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center justify-center gap-2 transition-colors" onClick={() => (window.location.href = "mailto:admin@school.com")}>
+                          <Mail className="w-4 h-4" />
+                          admin@school.com
+                        </button>
+                      </div>
+                    </div>
+                  </div>
 
-                  {/* Phone Card */}
-                  <Card className="border-2 border-green-100 hover:border-green-300 transition-all duration-300 hover:shadow-lg">
-                    <CardContent className="p-5">
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 bg-green-100 rounded-lg">
-                          <Phone className="w-6 h-6 text-green-600" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 mb-1">Telepon</h3>
-                          <p className="text-sm text-gray-600 mb-3">Hubungi via telepon</p>
-                          <Button variant="outline" size="sm" className="w-full border-green-300 text-green-600 hover:bg-green-50" onClick={() => (window.location.href = "tel:+6281234567890")}>
-                            <Phone className="w-4 h-4 mr-2" />
-                            +62 812-3456-7890
-                          </Button>
-                        </div>
+                  <div className="border-2 border-green-100 rounded-lg p-5 bg-white">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-green-100 rounded-lg">
+                        <Phone className="w-6 h-6 text-green-600" />
                       </div>
-                    </CardContent>
-                  </Card>
+                      <div className="flex-1">
+                        <h3 className="font-semibold mb-1">Telepon</h3>
+                        <p className="text-sm text-gray-600 mb-3">Hubungi via telepon</p>
+                        <button className="w-full px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center justify-center gap-2 transition-colors" onClick={() => (window.location.href = "tel:+6281234567890")}>
+                          <Phone className="w-4 h-4" />
+                          +62 812-3456-7890
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Admin Portal Link */}
-              {/* <Alert className="border-purple-200 bg-purple-50/50">
-                <UserCog className="h-5 w-5 text-purple-600" />
-                <AlertTitle className="text-purple-900 font-semibold">Untuk Administrator</AlertTitle>
-                <AlertDescription className="text-purple-800 mt-2">
-                  <p className="mb-3">Jika Anda adalah administrator, silakan hubungkan akun Clerk ini dengan user di dashboard.</p>
-                  <Button variant="outline" size="sm" className="border-purple-300 text-purple-600 hover:bg-purple-100" onClick={() => (window.location.href = "/dashboard/users")}>
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Buka Dashboard Users
-                  </Button>
-                </AlertDescription>
-              </Alert> */}
-
-              {/* Status Badge */}
-              <div className="flex items-center justify-center pt-4">
-                <Badge variant="secondary" className="px-4 py-2 text-sm bg-orange-100 text-orange-800 border border-orange-200">
-                  <Clock className="w-4 h-4 mr-2" />
+              <div className="flex justify-center pt-4">
+                <div className="px-4 py-2 bg-orange-100 text-orange-800 rounded-full flex items-center gap-2">
+                  <Clock className="w-4 h-4" />
                   Status: Menunggu Aktivasi
-                </Badge>
+                </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          {/* Additional Help Card */}
-          <Card className="mt-6 border-0 shadow-lg bg-white/80 backdrop-blur-sm">
-            <CardContent className="p-6">
-              <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                <AlertCircle className="w-5 h-5 text-blue-600" />
-                Butuh Bantuan Lebih Lanjut?
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Jika Anda mengalami kesulitan atau memiliki pertanyaan, silakan hubungi bagian IT Support sekolah atau datang langsung ke ruang admin. Bawa informasi akun Clerk Anda untuk mempercepat proses aktivasi.
-              </p>
-            </CardContent>
-          </Card>
+          <div className="mt-6 bg-white rounded-lg shadow p-6">
+            <h3 className="font-semibold mb-2">Butuh Bantuan Lebih Lanjut?</h3>
+            <p className="text-sm text-gray-600">
+              Jika Anda mengalami kesulitan atau memiliki pertanyaan, silakan hubungi bagian IT Support sekolah atau datang langsung ke ruang admin. Bawa informasi akun Anda untuk mempercepat proses aktivasi.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-// Loading Component
-const UserProfileSkeleton = () => (
-  <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
-      <div className="max-w-7xl mx-auto space-y-8">
-        {/* Header Skeleton */}
-        <Card className="overflow-hidden shadow-2xl border-0 backdrop-blur-sm bg-white/90">
-          <div className="bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 h-40 lg:h-48 relative">
-            <div className="absolute inset-0 bg-black/10"></div>
-          </div>
-          <CardContent className="pt-0 px-6 lg:px-8">
-            <div className="flex flex-col xl:flex-row items-center xl:items-end gap-6 xl:gap-8 -mt-20 lg:-mt-24">
-              <Skeleton className="w-32 h-32 lg:w-40 lg:h-40 rounded-full border-4 border-white shadow-2xl" />
-              <div className="text-center xl:text-left space-y-4 flex-1">
-                <div className="space-y-3">
-                  <Skeleton className="h-12 lg:h-16 w-72 lg:w-96 mx-auto xl:mx-0" />
-                  <Skeleton className="h-6 lg:h-8 w-56 lg:w-72 mx-auto xl:mx-0" />
-                </div>
-                <div className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-3">
-                  <Skeleton className="h-9 w-28" />
-                  <Skeleton className="h-9 w-36" />
-                  <Skeleton className="h-9 w-32" />
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Content Skeletons */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-          {[1, 2].map((card) => (
-            <Card key={card} className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-              <CardHeader className="pb-4">
-                <div className="flex items-center gap-3">
-                  <Skeleton className="w-6 h-6" />
-                  <Skeleton className="h-7 w-52" />
-                </div>
-                <Skeleton className="h-5 w-72" />
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-gray-50/80">
-                    <Skeleton className="w-5 h-5" />
-                    <div className="flex-1 space-y-2">
-                      <Skeleton className="h-4 w-20" />
-                      <Skeleton className="h-5 w-48" />
-                    </div>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* System Information Skeleton */}
-        <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-          <CardHeader className="pb-4">
-            <div className="flex items-center gap-3">
-              <Skeleton className="w-6 h-6" />
-              <Skeleton className="h-7 w-52" />
-            </div>
-            <Skeleton className="h-5 w-72" />
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {[...Array(3)].map((_, i) => (
-                <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-gray-50/80">
-                  <Skeleton className="w-5 h-5" />
-                  <div className="flex-1 space-y-2">
-                    <Skeleton className="h-4 w-24" />
-                    <Skeleton className="h-5 w-36" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+const InfoItem = ({ icon: Icon, label, value }: { icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; label: string; value: string }) => (
+  <div className="flex items-start gap-3 p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+    <Icon className="w-5 h-5 text-gray-600 mt-1 shrink-0" />
+    <div className="min-w-0 flex-1">
+      <p className="text-xs text-gray-500 mb-1">{label}</p>
+      <p className="font-medium text-gray-900 wrap-break-words">{value}</p>
     </div>
   </div>
 );
 
-// Error Component
-const ErrorComponent = ({ error }: { error: any }) => (
-  <div className="min-h-screen bg-linear-to-r from-red-50 via-pink-50 to-rose-50">
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <div className="max-w-lg mx-auto">
-        <Card className="border-red-200 shadow-2xl bg-white/90 backdrop-blur-sm">
-          <CardHeader className="text-center pb-8">
-            <div className="w-20 h-20 mx-auto bg-linear-to-r from-red-400 to-pink-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
-              <UserCheck className="w-10 h-10 text-white" />
-            </div>
-            <CardTitle className="text-2xl text-red-900 mb-2">Error Loading Profile</CardTitle>
-            <CardDescription className="text-red-700 text-lg">{error?.message || "Failed to load user data"}</CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
-    </div>
-  </div>
-);
-
-// Info Item Component
-const InfoItem = ({
-  icon: Icon,
-  label,
-  value,
-  bgColor = "bg-gray-50",
-  iconColor = "text-gray-600",
-  textColor = "text-gray-800",
-  labelColor = "text-gray-500",
-}: {
-  icon: any;
-  label: string;
-  value: string;
-  bgColor?: string;
-  iconColor?: string;
-  textColor?: string;
-  labelColor?: string;
-}) => (
-  <div className={`flex items-center gap-4 p-4 lg:p-5 rounded-xl ${bgColor} hover:shadow-md transition-all duration-300 hover:scale-[1.02]`}>
-    <div className="shrink-0">
-      <Icon className={`w-5 h-5 lg:w-6 lg:h-6 ${iconColor}`} />
-    </div>
-    <div className="flex-1 min-w-0">
-      <p className={`text-sm font-medium ${labelColor} mb-1`}>{label}</p>
-      <p className={`font-semibold ${textColor} break-break-words text-sm lg:text-base`}>{value}</p>
-    </div>
-  </div>
-);
-
-// Main Component
 export default function Home() {
-  // Get session from Better Auth
   const { data: session } = useSession();
   const { data: user, isPending: userLoading } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
-  console.log(user);
-
+  // Loading state
   if (userLoading) return <UserProfileSkeleton />;
 
-  // Add this check
-  if (!user || !user.id) {
-    return <NoUserDataComponent clerkUser={session?.user} />;
-  }
+  // No user data - show connection required page
+  if (!user || !user.id) return <NoUserDataComponent authUser={session?.user} />;
 
+  // Error state
   if (user?.error) return <ErrorComponent error={user?.error} />;
 
-  // Helper function to format date
-  const formatDate = (dateString: string | null) => {
+  const formatDate = (dateString: string | undefined) => {
     if (!dateString) return "Not specified";
     return new Date(dateString).toLocaleDateString("id-ID", {
       year: "numeric",
@@ -355,204 +238,113 @@ export default function Home() {
     });
   };
 
-  // Helper function to get initials
-  const getInitials = (name: string) => {
-    return name
-      .split(" ")
-      .map((word) => word[0])
-      .join("")
-      .toUpperCase()
-      .slice(0, 2);
-  };
-
-  // Status badge variant
-  const getStatusVariant = (status: string) => {
-    switch (status?.toLowerCase()) {
-      case "active":
-        return "default";
-      case "inactive":
-        return "secondary";
-      default:
-        return "outline";
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10">
-        <div className="max-w-7xl mx-auto space-y-8">
-          {/* Header Card */}
-          <Card className="overflow-hidden shadow-2xl border-0 backdrop-blur-sm bg-white/90 hover:shadow-3xl transition-all duration-500">
-            {/* Enhanced Background Header */}
-            <div className="bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 h-40 lg:h-48 relative overflow-hidden block md:hidden">{/* Decorative elements */}</div>
-            <div className=" h-20 lg:h-24 relative overflow-hidden hidden md:block">{/* Decorative elements */}</div>
-
-            {/* Enhanced Profile Content */}
-            <CardContent className="pt-0 px-6 lg:px-8 pb-8">
-              <div className="flex flex-col xl:flex-row items-center xl:items-end gap-6 xl:gap-8 -mt-20 lg:-mt-24">
-                {/* Enhanced Avatar */}
-                <div className="relative group w-32 h-32 lg:w-40 lg:h-40">
-                  <div className="w-32 h-32 lg:w-40 lg:h-40 border-4 lg:border-6 border-white shadow-2xl ring-4 ring-blue-100 transition-all duration-300 group-hover:ring-blue-200 group-hover:shadow-3xl overflow-hidden rounded-full flex items-center justify-center bg-linear-to-br from-blue-100 to-purple-100">
-                    <Image
-                      src={user?.avatarUrl ? user.avatarUrl : "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"}
-                      alt={user?.name || "User Avatar"}
-                      width={160}
-                      height={160}
-                      className="w-full h-full object-cover rounded-full"
-                      priority
-                    />
-                  </div>
-
-                  <div className="absolute -bottom-1 -right-2 w-10 h-10 lg:w-12 lg:h-12 bg-linear-to-r from-green-400 to-emerald-500 border-4 border-white rounded-full flex items-center justify-center shadow-lg">
-                    <CheckCircle className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
-                  </div>
+    <div className="min-h-screen bg-linear-to-br from-slate-50 to-blue-50 py-8 px-4">
+      <div className="max-w-7xl mx-auto space-y-6">
+        {/* Header */}
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="bg-linear-to-r from-blue-600 to-purple-600 h-32" />
+          <div className="px-6 pb-6">
+            <div className="flex flex-col md:flex-row items-center md:items-end gap-6 -mt-16">
+              <div className="relative">
+                <div className="w-32 h-32 border-4 border-white shadow-xl rounded-full overflow-hidden bg-gray-100">
+                  <img src={user?.avatarUrl || "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"} alt={user?.name || "User Avatar"} className="w-full h-full object-cover" />
                 </div>
-
-                {/* Enhanced User Info */}
-                <div className="text-center xl:text-left flex-1 space-y-4 w-full">
-                  <div className="space-y-3">
-                    <div className="flex flex-col xl:flex-row xl:items-center gap-3 xl:gap-4">
-                      <h1 className="relative text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black">{user?.name}</h1>
-                      {/* {user?.status && (
-                        <div className="flex  items-center justify-center xl:justify-start">
-                          <Badge variant={getStatusVariant(user?.status)} className="px-4 py-3.5 text-sm font-semibold shadow-lg  transition-all rounded-4xl duration-300 ">
-                            <div className="w-2 h-2 rounded-full bg-current mr-2 "></div>
-                            {user?.status?.charAt(0).toUpperCase() + user?.status?.slice(1)}
-                          </Badge>
-                        </div>
-                      )} */}
-                    </div>
-                    <p className="text-xl sm:text-2xl lg:text-3xl text-gray-600 font-semibold">{user?.position || ""}</p>
-                  </div>
-
-                  {/* Enhanced Meta Info */}
-                  <div className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 text-sm lg:text-base">
-                    {user?.role?.name && (
-                      <div className="flex items-center gap-3 bg-linear-to-r from-blue-50 to-indigo-50 px-4 py-3 rounded-full border border-blue-100 shadow-sm hover:shadow-md transition-all duration-300">
-                        <Shield className="w-5 h-5 text-blue-600" />
-                        <span className="font-semibold text-blue-800">{user.role.name}</span>
-                      </div>
-                    )}
-                    {user?.employeeId && (
-                      <div className="flex items-center gap-3 bg-linear-to-r from-purple-50 to-pink-50 px-4 py-3 rounded-full border border-purple-100 shadow-sm hover:shadow-md transition-all duration-300">
-                        <Briefcase className="w-5 h-5 text-purple-600" />
-                        <span className="font-semibold text-purple-800">ID: {user.employeeId}</span>
-                      </div>
-                    )}
-                    <div className="flex items-center gap-3 bg-linear-to-r from-green-50 to-emerald-50 px-4 py-3 rounded-full border border-green-100 shadow-sm hover:shadow-md transition-all duration-300">
-                      <Calendar className="w-5 h-5 text-green-600" />
-                      <span className="font-semibold text-green-800">Since {formatDate(user?.startDate)}</span>
-                    </div>
-                  </div>
+                <div className="absolute -bottom-1 -right-1 w-10 h-10 bg-linear-to-r from-green-400 to-emerald-500 border-4 border-white rounded-full flex items-center justify-center">
+                  <CheckCircle className="w-5 h-5 text-white" />
                 </div>
               </div>
-            </CardContent>
-          </Card>
 
-          {/* Enhanced Content Grid */}
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-            {/* Enhanced Personal Information */}
-            <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-500 hover:bg-white/90">
-              <CardHeader className="pb-6">
-                <CardTitle className="flex items-center gap-3 text-xl lg:text-2xl">
-                  <div className="p-2 bg-linear-to-r from-blue-500 to-blue-600 rounded-xl shadow-lg">
-                    <User className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
-                  </div>
-                  <span className="bg-linear-to-r from-blue-700 to-blue-500 bg-clip-text text-transparent font-bold">Personal Information</span>
-                </CardTitle>
-                <CardDescription className="text-base lg:text-lg text-gray-600">Basic personal details and contact information</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <InfoItem icon={Mail} label="Email Address" value={user?.email || "Not provided"} bgColor="bg-linear-to-r from-blue-50 to-cyan-50" iconColor="text-blue-600" textColor="text-blue-800" labelColor="text-blue-600" />
+              <div className="text-center md:text-left flex-1">
+                <h1 className="text-4xl md:text-5xl font-bold text-gray-900">{user?.name}</h1>
+                <p className="text-xl text-gray-600 mt-2">{user?.position || ""}</p>
 
-                <InfoItem
-                  icon={User}
-                  label="Gender"
-                  value={user?.gender === "L" ? "Laki-laki" : user?.gender === "P" ? "Perempuan" : "Not specified"}
-                  bgColor="bg-linear-to-r from-purple-50 to-pink-50"
-                  iconColor="text-purple-600"
-                  textColor="text-purple-800"
-                  labelColor="text-purple-600"
-                />
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mt-4">
+                  {user?.role?.name && (
+                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-linear-to-r from-blue-500 to-indigo-500 text-white text-sm rounded-full">
+                      <Shield className="w-3 h-3" />
+                      {user.role.name}
+                    </span>
+                  )}
+                  {user?.employeeId && (
+                    <span className="inline-flex items-center gap-1 px-3 py-1 border border-gray-300 text-gray-700 text-sm rounded-full">
+                      <Briefcase className="w-3 h-3" />
+                      ID: {user.employeeId}
+                    </span>
+                  )}
+                  <span className="inline-flex items-center gap-1 px-3 py-1 bg-gray-200 text-gray-700 text-sm rounded-full">
+                    <Calendar className="w-3 h-3" />
+                    Since {formatDate(user?.startDate)}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                <InfoItem icon={MapPin} label="Address" value={user?.address || "Not provided"} bgColor="bg-linear-to-r from-green-50 to-emerald-50" iconColor="text-green-600" textColor="text-green-800" labelColor="text-green-600" />
-
-                <InfoItem
-                  icon={Phone}
-                  label="Parent Phone"
-                  value={user?.parentPhone || "Not provided"}
-                  bgColor="bg-linear-to-r from-orange-50 to-yellow-50"
-                  iconColor="text-orange-600"
-                  textColor="text-orange-800"
-                  labelColor="text-orange-600"
-                />
-
-                <Separator className="my-6" />
-
-                <InfoItem icon={Calendar} label="Birth Date" value={formatDate(user?.birthDate)} bgColor="bg-linear-to-r from-indigo-50 to-blue-50" iconColor="text-indigo-600" textColor="text-indigo-800" labelColor="text-indigo-600" />
-
-                <InfoItem icon={MapPin} label="Birth Place" value={user?.birthPlace || "Not provided"} bgColor="bg-linear-to-r from-teal-50 to-cyan-50" iconColor="text-teal-600" textColor="text-teal-800" labelColor="text-teal-600" />
-              </CardContent>
-            </Card>
-
-            {/* Enhanced Professional Information */}
-            <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-500 hover:bg-white/90">
-              <CardHeader className="pb-6">
-                <CardTitle className="flex items-center gap-3 text-xl lg:text-2xl">
-                  <div className="p-2 bg-linear-to-r from-green-500 to-emerald-600 rounded-xl shadow-lg">
-                    <Building2 className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
-                  </div>
-                  <span className="bg-linear-to-r from-green-700 to-emerald-500 bg-clip-text text-transparent font-bold">Professional Information</span>
-                </CardTitle>
-                <CardDescription className="text-base lg:text-lg text-gray-600">Work-related details and academic information</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <InfoItem icon={Briefcase} label="Position" value={user?.position || "Not specified"} bgColor="bg-linear-to-r from-green-50 to-emerald-50" iconColor="text-green-600" textColor="text-green-800" labelColor="text-green-600" />
-
-                <InfoItem icon={Shield} label="Role" value={user?.role?.name || "Not specified"} bgColor="bg-linear-to-r from-blue-50 to-indigo-50" iconColor="text-blue-600" textColor="text-blue-800" labelColor="text-blue-600" />
-
-                <InfoItem icon={Calendar} label="Start Date" value={formatDate(user?.startDate)} bgColor="bg-linear-to-r from-purple-50 to-pink-50" iconColor="text-purple-600" textColor="text-purple-800" labelColor="text-purple-600" />
-
-                {user?.endDate && <InfoItem icon={Calendar} label="End Date" value={formatDate(user?.endDate)} bgColor="bg-linear-to-r from-red-50 to-pink-50" iconColor="text-red-600" textColor="text-red-800" labelColor="text-red-600" />}
-
-                <Separator className="my-6" />
-
-                <InfoItem
-                  icon={GraduationCap}
-                  label="Academic Information"
-                  value={user?.class?.name ? `Class: ${user.class.name}` : "No class assigned"}
-                  bgColor="bg-linear-to-r from-amber-50 to-orange-50"
-                  iconColor="text-amber-600"
-                  textColor="text-amber-800"
-                  labelColor="text-amber-600"
-                />
-
-                {user?.major?.name && <InfoItem icon={Award} label="Major" value={user.major.name} bgColor="bg-linear-to-r from-cyan-50 to-teal-50" iconColor="text-cyan-600" textColor="text-cyan-800" labelColor="text-cyan-600" />}
-              </CardContent>
-            </Card>
+        {/* Content */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Personal Info */}
+          <div className="bg-white rounded-lg shadow">
+            <div className="p-6 border-b">
+              <h2 className="text-xl font-semibold flex items-center gap-2">
+                <div className="p-2 bg-linear-to-r from-blue-500 to-blue-600 rounded-lg">
+                  <User className="w-5 h-5 text-white" />
+                </div>
+                Personal Information
+              </h2>
+              <p className="text-gray-600 text-sm mt-1">Basic personal details and contact information</p>
+            </div>
+            <div className="p-6 space-y-3">
+              <InfoItem icon={Mail} label="Email Address" value={user?.email || "Not provided"} />
+              <InfoItem icon={User} label="Gender" value={user?.gender === "L" ? "Laki-laki" : user?.gender === "P" ? "Perempuan" : "Not specified"} />
+              <InfoItem icon={MapPin} label="Address" value={user?.address || "Not provided"} />
+              <InfoItem icon={Phone} label="Parent Phone" value={user?.parentPhone || "Not provided"} />
+              <InfoItem icon={Calendar} label="Birth Date" value={formatDate(user?.birthDate)} />
+              <InfoItem icon={MapPin} label="Birth Place" value={user?.birthPlace || "Not provided"} />
+            </div>
           </div>
 
-          {/* Enhanced System Information */}
-          <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-500 hover:bg-white/90">
-            <CardHeader className="pb-6">
-              <CardTitle className="flex items-center gap-3 text-xl lg:text-2xl">
-                <div className="p-2 bg-linear-to-r from-purple-500 to-pink-600 rounded-xl shadow-lg">
-                  <Clock className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
+          {/* Professional Info */}
+          <div className="bg-white rounded-lg shadow">
+            <div className="p-6 border-b">
+              <h2 className="text-xl font-semibold flex items-center gap-2">
+                <div className="p-2 bg-linear-to-r from-green-500 to-emerald-600 rounded-lg">
+                  <Building2 className="w-5 h-5 text-white" />
                 </div>
-                <span className="bg-linear-to-r from-purple-700 to-pink-500 bg-clip-text text-transparent font-bold">System Information</span>
-              </CardTitle>
-              <CardDescription className="text-base lg:text-lg text-gray-600">Account creation and last update information</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                <InfoItem icon={Calendar} label="Created At" value={formatDate(user?.createdAt)} bgColor="bg-linear-to-r from-purple-50 to-pink-50" iconColor="text-purple-600" textColor="text-purple-800" labelColor="text-purple-600" />
+                Professional Information
+              </h2>
+              <p className="text-gray-600 text-sm mt-1">Work-related details and academic information</p>
+            </div>
+            <div className="p-6 space-y-3">
+              <InfoItem icon={Briefcase} label="Position" value={user?.position || "Not specified"} />
+              <InfoItem icon={Shield} label="Role" value={user?.role?.name || "Not specified"} />
+              <InfoItem icon={Calendar} label="Start Date" value={formatDate(user?.startDate)} />
+              {user?.endDate && <InfoItem icon={Calendar} label="End Date" value={formatDate(user?.endDate)} />}
+              <InfoItem icon={GraduationCap} label="Class" value={user?.class?.name || "No class assigned"} />
+              {user?.major?.name && <InfoItem icon={Award} label="Major" value={user.major.name} />}
+            </div>
+          </div>
+        </div>
 
-                <InfoItem icon={Clock} label="Last Updated" value={formatDate(user?.updatedAt)} bgColor="bg-linear-to-r from-indigo-50 to-purple-50" iconColor="text-indigo-600" textColor="text-indigo-800" labelColor="text-indigo-600" />
-
-                <InfoItem icon={User} label="User ID" value={user?.id} bgColor="bg-linear-to-r from-gray-50 to-slate-50" iconColor="text-gray-600" textColor="text-gray-800" labelColor="text-gray-600" />
+        {/* System Info */}
+        <div className="bg-white rounded-lg shadow">
+          <div className="p-6 border-b">
+            <h2 className="text-xl font-semibold flex items-center gap-2">
+              <div className="p-2 bg-linear-to-r from-purple-500 to-pink-600 rounded-lg">
+                <Clock className="w-5 h-5 text-white" />
               </div>
-            </CardContent>
-          </Card>
+              System Information
+            </h2>
+            <p className="text-gray-600 text-sm mt-1">Account creation and last update information</p>
+          </div>
+          <div className="p-6">
+            <div className="grid sm:grid-cols-3 gap-4">
+              <InfoItem icon={Calendar} label="Created At" value={formatDate(user?.createdAt)} />
+              <InfoItem icon={Clock} label="Last Updated" value={formatDate(user?.updatedAt)} />
+              <InfoItem icon={User} label="User ID" value={user?.id} />
+            </div>
+          </div>
         </div>
       </div>
     </div>
