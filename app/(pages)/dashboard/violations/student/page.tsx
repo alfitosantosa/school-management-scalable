@@ -318,7 +318,7 @@ export default function ViolationDataTable() {
 
         <div className="mx-auto">
           <div className="flex items-center justify-between py-4">
-            <div className="flex items-center space-x-2">
+            <div className="flex flex-wrap  items-center gap-2">
               <div className="relative">
                 <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input placeholder="Cari siswa, kelas, pelanggaran..." value={globalFilter ?? ""} onChange={(event) => setGlobalFilter(event.target.value)} className="max-w-sm pl-8" />
