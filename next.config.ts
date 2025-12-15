@@ -19,6 +19,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
       { protocol: "https", hostname: "icons.veryicon.com" },
       { protocol: "https", hostname: "file.pasarjaya.cloud" },
+      { protocol: "https", hostname: "file.santosatechid.cloud" },
     ],
     // Use Next.js modern formats
     formats: ["image/avif", "image/webp"],
