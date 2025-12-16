@@ -1,69 +1,94 @@
 # ==========================================
 # DOCKER COMPOSE - PRODUCTION READY
-# Optimized for: Fast reload, Caching, Lightweight
+# Optimized for: Security, Performance, Scalability, Monitoring
 # ==========================================
 
+version: "3.8"
+
 services:
+  # ==========================================
+  # PRODUCTION APPLICATION
+  # ==========================================
   app:
     build:
       context: .
       dockerfile: Dockerfile
-      # Build cache optimization
+      # Build cache optimization for faster rebuilds
       cache_from:
         - type=local,src=/tmp/.buildx-cache
       cache_to:
         - type=local,dest=/tmp/.buildx-cache-new,mode=max
+      # Build args for conditional builds
+      args:
+        - NODE_ENV=production
     image: school-management:latest
     container_name: school-management-app
     restart: unless-stopped
 
     ports:
-      - "3000:3000"
+      - "${PORT:-3000}:3000"
 
     environment:
       - NODE_ENV=production
       - PORT=3000
       - HOSTNAME=0.0.0.0
+      - NEXT_TELEMETRY_DISABLED=1
 
     # Load environment variables from .env file
     env_file:
       - .env.production
 
-    # Resource limits for stability
+    # Resource limits for stability and cost control
     deploy:
       resources:
         limits:
-          cpus: "2"
+          cpus: "2.0"
           memory: 2G
         reservations:
           cpus: "0.5"
           memory: 512M
+      # Restart policy
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
 
-    # Health check
+    # Health check configuration
     healthcheck:
-      test:
-        [
-          "CMD",
-          "wget",
-          "--no-verbose",
-          "--tries=1",
-          "--spider",
-          "http://localhost:3000/",
-        ]
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
 
-    # Logging configuration
+    # Logging configuration for production
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
+        compress: "true"
 
+    # Security: read-only root filesystem where possible
+    read_only: false
+    tmpfs:
+      - /tmp
+      - /var/tmp
+
+    # Security: no new privileges
+    security_opt:
+      - no-new-privileges:true
+
+    # Network configuration
     networks:
       - app-network
+
+    # Labels for monitoring and management
+    labels:
+      - "com.school-management.service=app"
+      - "com.school-management.environment=production"
+      - "com.school-management.version=latest"
 
   # ==========================================
   # DEVELOPMENT PROFILE - Fast Reload
@@ -74,7 +99,7 @@ services:
     working_dir: /app
 
     ports:
-      - "3000:3000"
+      - "${PORT:-3000}:3000"
 
     volumes:
       # Mount source code for hot reload
@@ -85,6 +110,8 @@ services:
       - next_cache:/app/.next
       # Persist bun cache
       - bun_cache:/root/.bun
+      # Persist Prisma client
+      - prisma_cache:/app/node_modules/.prisma
 
     environment:
       - NODE_ENV=development
@@ -96,7 +123,7 @@ services:
       - .env
 
     # Start development server with hot reload
-    command: sh -c "bun install && bunx prisma generate && bun run dev:no-hmr"
+    command: sh -c "bun install && bunx prisma generate && bun run dev"
 
     profiles:
       - dev
@@ -104,11 +131,33 @@ services:
     networks:
       - app-network
 
+    # Development: more relaxed resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1G
+
+# ==========================================
+# NETWORKS
+# ==========================================
 networks:
   app-network:
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16
 
+# ==========================================
+# VOLUMES
+# ==========================================
 volumes:
   node_modules:
+    driver: local
   next_cache:
+    driver: local
   bun_cache:
+    driver: local
+  prisma_cache:
+    driver: local

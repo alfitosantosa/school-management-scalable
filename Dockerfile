@@ -1,20 +1,24 @@
 # ==========================================
 # PRODUCTION-READY DOCKERFILE FOR NEXT.JS + BUN
-# Optimized for: Fast reload, Caching, Lightweight
+# Optimized for: Security, Performance, Caching, Minimal Size
 # ==========================================
 
 # Stage 1: Dependencies (Cached layer)
 FROM oven/bun:1.1-alpine AS deps
 WORKDIR /app
 
+# Install curl for health checks
+RUN apk add --no-cache curl
+
 # Copy only package files for optimal caching
 COPY package.json bun.lock* ./
 
-# Install all dependencies with frozen lockfile
-RUN bun install 
+# Install dependencies with frozen lockfile
+# Use --frozen-lockfile for production consistency
+RUN bun install --frozen-lockfile --production=false
 
 # ==========================================
-# Stage 2: Build
+# Stage 2: Builder
 FROM oven/bun:1.1-alpine AS builder
 WORKDIR /app
 
@@ -22,22 +26,32 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Set build-time environment variables
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
+ENV SKIP_ENV_VALIDATION=1
+
 # Generate Prisma client
 RUN bunx prisma generate
 
-# Build the application WITHOUT turbopack (Turbopack has issues with Bun in Docker)
-ENV NEXT_TELEMETRY_DISABLED=1
-ENV NODE_ENV=production
+# Build the application
+# Remove --turbopack for production stability
 RUN bunx next build
 
 # ==========================================
-# Stage 3: Production runner (Lightweight)
+# Stage 3: Production runner (Ultra lightweight)
 FROM oven/bun:1.1-alpine AS runner
 WORKDIR /app
 
 # Set production environment
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+# Install only runtime dependencies (curl for health checks)
+RUN apk add --no-cache curl && \
+    rm -rf /var/cache/apk/*
 
 # Security: Create non-root user
 RUN addgroup --system --gid 1001 nodejs && \
@@ -47,23 +61,23 @@ RUN addgroup --system --gid 1001 nodejs && \
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 
-# Copy standalone build (if output: 'standalone' in next.config)
+# Copy standalone build (requires output: 'standalone' in next.config)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Switch to non-root user
+# Copy Prisma schema and generated client for runtime
+COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+
+# Switch to non-root user for security
 USER nextjs
 
 # Expose port
 EXPOSE 3000
 
-# Environment variables
-ENV PORT=3000
-ENV HOSTNAME="0.0.0.0"
+# Health check with proper timeout and retries
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+  CMD curl -f http://localhost:${PORT:-3000}/api/health || exit 1
 
-# Health check endpoint
-HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
-
-# Start the server with Bun
+# Use exec form for proper signal handling
 CMD ["bun", "server.js"]

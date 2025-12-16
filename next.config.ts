@@ -2,14 +2,18 @@ import type { NextConfig } from "next";
 
 // Determine environment: development or production
 const isDev = process.env.NODE_ENV === "development";
+const isProduction = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
   // ============================================================================
   // CORE CONFIGURATION
   // ============================================================================
 
-  // Enable standalone output for Docker deployments
+  // Enable standalone output for Docker deployments (smaller, faster)
   output: "standalone",
+
+  // Enable React strict mode for better development experience
+  reactStrictMode: true,
 
   // ============================================================================
   // IMAGE OPTIMIZATION
@@ -21,26 +25,22 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "file.pasarjaya.cloud" },
       { protocol: "https", hostname: "file.santosatechid.cloud" },
     ],
-    // Use Next.js modern formats
+    // Use modern image formats for better compression
     formats: ["image/avif", "image/webp"],
-
     // Image caching strategy
     minimumCacheTTL: isDev ? 0 : 86400, // 24 hours in production
-
     // Device sizes for responsive images
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-
-    // SVG handling - allow SVG in development for faster iteration
+    // SVG handling with security
     dangerouslyAllowSVG: true,
-    contentSecurityPolicy: isDev ? undefined : "default-src 'self'; script-src 'none'; sandbox;",
-
+    contentSecurityPolicy: isDev
+      ? undefined
+      : "default-src 'self'; script-src 'none'; sandbox;",
     // Production optimizations
     ...(isDev
       ? {}
       : {
-          // Disable static imports optimization in development for faster builds
-          // Enable in production for smaller bundles
           disableStaticImages: false,
         }),
   },
@@ -48,12 +48,13 @@ const nextConfig: NextConfig = {
   // ============================================================================
   // PRODUCTION OPTIMIZATIONS
   // ============================================================================
-  ...(isDev
-    ? {}
-    : {
+  ...(isProduction
+    ? {
         // Remove console.log in production for cleaner bundles
         compiler: {
-          removeConsole: true,
+          removeConsole: {
+            exclude: ["error", "warn"], // Keep errors and warnings
+          },
         },
 
         // Optimize package imports for tree-shaking
@@ -75,21 +76,59 @@ const nextConfig: NextConfig = {
             "@radix-ui/react-slot",
             "@radix-ui/react-switch",
             "@radix-ui/react-tabs",
+            "@tanstack/react-query",
+            "@tanstack/react-table",
           ],
+          // Enable server actions for better performance
+          serverActions: {
+            bodySizeLimit: "2mb",
+          },
         },
-      }),
+      }
+    : {}),
 
   // ============================================================================
-  // CACHING STRATEGY
+  // SECURITY HEADERS
   // ============================================================================
-  // Aggressive caching for production, disabled for development
   async headers() {
+    const securityHeaders = [
+      {
+        key: "X-DNS-Prefetch-Control",
+        value: "on",
+      },
+      {
+        key: "Strict-Transport-Security",
+        value: "max-age=63072000; includeSubDomains; preload",
+      },
+      {
+        key: "X-Frame-Options",
+        value: "SAMEORIGIN",
+      },
+      {
+        key: "X-Content-Type-Options",
+        value: "nosniff",
+      },
+      {
+        key: "X-XSS-Protection",
+        value: "1; mode=block",
+      },
+      {
+        key: "Referrer-Policy",
+        value: "strict-origin-when-cross-origin",
+      },
+      {
+        key: "Permissions-Policy",
+        value: "camera=(), microphone=(), geolocation=()",
+      },
+    ];
+
     if (isDev) {
       // Development: no caching, always fresh
       return [
         {
           source: "/:path*",
           headers: [
+            ...securityHeaders,
             { key: "Cache-Control", value: "no-store, no-cache, must-revalidate, max-age=0" },
             { key: "Pragma", value: "no-cache" },
             { key: "Expires", value: "0" },
@@ -98,27 +137,44 @@ const nextConfig: NextConfig = {
       ];
     }
 
-    // Production: aggressive caching
+    // Production: aggressive caching with security headers
     return [
       // Static assets: 1 year immutable
       {
-        source: "/:all*(svg|jpg|jpeg|png|gif|webp|avif|woff|woff2|ttf|eot)",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+        source: "/:all*(svg|jpg|jpeg|png|gif|webp|avif|woff|woff2|ttf|eot|ico)",
+        headers: [
+          ...securityHeaders,
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
       },
       // Next.js static files: 1 year immutable
       {
         source: "/_next/static/:path*",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+        headers: [
+          ...securityHeaders,
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
       },
-      // API routes: no cache
+      // API routes: no cache + security
       {
         source: "/api/:path*",
-        headers: [{ key: "Cache-Control", value: "no-store, must-revalidate" }],
+        headers: [
+          ...securityHeaders,
+          { key: "Cache-Control", value: "no-store, must-revalidate" },
+        ],
       },
-      // HTML pages: 1 hour
+      // HTML pages: 1 hour with revalidation
       {
         source: "/:path*.html",
-        headers: [{ key: "Cache-Control", value: "public, max-age=3600, s-maxage=3600" }],
+        headers: [
+          ...securityHeaders,
+          { key: "Cache-Control", value: "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400" },
+        ],
+      },
+      // All other routes: security headers
+      {
+        source: "/:path*",
+        headers: securityHeaders,
       },
     ];
   },
@@ -126,14 +182,27 @@ const nextConfig: NextConfig = {
   // ============================================================================
   // PERFORMANCE & SIZE
   // ============================================================================
-  // Production: compress responses, Development: skip
-  compress: !isDev,
+  // Production: compress responses
+  compress: isProduction,
 
   // Remove "X-Powered-By" header for security
   poweredByHeader: false,
 
   // Generate ETags for cache validation (disable in dev for faster builds)
-  generateEtags: !isDev,
+  generateEtags: isProduction,
+
+  // ============================================================================
+  // REDIRECTS & REWRITES (if needed)
+  // ============================================================================
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: "/old-path",
+  //       destination: "/new-path",
+  //       permanent: true,
+  //     },
+  //   ];
+  // },
 
   // ============================================================================
   // DEVELOPMENT-SPECIFIC
@@ -150,6 +219,45 @@ const nextConfig: NextConfig = {
       pagesBufferLength: 5,
     },
   }),
+
+  // ============================================================================
+  // WEBPACK CONFIGURATION (if needed)
+  // ============================================================================
+  webpack: (config, { isServer }) => {
+    // Production optimizations
+    if (isProduction) {
+      // Optimize bundle size
+      config.optimization = {
+        ...config.optimization,
+        moduleIds: "deterministic",
+        runtimeChunk: "single",
+        splitChunks: {
+          chunks: "all",
+          cacheGroups: {
+            default: false,
+            vendors: false,
+            // Vendor chunk for node_modules
+            vendor: {
+              name: "vendor",
+              chunks: "all",
+              test: /node_modules/,
+              priority: 20,
+            },
+            // Common chunk for shared code
+            common: {
+              name: "common",
+              minChunks: 2,
+              chunks: "all",
+              priority: 10,
+              reuseExistingChunk: true,
+            },
+          },
+        },
+      };
+    }
+
+    return config;
+  },
 };
 
 export default nextConfig;

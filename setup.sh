@@ -1,5 +1,3 @@
-# Production build & run
-docker compose up --build -d
+docker buildx build --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new .
 
-# View logs
-docker compose logs -f app
+docker-compose up -d
