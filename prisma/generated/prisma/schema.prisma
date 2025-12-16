@@ -113,14 +113,14 @@ model UserData {
   reportCards        ReportCard[]           @relation("StudentReportCard")
   schedules          Schedule[]             @relation("TeacherSchedule")
   tahfidzRecords     TahfidzRecord[]
+  createdAttendances TeacherAttendance[]    @relation("CreatedAttendance")
+  teacherAttendances TeacherAttendance[]    @relation("TeacherAttendance")
   academicYear       AcademicYear?          @relation("UserAcademicYear", fields: [academicYearId], references: [id])
   class              Class?                 @relation("UserClass", fields: [classId], references: [id])
   major              Major?                 @relation("UserMajor", fields: [majorId], references: [id])
   role               Role?                  @relation(fields: [roleId], references: [id])
   user               User?                  @relation(fields: [userId], references: [id], onDelete: Cascade)
   violations         Violation[]            @relation("StudentViolation")
-  teacherAttendances TeacherAttendance[]    @relation("TeacherAttendance")
-  createdAttendances TeacherAttendance[]    @relation("CreatedAttendance")
 
   @@map("user_data")
 }
@@ -576,15 +576,15 @@ model TeacherAttendance {
   id            String    @id @default(cuid())
   teacherId     String
   date          DateTime  @db.Date
-  status        String    @default("hadir") // hadir, sakit, izin, alfa
+  status        String    @default("hadir")
   checkinTime   DateTime?
   checkoutTime  DateTime?
   notes         String?
-  createdBy     String // admin/principal ID
+  createdBy     String
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-  teacher       UserData  @relation("TeacherAttendance", fields: [teacherId], references: [id], onDelete: Cascade)
   createdByUser UserData  @relation("CreatedAttendance", fields: [createdBy], references: [id], onDelete: SetNull)
+  teacher       UserData  @relation("TeacherAttendance", fields: [teacherId], references: [id], onDelete: Cascade)
 
   @@unique([teacherId, date])
   @@index([teacherId])

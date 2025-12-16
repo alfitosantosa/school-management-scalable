@@ -3460,9 +3460,9 @@ export namespace Prisma {
     reportCards: number
     schedules: number
     tahfidzRecords: number
-    violations: number
-    teacherAttendances: number
     createdAttendances: number
+    teacherAttendances: number
+    violations: number
   }
 
   export type UserDataCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3477,9 +3477,9 @@ export namespace Prisma {
     reportCards?: boolean | UserDataCountOutputTypeCountReportCardsArgs
     schedules?: boolean | UserDataCountOutputTypeCountSchedulesArgs
     tahfidzRecords?: boolean | UserDataCountOutputTypeCountTahfidzRecordsArgs
-    violations?: boolean | UserDataCountOutputTypeCountViolationsArgs
-    teacherAttendances?: boolean | UserDataCountOutputTypeCountTeacherAttendancesArgs
     createdAttendances?: boolean | UserDataCountOutputTypeCountCreatedAttendancesArgs
+    teacherAttendances?: boolean | UserDataCountOutputTypeCountTeacherAttendancesArgs
+    violations?: boolean | UserDataCountOutputTypeCountViolationsArgs
   }
 
   // Custom InputTypes
@@ -3573,8 +3573,8 @@ export namespace Prisma {
   /**
    * UserDataCountOutputType without action
    */
-  export type UserDataCountOutputTypeCountViolationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ViolationWhereInput
+  export type UserDataCountOutputTypeCountCreatedAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TeacherAttendanceWhereInput
   }
 
   /**
@@ -3587,8 +3587,8 @@ export namespace Prisma {
   /**
    * UserDataCountOutputType without action
    */
-  export type UserDataCountOutputTypeCountCreatedAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TeacherAttendanceWhereInput
+  export type UserDataCountOutputTypeCountViolationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ViolationWhereInput
   }
 
 
@@ -8922,14 +8922,14 @@ export namespace Prisma {
     reportCards?: boolean | UserData$reportCardsArgs<ExtArgs>
     schedules?: boolean | UserData$schedulesArgs<ExtArgs>
     tahfidzRecords?: boolean | UserData$tahfidzRecordsArgs<ExtArgs>
+    createdAttendances?: boolean | UserData$createdAttendancesArgs<ExtArgs>
+    teacherAttendances?: boolean | UserData$teacherAttendancesArgs<ExtArgs>
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
     violations?: boolean | UserData$violationsArgs<ExtArgs>
-    teacherAttendances?: boolean | UserData$teacherAttendancesArgs<ExtArgs>
-    createdAttendances?: boolean | UserData$createdAttendancesArgs<ExtArgs>
     _count?: boolean | UserDataCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userData"]>
 
@@ -9043,14 +9043,14 @@ export namespace Prisma {
     reportCards?: boolean | UserData$reportCardsArgs<ExtArgs>
     schedules?: boolean | UserData$schedulesArgs<ExtArgs>
     tahfidzRecords?: boolean | UserData$tahfidzRecordsArgs<ExtArgs>
+    createdAttendances?: boolean | UserData$createdAttendancesArgs<ExtArgs>
+    teacherAttendances?: boolean | UserData$teacherAttendancesArgs<ExtArgs>
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
     violations?: boolean | UserData$violationsArgs<ExtArgs>
-    teacherAttendances?: boolean | UserData$teacherAttendancesArgs<ExtArgs>
-    createdAttendances?: boolean | UserData$createdAttendancesArgs<ExtArgs>
     _count?: boolean | UserDataCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserDataIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9082,14 +9082,14 @@ export namespace Prisma {
       reportCards: Prisma.$ReportCardPayload<ExtArgs>[]
       schedules: Prisma.$SchedulePayload<ExtArgs>[]
       tahfidzRecords: Prisma.$TahfidzRecordPayload<ExtArgs>[]
+      createdAttendances: Prisma.$TeacherAttendancePayload<ExtArgs>[]
+      teacherAttendances: Prisma.$TeacherAttendancePayload<ExtArgs>[]
       academicYear: Prisma.$AcademicYearPayload<ExtArgs> | null
       class: Prisma.$ClassPayload<ExtArgs> | null
       major: Prisma.$MajorPayload<ExtArgs> | null
       role: Prisma.$RolePayload<ExtArgs> | null
       user: Prisma.$UserPayload<ExtArgs> | null
       violations: Prisma.$ViolationPayload<ExtArgs>[]
-      teacherAttendances: Prisma.$TeacherAttendancePayload<ExtArgs>[]
-      createdAttendances: Prisma.$TeacherAttendancePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9523,14 +9523,14 @@ export namespace Prisma {
     reportCards<T extends UserData$reportCardsArgs<ExtArgs> = {}>(args?: Subset<T, UserData$reportCardsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReportCardPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     schedules<T extends UserData$schedulesArgs<ExtArgs> = {}>(args?: Subset<T, UserData$schedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tahfidzRecords<T extends UserData$tahfidzRecordsArgs<ExtArgs> = {}>(args?: Subset<T, UserData$tahfidzRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TahfidzRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    createdAttendances<T extends UserData$createdAttendancesArgs<ExtArgs> = {}>(args?: Subset<T, UserData$createdAttendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherAttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    teacherAttendances<T extends UserData$teacherAttendancesArgs<ExtArgs> = {}>(args?: Subset<T, UserData$teacherAttendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherAttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     academicYear<T extends UserData$academicYearArgs<ExtArgs> = {}>(args?: Subset<T, UserData$academicYearArgs<ExtArgs>>): Prisma__AcademicYearClient<$Result.GetResult<Prisma.$AcademicYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     class<T extends UserData$classArgs<ExtArgs> = {}>(args?: Subset<T, UserData$classArgs<ExtArgs>>): Prisma__ClassClient<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     major<T extends UserData$majorArgs<ExtArgs> = {}>(args?: Subset<T, UserData$majorArgs<ExtArgs>>): Prisma__MajorClient<$Result.GetResult<Prisma.$MajorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     role<T extends UserData$roleArgs<ExtArgs> = {}>(args?: Subset<T, UserData$roleArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     user<T extends UserData$userArgs<ExtArgs> = {}>(args?: Subset<T, UserData$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     violations<T extends UserData$violationsArgs<ExtArgs> = {}>(args?: Subset<T, UserData$violationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViolationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    teacherAttendances<T extends UserData$teacherAttendancesArgs<ExtArgs> = {}>(args?: Subset<T, UserData$teacherAttendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherAttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    createdAttendances<T extends UserData$createdAttendancesArgs<ExtArgs> = {}>(args?: Subset<T, UserData$createdAttendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherAttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10246,6 +10246,54 @@ export namespace Prisma {
   }
 
   /**
+   * UserData.createdAttendances
+   */
+  export type UserData$createdAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeacherAttendance
+     */
+    select?: TeacherAttendanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TeacherAttendance
+     */
+    omit?: TeacherAttendanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherAttendanceInclude<ExtArgs> | null
+    where?: TeacherAttendanceWhereInput
+    orderBy?: TeacherAttendanceOrderByWithRelationInput | TeacherAttendanceOrderByWithRelationInput[]
+    cursor?: TeacherAttendanceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TeacherAttendanceScalarFieldEnum | TeacherAttendanceScalarFieldEnum[]
+  }
+
+  /**
+   * UserData.teacherAttendances
+   */
+  export type UserData$teacherAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TeacherAttendance
+     */
+    select?: TeacherAttendanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TeacherAttendance
+     */
+    omit?: TeacherAttendanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TeacherAttendanceInclude<ExtArgs> | null
+    where?: TeacherAttendanceWhereInput
+    orderBy?: TeacherAttendanceOrderByWithRelationInput | TeacherAttendanceOrderByWithRelationInput[]
+    cursor?: TeacherAttendanceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TeacherAttendanceScalarFieldEnum | TeacherAttendanceScalarFieldEnum[]
+  }
+
+  /**
    * UserData.academicYear
    */
   export type UserData$academicYearArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10362,54 +10410,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ViolationScalarFieldEnum | ViolationScalarFieldEnum[]
-  }
-
-  /**
-   * UserData.teacherAttendances
-   */
-  export type UserData$teacherAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeacherAttendance
-     */
-    select?: TeacherAttendanceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeacherAttendance
-     */
-    omit?: TeacherAttendanceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeacherAttendanceInclude<ExtArgs> | null
-    where?: TeacherAttendanceWhereInput
-    orderBy?: TeacherAttendanceOrderByWithRelationInput | TeacherAttendanceOrderByWithRelationInput[]
-    cursor?: TeacherAttendanceWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TeacherAttendanceScalarFieldEnum | TeacherAttendanceScalarFieldEnum[]
-  }
-
-  /**
-   * UserData.createdAttendances
-   */
-  export type UserData$createdAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TeacherAttendance
-     */
-    select?: TeacherAttendanceSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TeacherAttendance
-     */
-    omit?: TeacherAttendanceOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TeacherAttendanceInclude<ExtArgs> | null
-    where?: TeacherAttendanceWhereInput
-    orderBy?: TeacherAttendanceOrderByWithRelationInput | TeacherAttendanceOrderByWithRelationInput[]
-    cursor?: TeacherAttendanceWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TeacherAttendanceScalarFieldEnum | TeacherAttendanceScalarFieldEnum[]
   }
 
   /**
@@ -38160,8 +38160,8 @@ export namespace Prisma {
     createdBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    teacher?: boolean | UserDataDefaultArgs<ExtArgs>
     createdByUser?: boolean | UserDataDefaultArgs<ExtArgs>
+    teacher?: boolean | UserDataDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["teacherAttendance"]>
 
   export type TeacherAttendanceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -38175,8 +38175,8 @@ export namespace Prisma {
     createdBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    teacher?: boolean | UserDataDefaultArgs<ExtArgs>
     createdByUser?: boolean | UserDataDefaultArgs<ExtArgs>
+    teacher?: boolean | UserDataDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["teacherAttendance"]>
 
   export type TeacherAttendanceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -38190,8 +38190,8 @@ export namespace Prisma {
     createdBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    teacher?: boolean | UserDataDefaultArgs<ExtArgs>
     createdByUser?: boolean | UserDataDefaultArgs<ExtArgs>
+    teacher?: boolean | UserDataDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["teacherAttendance"]>
 
   export type TeacherAttendanceSelectScalar = {
@@ -38209,23 +38209,23 @@ export namespace Prisma {
 
   export type TeacherAttendanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "teacherId" | "date" | "status" | "checkinTime" | "checkoutTime" | "notes" | "createdBy" | "createdAt" | "updatedAt", ExtArgs["result"]["teacherAttendance"]>
   export type TeacherAttendanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    teacher?: boolean | UserDataDefaultArgs<ExtArgs>
     createdByUser?: boolean | UserDataDefaultArgs<ExtArgs>
+    teacher?: boolean | UserDataDefaultArgs<ExtArgs>
   }
   export type TeacherAttendanceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    teacher?: boolean | UserDataDefaultArgs<ExtArgs>
     createdByUser?: boolean | UserDataDefaultArgs<ExtArgs>
+    teacher?: boolean | UserDataDefaultArgs<ExtArgs>
   }
   export type TeacherAttendanceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    teacher?: boolean | UserDataDefaultArgs<ExtArgs>
     createdByUser?: boolean | UserDataDefaultArgs<ExtArgs>
+    teacher?: boolean | UserDataDefaultArgs<ExtArgs>
   }
 
   export type $TeacherAttendancePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TeacherAttendance"
     objects: {
-      teacher: Prisma.$UserDataPayload<ExtArgs>
       createdByUser: Prisma.$UserDataPayload<ExtArgs>
+      teacher: Prisma.$UserDataPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -38632,8 +38632,8 @@ export namespace Prisma {
    */
   export interface Prisma__TeacherAttendanceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    teacher<T extends UserDataDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDataDefaultArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     createdByUser<T extends UserDataDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDataDefaultArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    teacher<T extends UserDataDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDataDefaultArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -40079,14 +40079,14 @@ export namespace Prisma {
     reportCards?: ReportCardListRelationFilter
     schedules?: ScheduleListRelationFilter
     tahfidzRecords?: TahfidzRecordListRelationFilter
+    createdAttendances?: TeacherAttendanceListRelationFilter
+    teacherAttendances?: TeacherAttendanceListRelationFilter
     academicYear?: XOR<AcademicYearNullableScalarRelationFilter, AcademicYearWhereInput> | null
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
     major?: XOR<MajorNullableScalarRelationFilter, MajorWhereInput> | null
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     violations?: ViolationListRelationFilter
-    teacherAttendances?: TeacherAttendanceListRelationFilter
-    createdAttendances?: TeacherAttendanceListRelationFilter
   }
 
   export type UserDataOrderByWithRelationInput = {
@@ -40127,14 +40127,14 @@ export namespace Prisma {
     reportCards?: ReportCardOrderByRelationAggregateInput
     schedules?: ScheduleOrderByRelationAggregateInput
     tahfidzRecords?: TahfidzRecordOrderByRelationAggregateInput
+    createdAttendances?: TeacherAttendanceOrderByRelationAggregateInput
+    teacherAttendances?: TeacherAttendanceOrderByRelationAggregateInput
     academicYear?: AcademicYearOrderByWithRelationInput
     class?: ClassOrderByWithRelationInput
     major?: MajorOrderByWithRelationInput
     role?: RoleOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
     violations?: ViolationOrderByRelationAggregateInput
-    teacherAttendances?: TeacherAttendanceOrderByRelationAggregateInput
-    createdAttendances?: TeacherAttendanceOrderByRelationAggregateInput
   }
 
   export type UserDataWhereUniqueInput = Prisma.AtLeast<{
@@ -40178,14 +40178,14 @@ export namespace Prisma {
     reportCards?: ReportCardListRelationFilter
     schedules?: ScheduleListRelationFilter
     tahfidzRecords?: TahfidzRecordListRelationFilter
+    createdAttendances?: TeacherAttendanceListRelationFilter
+    teacherAttendances?: TeacherAttendanceListRelationFilter
     academicYear?: XOR<AcademicYearNullableScalarRelationFilter, AcademicYearWhereInput> | null
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
     major?: XOR<MajorNullableScalarRelationFilter, MajorWhereInput> | null
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     violations?: ViolationListRelationFilter
-    teacherAttendances?: TeacherAttendanceListRelationFilter
-    createdAttendances?: TeacherAttendanceListRelationFilter
   }, "id" | "id" | "userId">
 
   export type UserDataOrderByWithAggregationInput = {
@@ -42289,8 +42289,8 @@ export namespace Prisma {
     createdBy?: StringFilter<"TeacherAttendance"> | string
     createdAt?: DateTimeFilter<"TeacherAttendance"> | Date | string
     updatedAt?: DateTimeFilter<"TeacherAttendance"> | Date | string
-    teacher?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
     createdByUser?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
+    teacher?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
   }
 
   export type TeacherAttendanceOrderByWithRelationInput = {
@@ -42304,8 +42304,8 @@ export namespace Prisma {
     createdBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    teacher?: UserDataOrderByWithRelationInput
     createdByUser?: UserDataOrderByWithRelationInput
+    teacher?: UserDataOrderByWithRelationInput
   }
 
   export type TeacherAttendanceWhereUniqueInput = Prisma.AtLeast<{
@@ -42323,8 +42323,8 @@ export namespace Prisma {
     createdBy?: StringFilter<"TeacherAttendance"> | string
     createdAt?: DateTimeFilter<"TeacherAttendance"> | Date | string
     updatedAt?: DateTimeFilter<"TeacherAttendance"> | Date | string
-    teacher?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
     createdByUser?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
+    teacher?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
   }, "id" | "teacherId_date">
 
   export type TeacherAttendanceOrderByWithAggregationInput = {
@@ -42759,14 +42759,14 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateInput = {
@@ -42807,9 +42807,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataUpdateInput = {
@@ -42845,14 +42845,14 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateInput = {
@@ -42893,9 +42893,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserDataCreateManyInput = {
@@ -45170,8 +45170,8 @@ export namespace Prisma {
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    teacher: UserDataCreateNestedOneWithoutTeacherAttendancesInput
     createdByUser: UserDataCreateNestedOneWithoutCreatedAttendancesInput
+    teacher: UserDataCreateNestedOneWithoutTeacherAttendancesInput
   }
 
   export type TeacherAttendanceUncheckedCreateInput = {
@@ -45196,8 +45196,8 @@ export namespace Prisma {
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    teacher?: UserDataUpdateOneRequiredWithoutTeacherAttendancesNestedInput
     createdByUser?: UserDataUpdateOneRequiredWithoutCreatedAttendancesNestedInput
+    teacher?: UserDataUpdateOneRequiredWithoutTeacherAttendancesNestedInput
   }
 
   export type TeacherAttendanceUncheckedUpdateInput = {
@@ -45654,6 +45654,12 @@ export namespace Prisma {
     none?: TahfidzRecordWhereInput
   }
 
+  export type TeacherAttendanceListRelationFilter = {
+    every?: TeacherAttendanceWhereInput
+    some?: TeacherAttendanceWhereInput
+    none?: TeacherAttendanceWhereInput
+  }
+
   export type AcademicYearNullableScalarRelationFilter = {
     is?: AcademicYearWhereInput | null
     isNot?: AcademicYearWhereInput | null
@@ -45683,12 +45689,6 @@ export namespace Prisma {
     every?: ViolationWhereInput
     some?: ViolationWhereInput
     none?: ViolationWhereInput
-  }
-
-  export type TeacherAttendanceListRelationFilter = {
-    every?: TeacherAttendanceWhereInput
-    some?: TeacherAttendanceWhereInput
-    none?: TeacherAttendanceWhereInput
   }
 
   export type AnnouncementOrderByRelationAggregateInput = {
@@ -45735,11 +45735,11 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type ViolationOrderByRelationAggregateInput = {
+  export type TeacherAttendanceOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type TeacherAttendanceOrderByRelationAggregateInput = {
+  export type ViolationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -47479,6 +47479,20 @@ export namespace Prisma {
     connect?: TahfidzRecordWhereUniqueInput | TahfidzRecordWhereUniqueInput[]
   }
 
+  export type TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput = {
+    create?: XOR<TeacherAttendanceCreateWithoutCreatedByUserInput, TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput> | TeacherAttendanceCreateWithoutCreatedByUserInput[] | TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput[]
+    connectOrCreate?: TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput | TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput[]
+    createMany?: TeacherAttendanceCreateManyCreatedByUserInputEnvelope
+    connect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+  }
+
+  export type TeacherAttendanceCreateNestedManyWithoutTeacherInput = {
+    create?: XOR<TeacherAttendanceCreateWithoutTeacherInput, TeacherAttendanceUncheckedCreateWithoutTeacherInput> | TeacherAttendanceCreateWithoutTeacherInput[] | TeacherAttendanceUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: TeacherAttendanceCreateOrConnectWithoutTeacherInput | TeacherAttendanceCreateOrConnectWithoutTeacherInput[]
+    createMany?: TeacherAttendanceCreateManyTeacherInputEnvelope
+    connect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+  }
+
   export type AcademicYearCreateNestedOneWithoutStudentsInput = {
     create?: XOR<AcademicYearCreateWithoutStudentsInput, AcademicYearUncheckedCreateWithoutStudentsInput>
     connectOrCreate?: AcademicYearCreateOrConnectWithoutStudentsInput
@@ -47514,20 +47528,6 @@ export namespace Prisma {
     connectOrCreate?: ViolationCreateOrConnectWithoutStudentInput | ViolationCreateOrConnectWithoutStudentInput[]
     createMany?: ViolationCreateManyStudentInputEnvelope
     connect?: ViolationWhereUniqueInput | ViolationWhereUniqueInput[]
-  }
-
-  export type TeacherAttendanceCreateNestedManyWithoutTeacherInput = {
-    create?: XOR<TeacherAttendanceCreateWithoutTeacherInput, TeacherAttendanceUncheckedCreateWithoutTeacherInput> | TeacherAttendanceCreateWithoutTeacherInput[] | TeacherAttendanceUncheckedCreateWithoutTeacherInput[]
-    connectOrCreate?: TeacherAttendanceCreateOrConnectWithoutTeacherInput | TeacherAttendanceCreateOrConnectWithoutTeacherInput[]
-    createMany?: TeacherAttendanceCreateManyTeacherInputEnvelope
-    connect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
-  }
-
-  export type TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<TeacherAttendanceCreateWithoutCreatedByUserInput, TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput> | TeacherAttendanceCreateWithoutCreatedByUserInput[] | TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput | TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: TeacherAttendanceCreateManyCreatedByUserInputEnvelope
-    connect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
   }
 
   export type AnnouncementUncheckedCreateNestedManyWithoutUserInput = {
@@ -47607,11 +47607,11 @@ export namespace Prisma {
     connect?: TahfidzRecordWhereUniqueInput | TahfidzRecordWhereUniqueInput[]
   }
 
-  export type ViolationUncheckedCreateNestedManyWithoutStudentInput = {
-    create?: XOR<ViolationCreateWithoutStudentInput, ViolationUncheckedCreateWithoutStudentInput> | ViolationCreateWithoutStudentInput[] | ViolationUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: ViolationCreateOrConnectWithoutStudentInput | ViolationCreateOrConnectWithoutStudentInput[]
-    createMany?: ViolationCreateManyStudentInputEnvelope
-    connect?: ViolationWhereUniqueInput | ViolationWhereUniqueInput[]
+  export type TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput = {
+    create?: XOR<TeacherAttendanceCreateWithoutCreatedByUserInput, TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput> | TeacherAttendanceCreateWithoutCreatedByUserInput[] | TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput[]
+    connectOrCreate?: TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput | TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput[]
+    createMany?: TeacherAttendanceCreateManyCreatedByUserInputEnvelope
+    connect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
   }
 
   export type TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput = {
@@ -47621,11 +47621,11 @@ export namespace Prisma {
     connect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
   }
 
-  export type TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput = {
-    create?: XOR<TeacherAttendanceCreateWithoutCreatedByUserInput, TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput> | TeacherAttendanceCreateWithoutCreatedByUserInput[] | TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput | TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput[]
-    createMany?: TeacherAttendanceCreateManyCreatedByUserInputEnvelope
-    connect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+  export type ViolationUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ViolationCreateWithoutStudentInput, ViolationUncheckedCreateWithoutStudentInput> | ViolationCreateWithoutStudentInput[] | ViolationUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ViolationCreateOrConnectWithoutStudentInput | ViolationCreateOrConnectWithoutStudentInput[]
+    createMany?: ViolationCreateManyStudentInputEnvelope
+    connect?: ViolationWhereUniqueInput | ViolationWhereUniqueInput[]
   }
 
   export type UserDataUpdatestudentIdsInput = {
@@ -47787,6 +47787,34 @@ export namespace Prisma {
     deleteMany?: TahfidzRecordScalarWhereInput | TahfidzRecordScalarWhereInput[]
   }
 
+  export type TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput = {
+    create?: XOR<TeacherAttendanceCreateWithoutCreatedByUserInput, TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput> | TeacherAttendanceCreateWithoutCreatedByUserInput[] | TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput[]
+    connectOrCreate?: TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput | TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput[]
+    upsert?: TeacherAttendanceUpsertWithWhereUniqueWithoutCreatedByUserInput | TeacherAttendanceUpsertWithWhereUniqueWithoutCreatedByUserInput[]
+    createMany?: TeacherAttendanceCreateManyCreatedByUserInputEnvelope
+    set?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+    disconnect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+    delete?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+    connect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+    update?: TeacherAttendanceUpdateWithWhereUniqueWithoutCreatedByUserInput | TeacherAttendanceUpdateWithWhereUniqueWithoutCreatedByUserInput[]
+    updateMany?: TeacherAttendanceUpdateManyWithWhereWithoutCreatedByUserInput | TeacherAttendanceUpdateManyWithWhereWithoutCreatedByUserInput[]
+    deleteMany?: TeacherAttendanceScalarWhereInput | TeacherAttendanceScalarWhereInput[]
+  }
+
+  export type TeacherAttendanceUpdateManyWithoutTeacherNestedInput = {
+    create?: XOR<TeacherAttendanceCreateWithoutTeacherInput, TeacherAttendanceUncheckedCreateWithoutTeacherInput> | TeacherAttendanceCreateWithoutTeacherInput[] | TeacherAttendanceUncheckedCreateWithoutTeacherInput[]
+    connectOrCreate?: TeacherAttendanceCreateOrConnectWithoutTeacherInput | TeacherAttendanceCreateOrConnectWithoutTeacherInput[]
+    upsert?: TeacherAttendanceUpsertWithWhereUniqueWithoutTeacherInput | TeacherAttendanceUpsertWithWhereUniqueWithoutTeacherInput[]
+    createMany?: TeacherAttendanceCreateManyTeacherInputEnvelope
+    set?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+    disconnect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+    delete?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+    connect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+    update?: TeacherAttendanceUpdateWithWhereUniqueWithoutTeacherInput | TeacherAttendanceUpdateWithWhereUniqueWithoutTeacherInput[]
+    updateMany?: TeacherAttendanceUpdateManyWithWhereWithoutTeacherInput | TeacherAttendanceUpdateManyWithWhereWithoutTeacherInput[]
+    deleteMany?: TeacherAttendanceScalarWhereInput | TeacherAttendanceScalarWhereInput[]
+  }
+
   export type AcademicYearUpdateOneWithoutStudentsNestedInput = {
     create?: XOR<AcademicYearCreateWithoutStudentsInput, AcademicYearUncheckedCreateWithoutStudentsInput>
     connectOrCreate?: AcademicYearCreateOrConnectWithoutStudentsInput
@@ -47849,34 +47877,6 @@ export namespace Prisma {
     update?: ViolationUpdateWithWhereUniqueWithoutStudentInput | ViolationUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: ViolationUpdateManyWithWhereWithoutStudentInput | ViolationUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: ViolationScalarWhereInput | ViolationScalarWhereInput[]
-  }
-
-  export type TeacherAttendanceUpdateManyWithoutTeacherNestedInput = {
-    create?: XOR<TeacherAttendanceCreateWithoutTeacherInput, TeacherAttendanceUncheckedCreateWithoutTeacherInput> | TeacherAttendanceCreateWithoutTeacherInput[] | TeacherAttendanceUncheckedCreateWithoutTeacherInput[]
-    connectOrCreate?: TeacherAttendanceCreateOrConnectWithoutTeacherInput | TeacherAttendanceCreateOrConnectWithoutTeacherInput[]
-    upsert?: TeacherAttendanceUpsertWithWhereUniqueWithoutTeacherInput | TeacherAttendanceUpsertWithWhereUniqueWithoutTeacherInput[]
-    createMany?: TeacherAttendanceCreateManyTeacherInputEnvelope
-    set?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
-    disconnect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
-    delete?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
-    connect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
-    update?: TeacherAttendanceUpdateWithWhereUniqueWithoutTeacherInput | TeacherAttendanceUpdateWithWhereUniqueWithoutTeacherInput[]
-    updateMany?: TeacherAttendanceUpdateManyWithWhereWithoutTeacherInput | TeacherAttendanceUpdateManyWithWhereWithoutTeacherInput[]
-    deleteMany?: TeacherAttendanceScalarWhereInput | TeacherAttendanceScalarWhereInput[]
-  }
-
-  export type TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<TeacherAttendanceCreateWithoutCreatedByUserInput, TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput> | TeacherAttendanceCreateWithoutCreatedByUserInput[] | TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput | TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: TeacherAttendanceUpsertWithWhereUniqueWithoutCreatedByUserInput | TeacherAttendanceUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: TeacherAttendanceCreateManyCreatedByUserInputEnvelope
-    set?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
-    disconnect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
-    delete?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
-    connect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
-    update?: TeacherAttendanceUpdateWithWhereUniqueWithoutCreatedByUserInput | TeacherAttendanceUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: TeacherAttendanceUpdateManyWithWhereWithoutCreatedByUserInput | TeacherAttendanceUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: TeacherAttendanceScalarWhereInput | TeacherAttendanceScalarWhereInput[]
   }
 
   export type AnnouncementUncheckedUpdateManyWithoutUserNestedInput = {
@@ -48033,18 +48033,18 @@ export namespace Prisma {
     deleteMany?: TahfidzRecordScalarWhereInput | TahfidzRecordScalarWhereInput[]
   }
 
-  export type ViolationUncheckedUpdateManyWithoutStudentNestedInput = {
-    create?: XOR<ViolationCreateWithoutStudentInput, ViolationUncheckedCreateWithoutStudentInput> | ViolationCreateWithoutStudentInput[] | ViolationUncheckedCreateWithoutStudentInput[]
-    connectOrCreate?: ViolationCreateOrConnectWithoutStudentInput | ViolationCreateOrConnectWithoutStudentInput[]
-    upsert?: ViolationUpsertWithWhereUniqueWithoutStudentInput | ViolationUpsertWithWhereUniqueWithoutStudentInput[]
-    createMany?: ViolationCreateManyStudentInputEnvelope
-    set?: ViolationWhereUniqueInput | ViolationWhereUniqueInput[]
-    disconnect?: ViolationWhereUniqueInput | ViolationWhereUniqueInput[]
-    delete?: ViolationWhereUniqueInput | ViolationWhereUniqueInput[]
-    connect?: ViolationWhereUniqueInput | ViolationWhereUniqueInput[]
-    update?: ViolationUpdateWithWhereUniqueWithoutStudentInput | ViolationUpdateWithWhereUniqueWithoutStudentInput[]
-    updateMany?: ViolationUpdateManyWithWhereWithoutStudentInput | ViolationUpdateManyWithWhereWithoutStudentInput[]
-    deleteMany?: ViolationScalarWhereInput | ViolationScalarWhereInput[]
+  export type TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput = {
+    create?: XOR<TeacherAttendanceCreateWithoutCreatedByUserInput, TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput> | TeacherAttendanceCreateWithoutCreatedByUserInput[] | TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput[]
+    connectOrCreate?: TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput | TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput[]
+    upsert?: TeacherAttendanceUpsertWithWhereUniqueWithoutCreatedByUserInput | TeacherAttendanceUpsertWithWhereUniqueWithoutCreatedByUserInput[]
+    createMany?: TeacherAttendanceCreateManyCreatedByUserInputEnvelope
+    set?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+    disconnect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+    delete?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+    connect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
+    update?: TeacherAttendanceUpdateWithWhereUniqueWithoutCreatedByUserInput | TeacherAttendanceUpdateWithWhereUniqueWithoutCreatedByUserInput[]
+    updateMany?: TeacherAttendanceUpdateManyWithWhereWithoutCreatedByUserInput | TeacherAttendanceUpdateManyWithWhereWithoutCreatedByUserInput[]
+    deleteMany?: TeacherAttendanceScalarWhereInput | TeacherAttendanceScalarWhereInput[]
   }
 
   export type TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput = {
@@ -48061,18 +48061,18 @@ export namespace Prisma {
     deleteMany?: TeacherAttendanceScalarWhereInput | TeacherAttendanceScalarWhereInput[]
   }
 
-  export type TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput = {
-    create?: XOR<TeacherAttendanceCreateWithoutCreatedByUserInput, TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput> | TeacherAttendanceCreateWithoutCreatedByUserInput[] | TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput[]
-    connectOrCreate?: TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput | TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput[]
-    upsert?: TeacherAttendanceUpsertWithWhereUniqueWithoutCreatedByUserInput | TeacherAttendanceUpsertWithWhereUniqueWithoutCreatedByUserInput[]
-    createMany?: TeacherAttendanceCreateManyCreatedByUserInputEnvelope
-    set?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
-    disconnect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
-    delete?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
-    connect?: TeacherAttendanceWhereUniqueInput | TeacherAttendanceWhereUniqueInput[]
-    update?: TeacherAttendanceUpdateWithWhereUniqueWithoutCreatedByUserInput | TeacherAttendanceUpdateWithWhereUniqueWithoutCreatedByUserInput[]
-    updateMany?: TeacherAttendanceUpdateManyWithWhereWithoutCreatedByUserInput | TeacherAttendanceUpdateManyWithWhereWithoutCreatedByUserInput[]
-    deleteMany?: TeacherAttendanceScalarWhereInput | TeacherAttendanceScalarWhereInput[]
+  export type ViolationUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ViolationCreateWithoutStudentInput, ViolationUncheckedCreateWithoutStudentInput> | ViolationCreateWithoutStudentInput[] | ViolationUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ViolationCreateOrConnectWithoutStudentInput | ViolationCreateOrConnectWithoutStudentInput[]
+    upsert?: ViolationUpsertWithWhereUniqueWithoutStudentInput | ViolationUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ViolationCreateManyStudentInputEnvelope
+    set?: ViolationWhereUniqueInput | ViolationWhereUniqueInput[]
+    disconnect?: ViolationWhereUniqueInput | ViolationWhereUniqueInput[]
+    delete?: ViolationWhereUniqueInput | ViolationWhereUniqueInput[]
+    connect?: ViolationWhereUniqueInput | ViolationWhereUniqueInput[]
+    update?: ViolationUpdateWithWhereUniqueWithoutStudentInput | ViolationUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ViolationUpdateManyWithWhereWithoutStudentInput | ViolationUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ViolationScalarWhereInput | ViolationScalarWhereInput[]
   }
 
   export type RoleCreatepermissionsInput = {
@@ -50036,24 +50036,16 @@ export namespace Prisma {
     update?: XOR<XOR<UserDataUpdateToOneWithWhereWithoutTahfidzRecordsInput, UserDataUpdateWithoutTahfidzRecordsInput>, UserDataUncheckedUpdateWithoutTahfidzRecordsInput>
   }
 
-  export type UserDataCreateNestedOneWithoutTeacherAttendancesInput = {
-    create?: XOR<UserDataCreateWithoutTeacherAttendancesInput, UserDataUncheckedCreateWithoutTeacherAttendancesInput>
-    connectOrCreate?: UserDataCreateOrConnectWithoutTeacherAttendancesInput
-    connect?: UserDataWhereUniqueInput
-  }
-
   export type UserDataCreateNestedOneWithoutCreatedAttendancesInput = {
     create?: XOR<UserDataCreateWithoutCreatedAttendancesInput, UserDataUncheckedCreateWithoutCreatedAttendancesInput>
     connectOrCreate?: UserDataCreateOrConnectWithoutCreatedAttendancesInput
     connect?: UserDataWhereUniqueInput
   }
 
-  export type UserDataUpdateOneRequiredWithoutTeacherAttendancesNestedInput = {
+  export type UserDataCreateNestedOneWithoutTeacherAttendancesInput = {
     create?: XOR<UserDataCreateWithoutTeacherAttendancesInput, UserDataUncheckedCreateWithoutTeacherAttendancesInput>
     connectOrCreate?: UserDataCreateOrConnectWithoutTeacherAttendancesInput
-    upsert?: UserDataUpsertWithoutTeacherAttendancesInput
     connect?: UserDataWhereUniqueInput
-    update?: XOR<XOR<UserDataUpdateToOneWithWhereWithoutTeacherAttendancesInput, UserDataUpdateWithoutTeacherAttendancesInput>, UserDataUncheckedUpdateWithoutTeacherAttendancesInput>
   }
 
   export type UserDataUpdateOneRequiredWithoutCreatedAttendancesNestedInput = {
@@ -50062,6 +50054,14 @@ export namespace Prisma {
     upsert?: UserDataUpsertWithoutCreatedAttendancesInput
     connect?: UserDataWhereUniqueInput
     update?: XOR<XOR<UserDataUpdateToOneWithWhereWithoutCreatedAttendancesInput, UserDataUpdateWithoutCreatedAttendancesInput>, UserDataUncheckedUpdateWithoutCreatedAttendancesInput>
+  }
+
+  export type UserDataUpdateOneRequiredWithoutTeacherAttendancesNestedInput = {
+    create?: XOR<UserDataCreateWithoutTeacherAttendancesInput, UserDataUncheckedCreateWithoutTeacherAttendancesInput>
+    connectOrCreate?: UserDataCreateOrConnectWithoutTeacherAttendancesInput
+    upsert?: UserDataUpsertWithoutTeacherAttendancesInput
+    connect?: UserDataWhereUniqueInput
+    update?: XOR<XOR<UserDataUpdateToOneWithWhereWithoutTeacherAttendancesInput, UserDataUpdateWithoutTeacherAttendancesInput>, UserDataUncheckedUpdateWithoutTeacherAttendancesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -50460,13 +50460,13 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutUserInput = {
@@ -50506,9 +50506,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutUserInput = {
@@ -50626,13 +50626,13 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutUserInput = {
@@ -50672,9 +50672,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -51279,6 +51279,74 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TeacherAttendanceCreateWithoutCreatedByUserInput = {
+    id?: string
+    date: Date | string
+    status?: string
+    checkinTime?: Date | string | null
+    checkoutTime?: Date | string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    teacher: UserDataCreateNestedOneWithoutTeacherAttendancesInput
+  }
+
+  export type TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput = {
+    id?: string
+    teacherId: string
+    date: Date | string
+    status?: string
+    checkinTime?: Date | string | null
+    checkoutTime?: Date | string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput = {
+    where: TeacherAttendanceWhereUniqueInput
+    create: XOR<TeacherAttendanceCreateWithoutCreatedByUserInput, TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput>
+  }
+
+  export type TeacherAttendanceCreateManyCreatedByUserInputEnvelope = {
+    data: TeacherAttendanceCreateManyCreatedByUserInput | TeacherAttendanceCreateManyCreatedByUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TeacherAttendanceCreateWithoutTeacherInput = {
+    id?: string
+    date: Date | string
+    status?: string
+    checkinTime?: Date | string | null
+    checkoutTime?: Date | string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    createdByUser: UserDataCreateNestedOneWithoutCreatedAttendancesInput
+  }
+
+  export type TeacherAttendanceUncheckedCreateWithoutTeacherInput = {
+    id?: string
+    date: Date | string
+    status?: string
+    checkinTime?: Date | string | null
+    checkoutTime?: Date | string | null
+    notes?: string | null
+    createdBy: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TeacherAttendanceCreateOrConnectWithoutTeacherInput = {
+    where: TeacherAttendanceWhereUniqueInput
+    create: XOR<TeacherAttendanceCreateWithoutTeacherInput, TeacherAttendanceUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type TeacherAttendanceCreateManyTeacherInputEnvelope = {
+    data: TeacherAttendanceCreateManyTeacherInput | TeacherAttendanceCreateManyTeacherInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AcademicYearCreateWithoutStudentsInput = {
     id?: string
     year: string
@@ -51469,74 +51537,6 @@ export namespace Prisma {
 
   export type ViolationCreateManyStudentInputEnvelope = {
     data: ViolationCreateManyStudentInput | ViolationCreateManyStudentInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type TeacherAttendanceCreateWithoutTeacherInput = {
-    id?: string
-    date: Date | string
-    status?: string
-    checkinTime?: Date | string | null
-    checkoutTime?: Date | string | null
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    createdByUser: UserDataCreateNestedOneWithoutCreatedAttendancesInput
-  }
-
-  export type TeacherAttendanceUncheckedCreateWithoutTeacherInput = {
-    id?: string
-    date: Date | string
-    status?: string
-    checkinTime?: Date | string | null
-    checkoutTime?: Date | string | null
-    notes?: string | null
-    createdBy: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type TeacherAttendanceCreateOrConnectWithoutTeacherInput = {
-    where: TeacherAttendanceWhereUniqueInput
-    create: XOR<TeacherAttendanceCreateWithoutTeacherInput, TeacherAttendanceUncheckedCreateWithoutTeacherInput>
-  }
-
-  export type TeacherAttendanceCreateManyTeacherInputEnvelope = {
-    data: TeacherAttendanceCreateManyTeacherInput | TeacherAttendanceCreateManyTeacherInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type TeacherAttendanceCreateWithoutCreatedByUserInput = {
-    id?: string
-    date: Date | string
-    status?: string
-    checkinTime?: Date | string | null
-    checkoutTime?: Date | string | null
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    teacher: UserDataCreateNestedOneWithoutTeacherAttendancesInput
-  }
-
-  export type TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput = {
-    id?: string
-    teacherId: string
-    date: Date | string
-    status?: string
-    checkinTime?: Date | string | null
-    checkoutTime?: Date | string | null
-    notes?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type TeacherAttendanceCreateOrConnectWithoutCreatedByUserInput = {
-    where: TeacherAttendanceWhereUniqueInput
-    create: XOR<TeacherAttendanceCreateWithoutCreatedByUserInput, TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type TeacherAttendanceCreateManyCreatedByUserInputEnvelope = {
-    data: TeacherAttendanceCreateManyCreatedByUserInput | TeacherAttendanceCreateManyCreatedByUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -51922,6 +51922,54 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"TahfidzRecord"> | Date | string
   }
 
+  export type TeacherAttendanceUpsertWithWhereUniqueWithoutCreatedByUserInput = {
+    where: TeacherAttendanceWhereUniqueInput
+    update: XOR<TeacherAttendanceUpdateWithoutCreatedByUserInput, TeacherAttendanceUncheckedUpdateWithoutCreatedByUserInput>
+    create: XOR<TeacherAttendanceCreateWithoutCreatedByUserInput, TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput>
+  }
+
+  export type TeacherAttendanceUpdateWithWhereUniqueWithoutCreatedByUserInput = {
+    where: TeacherAttendanceWhereUniqueInput
+    data: XOR<TeacherAttendanceUpdateWithoutCreatedByUserInput, TeacherAttendanceUncheckedUpdateWithoutCreatedByUserInput>
+  }
+
+  export type TeacherAttendanceUpdateManyWithWhereWithoutCreatedByUserInput = {
+    where: TeacherAttendanceScalarWhereInput
+    data: XOR<TeacherAttendanceUpdateManyMutationInput, TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserInput>
+  }
+
+  export type TeacherAttendanceScalarWhereInput = {
+    AND?: TeacherAttendanceScalarWhereInput | TeacherAttendanceScalarWhereInput[]
+    OR?: TeacherAttendanceScalarWhereInput[]
+    NOT?: TeacherAttendanceScalarWhereInput | TeacherAttendanceScalarWhereInput[]
+    id?: StringFilter<"TeacherAttendance"> | string
+    teacherId?: StringFilter<"TeacherAttendance"> | string
+    date?: DateTimeFilter<"TeacherAttendance"> | Date | string
+    status?: StringFilter<"TeacherAttendance"> | string
+    checkinTime?: DateTimeNullableFilter<"TeacherAttendance"> | Date | string | null
+    checkoutTime?: DateTimeNullableFilter<"TeacherAttendance"> | Date | string | null
+    notes?: StringNullableFilter<"TeacherAttendance"> | string | null
+    createdBy?: StringFilter<"TeacherAttendance"> | string
+    createdAt?: DateTimeFilter<"TeacherAttendance"> | Date | string
+    updatedAt?: DateTimeFilter<"TeacherAttendance"> | Date | string
+  }
+
+  export type TeacherAttendanceUpsertWithWhereUniqueWithoutTeacherInput = {
+    where: TeacherAttendanceWhereUniqueInput
+    update: XOR<TeacherAttendanceUpdateWithoutTeacherInput, TeacherAttendanceUncheckedUpdateWithoutTeacherInput>
+    create: XOR<TeacherAttendanceCreateWithoutTeacherInput, TeacherAttendanceUncheckedCreateWithoutTeacherInput>
+  }
+
+  export type TeacherAttendanceUpdateWithWhereUniqueWithoutTeacherInput = {
+    where: TeacherAttendanceWhereUniqueInput
+    data: XOR<TeacherAttendanceUpdateWithoutTeacherInput, TeacherAttendanceUncheckedUpdateWithoutTeacherInput>
+  }
+
+  export type TeacherAttendanceUpdateManyWithWhereWithoutTeacherInput = {
+    where: TeacherAttendanceScalarWhereInput
+    data: XOR<TeacherAttendanceUpdateManyMutationInput, TeacherAttendanceUncheckedUpdateManyWithoutTeacherInput>
+  }
+
   export type AcademicYearUpsertWithoutStudentsInput = {
     update: XOR<AcademicYearUpdateWithoutStudentsInput, AcademicYearUncheckedUpdateWithoutStudentsInput>
     create: XOR<AcademicYearCreateWithoutStudentsInput, AcademicYearUncheckedCreateWithoutStudentsInput>
@@ -52142,54 +52190,6 @@ export namespace Prisma {
     resolutionNotes?: StringNullableFilter<"Violation"> | string | null
   }
 
-  export type TeacherAttendanceUpsertWithWhereUniqueWithoutTeacherInput = {
-    where: TeacherAttendanceWhereUniqueInput
-    update: XOR<TeacherAttendanceUpdateWithoutTeacherInput, TeacherAttendanceUncheckedUpdateWithoutTeacherInput>
-    create: XOR<TeacherAttendanceCreateWithoutTeacherInput, TeacherAttendanceUncheckedCreateWithoutTeacherInput>
-  }
-
-  export type TeacherAttendanceUpdateWithWhereUniqueWithoutTeacherInput = {
-    where: TeacherAttendanceWhereUniqueInput
-    data: XOR<TeacherAttendanceUpdateWithoutTeacherInput, TeacherAttendanceUncheckedUpdateWithoutTeacherInput>
-  }
-
-  export type TeacherAttendanceUpdateManyWithWhereWithoutTeacherInput = {
-    where: TeacherAttendanceScalarWhereInput
-    data: XOR<TeacherAttendanceUpdateManyMutationInput, TeacherAttendanceUncheckedUpdateManyWithoutTeacherInput>
-  }
-
-  export type TeacherAttendanceScalarWhereInput = {
-    AND?: TeacherAttendanceScalarWhereInput | TeacherAttendanceScalarWhereInput[]
-    OR?: TeacherAttendanceScalarWhereInput[]
-    NOT?: TeacherAttendanceScalarWhereInput | TeacherAttendanceScalarWhereInput[]
-    id?: StringFilter<"TeacherAttendance"> | string
-    teacherId?: StringFilter<"TeacherAttendance"> | string
-    date?: DateTimeFilter<"TeacherAttendance"> | Date | string
-    status?: StringFilter<"TeacherAttendance"> | string
-    checkinTime?: DateTimeNullableFilter<"TeacherAttendance"> | Date | string | null
-    checkoutTime?: DateTimeNullableFilter<"TeacherAttendance"> | Date | string | null
-    notes?: StringNullableFilter<"TeacherAttendance"> | string | null
-    createdBy?: StringFilter<"TeacherAttendance"> | string
-    createdAt?: DateTimeFilter<"TeacherAttendance"> | Date | string
-    updatedAt?: DateTimeFilter<"TeacherAttendance"> | Date | string
-  }
-
-  export type TeacherAttendanceUpsertWithWhereUniqueWithoutCreatedByUserInput = {
-    where: TeacherAttendanceWhereUniqueInput
-    update: XOR<TeacherAttendanceUpdateWithoutCreatedByUserInput, TeacherAttendanceUncheckedUpdateWithoutCreatedByUserInput>
-    create: XOR<TeacherAttendanceCreateWithoutCreatedByUserInput, TeacherAttendanceUncheckedCreateWithoutCreatedByUserInput>
-  }
-
-  export type TeacherAttendanceUpdateWithWhereUniqueWithoutCreatedByUserInput = {
-    where: TeacherAttendanceWhereUniqueInput
-    data: XOR<TeacherAttendanceUpdateWithoutCreatedByUserInput, TeacherAttendanceUncheckedUpdateWithoutCreatedByUserInput>
-  }
-
-  export type TeacherAttendanceUpdateManyWithWhereWithoutCreatedByUserInput = {
-    where: TeacherAttendanceScalarWhereInput
-    data: XOR<TeacherAttendanceUpdateManyMutationInput, TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserInput>
-  }
-
   export type UserDataCreateWithoutRoleInput = {
     id?: string
     address?: string | null
@@ -52223,13 +52223,13 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutRoleInput = {
@@ -52269,9 +52269,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutRoleInput = {
@@ -52597,13 +52597,13 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutAcademicYearInput = {
@@ -52643,9 +52643,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutAcademicYearInput = {
@@ -52995,13 +52995,13 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutMajorInput = {
@@ -53041,9 +53041,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutMajorInput = {
@@ -53398,13 +53398,13 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutClassInput = {
@@ -53444,9 +53444,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutClassInput = {
@@ -54288,14 +54288,14 @@ export namespace Prisma {
     payments?: PaymentCreateNestedManyWithoutStudentInput
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutSchedulesInput = {
@@ -54335,9 +54335,9 @@ export namespace Prisma {
     payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutSchedulesInput = {
@@ -54561,14 +54561,14 @@ export namespace Prisma {
     payments?: PaymentUpdateManyWithoutStudentNestedInput
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutSchedulesInput = {
@@ -54608,9 +54608,9 @@ export namespace Prisma {
     payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type ScheduleCreateWithoutAttendancesInput = {
@@ -54680,14 +54680,14 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutAttendancesInput = {
@@ -54727,9 +54727,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutAttendancesInput = {
@@ -54821,14 +54821,14 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutAttendancesInput = {
@@ -54868,9 +54868,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type AcademicYearCreateWithoutViolationTypesInput = {
@@ -55077,13 +55077,13 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutViolationsInput = {
@@ -55124,8 +55124,8 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
   }
 
   export type UserDataCreateOrConnectWithoutViolationsInput = {
@@ -55241,13 +55241,13 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutViolationsInput = {
@@ -55288,8 +55288,8 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
   }
 
   export type ViolationTypeUpsertWithoutViolationsInput = {
@@ -55426,14 +55426,14 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutPaymentsInput = {
@@ -55473,9 +55473,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutPaymentsInput = {
@@ -55555,14 +55555,14 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutPaymentsInput = {
@@ -55602,9 +55602,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type AcademicYearCreateWithoutCalendarEventsInput = {
@@ -56271,14 +56271,14 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutGradesInput = {
@@ -56318,9 +56318,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutGradesInput = {
@@ -56484,14 +56484,14 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutGradesInput = {
@@ -56531,9 +56531,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type SubjectUpsertWithoutGradesInput = {
@@ -56681,14 +56681,14 @@ export namespace Prisma {
     payments?: PaymentCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutReportCardsInput = {
@@ -56728,9 +56728,9 @@ export namespace Prisma {
     payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutReportCardsInput = {
@@ -56900,14 +56900,14 @@ export namespace Prisma {
     payments?: PaymentUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutReportCardsInput = {
@@ -56947,9 +56947,9 @@ export namespace Prisma {
     payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type SubjectUpsertWithoutReportCardsInput = {
@@ -57285,14 +57285,14 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutTeacherAssignmentsInput = {
@@ -57332,9 +57332,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutTeacherAssignmentsInput = {
@@ -57561,14 +57561,14 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutTeacherAssignmentsInput = {
@@ -57608,9 +57608,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type AssignmentCreateWithoutSubmissionsInput = {
@@ -57694,14 +57694,14 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutStudentSubmissionsInput = {
@@ -57741,9 +57741,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutStudentSubmissionsInput = {
@@ -57849,14 +57849,14 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutStudentSubmissionsInput = {
@@ -57896,9 +57896,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserDataCreateWithoutNotificationsInput = {
@@ -57933,14 +57933,14 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutNotificationsInput = {
@@ -57980,9 +57980,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutNotificationsInput = {
@@ -58033,14 +58033,14 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutNotificationsInput = {
@@ -58080,9 +58080,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserDataCreateWithoutDashboardContentsInput = {
@@ -58117,14 +58117,14 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutDashboardContentsInput = {
@@ -58164,9 +58164,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutDashboardContentsInput = {
@@ -58217,14 +58217,14 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutDashboardContentsInput = {
@@ -58264,9 +58264,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserDataCreateWithoutAnnouncementsInput = {
@@ -58301,14 +58301,14 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutAnnouncementsInput = {
@@ -58348,9 +58348,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutAnnouncementsInput = {
@@ -58401,14 +58401,14 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutAnnouncementsInput = {
@@ -58448,9 +58448,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserDataCreateWithoutTahfidzRecordsInput = {
@@ -58485,14 +58485,14 @@ export namespace Prisma {
     payments?: PaymentCreateNestedManyWithoutStudentInput
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
   }
 
   export type UserDataUncheckedCreateWithoutTahfidzRecordsInput = {
@@ -58532,9 +58532,9 @@ export namespace Prisma {
     payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
     createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutTahfidzRecordsInput = {
@@ -58585,14 +58585,14 @@ export namespace Prisma {
     payments?: PaymentUpdateManyWithoutStudentNestedInput
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutTahfidzRecordsInput = {
@@ -58632,98 +58632,9 @@ export namespace Prisma {
     payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserDataCreateWithoutTeacherAttendancesInput = {
-    id?: string
-    address?: string | null
-    avatarUrl?: string | null
-    birthDate?: Date | string | null
-    birthPlace?: string | null
-    employeeId?: string | null
-    endDate?: Date | string | null
-    enrollmentDate?: Date | string | null
-    gender?: string | null
-    graduationDate?: Date | string | null
-    nik?: string | null
-    nisn?: string | null
-    parentPhone?: string | null
-    position?: string | null
-    relation?: string | null
-    startDate?: Date | string | null
-    status?: string | null
-    studentIds?: UserDataCreatestudentIdsInput | string[]
-    email?: string | null
-    name: string
-    isActive?: boolean
-    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
-    studentSubmissions?: AssignmentSubmissionCreateNestedManyWithoutStudentInput
-    teacherAssignments?: AssignmentCreateNestedManyWithoutTeacherInput
-    attendances?: AttendanceCreateNestedManyWithoutStudentInput
-    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
-    grades?: GradeCreateNestedManyWithoutStudentInput
-    notifications?: NotificationCreateNestedManyWithoutUserInput
-    payments?: PaymentCreateNestedManyWithoutStudentInput
-    reportCards?: ReportCardCreateNestedManyWithoutStudentInput
-    schedules?: ScheduleCreateNestedManyWithoutTeacherInput
-    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
-    academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
-    class?: ClassCreateNestedOneWithoutStudentsInput
-    major?: MajorCreateNestedOneWithoutStudentsInput
-    role?: RoleCreateNestedOneWithoutUserDataInput
-    user?: UserCreateNestedOneWithoutUserDataInput
-    violations?: ViolationCreateNestedManyWithoutStudentInput
-    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserDataUncheckedCreateWithoutTeacherAttendancesInput = {
-    id?: string
-    userId?: string | null
-    academicYearId?: string | null
-    address?: string | null
-    avatarUrl?: string | null
-    birthDate?: Date | string | null
-    birthPlace?: string | null
-    classId?: string | null
-    employeeId?: string | null
-    endDate?: Date | string | null
-    enrollmentDate?: Date | string | null
-    gender?: string | null
-    graduationDate?: Date | string | null
-    majorId?: string | null
-    nik?: string | null
-    nisn?: string | null
-    parentPhone?: string | null
-    position?: string | null
-    relation?: string | null
-    roleId?: string | null
-    startDate?: Date | string | null
-    status?: string | null
-    studentIds?: UserDataCreatestudentIdsInput | string[]
-    email?: string | null
-    name: string
-    isActive?: boolean
-    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
-    studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
-    teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
-    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
-    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
-    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
-    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
-    payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
-    reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
-    schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
-    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
-    createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
-  }
-
-  export type UserDataCreateOrConnectWithoutTeacherAttendancesInput = {
-    where: UserDataWhereUniqueInput
-    create: XOR<UserDataCreateWithoutTeacherAttendancesInput, UserDataUncheckedCreateWithoutTeacherAttendancesInput>
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserDataCreateWithoutCreatedAttendancesInput = {
@@ -58759,13 +58670,13 @@ export namespace Prisma {
     reportCards?: ReportCardCreateNestedManyWithoutStudentInput
     schedules?: ScheduleCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
-    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
   }
 
   export type UserDataUncheckedCreateWithoutCreatedAttendancesInput = {
@@ -58806,8 +58717,8 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
     schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
     tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
-    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
     teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type UserDataCreateOrConnectWithoutCreatedAttendancesInput = {
@@ -58815,99 +58726,93 @@ export namespace Prisma {
     create: XOR<UserDataCreateWithoutCreatedAttendancesInput, UserDataUncheckedCreateWithoutCreatedAttendancesInput>
   }
 
-  export type UserDataUpsertWithoutTeacherAttendancesInput = {
-    update: XOR<UserDataUpdateWithoutTeacherAttendancesInput, UserDataUncheckedUpdateWithoutTeacherAttendancesInput>
+  export type UserDataCreateWithoutTeacherAttendancesInput = {
+    id?: string
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
+    studentSubmissions?: AssignmentSubmissionCreateNestedManyWithoutStudentInput
+    teacherAssignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    payments?: PaymentCreateNestedManyWithoutStudentInput
+    reportCards?: ReportCardCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleCreateNestedManyWithoutTeacherInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    major?: MajorCreateNestedOneWithoutStudentsInput
+    role?: RoleCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
+    violations?: ViolationCreateNestedManyWithoutStudentInput
+  }
+
+  export type UserDataUncheckedCreateWithoutTeacherAttendancesInput = {
+    id?: string
+    userId?: string | null
+    academicYearId?: string | null
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    classId?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    majorId?: string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    roleId?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
+    studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type UserDataCreateOrConnectWithoutTeacherAttendancesInput = {
+    where: UserDataWhereUniqueInput
     create: XOR<UserDataCreateWithoutTeacherAttendancesInput, UserDataUncheckedCreateWithoutTeacherAttendancesInput>
-    where?: UserDataWhereInput
-  }
-
-  export type UserDataUpdateToOneWithWhereWithoutTeacherAttendancesInput = {
-    where?: UserDataWhereInput
-    data: XOR<UserDataUpdateWithoutTeacherAttendancesInput, UserDataUncheckedUpdateWithoutTeacherAttendancesInput>
-  }
-
-  export type UserDataUpdateWithoutTeacherAttendancesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    gender?: NullableStringFieldUpdateOperationsInput | string | null
-    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    nik?: NullableStringFieldUpdateOperationsInput | string | null
-    nisn?: NullableStringFieldUpdateOperationsInput | string | null
-    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    position?: NullableStringFieldUpdateOperationsInput | string | null
-    relation?: NullableStringFieldUpdateOperationsInput | string | null
-    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    studentIds?: UserDataUpdatestudentIdsInput | string[]
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: StringFieldUpdateOperationsInput | string
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
-    studentSubmissions?: AssignmentSubmissionUpdateManyWithoutStudentNestedInput
-    teacherAssignments?: AssignmentUpdateManyWithoutTeacherNestedInput
-    attendances?: AttendanceUpdateManyWithoutStudentNestedInput
-    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
-    grades?: GradeUpdateManyWithoutStudentNestedInput
-    notifications?: NotificationUpdateManyWithoutUserNestedInput
-    payments?: PaymentUpdateManyWithoutStudentNestedInput
-    reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
-    schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
-    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
-    academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
-    class?: ClassUpdateOneWithoutStudentsNestedInput
-    major?: MajorUpdateOneWithoutStudentsNestedInput
-    role?: RoleUpdateOneWithoutUserDataNestedInput
-    user?: UserUpdateOneWithoutUserDataNestedInput
-    violations?: ViolationUpdateManyWithoutStudentNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
-  }
-
-  export type UserDataUncheckedUpdateWithoutTeacherAttendancesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
-    classId?: NullableStringFieldUpdateOperationsInput | string | null
-    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
-    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    gender?: NullableStringFieldUpdateOperationsInput | string | null
-    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    majorId?: NullableStringFieldUpdateOperationsInput | string | null
-    nik?: NullableStringFieldUpdateOperationsInput | string | null
-    nisn?: NullableStringFieldUpdateOperationsInput | string | null
-    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
-    position?: NullableStringFieldUpdateOperationsInput | string | null
-    relation?: NullableStringFieldUpdateOperationsInput | string | null
-    roleId?: NullableStringFieldUpdateOperationsInput | string | null
-    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    studentIds?: UserDataUpdatestudentIdsInput | string[]
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    name?: StringFieldUpdateOperationsInput | string
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
-    studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
-    attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
-    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
-    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
-    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
-    payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
-    reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
-    schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
-    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUpsertWithoutCreatedAttendancesInput = {
@@ -58954,13 +58859,13 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutCreatedAttendancesInput = {
@@ -59001,8 +58906,103 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
     teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type UserDataUpsertWithoutTeacherAttendancesInput = {
+    update: XOR<UserDataUpdateWithoutTeacherAttendancesInput, UserDataUncheckedUpdateWithoutTeacherAttendancesInput>
+    create: XOR<UserDataCreateWithoutTeacherAttendancesInput, UserDataUncheckedCreateWithoutTeacherAttendancesInput>
+    where?: UserDataWhereInput
+  }
+
+  export type UserDataUpdateToOneWithWhereWithoutTeacherAttendancesInput = {
+    where?: UserDataWhereInput
+    data: XOR<UserDataUpdateWithoutTeacherAttendancesInput, UserDataUncheckedUpdateWithoutTeacherAttendancesInput>
+  }
+
+  export type UserDataUpdateWithoutTeacherAttendancesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
+    studentSubmissions?: AssignmentSubmissionUpdateManyWithoutStudentNestedInput
+    teacherAssignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    payments?: PaymentUpdateManyWithoutStudentNestedInput
+    reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
+    schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    major?: MajorUpdateOneWithoutStudentsNestedInput
+    role?: RoleUpdateOneWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
+    violations?: ViolationUpdateManyWithoutStudentNestedInput
+  }
+
+  export type UserDataUncheckedUpdateWithoutTeacherAttendancesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
+    studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
+    schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -59271,17 +59271,16 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type ViolationCreateManyStudentInput = {
+  export type TeacherAttendanceCreateManyCreatedByUserInput = {
     id?: string
-    violationTypeId: string
-    classId: string
-    description?: string | null
-    status?: string
-    reportedBy: string
-    createdAt?: Date | string
+    teacherId: string
     date: Date | string
-    resolutionDate?: Date | string | null
-    resolutionNotes?: string | null
+    status?: string
+    checkinTime?: Date | string | null
+    checkoutTime?: Date | string | null
+    notes?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type TeacherAttendanceCreateManyTeacherInput = {
@@ -59296,16 +59295,17 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type TeacherAttendanceCreateManyCreatedByUserInput = {
+  export type ViolationCreateManyStudentInput = {
     id?: string
-    teacherId: string
-    date: Date | string
+    violationTypeId: string
+    classId: string
+    description?: string | null
     status?: string
-    checkinTime?: Date | string | null
-    checkoutTime?: Date | string | null
-    notes?: string | null
+    reportedBy: string
     createdAt?: Date | string
-    updatedAt?: Date | string
+    date: Date | string
+    resolutionDate?: Date | string | null
+    resolutionNotes?: string | null
   }
 
   export type AnnouncementUpdateWithoutUserInput = {
@@ -59802,43 +59802,40 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ViolationUpdateWithoutStudentInput = {
+  export type TeacherAttendanceUpdateWithoutCreatedByUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
-    reportedBy?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    resolutionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    resolutionNotes?: NullableStringFieldUpdateOperationsInput | string | null
-    class?: ClassUpdateOneRequiredWithoutViolationsNestedInput
-    violationType?: ViolationTypeUpdateOneRequiredWithoutViolationsNestedInput
+    status?: StringFieldUpdateOperationsInput | string
+    checkinTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    checkoutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    teacher?: UserDataUpdateOneRequiredWithoutTeacherAttendancesNestedInput
   }
 
-  export type ViolationUncheckedUpdateWithoutStudentInput = {
+  export type TeacherAttendanceUncheckedUpdateWithoutCreatedByUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    violationTypeId?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
-    reportedBy?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    teacherId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    resolutionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    resolutionNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    checkinTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    checkoutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ViolationUncheckedUpdateManyWithoutStudentInput = {
+  export type TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    violationTypeId?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: StringFieldUpdateOperationsInput | string
-    reportedBy?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    teacherId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    resolutionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    resolutionNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    checkinTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    checkoutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TeacherAttendanceUpdateWithoutTeacherInput = {
@@ -59877,40 +59874,43 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type TeacherAttendanceUpdateWithoutCreatedByUserInput = {
+  export type ViolationUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
-    checkinTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    checkoutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    reportedBy?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    teacher?: UserDataUpdateOneRequiredWithoutTeacherAttendancesNestedInput
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolutionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionNotes?: NullableStringFieldUpdateOperationsInput | string | null
+    class?: ClassUpdateOneRequiredWithoutViolationsNestedInput
+    violationType?: ViolationTypeUpdateOneRequiredWithoutViolationsNestedInput
   }
 
-  export type TeacherAttendanceUncheckedUpdateWithoutCreatedByUserInput = {
+  export type ViolationUncheckedUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    teacherId?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    violationTypeId?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
-    checkinTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    checkoutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    reportedBy?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolutionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionNotes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserInput = {
+  export type ViolationUncheckedUpdateManyWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    teacherId?: StringFieldUpdateOperationsInput | string
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    violationTypeId?: StringFieldUpdateOperationsInput | string
+    classId?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
-    checkinTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    checkoutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    reportedBy?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    resolutionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    resolutionNotes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserDataCreateManyRoleInput = {
@@ -59974,13 +59974,13 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutRoleInput = {
@@ -60020,9 +60020,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserDataUncheckedUpdateManyWithoutRoleInput = {
@@ -60448,13 +60448,13 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutAcademicYearInput = {
@@ -60494,9 +60494,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserDataUncheckedUpdateManyWithoutAcademicYearInput = {
@@ -60708,13 +60708,13 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutMajorInput = {
@@ -60754,9 +60754,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserDataUncheckedUpdateManyWithoutMajorInput = {
@@ -61141,13 +61141,13 @@ export namespace Prisma {
     reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
-    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
   }
 
   export type UserDataUncheckedUpdateWithoutClassInput = {
@@ -61187,9 +61187,9 @@ export namespace Prisma {
     reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
     schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
-    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
-    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type UserDataUncheckedUpdateManyWithoutClassInput = {
