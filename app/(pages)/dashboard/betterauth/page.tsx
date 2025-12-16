@@ -81,7 +81,7 @@ export default function DataTableBetterAuth() {
   // Form states
   const [newPassword, setNewPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
-  const [selectedRole, setSelectedRole] = React.useState<"user" | "admin" | "">("");
+  const [selectedRole, setSelectedRole] = React.useState<"user" | "admin" | "teacher" | "student" | "parent" | "">("");
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   // Check if current user is admin
@@ -134,15 +134,22 @@ export default function DataTableBetterAuth() {
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await authClient.admin.setRole({
-        userId: userToChangeRole.id,
-        role: selectedRole,
+      const response = await fetch("/api/admin/set-role", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: userToChangeRole.id,
+          role: selectedRole,
+        }),
       });
 
-      if (error) {
-        console.error("Error:", error);
-        toast.error(error.message || "Failed to change role");
+      if (!response.ok) {
+        const errorData = await response.json();
+        toast.error(errorData.error || "Failed to change role");
       } else {
+        const data = await response.json();
         toast.success(`Role for ${userToChangeRole.name} has been updated to ${selectedRole}`);
         setIsChangeRoleOpen(false);
         setSelectedRole("");
@@ -271,7 +278,7 @@ export default function DataTableBetterAuth() {
                         currentRole: user.role || "user",
                       });
                       // map any non-admin role to "user" to match the API's allowed values
-                      setSelectedRole(user.role === "admin" ? "admin" : "user");
+                      setSelectedRole(user.role === "admin" ? "admin" : user.role === "teacher" ? "teacher" : "user");
                       setIsChangeRoleOpen(true);
                     }}
                   >
@@ -571,12 +578,15 @@ export default function DataTableBetterAuth() {
           <div className="space-y-4 py-4">
             <div className="space-y-2">
               <Label htmlFor="role-select">Select Role</Label>
-              <Select value={selectedRole} onValueChange={(value) => setSelectedRole(value as "user" | "admin" | "")} disabled={isSubmitting}>
+              <Select value={selectedRole} onValueChange={(value) => setSelectedRole(value as "user" | "admin" | "teacher" | "student" | "parent" | "")} disabled={isSubmitting}>
                 <SelectTrigger id="role-select">
                   <SelectValue placeholder="Select a role" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="user">User</SelectItem>
+                  <SelectItem value="teacher">Teacher</SelectItem>
+                  <SelectItem value="student">Student</SelectItem>
+                  <SelectItem value="parent">Parent</SelectItem>
                   <SelectItem value="admin">Admin</SelectItem>
                 </SelectContent>
               </Select>

@@ -41,6 +41,7 @@ const permissionLabels: Record<string, string> = {
   "/dashboard/upload/users": "Upload Users",
   "/dashboard/botwa": "Botwa Management",
   "/dashboard/attendance/teacher": "Absensi Kepala Sekolah",
+  "/dashboard/admin/attendance": "Absensi Admin Backup",
 };
 
 export default function Navbar() {

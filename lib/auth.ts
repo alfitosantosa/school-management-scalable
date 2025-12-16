@@ -28,6 +28,9 @@ export const auth = betterAuth({
       // Optional: configure admin settings
       defaultRole: "user",
       adminRole: "admin",
+      teacherRole: "teacher",
+      studentRole: "student",
+      parentRole: "parent",
     }),
   ],
 });

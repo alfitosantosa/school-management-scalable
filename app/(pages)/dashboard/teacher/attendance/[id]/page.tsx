@@ -322,7 +322,7 @@ _Pesan ini dikirim otomatis oleh sistem._`;
                   <div key={student.id} className="flex flex-wrap items-center justify-between p-3 border rounded-lg hover:bg-gray-50 transition-colors gap-3">
                     <div className={`w-3 h-3 rounded-xl ${getStatusColor(attendanceData[student.id]?.status)}`}></div>
                     <div>
-                      <div className="flex flex-wrap items-center w-xs gap-2 border rounded-xl p-4">
+                      <div className="flex flex-wrap items-center w-full gap-2 border rounded-xl p-4">
                         <Image
                           src={student?.avatarUrl ? student.avatarUrl : "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"}
                           alt="Picture of the author"
