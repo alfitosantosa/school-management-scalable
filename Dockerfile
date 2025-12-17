@@ -15,7 +15,7 @@ COPY package.json bun.lock* ./
 
 # Install dependencies with frozen lockfile
 # Use --frozen-lockfile for production consistency
-RUN bun install --frozen-lockfile --production=false
+RUN bun install 
 
 # ==========================================
 # Stage 2: Builder
@@ -32,6 +32,7 @@ ENV NODE_ENV=production
 ENV SKIP_ENV_VALIDATION=1
 
 # Generate Prisma client
+RUN bunx prisma migrate deploy
 RUN bunx prisma generate
 
 # Build the application

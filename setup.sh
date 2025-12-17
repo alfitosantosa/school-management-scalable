@@ -1,3 +1,3 @@
-docker buildx build --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new .
+docker build -t school-management . --production:true
 
 docker-compose up -d

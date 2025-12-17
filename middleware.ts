@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSessionCookie } from "better-auth/cookies";
+import { toast } from "sonner";
 
 // Public routes yang tidak perlu authentication
 const publicRoutes = ["/auth/sign-in", "/auth/sign-up", "/"];
@@ -67,6 +68,7 @@ export async function middleware(request: NextRequest) {
 
     if (!userDataResponse.ok) {
       console.error("Failed to fetch user data in middleware");
+      toast.error("Failed to fetch user data in middleware");
       return NextResponse.redirect(new URL("/dashboard/middleware", request.url));
     }
 

@@ -3,8 +3,6 @@
 # Optimized for: Security, Performance, Scalability, Monitoring
 # ==========================================
 
-version: "3.8"
-
 services:
   # ==========================================
   # PRODUCTION APPLICATION
@@ -13,12 +11,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      # Build cache optimization for faster rebuilds
-      cache_from:
-        - type=local,src=/tmp/.buildx-cache
-      cache_to:
-        - type=local,dest=/tmp/.buildx-cache-new,mode=max
-      # Build args for conditional builds
       args:
         - NODE_ENV=production
     image: school-management:latest
@@ -43,10 +35,10 @@ services:
       resources:
         limits:
           cpus: "2.0"
-          memory: 2G
+          memory: 7G
         reservations:
-          cpus: "0.5"
-          memory: 512M
+          cpus: "1.0"
+          memory: 2G
       # Restart policy
       restart_policy:
         condition: on-failure
