@@ -12,7 +12,6 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { FileText, X, Upload, Download, AlertCircle } from "lucide-react";
 import { useState } from "react";
-import readXlsxFile from "read-excel-file";
 import { useBulkCreateUserData } from "@/app/hooks/Users/useBulkUsersData";
 
 export type typeData = {
@@ -47,6 +46,11 @@ export default function UploadUsers() {
       // Preview data from first file
       if (excelFiles.length > 0) {
         try {
+          // Dynamically import read-excel-file only on client side
+          if (typeof window === "undefined") {
+            throw new Error("This function can only be called on the client side");
+          }
+          const readXlsxFile = (await import("read-excel-file")).default;
           const rows = await readXlsxFile(excelFiles[0]);
           const preview = rows.slice(1, 6).map((row) => ({
             name: row[0]?.toString() || "",
@@ -139,6 +143,12 @@ export default function UploadUsers() {
     setIsUploading(true);
 
     try {
+      // Dynamically import read-excel-file only on client side
+      if (typeof window === "undefined") {
+        throw new Error("This function can only be called on the client side");
+      }
+      const readXlsxFile = (await import("read-excel-file")).default;
+
       let allUsers: any[] = [];
 
       for (const file of files) {
@@ -225,7 +235,10 @@ export default function UploadUsers() {
 
   const downloadTemplate = async () => {
     try {
-      // Dynamically import xlsx library
+      // Dynamically import xlsx library only on client side
+      if (typeof window === "undefined") {
+        throw new Error("This function can only be called on the client side");
+      }
       const XLSX = await import("xlsx");
 
       // Create worksheet data

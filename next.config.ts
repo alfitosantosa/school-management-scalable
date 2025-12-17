@@ -223,10 +223,32 @@ const nextConfig: NextConfig = {
   // ============================================================================
   // WEBPACK CONFIGURATION (if needed)
   // ============================================================================
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, webpack }) => {
+    // Fix for "self is not defined" error
+    // Prevent client-only code from being bundled in server
+    if (isServer) {
+      // Exclude client-only packages from server bundle
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+        crypto: false,
+      };
+
+      // Ignore client-only modules that use browser globals (self, window)
+      // These packages should only be used in client components
+      config.plugins = config.plugins || [];
+      config.plugins.push(
+        new webpack.IgnorePlugin({
+          resourceRegExp: /^(xlsx|read-excel-file)$/,
+        })
+      );
+    }
+
     // Production optimizations
-    if (isProduction) {
-      // Optimize bundle size
+    if (isProduction && !isServer) {
+      // Optimize bundle size (client-side only)
       config.optimization = {
         ...config.optimization,
         moduleIds: "deterministic",

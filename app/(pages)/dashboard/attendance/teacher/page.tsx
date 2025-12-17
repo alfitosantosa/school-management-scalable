@@ -24,6 +24,7 @@ import { CheckCircle2, Clock, AlertCircle, Search, Plus, Calendar, BarChart3, Ed
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import { exportTeacherAttendanceToExcel, exportTeacherAttendanceDetailToExcel } from "@/lib/export-excel";
+import { toast } from "sonner";
 import type { AttendanceStatus, TeacherAttendanceRecord, Teacher, StatusConfigMap, CheckinTabProps, AttendanceStats } from "@/app/types/teacher-attendance";
 
 const STATUS_CONFIG: StatusConfigMap = {
@@ -581,12 +582,36 @@ function ReportsTab() {
               </CardDescription>
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
-              <Button variant="outline" size="sm" onClick={() => exportTeacherAttendanceToExcel(reports, startDate, endDate)} className="gap-1.5 sm:gap-2 text-xs sm:text-sm w-full sm:w-auto" disabled={reports.length === 0}>
+              <Button variant="outline" size="sm" onClick={async () => {
+                try {
+                  const result = await exportTeacherAttendanceToExcel(reports, startDate, endDate);
+                  if (result.success) {
+                    toast.success(result.message);
+                  } else {
+                    toast.error(result.message);
+                  }
+                } catch (error) {
+                  toast.error("Gagal mengexport laporan");
+                  console.error(error);
+                }
+              }} className="gap-1.5 sm:gap-2 text-xs sm:text-sm w-full sm:w-auto" disabled={reports.length === 0}>
                 <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span className="hidden sm:inline">Export Ringkasan</span>
                 <span className="sm:hidden">Ringkasan</span>
               </Button>
-              <Button variant="outline" size="sm" onClick={() => exportTeacherAttendanceDetailToExcel(reports, startDate, endDate)} className="gap-1.5 sm:gap-2 text-xs sm:text-sm w-full sm:w-auto" disabled={reports.length === 0}>
+              <Button variant="outline" size="sm" onClick={async () => {
+                try {
+                  const result = await exportTeacherAttendanceDetailToExcel(reports, startDate, endDate);
+                  if (result.success) {
+                    toast.success(result.message);
+                  } else {
+                    toast.error(result.message);
+                  }
+                } catch (error) {
+                  toast.error("Gagal mengexport laporan");
+                  console.error(error);
+                }
+              }} className="gap-1.5 sm:gap-2 text-xs sm:text-sm w-full sm:w-auto" disabled={reports.length === 0}>
                 <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span className="hidden sm:inline">Export Detail</span>
                 <span className="sm:hidden">Detail</span>

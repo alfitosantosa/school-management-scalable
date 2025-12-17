@@ -1,4 +1,3 @@
-import * as XLSX from "xlsx";
 import { format } from "date-fns";
 import { id as idLocale } from "date-fns/locale";
 
@@ -14,8 +13,15 @@ export interface TeacherAttendanceExportData {
   "Persentase Kehadiran": string;
 }
 
-export const exportTeacherAttendanceToExcel = (data: any[], startDate: string, endDate: string, filename?: string) => {
+export const exportTeacherAttendanceToExcel = async (data: any[], startDate: string, endDate: string, filename?: string) => {
   try {
+    // Dynamically import xlsx only on client side
+    if (typeof window === "undefined") {
+      throw new Error("This function can only be called on the client side");
+    }
+
+    const XLSX = await import("xlsx");
+
     // Transform data for export
     const exportData: TeacherAttendanceExportData[] = data.map((teacher) => ({
       "Nama Guru": teacher.name,
@@ -74,8 +80,15 @@ export const exportTeacherAttendanceToExcel = (data: any[], startDate: string, e
   }
 };
 
-export const exportTeacherAttendanceDetailToExcel = (data: any[], startDate: string, endDate: string, filename?: string) => {
+export const exportTeacherAttendanceDetailToExcel = async (data: any[], startDate: string, endDate: string, filename?: string) => {
   try {
+    // Dynamically import xlsx only on client side
+    if (typeof window === "undefined") {
+      throw new Error("This function can only be called on the client side");
+    }
+
+    const XLSX = await import("xlsx");
+
     // Create multiple sheets: Summary and Detail
     const wb = XLSX.utils.book_new();
 

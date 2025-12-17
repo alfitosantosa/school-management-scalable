@@ -7,7 +7,7 @@
     "dev:fast": "NODE_ENV=development WATCHPACK_POLLING=false FAST_REFRESH=true next dev",
     "dev:clean": "rm -rf .next && npm run dev",
     "prebuild": "rm -rf node_modules/.cache && rm -rf .next",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "NODE_ENV=production next start"
   },
   "dependencies": {
