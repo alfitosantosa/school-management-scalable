@@ -63,6 +63,7 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
 
 # Copy standalone build (requires output: 'standalone' in next.config)
+# COPY --from=builder --chown=nextjs:nodejs /app/middleware.ts ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
