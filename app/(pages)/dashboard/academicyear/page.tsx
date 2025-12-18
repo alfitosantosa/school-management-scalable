@@ -203,7 +203,7 @@ export default function AcademicYearDataTable() {
   const { data: session } = useSession();
   //check admin authorized
   const isAdmin = useIsAdmin(session?.user?.id ?? "");
-  if (isAdmin.isAdmin === false) {
+  if (isAdmin?.isAdmin === false) {
     unauthorized();
   }
 

@@ -40,7 +40,7 @@ export default function TeacherAttendancePage() {
   const { data: session } = useSession();
   //check admin authorized
   const isAdmin = useIsAdmin(session?.user?.id ?? "");
-  if (isAdmin.isAdmin === false) {
+  if (isAdmin?.isAdmin === false) {
     unauthorized();
   }
 

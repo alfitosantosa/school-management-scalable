@@ -18,10 +18,17 @@ export const useGetUserByIdBetterAuth = (id: string) => {
 
 export const useIsAdmin = (id: string) => {
   const { data, isLoading } = useGetUserByIdBetterAuth(id);
-  return {
-    isAdmin: data?.role?.name === "Admin",
-    isLoading,
-  };
+  if (data?.role?.name === "Admin") {
+    return {
+      isAdmin: true,
+      isLoading,
+    };
+  } else {
+    return {
+      isAdmin: false,
+      isLoading,
+    };
+  }
 };
 
 export const useIsTeacher = (id: string) => {
