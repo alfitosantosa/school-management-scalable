@@ -25,8 +25,10 @@ import { useGetAttendance, useCreateAttendance, useUpdateAttendance, useDeleteAt
 import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules";
 import { useGetStudents } from "@/app/hooks/Users/useStudents";
 import { useGetAttendanceByIdSchedule } from "@/app/hooks/Attendances/useAttendanceByIdShcedule";
-import { useParams } from "next/navigation";
+import { unauthorized, useParams } from "next/navigation";
 import Loading from "@/components/loading";
+import { useSession } from "@/lib/auth-client";
+import { useIsTeacher } from "@/app/hooks/Users/isAuthorized";
 
 // Type definitions
 export type AttendanceData = {
@@ -295,6 +297,18 @@ function DeleteAttendanceDialog({ open, onOpenChange, attendanceData, onSuccess 
 
 // Main DataTable Component
 export default function AttendanceDataTable() {
+
+
+  const { data: session } = useSession();
+  // Get session from Better Auth
+  const isTeacher = useIsTeacher(session?.user?.id ?? "");
+
+  //if not teacher, redirect or handle unauthorized access
+  if (isTeacher.isTeacher === false) {
+    // TODO: Redirect to unauthorized page or show error
+    unauthorized();
+  }
+  
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});

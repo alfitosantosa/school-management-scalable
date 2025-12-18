@@ -34,9 +34,7 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     // SVG handling with security
     dangerouslyAllowSVG: true,
-    contentSecurityPolicy: isDev
-      ? undefined
-      : "default-src 'self'; script-src 'none'; sandbox;",
+    contentSecurityPolicy: isDev ? undefined : "default-src 'self'; script-src 'none'; sandbox;",
     // Production optimizations
     ...(isDev
       ? {}
@@ -83,6 +81,7 @@ const nextConfig: NextConfig = {
           serverActions: {
             bodySizeLimit: "2mb",
           },
+          authInterrupts: true,
         },
       }
     : {}),
@@ -127,12 +126,7 @@ const nextConfig: NextConfig = {
       return [
         {
           source: "/:path*",
-          headers: [
-            ...securityHeaders,
-            { key: "Cache-Control", value: "no-store, no-cache, must-revalidate, max-age=0" },
-            { key: "Pragma", value: "no-cache" },
-            { key: "Expires", value: "0" },
-          ],
+          headers: [...securityHeaders, { key: "Cache-Control", value: "no-store, no-cache, must-revalidate, max-age=0" }, { key: "Pragma", value: "no-cache" }, { key: "Expires", value: "0" }],
         },
       ];
     }
@@ -142,34 +136,22 @@ const nextConfig: NextConfig = {
       // Static assets: 1 year immutable
       {
         source: "/:all*(svg|jpg|jpeg|png|gif|webp|avif|woff|woff2|ttf|eot|ico)",
-        headers: [
-          ...securityHeaders,
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
-        ],
+        headers: [...securityHeaders, { key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
       // Next.js static files: 1 year immutable
       {
         source: "/_next/static/:path*",
-        headers: [
-          ...securityHeaders,
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
-        ],
+        headers: [...securityHeaders, { key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
       // API routes: no cache + security
       {
         source: "/api/:path*",
-        headers: [
-          ...securityHeaders,
-          { key: "Cache-Control", value: "no-store, must-revalidate" },
-        ],
+        headers: [...securityHeaders, { key: "Cache-Control", value: "no-store, must-revalidate" }],
       },
       // HTML pages: 1 hour with revalidation
       {
         source: "/:path*.html",
-        headers: [
-          ...securityHeaders,
-          { key: "Cache-Control", value: "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400" },
-        ],
+        headers: [...securityHeaders, { key: "Cache-Control", value: "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400" }],
       },
       // All other routes: security headers
       {
@@ -212,6 +194,7 @@ const nextConfig: NextConfig = {
     experimental: {
       // Disable Server Components HMR cache in development for instant updates
       serverComponentsHmrCache: false,
+      authInterrupts: true,
     },
     // Reduce build time in development
     onDemandEntries: {

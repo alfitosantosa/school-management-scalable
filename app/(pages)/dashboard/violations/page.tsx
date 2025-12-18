@@ -29,6 +29,9 @@ import { useGetTypeViolations } from "@/app/hooks/Violations/useTypeViolations";
 import { useGetClasses } from "@/app/hooks/Classes/useClass";
 import { useGetUsers } from "@/app/hooks/Users/useUsers";
 import Loading from "@/components/loading";
+import { useSession } from "@/lib/auth-client";
+import { useIsAdmin } from "@/app/hooks/Users/isAuthorized";
+import { unauthorized } from "next/navigation";
 
 // Type definitions
 export type ViolationData = {
@@ -425,6 +428,14 @@ function DeleteViolationDialog({ open, onOpenChange, violationData, onSuccess }:
 
 // Main DataTable Component
 export default function ViolationDataTable() {
+  const { data: session } = useSession();
+  //check admin authorized
+  const isAdmin = useIsAdmin(session?.user?.id ?? "");
+  if (isAdmin.isAdmin === false) {
+    unauthorized();
+  }
+
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});

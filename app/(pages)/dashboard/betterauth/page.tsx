@@ -20,6 +20,8 @@ import Image from "next/image";
 import { authClient, useSession } from "@/lib/auth-client";
 import { toast } from "sonner";
 import Loading from "@/components/loading";
+import { useIsAdmin } from "@/app/hooks/Users/isAuthorized";
+import { unauthorized } from "next/navigation";
 
 export type User = {
   id: string;
@@ -65,6 +67,13 @@ export type User = {
 
 export default function DataTableBetterAuth() {
   const { data: session } = useSession();
+
+  //check admin authorized
+  const isAdminAuthorized = useIsAdmin(session?.user?.id ?? "");
+  if (isAdminAuthorized?.isAdmin === false) {
+    unauthorized();
+  }
+
   const { data, isLoading, error, refetch } = useGetBetterAuth();
 
   const [sorting, setSorting] = React.useState<SortingState>([]);

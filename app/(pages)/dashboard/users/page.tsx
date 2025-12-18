@@ -19,9 +19,19 @@ import { useGetBetterAuth } from "@/app/hooks/Users/useBetterAuth";
 import { UserFormDialog, DeleteUserDialog, UserData, BetterAuthUser, DeleteUserBulkDialog } from "@/components/dialog/DialogUser";
 import Image from "next/image";
 import Loading from "@/components/loading";
+import { useSession } from "@/lib/auth-client";
+import { useIsAdmin } from "@/app/hooks/Users/isAuthorized";
+import { unauthorized } from "next/navigation";
 
 // Main DataTable Component
 export default function UserDataTable() {
+    const { data: session } = useSession();
+    //check admin authorized
+    const isAdmin = useIsAdmin(session?.user?.id ?? "");
+    if (isAdmin.isAdmin === false) {
+      unauthorized();
+    }
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});

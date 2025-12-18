@@ -15,13 +15,27 @@ import { useGetAttendance } from "@/app/hooks/Attendances/useAttendance";
 
 import { useSession } from "@/lib/auth-client";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
+import { useIsTeacher } from "@/app/hooks/Users/isAuthorized";
+import { unauthorized } from "next/navigation";
 
 export default function TeacherAttendancePage() {
+
+  
+  // Get session from Better Auth first
+  const { data: session } = useSession();
+
+
   const today = new Date().getDay();
   const [selectedDay, setSelectedDay] = useState<string>(today.toString());
 
   // Get session from Better Auth
-  const { data: session, isPending } = useSession();
+  const isTeacher = useIsTeacher(session?.user?.id ?? "");
+
+  //if not teacher, redirect or handle unauthorized access
+  if (isTeacher.isTeacher === false) {
+    // TODO: Redirect to unauthorized page or show error
+    unauthorized();
+  }
   const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
   const { data: scheduleData = [], isLoading: isLoadingSchedule, error: scheduleError } = useGetScheduleByIdAcademicYearActive(userData?.id ?? "");

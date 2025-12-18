@@ -9,13 +9,15 @@ import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Smartphone, Clock, AlertTriangle, CheckCircle, User, BookOpen, Users, MessageSquare, Send } from "lucide-react";
-import { useParams } from "next/navigation";
+import { unauthorized, useParams } from "next/navigation";
 import { useCreateAttendanceBulk } from "@/app/hooks/Attendances/useBulkAttendance";
 import { useBulkSendWhatsApp } from "@/app/hooks/BotWA/useBotWA";
 import Loading from "@/components/loading";
 import { toast } from "sonner";
 import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import { useSession } from "@/lib/auth-client";
+import { useIsTeacher } from "@/app/hooks/Users/isAuthorized";
 
 interface Student {
   id: string;
@@ -39,6 +41,15 @@ const STATUS_MAP = {
 };
 
 export default function AttendanceModule() {
+    const { data: session } = useSession();
+    // Get session from Better Auth
+    const isTeacher = useIsTeacher(session?.user?.id ?? "");
+
+    //if not teacher, redirect or handle unauthorized access
+    if (isTeacher.isTeacher === false) {
+      // TODO: Redirect to unauthorized page or show error
+      unauthorized();
+    }
   const params = useParams();
   const [attendanceData, setAttendanceData] = useState<Record<string, { status: string; notes?: string; evidenceUrl?: string }>>({});
   const [sendWhatsApp, setSendWhatsApp] = useState(false);

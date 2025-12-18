@@ -13,6 +13,9 @@ import { toast } from "sonner";
 import { FileText, X, Upload, Download, AlertCircle } from "lucide-react";
 import { useState } from "react";
 import { useBulkCreateUserData } from "@/app/hooks/Users/useBulkUsersData";
+import { useSession } from "@/lib/auth-client";
+import { useIsAdmin } from "@/app/hooks/Users/isAuthorized";
+import { unauthorized } from "next/navigation";
 
 export type typeData = {
   id: string;
@@ -21,6 +24,13 @@ export type typeData = {
 };
 
 export default function UploadUsers() {
+  const { data: session } = useSession();
+  //check admin authorized
+  const isAdmin = useIsAdmin(session?.user?.id ?? "");
+  if (isAdmin.isAdmin === false) {
+    unauthorized();
+  }
+
   const [files, setFiles] = useState<File[]>([]);
   const [isUploading, setIsUploading] = useState(false);
   const [previewData, setPreviewData] = useState<any[]>([]);

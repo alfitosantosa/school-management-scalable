@@ -12,18 +12,21 @@ import { CalendarDays, Clock, MapPin, BookOpen, Users, GraduationCap, Eye, Plus 
 import Link from "next/link";
 import { useState } from "react";
 import { useGetAttendance } from "@/app/hooks/Attendances/useAttendance";
-
-import { useSession } from "@/lib/auth-client";
-import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules";
+import { useSession } from "@/lib/auth-client";
+import { useIsAdmin } from "@/app/hooks/Users/isAuthorized";
+import { unauthorized } from "next/navigation";
 
 export default function TeacherAttendancePage() {
   const today = new Date().getDay();
   const [selectedDay, setSelectedDay] = useState<string>(today.toString());
 
-  // Get session from Better Auth
-  // const { data: session, isPending } = useSession();
-  // const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
+  const { data: session } = useSession();
+  //check admin authorized
+  const isAdmin = useIsAdmin(session?.user?.id ?? "");
+  if (isAdmin.isAdmin === false) {
+    unauthorized();
+  }
 
   const { data: scheduleData = [], isLoading: isLoadingSchedule, error: scheduleError } = useGetSchedules();
 

@@ -23,6 +23,9 @@ import { toast } from "sonner";
 // Import hooks
 import { useGetMajors, useCreateMajor, useUpdateMajor, useDeleteMajor } from "@/app/hooks/Majors/useMajors";
 import Loading from "@/components/loading";
+import { useSession } from "@/lib/auth-client";
+import { useIsAdmin } from "@/app/hooks/Users/isAuthorized";
+import { unauthorized } from "next/navigation";
 
 // Type definitions
 export type MajorData = {
@@ -266,6 +269,13 @@ function DeleteMajorDialog({ open, onOpenChange, majorData, onSuccess }: { open:
 
 // Main DataTable Component
 export default function MajorDataTable() {
+  const { data: session } = useSession();
+  //check admin authorized
+  const isAdmin = useIsAdmin(session?.user?.id ?? "");
+  if (isAdmin?.isAdmin === false) {
+    unauthorized();
+  }
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});

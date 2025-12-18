@@ -25,6 +25,9 @@ import { useGetAttendance, useCreateAttendance, useUpdateAttendance, useDeleteAt
 import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules";
 import { useGetStudents } from "@/app/hooks/Users/useStudents";
 import Loading from "@/components/loading";
+import { useSession } from "@/lib/auth-client";
+import { useIsAdmin } from "@/app/hooks/Users/isAuthorized";
+import { unauthorized } from "next/navigation";
 
 // Type definitions
 export type AttendanceData = {
@@ -291,6 +294,13 @@ function DeleteAttendanceDialog({ open, onOpenChange, attendanceData, onSuccess 
 
 // Main DataTable Component
 export default function AttendanceDataTable() {
+  const { data: session } = useSession();
+  //check admin authorized
+  const isAdmin = useIsAdmin(session?.user?.id ?? "");
+  if (isAdmin.isAdmin === false) {
+    unauthorized();
+  }
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});

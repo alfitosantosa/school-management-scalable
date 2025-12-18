@@ -26,6 +26,8 @@ import { id } from "date-fns/locale";
 import { exportTeacherAttendanceToExcel, exportTeacherAttendanceDetailToExcel } from "@/lib/export-excel";
 import { toast } from "sonner";
 import type { AttendanceStatus, TeacherAttendanceRecord, Teacher, StatusConfigMap, CheckinTabProps, AttendanceStats } from "@/app/types/teacher-attendance";
+import { useIsAdmin } from "@/app/hooks/Users/isAuthorized";
+import { unauthorized } from "next/navigation";
 
 const STATUS_CONFIG: StatusConfigMap = {
   hadir: { label: "Hadir", bg: "bg-green-100", text: "text-green-800", icon: CheckCircle2 },
@@ -36,6 +38,12 @@ const STATUS_CONFIG: StatusConfigMap = {
 
 export default function TeacherAttendancePage() {
   const { data: session } = useSession();
+  //check admin authorized
+  const isAdmin = useIsAdmin(session?.user?.id ?? "");
+  if (isAdmin.isAdmin === false) {
+    unauthorized();
+  }
+
   const { data: adminData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
   return (
@@ -582,36 +590,48 @@ function ReportsTab() {
               </CardDescription>
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
-              <Button variant="outline" size="sm" onClick={async () => {
-                try {
-                  const result = await exportTeacherAttendanceToExcel(reports, startDate, endDate);
-                  if (result.success) {
-                    toast.success(result.message);
-                  } else {
-                    toast.error(result.message);
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={async () => {
+                  try {
+                    const result = await exportTeacherAttendanceToExcel(reports, startDate, endDate);
+                    if (result.success) {
+                      toast.success(result.message);
+                    } else {
+                      toast.error(result.message);
+                    }
+                  } catch (error) {
+                    toast.error("Gagal mengexport laporan");
+                    console.error(error);
                   }
-                } catch (error) {
-                  toast.error("Gagal mengexport laporan");
-                  console.error(error);
-                }
-              }} className="gap-1.5 sm:gap-2 text-xs sm:text-sm w-full sm:w-auto" disabled={reports.length === 0}>
+                }}
+                className="gap-1.5 sm:gap-2 text-xs sm:text-sm w-full sm:w-auto"
+                disabled={reports.length === 0}
+              >
                 <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span className="hidden sm:inline">Export Ringkasan</span>
                 <span className="sm:hidden">Ringkasan</span>
               </Button>
-              <Button variant="outline" size="sm" onClick={async () => {
-                try {
-                  const result = await exportTeacherAttendanceDetailToExcel(reports, startDate, endDate);
-                  if (result.success) {
-                    toast.success(result.message);
-                  } else {
-                    toast.error(result.message);
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={async () => {
+                  try {
+                    const result = await exportTeacherAttendanceDetailToExcel(reports, startDate, endDate);
+                    if (result.success) {
+                      toast.success(result.message);
+                    } else {
+                      toast.error(result.message);
+                    }
+                  } catch (error) {
+                    toast.error("Gagal mengexport laporan");
+                    console.error(error);
                   }
-                } catch (error) {
-                  toast.error("Gagal mengexport laporan");
-                  console.error(error);
-                }
-              }} className="gap-1.5 sm:gap-2 text-xs sm:text-sm w-full sm:w-auto" disabled={reports.length === 0}>
+                }}
+                className="gap-1.5 sm:gap-2 text-xs sm:text-sm w-full sm:w-auto"
+                disabled={reports.length === 0}
+              >
                 <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span className="hidden sm:inline">Export Detail</span>
                 <span className="sm:hidden">Detail</span>
