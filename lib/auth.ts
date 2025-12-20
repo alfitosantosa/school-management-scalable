@@ -15,7 +15,12 @@ export const auth = betterAuth({
 
   emailAndPassword: {
     enabled: true,
-    plugins: [nextCookies(), openAPI(), admin()],
+  },
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 30 * 60,
+    },
   },
   socialProviders: {
     google: {
@@ -24,6 +29,8 @@ export const auth = betterAuth({
     },
   },
   plugins: [
+    nextCookies(),
+    openAPI(),
     admin({
       // Optional: configure admin settings
       defaultRole: "user",

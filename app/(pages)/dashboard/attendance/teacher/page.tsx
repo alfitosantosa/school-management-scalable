@@ -26,8 +26,8 @@ import { id } from "date-fns/locale";
 import { exportTeacherAttendanceToExcel, exportTeacherAttendanceDetailToExcel } from "@/lib/export-excel";
 import { toast } from "sonner";
 import type { AttendanceStatus, TeacherAttendanceRecord, Teacher, StatusConfigMap, CheckinTabProps, AttendanceStats } from "@/app/types/teacher-attendance";
-import { useIsAdmin } from "@/app/hooks/Users/isAuthorized";
 import { unauthorized } from "next/navigation";
+import Loading from "@/components/loading";
 
 const STATUS_CONFIG: StatusConfigMap = {
   hadir: { label: "Hadir", bg: "bg-green-100", text: "text-green-800", icon: CheckCircle2 },
@@ -36,13 +36,8 @@ const STATUS_CONFIG: StatusConfigMap = {
   alfa: { label: "Alfa", bg: "bg-red-100", text: "text-red-800", icon: AlertCircle },
 };
 
-export default function TeacherAttendancePage() {
+function TeacherAttendancePage() {
   const { data: session } = useSession();
-  //check admin authorized
-  const isAdmin = useIsAdmin(session?.user?.id ?? "");
-  if (isAdmin?.isAdmin === false) {
-    unauthorized();
-  }
 
   const { data: adminData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
@@ -769,4 +764,26 @@ function ReportsTab() {
       </Card>
     </div>
   );
+}
+
+export default function UserDataTable() {
+  const { data: session, isPending } = useSession();
+  const userId = session?.user?.id;
+
+  const { data: userData, isLoading: isLoadingUserData } = useGetUserByIdBetterAuth(userId as string);
+  const userRole = userData?.role?.name;
+
+  // Show loading while checking authorization
+  if (isPending || isLoadingUserData) {
+    return <Loading />;
+  }
+
+  // Check if user is Admin
+  if (userRole !== "Admin") {
+    unauthorized();
+    return null;
+  }
+
+  // Render dashboard only after authorization is confirmed
+  return <TeacherAttendancePage />;
 }

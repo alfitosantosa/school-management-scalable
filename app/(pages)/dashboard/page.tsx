@@ -12,7 +12,6 @@ import { Input } from "@/components/ui/input";
 import { PieChart, Pie, Cell, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import { CheckCircle, XCircle, Clock, AlertCircle, Users, Calendar, BookOpen, MapPin, Search, Filter, TrendingUp, AlertTriangle, User, UserCheck, BarChart3, PieChart as PieChartIcon } from "lucide-react";
 
-
 // Status mapping
 const STATUS_MAP = {
   present: { label: "Hadir", color: "bg-green-100 text-green-800", icon: CheckCircle, chartColor: "#10B981" },
@@ -177,7 +176,6 @@ export default function DashboardPage() {
 
   return (
     <>
-      
       <div className="min-h-screen  from-slate-50 to-slate-100 p-6">
         <div className="max-w-7xl mx-auto space-y-6">
           {/* Header */}

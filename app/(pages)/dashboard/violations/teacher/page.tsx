@@ -33,7 +33,6 @@ import { useGetUsers } from "@/app/hooks/Users/useUsers";
 import { useSession } from "@/lib/auth-client";
 import { useGetStudents } from "@/app/hooks/Users/useStudents";
 import Loading from "@/components/loading";
-import { useIsTeacher } from "@/app/hooks/Users/isAuthorized";
 import { unauthorized } from "next/navigation";
 
 // Type definitions
@@ -430,16 +429,8 @@ function DeleteViolationDialog({ open, onOpenChange, violationData, onSuccess }:
 }
 
 // Main DataTable Component
-export default function ViolationDataTable() {
+function ViolationDataTable() {
   const { data: session } = useSession();
-  // Get session from Better Auth
-  const isTeacher = useIsTeacher(session?.user?.id ?? "");
-
-  //if not teacher, redirect or handle unauthorized access
-  if (isTeacher.isTeacher === false) {
-    // TODO: Redirect to unauthorized page or show error
-    unauthorized();
-  }
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -958,4 +949,30 @@ export default function ViolationDataTable() {
       </div>
     </>
   );
+}
+
+export default function UserDataTable() {
+  const { data: session, isPending } = useSession();
+  console.log(session);
+  const userId = session?.user?.id;
+
+  const { data: userData, isLoading: isLoadingUserData } = useGetUserByIdBetterAuth(userId as string);
+  const userRole = userData?.role?.name;
+  console.log(userRole);
+
+  // Show loading while checking authorization
+  if (isPending || isLoadingUserData) {
+    return <Loading />;
+  }
+
+  // Check if user is Admin and Teacher
+  if (userRole !== "Teacher") {
+    if (userRole !== "Admin") {
+      return null;
+      unauthorized();
+    }
+  }
+
+  // Render dashboard only after authorization is confirmed
+  return <ViolationDataTable />;
 }

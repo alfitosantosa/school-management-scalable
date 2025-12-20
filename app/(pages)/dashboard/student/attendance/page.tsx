@@ -18,6 +18,7 @@ import { useGetStudentById } from "@/app/hooks/Users/useGetStudentById";
 import { useSession } from "@/lib/auth-client";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import Loading from "@/components/loading";
+import { unauthorized } from "next/navigation";
 
 // Type definitions
 export type AttendanceData = {
@@ -91,6 +92,7 @@ export default function AttendanceDataTable() {
 
   // Get session from Better Auth
   const { data: session, isPending } = useSession();
+
   const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
   const { data: attendances = [], isLoading, refetch } = useGetAttendanceByIdStudent(userData?.id ?? "");

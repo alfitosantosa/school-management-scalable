@@ -28,7 +28,7 @@ import { useGetAttendanceByIdSchedule } from "@/app/hooks/Attendances/useAttenda
 import { unauthorized, useParams } from "next/navigation";
 import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
-import { useIsTeacher } from "@/app/hooks/Users/isAuthorized";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 
 // Type definitions
 export type AttendanceData = {
@@ -296,19 +296,7 @@ function DeleteAttendanceDialog({ open, onOpenChange, attendanceData, onSuccess 
 }
 
 // Main DataTable Component
-export default function AttendanceDataTable() {
-
-
-  const { data: session } = useSession();
-  // Get session from Better Auth
-  const isTeacher = useIsTeacher(session?.user?.id ?? "");
-
-  //if not teacher, redirect or handle unauthorized access
-  if (isTeacher.isTeacher === false) {
-    // TODO: Redirect to unauthorized page or show error
-    unauthorized();
-  }
-  
+function AttendanceDataTable() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
@@ -1011,4 +999,28 @@ export default function AttendanceDataTable() {
       </div>
     </>
   );
+}
+
+export default function UserDataTable() {
+  const { data: session, isPending } = useSession();
+  const userId = session?.user?.id;
+
+  const { data: userData, isLoading: isLoadingUserData } = useGetUserByIdBetterAuth(userId as string);
+  const userRole = userData?.role?.name;
+
+  // Show loading while checking authorization
+  if (isPending || isLoadingUserData) {
+    return <Loading />;
+  }
+
+  // Check if user is Admin and Teacher
+  if (userRole !== "Teacher") {
+    if (userRole !== "Admin") {
+      return null;
+      unauthorized();
+    }
+  }
+
+  // Render dashboard only after authorization is confirmed
+  return <AttendanceDataTable />;
 }

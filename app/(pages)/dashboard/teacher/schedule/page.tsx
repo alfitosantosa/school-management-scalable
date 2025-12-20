@@ -15,27 +15,18 @@ import { useGetAttendance } from "@/app/hooks/Attendances/useAttendance";
 
 import { useSession } from "@/lib/auth-client";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
-import { useIsTeacher } from "@/app/hooks/Users/isAuthorized";
 import { unauthorized } from "next/navigation";
+import Loading from "@/components/loading";
 
-export default function TeacherAttendancePage() {
-
-  
+function TeacherAttendancePage() {
   // Get session from Better Auth first
   const { data: session } = useSession();
-
 
   const today = new Date().getDay();
   const [selectedDay, setSelectedDay] = useState<string>(today.toString());
 
   // Get session from Better Auth
-  const isTeacher = useIsTeacher(session?.user?.id ?? "");
 
-  //if not teacher, redirect or handle unauthorized access
-  if (isTeacher.isTeacher === false) {
-    // TODO: Redirect to unauthorized page or show error
-    unauthorized();
-  }
   const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
 
   const { data: scheduleData = [], isLoading: isLoadingSchedule, error: scheduleError } = useGetScheduleByIdAcademicYearActive(userData?.id ?? "");
@@ -275,4 +266,28 @@ export default function TeacherAttendancePage() {
       </div>
     </>
   );
+}
+
+export default function UserDataTable() {
+  const { data: session, isPending } = useSession();
+
+  console.log(session);
+  const userId = session?.user?.id;
+
+  const { data: userData, isLoading: isLoadingUserData } = useGetUserByIdBetterAuth(userId as string);
+  const userRole = userData?.role?.name;
+
+  // Show loading while checking authorization
+  if (isPending || isLoadingUserData) {
+    return <Loading />;
+  }
+
+  // Check if user is Admin and Teacher
+  if (userRole !== "Teacher") {
+    unauthorized();
+    return null;
+  }
+
+  // Render dashboard only after authorization is confirmed
+  return <TeacherAttendancePage />;
 }

@@ -20,18 +20,11 @@ import { UserFormDialog, DeleteUserDialog, UserData, BetterAuthUser, DeleteUserB
 import Image from "next/image";
 import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
-import { useIsAdmin } from "@/app/hooks/Users/isAuthorized";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { unauthorized } from "next/navigation";
 
-// Main DataTable Component
-export default function UserDataTable() {
-    const { data: session } = useSession();
-    //check admin authorized
-    const isAdmin = useIsAdmin(session?.user?.id ?? "");
-    if (isAdmin.isAdmin === false) {
-      unauthorized();
-    }
-
+// Dashboard Component - Only rendered after role verification
+function UserDashboard() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
@@ -54,7 +47,6 @@ export default function UserDataTable() {
   const { data: betterAuthUsers = [] } = useGetBetterAuth();
 
   // Helper function to get betterAuth user info
-  //if better auth null dont fetch betterauth user info
   const getBetterAuthUserInfo = React.useCallback(
     (userId: string): BetterAuthUser | undefined => {
       return betterAuthUsers.find((user: any) => user.id === userId);
@@ -117,7 +109,6 @@ export default function UserDataTable() {
           return role?.name === filterValue;
         },
       },
-
       {
         accessorKey: "email",
         header: "Email",
@@ -126,7 +117,6 @@ export default function UserDataTable() {
           return <div className="lowercase">{email || "-"}</div>;
         },
       },
-
       {
         accessorKey: "class",
         header: ({ column }) => {
@@ -332,11 +322,8 @@ export default function UserDataTable() {
 
   const handleSuccess = React.useCallback(async () => {
     try {
-      // Clear selections
       setRowSelection({});
       setSelectedUser(null);
-
-      // Refetch the user data
       await refetch();
     } catch (error) {
       console.error("Error refetching data:", error);
@@ -364,7 +351,6 @@ export default function UserDataTable() {
     setRowSelection({});
   }, []);
 
-  // Handle bulk delete button click
   const handleBulkDeleteClick = React.useCallback(() => {
     const selectedRows = table.getFilteredSelectedRowModel().rows;
     if (selectedRows.length > 0) {
@@ -380,194 +366,202 @@ export default function UserDataTable() {
   // Error state
   if (error) {
     return (
-      <>
-        <div className="w-full min-h-screen items-center justify-center h-32">
-          <div className="text-center text-red-600">
-            <p>Error loading users: {error.message}</p>
-            <Button onClick={() => refetch()} className="mt-2">
-              Retry
-            </Button>
-          </div>
+      <div className="w-full min-h-screen items-center justify-center h-32">
+        <div className="text-center text-red-600">
+          <p>Error loading users: {error.message}</p>
+          <Button onClick={() => refetch()} className="mt-2">
+            Retry
+          </Button>
         </div>
-      </>
+      </div>
     );
   }
 
   return (
-    <>
-      <div className="min-h-screen w-full max-w-7xl mx-auto my-8 p-6">
-        <div className="font-bold text-3xl ">Users Menu</div>
+    <div className="min-h-screen w-full max-w-7xl mx-auto my-8 p-6">
+      <div className="font-bold text-3xl ">Users Menu</div>
 
-        <div className="flex items-start justify-between py-4 gap-4 flex-wrap">
-          <div className="flex items-center gap-2 flex-wrap">
-            {/* Search Input */}
-            <Input placeholder="Cari nama user..." value={(table.getColumn("name")?.getFilterValue() as string) ?? ""} onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)} className="max-w-sm" />
+      <div className="flex items-start justify-between py-4 gap-4 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap">
+          <Input placeholder="Cari nama user..." value={(table.getColumn("name")?.getFilterValue() as string) ?? ""} onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)} className="max-w-sm" />
 
-            {/* Role Filter */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline">
-                  {roleSelection || "Filter Role"}
-                  <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onClick={() => handleRoleFilter(null)}>Semua Role</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                {uniqueRoles.map((roleName) => (
-                  <DropdownMenuItem key={String(roleName)} onClick={() => handleRoleFilter(roleName as string)}>
-                    {roleName as string}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {/* Class Filter */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline">
-                  {classSelection || "Filter Kelas"}
-                  <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onClick={() => handleClassFilter(null)}>Semua Kelas</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                {uniqueClasses.map((className) => (
-                  <DropdownMenuItem key={String(className)} onClick={() => handleClassFilter(className as string)}>
-                    {className as string}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {/* Major Filter */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline">
-                  {majorSelection || "Filter Jurusan"}
-                  <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onClick={() => handleMajorFilter(null)}>Semua Jurusan</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                {uniqueMajors.map((majorName) => (
-                  <DropdownMenuItem key={String(majorName)} onClick={() => handleMajorFilter(majorName as string)}>
-                    {majorName as string}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-
-          <div className="flex items-center gap-2">
-            {/* Column Visibility */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline">
-                  Kolom <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {table
-                  .getAllColumns()
-                  .filter((column) => column.getCanHide())
-                  .map((column) => {
-                    const getColumnLabel = (columnId: string) => {
-                      const labels: Record<string, string> = {
-                        avatarUrl: "Avatar",
-                        BetterAuthId: "BetterAuth Status",
-                        name: "Nama",
-                        email: "Email",
-                        role: "Role",
-                        class: "Kelas",
-                        major: "Jurusan",
-                        status: "Status",
-                        user: "BetterAuth",
-                      };
-                      return labels[columnId] || columnId;
-                    };
-
-                    return (
-                      <DropdownMenuCheckboxItem key={column.id} className="capitalize" checked={column.getIsVisible()} onCheckedChange={(value) => column.toggleVisibility(!!value)}>
-                        {getColumnLabel(column.id)}
-                      </DropdownMenuCheckboxItem>
-                    );
-                  })}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {table.getFilteredSelectedRowModel().rows.length > 0 && (
-              <Button variant="destructive" onClick={handleBulkDeleteClick} className="flex items-center gap-2">
-                <Trash2 className="h-4 w-4" />
-                Hapus {table.getFilteredSelectedRowModel().rows.length} User
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline">
+                {roleSelection || "Filter Role"}
+                <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
-            )}
-            {/* Add User Button */}
-            <Button onClick={() => setCreateDialogOpen(true)}>
-              <Plus className="mr-2 h-4 w-4" />
-              Tambah User
-            </Button>
-          </div>
-        </div>
-
-        {/* Table */}
-        <div className="rounded-md border">
-          <Table>
-            <TableHeader>
-              {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => {
-                    return <TableHead key={header.id}>{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}</TableHead>;
-                  })}
-                </TableRow>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem onClick={() => handleRoleFilter(null)}>Semua Role</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              {uniqueRoles.map((roleName) => (
+                <DropdownMenuItem key={String(roleName)} onClick={() => handleRoleFilter(roleName as string)}>
+                  {roleName as string}
+                </DropdownMenuItem>
               ))}
-            </TableHeader>
-            <TableBody>
-              {table.getRowModel().rows?.length ? (
-                table.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
-                    {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
-                    ))}
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center">
-                    Tidak ada data user.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline">
+                {classSelection || "Filter Kelas"}
+                <ChevronDown className="ml-2 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem onClick={() => handleClassFilter(null)}>Semua Kelas</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              {uniqueClasses.map((className) => (
+                <DropdownMenuItem key={String(className)} onClick={() => handleClassFilter(className as string)}>
+                  {className as string}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline">
+                {majorSelection || "Filter Jurusan"}
+                <ChevronDown className="ml-2 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem onClick={() => handleMajorFilter(null)}>Semua Jurusan</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              {uniqueMajors.map((majorName) => (
+                <DropdownMenuItem key={String(majorName)} onClick={() => handleMajorFilter(majorName as string)}>
+                  {majorName as string}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
-        {/* Pagination */}
-        <div className="flex items-center justify-end space-x-2 py-4">
-          <div className="flex-1 text-sm text-muted-foreground">
-            {table.getFilteredSelectedRowModel().rows.length} dari {table.getFilteredRowModel().rows.length} baris dipilih.
-          </div>
-          <div className="space-x-2">
-            <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
-              Sebelumnya
+        <div className="flex items-center gap-2">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline">
+                Kolom <ChevronDown className="ml-2 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => {
+                  const getColumnLabel = (columnId: string) => {
+                    const labels: Record<string, string> = {
+                      avatarUrl: "Avatar",
+                      BetterAuthId: "BetterAuth Status",
+                      name: "Nama",
+                      email: "Email",
+                      role: "Role",
+                      class: "Kelas",
+                      major: "Jurusan",
+                      status: "Status",
+                      user: "BetterAuth",
+                    };
+                    return labels[columnId] || columnId;
+                  };
+
+                  return (
+                    <DropdownMenuCheckboxItem key={column.id} className="capitalize" checked={column.getIsVisible()} onCheckedChange={(value) => column.toggleVisibility(!!value)}>
+                      {getColumnLabel(column.id)}
+                    </DropdownMenuCheckboxItem>
+                  );
+                })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {table.getFilteredSelectedRowModel().rows.length > 0 && (
+            <Button variant="destructive" onClick={handleBulkDeleteClick} className="flex items-center gap-2">
+              <Trash2 className="h-4 w-4" />
+              Hapus {table.getFilteredSelectedRowModel().rows.length} User
             </Button>
-            <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
-              Selanjutnya
-            </Button>
-          </div>
+          )}
+
+          <Button onClick={() => setCreateDialogOpen(true)}>
+            <Plus className="mr-2 h-4 w-4" />
+            Tambah User
+          </Button>
         </div>
-
-        {/* Dialogs */}
-        <UserFormDialog open={createDialogOpen} onOpenChange={handleCloseCreateDialog} onSuccess={handleSuccess} />
-
-        <UserFormDialog open={editDialogOpen} onOpenChange={handleCloseEditDialog} editData={selectedUser} onSuccess={handleSuccess} />
-
-        <DeleteUserDialog open={deleteDialogOpen} onOpenChange={handleCloseDeleteDialog} userData={selectedUser} onSuccess={handleSuccess} />
-
-        <DeleteUserBulkDialog open={deleteBulkDialogOpen} onOpenChange={handleCloseBulkDeleteDialog} userDatas={table.getSelectedRowModel().rows.map((row) => row.original)} onSuccess={handleSuccess} />
       </div>
-    </>
+
+      <div className="rounded-md border">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return <TableHead key={header.id}>{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}</TableHead>;
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={columns.length} className="h-24 text-center">
+                  Tidak ada data user.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <div className="flex-1 text-sm text-muted-foreground">
+          {table.getFilteredSelectedRowModel().rows.length} dari {table.getFilteredRowModel().rows.length} baris dipilih.
+        </div>
+        <div className="space-x-2">
+          <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+            Sebelumnya
+          </Button>
+          <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+            Selanjutnya
+          </Button>
+        </div>
+      </div>
+
+      <UserFormDialog open={createDialogOpen} onOpenChange={handleCloseCreateDialog} onSuccess={handleSuccess} />
+      <UserFormDialog open={editDialogOpen} onOpenChange={handleCloseEditDialog} editData={selectedUser} onSuccess={handleSuccess} />
+      <DeleteUserDialog open={deleteDialogOpen} onOpenChange={handleCloseDeleteDialog} userData={selectedUser} onSuccess={handleSuccess} />
+      <DeleteUserBulkDialog open={deleteBulkDialogOpen} onOpenChange={handleCloseBulkDeleteDialog} userDatas={table.getSelectedRowModel().rows.map((row) => row.original)} onSuccess={handleSuccess} />
+    </div>
   );
+}
+
+// Main Component - Handles Authorization
+export default function UserDataTable() {
+  const { data: session, isPending } = useSession();
+  const userId = session?.user?.id;
+
+  const { data: userData, isLoading: isLoadingUserData } = useGetUserByIdBetterAuth(userId as string);
+  const userRole = userData?.role?.name;
+
+  // Show loading while checking authorization
+  if (isPending || isLoadingUserData) {
+    return <Loading />;
+  }
+
+  // Check if user is Admin
+  if (userRole !== "Admin") {
+    unauthorized();
+    return null;
+  }
+
+  // Render dashboard only after authorization is confirmed
+  return <UserDashboard />;
 }

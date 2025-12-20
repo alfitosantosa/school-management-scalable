@@ -25,8 +25,8 @@ import { useGetSpecialSchedules, useCreateSpecialSchedule, useUpdateSpecialSched
 import { useGetAcademicYears } from "@/app/hooks/AcademicYears/useAcademicYear";
 import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
-import { useIsAdmin } from "@/app/hooks/Users/isAuthorized";
 import { unauthorized } from "next/navigation";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 
 // Type definitions
 export type SpecialScheduleData = {
@@ -270,19 +270,7 @@ function DeleteSpecialScheduleDialog({ open, onOpenChange, specialScheduleData, 
   );
 }
 
-// Main DataTable Component
-export default function SpecialScheduleDataTable() {
-
-    const { data: session } = useSession();
-    //check admin authorized
-    const isAdmin = useIsAdmin(session?.user?.id ?? "");
-    if (isAdmin.isAdmin === false) {
-      unauthorized();
-    }
-
-
-
-  
+function SpecialScheduleDataTable() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
@@ -751,3 +739,24 @@ export default function SpecialScheduleDataTable() {
   );
 }
 
+export default function UserDataTable() {
+  const { data: session, isPending } = useSession();
+  const userId = session?.user?.id;
+
+  const { data: userData, isLoading: isLoadingUserData } = useGetUserByIdBetterAuth(userId as string);
+  const userRole = userData?.role?.name;
+
+  // Show loading while checking authorization
+  if (isPending || isLoadingUserData) {
+    return <Loading />;
+  }
+
+  // Check if user is Admin
+  if (userRole !== "Admin") {
+    unauthorized();
+    return null;
+  }
+
+  // Render dashboard only after authorization is confirmed
+  return <SpecialScheduleDataTable />;
+}

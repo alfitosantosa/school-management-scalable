@@ -14,19 +14,13 @@ import { useState } from "react";
 import { useGetAttendance } from "@/app/hooks/Attendances/useAttendance";
 import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules";
 import { useSession } from "@/lib/auth-client";
-import { useIsAdmin } from "@/app/hooks/Users/isAuthorized";
 import { unauthorized } from "next/navigation";
+import Loading from "@/components/loading";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 
-export default function TeacherAttendancePage() {
+function TeacherAttendancePage() {
   const today = new Date().getDay();
   const [selectedDay, setSelectedDay] = useState<string>(today.toString());
-
-  const { data: session } = useSession();
-  //check admin authorized
-  const isAdmin = useIsAdmin(session?.user?.id ?? "");
-  if (isAdmin?.isAdmin === false) {
-    unauthorized();
-  }
 
   const { data: scheduleData = [], isLoading: isLoadingSchedule, error: scheduleError } = useGetSchedules();
 
@@ -265,4 +259,26 @@ export default function TeacherAttendancePage() {
       </div>
     </>
   );
+}
+
+export default function UserDataTable() {
+  const { data: session, isPending } = useSession();
+  const userId = session?.user?.id;
+
+  const { data: userData, isLoading: isLoadingUserData } = useGetUserByIdBetterAuth(userId as string);
+  const userRole = userData?.role?.name;
+
+  // Show loading while checking authorization
+  if (isPending || isLoadingUserData) {
+    return <Loading />;
+  }
+
+  // Check if user is Admin
+  if (userRole !== "Admin") {
+    unauthorized();
+    return null;
+  }
+
+  // Render dashboard only after authorization is confirmed
+  return <TeacherAttendancePage />;
 }

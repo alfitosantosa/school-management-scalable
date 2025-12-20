@@ -14,8 +14,9 @@ import { FileText, X, Upload, Download, AlertCircle } from "lucide-react";
 import { useState } from "react";
 import { useBulkCreateUserData } from "@/app/hooks/Users/useBulkUsersData";
 import { useSession } from "@/lib/auth-client";
-import { useIsAdmin } from "@/app/hooks/Users/isAuthorized";
 import { unauthorized } from "next/navigation";
+import Loading from "@/components/loading";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 
 export type typeData = {
   id: string;
@@ -23,14 +24,7 @@ export type typeData = {
   name: string;
 };
 
-export default function UploadUsers() {
-  const { data: session } = useSession();
-  //check admin authorized
-  const isAdmin = useIsAdmin(session?.user?.id ?? "");
-  if (isAdmin.isAdmin === false) {
-    unauthorized();
-  }
-
+function UploadUsers() {
   const [files, setFiles] = useState<File[]>([]);
   const [isUploading, setIsUploading] = useState(false);
   const [previewData, setPreviewData] = useState<any[]>([]);
@@ -572,4 +566,26 @@ export default function UploadUsers() {
       </div>
     </div>
   );
+}
+
+export default function UserDataTable() {
+  const { data: session, isPending } = useSession();
+  const userId = session?.user?.id;
+
+  const { data: userData, isLoading: isLoadingUserData } = useGetUserByIdBetterAuth(userId as string);
+  const userRole = userData?.role?.name;
+
+  // Show loading while checking authorization
+  if (isPending || isLoadingUserData) {
+    return <Loading />;
+  }
+
+  // Check if user is Admin
+  if (userRole !== "Admin") {
+    unauthorized();
+    return null;
+  }
+
+  // Render dashboard only after authorization is confirmed
+  return <UploadUsers />;
 }

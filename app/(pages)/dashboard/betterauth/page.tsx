@@ -20,8 +20,8 @@ import Image from "next/image";
 import { authClient, useSession } from "@/lib/auth-client";
 import { toast } from "sonner";
 import Loading from "@/components/loading";
-import { useIsAdmin } from "@/app/hooks/Users/isAuthorized";
 import { unauthorized } from "next/navigation";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 
 export type User = {
   id: string;
@@ -65,14 +65,8 @@ export type User = {
   };
 };
 
-export default function DataTableBetterAuth() {
+function DataTableBetterAuth() {
   const { data: session } = useSession();
-
-  //check admin authorized
-  const isAdminAuthorized = useIsAdmin(session?.user?.id ?? "");
-  if (isAdminAuthorized?.isAdmin === false) {
-    unauthorized();
-  }
 
   const { data, isLoading, error, refetch } = useGetBetterAuth();
 
@@ -625,4 +619,25 @@ export default function DataTableBetterAuth() {
       </Dialog>
     </>
   );
+}
+
+export default function UserDataTableBetterauth() {
+  const { data: session, isPending } = useSession();
+  const userId = session?.user?.id;
+
+  const { data: userData, isLoading: isLoadingUserData } = useGetUserByIdBetterAuth(userId as string);
+  const userRole = userData?.role?.name;
+
+  // Show loading while checking authorization
+  if (isPending || isLoadingUserData) {
+    return <Loading />;
+  }
+
+  // Check if user is Admin
+  if (userRole !== "Admin") {
+    unauthorized();
+  }
+
+  // Render dashboard only after authorization is confirmed
+  return <DataTableBetterAuth />;
 }

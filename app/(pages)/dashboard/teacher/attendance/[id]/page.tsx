@@ -17,7 +17,7 @@ import { toast } from "sonner";
 import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { useSession } from "@/lib/auth-client";
-import { useIsTeacher } from "@/app/hooks/Users/isAuthorized";
+import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 
 interface Student {
   id: string;
@@ -40,16 +40,7 @@ const STATUS_MAP = {
   sick: { label: "Sakit", color: "bg-purple-500" },
 };
 
-export default function AttendanceModule() {
-    const { data: session } = useSession();
-    // Get session from Better Auth
-    const isTeacher = useIsTeacher(session?.user?.id ?? "");
-
-    //if not teacher, redirect or handle unauthorized access
-    if (isTeacher.isTeacher === false) {
-      // TODO: Redirect to unauthorized page or show error
-      unauthorized();
-    }
+function AttendanceModule() {
   const params = useParams();
   const [attendanceData, setAttendanceData] = useState<Record<string, { status: string; notes?: string; evidenceUrl?: string }>>({});
   const [sendWhatsApp, setSendWhatsApp] = useState(false);
@@ -502,4 +493,30 @@ _Pesan ini dikirim otomatis oleh sistem._`;
       </div>
     </>
   );
+}
+
+export default function UserDataTable() {
+  const { data: session, isPending } = useSession();
+  console.log(session);
+  const userId = session?.user?.id;
+
+  const { data: userData, isLoading: isLoadingUserData } = useGetUserByIdBetterAuth(userId as string);
+  const userRole = userData?.role?.name;
+  console.log(userRole);
+
+  // Show loading while checking authorization
+  if (isPending || isLoadingUserData) {
+    return <Loading />;
+  }
+
+  // Check if user is Admin and Teacher
+  if (userRole !== "Teacher") {
+    if (userRole !== "Admin") {
+      return null;
+      unauthorized();
+    }
+  }
+
+  // Render dashboard only after authorization is confirmed
+  return <AttendanceModule />;
 }
