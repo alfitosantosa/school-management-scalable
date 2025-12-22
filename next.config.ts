@@ -82,6 +82,7 @@ const nextConfig: NextConfig = {
             bodySizeLimit: "2mb",
           },
           authInterrupts: true,
+          serverComponentsHmrCache: true,
         },
       }
     : {}),
