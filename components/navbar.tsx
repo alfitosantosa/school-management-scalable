@@ -42,6 +42,7 @@ const permissionLabels: Record<string, string> = {
   "/dashboard/botwa": "Botwa Management",
   "/dashboard/attendance/teacher": "Absensi Kepala Sekolah",
   "/dashboard/admin/attendance": "Absensi Admin Backup",
+  "/dashboard/recapattendance": "Rekap Absensi",
 };
 
 export default function Navbar() {
