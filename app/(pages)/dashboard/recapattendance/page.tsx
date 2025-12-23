@@ -14,7 +14,7 @@ import { id } from "date-fns/locale";
 import Loading from "@/components/loading";
 import OptimizedImage from "@/components/OptimizedImage";
 import Image from "next/image";
-import { exportStudentAttendanceToExcel, exportStudentAttendanceDetailToExcel } from "@/lib/exportStudentAttendance";
+import { exportStudentAttendanceToExcel, exportStudentAttendanceDetailToExcel } from "@/lib/export/exportStudentAttendance";
 import { useSession } from "@/lib/auth-client";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { unauthorized } from "next/navigation";

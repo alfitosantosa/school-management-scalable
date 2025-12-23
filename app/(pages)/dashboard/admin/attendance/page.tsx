@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
-import { CalendarDays, Clock, MapPin, BookOpen, Users, GraduationCap, Eye, Plus } from "lucide-react";
+import { CalendarDays, Clock, MapPin, BookOpen, Users, GraduationCap, Eye, Plus, LucidePanelTopClose } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { useGetAttendance } from "@/app/hooks/Attendances/useAttendance";
@@ -23,6 +23,8 @@ function TeacherAttendancePage() {
   const [selectedDay, setSelectedDay] = useState<string>(today.toString());
 
   const { data: scheduleData = [], isLoading: isLoadingSchedule, error: scheduleError } = useGetSchedules();
+
+  console.log(scheduleData);
 
   const getDayName = (dayOfWeek: number) => {
     const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
@@ -209,7 +211,14 @@ function TeacherAttendancePage() {
                                 <span className="font-medium">Waktu:</span> {schedule.startTime} - {schedule.endTime}
                               </span>
                             </div>
-
+                            <div className="flex items-center gap-3">
+                              <LucidePanelTopClose className="h-4 w-4 text-slate-500" />
+                              <span className="text-slate-700">
+                                <span className="font-medium">Guru:</span> {schedule?.teacher?.name || "Tidak ada guru"}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="space-y-4">
                             <div className="flex items-center gap-3">
                               <BookOpen className="h-4 w-4 text-slate-500" />
                               <span className="text-slate-700">
