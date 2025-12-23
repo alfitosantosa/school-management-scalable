@@ -359,20 +359,20 @@ function RecapAttendance() {
 
                 {/* Pagination */}
                 {totalPages > 1 && (
-                  <div className="flex items-center justify-between px-2 mt-4">
+                  <div className="flex flex-wrap items-center justify-between px-2 mt-4">
                     <div className="text-sm text-muted-foreground">
                       Menampilkan {startIndex + 1}-{Math.min(endIndex, sortedAttendances.length)} dari {sortedAttendances.length} data
                     </div>
                     <div className="flex items-center space-x-2">
                       <Button variant="outline" size="sm" onClick={() => setCurrentPage((p: number) => Math.max(0, p - 1))} disabled={currentPage === 0}>
                         <ChevronLeft className="h-4 w-4" />
-                        Sebelumnya
+                        Previous
                       </Button>
                       <span className="text-sm">
                         Halaman {currentPage + 1} dari {totalPages}
                       </span>
                       <Button variant="outline" size="sm" onClick={() => setCurrentPage((p: number) => Math.min(totalPages - 1, p + 1))} disabled={currentPage >= totalPages - 1}>
-                        Selanjutnya
+                        Next
                         <ChevronRight className="h-4 w-4" />
                       </Button>
                     </div>

@@ -10,7 +10,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
 import { CalendarDays, Clock, MapPin, BookOpen, Users, GraduationCap, Eye, Plus, LucidePanelTopClose } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useGetAttendance } from "@/app/hooks/Attendances/useAttendance";
 import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules";
 import { useSession } from "@/lib/auth-client";
@@ -21,10 +21,20 @@ import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAu
 function TeacherAttendancePage() {
   const today = new Date().getDay();
   const [selectedDay, setSelectedDay] = useState<string>(today.toString());
+  const [selectedTeacher, setSelectedTeacher] = useState<string>("all");
 
   const { data: scheduleData = [], isLoading: isLoadingSchedule, error: scheduleError } = useGetSchedules();
 
-  console.log(scheduleData);
+  // Extract unique teachers from schedule data
+  const uniqueTeachers = useMemo(() => {
+    const teachers = new Map();
+    scheduleData.forEach((schedule: any) => {
+      if (schedule.teacher && schedule.teacher.id && schedule.teacher.name) {
+        teachers.set(schedule.teacher.id, schedule.teacher.name);
+      }
+    });
+    return Array.from(teachers.entries()).map(([id, name]) => ({ id, name }));
+  }, [scheduleData]);
 
   const getDayName = (dayOfWeek: number) => {
     const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
@@ -47,7 +57,21 @@ function TeacherAttendancePage() {
     { value: "6", label: "Sabtu" },
   ];
 
-  const filteredScheduleData = selectedDay === "all" ? scheduleData : scheduleData.filter((schedule: any) => schedule.dayOfWeek.toString() === selectedDay);
+  const filteredScheduleData = useMemo(() => {
+    let filtered = scheduleData;
+
+    // Filter by day
+    if (selectedDay !== "all") {
+      filtered = filtered.filter((schedule: any) => schedule.dayOfWeek.toString() === selectedDay);
+    }
+
+    // Filter by teacher
+    if (selectedTeacher !== "all") {
+      filtered = filtered.filter((schedule: any) => schedule.teacher?.id === selectedTeacher);
+    }
+
+    return filtered;
+  }, [scheduleData, selectedDay, selectedTeacher]);
 
   const isTodaySchedule = (dayOfWeek: number) => {
     const today = new Date().getDay();
@@ -120,23 +144,42 @@ function TeacherAttendancePage() {
                 <CalendarDays className="h-5 w-5" />
                 Filter Jadwal
               </CardTitle>
-              <CardDescription>Pilih hari untuk melihat jadwal spesifik</CardDescription>
+              <CardDescription>Pilih hari dan guru untuk melihat jadwal spesifik</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex items-center gap-4">
-                <label className="text-sm font-medium text-slate-700 min-w-fit">Pilih Hari:</label>
-                <Select value={selectedDay} onValueChange={setSelectedDay}>
-                  <SelectTrigger className="w-64">
-                    <SelectValue placeholder="Pilih hari" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {dayOptions.map((day) => (
-                      <SelectItem key={day.value} value={day.value}>
-                        {day.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-4">
+                  <label className="text-sm font-medium text-slate-700 min-w-fit">Pilih Hari:</label>
+                  <Select value={selectedDay} onValueChange={setSelectedDay}>
+                    <SelectTrigger className="w-64">
+                      <SelectValue placeholder="Pilih hari" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {dayOptions.map((day) => (
+                        <SelectItem key={day.value} value={day.value}>
+                          {day.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <label className="text-sm font-medium text-slate-700 min-w-fit">Pilih Guru:</label>
+                  <Select value={selectedTeacher} onValueChange={setSelectedTeacher}>
+                    <SelectTrigger className="w-64">
+                      <SelectValue placeholder="Pilih guru" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">Semua Guru</SelectItem>
+                      {uniqueTeachers.map((teacher) => (
+                        <SelectItem key={teacher.id} value={teacher.id}>
+                          {teacher.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
             </CardContent>
           </Card>
