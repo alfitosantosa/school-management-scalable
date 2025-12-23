@@ -36,10 +36,12 @@ export type AcademicYearData = {
   isActive: boolean;
   createdAt: string;
   updatedAt: string;
-  classes?: any[];
-  students?: any[];
-  schedules?: any[];
-  calendarEvents?: any[];
+  _count: {
+    students: number;
+    schedules: number;
+    calendarEvents: number;
+    classes: number;
+  };
 };
 
 // Form schema
@@ -212,6 +214,7 @@ function AcademicYearDataTable() {
   const [selectedAcademicYear, setSelectedAcademicYear] = React.useState<AcademicYearData | null>(null);
 
   const { data: academicYears = [], isLoading, refetch } = useGetAcademicYears();
+  console.log("Academic Years:", academicYears);
 
   const handleSuccess = () => {
     refetch();
@@ -285,16 +288,32 @@ function AcademicYearDataTable() {
       accessorKey: "classes",
       header: "Jumlah Kelas",
       cell: ({ row }) => {
-        const classes = row.original.classes || [];
-        return <div className="text-center font-medium">{classes.length}</div>;
+        const classes = row.original._count?.classes ?? 0;
+        return <div className="text-center font-medium">{classes}</div>;
       },
     },
     {
       accessorKey: "students",
       header: "Jumlah Siswa",
       cell: ({ row }) => {
-        const students = row.original.students || [];
-        return <div className="text-center font-medium">{students.length}</div>;
+        const students = row.original._count?.students ?? 0;
+        return <div className="text-center font-medium">{students}</div>;
+      },
+    },
+    {
+      accessorKey: "schedules",
+      header: "Jumlah Jadwal",
+      cell: ({ row }) => {
+        const schedules = row.original._count?.schedules ?? 0;
+        return <div className="text-center font-medium">{schedules}</div>;
+      },
+    },
+    {
+      accessorKey: "calendarEvents",
+      header: "Jumlah Acara",
+      cell: ({ row }) => {
+        const events = row.original._count?.calendarEvents ?? 0;
+        return <div className="text-center font-medium">{events}</div>;
       },
     },
     {

@@ -22,11 +22,7 @@ export async function GET() {
   try {
     const academicYears = await prisma.academicYear.findMany({
       include: {
-        classes: true,
-        students: true,
-        schedules: true,
-        calendarEvents: true,
-        // violationTypes: true,
+        _count: { select: { students: true, schedules: true, calendarEvents: true, classes: true } },
       },
     });
     return NextResponse.json(academicYears);
