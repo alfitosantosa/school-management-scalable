@@ -198,7 +198,9 @@ exports.Prisma.UserDataScalarFieldEnum = {
   studentIds: 'studentIds',
   email: 'email',
   name: 'name',
-  isActive: 'isActive'
+  isActive: 'isActive',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.RoleScalarFieldEnum = {

@@ -121,6 +121,8 @@ model UserData {
   role               Role?                  @relation(fields: [roleId], references: [id])
   user               User?                  @relation(fields: [userId], references: [id], onDelete: Cascade)
   violations         Violation[]            @relation("StudentViolation")
+  updatedAt          DateTime?              @updatedAt
+  createdAt          DateTime?              @default(now())
 
   @@map("user_data")
 }
