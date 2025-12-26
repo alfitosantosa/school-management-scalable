@@ -47,3 +47,5 @@ export const useGetScheduleByIdAcademicYearActive = (id: string) => {
     enabled: !!id,
   });
 };
+
+

@@ -1,6 +1,4 @@
 "use client";
-
-import { useGetScheduleByIdAcademicYearActive } from "@/app/hooks/Schedules/useGetScheduleById";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,7 +10,7 @@ import { CalendarDays, Clock, MapPin, BookOpen, Users, GraduationCap, Eye, Plus,
 import Link from "next/link";
 import { useState, useMemo } from "react";
 import { useGetAttendance } from "@/app/hooks/Attendances/useAttendance";
-import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules";
+import { useGetScheduleAcademicYearActive } from "@/app/hooks/Schedules/useSchedules";
 import { useSession } from "@/lib/auth-client";
 import { unauthorized } from "next/navigation";
 import Loading from "@/components/loading";
@@ -23,7 +21,7 @@ function TeacherAttendancePage() {
   const [selectedDay, setSelectedDay] = useState<string>(today.toString());
   const [selectedTeacher, setSelectedTeacher] = useState<string>("all");
 
-  const { data: scheduleData = [], isLoading: isLoadingSchedule, error: scheduleError } = useGetSchedules();
+  const { data: scheduleData = [], isLoading: isLoadingSchedule, error: scheduleError } = useGetScheduleAcademicYearActive();
 
   // Extract unique teachers from schedule data
   const uniqueTeachers = useMemo(() => {

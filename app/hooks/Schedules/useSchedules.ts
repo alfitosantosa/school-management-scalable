@@ -72,3 +72,17 @@ export const useGetSchedulesByStudent = (studentId: string) => {
     enabled: !!studentId, // Only run the query if studentId is provided
   });
 };
+
+export const useGetScheduleAcademicYearActive = () => {
+  return useQuery({
+    queryKey: ["schedules-with-academic-year-active"],
+    queryFn: async () => {
+      try {
+        const res = await apiGet(`/api/schedules/active`);
+        return res.data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  });
+};
