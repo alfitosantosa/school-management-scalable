@@ -81,10 +81,9 @@ const availablePermissions = [
   { id: "/dashboard/botwa", label: "Botwa Management" },
   { id: "/dashboard/attendance/teacher", label: "Attendance for Principal" },
   { id: "/dashboard/admin/attendance", label: "Attendance for Admin Backup" },
-  {
-    id: "/dashboard/recapattendance",
-    label: "Recap Attendance Student",
-  },
+  { id: "/dashboard/recapattendance", label: "Recap Attendance Student" },
+  { id: "/dashboard/calender/list/teacher", label: "Calendar List for Teacher" },
+  { id: "/dashboard/calender/list/student", label: "Calendar List for Student" },
 ];
 
 // Create/Edit Dialog Component

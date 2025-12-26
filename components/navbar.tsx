@@ -43,6 +43,8 @@ const permissionLabels: Record<string, string> = {
   "/dashboard/attendance/teacher": "Absensi Kepala Sekolah",
   "/dashboard/admin/attendance": "Absensi Admin Backup",
   "/dashboard/recapattendance": "Rekap Absensi",
+  "/dashboard/calender/list/teacher": "Kalender List untuk Guru",
+  "/dashboard/calender/list/student": "Kalender List untuk Siswa",
 };
 
 export default function Navbar() {

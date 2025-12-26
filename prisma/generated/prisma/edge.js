@@ -556,7 +556,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\muhamad.alfito\\Desktop\\school-management-scalable\\prisma\\generated\\prisma",
+      "value": "/Users/alfitosantosa/projects/school-management-scalable/prisma/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -565,12 +565,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\muhamad.alfito\\Desktop\\school-management-scalable\\prisma\\schema.prisma",
+    "sourceFilePath": "/Users/alfitosantosa/projects/school-management-scalable/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
