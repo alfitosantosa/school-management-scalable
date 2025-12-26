@@ -89,10 +89,10 @@ export async function GET() {
         academicYear: true,
         user: true,
       },
-      orderBy: {
-        createdAt: "asc",
-        updatedAt: "asc",
-      },
+      // orderBy: {
+      //   createdAt: "asc",
+      //   updatedAt: "asc",
+      // },
     });
     return NextResponse.json(users);
   } catch (error) {

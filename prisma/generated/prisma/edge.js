@@ -556,7 +556,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/alfitosantosa/projects/school-management-scalable/prisma/generated/prisma",
+      "value": "C:\\Users\\muhamad.alfito\\Desktop\\school-management-scalable\\prisma\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -565,12 +565,12 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/alfitosantosa/projects/school-management-scalable/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\muhamad.alfito\\Desktop\\school-management-scalable\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -584,6 +584,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
