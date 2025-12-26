@@ -15,7 +15,7 @@ import { prisma } from "@/lib/prisma";
 export async function GET() {
   try {
     const roles = await prisma.role.findMany({
-      include: { userData: true, _count: { select: { userData: true } } },
+      include: { _count: { select: { userData: true } } },
     });
     return NextResponse.json(roles);
   } catch (error) {
