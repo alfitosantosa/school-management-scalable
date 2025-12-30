@@ -102,6 +102,8 @@ model UserData {
   email              String?
   name               String
   isActive           Boolean                @default(true)
+  createdAt          DateTime?              @default(now())
+  updatedAt          DateTime?              @updatedAt
   Announcements      Announcement[]
   studentSubmissions AssignmentSubmission[] @relation("StudentSubmission")
   teacherAssignments Assignment[]           @relation("TeacherAssignment")
@@ -121,8 +123,6 @@ model UserData {
   role               Role?                  @relation(fields: [roleId], references: [id])
   user               User?                  @relation(fields: [userId], references: [id], onDelete: Cascade)
   violations         Violation[]            @relation("StudentViolation")
-  updatedAt          DateTime?              @updatedAt
-  createdAt          DateTime?              @default(now())
 
   @@map("user_data")
 }

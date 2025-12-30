@@ -1,18 +1,17 @@
-# ==========================================
-# DOCKER COMPOSE - PRODUCTION READY
-# Optimized for: Security, Performance, Scalability, Monitoring
-# ==========================================
-
 services:
-  # ==========================================
-  # PRODUCTION APPLICATION
-  # ==========================================
   app:
     build:
       context: .
       dockerfile: Dockerfile
       args:
         - NODE_ENV=production
+      # PENTING: Tambahkan ini untuk cleanup build cache
+      cache_from:
+        - school-management:latest
+      # Batasi build context
+      labels:
+        - "com.docker.compose.project=school-management"
+    
     image: school-management:latest
     container_name: school-management-app
     restart: unless-stopped
@@ -26,27 +25,18 @@ services:
       - HOSTNAME=0.0.0.0
       - NEXT_TELEMETRY_DISABLED=1
 
-    # Load environment variables from .env file
     env_file:
       - .env.production
 
-    # Resource limits for stability and cost control
     deploy:
       resources:
         limits:
           cpus: "2.0"
-          memory: 7G
+          memory: 4G  # Turunkan dari 7G
         reservations:
-          cpus: "1.0"
-          memory: 2G
-      # Restart policy
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
+          cpus: "0.5"
+          memory: 1G  # Turunkan dari 2G
 
-    # Health check configuration
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
       interval: 30s
@@ -54,102 +44,55 @@ services:
       retries: 3
       start_period: 40s
 
-    # Logging configuration for production
     logging:
       driver: "json-file"
       options:
-        max-size: "10m"
-        max-file: "3"
+        max-size: "5m"  # Turunkan dari 10m
+        max-file: "2"   # Turunkan dari 3
         compress: "true"
 
-    # Security: read-only root filesystem where possible
-    read_only: false
+    # PENTING: Batasi tmpfs size
     tmpfs:
-      - /tmp
-      - /var/tmp
+      - /tmp:size=100m,mode=1777
+      - /var/tmp:size=100m,mode=1777
 
-    # Security: no new privileges
     security_opt:
       - no-new-privileges:true
 
-    # Network configuration
     networks:
       - app-network
 
-    # Labels for monitoring and management
     labels:
       - "com.school-management.service=app"
       - "com.school-management.environment=production"
-      - "com.school-management.version=latest"
 
   # ==========================================
-  # DEVELOPMENT PROFILE - Fast Reload
+  # CLEANUP SERVICE - Otomatis bersihkan unused images/containers
   # ==========================================
-  app-dev:
-    image: oven/bun:1.1-alpine
-    container_name: school-management-dev
-    working_dir: /app
-
-    ports:
-      - "${PORT:-3000}:3000"
-
+  docker-cleanup:
+    image: docker:cli
+    container_name: docker-cleanup
+    restart: unless-stopped
     volumes:
-      # Mount source code for hot reload
-      - .:/app
-      # Persist node_modules to avoid reinstall
-      - node_modules:/app/node_modules
-      # Persist .next for faster builds
-      - next_cache:/app/.next
-      # Persist bun cache
-      - bun_cache:/root/.bun
-      # Persist Prisma client
-      - prisma_cache:/app/node_modules/.prisma
-
-    environment:
-      - NODE_ENV=development
-      - WATCHPACK_POLLING=true
-      - CHOKIDAR_USEPOLLING=true
-      - NEXT_TELEMETRY_DISABLED=1
-
-    env_file:
-      - .env
-
-    # Start development server with hot reload
-    command: sh -c "bun install && bunx prisma generate && bun run dev"
-
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    # Cleanup setiap hari jam 2 pagi
+    command: sh -c "while true; do docker system prune -af --volumes --filter 'until=24h'; sleep 86400; done"
     profiles:
-      - dev
+      - cleanup
 
-    networks:
-      - app-network
-
-    # Development: more relaxed resource limits
-    deploy:
-      resources:
-        limits:
-          cpus: "1.0"
-          memory: 1G
-
-# ==========================================
-# NETWORKS
-# ==========================================
 networks:
   app-network:
     driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.28.0.0/16
 
-# ==========================================
-# VOLUMES
-# ==========================================
+# PENTING: Batasi volume size (jika didukung driver)
 volumes:
   node_modules:
     driver: local
+    driver_opts:
+      type: none
+      o: bind,size=500m
   next_cache:
     driver: local
-  bun_cache:
-    driver: local
-  prisma_cache:
-    driver: local
+    driver_opts:
+      type: none
+      o: bind,size=300m
