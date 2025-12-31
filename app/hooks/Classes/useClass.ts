@@ -54,8 +54,13 @@ export const useDeleteClass = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const res = await apiDelete(`/api/class/?id=${id}`);
-      return res.data;
+      const response = await apiDelete(`/api/class/`, {
+        body: JSON.stringify({ id }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["classes"] });

@@ -18,7 +18,11 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET() {
   try {
-    const specialSchedules = await prisma.calendarEvent.findMany();
+    const specialSchedules = await prisma.calendarEvent.findMany({
+      include: {
+        academicYear: true,
+      },
+    });
     return NextResponse.json(specialSchedules);
   } catch (error) {
     console.error("Error fetching special schedules:", error);

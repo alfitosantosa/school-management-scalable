@@ -51,7 +51,12 @@ export const useDeleteMajor = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const res = await apiDelete(`/api/major/?id=${id}`);
+      const res = await apiDelete(`/api/major`, {
+        body: JSON.stringify({ id }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       return res.data;
     },
     onSuccess: () => {

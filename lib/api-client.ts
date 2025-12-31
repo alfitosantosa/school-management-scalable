@@ -46,7 +46,7 @@ export async function apiGet<T = any>(url: string, options?: FetchOptions): Prom
   });
 
   if (!response.ok) {
-    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+    console.error(`API Error: ${response.status} ${response.statusText}`);
   }
 
   const data = await response.json();
@@ -72,7 +72,7 @@ export async function apiPost<T = any>(url: string, body?: any, options?: FetchO
   });
 
   if (!response.ok) {
-    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+    console.error(`API Error: ${response.status} ${response.statusText}`);
   }
 
   const data = await response.json();
@@ -98,7 +98,7 @@ export async function apiPut<T = any>(url: string, body?: any, options?: FetchOp
   });
 
   if (!response.ok) {
-    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+    console.error(`API Error: ${response.status} ${response.statusText}`);
   }
 
   const data = await response.json();
@@ -123,7 +123,7 @@ export async function apiDelete<T = any>(url: string, options?: FetchOptions): P
   });
 
   if (!response.ok) {
-    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+    console.error(`API Error: ${response.status} ${response.statusText}`);
   }
 
   const data = await response.json();
@@ -149,7 +149,7 @@ export async function apiPatch<T = any>(url: string, body?: any, options?: Fetch
   });
 
   if (!response.ok) {
-    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+    console.error(`API Error: ${response.status} ${response.statusText}`);
   }
 
   const data = await response.json();

@@ -48,7 +48,12 @@ export const useDeleteSpecialSchedule = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id) => {
-      const response = await apiDelete("/api/specialschedule?id=" + id);
+      const response = await apiDelete("/api/specialschedule", {
+        body: JSON.stringify({ id }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       return response.data;
     },
     onSuccess: () => {

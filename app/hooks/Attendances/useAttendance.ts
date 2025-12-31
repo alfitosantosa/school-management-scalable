@@ -41,7 +41,12 @@ export const useDeleteAttendance = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const response = await apiDelete(`/api/attendance/?id=${id}`);
+      const response = await apiDelete(`/api/attendance/`, {
+        body: JSON.stringify({ id }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       return response.data;
     },
     onSuccess: () => {

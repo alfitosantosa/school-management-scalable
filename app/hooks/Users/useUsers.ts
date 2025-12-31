@@ -55,7 +55,12 @@ export const useDeleteUser = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const res = await apiDelete(`/api/userdata/?id=${id}`);
+      const res = await apiDelete(`/api/userdata/`, {
+        body: JSON.stringify({ id }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       return res.data;
     },
     onSuccess: () => {

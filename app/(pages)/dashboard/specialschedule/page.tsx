@@ -27,6 +27,7 @@ import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
 import { unauthorized } from "next/navigation";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
+import { toast } from "sonner";
 
 // Type definitions
 export type SpecialScheduleData = {
@@ -69,16 +70,6 @@ const EVENT_TYPES = [
 ];
 
 // Mock toast function (replace with your actual toast implementation)
-const toast = {
-  success: (message: string) => {
-    // Replace with your actual toast implementation
-    toast.success(`Success, ${message}`);
-  },
-  error: (message: string) => {
-    // Replace with your actual toast implementation
-    toast.error(`Error : ${message}`);
-  },
-};
 
 // Create/Edit Dialog Component
 function SpecialScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; editData?: SpecialScheduleData | null; onSuccess: () => void }) {
@@ -288,6 +279,7 @@ function SpecialScheduleDataTable() {
   const [globalFilter, setGlobalFilter] = React.useState<string>("");
 
   const { data: specialSchedules = [], isLoading, refetch } = useGetSpecialSchedules();
+  console.log(specialSchedules);
 
   const handleSuccess = () => {
     refetch();
@@ -441,13 +433,9 @@ function SpecialScheduleDataTable() {
     },
     {
       id: "academicYear",
-      accessorFn: (row) => `${row.academicYear?.year} - ${row.academicYear?.semester}` || "",
+      accessorFn: (row) => `${row.academicYear?.year}` || "",
       header: "Tahun Akademik",
-      cell: ({ row }) => (
-        <div className="text-sm">
-          {row.original.academicYear?.year} - {row.original.academicYear?.semester}
-        </div>
-      ),
+      cell: ({ row }) => <div className="text-sm">{row.original.academicYear?.year}</div>,
     },
     {
       id: "actions",

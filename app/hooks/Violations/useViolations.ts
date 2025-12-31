@@ -51,7 +51,12 @@ export const useDeleteViolation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (id: string) => {
-      const response = await apiDelete("/api/violations?id=" + id);
+      const response = await apiDelete("/api/violations", {
+        body: JSON.stringify({ id }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       return response.data;
     },
     onSuccess: () => {
