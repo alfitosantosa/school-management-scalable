@@ -595,7 +595,7 @@ function SpecialScheduleDataTable() {
             )}
           </div>
 
-          <div className="grid lg:grid-cols-3 space-x-2  md:mt-0">
+          <div className="flex flex-wrap space-x-2  md:mt-0">
             <div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

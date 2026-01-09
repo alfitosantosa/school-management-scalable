@@ -360,12 +360,15 @@ function ScheduleDataTable() {
 
   // Filter states
   const [classFilter, setClassFilter] = React.useState<string>("all");
+  const [teacherFilter, setTeacherFilter] = React.useState<string>("all");
   const [dayFilter, setDayFilter] = React.useState<string>("all");
   const [academicYearFilter, setAcademicYearFilter] = React.useState<string>("all");
   const [globalFilter, setGlobalFilter] = React.useState<string>("");
 
   const { data: schedules = [], isLoading, refetch } = useGetSchedules();
   const { data: classes = [] } = useGetClasses();
+  const { data: subjects = [] } = useGetSubjects();
+  const { data: teachers = [] } = useGetTeachers();
   const { data: academicYears = [] } = useGetAcademicYears();
 
   const handleSuccess = () => {
@@ -486,6 +489,10 @@ function ScheduleDataTable() {
         );
       },
       cell: ({ row }) => <div className="font-medium">{row.original.teacher?.name}</div>,
+      filterFn: (row, id, value) => {
+        if (value === "all") return true;
+        return row.original.teacherId === value;
+      },
     },
     {
       accessorKey: "room",
@@ -585,6 +592,15 @@ function ScheduleDataTable() {
     }
   }, [classFilter, table]);
 
+  // Apply teacher filter
+  React.useEffect(() => {
+    if (teacherFilter !== "all") {
+      table.getColumn("teacher")?.setFilterValue(teacherFilter);
+    } else {
+      table.getColumn("teacher")?.setFilterValue(undefined);
+    }
+  }, [teacherFilter, table]);
+
   // Apply day filter
   React.useEffect(() => {
     if (dayFilter !== "all") {
@@ -630,6 +646,21 @@ function ScheduleDataTable() {
                 {classes?.map((cls: any) => (
                   <SelectItem key={cls.id} value={cls.id}>
                     {cls.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            {/* teacher filter  */}
+            <Select value={teacherFilter} onValueChange={setTeacherFilter}>
+              <SelectTrigger className="w-[140px]">
+                <SelectValue placeholder="Filter Guru" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Semua Guru</SelectItem>
+                {teachers?.map((teacher: any) => (
+                  <SelectItem key={teacher.id} value={teacher.id}>
+                    {teacher.name}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -684,7 +715,10 @@ function ScheduleDataTable() {
             )}
           </div>
 
-          <div className="grid md:grid-cols-2 gap-2 items-center space-x-2">
+          <div
+            className="flex flex-wrap
+           gap-2 items-center space-x-2"
+          >
             <div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

@@ -84,6 +84,10 @@ const availablePermissions = [
   { id: "/dashboard/recapattendance", label: "Recap Attendance Student" },
   { id: "/dashboard/calender/list/teacher", label: "Calendar List for Teacher" },
   { id: "/dashboard/calender/list/student", label: "Calendar List for Student" },
+  {
+    id: "/dashboard/upload/schedules",
+    label: "Upload Schedules",
+  },
 ];
 
 // Create/Edit Dialog Component
