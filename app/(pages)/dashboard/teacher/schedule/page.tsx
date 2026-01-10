@@ -286,8 +286,10 @@ export default function UserDataTable() {
 
   // Check if user is Admin and Teacher
   if (userRole !== "Teacher") {
-    unauthorized();
-    return null;
+    if (userRole !== "Head Of School") {
+      unauthorized();
+      return null;
+    }
   }
 
   // Render dashboard only after authorization is confirmed
