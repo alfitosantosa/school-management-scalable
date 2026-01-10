@@ -70,7 +70,9 @@ export async function GET() {
       },
       where: {
         role: {
-          name: "Teacher",
+          name: {
+            in: ["Teacher", "Head Of School"],
+          },
         },
       },
     });

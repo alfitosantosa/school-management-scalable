@@ -68,6 +68,9 @@ function TeacherAttendancePage() {
       filtered = filtered.filter((schedule: any) => schedule.teacher?.id === selectedTeacher);
     }
 
+    // filter sort by start time
+    filtered = filtered.sort((a: any, b: any) => a.startTime.localeCompare(b.startTime));
+
     return filtered;
   }, [scheduleData, selectedDay, selectedTeacher]);
 

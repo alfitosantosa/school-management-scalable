@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { TeacherCombobox } from "@/components/ui/teacher-combobox";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -224,18 +225,7 @@ function ScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open:
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label>Guru</Label>
-              <Select value={selectedTeacherId || ""} onValueChange={(value) => setValue("teacherId", value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Pilih Guru" />
-                </SelectTrigger>
-                <SelectContent>
-                  {teachers?.map((teacher: any) => (
-                    <SelectItem key={teacher.id} value={teacher.id}>
-                      {teacher.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <TeacherCombobox teachers={teachers || []} value={selectedTeacherId || ""} onValueChange={(value) => setValue("teacherId", value)} placeholder="Pilih Guru" />
               {errors.teacherId && <p className="text-sm text-red-500">{errors.teacherId.message}</p>}
             </div>
 

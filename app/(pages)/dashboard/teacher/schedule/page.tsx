@@ -51,8 +51,10 @@ function TeacherAttendancePage() {
     { value: "5", label: "Jumat" },
     { value: "6", label: "Sabtu" },
   ];
+  //filtered base on hour entry student at start time
+  const filteredScheduleData = selectedDay === "all" ? scheduleData : scheduleData.filter((schedule: any) => schedule.dayOfWeek.toString() === selectedDay && schedule.startTime === schedule.startTime);
 
-  const filteredScheduleData = selectedDay === "all" ? scheduleData : scheduleData.filter((schedule: any) => schedule.dayOfWeek.toString() === selectedDay);
+  console.log("filteredScheduleData", filteredScheduleData);
 
   const isTodaySchedule = (dayOfWeek: number) => {
     const today = new Date().getDay();
