@@ -221,10 +221,10 @@ function CheckinTab({ adminId }: CheckinTabProps) {
               }}
             >
               <DialogTrigger asChild>
-                <Button variant="outline" className="gap-1.5 sm:gap-2 flex-1 sm:flex-none text-xs sm:text-sm py-2">
+                <Button variant="default" className="gap-1.5 sm:gap-2 flex-1 sm:flex-none text-xs sm:text-sm py-2">
                   <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                  <span className="hidden xs:inline sm:inline">Bulk Check-in</span>
-                  <span className="xs:hidden sm:hidden">Bulk</span>
+                  <span className="hidden xs:inline sm:inline">Absensi Guru</span>
+                  <span className="xs:hidden sm:hidden">Absensi Guru</span>
                 </Button>
               </DialogTrigger>
               <DialogContent className="w-[95vw] max-w-[600px] max-h-[85vh] overflow-y-auto">
@@ -289,7 +289,7 @@ function CheckinTab({ adminId }: CheckinTabProps) {
               </DialogContent>
             </Dialog>
 
-            <Dialog
+            {/* <Dialog
               open={openDialog}
               onOpenChange={(open) => {
                 setOpenDialog(open);
@@ -371,7 +371,7 @@ function CheckinTab({ adminId }: CheckinTabProps) {
                   </Button>
                 </div>
               </DialogContent>
-            </Dialog>
+            </Dialog> */}
           </div>
         </div>
       </div>
