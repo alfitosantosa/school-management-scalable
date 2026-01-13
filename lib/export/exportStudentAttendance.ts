@@ -14,13 +14,7 @@ export interface StudentAttendanceExportData {
   "Persentase Kehadiran": string;
 }
 
-export const exportStudentAttendanceToExcel = async (
-  student: any,
-  attendances: any[],
-  startDate: string,
-  endDate: string,
-  filename?: string
-) => {
+export const exportStudentAttendanceToExcel = async (student: any, attendances: any[], startDate: string, endDate: string, filename?: string) => {
   try {
     // Dynamically import xlsx only on client side
     if (typeof window === "undefined") {
@@ -80,7 +74,7 @@ export const exportStudentAttendanceToExcel = async (
     // Create filename
     const startDateFormatted = format(new Date(startDate), "dd MMM yyyy", { locale: idLocale });
     const endDateFormatted = format(new Date(endDate), "dd MMM yyyy", { locale: idLocale });
-    const exportFilename = filename || `rekap-absensi-${student.name.replace(/\s+/g, '-')}-${format(new Date(), "yyyy-MM-dd")}.xlsx`;
+    const exportFilename = filename || `rekap-absensi-${student.name.replace(/\s+/g, "-")}-${format(new Date(), "yyyy-MM-dd")}.xlsx`;
 
     // Write file
     XLSX.writeFile(wb, exportFilename);
@@ -100,13 +94,92 @@ export const exportStudentAttendanceToExcel = async (
   }
 };
 
-export const exportStudentAttendanceDetailToExcel = async (
-  student: any,
-  attendances: any[],
-  startDate: string,
-  endDate: string,
-  filename?: string
-) => {
+export const exportStudentAttendanceDailyToExcel = async (student: any, attendances: any[], startDate: string, endDate: string, filename?: string) => {
+  try {
+    // create summery daily attendance for student
+    const dailyAttendanceSummary: Record<string, any> = {};
+    attendances.forEach((attendance: any) => {
+      const date = format(new Date(attendance.date), "yyyy-MM-dd");
+      if (!dailyAttendanceSummary[date]) {
+        dailyAttendanceSummary[date] = {
+          hadir: 0,
+          sakit: 0,
+          izin: 0,
+          alfa: 0,
+        };
+      }
+      if (attendance.status === "present") {
+        dailyAttendanceSummary[date].hadir += 1;
+      } else {
+        dailyAttendanceSummary[date][attendance.status] += 1;
+      }
+    });
+
+    // Dynamically import xlsx only on client side
+    if (typeof window === "undefined") {
+      throw new Error("This function can only be called on the client side");
+    }
+
+    const XLSX = await import("xlsx");
+
+    // Transform data for export
+    const exportData: StudentAttendanceExportData[] = Object.entries(dailyAttendanceSummary).map(([date, stats]) => ({
+      "Nama Siswa": student.name,
+      Email: student.email,
+      NISN: student.nisn,
+      "Total Hari": 1,
+      Hadir: stats.hadir,
+      Terlambat: 0,
+      Sakit: stats.sakit,
+      Izin: stats.izin,
+      Alfa: stats.alfa,
+      "Persentase Kehadiran": `${(stats.hadir / 1) * 100}%`,
+    }));
+
+    // Create workbook and worksheet
+    const ws = XLSX.utils.json_to_sheet(exportData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Rekap Absensi Harian");
+
+    // Set column widths
+    const colWidths = [
+      { wch: 25 }, // Nama Siswa
+      { wch: 30 }, // Email
+      { wch: 15 }, // NISN
+      { wch: 12 }, // Total Hari
+      { wch: 10 }, // Hadir
+      { wch: 12 }, // Terlambat
+      { wch: 10 }, // Sakit
+      { wch: 10 }, // Izin
+      { wch: 10 }, // Alfa
+      { wch: 20 }, // Persentase Kehadiran
+    ];
+    ws["!cols"] = colWidths;
+
+    // Create filename
+    const startDateFormatted = format(new Date(startDate), "dd MMM yyyy", { locale: idLocale });
+    const endDateFormatted = format(new Date(endDate), "dd MMM yyyy", { locale: idLocale });
+    const exportFilename = filename || `rekap-absensi-harian-${student.name.replace(/\s+/g, "-")}-${format(new Date(), "yyyy-MM-dd")}.xlsx`;
+
+    // Write file
+    XLSX.writeFile(wb, exportFilename);
+
+    return {
+      success: true,
+      message: `Rekap absensi harian berhasil diexport: ${exportFilename}`,
+      filename: exportFilename,
+    };
+  } catch (error) {
+    console.error("Error exporting to Excel:", error);
+    return {
+      success: false,
+      message: "Gagal mengexport rekap absensi harian ke Excel",
+      error,
+    };
+  }
+};
+
+export const exportStudentAttendanceDetailToExcel = async (student: any, attendances: any[], startDate: string, endDate: string, filename?: string) => {
   try {
     // Dynamically import xlsx only on client side
     if (typeof window === "undefined") {
@@ -147,11 +220,7 @@ export const exportStudentAttendanceDetailToExcel = async (
     ];
 
     const wsSummary = XLSX.utils.json_to_sheet(summaryData);
-    wsSummary["!cols"] = [
-      { wch: 25 }, { wch: 30 }, { wch: 15 }, { wch: 12 }, 
-      { wch: 10 }, { wch: 12 }, { wch: 10 }, { wch: 10 }, 
-      { wch: 10 }, { wch: 15 }
-    ];
+    wsSummary["!cols"] = [{ wch: 25 }, { wch: 30 }, { wch: 15 }, { wch: 12 }, { wch: 10 }, { wch: 12 }, { wch: 10 }, { wch: 10 }, { wch: 10 }, { wch: 15 }];
     XLSX.utils.book_append_sheet(wb, wsSummary, "Ringkasan");
 
     // Sheet 2: Detail records
@@ -168,14 +237,11 @@ export const exportStudentAttendanceDetailToExcel = async (
     }));
 
     const wsDetail = XLSX.utils.json_to_sheet(detailData);
-    wsDetail["!cols"] = [
-      { wch: 25 }, { wch: 15 }, { wch: 25 }, { wch: 20 }, 
-      { wch: 15 }, { wch: 12 }, { wch: 12 }, { wch: 15 }, { wch: 25 }
-    ];
+    wsDetail["!cols"] = [{ wch: 25 }, { wch: 15 }, { wch: 25 }, { wch: 20 }, { wch: 15 }, { wch: 12 }, { wch: 12 }, { wch: 15 }, { wch: 25 }];
     XLSX.utils.book_append_sheet(wb, wsDetail, "Detail Absensi");
 
     // Create filename
-    const exportFilename = filename || `rekap-absensi-detail-${student.name.replace(/\s+/g, '-')}-${format(new Date(), "yyyy-MM-dd")}.xlsx`;
+    const exportFilename = filename || `rekap-absensi-detail-${student.name.replace(/\s+/g, "-")}-${format(new Date(), "yyyy-MM-dd")}.xlsx`;
 
     // Write file
     XLSX.writeFile(wb, exportFilename);

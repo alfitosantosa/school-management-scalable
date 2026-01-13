@@ -14,7 +14,7 @@ import { id } from "date-fns/locale";
 import Loading from "@/components/loading";
 import OptimizedImage from "@/components/OptimizedImage";
 import Image from "next/image";
-import { exportStudentAttendanceToExcel, exportStudentAttendanceDetailToExcel } from "@/lib/export/exportStudentAttendance";
+import { exportStudentAttendanceToExcel, exportStudentAttendanceDetailToExcel, exportStudentAttendanceDailyToExcel } from "@/lib/export/exportStudentAttendance";
 import { useSession } from "@/lib/auth-client";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { unauthorized } from "next/navigation";
@@ -29,7 +29,7 @@ const STATUS_CONFIG = {
 
 function getDefaultStartDate() {
   const date = new Date();
-  date.setDate(date.getDate() - 30);
+  date.setDate(date.getDate() - 31);
   return date.toISOString().split("T")[0];
 }
 
@@ -86,6 +86,18 @@ function RecapAttendance() {
   const presentPercentage = stats.total > 0 ? Math.round((stats.present / stats.total) * 100) : 0;
 
   // Export handlers
+const handleExportDaily = async () => {
+  if (!selectedStudent || filteredAttendances.length === 0) return;
+
+  const result = await exportStudentAttendanceDailyToExcel(selectedStudent, filteredAttendances, startDate, endDate);
+
+  if (result.success) {
+    console.log(result.message);
+  } else {
+    console.error(result.message);
+  }
+};
+
   const handleExportSummary = async () => {
     if (!selectedStudent || filteredAttendances.length === 0) return;
 
@@ -251,7 +263,11 @@ function RecapAttendance() {
                   <span className="font-semibold text-green-600">{presentPercentage}% Kehadiran</span>
                 </div>
                 {selectedStudent && filteredAttendances.length > 0 && (
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap justify-center items-center gap-2">
+                    <Button variant="outline" size="sm">
+                      <Download className="w-4 h-4 mr-1" />
+                      Export Harian
+                    </Button>
                     <Button variant="outline" size="sm" onClick={handleExportSummary} className="text-xs">
                       <Download className="w-4 h-4 mr-1" />
                       Export Ringkasan

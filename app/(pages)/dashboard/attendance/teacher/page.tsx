@@ -605,6 +605,29 @@ function ReportsTab() {
                 disabled={reports.length === 0}
               >
                 <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span className="hidden sm:inline">Export Harian</span>
+                <span className="sm:hidden">Harian</span>
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={async () => {
+                  try {
+                    const result = await exportTeacherAttendanceToExcel(reports, startDate, endDate);
+                    if (result.success) {
+                      toast.success(result.message);
+                    } else {
+                      toast.error(result.message);
+                    }
+                  } catch (error) {
+                    toast.error("Gagal mengexport laporan");
+                    console.error(error);
+                  }
+                }}
+                className="gap-1.5 sm:gap-2 text-xs sm:text-sm w-full sm:w-auto"
+                disabled={reports.length === 0}
+              >
+                <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span className="hidden sm:inline">Export Ringkasan</span>
                 <span className="sm:hidden">Ringkasan</span>
               </Button>
