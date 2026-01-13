@@ -86,17 +86,17 @@ function RecapAttendance() {
   const presentPercentage = stats.total > 0 ? Math.round((stats.present / stats.total) * 100) : 0;
 
   // Export handlers
-const handleExportDaily = async () => {
-  if (!selectedStudent || filteredAttendances.length === 0) return;
+  const handleExportDaily = async () => {
+    if (!selectedStudent || filteredAttendances.length === 0) return;
 
-  const result = await exportStudentAttendanceDailyToExcel(selectedStudent, filteredAttendances, startDate, endDate);
+    const result = await exportStudentAttendanceDailyToExcel(selectedStudent, filteredAttendances, startDate, endDate);
 
-  if (result.success) {
-    console.log(result.message);
-  } else {
-    console.error(result.message);
-  }
-};
+    if (result.success) {
+      console.log(result.message);
+    } else {
+      console.error(result.message);
+    }
+  };
 
   const handleExportSummary = async () => {
     if (!selectedStudent || filteredAttendances.length === 0) return;
@@ -264,7 +264,7 @@ const handleExportDaily = async () => {
                 </div>
                 {selectedStudent && filteredAttendances.length > 0 && (
                   <div className="flex flex-wrap justify-center items-center gap-2">
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" onClick={handleExportDaily}>
                       <Download className="w-4 h-4 mr-1" />
                       Export Harian
                     </Button>
