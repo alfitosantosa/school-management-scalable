@@ -18,7 +18,6 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ id: st
           },
         },
       },
-      orderBy: { date: "desc" },
     });
     return NextResponse.json(attendance);
   } catch (error) {

@@ -31,7 +31,7 @@ export async function GET() {
 
         _count: { select: { students: true, schedules: true, violations: true } },
       },
-      orderBy: { name: "asc" },
+      orderBy: { grade: "asc" },
     });
     return NextResponse.json(classes);
   } catch (error) {

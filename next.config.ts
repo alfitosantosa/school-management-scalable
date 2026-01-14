@@ -41,6 +41,13 @@ const nextConfig: NextConfig = {
       : {
           disableStaticImages: false,
         }),
+    // Add timeout configuration for external images
+    ...(isDev
+      ? {}
+      : {
+          // Increase timeout for external images in production
+          timeout: 10000, // 10 seconds
+        }),
   },
 
   // ============================================================================

@@ -22,6 +22,7 @@ import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { unauthorized } from "next/navigation";
+import { useGetClasses } from "@/app/hooks/Classes/useClass";
 
 // Dashboard Component - Only rendered after role verification
 function UserDashboard() {
@@ -62,6 +63,8 @@ function UserDashboard() {
   const uniqueClasses = React.useMemo(() => {
     return Array.from(new Set(usersData.map((user: UserData) => user.class?.name).filter(Boolean)));
   }, [usersData]);
+
+  const { data: classesData, isLoading: isLoadingClasses } = useGetClasses();
 
   const uniqueMajors = React.useMemo(() => {
     return Array.from(new Set(usersData.map((user: UserData) => user.major?.name).filter(Boolean)));
@@ -413,9 +416,9 @@ function UserDashboard() {
             <DropdownMenuContent>
               <DropdownMenuItem onClick={() => handleClassFilter(null)}>Semua Kelas</DropdownMenuItem>
               <DropdownMenuSeparator />
-              {uniqueClasses.map((className) => (
-                <DropdownMenuItem key={String(className)} onClick={() => handleClassFilter(className as string)}>
-                  {className as string}
+              {classesData?.map((className: any) => (
+                <DropdownMenuItem key={String(className?.name)} onClick={() => handleClassFilter(className?.name as string)}>
+                  {className?.name as string}
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>

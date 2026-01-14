@@ -24,6 +24,7 @@ export async function GET() {
       include: {
         _count: { select: { students: true, schedules: true, calendarEvents: true, classes: true } },
       },
+      orderBy: { startDate: "asc" },
     });
     return NextResponse.json(academicYears);
   } catch (error) {

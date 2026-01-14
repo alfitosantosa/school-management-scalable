@@ -520,7 +520,7 @@ function CheckinTab({ adminId }: CheckinTabProps) {
 }
 
 function ReportsTab() {
-  const [startDate, setStartDate] = useState(format(new Date(new Date().setDate(new Date().getDate() - 30)), "yyyy-MM-dd"));
+  const [startDate, setStartDate] = useState(format(new Date(new Date().setDate(new Date().getDate() - 62)), "yyyy-MM-dd"));
   const [endDate, setEndDate] = useState(format(new Date(), "yyyy-MM-dd"));
   const [expandedTeacher, setExpandedTeacher] = useState<string | null>(null);
 

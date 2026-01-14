@@ -12,12 +12,12 @@ import { useGetAttendanceByIdStudent } from "@/app/hooks/Attendances/useAttendac
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import Loading from "@/components/loading";
-import OptimizedImage from "@/components/OptimizedImage";
-import Image from "next/image";
 import { exportStudentAttendanceToExcel, exportStudentAttendanceDetailToExcel, exportStudentAttendanceDailyToExcel } from "@/lib/export/exportStudentAttendance";
 import { useSession } from "@/lib/auth-client";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { unauthorized } from "next/navigation";
+import { ImageWithFallback } from "@/components/ui/image-with-fallback";
+import { DEFAULT_AVATAR } from "@/lib/image-loader";
 
 const STATUS_CONFIG = {
   present: { label: "Hadir", bg: "bg-green-100", text: "text-green-800", icon: CheckCircle2 },
@@ -160,20 +160,12 @@ function RecapAttendance() {
                   {filteredStudents.map((student: any) => (
                     <SelectItem key={student.id} value={student.id} className="text-xs sm:text-sm">
                       <div className="flex items-center gap-2">
-                        <OptimizedImage
-                          src={student.avatarUrl || "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"}
-                          alt="User avatar"
-                          width={20}
-                          height={20}
-                          className="rounded-full"
-                          fallback="https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"
-                          priority
-                        />
-                        <div>
-                          <p className="font-medium">{student.name}</p>
-                          <p className="text-xs text-gray-600">
+                        <ImageWithFallback src={student.avatarUrl || DEFAULT_AVATAR} alt="User avatar" width={20} height={20} className="rounded-full" fallback={DEFAULT_AVATAR} />
+                        <div className="flex flex-col">
+                          <span className="truncate">{student.name}</span>
+                          <span className="text-xs text-gray-500 truncate">
                             {student.email} {student.nisn && `• ${student.nisn}`}
-                          </p>
+                          </span>
                         </div>
                       </div>
                     </SelectItem>
@@ -185,9 +177,8 @@ function RecapAttendance() {
             {selectedStudent && (
               <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
                 <div className="flex flex-row items-center gap-3">
-                  {/* <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">{selectedStudent.name.charAt(0).toUpperCase()}</div> */}
+                  <ImageWithFallback src={selectedStudent.avatarUrl || DEFAULT_AVATAR} alt="User avatar" width={40} height={40} className="rounded-full" fallback={DEFAULT_AVATAR} />
                   <div>
-                    <Image src={selectedStudent.avatarUrl || "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"} alt="User avatar" width={40} height={40} className="rounded-full" />
                     <p className="text-sm sm:text-base font-semibold text-blue-900">{selectedStudent.name}</p>
                     <p className="text-xs text-blue-700">
                       {selectedStudent.email} {selectedStudent.nisn && `• NISN: ${selectedStudent.nisn}`}
