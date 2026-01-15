@@ -18,9 +18,13 @@ export async function GET() {
   try {
     const majors = await prisma.major.findMany({
       include: {
-        classes: true,
-        students: true,
-        subjects: true,
+        _count: {
+          select: {
+            classes: true,
+            students: true,
+            subjects: true,
+          },
+        },
       },
     });
     return NextResponse.json(majors);

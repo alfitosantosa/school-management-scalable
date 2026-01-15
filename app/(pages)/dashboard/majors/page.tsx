@@ -34,9 +34,11 @@ export type MajorData = {
   name: string;
   description: string | null;
   isActive: boolean;
-  classes: any[];
-  students: any[];
-  subjects: any[];
+  _count: {
+    classes: number;
+    students: number;
+    subjects: number;
+  };  
 };
 
 // Form schema - Fixed to make isActive required boolean
@@ -190,15 +192,15 @@ function MajorDetailDialog({ open, onOpenChange, majorData }: { open: boolean; o
 
           <div className="grid grid-cols-3 gap-4">
             <div className="text-center p-4 border rounded-lg">
-              <div className="text-2xl font-bold text-blue-600">{majorData.classes?.length || 0}</div>
+              <div className="text-2xl font-bold text-blue-600">{majorData._count?.classes || 0}</div>
               <div className="text-sm text-muted-foreground">Kelas</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
-              <div className="text-2xl font-bold text-green-600">{majorData.students?.length || 0}</div>
+              <div className="text-2xl font-bold text-green-600">{majorData._count?.students || 0}</div>
               <div className="text-sm text-muted-foreground">Siswa</div>
             </div>
             <div className="text-center p-4 border rounded-lg">
-              <div className="text-2xl font-bold text-purple-600">{majorData.subjects?.length || 0}</div>
+              <div className="text-2xl font-bold text-purple-600">{majorData._count?.subjects || 0}</div>
               <div className="text-sm text-muted-foreground">Mata Pelajaran</div>
             </div>
           </div>
@@ -229,7 +231,7 @@ function DeleteMajorDialog({ open, onOpenChange, majorData, onSuccess }: { open:
     }
   };
 
-  const hasRelatedData = majorData && ((majorData.classes?.length || 0) > 0 || (majorData.students?.length || 0) > 0 || (majorData.subjects?.length || 0) > 0);
+  const hasRelatedData = majorData && ((majorData._count?.classes || 0) > 0 || (majorData._count?.students || 0) > 0 || (majorData._count?.subjects || 0) > 0);
 
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
@@ -243,9 +245,9 @@ function DeleteMajorDialog({ open, onOpenChange, majorData, onSuccess }: { open:
                   Jurusan <strong>{majorData?.name}</strong> memiliki data terkait:
                 </p>
                 <ul className="list-disc list-inside text-sm space-y-1">
-                  {majorData?.classes?.length ? <li>{majorData.classes.length} kelas</li> : null}
-                  {majorData?.students?.length ? <li>{majorData.students.length} siswa</li> : null}
-                  {majorData?.subjects?.length ? <li>{majorData.subjects.length} mata pelajaran</li> : null}
+                  {majorData?._count?.classes ? <li>{majorData._count.classes} kelas</li> : null}
+                  {majorData?._count?.students ? <li>{majorData._count.students} siswa</li> : null}
+                  {majorData?._count?.subjects ? <li>{majorData._count.subjects} mata pelajaran</li> : null}
                 </ul>
                 <p className="text-red-600 font-medium">Menghapus jurusan akan menghapus semua data terkait. Tindakan ini tidak dapat dibatalkan.</p>
               </div>
@@ -347,9 +349,9 @@ function MajorDataTable() {
       header: "Statistik",
       cell: ({ row }) => {
         const major = row.original;
-        const classCount = major.classes?.length || 0;
-        const studentCount = major.students?.length || 0;
-        const subjectCount = major.subjects?.length || 0;
+        const classCount = major._count?.classes || 0;
+        const studentCount = major._count?.students || 0;
+        const subjectCount = major._count?.subjects || 0;
 
         return (
           <div className="text-sm text-center">

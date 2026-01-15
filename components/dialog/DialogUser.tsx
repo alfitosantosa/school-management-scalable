@@ -392,7 +392,7 @@ function AvatarUpload({ currentAvatarUrl, onUploadSuccess, disabled = false }: {
               <DialogTitle>Preview Avatar</DialogTitle>
             </DialogHeader>
             <div className="flex items-center justify-center p-4">
-              <Image src={previewUrl} alt="Avatar preview" className="max-w-full max-h-[70vh] rounded-lg" />
+              <Image src={previewUrl} alt="Avatar preview" className="max-w-full max-h-[70vh] rounded-lg" width={500} height={500} />
             </div>
           </DialogContent>
         </Dialog>
