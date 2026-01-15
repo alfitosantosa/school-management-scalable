@@ -13,7 +13,7 @@ export const useGetAttendanceByClass = (classId?: string, startDate?: string, en
     queryKey: ["attendanceByClass", classId, startDate, endDate],
     queryFn: async () => {
       const response = await apiGet(`/api/attendance/class${params.toString() ? `?${params}` : ""}`);
-      return response.data?.attendance || []; // Return just the attendance array
+      return response.data?.data;
     },
     enabled: !!classId && !!startDate && !!endDate,
   });

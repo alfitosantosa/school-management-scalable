@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { id as idLocale } from "date-fns/locale";
 
-export const exportClassAttendanceDailyToExcel = async (classData: any, attendanceByDate: Record<string, any[]>, startDate: string, endDate: string, filename?: string) => {
+export const exportClassAttendanceDailyToExcel = async (classData: any, attendanceByDate: Record<string, any[]>, students: any[], startDate: string, endDate: string, filename?: string) => {
   try {
     // Dynamically import xlsx only on client side
     if (typeof window === "undefined") {
@@ -20,37 +20,9 @@ export const exportClassAttendanceDailyToExcel = async (classData: any, attendan
       totalDays: Object.keys(attendanceByDate).length,
     };
 
-    Object.values(attendanceByDate).forEach((dayAttendances: any[]) => {
-      dayAttendances.forEach((attendance: any) => {
-        switch (attendance.status) {
-          case "present":
-            overallTotals.totalHadir += 1;
-            break;
-          case "late":
-            overallTotals.totalTerlambat += 1;
-            break;
-          case "sick":
-            overallTotals.totalSakit += 1;
-            break;
-          case "excused":
-            overallTotals.totalIzin += 1;
-            break;
-          case "absent":
-            overallTotals.totalAlfa += 1;
-            break;
-        }
-      });
-    });
-
-    const totalAttendance = overallTotals.totalHadir + overallTotals.totalTerlambat + overallTotals.totalSakit + overallTotals.totalIzin + overallTotals.totalAlfa;
-    const overallPercentage = totalAttendance > 0 ? Math.round(((overallTotals.totalHadir + overallTotals.totalTerlambat) / totalAttendance) * 100) : 0;
-
-    // Create workbook with multiple sheets
-    const wb = XLSX.utils.book_new();
-
-    // Sheet 1: Daily Breakdown
-    const dailyData = Object.entries(attendanceByDate).map(([date, attendances]) => {
-      const dayStats = {
+    // Helper to calculate totals from a list of attendance records
+    const calculateTotals = (attendances: any[]) => {
+      const stats = {
         hadir: 0,
         terlambat: 0,
         sakit: 0,
@@ -61,22 +33,44 @@ export const exportClassAttendanceDailyToExcel = async (classData: any, attendan
       attendances.forEach((attendance: any) => {
         switch (attendance.status) {
           case "present":
-            dayStats.hadir += 1;
+            stats.hadir += 1;
             break;
           case "late":
-            dayStats.terlambat += 1;
+            stats.terlambat += 1;
             break;
           case "sick":
-            dayStats.sakit += 1;
+            stats.sakit += 1;
             break;
           case "excused":
-            dayStats.izin += 1;
+            stats.izin += 1;
             break;
           case "absent":
-            dayStats.alfa += 1;
+            stats.alfa += 1;
             break;
         }
       });
+      return stats;
+    };
+
+    // Calculate overall totals from daily data
+    Object.values(attendanceByDate).forEach((dayAttendances: any[]) => {
+      const dayStats = calculateTotals(dayAttendances);
+      overallTotals.totalHadir += dayStats.hadir;
+      overallTotals.totalTerlambat += dayStats.terlambat;
+      overallTotals.totalSakit += dayStats.sakit;
+      overallTotals.totalIzin += dayStats.izin;
+      overallTotals.totalAlfa += dayStats.alfa;
+    });
+
+    const totalAttendance = overallTotals.totalHadir + overallTotals.totalTerlambat + overallTotals.totalSakit + overallTotals.totalIzin + overallTotals.totalAlfa;
+    const overallPercentage = totalAttendance > 0 ? Math.round(((overallTotals.totalHadir + overallTotals.totalTerlambat) / totalAttendance) * 100) : 0;
+
+    // Create workbook with multiple sheets
+    const wb = XLSX.utils.book_new();
+
+    // Sheet 1: Daily Breakdown
+    const dailyData = Object.entries(attendanceByDate).map(([date, attendances]) => {
+      const dayStats = calculateTotals(attendances);
 
       return {
         Tanggal: format(new Date(date), "dd/MM/yyyy", { locale: idLocale }),
@@ -96,7 +90,37 @@ export const exportClassAttendanceDailyToExcel = async (classData: any, attendan
     const wsDaily = XLSX.utils.json_to_sheet(dailyData);
     XLSX.utils.book_append_sheet(wb, wsDaily, "Detail Harian");
 
-    // Sheet 2: Overall Summary
+    // Sheet 2: Student Summary
+    // Flatten attendance data to easily filter by student
+    const allAttendanceRecords = Object.values(attendanceByDate).flat();
+
+    const studentSummaryData = students.map((student, index) => {
+      const studentAttendances = allAttendanceRecords.filter((a: any) => a.studentId === student.id);
+      const stats = calculateTotals(studentAttendances);
+      const totalPresence = stats.hadir + stats.terlambat;
+      const totalAbsence = stats.sakit + stats.izin + stats.alfa;
+      const totalRecords = totalPresence + totalAbsence;
+      const percentage = totalRecords > 0 ? Math.round((totalPresence / totalRecords) * 100) : 0;
+
+      return {
+        No: index + 1,
+        "Nama Siswa": student.name,
+        "Email": student.email || "-",
+        Hadir: stats.hadir,
+        Terlambat: stats.terlambat,
+        Sakit: stats.sakit,
+        Izin: stats.izin,
+        Alfa: stats.alfa,
+        "Total Kehadiran": totalPresence,
+        "Total Tidak Hadir": totalAbsence,
+        "Persentase Kehadiran": `${percentage}%`,
+      };
+    });
+
+    const wsStudents = XLSX.utils.json_to_sheet(studentSummaryData);
+    XLSX.utils.book_append_sheet(wb, wsStudents, "Ringkasan Siswa");
+
+    // Sheet 3: Overall Summary
     const summaryData = [
       {
         Kelas: classData.name,
@@ -121,17 +145,33 @@ export const exportClassAttendanceDailyToExcel = async (classData: any, attendan
     const dailyColWidths = [
       { wch: 15 }, // Tanggal
       { wch: 20 }, // Kelas
-      { wch: 15 }, // Total Siswa
-      { wch: 10 }, // Hadir
-      { wch: 12 }, // Terlambat
-      { wch: 10 }, // Sakit
-      { wch: 10 }, // Izin
-      { wch: 10 }, // Alfa
+      { wch: 12 }, // Total Siswa
+      { wch: 8 }, // Hadir
+      { wch: 10 }, // Terlambat
+      { wch: 8 }, // Sakit
+      { wch: 8 }, // Izin
+      { wch: 8 }, // Alfa
       { wch: 15 }, // Total Kehadiran
       { wch: 15 }, // Total Tidak Hadir
       { wch: 20 }, // Persentase Kehadiran
     ];
     wsDaily["!cols"] = dailyColWidths;
+
+    // Set column widths for student summary sheet
+    const studentColWidths = [
+      { wch: 5 },  // No
+      { wch: 30 }, // Nama Siswa
+      { wch: 25 }, // Email
+      { wch: 8 },  // Hadir
+      { wch: 10 }, // Terlambat
+      { wch: 8 },  // Sakit
+      { wch: 8 },  // Izin
+      { wch: 8 },  // Alfa
+      { wch: 15 }, // Total Kehadiran
+      { wch: 15 }, // Total Tidak Hadir
+      { wch: 20 }, // Persentase Kehadiran
+    ];
+    wsStudents["!cols"] = studentColWidths;
 
     // Set column widths for summary sheet
     const summaryColWidths = [
@@ -170,3 +210,4 @@ export const exportClassAttendanceDailyToExcel = async (classData: any, attendan
     };
   }
 };
+

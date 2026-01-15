@@ -48,9 +48,11 @@ function RecapAttendanceByClass() {
 
   const { data: attendanceResponse, isLoading } = useGetAttendanceByClass(selectedClass?.id, startDate, endDate);
 
+  console.log("attendanceResponse", attendanceResponse);
+
   // Extract data from response
-  const attendanceData = attendanceResponse?.data?.attendance || [];
-  const classStudents = attendanceResponse?.data?.students || [];
+  const attendanceData = attendanceResponse?.attendance || [];
+  const classStudents = attendanceResponse?.students || [];
 
   // Use students from attendance response if available, otherwise filter from all students
   const filteredStudents = classStudents.length > 0 ? classStudents : selectedClass ? students.filter((student: any) => student.classId === selectedClass.id) : [];
@@ -87,7 +89,7 @@ function RecapAttendanceByClass() {
 
   const handleExportDaily = async () => {
     if (!selectedClass || attendanceData.length === 0) return;
-    const result = await exportClassAttendanceDailyToExcel(selectedClass, attendanceByDate, startDate, endDate);
+    const result = await exportClassAttendanceDailyToExcel(selectedClass, attendanceByDate, filteredStudents, startDate, endDate);
     if (result.success) {
       console.log(result.message);
     } else {
