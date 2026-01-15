@@ -20,7 +20,7 @@ export const useGetScheduleById = (id: string) => {
 
 export const useGetScheduleByIdTeacher = (id: string) => {
   return useQuery({
-    queryKey: ["schedules-with-teacher"],
+    queryKey: ["schedules"],
     queryFn: async () => {
       try {
         const res = await apiGet(`/api/schedules/teacher/${id}`);
@@ -35,7 +35,7 @@ export const useGetScheduleByIdTeacher = (id: string) => {
 
 export const useGetScheduleByIdAcademicYearActive = (id: string) => {
   return useQuery({
-    queryKey: ["schedules-with-academic-year-active"],
+    queryKey: ["schedules"],
     queryFn: async () => {
       try {
         const res = await apiGet(`/api/schedules/active/teacher/${id}`);

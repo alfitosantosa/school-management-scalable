@@ -4,7 +4,7 @@ import { apiGet } from "@/lib/api-client";
 
 export const useGetSchedulesByIdClass = (classId: string) => {
   return useQuery({
-    queryKey: ["schedules", classId],
+    queryKey: ["schedules"],
     queryFn: async () => {
       const response = await apiGet(`/api/schedules/class/${classId}`);
       return response.data;
