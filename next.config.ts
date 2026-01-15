@@ -46,7 +46,7 @@ const nextConfig: NextConfig = {
       ? {}
       : {
           // Increase timeout for external images in production
-          timeout: 10000, // 10 seconds
+          // timeout: 10000, // 10 seconds
         }),
   },
 
