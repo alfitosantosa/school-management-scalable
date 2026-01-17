@@ -115,7 +115,10 @@ function AttendanceModule() {
 
     // Create a message template with personalization
     // {name} will be replaced by the API for each recipient
-    const messageTemplate = `📚 *NOTIFIKASI KEHADIRAN SISWA*
+    // Array of message templates to avoid spam detection
+    const templates = [
+      // Template 1: Original/Standard
+      `📚 *NOTIFIKASI KEHADIRAN SISWA*
 
 🏫 *${classData.name || "Kelas"}*
 📅 *${today}*
@@ -137,8 +140,84 @@ Berikut adalah informasi kehadiran putra/putri Anda:
 Terima kasih atas perhatiannya.
 
 ~IT Fajarsentosa
+_Pesan ini dikirim otomatis oleh sistem._`,
 
-_Pesan ini dikirim otomatis oleh sistem._`;
+      // Template 2: Formal & Concise
+      `🏛️ *LAPORAN PRESENSI SISWA*
+
+Yth. Wali Murid,
+
+Kami menginformasikan kehadiran putra/putri Anda pada:
+📅 Tanggal: ${today}
+🏫 Kelas: ${classData.name || "Kelas"}
+📖 Mapel: ${schedule.subject?.name || "Pelajaran"} (${schedule.startTime} - ${schedule.endTime})
+
+--------------------------------
+👤 Siswa: *{name}*
+📊 Kehadiran: *{status}*
+{notes}
+--------------------------------
+
+Hormat kami,
+Tim IT Fajarsentosa
+_(Pesan Otomatis)_`,
+
+      // Template 3: Friendly & Polite
+      `👋 Assalamu'alaikum / Selamat Pagi Bapak/Ibu,
+
+Semoga sehat selalu. Izin menyampaikan update kehadiran ananda di sekolah hari ini:
+
+🗓️ *${today}*
+📍 Kelas: *${classData.name || "Kelas"}*
+📚 Pelajaran: *${schedule.subject?.name || "Pelajaran"}*
+👨‍🏫 Pengajar: ${schedule.teacher?.name || "Guru"}
+
+📌 *Detail Siswa:*
+Nama: *{name}*
+Status: *{status}*
+{notes}
+
+Terima kasih atas kerja samanya dalam memantau pendidikan ananda. 🙏
+
+Salam,
+IT Fajarsentosa`,
+
+      // Template 4: Bullet Points Focus
+      `🔔 *INFO SEKOLAH*
+Tanggal: ${today}
+
+Bapak/Ibu Wali Murid yang kami hormati, berikut data kehadiran siswa pada jam pelajaran ini:
+
+🔹 *Kelas:* ${classData.name || "Kelas"}
+🔹 *Mapel:* ${schedule.subject?.name || "Pelajaran"}
+🔹 *Waktu:* ${schedule.startTime} - ${schedule.endTime}
+
+🔎 *Data Siswa:*
+• Nama: *{name}*
+• Status: *{status}*
+{notes}
+
+Mohon dapat diterima dengan baik. Terima kasih.
+
+~ Admin IT Fajarsentosa ~`,
+
+      // Template 5: Direct & Clear
+      `📢 *STATUS KEHADIRAN*
+${today}
+
+Kepada Yth. Orang Tua / Wali,
+
+Diberitahukan bahwa pada jadwal *${schedule.subject?.name || "Pelajaran"}* (${schedule.startTime} - ${schedule.endTime}) di kelas *${classData.name || "Kelas"}*, status kehadiran ananda adalah:
+
+👉 *{name}*
+✅ *{status}*
+{notes}
+
+Guru Pengampu: ${schedule.teacher?.name || "Guru"}
+
+Terima kasih.
+*IT Fajarsentosa*`
+    ];
 
     // Send individual messages with personalized status
     setIsSendingWA(true);
@@ -151,8 +230,12 @@ _Pesan ini dikirim otomatis oleh sistem._`;
         const statusLabel = STATUS_MAP[status as keyof typeof STATUS_MAP]?.label || status;
         const notes = attendanceInfo[student.id]?.notes;
 
+        // Select a random template for this student
+        const randomTemplateIndex = Math.floor(Math.random() * templates.length);
+        const selectedTemplate = templates[randomTemplateIndex];
+
         // Personalize message for each student
-        let personalizedMessage = messageTemplate
+        let personalizedMessage = selectedTemplate
           .replace("{name}", student.name)
           .replace("{status}", statusLabel)
           .replace("{notes}", notes ? `📝 *Catatan:* ${notes}` : "");
@@ -223,18 +306,19 @@ _Pesan ini dikirim otomatis oleh sistem._`;
 
         toast.success("Absensi berhasil disimpan!");
 
-        // Redirect to /dashboard after success
-        setTimeout(() => {
-          window.location.href = "/dashboard";
-        }, 2000);
+   
 
         // Send WhatsApp notifications if enabled
         if (sendWhatsApp && classData?.students) {
           toast.info("Mengirim notifikasi WhatsApp ke orang tua...");
           await sendWhatsAppNotification(classData.students, attendanceData);
+     
         }
 
-   
+             // Redirect to /dashboard after success
+        setTimeout(() => {
+          window.location.href = "/dashboard";
+        }, 2000);
       }
     } catch (error) {
       console.error("Error saving attendance:", error);
