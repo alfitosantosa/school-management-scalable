@@ -223,16 +223,18 @@ _Pesan ini dikirim otomatis oleh sistem._`;
 
         toast.success("Absensi berhasil disimpan!");
 
+        // Redirect to /dashboard after success
+        setTimeout(() => {
+          window.location.href = "/dashboard";
+        }, 2000);
+
         // Send WhatsApp notifications if enabled
         if (sendWhatsApp && classData?.students) {
           toast.info("Mengirim notifikasi WhatsApp ke orang tua...");
           await sendWhatsAppNotification(classData.students, attendanceData);
         }
 
-        // Redirect to /dashboard after success
-        setTimeout(() => {
-          window.location.href = "/dashboard";
-        }, 2000);
+   
       }
     } catch (error) {
       console.error("Error saving attendance:", error);
