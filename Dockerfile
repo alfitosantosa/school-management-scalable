@@ -32,7 +32,8 @@ ENV NEXT_TELEMETRY_DISABLED=1 \
     SKIP_ENV_VALIDATION=1
 
 # Generate Prisma & Build dalam single layer dengan cleanup
-RUN bunx prisma generate \
+RUN bunx prisma migrate deploy \
+    && bunx prisma generate \
     && bunx next build \
     && rm -rf /tmp/* \
     && rm -rf .next/cache \
