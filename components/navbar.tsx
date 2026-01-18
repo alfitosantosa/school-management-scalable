@@ -47,6 +47,7 @@ const permissionLabels: Record<string, string> = {
   "/dashboard/calender/list/student": "Kalender List untuk Siswa",
   "/dashboard/upload/schedules": "Upload Jadwal",
   "/dashboard/recapattendance/class": "Rekap Absensi Kelas",
+  "/dashboard/classes/tahfidz": "Tahfidz Group Management",
 };
 
 export default function Navbar() {

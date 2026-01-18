@@ -13,6 +13,7 @@
 //   nik            String?   @unique  // Wajib untuk student
 //   address        String?            // Wajib untuk student
 //   classId        String?            // Wajib untuk student
+//   tahfidzGroupId String?            // Wajib untuk student
 //   academicYearId String?            // Wajib untuk student
 //   enrollmentDate DateTime?          // Default now() untuk student
 //   gender         String?            // Wajib untuk student & teacher

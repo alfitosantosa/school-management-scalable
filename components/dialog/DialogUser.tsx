@@ -25,6 +25,7 @@ import { useGetMajors } from "@/app/hooks/Majors/useMajors";
 import { useGetBetterAuthWithoutUserData } from "@/app/hooks/Users/useBetterAuthWithoutUserData";
 import Image from "next/image";
 import { useBulkDeleteUserData } from "@/app/hooks/Users/useBulkUsersData";
+import { useGetTahfidzGroup } from "@/app/hooks/TahfidzGroup/useTahfidzGroup";
 
 // Type definitions
 export type UserData = {
@@ -42,6 +43,7 @@ export type UserData = {
   nik?: string;
   address?: string;
   classId?: string;
+  tahfidzGroupId?: string;
   academicYearId?: string;
   enrollmentDate?: Date;
   gender?: string;
@@ -112,6 +114,7 @@ const userSchema = z.object({
   nik: z.string().optional(),
   address: z.string().optional(),
   classId: z.string().optional(),
+  tahfidzGroupId: z.string().optional(),
   academicYearId: z.string().optional(),
   majorId: z.string().optional(),
   parentPhone: z.string().optional(),
@@ -507,6 +510,7 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
   const { data: users = [], isLoading: userLoading } = useGetUsers();
   const { data: roles = [], isLoading: rolesLoading } = useGetRoles();
   const { data: classes = [], isLoading: classesLoading } = useGetClasses();
+  const { data: tahfidzGroups = [], isLoading: tahfidzGroupsLoading } = useGetTahfidzGroup();
   const { data: academicYears = [], isLoading: academicYearsLoading } = useGetAcademicYears();
   const { data: majors = [], isLoading: majorsLoading } = useGetMajors();
 
@@ -548,6 +552,7 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
       setValue("nik", editData.nik || "");
       setValue("address", editData.address || "");
       setValue("classId", editData.classId || "");
+      setValue("tahfidzGroupId", editData.tahfidzGroupId || "");
       setValue("academicYearId", editData.academicYearId || "");
       setValue("majorId", editData.majorId || "");
       setValue("parentPhone", editData.parentPhone || "");
@@ -592,6 +597,7 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
         status: data.status,
         // Ubah string kosong ke null supaya backend tahu ini tidak ada nilai
         classId: data.classId && data.classId !== "" ? data.classId : null,
+        tahfidzGroupId: data.tahfidzGroupId && data.tahfidzGroupId !== "" ? data.tahfidzGroupId : null,
         academicYearId: data.academicYearId && data.academicYearId !== "" ? data.academicYearId : null,
         majorId: data.majorId && data.majorId !== "" ? data.majorId : null,
       };
@@ -705,6 +711,29 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
                 </Select>
               </div>
               <div className="space-y-2">
+                <Label>Kelompok Tahfidz *</Label>
+                <Select onValueChange={(value) => setValue("tahfidzGroupId", value)} value={watch("tahfidzGroupId")}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Pilih kelompok tahfidz" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {tahfidzGroupsLoading ? (
+                      <SelectItem value="" disabled>
+                        Loading...
+                      </SelectItem>
+                    ) : (
+                      tahfidzGroups.map((tahfidzGroup: any) => (
+                        <SelectItem key={tahfidzGroup.id} value={tahfidzGroup.id}>
+                          {tahfidzGroup.name}
+                        </SelectItem>
+                      ))
+                    )}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
                 <Label>Jurusan *</Label>
                 <Select onValueChange={(value) => setValue("majorId", value)} value={watch("majorId")}>
                   <SelectTrigger>
@@ -725,9 +754,6 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
                   </SelectContent>
                 </Select>
               </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label>Tahun Akademik *</Label>
                 <Select onValueChange={(value) => setValue("academicYearId", value)} value={watch("academicYearId")}>

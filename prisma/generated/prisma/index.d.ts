@@ -158,6 +158,11 @@ export type TahfidzRecord = $Result.DefaultSelection<Prisma.$TahfidzRecordPayloa
  * 
  */
 export type TeacherAttendance = $Result.DefaultSelection<Prisma.$TeacherAttendancePayload>
+/**
+ * Model TahfidzGroup
+ * 
+ */
+export type TahfidzGroup = $Result.DefaultSelection<Prisma.$TahfidzGroupPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -566,6 +571,16 @@ export class PrismaClient<
     * ```
     */
   get teacherAttendance(): Prisma.TeacherAttendanceDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.tahfidzGroup`: Exposes CRUD operations for the **TahfidzGroup** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TahfidzGroups
+    * const tahfidzGroups = await prisma.tahfidzGroup.findMany()
+    * ```
+    */
+  get tahfidzGroup(): Prisma.TahfidzGroupDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1035,7 +1050,8 @@ export namespace Prisma {
     DashboardContent: 'DashboardContent',
     Announcement: 'Announcement',
     TahfidzRecord: 'TahfidzRecord',
-    TeacherAttendance: 'TeacherAttendance'
+    TeacherAttendance: 'TeacherAttendance',
+    TahfidzGroup: 'TahfidzGroup'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1054,7 +1070,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "userData" | "role" | "academicYear" | "major" | "class" | "subject" | "schedule" | "attendance" | "violationType" | "violation" | "paymentType" | "payment" | "calendarEvent" | "gradeType" | "gradeConfiguration" | "grade" | "reportCard" | "gradeScale" | "assignment" | "assignmentSubmission" | "notification" | "dashboardContent" | "announcement" | "tahfidzRecord" | "teacherAttendance"
+      modelProps: "user" | "session" | "account" | "verification" | "userData" | "role" | "academicYear" | "major" | "class" | "subject" | "schedule" | "attendance" | "violationType" | "violation" | "paymentType" | "payment" | "calendarEvent" | "gradeType" | "gradeConfiguration" | "grade" | "reportCard" | "gradeScale" | "assignment" | "assignmentSubmission" | "notification" | "dashboardContent" | "announcement" | "tahfidzRecord" | "teacherAttendance" | "tahfidzGroup"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3204,6 +3220,80 @@ export namespace Prisma {
           }
         }
       }
+      TahfidzGroup: {
+        payload: Prisma.$TahfidzGroupPayload<ExtArgs>
+        fields: Prisma.TahfidzGroupFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TahfidzGroupFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzGroupPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TahfidzGroupFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzGroupPayload>
+          }
+          findFirst: {
+            args: Prisma.TahfidzGroupFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzGroupPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TahfidzGroupFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzGroupPayload>
+          }
+          findMany: {
+            args: Prisma.TahfidzGroupFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzGroupPayload>[]
+          }
+          create: {
+            args: Prisma.TahfidzGroupCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzGroupPayload>
+          }
+          createMany: {
+            args: Prisma.TahfidzGroupCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TahfidzGroupCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzGroupPayload>[]
+          }
+          delete: {
+            args: Prisma.TahfidzGroupDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzGroupPayload>
+          }
+          update: {
+            args: Prisma.TahfidzGroupUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzGroupPayload>
+          }
+          deleteMany: {
+            args: Prisma.TahfidzGroupDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TahfidzGroupUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TahfidzGroupUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzGroupPayload>[]
+          }
+          upsert: {
+            args: Prisma.TahfidzGroupUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TahfidzGroupPayload>
+          }
+          aggregate: {
+            args: Prisma.TahfidzGroupAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTahfidzGroup>
+          }
+          groupBy: {
+            args: Prisma.TahfidzGroupGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TahfidzGroupGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TahfidzGroupCountArgs<ExtArgs>
+            result: $Utils.Optional<TahfidzGroupCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3329,6 +3419,7 @@ export namespace Prisma {
     announcement?: AnnouncementOmit
     tahfidzRecord?: TahfidzRecordOmit
     teacherAttendance?: TeacherAttendanceOmit
+    tahfidzGroup?: TahfidzGroupOmit
   }
 
   /* Types for Logging */
@@ -4097,6 +4188,46 @@ export namespace Prisma {
    */
   export type AssignmentCountOutputTypeCountSubmissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AssignmentSubmissionWhereInput
+  }
+
+
+  /**
+   * Count Type TahfidzGroupCountOutputType
+   */
+
+  export type TahfidzGroupCountOutputType = {
+    schedules: number
+    students: number
+  }
+
+  export type TahfidzGroupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    schedules?: boolean | TahfidzGroupCountOutputTypeCountSchedulesArgs
+    students?: boolean | TahfidzGroupCountOutputTypeCountStudentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TahfidzGroupCountOutputType without action
+   */
+  export type TahfidzGroupCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroupCountOutputType
+     */
+    select?: TahfidzGroupCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TahfidzGroupCountOutputType without action
+   */
+  export type TahfidzGroupCountOutputTypeCountSchedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ScheduleWhereInput
+  }
+
+  /**
+   * TahfidzGroupCountOutputType without action
+   */
+  export type TahfidzGroupCountOutputTypeCountStudentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserDataWhereInput
   }
 
 
@@ -8602,6 +8733,7 @@ export namespace Prisma {
     birthDate: Date | null
     birthPlace: string | null
     classId: string | null
+    tahfidzGroupId: string | null
     employeeId: string | null
     endDate: Date | null
     enrollmentDate: Date | null
@@ -8632,6 +8764,7 @@ export namespace Prisma {
     birthDate: Date | null
     birthPlace: string | null
     classId: string | null
+    tahfidzGroupId: string | null
     employeeId: string | null
     endDate: Date | null
     enrollmentDate: Date | null
@@ -8662,6 +8795,7 @@ export namespace Prisma {
     birthDate: number
     birthPlace: number
     classId: number
+    tahfidzGroupId: number
     employeeId: number
     endDate: number
     enrollmentDate: number
@@ -8695,6 +8829,7 @@ export namespace Prisma {
     birthDate?: true
     birthPlace?: true
     classId?: true
+    tahfidzGroupId?: true
     employeeId?: true
     endDate?: true
     enrollmentDate?: true
@@ -8725,6 +8860,7 @@ export namespace Prisma {
     birthDate?: true
     birthPlace?: true
     classId?: true
+    tahfidzGroupId?: true
     employeeId?: true
     endDate?: true
     enrollmentDate?: true
@@ -8755,6 +8891,7 @@ export namespace Prisma {
     birthDate?: true
     birthPlace?: true
     classId?: true
+    tahfidzGroupId?: true
     employeeId?: true
     endDate?: true
     enrollmentDate?: true
@@ -8859,6 +8996,7 @@ export namespace Prisma {
     birthDate: Date | null
     birthPlace: string | null
     classId: string | null
+    tahfidzGroupId: string | null
     employeeId: string | null
     endDate: Date | null
     enrollmentDate: Date | null
@@ -8907,6 +9045,7 @@ export namespace Prisma {
     birthDate?: boolean
     birthPlace?: boolean
     classId?: boolean
+    tahfidzGroupId?: boolean
     employeeId?: boolean
     endDate?: boolean
     enrollmentDate?: boolean
@@ -8942,6 +9081,7 @@ export namespace Prisma {
     teacherAttendances?: boolean | UserData$teacherAttendancesArgs<ExtArgs>
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
+    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
@@ -8958,6 +9098,7 @@ export namespace Prisma {
     birthDate?: boolean
     birthPlace?: boolean
     classId?: boolean
+    tahfidzGroupId?: boolean
     employeeId?: boolean
     endDate?: boolean
     enrollmentDate?: boolean
@@ -8980,6 +9121,7 @@ export namespace Prisma {
     updatedAt?: boolean
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
+    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
@@ -8994,6 +9136,7 @@ export namespace Prisma {
     birthDate?: boolean
     birthPlace?: boolean
     classId?: boolean
+    tahfidzGroupId?: boolean
     employeeId?: boolean
     endDate?: boolean
     enrollmentDate?: boolean
@@ -9016,6 +9159,7 @@ export namespace Prisma {
     updatedAt?: boolean
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
+    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
@@ -9030,6 +9174,7 @@ export namespace Prisma {
     birthDate?: boolean
     birthPlace?: boolean
     classId?: boolean
+    tahfidzGroupId?: boolean
     employeeId?: boolean
     endDate?: boolean
     enrollmentDate?: boolean
@@ -9052,7 +9197,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "academicYearId" | "address" | "avatarUrl" | "birthDate" | "birthPlace" | "classId" | "employeeId" | "endDate" | "enrollmentDate" | "gender" | "graduationDate" | "majorId" | "nik" | "nisn" | "parentPhone" | "position" | "relation" | "roleId" | "startDate" | "status" | "studentIds" | "email" | "name" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["userData"]>
+  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "academicYearId" | "address" | "avatarUrl" | "birthDate" | "birthPlace" | "classId" | "tahfidzGroupId" | "employeeId" | "endDate" | "enrollmentDate" | "gender" | "graduationDate" | "majorId" | "nik" | "nisn" | "parentPhone" | "position" | "relation" | "roleId" | "startDate" | "status" | "studentIds" | "email" | "name" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["userData"]>
   export type UserDataInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Announcements?: boolean | UserData$AnnouncementsArgs<ExtArgs>
     studentSubmissions?: boolean | UserData$studentSubmissionsArgs<ExtArgs>
@@ -9069,6 +9214,7 @@ export namespace Prisma {
     teacherAttendances?: boolean | UserData$teacherAttendancesArgs<ExtArgs>
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
+    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
@@ -9078,6 +9224,7 @@ export namespace Prisma {
   export type UserDataIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
+    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
@@ -9085,6 +9232,7 @@ export namespace Prisma {
   export type UserDataIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
+    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
@@ -9108,6 +9256,7 @@ export namespace Prisma {
       teacherAttendances: Prisma.$TeacherAttendancePayload<ExtArgs>[]
       academicYear: Prisma.$AcademicYearPayload<ExtArgs> | null
       class: Prisma.$ClassPayload<ExtArgs> | null
+      tahfidzGroup: Prisma.$TahfidzGroupPayload<ExtArgs> | null
       major: Prisma.$MajorPayload<ExtArgs> | null
       role: Prisma.$RolePayload<ExtArgs> | null
       user: Prisma.$UserPayload<ExtArgs> | null
@@ -9122,6 +9271,7 @@ export namespace Prisma {
       birthDate: Date | null
       birthPlace: string | null
       classId: string | null
+      tahfidzGroupId: string | null
       employeeId: string | null
       endDate: Date | null
       enrollmentDate: Date | null
@@ -9551,6 +9701,7 @@ export namespace Prisma {
     teacherAttendances<T extends UserData$teacherAttendancesArgs<ExtArgs> = {}>(args?: Subset<T, UserData$teacherAttendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherAttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     academicYear<T extends UserData$academicYearArgs<ExtArgs> = {}>(args?: Subset<T, UserData$academicYearArgs<ExtArgs>>): Prisma__AcademicYearClient<$Result.GetResult<Prisma.$AcademicYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     class<T extends UserData$classArgs<ExtArgs> = {}>(args?: Subset<T, UserData$classArgs<ExtArgs>>): Prisma__ClassClient<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    tahfidzGroup<T extends UserData$tahfidzGroupArgs<ExtArgs> = {}>(args?: Subset<T, UserData$tahfidzGroupArgs<ExtArgs>>): Prisma__TahfidzGroupClient<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     major<T extends UserData$majorArgs<ExtArgs> = {}>(args?: Subset<T, UserData$majorArgs<ExtArgs>>): Prisma__MajorClient<$Result.GetResult<Prisma.$MajorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     role<T extends UserData$roleArgs<ExtArgs> = {}>(args?: Subset<T, UserData$roleArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     user<T extends UserData$userArgs<ExtArgs> = {}>(args?: Subset<T, UserData$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -9592,6 +9743,7 @@ export namespace Prisma {
     readonly birthDate: FieldRef<"UserData", 'DateTime'>
     readonly birthPlace: FieldRef<"UserData", 'String'>
     readonly classId: FieldRef<"UserData", 'String'>
+    readonly tahfidzGroupId: FieldRef<"UserData", 'String'>
     readonly employeeId: FieldRef<"UserData", 'String'>
     readonly endDate: FieldRef<"UserData", 'DateTime'>
     readonly enrollmentDate: FieldRef<"UserData", 'DateTime'>
@@ -10355,6 +10507,25 @@ export namespace Prisma {
      */
     include?: ClassInclude<ExtArgs> | null
     where?: ClassWhereInput
+  }
+
+  /**
+   * UserData.tahfidzGroup
+   */
+  export type UserData$tahfidzGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzGroupInclude<ExtArgs> | null
+    where?: TahfidzGroupWhereInput
   }
 
   /**
@@ -16543,6 +16714,7 @@ export namespace Prisma {
   export type ScheduleMinAggregateOutputType = {
     id: string | null
     classId: string | null
+    tahfidzGroupId: string | null
     subjectId: string | null
     teacherId: string | null
     academicYearId: string | null
@@ -16556,6 +16728,7 @@ export namespace Prisma {
   export type ScheduleMaxAggregateOutputType = {
     id: string | null
     classId: string | null
+    tahfidzGroupId: string | null
     subjectId: string | null
     teacherId: string | null
     academicYearId: string | null
@@ -16569,6 +16742,7 @@ export namespace Prisma {
   export type ScheduleCountAggregateOutputType = {
     id: number
     classId: number
+    tahfidzGroupId: number
     subjectId: number
     teacherId: number
     academicYearId: number
@@ -16592,6 +16766,7 @@ export namespace Prisma {
   export type ScheduleMinAggregateInputType = {
     id?: true
     classId?: true
+    tahfidzGroupId?: true
     subjectId?: true
     teacherId?: true
     academicYearId?: true
@@ -16605,6 +16780,7 @@ export namespace Prisma {
   export type ScheduleMaxAggregateInputType = {
     id?: true
     classId?: true
+    tahfidzGroupId?: true
     subjectId?: true
     teacherId?: true
     academicYearId?: true
@@ -16618,6 +16794,7 @@ export namespace Prisma {
   export type ScheduleCountAggregateInputType = {
     id?: true
     classId?: true
+    tahfidzGroupId?: true
     subjectId?: true
     teacherId?: true
     academicYearId?: true
@@ -16717,7 +16894,8 @@ export namespace Prisma {
 
   export type ScheduleGroupByOutputType = {
     id: string
-    classId: string
+    classId: string | null
+    tahfidzGroupId: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -16750,6 +16928,7 @@ export namespace Prisma {
   export type ScheduleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     classId?: boolean
+    tahfidzGroupId?: boolean
     subjectId?: boolean
     teacherId?: boolean
     academicYearId?: boolean
@@ -16762,7 +16941,8 @@ export namespace Prisma {
     attendances?: boolean | Schedule$attendancesArgs<ExtArgs>
     grades?: boolean | Schedule$gradesArgs<ExtArgs>
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
-    class?: boolean | ClassDefaultArgs<ExtArgs>
+    class?: boolean | Schedule$classArgs<ExtArgs>
+    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
     teacher?: boolean | UserDataDefaultArgs<ExtArgs>
     _count?: boolean | ScheduleCountOutputTypeDefaultArgs<ExtArgs>
@@ -16771,6 +16951,7 @@ export namespace Prisma {
   export type ScheduleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     classId?: boolean
+    tahfidzGroupId?: boolean
     subjectId?: boolean
     teacherId?: boolean
     academicYearId?: boolean
@@ -16780,7 +16961,8 @@ export namespace Prisma {
     room?: boolean
     isActive?: boolean
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
-    class?: boolean | ClassDefaultArgs<ExtArgs>
+    class?: boolean | Schedule$classArgs<ExtArgs>
+    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
     teacher?: boolean | UserDataDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["schedule"]>
@@ -16788,6 +16970,7 @@ export namespace Prisma {
   export type ScheduleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     classId?: boolean
+    tahfidzGroupId?: boolean
     subjectId?: boolean
     teacherId?: boolean
     academicYearId?: boolean
@@ -16797,7 +16980,8 @@ export namespace Prisma {
     room?: boolean
     isActive?: boolean
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
-    class?: boolean | ClassDefaultArgs<ExtArgs>
+    class?: boolean | Schedule$classArgs<ExtArgs>
+    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
     teacher?: boolean | UserDataDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["schedule"]>
@@ -16805,6 +16989,7 @@ export namespace Prisma {
   export type ScheduleSelectScalar = {
     id?: boolean
     classId?: boolean
+    tahfidzGroupId?: boolean
     subjectId?: boolean
     teacherId?: boolean
     academicYearId?: boolean
@@ -16815,26 +17000,29 @@ export namespace Prisma {
     isActive?: boolean
   }
 
-  export type ScheduleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "classId" | "subjectId" | "teacherId" | "academicYearId" | "dayOfWeek" | "startTime" | "endTime" | "room" | "isActive", ExtArgs["result"]["schedule"]>
+  export type ScheduleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "classId" | "tahfidzGroupId" | "subjectId" | "teacherId" | "academicYearId" | "dayOfWeek" | "startTime" | "endTime" | "room" | "isActive", ExtArgs["result"]["schedule"]>
   export type ScheduleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignments?: boolean | Schedule$assignmentsArgs<ExtArgs>
     attendances?: boolean | Schedule$attendancesArgs<ExtArgs>
     grades?: boolean | Schedule$gradesArgs<ExtArgs>
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
-    class?: boolean | ClassDefaultArgs<ExtArgs>
+    class?: boolean | Schedule$classArgs<ExtArgs>
+    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
     teacher?: boolean | UserDataDefaultArgs<ExtArgs>
     _count?: boolean | ScheduleCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ScheduleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
-    class?: boolean | ClassDefaultArgs<ExtArgs>
+    class?: boolean | Schedule$classArgs<ExtArgs>
+    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
     teacher?: boolean | UserDataDefaultArgs<ExtArgs>
   }
   export type ScheduleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
-    class?: boolean | ClassDefaultArgs<ExtArgs>
+    class?: boolean | Schedule$classArgs<ExtArgs>
+    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
     teacher?: boolean | UserDataDefaultArgs<ExtArgs>
   }
@@ -16846,13 +17034,15 @@ export namespace Prisma {
       attendances: Prisma.$AttendancePayload<ExtArgs>[]
       grades: Prisma.$GradePayload<ExtArgs>[]
       academicYear: Prisma.$AcademicYearPayload<ExtArgs>
-      class: Prisma.$ClassPayload<ExtArgs>
+      class: Prisma.$ClassPayload<ExtArgs> | null
+      tahfidzGroup: Prisma.$TahfidzGroupPayload<ExtArgs> | null
       subject: Prisma.$SubjectPayload<ExtArgs>
       teacher: Prisma.$UserDataPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      classId: string
+      classId: string | null
+      tahfidzGroupId: string | null
       subjectId: string
       teacherId: string
       academicYearId: string
@@ -17259,7 +17449,8 @@ export namespace Prisma {
     attendances<T extends Schedule$attendancesArgs<ExtArgs> = {}>(args?: Subset<T, Schedule$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     grades<T extends Schedule$gradesArgs<ExtArgs> = {}>(args?: Subset<T, Schedule$gradesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     academicYear<T extends AcademicYearDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AcademicYearDefaultArgs<ExtArgs>>): Prisma__AcademicYearClient<$Result.GetResult<Prisma.$AcademicYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    class<T extends ClassDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClassDefaultArgs<ExtArgs>>): Prisma__ClassClient<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    class<T extends Schedule$classArgs<ExtArgs> = {}>(args?: Subset<T, Schedule$classArgs<ExtArgs>>): Prisma__ClassClient<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    tahfidzGroup<T extends Schedule$tahfidzGroupArgs<ExtArgs> = {}>(args?: Subset<T, Schedule$tahfidzGroupArgs<ExtArgs>>): Prisma__TahfidzGroupClient<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     subject<T extends SubjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubjectDefaultArgs<ExtArgs>>): Prisma__SubjectClient<$Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     teacher<T extends UserDataDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDataDefaultArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -17293,6 +17484,7 @@ export namespace Prisma {
   interface ScheduleFieldRefs {
     readonly id: FieldRef<"Schedule", 'String'>
     readonly classId: FieldRef<"Schedule", 'String'>
+    readonly tahfidzGroupId: FieldRef<"Schedule", 'String'>
     readonly subjectId: FieldRef<"Schedule", 'String'>
     readonly teacherId: FieldRef<"Schedule", 'String'>
     readonly academicYearId: FieldRef<"Schedule", 'String'>
@@ -17766,6 +17958,44 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: GradeScalarFieldEnum | GradeScalarFieldEnum[]
+  }
+
+  /**
+   * Schedule.class
+   */
+  export type Schedule$classArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Class
+     */
+    select?: ClassSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Class
+     */
+    omit?: ClassOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ClassInclude<ExtArgs> | null
+    where?: ClassWhereInput
+  }
+
+  /**
+   * Schedule.tahfidzGroup
+   */
+  export type Schedule$tahfidzGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzGroupInclude<ExtArgs> | null
+    where?: TahfidzGroupWhereInput
   }
 
   /**
@@ -39114,6 +39344,1142 @@ export namespace Prisma {
 
 
   /**
+   * Model TahfidzGroup
+   */
+
+  export type AggregateTahfidzGroup = {
+    _count: TahfidzGroupCountAggregateOutputType | null
+    _avg: TahfidzGroupAvgAggregateOutputType | null
+    _sum: TahfidzGroupSumAggregateOutputType | null
+    _min: TahfidzGroupMinAggregateOutputType | null
+    _max: TahfidzGroupMaxAggregateOutputType | null
+  }
+
+  export type TahfidzGroupAvgAggregateOutputType = {
+    grade: number | null
+    capacity: number | null
+  }
+
+  export type TahfidzGroupSumAggregateOutputType = {
+    grade: number | null
+    capacity: number | null
+  }
+
+  export type TahfidzGroupMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    grade: number | null
+    capacity: number | null
+    isActive: boolean | null
+  }
+
+  export type TahfidzGroupMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    grade: number | null
+    capacity: number | null
+    isActive: boolean | null
+  }
+
+  export type TahfidzGroupCountAggregateOutputType = {
+    id: number
+    name: number
+    grade: number
+    capacity: number
+    isActive: number
+    _all: number
+  }
+
+
+  export type TahfidzGroupAvgAggregateInputType = {
+    grade?: true
+    capacity?: true
+  }
+
+  export type TahfidzGroupSumAggregateInputType = {
+    grade?: true
+    capacity?: true
+  }
+
+  export type TahfidzGroupMinAggregateInputType = {
+    id?: true
+    name?: true
+    grade?: true
+    capacity?: true
+    isActive?: true
+  }
+
+  export type TahfidzGroupMaxAggregateInputType = {
+    id?: true
+    name?: true
+    grade?: true
+    capacity?: true
+    isActive?: true
+  }
+
+  export type TahfidzGroupCountAggregateInputType = {
+    id?: true
+    name?: true
+    grade?: true
+    capacity?: true
+    isActive?: true
+    _all?: true
+  }
+
+  export type TahfidzGroupAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TahfidzGroup to aggregate.
+     */
+    where?: TahfidzGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TahfidzGroups to fetch.
+     */
+    orderBy?: TahfidzGroupOrderByWithRelationInput | TahfidzGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TahfidzGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TahfidzGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TahfidzGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TahfidzGroups
+    **/
+    _count?: true | TahfidzGroupCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TahfidzGroupAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TahfidzGroupSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TahfidzGroupMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TahfidzGroupMaxAggregateInputType
+  }
+
+  export type GetTahfidzGroupAggregateType<T extends TahfidzGroupAggregateArgs> = {
+        [P in keyof T & keyof AggregateTahfidzGroup]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTahfidzGroup[P]>
+      : GetScalarType<T[P], AggregateTahfidzGroup[P]>
+  }
+
+
+
+
+  export type TahfidzGroupGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TahfidzGroupWhereInput
+    orderBy?: TahfidzGroupOrderByWithAggregationInput | TahfidzGroupOrderByWithAggregationInput[]
+    by: TahfidzGroupScalarFieldEnum[] | TahfidzGroupScalarFieldEnum
+    having?: TahfidzGroupScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TahfidzGroupCountAggregateInputType | true
+    _avg?: TahfidzGroupAvgAggregateInputType
+    _sum?: TahfidzGroupSumAggregateInputType
+    _min?: TahfidzGroupMinAggregateInputType
+    _max?: TahfidzGroupMaxAggregateInputType
+  }
+
+  export type TahfidzGroupGroupByOutputType = {
+    id: string
+    name: string
+    grade: number
+    capacity: number
+    isActive: boolean
+    _count: TahfidzGroupCountAggregateOutputType | null
+    _avg: TahfidzGroupAvgAggregateOutputType | null
+    _sum: TahfidzGroupSumAggregateOutputType | null
+    _min: TahfidzGroupMinAggregateOutputType | null
+    _max: TahfidzGroupMaxAggregateOutputType | null
+  }
+
+  type GetTahfidzGroupGroupByPayload<T extends TahfidzGroupGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TahfidzGroupGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TahfidzGroupGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TahfidzGroupGroupByOutputType[P]>
+            : GetScalarType<T[P], TahfidzGroupGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TahfidzGroupSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    grade?: boolean
+    capacity?: boolean
+    isActive?: boolean
+    schedules?: boolean | TahfidzGroup$schedulesArgs<ExtArgs>
+    students?: boolean | TahfidzGroup$studentsArgs<ExtArgs>
+    _count?: boolean | TahfidzGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tahfidzGroup"]>
+
+  export type TahfidzGroupSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    grade?: boolean
+    capacity?: boolean
+    isActive?: boolean
+  }, ExtArgs["result"]["tahfidzGroup"]>
+
+  export type TahfidzGroupSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    grade?: boolean
+    capacity?: boolean
+    isActive?: boolean
+  }, ExtArgs["result"]["tahfidzGroup"]>
+
+  export type TahfidzGroupSelectScalar = {
+    id?: boolean
+    name?: boolean
+    grade?: boolean
+    capacity?: boolean
+    isActive?: boolean
+  }
+
+  export type TahfidzGroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "grade" | "capacity" | "isActive", ExtArgs["result"]["tahfidzGroup"]>
+  export type TahfidzGroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    schedules?: boolean | TahfidzGroup$schedulesArgs<ExtArgs>
+    students?: boolean | TahfidzGroup$studentsArgs<ExtArgs>
+    _count?: boolean | TahfidzGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type TahfidzGroupIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type TahfidzGroupIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $TahfidzGroupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TahfidzGroup"
+    objects: {
+      schedules: Prisma.$SchedulePayload<ExtArgs>[]
+      students: Prisma.$UserDataPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      grade: number
+      capacity: number
+      isActive: boolean
+    }, ExtArgs["result"]["tahfidzGroup"]>
+    composites: {}
+  }
+
+  type TahfidzGroupGetPayload<S extends boolean | null | undefined | TahfidzGroupDefaultArgs> = $Result.GetResult<Prisma.$TahfidzGroupPayload, S>
+
+  type TahfidzGroupCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TahfidzGroupFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TahfidzGroupCountAggregateInputType | true
+    }
+
+  export interface TahfidzGroupDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TahfidzGroup'], meta: { name: 'TahfidzGroup' } }
+    /**
+     * Find zero or one TahfidzGroup that matches the filter.
+     * @param {TahfidzGroupFindUniqueArgs} args - Arguments to find a TahfidzGroup
+     * @example
+     * // Get one TahfidzGroup
+     * const tahfidzGroup = await prisma.tahfidzGroup.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TahfidzGroupFindUniqueArgs>(args: SelectSubset<T, TahfidzGroupFindUniqueArgs<ExtArgs>>): Prisma__TahfidzGroupClient<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TahfidzGroup that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TahfidzGroupFindUniqueOrThrowArgs} args - Arguments to find a TahfidzGroup
+     * @example
+     * // Get one TahfidzGroup
+     * const tahfidzGroup = await prisma.tahfidzGroup.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TahfidzGroupFindUniqueOrThrowArgs>(args: SelectSubset<T, TahfidzGroupFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TahfidzGroupClient<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TahfidzGroup that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TahfidzGroupFindFirstArgs} args - Arguments to find a TahfidzGroup
+     * @example
+     * // Get one TahfidzGroup
+     * const tahfidzGroup = await prisma.tahfidzGroup.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TahfidzGroupFindFirstArgs>(args?: SelectSubset<T, TahfidzGroupFindFirstArgs<ExtArgs>>): Prisma__TahfidzGroupClient<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TahfidzGroup that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TahfidzGroupFindFirstOrThrowArgs} args - Arguments to find a TahfidzGroup
+     * @example
+     * // Get one TahfidzGroup
+     * const tahfidzGroup = await prisma.tahfidzGroup.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TahfidzGroupFindFirstOrThrowArgs>(args?: SelectSubset<T, TahfidzGroupFindFirstOrThrowArgs<ExtArgs>>): Prisma__TahfidzGroupClient<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TahfidzGroups that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TahfidzGroupFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TahfidzGroups
+     * const tahfidzGroups = await prisma.tahfidzGroup.findMany()
+     * 
+     * // Get first 10 TahfidzGroups
+     * const tahfidzGroups = await prisma.tahfidzGroup.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tahfidzGroupWithIdOnly = await prisma.tahfidzGroup.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TahfidzGroupFindManyArgs>(args?: SelectSubset<T, TahfidzGroupFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TahfidzGroup.
+     * @param {TahfidzGroupCreateArgs} args - Arguments to create a TahfidzGroup.
+     * @example
+     * // Create one TahfidzGroup
+     * const TahfidzGroup = await prisma.tahfidzGroup.create({
+     *   data: {
+     *     // ... data to create a TahfidzGroup
+     *   }
+     * })
+     * 
+     */
+    create<T extends TahfidzGroupCreateArgs>(args: SelectSubset<T, TahfidzGroupCreateArgs<ExtArgs>>): Prisma__TahfidzGroupClient<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TahfidzGroups.
+     * @param {TahfidzGroupCreateManyArgs} args - Arguments to create many TahfidzGroups.
+     * @example
+     * // Create many TahfidzGroups
+     * const tahfidzGroup = await prisma.tahfidzGroup.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TahfidzGroupCreateManyArgs>(args?: SelectSubset<T, TahfidzGroupCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TahfidzGroups and returns the data saved in the database.
+     * @param {TahfidzGroupCreateManyAndReturnArgs} args - Arguments to create many TahfidzGroups.
+     * @example
+     * // Create many TahfidzGroups
+     * const tahfidzGroup = await prisma.tahfidzGroup.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TahfidzGroups and only return the `id`
+     * const tahfidzGroupWithIdOnly = await prisma.tahfidzGroup.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TahfidzGroupCreateManyAndReturnArgs>(args?: SelectSubset<T, TahfidzGroupCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TahfidzGroup.
+     * @param {TahfidzGroupDeleteArgs} args - Arguments to delete one TahfidzGroup.
+     * @example
+     * // Delete one TahfidzGroup
+     * const TahfidzGroup = await prisma.tahfidzGroup.delete({
+     *   where: {
+     *     // ... filter to delete one TahfidzGroup
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TahfidzGroupDeleteArgs>(args: SelectSubset<T, TahfidzGroupDeleteArgs<ExtArgs>>): Prisma__TahfidzGroupClient<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TahfidzGroup.
+     * @param {TahfidzGroupUpdateArgs} args - Arguments to update one TahfidzGroup.
+     * @example
+     * // Update one TahfidzGroup
+     * const tahfidzGroup = await prisma.tahfidzGroup.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TahfidzGroupUpdateArgs>(args: SelectSubset<T, TahfidzGroupUpdateArgs<ExtArgs>>): Prisma__TahfidzGroupClient<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TahfidzGroups.
+     * @param {TahfidzGroupDeleteManyArgs} args - Arguments to filter TahfidzGroups to delete.
+     * @example
+     * // Delete a few TahfidzGroups
+     * const { count } = await prisma.tahfidzGroup.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TahfidzGroupDeleteManyArgs>(args?: SelectSubset<T, TahfidzGroupDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TahfidzGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TahfidzGroupUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TahfidzGroups
+     * const tahfidzGroup = await prisma.tahfidzGroup.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TahfidzGroupUpdateManyArgs>(args: SelectSubset<T, TahfidzGroupUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TahfidzGroups and returns the data updated in the database.
+     * @param {TahfidzGroupUpdateManyAndReturnArgs} args - Arguments to update many TahfidzGroups.
+     * @example
+     * // Update many TahfidzGroups
+     * const tahfidzGroup = await prisma.tahfidzGroup.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TahfidzGroups and only return the `id`
+     * const tahfidzGroupWithIdOnly = await prisma.tahfidzGroup.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TahfidzGroupUpdateManyAndReturnArgs>(args: SelectSubset<T, TahfidzGroupUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TahfidzGroup.
+     * @param {TahfidzGroupUpsertArgs} args - Arguments to update or create a TahfidzGroup.
+     * @example
+     * // Update or create a TahfidzGroup
+     * const tahfidzGroup = await prisma.tahfidzGroup.upsert({
+     *   create: {
+     *     // ... data to create a TahfidzGroup
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TahfidzGroup we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TahfidzGroupUpsertArgs>(args: SelectSubset<T, TahfidzGroupUpsertArgs<ExtArgs>>): Prisma__TahfidzGroupClient<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TahfidzGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TahfidzGroupCountArgs} args - Arguments to filter TahfidzGroups to count.
+     * @example
+     * // Count the number of TahfidzGroups
+     * const count = await prisma.tahfidzGroup.count({
+     *   where: {
+     *     // ... the filter for the TahfidzGroups we want to count
+     *   }
+     * })
+    **/
+    count<T extends TahfidzGroupCountArgs>(
+      args?: Subset<T, TahfidzGroupCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TahfidzGroupCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TahfidzGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TahfidzGroupAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TahfidzGroupAggregateArgs>(args: Subset<T, TahfidzGroupAggregateArgs>): Prisma.PrismaPromise<GetTahfidzGroupAggregateType<T>>
+
+    /**
+     * Group by TahfidzGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TahfidzGroupGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TahfidzGroupGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TahfidzGroupGroupByArgs['orderBy'] }
+        : { orderBy?: TahfidzGroupGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TahfidzGroupGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTahfidzGroupGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TahfidzGroup model
+   */
+  readonly fields: TahfidzGroupFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TahfidzGroup.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TahfidzGroupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    schedules<T extends TahfidzGroup$schedulesArgs<ExtArgs> = {}>(args?: Subset<T, TahfidzGroup$schedulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    students<T extends TahfidzGroup$studentsArgs<ExtArgs> = {}>(args?: Subset<T, TahfidzGroup$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TahfidzGroup model
+   */
+  interface TahfidzGroupFieldRefs {
+    readonly id: FieldRef<"TahfidzGroup", 'String'>
+    readonly name: FieldRef<"TahfidzGroup", 'String'>
+    readonly grade: FieldRef<"TahfidzGroup", 'Int'>
+    readonly capacity: FieldRef<"TahfidzGroup", 'Int'>
+    readonly isActive: FieldRef<"TahfidzGroup", 'Boolean'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TahfidzGroup findUnique
+   */
+  export type TahfidzGroupFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which TahfidzGroup to fetch.
+     */
+    where: TahfidzGroupWhereUniqueInput
+  }
+
+  /**
+   * TahfidzGroup findUniqueOrThrow
+   */
+  export type TahfidzGroupFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which TahfidzGroup to fetch.
+     */
+    where: TahfidzGroupWhereUniqueInput
+  }
+
+  /**
+   * TahfidzGroup findFirst
+   */
+  export type TahfidzGroupFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which TahfidzGroup to fetch.
+     */
+    where?: TahfidzGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TahfidzGroups to fetch.
+     */
+    orderBy?: TahfidzGroupOrderByWithRelationInput | TahfidzGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TahfidzGroups.
+     */
+    cursor?: TahfidzGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TahfidzGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TahfidzGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TahfidzGroups.
+     */
+    distinct?: TahfidzGroupScalarFieldEnum | TahfidzGroupScalarFieldEnum[]
+  }
+
+  /**
+   * TahfidzGroup findFirstOrThrow
+   */
+  export type TahfidzGroupFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which TahfidzGroup to fetch.
+     */
+    where?: TahfidzGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TahfidzGroups to fetch.
+     */
+    orderBy?: TahfidzGroupOrderByWithRelationInput | TahfidzGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TahfidzGroups.
+     */
+    cursor?: TahfidzGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TahfidzGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TahfidzGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TahfidzGroups.
+     */
+    distinct?: TahfidzGroupScalarFieldEnum | TahfidzGroupScalarFieldEnum[]
+  }
+
+  /**
+   * TahfidzGroup findMany
+   */
+  export type TahfidzGroupFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which TahfidzGroups to fetch.
+     */
+    where?: TahfidzGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TahfidzGroups to fetch.
+     */
+    orderBy?: TahfidzGroupOrderByWithRelationInput | TahfidzGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TahfidzGroups.
+     */
+    cursor?: TahfidzGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TahfidzGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TahfidzGroups.
+     */
+    skip?: number
+    distinct?: TahfidzGroupScalarFieldEnum | TahfidzGroupScalarFieldEnum[]
+  }
+
+  /**
+   * TahfidzGroup create
+   */
+  export type TahfidzGroupCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TahfidzGroup.
+     */
+    data: XOR<TahfidzGroupCreateInput, TahfidzGroupUncheckedCreateInput>
+  }
+
+  /**
+   * TahfidzGroup createMany
+   */
+  export type TahfidzGroupCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TahfidzGroups.
+     */
+    data: TahfidzGroupCreateManyInput | TahfidzGroupCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TahfidzGroup createManyAndReturn
+   */
+  export type TahfidzGroupCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * The data used to create many TahfidzGroups.
+     */
+    data: TahfidzGroupCreateManyInput | TahfidzGroupCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TahfidzGroup update
+   */
+  export type TahfidzGroupUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TahfidzGroup.
+     */
+    data: XOR<TahfidzGroupUpdateInput, TahfidzGroupUncheckedUpdateInput>
+    /**
+     * Choose, which TahfidzGroup to update.
+     */
+    where: TahfidzGroupWhereUniqueInput
+  }
+
+  /**
+   * TahfidzGroup updateMany
+   */
+  export type TahfidzGroupUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TahfidzGroups.
+     */
+    data: XOR<TahfidzGroupUpdateManyMutationInput, TahfidzGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which TahfidzGroups to update
+     */
+    where?: TahfidzGroupWhereInput
+    /**
+     * Limit how many TahfidzGroups to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TahfidzGroup updateManyAndReturn
+   */
+  export type TahfidzGroupUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * The data used to update TahfidzGroups.
+     */
+    data: XOR<TahfidzGroupUpdateManyMutationInput, TahfidzGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which TahfidzGroups to update
+     */
+    where?: TahfidzGroupWhereInput
+    /**
+     * Limit how many TahfidzGroups to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TahfidzGroup upsert
+   */
+  export type TahfidzGroupUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzGroupInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TahfidzGroup to update in case it exists.
+     */
+    where: TahfidzGroupWhereUniqueInput
+    /**
+     * In case the TahfidzGroup found by the `where` argument doesn't exist, create a new TahfidzGroup with this data.
+     */
+    create: XOR<TahfidzGroupCreateInput, TahfidzGroupUncheckedCreateInput>
+    /**
+     * In case the TahfidzGroup was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TahfidzGroupUpdateInput, TahfidzGroupUncheckedUpdateInput>
+  }
+
+  /**
+   * TahfidzGroup delete
+   */
+  export type TahfidzGroupDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzGroupInclude<ExtArgs> | null
+    /**
+     * Filter which TahfidzGroup to delete.
+     */
+    where: TahfidzGroupWhereUniqueInput
+  }
+
+  /**
+   * TahfidzGroup deleteMany
+   */
+  export type TahfidzGroupDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TahfidzGroups to delete
+     */
+    where?: TahfidzGroupWhereInput
+    /**
+     * Limit how many TahfidzGroups to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TahfidzGroup.schedules
+   */
+  export type TahfidzGroup$schedulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Schedule
+     */
+    select?: ScheduleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Schedule
+     */
+    omit?: ScheduleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ScheduleInclude<ExtArgs> | null
+    where?: ScheduleWhereInput
+    orderBy?: ScheduleOrderByWithRelationInput | ScheduleOrderByWithRelationInput[]
+    cursor?: ScheduleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ScheduleScalarFieldEnum | ScheduleScalarFieldEnum[]
+  }
+
+  /**
+   * TahfidzGroup.students
+   */
+  export type TahfidzGroup$studentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserData
+     */
+    select?: UserDataSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserData
+     */
+    omit?: UserDataOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserDataInclude<ExtArgs> | null
+    where?: UserDataWhereInput
+    orderBy?: UserDataOrderByWithRelationInput | UserDataOrderByWithRelationInput[]
+    cursor?: UserDataWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserDataScalarFieldEnum | UserDataScalarFieldEnum[]
+  }
+
+  /**
+   * TahfidzGroup without action
+   */
+  export type TahfidzGroupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzGroupInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -39199,6 +40565,7 @@ export namespace Prisma {
     birthDate: 'birthDate',
     birthPlace: 'birthPlace',
     classId: 'classId',
+    tahfidzGroupId: 'tahfidzGroupId',
     employeeId: 'employeeId',
     endDate: 'endDate',
     enrollmentDate: 'enrollmentDate',
@@ -39288,6 +40655,7 @@ export namespace Prisma {
   export const ScheduleScalarFieldEnum: {
     id: 'id',
     classId: 'classId',
+    tahfidzGroupId: 'tahfidzGroupId',
     subjectId: 'subjectId',
     teacherId: 'teacherId',
     academicYearId: 'academicYearId',
@@ -39606,6 +40974,17 @@ export namespace Prisma {
   };
 
   export type TeacherAttendanceScalarFieldEnum = (typeof TeacherAttendanceScalarFieldEnum)[keyof typeof TeacherAttendanceScalarFieldEnum]
+
+
+  export const TahfidzGroupScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    grade: 'grade',
+    capacity: 'capacity',
+    isActive: 'isActive'
+  };
+
+  export type TahfidzGroupScalarFieldEnum = (typeof TahfidzGroupScalarFieldEnum)[keyof typeof TahfidzGroupScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -40078,6 +41457,7 @@ export namespace Prisma {
     birthDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     birthPlace?: StringNullableFilter<"UserData"> | string | null
     classId?: StringNullableFilter<"UserData"> | string | null
+    tahfidzGroupId?: StringNullableFilter<"UserData"> | string | null
     employeeId?: StringNullableFilter<"UserData"> | string | null
     endDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     enrollmentDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
@@ -40113,6 +41493,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceListRelationFilter
     academicYear?: XOR<AcademicYearNullableScalarRelationFilter, AcademicYearWhereInput> | null
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
+    tahfidzGroup?: XOR<TahfidzGroupNullableScalarRelationFilter, TahfidzGroupWhereInput> | null
     major?: XOR<MajorNullableScalarRelationFilter, MajorWhereInput> | null
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -40128,6 +41509,7 @@ export namespace Prisma {
     birthDate?: SortOrderInput | SortOrder
     birthPlace?: SortOrderInput | SortOrder
     classId?: SortOrderInput | SortOrder
+    tahfidzGroupId?: SortOrderInput | SortOrder
     employeeId?: SortOrderInput | SortOrder
     endDate?: SortOrderInput | SortOrder
     enrollmentDate?: SortOrderInput | SortOrder
@@ -40163,6 +41545,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceOrderByRelationAggregateInput
     academicYear?: AcademicYearOrderByWithRelationInput
     class?: ClassOrderByWithRelationInput
+    tahfidzGroup?: TahfidzGroupOrderByWithRelationInput
     major?: MajorOrderByWithRelationInput
     role?: RoleOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
@@ -40181,6 +41564,7 @@ export namespace Prisma {
     birthDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     birthPlace?: StringNullableFilter<"UserData"> | string | null
     classId?: StringNullableFilter<"UserData"> | string | null
+    tahfidzGroupId?: StringNullableFilter<"UserData"> | string | null
     employeeId?: StringNullableFilter<"UserData"> | string | null
     endDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     enrollmentDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
@@ -40216,6 +41600,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceListRelationFilter
     academicYear?: XOR<AcademicYearNullableScalarRelationFilter, AcademicYearWhereInput> | null
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
+    tahfidzGroup?: XOR<TahfidzGroupNullableScalarRelationFilter, TahfidzGroupWhereInput> | null
     major?: XOR<MajorNullableScalarRelationFilter, MajorWhereInput> | null
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -40231,6 +41616,7 @@ export namespace Prisma {
     birthDate?: SortOrderInput | SortOrder
     birthPlace?: SortOrderInput | SortOrder
     classId?: SortOrderInput | SortOrder
+    tahfidzGroupId?: SortOrderInput | SortOrder
     employeeId?: SortOrderInput | SortOrder
     endDate?: SortOrderInput | SortOrder
     enrollmentDate?: SortOrderInput | SortOrder
@@ -40268,6 +41654,7 @@ export namespace Prisma {
     birthDate?: DateTimeNullableWithAggregatesFilter<"UserData"> | Date | string | null
     birthPlace?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     classId?: StringNullableWithAggregatesFilter<"UserData"> | string | null
+    tahfidzGroupId?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     employeeId?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     endDate?: DateTimeNullableWithAggregatesFilter<"UserData"> | Date | string | null
     enrollmentDate?: DateTimeNullableWithAggregatesFilter<"UserData"> | Date | string | null
@@ -40668,7 +42055,8 @@ export namespace Prisma {
     OR?: ScheduleWhereInput[]
     NOT?: ScheduleWhereInput | ScheduleWhereInput[]
     id?: StringFilter<"Schedule"> | string
-    classId?: StringFilter<"Schedule"> | string
+    classId?: StringNullableFilter<"Schedule"> | string | null
+    tahfidzGroupId?: StringNullableFilter<"Schedule"> | string | null
     subjectId?: StringFilter<"Schedule"> | string
     teacherId?: StringFilter<"Schedule"> | string
     academicYearId?: StringFilter<"Schedule"> | string
@@ -40681,14 +42069,16 @@ export namespace Prisma {
     attendances?: AttendanceListRelationFilter
     grades?: GradeListRelationFilter
     academicYear?: XOR<AcademicYearScalarRelationFilter, AcademicYearWhereInput>
-    class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
+    class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
+    tahfidzGroup?: XOR<TahfidzGroupNullableScalarRelationFilter, TahfidzGroupWhereInput> | null
     subject?: XOR<SubjectScalarRelationFilter, SubjectWhereInput>
     teacher?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
   }
 
   export type ScheduleOrderByWithRelationInput = {
     id?: SortOrder
-    classId?: SortOrder
+    classId?: SortOrderInput | SortOrder
+    tahfidzGroupId?: SortOrderInput | SortOrder
     subjectId?: SortOrder
     teacherId?: SortOrder
     academicYearId?: SortOrder
@@ -40702,6 +42092,7 @@ export namespace Prisma {
     grades?: GradeOrderByRelationAggregateInput
     academicYear?: AcademicYearOrderByWithRelationInput
     class?: ClassOrderByWithRelationInput
+    tahfidzGroup?: TahfidzGroupOrderByWithRelationInput
     subject?: SubjectOrderByWithRelationInput
     teacher?: UserDataOrderByWithRelationInput
   }
@@ -40712,7 +42103,8 @@ export namespace Prisma {
     AND?: ScheduleWhereInput | ScheduleWhereInput[]
     OR?: ScheduleWhereInput[]
     NOT?: ScheduleWhereInput | ScheduleWhereInput[]
-    classId?: StringFilter<"Schedule"> | string
+    classId?: StringNullableFilter<"Schedule"> | string | null
+    tahfidzGroupId?: StringNullableFilter<"Schedule"> | string | null
     subjectId?: StringFilter<"Schedule"> | string
     teacherId?: StringFilter<"Schedule"> | string
     academicYearId?: StringFilter<"Schedule"> | string
@@ -40725,14 +42117,16 @@ export namespace Prisma {
     attendances?: AttendanceListRelationFilter
     grades?: GradeListRelationFilter
     academicYear?: XOR<AcademicYearScalarRelationFilter, AcademicYearWhereInput>
-    class?: XOR<ClassScalarRelationFilter, ClassWhereInput>
+    class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
+    tahfidzGroup?: XOR<TahfidzGroupNullableScalarRelationFilter, TahfidzGroupWhereInput> | null
     subject?: XOR<SubjectScalarRelationFilter, SubjectWhereInput>
     teacher?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
   }, "id" | "classId_subjectId_teacherId_dayOfWeek_startTime">
 
   export type ScheduleOrderByWithAggregationInput = {
     id?: SortOrder
-    classId?: SortOrder
+    classId?: SortOrderInput | SortOrder
+    tahfidzGroupId?: SortOrderInput | SortOrder
     subjectId?: SortOrder
     teacherId?: SortOrder
     academicYearId?: SortOrder
@@ -40753,7 +42147,8 @@ export namespace Prisma {
     OR?: ScheduleScalarWhereWithAggregatesInput[]
     NOT?: ScheduleScalarWhereWithAggregatesInput | ScheduleScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Schedule"> | string
-    classId?: StringWithAggregatesFilter<"Schedule"> | string
+    classId?: StringNullableWithAggregatesFilter<"Schedule"> | string | null
+    tahfidzGroupId?: StringNullableWithAggregatesFilter<"Schedule"> | string | null
     subjectId?: StringWithAggregatesFilter<"Schedule"> | string
     teacherId?: StringWithAggregatesFilter<"Schedule"> | string
     academicYearId?: StringWithAggregatesFilter<"Schedule"> | string
@@ -42397,6 +43792,66 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"TeacherAttendance"> | Date | string
   }
 
+  export type TahfidzGroupWhereInput = {
+    AND?: TahfidzGroupWhereInput | TahfidzGroupWhereInput[]
+    OR?: TahfidzGroupWhereInput[]
+    NOT?: TahfidzGroupWhereInput | TahfidzGroupWhereInput[]
+    id?: StringFilter<"TahfidzGroup"> | string
+    name?: StringFilter<"TahfidzGroup"> | string
+    grade?: IntFilter<"TahfidzGroup"> | number
+    capacity?: IntFilter<"TahfidzGroup"> | number
+    isActive?: BoolFilter<"TahfidzGroup"> | boolean
+    schedules?: ScheduleListRelationFilter
+    students?: UserDataListRelationFilter
+  }
+
+  export type TahfidzGroupOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    grade?: SortOrder
+    capacity?: SortOrder
+    isActive?: SortOrder
+    schedules?: ScheduleOrderByRelationAggregateInput
+    students?: UserDataOrderByRelationAggregateInput
+  }
+
+  export type TahfidzGroupWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: TahfidzGroupWhereInput | TahfidzGroupWhereInput[]
+    OR?: TahfidzGroupWhereInput[]
+    NOT?: TahfidzGroupWhereInput | TahfidzGroupWhereInput[]
+    grade?: IntFilter<"TahfidzGroup"> | number
+    capacity?: IntFilter<"TahfidzGroup"> | number
+    isActive?: BoolFilter<"TahfidzGroup"> | boolean
+    schedules?: ScheduleListRelationFilter
+    students?: UserDataListRelationFilter
+  }, "id" | "name">
+
+  export type TahfidzGroupOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    grade?: SortOrder
+    capacity?: SortOrder
+    isActive?: SortOrder
+    _count?: TahfidzGroupCountOrderByAggregateInput
+    _avg?: TahfidzGroupAvgOrderByAggregateInput
+    _max?: TahfidzGroupMaxOrderByAggregateInput
+    _min?: TahfidzGroupMinOrderByAggregateInput
+    _sum?: TahfidzGroupSumOrderByAggregateInput
+  }
+
+  export type TahfidzGroupScalarWhereWithAggregatesInput = {
+    AND?: TahfidzGroupScalarWhereWithAggregatesInput | TahfidzGroupScalarWhereWithAggregatesInput[]
+    OR?: TahfidzGroupScalarWhereWithAggregatesInput[]
+    NOT?: TahfidzGroupScalarWhereWithAggregatesInput | TahfidzGroupScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TahfidzGroup"> | string
+    name?: StringWithAggregatesFilter<"TahfidzGroup"> | string
+    grade?: IntWithAggregatesFilter<"TahfidzGroup"> | number
+    capacity?: IntWithAggregatesFilter<"TahfidzGroup"> | number
+    isActive?: BoolWithAggregatesFilter<"TahfidzGroup"> | boolean
+  }
+
   export type UserCreateInput = {
     id: string
     name: string
@@ -42803,6 +44258,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -42818,6 +44274,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -42893,6 +44350,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -42908,6 +44366,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -42953,6 +44412,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -43010,6 +44470,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -43454,14 +44915,16 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
     grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
-    class: ClassCreateNestedOneWithoutSchedulesInput
+    class?: ClassCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateInput = {
     id?: string
-    classId: string
+    classId?: string | null
+    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -43486,14 +44949,16 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
     grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
-    class?: ClassUpdateOneRequiredWithoutSchedulesNestedInput
+    class?: ClassUpdateOneWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
@@ -43509,7 +44974,8 @@ export namespace Prisma {
 
   export type ScheduleCreateManyInput = {
     id?: string
-    classId: string
+    classId?: string | null
+    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -43531,7 +44997,8 @@ export namespace Prisma {
 
   export type ScheduleUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
@@ -45302,6 +46769,70 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type TahfidzGroupCreateInput = {
+    id?: string
+    name: string
+    grade: number
+    capacity?: number
+    isActive?: boolean
+    schedules?: ScheduleCreateNestedManyWithoutTahfidzGroupInput
+    students?: UserDataCreateNestedManyWithoutTahfidzGroupInput
+  }
+
+  export type TahfidzGroupUncheckedCreateInput = {
+    id?: string
+    name: string
+    grade: number
+    capacity?: number
+    isActive?: boolean
+    schedules?: ScheduleUncheckedCreateNestedManyWithoutTahfidzGroupInput
+    students?: UserDataUncheckedCreateNestedManyWithoutTahfidzGroupInput
+  }
+
+  export type TahfidzGroupUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    grade?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    schedules?: ScheduleUpdateManyWithoutTahfidzGroupNestedInput
+    students?: UserDataUpdateManyWithoutTahfidzGroupNestedInput
+  }
+
+  export type TahfidzGroupUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    grade?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    schedules?: ScheduleUncheckedUpdateManyWithoutTahfidzGroupNestedInput
+    students?: UserDataUncheckedUpdateManyWithoutTahfidzGroupNestedInput
+  }
+
+  export type TahfidzGroupCreateManyInput = {
+    id?: string
+    name: string
+    grade: number
+    capacity?: number
+    isActive?: boolean
+  }
+
+  export type TahfidzGroupUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    grade?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type TahfidzGroupUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    grade?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -45722,6 +47253,11 @@ export namespace Prisma {
     isNot?: ClassWhereInput | null
   }
 
+  export type TahfidzGroupNullableScalarRelationFilter = {
+    is?: TahfidzGroupWhereInput | null
+    isNot?: TahfidzGroupWhereInput | null
+  }
+
   export type MajorNullableScalarRelationFilter = {
     is?: MajorWhereInput | null
     isNot?: MajorWhereInput | null
@@ -45804,6 +47340,7 @@ export namespace Prisma {
     birthDate?: SortOrder
     birthPlace?: SortOrder
     classId?: SortOrder
+    tahfidzGroupId?: SortOrder
     employeeId?: SortOrder
     endDate?: SortOrder
     enrollmentDate?: SortOrder
@@ -45835,6 +47372,7 @@ export namespace Prisma {
     birthDate?: SortOrder
     birthPlace?: SortOrder
     classId?: SortOrder
+    tahfidzGroupId?: SortOrder
     employeeId?: SortOrder
     endDate?: SortOrder
     enrollmentDate?: SortOrder
@@ -45865,6 +47403,7 @@ export namespace Prisma {
     birthDate?: SortOrder
     birthPlace?: SortOrder
     classId?: SortOrder
+    tahfidzGroupId?: SortOrder
     employeeId?: SortOrder
     endDate?: SortOrder
     enrollmentDate?: SortOrder
@@ -46152,11 +47691,6 @@ export namespace Prisma {
     credits?: SortOrder
   }
 
-  export type ClassScalarRelationFilter = {
-    is?: ClassWhereInput
-    isNot?: ClassWhereInput
-  }
-
   export type SubjectScalarRelationFilter = {
     is?: SubjectWhereInput
     isNot?: SubjectWhereInput
@@ -46178,6 +47712,7 @@ export namespace Prisma {
   export type ScheduleCountOrderByAggregateInput = {
     id?: SortOrder
     classId?: SortOrder
+    tahfidzGroupId?: SortOrder
     subjectId?: SortOrder
     teacherId?: SortOrder
     academicYearId?: SortOrder
@@ -46195,6 +47730,7 @@ export namespace Prisma {
   export type ScheduleMaxOrderByAggregateInput = {
     id?: SortOrder
     classId?: SortOrder
+    tahfidzGroupId?: SortOrder
     subjectId?: SortOrder
     teacherId?: SortOrder
     academicYearId?: SortOrder
@@ -46208,6 +47744,7 @@ export namespace Prisma {
   export type ScheduleMinOrderByAggregateInput = {
     id?: SortOrder
     classId?: SortOrder
+    tahfidzGroupId?: SortOrder
     subjectId?: SortOrder
     teacherId?: SortOrder
     academicYearId?: SortOrder
@@ -46296,6 +47833,11 @@ export namespace Prisma {
 
   export type ViolationTypeSumOrderByAggregateInput = {
     points?: SortOrder
+  }
+
+  export type ClassScalarRelationFilter = {
+    is?: ClassWhereInput
+    isNot?: ClassWhereInput
   }
 
   export type ViolationTypeScalarRelationFilter = {
@@ -47288,6 +48830,40 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type TahfidzGroupCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    grade?: SortOrder
+    capacity?: SortOrder
+    isActive?: SortOrder
+  }
+
+  export type TahfidzGroupAvgOrderByAggregateInput = {
+    grade?: SortOrder
+    capacity?: SortOrder
+  }
+
+  export type TahfidzGroupMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    grade?: SortOrder
+    capacity?: SortOrder
+    isActive?: SortOrder
+  }
+
+  export type TahfidzGroupMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    grade?: SortOrder
+    capacity?: SortOrder
+    isActive?: SortOrder
+  }
+
+  export type TahfidzGroupSumOrderByAggregateInput = {
+    grade?: SortOrder
+    capacity?: SortOrder
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -47561,6 +49137,12 @@ export namespace Prisma {
     create?: XOR<ClassCreateWithoutStudentsInput, ClassUncheckedCreateWithoutStudentsInput>
     connectOrCreate?: ClassCreateOrConnectWithoutStudentsInput
     connect?: ClassWhereUniqueInput
+  }
+
+  export type TahfidzGroupCreateNestedOneWithoutStudentsInput = {
+    create?: XOR<TahfidzGroupCreateWithoutStudentsInput, TahfidzGroupUncheckedCreateWithoutStudentsInput>
+    connectOrCreate?: TahfidzGroupCreateOrConnectWithoutStudentsInput
+    connect?: TahfidzGroupWhereUniqueInput
   }
 
   export type MajorCreateNestedOneWithoutStudentsInput = {
@@ -47891,6 +49473,16 @@ export namespace Prisma {
     delete?: ClassWhereInput | boolean
     connect?: ClassWhereUniqueInput
     update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutStudentsInput, ClassUpdateWithoutStudentsInput>, ClassUncheckedUpdateWithoutStudentsInput>
+  }
+
+  export type TahfidzGroupUpdateOneWithoutStudentsNestedInput = {
+    create?: XOR<TahfidzGroupCreateWithoutStudentsInput, TahfidzGroupUncheckedCreateWithoutStudentsInput>
+    connectOrCreate?: TahfidzGroupCreateOrConnectWithoutStudentsInput
+    upsert?: TahfidzGroupUpsertWithoutStudentsInput
+    disconnect?: TahfidzGroupWhereInput | boolean
+    delete?: TahfidzGroupWhereInput | boolean
+    connect?: TahfidzGroupWhereUniqueInput
+    update?: XOR<XOR<TahfidzGroupUpdateToOneWithWhereWithoutStudentsInput, TahfidzGroupUpdateWithoutStudentsInput>, TahfidzGroupUncheckedUpdateWithoutStudentsInput>
   }
 
   export type MajorUpdateOneWithoutStudentsNestedInput = {
@@ -49193,6 +50785,12 @@ export namespace Prisma {
     connect?: ClassWhereUniqueInput
   }
 
+  export type TahfidzGroupCreateNestedOneWithoutSchedulesInput = {
+    create?: XOR<TahfidzGroupCreateWithoutSchedulesInput, TahfidzGroupUncheckedCreateWithoutSchedulesInput>
+    connectOrCreate?: TahfidzGroupCreateOrConnectWithoutSchedulesInput
+    connect?: TahfidzGroupWhereUniqueInput
+  }
+
   export type SubjectCreateNestedOneWithoutSchedulesInput = {
     create?: XOR<SubjectCreateWithoutSchedulesInput, SubjectUncheckedCreateWithoutSchedulesInput>
     connectOrCreate?: SubjectCreateOrConnectWithoutSchedulesInput
@@ -49276,12 +50874,24 @@ export namespace Prisma {
     update?: XOR<XOR<AcademicYearUpdateToOneWithWhereWithoutSchedulesInput, AcademicYearUpdateWithoutSchedulesInput>, AcademicYearUncheckedUpdateWithoutSchedulesInput>
   }
 
-  export type ClassUpdateOneRequiredWithoutSchedulesNestedInput = {
+  export type ClassUpdateOneWithoutSchedulesNestedInput = {
     create?: XOR<ClassCreateWithoutSchedulesInput, ClassUncheckedCreateWithoutSchedulesInput>
     connectOrCreate?: ClassCreateOrConnectWithoutSchedulesInput
     upsert?: ClassUpsertWithoutSchedulesInput
+    disconnect?: ClassWhereInput | boolean
+    delete?: ClassWhereInput | boolean
     connect?: ClassWhereUniqueInput
     update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutSchedulesInput, ClassUpdateWithoutSchedulesInput>, ClassUncheckedUpdateWithoutSchedulesInput>
+  }
+
+  export type TahfidzGroupUpdateOneWithoutSchedulesNestedInput = {
+    create?: XOR<TahfidzGroupCreateWithoutSchedulesInput, TahfidzGroupUncheckedCreateWithoutSchedulesInput>
+    connectOrCreate?: TahfidzGroupCreateOrConnectWithoutSchedulesInput
+    upsert?: TahfidzGroupUpsertWithoutSchedulesInput
+    disconnect?: TahfidzGroupWhereInput | boolean
+    delete?: TahfidzGroupWhereInput | boolean
+    connect?: TahfidzGroupWhereUniqueInput
+    update?: XOR<XOR<TahfidzGroupUpdateToOneWithWhereWithoutSchedulesInput, TahfidzGroupUpdateWithoutSchedulesInput>, TahfidzGroupUncheckedUpdateWithoutSchedulesInput>
   }
 
   export type SubjectUpdateOneRequiredWithoutSchedulesNestedInput = {
@@ -50122,6 +51732,90 @@ export namespace Prisma {
     update?: XOR<XOR<UserDataUpdateToOneWithWhereWithoutTeacherAttendancesInput, UserDataUpdateWithoutTeacherAttendancesInput>, UserDataUncheckedUpdateWithoutTeacherAttendancesInput>
   }
 
+  export type ScheduleCreateNestedManyWithoutTahfidzGroupInput = {
+    create?: XOR<ScheduleCreateWithoutTahfidzGroupInput, ScheduleUncheckedCreateWithoutTahfidzGroupInput> | ScheduleCreateWithoutTahfidzGroupInput[] | ScheduleUncheckedCreateWithoutTahfidzGroupInput[]
+    connectOrCreate?: ScheduleCreateOrConnectWithoutTahfidzGroupInput | ScheduleCreateOrConnectWithoutTahfidzGroupInput[]
+    createMany?: ScheduleCreateManyTahfidzGroupInputEnvelope
+    connect?: ScheduleWhereUniqueInput | ScheduleWhereUniqueInput[]
+  }
+
+  export type UserDataCreateNestedManyWithoutTahfidzGroupInput = {
+    create?: XOR<UserDataCreateWithoutTahfidzGroupInput, UserDataUncheckedCreateWithoutTahfidzGroupInput> | UserDataCreateWithoutTahfidzGroupInput[] | UserDataUncheckedCreateWithoutTahfidzGroupInput[]
+    connectOrCreate?: UserDataCreateOrConnectWithoutTahfidzGroupInput | UserDataCreateOrConnectWithoutTahfidzGroupInput[]
+    createMany?: UserDataCreateManyTahfidzGroupInputEnvelope
+    connect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+  }
+
+  export type ScheduleUncheckedCreateNestedManyWithoutTahfidzGroupInput = {
+    create?: XOR<ScheduleCreateWithoutTahfidzGroupInput, ScheduleUncheckedCreateWithoutTahfidzGroupInput> | ScheduleCreateWithoutTahfidzGroupInput[] | ScheduleUncheckedCreateWithoutTahfidzGroupInput[]
+    connectOrCreate?: ScheduleCreateOrConnectWithoutTahfidzGroupInput | ScheduleCreateOrConnectWithoutTahfidzGroupInput[]
+    createMany?: ScheduleCreateManyTahfidzGroupInputEnvelope
+    connect?: ScheduleWhereUniqueInput | ScheduleWhereUniqueInput[]
+  }
+
+  export type UserDataUncheckedCreateNestedManyWithoutTahfidzGroupInput = {
+    create?: XOR<UserDataCreateWithoutTahfidzGroupInput, UserDataUncheckedCreateWithoutTahfidzGroupInput> | UserDataCreateWithoutTahfidzGroupInput[] | UserDataUncheckedCreateWithoutTahfidzGroupInput[]
+    connectOrCreate?: UserDataCreateOrConnectWithoutTahfidzGroupInput | UserDataCreateOrConnectWithoutTahfidzGroupInput[]
+    createMany?: UserDataCreateManyTahfidzGroupInputEnvelope
+    connect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+  }
+
+  export type ScheduleUpdateManyWithoutTahfidzGroupNestedInput = {
+    create?: XOR<ScheduleCreateWithoutTahfidzGroupInput, ScheduleUncheckedCreateWithoutTahfidzGroupInput> | ScheduleCreateWithoutTahfidzGroupInput[] | ScheduleUncheckedCreateWithoutTahfidzGroupInput[]
+    connectOrCreate?: ScheduleCreateOrConnectWithoutTahfidzGroupInput | ScheduleCreateOrConnectWithoutTahfidzGroupInput[]
+    upsert?: ScheduleUpsertWithWhereUniqueWithoutTahfidzGroupInput | ScheduleUpsertWithWhereUniqueWithoutTahfidzGroupInput[]
+    createMany?: ScheduleCreateManyTahfidzGroupInputEnvelope
+    set?: ScheduleWhereUniqueInput | ScheduleWhereUniqueInput[]
+    disconnect?: ScheduleWhereUniqueInput | ScheduleWhereUniqueInput[]
+    delete?: ScheduleWhereUniqueInput | ScheduleWhereUniqueInput[]
+    connect?: ScheduleWhereUniqueInput | ScheduleWhereUniqueInput[]
+    update?: ScheduleUpdateWithWhereUniqueWithoutTahfidzGroupInput | ScheduleUpdateWithWhereUniqueWithoutTahfidzGroupInput[]
+    updateMany?: ScheduleUpdateManyWithWhereWithoutTahfidzGroupInput | ScheduleUpdateManyWithWhereWithoutTahfidzGroupInput[]
+    deleteMany?: ScheduleScalarWhereInput | ScheduleScalarWhereInput[]
+  }
+
+  export type UserDataUpdateManyWithoutTahfidzGroupNestedInput = {
+    create?: XOR<UserDataCreateWithoutTahfidzGroupInput, UserDataUncheckedCreateWithoutTahfidzGroupInput> | UserDataCreateWithoutTahfidzGroupInput[] | UserDataUncheckedCreateWithoutTahfidzGroupInput[]
+    connectOrCreate?: UserDataCreateOrConnectWithoutTahfidzGroupInput | UserDataCreateOrConnectWithoutTahfidzGroupInput[]
+    upsert?: UserDataUpsertWithWhereUniqueWithoutTahfidzGroupInput | UserDataUpsertWithWhereUniqueWithoutTahfidzGroupInput[]
+    createMany?: UserDataCreateManyTahfidzGroupInputEnvelope
+    set?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+    disconnect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+    delete?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+    connect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+    update?: UserDataUpdateWithWhereUniqueWithoutTahfidzGroupInput | UserDataUpdateWithWhereUniqueWithoutTahfidzGroupInput[]
+    updateMany?: UserDataUpdateManyWithWhereWithoutTahfidzGroupInput | UserDataUpdateManyWithWhereWithoutTahfidzGroupInput[]
+    deleteMany?: UserDataScalarWhereInput | UserDataScalarWhereInput[]
+  }
+
+  export type ScheduleUncheckedUpdateManyWithoutTahfidzGroupNestedInput = {
+    create?: XOR<ScheduleCreateWithoutTahfidzGroupInput, ScheduleUncheckedCreateWithoutTahfidzGroupInput> | ScheduleCreateWithoutTahfidzGroupInput[] | ScheduleUncheckedCreateWithoutTahfidzGroupInput[]
+    connectOrCreate?: ScheduleCreateOrConnectWithoutTahfidzGroupInput | ScheduleCreateOrConnectWithoutTahfidzGroupInput[]
+    upsert?: ScheduleUpsertWithWhereUniqueWithoutTahfidzGroupInput | ScheduleUpsertWithWhereUniqueWithoutTahfidzGroupInput[]
+    createMany?: ScheduleCreateManyTahfidzGroupInputEnvelope
+    set?: ScheduleWhereUniqueInput | ScheduleWhereUniqueInput[]
+    disconnect?: ScheduleWhereUniqueInput | ScheduleWhereUniqueInput[]
+    delete?: ScheduleWhereUniqueInput | ScheduleWhereUniqueInput[]
+    connect?: ScheduleWhereUniqueInput | ScheduleWhereUniqueInput[]
+    update?: ScheduleUpdateWithWhereUniqueWithoutTahfidzGroupInput | ScheduleUpdateWithWhereUniqueWithoutTahfidzGroupInput[]
+    updateMany?: ScheduleUpdateManyWithWhereWithoutTahfidzGroupInput | ScheduleUpdateManyWithWhereWithoutTahfidzGroupInput[]
+    deleteMany?: ScheduleScalarWhereInput | ScheduleScalarWhereInput[]
+  }
+
+  export type UserDataUncheckedUpdateManyWithoutTahfidzGroupNestedInput = {
+    create?: XOR<UserDataCreateWithoutTahfidzGroupInput, UserDataUncheckedCreateWithoutTahfidzGroupInput> | UserDataCreateWithoutTahfidzGroupInput[] | UserDataUncheckedCreateWithoutTahfidzGroupInput[]
+    connectOrCreate?: UserDataCreateOrConnectWithoutTahfidzGroupInput | UserDataCreateOrConnectWithoutTahfidzGroupInput[]
+    upsert?: UserDataUpsertWithWhereUniqueWithoutTahfidzGroupInput | UserDataUpsertWithWhereUniqueWithoutTahfidzGroupInput[]
+    createMany?: UserDataCreateManyTahfidzGroupInputEnvelope
+    set?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+    disconnect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+    delete?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+    connect?: UserDataWhereUniqueInput | UserDataWhereUniqueInput[]
+    update?: UserDataUpdateWithWhereUniqueWithoutTahfidzGroupInput | UserDataUpdateWithWhereUniqueWithoutTahfidzGroupInput[]
+    updateMany?: UserDataUpdateManyWithWhereWithoutTahfidzGroupInput | UserDataUpdateManyWithWhereWithoutTahfidzGroupInput[]
+    deleteMany?: UserDataScalarWhereInput | UserDataScalarWhereInput[]
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -50524,6 +52218,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
@@ -50537,6 +52232,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -50694,6 +52390,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
@@ -50707,6 +52404,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -51282,13 +52980,15 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
     grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
-    class: ClassCreateNestedOneWithoutSchedulesInput
+    class?: ClassCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateWithoutTeacherInput = {
     id?: string
-    classId: string
+    classId?: string | null
+    tahfidzGroupId?: string | null
     subjectId: string
     academicYearId: string
     dayOfWeek: number
@@ -51485,6 +53185,29 @@ export namespace Prisma {
   export type ClassCreateOrConnectWithoutStudentsInput = {
     where: ClassWhereUniqueInput
     create: XOR<ClassCreateWithoutStudentsInput, ClassUncheckedCreateWithoutStudentsInput>
+  }
+
+  export type TahfidzGroupCreateWithoutStudentsInput = {
+    id?: string
+    name: string
+    grade: number
+    capacity?: number
+    isActive?: boolean
+    schedules?: ScheduleCreateNestedManyWithoutTahfidzGroupInput
+  }
+
+  export type TahfidzGroupUncheckedCreateWithoutStudentsInput = {
+    id?: string
+    name: string
+    grade: number
+    capacity?: number
+    isActive?: boolean
+    schedules?: ScheduleUncheckedCreateNestedManyWithoutTahfidzGroupInput
+  }
+
+  export type TahfidzGroupCreateOrConnectWithoutStudentsInput = {
+    where: TahfidzGroupWhereUniqueInput
+    create: XOR<TahfidzGroupCreateWithoutStudentsInput, TahfidzGroupUncheckedCreateWithoutStudentsInput>
   }
 
   export type MajorCreateWithoutStudentsInput = {
@@ -51945,7 +53668,8 @@ export namespace Prisma {
     OR?: ScheduleScalarWhereInput[]
     NOT?: ScheduleScalarWhereInput | ScheduleScalarWhereInput[]
     id?: StringFilter<"Schedule"> | string
-    classId?: StringFilter<"Schedule"> | string
+    classId?: StringNullableFilter<"Schedule"> | string | null
+    tahfidzGroupId?: StringNullableFilter<"Schedule"> | string | null
     subjectId?: StringFilter<"Schedule"> | string
     teacherId?: StringFilter<"Schedule"> | string
     academicYearId?: StringFilter<"Schedule"> | string
@@ -52122,6 +53846,35 @@ export namespace Prisma {
     violations?: ViolationUncheckedUpdateManyWithoutClassNestedInput
   }
 
+  export type TahfidzGroupUpsertWithoutStudentsInput = {
+    update: XOR<TahfidzGroupUpdateWithoutStudentsInput, TahfidzGroupUncheckedUpdateWithoutStudentsInput>
+    create: XOR<TahfidzGroupCreateWithoutStudentsInput, TahfidzGroupUncheckedCreateWithoutStudentsInput>
+    where?: TahfidzGroupWhereInput
+  }
+
+  export type TahfidzGroupUpdateToOneWithWhereWithoutStudentsInput = {
+    where?: TahfidzGroupWhereInput
+    data: XOR<TahfidzGroupUpdateWithoutStudentsInput, TahfidzGroupUncheckedUpdateWithoutStudentsInput>
+  }
+
+  export type TahfidzGroupUpdateWithoutStudentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    grade?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    schedules?: ScheduleUpdateManyWithoutTahfidzGroupNestedInput
+  }
+
+  export type TahfidzGroupUncheckedUpdateWithoutStudentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    grade?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    schedules?: ScheduleUncheckedUpdateManyWithoutTahfidzGroupNestedInput
+  }
+
   export type MajorUpsertWithoutStudentsInput = {
     update: XOR<MajorUpdateWithoutStudentsInput, MajorUncheckedUpdateWithoutStudentsInput>
     create: XOR<MajorCreateWithoutStudentsInput, MajorUncheckedCreateWithoutStudentsInput>
@@ -52295,6 +54048,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
@@ -52309,6 +54063,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -52382,6 +54137,7 @@ export namespace Prisma {
     birthDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     birthPlace?: StringNullableFilter<"UserData"> | string | null
     classId?: StringNullableFilter<"UserData"> | string | null
+    tahfidzGroupId?: StringNullableFilter<"UserData"> | string | null
     employeeId?: StringNullableFilter<"UserData"> | string | null
     endDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     enrollmentDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
@@ -52606,14 +54362,16 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutScheduleInput
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
     grades?: GradeCreateNestedManyWithoutScheduleInput
-    class: ClassCreateNestedOneWithoutSchedulesInput
+    class?: ClassCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateWithoutAcademicYearInput = {
     id?: string
-    classId: string
+    classId?: string | null
+    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     dayOfWeek: number
@@ -52674,6 +54432,7 @@ export namespace Prisma {
     createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -52688,6 +54447,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -53077,6 +54837,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
@@ -53091,6 +54852,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -53416,12 +55178,14 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
     grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateWithoutClassInput = {
     id?: string
+    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -53483,6 +55247,7 @@ export namespace Prisma {
     createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -53497,6 +55262,7 @@ export namespace Prisma {
     avatarUrl?: string | null
     birthDate?: Date | string | null
     birthPlace?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -53946,13 +55712,15 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
     grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
-    class: ClassCreateNestedOneWithoutSchedulesInput
+    class?: ClassCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateWithoutSubjectInput = {
     id?: string
-    classId: string
+    classId?: string | null
+    tahfidzGroupId?: string | null
     teacherId: string
     academicYearId: string
     dayOfWeek: number
@@ -54307,6 +56075,29 @@ export namespace Prisma {
     create: XOR<ClassCreateWithoutSchedulesInput, ClassUncheckedCreateWithoutSchedulesInput>
   }
 
+  export type TahfidzGroupCreateWithoutSchedulesInput = {
+    id?: string
+    name: string
+    grade: number
+    capacity?: number
+    isActive?: boolean
+    students?: UserDataCreateNestedManyWithoutTahfidzGroupInput
+  }
+
+  export type TahfidzGroupUncheckedCreateWithoutSchedulesInput = {
+    id?: string
+    name: string
+    grade: number
+    capacity?: number
+    isActive?: boolean
+    students?: UserDataUncheckedCreateNestedManyWithoutTahfidzGroupInput
+  }
+
+  export type TahfidzGroupCreateOrConnectWithoutSchedulesInput = {
+    where: TahfidzGroupWhereUniqueInput
+    create: XOR<TahfidzGroupCreateWithoutSchedulesInput, TahfidzGroupUncheckedCreateWithoutSchedulesInput>
+  }
+
   export type SubjectCreateWithoutSchedulesInput = {
     id?: string
     code: string
@@ -54378,6 +56169,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -54393,6 +56185,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -54567,6 +56360,35 @@ export namespace Prisma {
     violations?: ViolationUncheckedUpdateManyWithoutClassNestedInput
   }
 
+  export type TahfidzGroupUpsertWithoutSchedulesInput = {
+    update: XOR<TahfidzGroupUpdateWithoutSchedulesInput, TahfidzGroupUncheckedUpdateWithoutSchedulesInput>
+    create: XOR<TahfidzGroupCreateWithoutSchedulesInput, TahfidzGroupUncheckedCreateWithoutSchedulesInput>
+    where?: TahfidzGroupWhereInput
+  }
+
+  export type TahfidzGroupUpdateToOneWithWhereWithoutSchedulesInput = {
+    where?: TahfidzGroupWhereInput
+    data: XOR<TahfidzGroupUpdateWithoutSchedulesInput, TahfidzGroupUncheckedUpdateWithoutSchedulesInput>
+  }
+
+  export type TahfidzGroupUpdateWithoutSchedulesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    grade?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    students?: UserDataUpdateManyWithoutTahfidzGroupNestedInput
+  }
+
+  export type TahfidzGroupUncheckedUpdateWithoutSchedulesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    grade?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    students?: UserDataUncheckedUpdateManyWithoutTahfidzGroupNestedInput
+  }
+
   export type SubjectUpsertWithoutSchedulesInput = {
     update: XOR<SubjectUpdateWithoutSchedulesInput, SubjectUncheckedUpdateWithoutSchedulesInput>
     create: XOR<SubjectCreateWithoutSchedulesInput, SubjectUncheckedCreateWithoutSchedulesInput>
@@ -54655,6 +56477,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -54670,6 +56493,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -54715,14 +56539,16 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutScheduleInput
     grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
-    class: ClassCreateNestedOneWithoutSchedulesInput
+    class?: ClassCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateWithoutAttendancesInput = {
     id?: string
-    classId: string
+    classId?: string | null
+    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -54778,6 +56604,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -54793,6 +56620,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -54854,14 +56682,16 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutScheduleNestedInput
     grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
-    class?: ClassUpdateOneRequiredWithoutSchedulesNestedInput
+    class?: ClassUpdateOneWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateWithoutAttendancesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
@@ -54923,6 +56753,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -54938,6 +56769,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -55183,6 +57015,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -55197,6 +57030,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -55351,6 +57185,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -55365,6 +57200,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -55540,6 +57376,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -55555,6 +57392,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -55673,6 +57511,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -55688,6 +57527,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -56330,14 +58170,16 @@ export namespace Prisma {
     assignments?: AssignmentCreateNestedManyWithoutScheduleInput
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
-    class: ClassCreateNestedOneWithoutSchedulesInput
+    class?: ClassCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateWithoutGradesInput = {
     id?: string
-    classId: string
+    classId?: string | null
+    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -56393,6 +58235,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -56408,6 +58251,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -56541,14 +58385,16 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutScheduleNestedInput
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
-    class?: ClassUpdateOneRequiredWithoutSchedulesNestedInput
+    class?: ClassUpdateOneWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateWithoutGradesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
@@ -56610,6 +58456,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -56625,6 +58472,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -56811,6 +58659,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -56826,6 +58675,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -57034,6 +58884,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -57049,6 +58900,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -57327,14 +59179,16 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
     grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
-    class: ClassCreateNestedOneWithoutSchedulesInput
+    class?: ClassCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateWithoutAssignmentsInput = {
     id?: string
-    classId: string
+    classId?: string | null
+    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -57423,6 +59277,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -57438,6 +59293,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -57595,14 +59451,16 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
     grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
-    class?: ClassUpdateOneRequiredWithoutSchedulesNestedInput
+    class?: ClassUpdateOneWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateWithoutAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
@@ -57703,6 +59561,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -57718,6 +59577,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -57840,6 +59700,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -57855,6 +59716,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -57999,6 +59861,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -58014,6 +59877,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -58087,6 +59951,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -58102,6 +59967,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -58191,6 +60057,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -58206,6 +60073,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -58279,6 +60147,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -58294,6 +60163,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -58383,6 +60253,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -58398,6 +60269,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -58471,6 +60343,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -58486,6 +60359,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -58575,6 +60449,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -58590,6 +60465,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -58663,6 +60539,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -58678,6 +60555,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -58767,6 +60645,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -58782,6 +60661,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -58855,6 +60735,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -58870,6 +60751,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -58948,6 +60830,7 @@ export namespace Prisma {
     createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
     user?: UserCreateNestedOneWithoutUserDataInput
@@ -58963,6 +60846,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -59052,6 +60936,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -59067,6 +60952,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -59151,6 +61037,7 @@ export namespace Prisma {
     createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -59166,6 +61053,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -59199,6 +61087,180 @@ export namespace Prisma {
     tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
     createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
     violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type ScheduleCreateWithoutTahfidzGroupInput = {
+    id?: string
+    dayOfWeek: number
+    startTime: string
+    endTime: string
+    room?: string | null
+    isActive?: boolean
+    assignments?: AssignmentCreateNestedManyWithoutScheduleInput
+    attendances?: AttendanceCreateNestedManyWithoutScheduleInput
+    grades?: GradeCreateNestedManyWithoutScheduleInput
+    academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
+    class?: ClassCreateNestedOneWithoutSchedulesInput
+    subject: SubjectCreateNestedOneWithoutSchedulesInput
+    teacher: UserDataCreateNestedOneWithoutSchedulesInput
+  }
+
+  export type ScheduleUncheckedCreateWithoutTahfidzGroupInput = {
+    id?: string
+    classId?: string | null
+    subjectId: string
+    teacherId: string
+    academicYearId: string
+    dayOfWeek: number
+    startTime: string
+    endTime: string
+    room?: string | null
+    isActive?: boolean
+    assignments?: AssignmentUncheckedCreateNestedManyWithoutScheduleInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutScheduleInput
+    grades?: GradeUncheckedCreateNestedManyWithoutScheduleInput
+  }
+
+  export type ScheduleCreateOrConnectWithoutTahfidzGroupInput = {
+    where: ScheduleWhereUniqueInput
+    create: XOR<ScheduleCreateWithoutTahfidzGroupInput, ScheduleUncheckedCreateWithoutTahfidzGroupInput>
+  }
+
+  export type ScheduleCreateManyTahfidzGroupInputEnvelope = {
+    data: ScheduleCreateManyTahfidzGroupInput | ScheduleCreateManyTahfidzGroupInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserDataCreateWithoutTahfidzGroupInput = {
+    id?: string
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    createdAt?: Date | string | null
+    updatedAt?: Date | string | null
+    Announcements?: AnnouncementCreateNestedManyWithoutUserInput
+    studentSubmissions?: AssignmentSubmissionCreateNestedManyWithoutStudentInput
+    teacherAssignments?: AssignmentCreateNestedManyWithoutTeacherInput
+    attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    DashboardContents?: DashboardContentCreateNestedManyWithoutUserInput
+    grades?: GradeCreateNestedManyWithoutStudentInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    payments?: PaymentCreateNestedManyWithoutStudentInput
+    reportCards?: ReportCardCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleCreateNestedManyWithoutTeacherInput
+    tahfidzRecords?: TahfidzRecordCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
+    academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
+    class?: ClassCreateNestedOneWithoutStudentsInput
+    major?: MajorCreateNestedOneWithoutStudentsInput
+    role?: RoleCreateNestedOneWithoutUserDataInput
+    user?: UserCreateNestedOneWithoutUserDataInput
+    violations?: ViolationCreateNestedManyWithoutStudentInput
+  }
+
+  export type UserDataUncheckedCreateWithoutTahfidzGroupInput = {
+    id?: string
+    userId?: string | null
+    academicYearId?: string | null
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    classId?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    majorId?: string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    roleId?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    createdAt?: Date | string | null
+    updatedAt?: Date | string | null
+    Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
+    studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
+    teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    DashboardContents?: DashboardContentUncheckedCreateNestedManyWithoutUserInput
+    grades?: GradeUncheckedCreateNestedManyWithoutStudentInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    payments?: PaymentUncheckedCreateNestedManyWithoutStudentInput
+    reportCards?: ReportCardUncheckedCreateNestedManyWithoutStudentInput
+    schedules?: ScheduleUncheckedCreateNestedManyWithoutTeacherInput
+    tahfidzRecords?: TahfidzRecordUncheckedCreateNestedManyWithoutUserInput
+    createdAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutCreatedByUserInput
+    teacherAttendances?: TeacherAttendanceUncheckedCreateNestedManyWithoutTeacherInput
+    violations?: ViolationUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type UserDataCreateOrConnectWithoutTahfidzGroupInput = {
+    where: UserDataWhereUniqueInput
+    create: XOR<UserDataCreateWithoutTahfidzGroupInput, UserDataUncheckedCreateWithoutTahfidzGroupInput>
+  }
+
+  export type UserDataCreateManyTahfidzGroupInputEnvelope = {
+    data: UserDataCreateManyTahfidzGroupInput | UserDataCreateManyTahfidzGroupInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ScheduleUpsertWithWhereUniqueWithoutTahfidzGroupInput = {
+    where: ScheduleWhereUniqueInput
+    update: XOR<ScheduleUpdateWithoutTahfidzGroupInput, ScheduleUncheckedUpdateWithoutTahfidzGroupInput>
+    create: XOR<ScheduleCreateWithoutTahfidzGroupInput, ScheduleUncheckedCreateWithoutTahfidzGroupInput>
+  }
+
+  export type ScheduleUpdateWithWhereUniqueWithoutTahfidzGroupInput = {
+    where: ScheduleWhereUniqueInput
+    data: XOR<ScheduleUpdateWithoutTahfidzGroupInput, ScheduleUncheckedUpdateWithoutTahfidzGroupInput>
+  }
+
+  export type ScheduleUpdateManyWithWhereWithoutTahfidzGroupInput = {
+    where: ScheduleScalarWhereInput
+    data: XOR<ScheduleUpdateManyMutationInput, ScheduleUncheckedUpdateManyWithoutTahfidzGroupInput>
+  }
+
+  export type UserDataUpsertWithWhereUniqueWithoutTahfidzGroupInput = {
+    where: UserDataWhereUniqueInput
+    update: XOR<UserDataUpdateWithoutTahfidzGroupInput, UserDataUncheckedUpdateWithoutTahfidzGroupInput>
+    create: XOR<UserDataCreateWithoutTahfidzGroupInput, UserDataUncheckedCreateWithoutTahfidzGroupInput>
+  }
+
+  export type UserDataUpdateWithWhereUniqueWithoutTahfidzGroupInput = {
+    where: UserDataWhereUniqueInput
+    data: XOR<UserDataUpdateWithoutTahfidzGroupInput, UserDataUncheckedUpdateWithoutTahfidzGroupInput>
+  }
+
+  export type UserDataUpdateManyWithWhereWithoutTahfidzGroupInput = {
+    where: UserDataScalarWhereInput
+    data: XOR<UserDataUpdateManyMutationInput, UserDataUncheckedUpdateManyWithoutTahfidzGroupInput>
   }
 
   export type AccountCreateManyUserInput = {
@@ -59445,7 +61507,8 @@ export namespace Prisma {
 
   export type ScheduleCreateManyTeacherInput = {
     id?: string
-    classId: string
+    classId?: string | null
+    tahfidzGroupId?: string | null
     subjectId: string
     academicYearId: string
     dayOfWeek: number
@@ -59931,13 +61994,15 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
     grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
-    class?: ClassUpdateOneRequiredWithoutSchedulesNestedInput
+    class?: ClassUpdateOneWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateWithoutTeacherInput = {
     id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
     dayOfWeek?: IntFieldUpdateOperationsInput | number
@@ -59952,7 +62017,8 @@ export namespace Prisma {
 
   export type ScheduleUncheckedUpdateManyWithoutTeacherInput = {
     id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
     dayOfWeek?: IntFieldUpdateOperationsInput | number
@@ -60118,6 +62184,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -60178,6 +62245,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
@@ -60192,6 +62260,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -60236,6 +62305,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -60324,7 +62394,8 @@ export namespace Prisma {
 
   export type ScheduleCreateManyAcademicYearInput = {
     id?: string
-    classId: string
+    classId?: string | null
+    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     dayOfWeek: number
@@ -60342,6 +62413,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -60589,14 +62661,16 @@ export namespace Prisma {
     assignments?: AssignmentUpdateManyWithoutScheduleNestedInput
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
     grades?: GradeUpdateManyWithoutScheduleNestedInput
-    class?: ClassUpdateOneRequiredWithoutSchedulesNestedInput
+    class?: ClassUpdateOneWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateWithoutAcademicYearInput = {
     id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     dayOfWeek?: IntFieldUpdateOperationsInput | number
@@ -60611,7 +62685,8 @@ export namespace Prisma {
 
   export type ScheduleUncheckedUpdateManyWithoutAcademicYearInput = {
     id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     dayOfWeek?: IntFieldUpdateOperationsInput | number
@@ -60659,6 +62734,7 @@ export namespace Prisma {
     createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -60673,6 +62749,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -60717,6 +62794,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -60792,6 +62870,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -60928,6 +63007,7 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
@@ -60942,6 +63022,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -60986,6 +63067,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -61065,6 +63147,7 @@ export namespace Prisma {
 
   export type ScheduleCreateManyClassInput = {
     id?: string
+    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -61083,6 +63166,7 @@ export namespace Prisma {
     avatarUrl?: string | null
     birthDate?: Date | string | null
     birthPlace?: string | null
+    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -61299,12 +63383,14 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
     grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
@@ -61320,6 +63406,7 @@ export namespace Prisma {
 
   export type ScheduleUncheckedUpdateManyWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
@@ -61368,6 +63455,7 @@ export namespace Prisma {
     createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
@@ -61382,6 +63470,7 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -61426,6 +63515,7 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -61560,7 +63650,8 @@ export namespace Prisma {
 
   export type ScheduleCreateManySubjectInput = {
     id?: string
-    classId: string
+    classId?: string | null
+    tahfidzGroupId?: string | null
     teacherId: string
     academicYearId: string
     dayOfWeek: number
@@ -61796,13 +63887,15 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
     grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
-    class?: ClassUpdateOneRequiredWithoutSchedulesNestedInput
+    class?: ClassUpdateOneWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
     dayOfWeek?: IntFieldUpdateOperationsInput | number
@@ -61817,7 +63910,8 @@ export namespace Prisma {
 
   export type ScheduleUncheckedUpdateManyWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    classId?: StringFieldUpdateOperationsInput | string
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
     dayOfWeek?: IntFieldUpdateOperationsInput | number
@@ -62365,6 +64459,216 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ScheduleCreateManyTahfidzGroupInput = {
+    id?: string
+    classId?: string | null
+    subjectId: string
+    teacherId: string
+    academicYearId: string
+    dayOfWeek: number
+    startTime: string
+    endTime: string
+    room?: string | null
+    isActive?: boolean
+  }
+
+  export type UserDataCreateManyTahfidzGroupInput = {
+    id?: string
+    userId?: string | null
+    academicYearId?: string | null
+    address?: string | null
+    avatarUrl?: string | null
+    birthDate?: Date | string | null
+    birthPlace?: string | null
+    classId?: string | null
+    employeeId?: string | null
+    endDate?: Date | string | null
+    enrollmentDate?: Date | string | null
+    gender?: string | null
+    graduationDate?: Date | string | null
+    majorId?: string | null
+    nik?: string | null
+    nisn?: string | null
+    parentPhone?: string | null
+    position?: string | null
+    relation?: string | null
+    roleId?: string | null
+    startDate?: Date | string | null
+    status?: string | null
+    studentIds?: UserDataCreatestudentIdsInput | string[]
+    email?: string | null
+    name: string
+    isActive?: boolean
+    createdAt?: Date | string | null
+    updatedAt?: Date | string | null
+  }
+
+  export type ScheduleUpdateWithoutTahfidzGroupInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    dayOfWeek?: IntFieldUpdateOperationsInput | number
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    assignments?: AssignmentUpdateManyWithoutScheduleNestedInput
+    attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
+    grades?: GradeUpdateManyWithoutScheduleNestedInput
+    academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
+    class?: ClassUpdateOneWithoutSchedulesNestedInput
+    subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
+    teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
+  }
+
+  export type ScheduleUncheckedUpdateWithoutTahfidzGroupInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    subjectId?: StringFieldUpdateOperationsInput | string
+    teacherId?: StringFieldUpdateOperationsInput | string
+    academicYearId?: StringFieldUpdateOperationsInput | string
+    dayOfWeek?: IntFieldUpdateOperationsInput | number
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    assignments?: AssignmentUncheckedUpdateManyWithoutScheduleNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutScheduleNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutScheduleNestedInput
+  }
+
+  export type ScheduleUncheckedUpdateManyWithoutTahfidzGroupInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    subjectId?: StringFieldUpdateOperationsInput | string
+    teacherId?: StringFieldUpdateOperationsInput | string
+    academicYearId?: StringFieldUpdateOperationsInput | string
+    dayOfWeek?: IntFieldUpdateOperationsInput | number
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    room?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type UserDataUpdateWithoutTahfidzGroupInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Announcements?: AnnouncementUpdateManyWithoutUserNestedInput
+    studentSubmissions?: AssignmentSubmissionUpdateManyWithoutStudentNestedInput
+    teacherAssignments?: AssignmentUpdateManyWithoutTeacherNestedInput
+    attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    DashboardContents?: DashboardContentUpdateManyWithoutUserNestedInput
+    grades?: GradeUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    payments?: PaymentUpdateManyWithoutStudentNestedInput
+    reportCards?: ReportCardUpdateManyWithoutStudentNestedInput
+    schedules?: ScheduleUpdateManyWithoutTeacherNestedInput
+    tahfidzRecords?: TahfidzRecordUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
+    academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
+    class?: ClassUpdateOneWithoutStudentsNestedInput
+    major?: MajorUpdateOneWithoutStudentsNestedInput
+    role?: RoleUpdateOneWithoutUserDataNestedInput
+    user?: UserUpdateOneWithoutUserDataNestedInput
+    violations?: ViolationUpdateManyWithoutStudentNestedInput
+  }
+
+  export type UserDataUncheckedUpdateWithoutTahfidzGroupInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
+    studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
+    teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    DashboardContents?: DashboardContentUncheckedUpdateManyWithoutUserNestedInput
+    grades?: GradeUncheckedUpdateManyWithoutStudentNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    payments?: PaymentUncheckedUpdateManyWithoutStudentNestedInput
+    reportCards?: ReportCardUncheckedUpdateManyWithoutStudentNestedInput
+    schedules?: ScheduleUncheckedUpdateManyWithoutTeacherNestedInput
+    tahfidzRecords?: TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput
+    createdAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutCreatedByUserNestedInput
+    teacherAttendances?: TeacherAttendanceUncheckedUpdateManyWithoutTeacherNestedInput
+    violations?: ViolationUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type UserDataUncheckedUpdateManyWithoutTahfidzGroupInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    academicYearId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
+    classId?: NullableStringFieldUpdateOperationsInput | string | null
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gender?: NullableStringFieldUpdateOperationsInput | string | null
+    graduationDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    majorId?: NullableStringFieldUpdateOperationsInput | string | null
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    nisn?: NullableStringFieldUpdateOperationsInput | string | null
+    parentPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    relation?: NullableStringFieldUpdateOperationsInput | string | null
+    roleId?: NullableStringFieldUpdateOperationsInput | string | null
+    startDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    studentIds?: UserDataUpdatestudentIdsInput | string[]
+    email?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
 

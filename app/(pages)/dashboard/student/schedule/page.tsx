@@ -126,7 +126,7 @@ export default function ScheduleDataTable() {
   const { data: schedules = [], isLoading: isLoadingSchedules } = useGetSchedulesByIdClass(classId ?? "");
   console.log("schedules :", schedules);
 
-  const globalFilterFn = React.useCallback((row: any, columnId: string, filterValue: string) => {
+  const globalFilterFn = React.useCallback((row: any, filterValue: string) => {
     if (!filterValue) return true;
 
     const searchValue = filterValue.toLowerCase();

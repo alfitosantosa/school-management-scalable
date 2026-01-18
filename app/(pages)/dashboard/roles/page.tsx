@@ -84,6 +84,7 @@ const availablePermissions = [
   { id: "/dashboard/recapattendance", label: "Recap Attendance Student" },
   { id: "/dashboard/calender/list/teacher", label: "Calendar List for Teacher" },
   { id: "/dashboard/calender/list/student", label: "Calendar List for Student" },
+  { id: "/dashboard/classes/tahfidz", label: "Tahfidz Group Management" },
   {
     id: "/dashboard/upload/schedules",
     label: "Upload Schedules",
