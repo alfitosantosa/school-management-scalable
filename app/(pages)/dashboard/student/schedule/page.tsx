@@ -2,29 +2,17 @@
 
 import * as React from "react";
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal, Calendar, Clock, Users, Search, X, MapPin, GraduationCap, BookOpen } from "lucide-react";
+import { ArrowUpDown, ChevronDown, MoreHorizontal, Calendar, Clock, Users, Search, X, MapPin, GraduationCap, BookOpen, } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
+
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { toast } from "sonner";
 
-// Import hooks
-import { useGetSchedules, useCreateSchedule, useUpdateSchedule, useDeleteSchedule } from "@/app/hooks/Schedules/useSchedules";
-import { useGetClasses } from "@/app/hooks/Classes/useClass";
-import { useGetSubjects } from "@/app/hooks/Subjects/useSubjects";
-import { useGetTeachers } from "@/app/hooks/Users/useTeachers";
-import { useGetAcademicYears } from "@/app/hooks/AcademicYears/useAcademicYear";
+import * as z from "zod";
 
 import { useGetSchedulesByIdClass } from "@/app/hooks/Schedules/useScheduleByIdClass";
 import { useClassByIdUser } from "@/app/hooks/Classes/useClassByIdUser";
@@ -106,246 +94,7 @@ const DAYS_MAP = {
   6: "Sabtu",
 };
 
-// Create/Edit Dialog Component
-function ScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; editData?: ScheduleData | null; onSuccess: () => void }) {
-  const createSchedule = useCreateSchedule();
-  const updateSchedule = useUpdateSchedule();
-  const { data: classes = [] } = useGetClasses();
-  const { data: subjects = [] } = useGetSubjects();
-  const { data: teachers = [] } = useGetTeachers();
 
-  const { data: academicYears = [] } = useGetAcademicYears();
-
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
-    reset,
-  } = useForm<ScheduleFormValues>({
-    resolver: zodResolver(scheduleSchema as any),
-    defaultValues: {
-      dayOfWeek: 1,
-      startTime: "08:00",
-      endTime: "09:30",
-    },
-  });
-
-  const selectedClassId = watch("classId");
-  const selectedSubjectId = watch("subjectId");
-  const selectedTeacherId = watch("teacherId");
-  const selectedAcademicYearId = watch("academicYearId");
-  const selectedDayOfWeek = watch("dayOfWeek");
-
-  React.useEffect(() => {
-    if (editData) {
-      setValue("classId", editData.classId);
-      setValue("subjectId", editData.subjectId);
-      setValue("teacherId", editData.teacherId);
-      setValue("academicYearId", editData.academicYearId);
-      setValue("dayOfWeek", editData.dayOfWeek);
-      setValue("startTime", editData.startTime);
-      setValue("endTime", editData.endTime);
-      setValue("room", editData.room || "");
-    } else {
-      reset({
-        dayOfWeek: 1,
-        startTime: "08:00",
-        endTime: "09:30",
-      });
-    }
-  }, [editData, setValue, reset]);
-
-  const onSubmit = async (data: ScheduleFormValues) => {
-    try {
-      const submitData = {
-        ...data,
-        room: data.room || null,
-      };
-
-      if (editData) {
-        await updateSchedule.mutateAsync({ id: editData.id, ...submitData } as any);
-        toast.success("Jadwal berhasil diperbarui!");
-      } else {
-        await createSchedule.mutateAsync(submitData as any);
-        toast.success("Jadwal berhasil dibuat!");
-      }
-      reset();
-      onOpenChange(false);
-      onSuccess();
-    } catch (error: any) {
-      toast.error(error.message || "Terjadi kesalahan");
-    }
-  };
-
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>{editData ? "Edit Jadwal" : "Tambah Jadwal Baru"}</DialogTitle>
-        </DialogHeader>
-
-        <form onSubmit={handleSubmit(onSubmit as any)} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label>Kelas</Label>
-              <Select value={selectedClassId || ""} onValueChange={(value) => setValue("classId", value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Pilih Kelas" />
-                </SelectTrigger>
-                <SelectContent>
-                  {classes?.map((cls: any) => (
-                    <SelectItem key={cls.id} value={cls.id}>
-                      {cls.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.classId && <p className="text-sm text-red-500">{errors.classId.message}</p>}
-            </div>
-
-            <div className="space-y-2">
-              <Label>Mata Pelajaran</Label>
-              <Select value={selectedSubjectId || ""} onValueChange={(value) => setValue("subjectId", value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Pilih Mata Pelajaran" />
-                </SelectTrigger>
-                <SelectContent>
-                  {subjects?.map((subject: any) => (
-                    <SelectItem key={subject.id} value={subject.id}>
-                      {subject.code} - {subject.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.subjectId && <p className="text-sm text-red-500">{errors.subjectId.message}</p>}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label>Guru</Label>
-              <Select value={selectedTeacherId || ""} onValueChange={(value) => setValue("teacherId", value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Pilih Guru" />
-                </SelectTrigger>
-                <SelectContent>
-                  {teachers?.map((teacher: any) => (
-                    <SelectItem key={teacher.id} value={teacher.id}>
-                      {teacher.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.teacherId && <p className="text-sm text-red-500">{errors.teacherId.message}</p>}
-            </div>
-
-            <div className="space-y-2">
-              <Label>Tahun Akademik</Label>
-              <Select value={selectedAcademicYearId || ""} onValueChange={(value) => setValue("academicYearId", value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Pilih Tahun Akademik" />
-                </SelectTrigger>
-                <SelectContent>
-                  {academicYears?.map((year: any) => (
-                    <SelectItem key={year.id} value={year.id}>
-                      {year.year}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.academicYearId && <p className="text-sm text-red-500">{errors.academicYearId.message}</p>}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-4">
-            <div className="space-y-2">
-              <Label>Hari</Label>
-              <Select value={selectedDayOfWeek?.toString() || ""} onValueChange={(value) => setValue("dayOfWeek", parseInt(value))}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Pilih Hari" />
-                </SelectTrigger>
-                <SelectContent>
-                  {Object.entries(DAYS_MAP).map(([value, label]) => (
-                    <SelectItem key={value} value={value}>
-                      {label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.dayOfWeek && <p className="text-sm text-red-500">{errors.dayOfWeek.message}</p>}
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="startTime">Waktu Mulai</Label>
-              <Input id="startTime" type="time" {...register("startTime")} />
-              {errors.startTime && <p className="text-sm text-red-500">{errors.startTime.message}</p>}
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="endTime">Waktu Selesai</Label>
-              <Input id="endTime" type="time" {...register("endTime")} />
-              {errors.endTime && <p className="text-sm text-red-500">{errors.endTime.message}</p>}
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="room">Ruangan (Opsional)</Label>
-            <Input id="room" placeholder="Contoh: Lab Komputer, Kelas 12A" {...register("room")} />
-          </div>
-
-          <div className="flex justify-end gap-2 pt-4">
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-              Batal
-            </Button>
-            <Button type="submit" disabled={createSchedule.isPending || updateSchedule.isPending}>
-              {createSchedule.isPending || updateSchedule.isPending ? "Menyimpan..." : editData ? "Perbarui" : "Simpan"}
-            </Button>
-          </div>
-        </form>
-      </DialogContent>
-    </Dialog>
-  );
-}
-
-// Delete Confirmation Dialog
-function DeleteScheduleDialog({ open, onOpenChange, scheduleData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; scheduleData: ScheduleData | null; onSuccess: () => void }) {
-  const deleteSchedule = useDeleteSchedule();
-
-  const handleDelete = async () => {
-    if (!scheduleData) return;
-
-    try {
-      await deleteSchedule.mutateAsync(scheduleData.id as any);
-      toast.success("Jadwal berhasil dihapus!");
-      onOpenChange(false);
-      onSuccess();
-    } catch (error: any) {
-      toast.error(error.message || "Gagal menghapus jadwal");
-    }
-  };
-
-  return (
-    <AlertDialog open={open} onOpenChange={onOpenChange}>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Hapus Jadwal</AlertDialogTitle>
-          <AlertDialogDescription>
-            Apakah Anda yakin ingin menghapus jadwal "{scheduleData?.subject?.name}" untuk kelas "{scheduleData?.class?.name}" pada hari {scheduleData ? DAYS_MAP[scheduleData.dayOfWeek as keyof typeof DAYS_MAP] : ""}? Tindakan ini tidak
-            dapat dibatalkan.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Batal</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDelete} disabled={deleteSchedule.isPending} className="bg-red-600 hover:bg-red-700">
-            {deleteSchedule.isPending ? "Menghapus..." : "Hapus"}
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-  );
-}
 
 // Main DataTable Component
 export default function ScheduleDataTable() {
@@ -354,13 +103,6 @@ export default function ScheduleDataTable() {
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
-  // Dialog states
-  const [createDialogOpen, setCreateDialogOpen] = React.useState(false);
-  const [editDialogOpen, setEditDialogOpen] = React.useState(false);
-  const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
-  const [selectedSchedule, setSelectedSchedule] = React.useState<ScheduleData | null>(null);
-
-  // Filter states
   const [classFilter, setClassFilter] = React.useState<string>("all");
   const [dayFilter, setDayFilter] = React.useState<string>("all");
   const [globalFilter, setGlobalFilter] = React.useState<string>("");
@@ -377,23 +119,19 @@ export default function ScheduleDataTable() {
 
   // Get the class id from classData
   const classId = classData?.id;
+  console.log(classId);
 
   // Fetch schedules by class id if available
-  const { data: schedules = [], refetch } = useGetSchedulesByIdClass(classId ?? "");
-  const { data: classes = [] } = useGetClasses();
 
-  const handleSuccess = () => {
-    refetch();
-  };
+  const { data: schedules = [], isLoading: isLoadingSchedules } = useGetSchedulesByIdClass(classId ?? "");
+  console.log("schedules :", schedules);
 
-  // Custom global filter function
   const globalFilterFn = React.useCallback((row: any, columnId: string, filterValue: string) => {
     if (!filterValue) return true;
 
     const searchValue = filterValue.toLowerCase();
     const schedule = row.original;
 
-    // Search in multiple fields
     const searchableText = [schedule.class?.name, schedule.subject?.name, schedule.subject?.code, schedule.teacher?.name, schedule.room, DAYS_MAP[schedule.dayOfWeek as keyof typeof DAYS_MAP], schedule.startTime, schedule.endTime]
       .filter(Boolean)
       .join(" ")
@@ -403,13 +141,6 @@ export default function ScheduleDataTable() {
   }, []);
 
   const columns: ColumnDef<ScheduleData>[] = [
-    {
-      id: "select",
-      header: ({ table }) => <Checkbox checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")} onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)} aria-label="Select all" />,
-      cell: ({ row }) => <Checkbox checked={row.getIsSelected()} onCheckedChange={(value) => row.toggleSelected(!!value)} aria-label="Select row" />,
-      enableSorting: false,
-      enableHiding: false,
-    },
     {
       id: "dayOfWeek",
       accessorFn: (row) => DAYS_MAP[row.dayOfWeek as keyof typeof DAYS_MAP],
@@ -585,7 +316,7 @@ export default function ScheduleDataTable() {
     }
   }, [dayFilter, table]);
 
-  if (isLoading) {
+  if (isLoading || isLoadingSchedules) {
     return (
       <div className="w-full min-h-screen">
         <div className="flex items-center justify-center h-32">
@@ -711,12 +442,12 @@ export default function ScheduleDataTable() {
                 <X className="h-3 w-3 cursor-pointer" onClick={() => setGlobalFilter("")} />
               </Badge>
             )}
-            {classFilter !== "all" && (
+            {/* {classFilter !== "all" && (
               <Badge variant="secondary" className="gap-1">
                 Kelas: {classes?.find((c: any) => c.id === classFilter)?.name}
                 <X className="h-3 w-3 cursor-pointer" onClick={() => setClassFilter("all")} />
               </Badge>
-            )}
+            )} */}
             {dayFilter !== "all" && (
               <Badge variant="secondary" className="gap-1">
                 Hari: {DAYS_MAP[parseInt(dayFilter) as keyof typeof DAYS_MAP]}
@@ -830,12 +561,7 @@ export default function ScheduleDataTable() {
           </div>
         </div>
 
-        {/* Dialogs */}
-        <ScheduleFormDialog open={createDialogOpen} onOpenChange={setCreateDialogOpen} onSuccess={handleSuccess} />
-
-        <ScheduleFormDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} editData={selectedSchedule} onSuccess={handleSuccess} />
-
-        <DeleteScheduleDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen} scheduleData={selectedSchedule} onSuccess={handleSuccess} />
+  
       </div>
     </>
   );

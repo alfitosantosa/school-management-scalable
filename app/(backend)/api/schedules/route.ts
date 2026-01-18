@@ -25,7 +25,7 @@ export async function GET() {
   try {
     const schedules = await prisma.schedule.findMany({
       include: { class: true, subject: true, teacher: true, academicYear: true },
-      orderBy: { dayOfWeek: "asc" },
+      orderBy: {startTime: "asc"},
     });
     return NextResponse.json(schedules);
   } catch (error) {
