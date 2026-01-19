@@ -72,7 +72,7 @@ export type ScheduleData = {
 const scheduleSchema = z
   .object({
     classId: z.string().min(1, "Kelas wajib dipilih"),
-     tahfidzGroupId: z.string().min(1, "Kelompok tahfidz wajib dipilih"),
+    tahfidzGroupId: z.string().optional(),
     subjectId: z.string().min(1, "Mata pelajaran wajib dipilih"),
     teacherId: z.string().min(1, "Guru wajib dipilih"),
     academicYearId: z.string().min(1, "Tahun akademik wajib dipilih"),
