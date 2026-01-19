@@ -30,11 +30,13 @@ import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
 import { unauthorized } from "next/navigation";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
+import { useGetTahfidzGroup } from "@/app/hooks/TahfidzGroup/useTahfidzGroup";
 
 // Type definitions
 export type ScheduleData = {
   id: string;
   classId: string;
+  tahfidzGroupId: string;
   subjectId: string;
   teacherId: string;
   academicYearId: string;
@@ -60,25 +62,31 @@ export type ScheduleData = {
     year: string;
     semester: string;
   };
+  tahfidzGroup?: {
+    id: string;
+    name: string;
+  };
 };
 
 // Form schema
 const scheduleSchema = z
   .object({
     classId: z.string().min(1, "Kelas wajib dipilih"),
+     tahfidzGroupId: z.string().min(1, "Kelompok tahfidz wajib dipilih"),
     subjectId: z.string().min(1, "Mata pelajaran wajib dipilih"),
     teacherId: z.string().min(1, "Guru wajib dipilih"),
     academicYearId: z.string().min(1, "Tahun akademik wajib dipilih"),
     dayOfWeek: z.number().min(0).max(6, "Hari tidak valid"),
     startTime: z
       .string()
-      .min(1, "Waktu mulai wajib diisi")
+      .min(1,   "Waktu mulai wajib diisi")
       .regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "Format waktu tidak valid (HH:MM)"),
     endTime: z
       .string()
       .min(1, "Waktu selesai wajib diisi")
       .regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "Format waktu tidak valid (HH:MM)"),
     room: z.string().optional(),
+   
   })
   .refine(
     (data) => {
@@ -112,6 +120,7 @@ function ScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open:
   const { data: classes = [] } = useGetClasses();
   const { data: subjects = [] } = useGetSubjects();
   const { data: teachers = [] } = useGetTeachers();
+  const { data: tahfidzGroups = [] } = useGetTahfidzGroup();
 
   const { data: academicYears = [] } = useGetAcademicYears();
 
@@ -132,6 +141,7 @@ function ScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open:
   });
 
   const selectedClassId = watch("classId");
+  const selectedTahfidzGroupId = watch("tahfidzGroupId");
   const selectedSubjectId = watch("subjectId");
   const selectedTeacherId = watch("teacherId");
   const selectedAcademicYearId = watch("academicYearId");
@@ -140,6 +150,7 @@ function ScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open:
   React.useEffect(() => {
     if (editData) {
       setValue("classId", editData.classId);
+      setValue("tahfidzGroupId", editData.tahfidzGroupId);
       setValue("subjectId", editData.subjectId);
       setValue("teacherId", editData.teacherId);
       setValue("academicYearId", editData.academicYearId);
@@ -202,6 +213,22 @@ function ScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open:
                 </SelectContent>
               </Select>
               {errors.classId && <p className="text-sm text-red-500">{errors.classId.message}</p>}
+            </div>
+            <div className="space-y-2">
+              <Label>Kelompok Tahfidz</Label>
+              <Select value={selectedTahfidzGroupId || ""} onValueChange={(value) => setValue("tahfidzGroupId", value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Pilih Kelompok Tahfidz" />
+                </SelectTrigger>
+                <SelectContent>
+                  {tahfidzGroups?.map((tahfidzGroup: any) => (
+                    <SelectItem key={tahfidzGroup.id} value={tahfidzGroup.id}>
+                      {tahfidzGroup.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.tahfidzGroupId && <p className="text-sm text-red-500">{errors.tahfidzGroupId.message}</p>}
             </div>
 
             <div className="space-y-2">
@@ -320,7 +347,7 @@ function DeleteScheduleDialog({ open, onOpenChange, scheduleData, onSuccess }: {
         <AlertDialogHeader>
           <AlertDialogTitle>Hapus Jadwal</AlertDialogTitle>
           <AlertDialogDescription>
-            Apakah Anda yakin ingin menghapus jadwal "{scheduleData?.subject?.name}" untuk kelas "{scheduleData?.class?.name}" pada hari {scheduleData ? DAYS_MAP[scheduleData.dayOfWeek as keyof typeof DAYS_MAP] : ""}? Tindakan ini tidak
+            Apakah Anda yakin ingin menghapus jadwal "{scheduleData?.subject?.name}" untuk kelas "{scheduleData?.class?.name ? scheduleData?.class?.name : scheduleData?.tahfidzGroup?.name}" pada hari {scheduleData ? DAYS_MAP[scheduleData.dayOfWeek as keyof typeof DAYS_MAP] : ""}? Tindakan ini tidak
             dapat dibatalkan.
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -350,6 +377,7 @@ function ScheduleDataTable() {
 
   // Filter states
   const [classFilter, setClassFilter] = React.useState<string>("all");
+  const [tahfidzGroupFilter, setTahfidzGroupFilter] = React.useState<string>("all");
   const [teacherFilter, setTeacherFilter] = React.useState<string>("all");
   const [dayFilter, setDayFilter] = React.useState<string>("all");
   const [academicYearFilter, setAcademicYearFilter] = React.useState<string>("all");
@@ -357,6 +385,7 @@ function ScheduleDataTable() {
 
   const { data: schedules = [], isLoading, refetch } = useGetSchedules();
   const { data: classes = [] } = useGetClasses();
+  const { data: tahfidzGroups = [] } = useGetTahfidzGroup();
   const { data: subjects = [] } = useGetSubjects();
   const { data: teachers = [] } = useGetTeachers();
   const { data: academicYears = [] } = useGetAcademicYears();
@@ -445,6 +474,24 @@ function ScheduleDataTable() {
       filterFn: (row, id, value) => {
         if (value === "all") return true;
         return row.original.classId === value;
+      },
+    },
+    {
+      id: "tahfidzGroup",
+      accessorFn: (row) => row.tahfidzGroup?.name || "",
+      header: ({ column }) => {
+        return (
+          <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+            <Users className="mr-2 h-4 w-4" />
+            Kelompok Tahfidz
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </Button>
+        );
+      },
+      cell: ({ row }) => <Badge variant="secondary">{row.original.tahfidzGroup?.name}</Badge>,
+      filterFn: (row, id, value) => {
+        if (value === "all") return true;
+        return row.original.tahfidzGroupId === value;
       },
     },
     {
@@ -582,6 +629,14 @@ function ScheduleDataTable() {
     }
   }, [classFilter, table]);
 
+  React.useEffect(() => {
+    if (tahfidzGroupFilter !== "all") {
+      table.getColumn("tahfidzGroup")?.setFilterValue(tahfidzGroupFilter);
+    } else {
+      table.getColumn("tahfidzGroup")?.setFilterValue(undefined);
+    }
+  }, [tahfidzGroupFilter, table]);
+
   // Apply teacher filter
   React.useEffect(() => {
     if (teacherFilter !== "all") {
@@ -636,6 +691,21 @@ function ScheduleDataTable() {
                 {classes?.map((cls: any) => (
                   <SelectItem key={cls.id} value={cls.id}>
                     {cls.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            {/* tahfidz group filter */}
+            <Select value={tahfidzGroupFilter} onValueChange={setTahfidzGroupFilter}>
+              <SelectTrigger className="w-[140px]">
+                <SelectValue placeholder="Filter Kelompok Tahfidz" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Semua Kelompok Tahfidz</SelectItem>
+                {tahfidzGroups?.map((group: any) => (
+                  <SelectItem key={group.id} value={group.id}>
+                    {group.name}
                   </SelectItem>
                 ))}
               </SelectContent>

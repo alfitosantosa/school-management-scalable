@@ -1,6 +1,7 @@
 // model Schedule {
 //   id             String       @id @default(cuid())
-//   classId        String
+//   classId        String?
+//   tahfidzGroupId String?
 //   subjectId      String
 //   teacherId      String
 //   academicYearId String
@@ -8,11 +9,15 @@
 //   startTime      String
 //   endTime        String
 //   room           String?
+//   isActive       Boolean      @default(true)
+//   assignments    Assignment[]
 //   attendances    Attendance[]
+//   grades         Grade[]
 //   academicYear   AcademicYear @relation(fields: [academicYearId], references: [id])
-//   class          Class        @relation(fields: [classId], references: [id])
+//   class          Class?       @relation(fields: [classId], references: [id])
+//   tahfidzGroup   TahfidzGroup?  @relation("TahfidzGroupSchedule", fields: [tahfidzGroupId], references: [id]) 
 //   subject        Subject      @relation(fields: [subjectId], references: [id])
-//   teacher        User         @relation("TeacherSchedule", fields: [teacherId], references: [id])
+//   teacher        UserData     @relation("TeacherSchedule", fields: [teacherId], references: [id])
 
 //   @@unique([classId, subjectId, teacherId, dayOfWeek, startTime])
 //   @@map("schedules")
@@ -24,7 +29,7 @@ import { prisma } from "@/lib/prisma";
 export async function GET() {
   try {
     const schedules = await prisma.schedule.findMany({
-      include: { class: true, subject: true, teacher: true, academicYear: true },
+      include: { class: true, subject: true, teacher: true, academicYear: true, tahfidzGroup: true },
       orderBy: {startTime: "asc"},
     });
     return NextResponse.json(schedules);
@@ -36,10 +41,11 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const { classId, subjectId, teacherId, academicYearId, dayOfWeek, startTime, endTime, room } = await request.json();
+    const { classId, subjectId, teacherId, academicYearId, dayOfWeek, startTime, endTime, room, tahfidzGroupId } = await request.json();
     const schedule = await prisma.schedule.create({
       data: {
         classId,
+        tahfidzGroupId,
         subjectId,
         teacherId,
         academicYearId,
@@ -58,11 +64,12 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   try {
-    const { id, classId, subjectId, teacherId, academicYearId, dayOfWeek, startTime, endTime, room } = await request.json();
+    const { id, classId, subjectId, teacherId, academicYearId, dayOfWeek, startTime, endTime, room, tahfidzGroupId } = await request.json();
     const schedule = await prisma.schedule.update({
       where: { id },
       data: {
         classId,
+        tahfidzGroupId,
         subjectId,
         teacherId,
         academicYearId,

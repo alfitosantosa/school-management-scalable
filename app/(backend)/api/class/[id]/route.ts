@@ -15,29 +15,38 @@
 //   @@map("classes")
 // }
 
-"use server";
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function GET(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(
+  _: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
   const { id } = await params;
+
   try {
-    const classes = await prisma.class.findUnique({
+
+    const classData = await prisma.class.findUnique({
       where: { id },
       include: {
         academicYear: true,
         major: true,
         students: true,
         schedules: true,
-        violations: true,
-
-        _count: { select: { students: true, schedules: true, violations: true } },
+        _count: {
+          select: {
+            students: true,
+            schedules: true,
+          },
+        },
       },
     });
-    if (!classes) {
-      return NextResponse.json({ error: "Class not found" }, { status: 404 });
+
+    if (!classData) {
+      return NextResponse.json({ error: "Resource not found" }, { status: 404 });
     }
-    return NextResponse.json(classes);
+
+    return NextResponse.json(classData);
   } catch (error) {
     console.error("Error fetching class:", error);
     return NextResponse.json({ error: "Failed to fetch class" }, { status: 500 });

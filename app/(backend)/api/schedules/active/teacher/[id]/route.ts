@@ -33,7 +33,7 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ id: st
           isActive: true,
         },
       },
-      include: { class: true, subject: true, teacher: true, academicYear: true },
+      include: { class: true, subject: true, teacher: true, academicYear: true, tahfidzGroup: true },
     });
     return NextResponse.json(schedules);
   } catch (error) {

@@ -199,10 +199,9 @@ function TeacherAttendancePage() {
                             <div className="flex items-center gap-3">
                               <Users className="h-4 w-4 text-slate-500" />
                               <span className="text-slate-700">
-                                <span className="font-medium">Kelas:</span> {schedule.class.name}
+                                <span className="font-medium">Kelas:</span> {schedule.tahfidzGroup?.name ? schedule.tahfidzGroup.name : schedule.class.name}
                               </span>
                             </div>
-
                             <div className="flex items-center gap-3">
                               <MapPin className="h-4 w-4 text-slate-500" />
                               <span className="text-slate-700">
@@ -244,12 +243,17 @@ function TeacherAttendancePage() {
                         </Link>
 
                         <div className="flex items-center gap-2">
-                          <Button
+                         <Button
                             disabled={isButtonDisabled(schedule)}
                             className={`flex items-center gap-2 ${isButtonDisabled(schedule) ? "opacity-10 cursor-not-allowed bg-gray-300 text-gray-1000 hover:bg-gray-300" : ""}`}
                             onClick={() => {
                               if (!isButtonDisabled(schedule)) {
-                                window.location.href = `/dashboard/teacher/attendance/${schedule.id}`;
+
+                                if (schedule.tahfidzGroup?.name) {
+                                  window.location.href = `/dashboard/teacher/attendance/tahfidz/${schedule.id}`;
+                                } else {
+                                  window.location.href = `/dashboard/teacher/attendance/${schedule.id}`;
+                                }
                               }
                             }}
                           >
