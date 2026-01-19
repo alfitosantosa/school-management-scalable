@@ -350,9 +350,15 @@ export default function RecapAttendanceByClassPage() {
     return <Loading />;
   }
 
-  if (userRole !== "Admin" && userRole !== "Teacher" && userRole !== "Head Of School") {
-    unauthorized();
-    return null;
+  if (userRole !== "Admin") {
+    if (userRole !== "Teacher") {
+      if (userRole !== "Head Of School") {
+        if (userRole !== "Yayasan") {
+          unauthorized();
+          return null;
+        }
+      }
+    }
   }
 
   return <RecapAttendanceByClass />;

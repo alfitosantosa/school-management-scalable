@@ -781,8 +781,10 @@ export default function UserDataTable() {
   // Check if user is Admin
   if (userRole !== "Admin") {
     if (userRole !== "Head Of School") {
-      unauthorized();
-      return null;
+      if (userRole !== "Yayasan") {
+        unauthorized();
+        return null;
+      }
     }
   }
 
