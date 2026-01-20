@@ -136,7 +136,7 @@ function SearchableStudentSelect({ students, value, onValueChange, placeholder =
               <span className="truncate">{placeholder}</span>
             )}
           </div>
-          <div className="flex items-center gap-1 ml-2">
+          <div className="flex flex-wrap items-center gap-2">
             {selectedStudent && !disabled && <X className="h-4 w-4 opacity-50 hover:opacity-100 cursor-pointer" onClick={handleClear} />}
             <ChevronDown className="h-4 w-4 opacity-50" />
           </div>
@@ -700,12 +700,12 @@ function ViolationDataTable() {
       <div className="mx-auto my-8 p-6 max-w-7xl">
         <div className="font-bold text-3xl mb-6">Data Pelanggaran</div>
         <div className="mx-auto">
-          <div className="flex items-center justify-between py-4">
-            <div className="relative">
-              <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input placeholder="Cari siswa, kelas, pelanggaran..." value={globalFilter ?? ""} onChange={(event) => setGlobalFilter(event.target.value)} className="max-w-sm pl-8" disabled={isLoading} />
-            </div>
-            <div className="flex flex-wrap space-x-2  md:mt-0">
+          <div className="flex items-center justify-between gap-2 py-4">
+          
+            <div className="flex flex-wrap gap-2 ">
+              
+              <Input placeholder="Cari siswa, kelas, pelanggaran..." value={globalFilter ?? ""} onChange={(event) => setGlobalFilter(event.target.value)} className="" disabled={isLoading} />
+         
               <div>
                 <Select value={statusFilter} onValueChange={setStatusFilter}>
                   <SelectTrigger className="w-[140px]">
@@ -756,7 +756,7 @@ function ViolationDataTable() {
               </div>
             </div>
 
-            <div className="flex flex-wrap space-x-2  md:mt-0">
+            <div className="flex flex-wrap gap-2">
               <div>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>

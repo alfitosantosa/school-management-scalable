@@ -8733,7 +8733,6 @@ export namespace Prisma {
     birthDate: Date | null
     birthPlace: string | null
     classId: string | null
-    tahfidzGroupId: string | null
     employeeId: string | null
     endDate: Date | null
     enrollmentDate: Date | null
@@ -8753,6 +8752,7 @@ export namespace Prisma {
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    tahfidzGroupId: string | null
   }
 
   export type UserDataMaxAggregateOutputType = {
@@ -8764,7 +8764,6 @@ export namespace Prisma {
     birthDate: Date | null
     birthPlace: string | null
     classId: string | null
-    tahfidzGroupId: string | null
     employeeId: string | null
     endDate: Date | null
     enrollmentDate: Date | null
@@ -8784,6 +8783,7 @@ export namespace Prisma {
     isActive: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
+    tahfidzGroupId: string | null
   }
 
   export type UserDataCountAggregateOutputType = {
@@ -8795,7 +8795,6 @@ export namespace Prisma {
     birthDate: number
     birthPlace: number
     classId: number
-    tahfidzGroupId: number
     employeeId: number
     endDate: number
     enrollmentDate: number
@@ -8816,6 +8815,7 @@ export namespace Prisma {
     isActive: number
     createdAt: number
     updatedAt: number
+    tahfidzGroupId: number
     _all: number
   }
 
@@ -8829,7 +8829,6 @@ export namespace Prisma {
     birthDate?: true
     birthPlace?: true
     classId?: true
-    tahfidzGroupId?: true
     employeeId?: true
     endDate?: true
     enrollmentDate?: true
@@ -8849,6 +8848,7 @@ export namespace Prisma {
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    tahfidzGroupId?: true
   }
 
   export type UserDataMaxAggregateInputType = {
@@ -8860,7 +8860,6 @@ export namespace Prisma {
     birthDate?: true
     birthPlace?: true
     classId?: true
-    tahfidzGroupId?: true
     employeeId?: true
     endDate?: true
     enrollmentDate?: true
@@ -8880,6 +8879,7 @@ export namespace Prisma {
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    tahfidzGroupId?: true
   }
 
   export type UserDataCountAggregateInputType = {
@@ -8891,7 +8891,6 @@ export namespace Prisma {
     birthDate?: true
     birthPlace?: true
     classId?: true
-    tahfidzGroupId?: true
     employeeId?: true
     endDate?: true
     enrollmentDate?: true
@@ -8912,6 +8911,7 @@ export namespace Prisma {
     isActive?: true
     createdAt?: true
     updatedAt?: true
+    tahfidzGroupId?: true
     _all?: true
   }
 
@@ -8996,7 +8996,6 @@ export namespace Prisma {
     birthDate: Date | null
     birthPlace: string | null
     classId: string | null
-    tahfidzGroupId: string | null
     employeeId: string | null
     endDate: Date | null
     enrollmentDate: Date | null
@@ -9017,6 +9016,7 @@ export namespace Prisma {
     isActive: boolean
     createdAt: Date | null
     updatedAt: Date | null
+    tahfidzGroupId: string | null
     _count: UserDataCountAggregateOutputType | null
     _min: UserDataMinAggregateOutputType | null
     _max: UserDataMaxAggregateOutputType | null
@@ -9045,7 +9045,6 @@ export namespace Prisma {
     birthDate?: boolean
     birthPlace?: boolean
     classId?: boolean
-    tahfidzGroupId?: boolean
     employeeId?: boolean
     endDate?: boolean
     enrollmentDate?: boolean
@@ -9066,6 +9065,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    tahfidzGroupId?: boolean
     Announcements?: boolean | UserData$AnnouncementsArgs<ExtArgs>
     studentSubmissions?: boolean | UserData$studentSubmissionsArgs<ExtArgs>
     teacherAssignments?: boolean | UserData$teacherAssignmentsArgs<ExtArgs>
@@ -9081,9 +9081,9 @@ export namespace Prisma {
     teacherAttendances?: boolean | UserData$teacherAttendancesArgs<ExtArgs>
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
-    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
+    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
     violations?: boolean | UserData$violationsArgs<ExtArgs>
     _count?: boolean | UserDataCountOutputTypeDefaultArgs<ExtArgs>
@@ -9098,7 +9098,6 @@ export namespace Prisma {
     birthDate?: boolean
     birthPlace?: boolean
     classId?: boolean
-    tahfidzGroupId?: boolean
     employeeId?: boolean
     endDate?: boolean
     enrollmentDate?: boolean
@@ -9119,11 +9118,12 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    tahfidzGroupId?: boolean
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
-    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
+    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
   }, ExtArgs["result"]["userData"]>
 
@@ -9136,7 +9136,6 @@ export namespace Prisma {
     birthDate?: boolean
     birthPlace?: boolean
     classId?: boolean
-    tahfidzGroupId?: boolean
     employeeId?: boolean
     endDate?: boolean
     enrollmentDate?: boolean
@@ -9157,11 +9156,12 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    tahfidzGroupId?: boolean
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
-    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
+    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
   }, ExtArgs["result"]["userData"]>
 
@@ -9174,7 +9174,6 @@ export namespace Prisma {
     birthDate?: boolean
     birthPlace?: boolean
     classId?: boolean
-    tahfidzGroupId?: boolean
     employeeId?: boolean
     endDate?: boolean
     enrollmentDate?: boolean
@@ -9195,9 +9194,10 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    tahfidzGroupId?: boolean
   }
 
-  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "academicYearId" | "address" | "avatarUrl" | "birthDate" | "birthPlace" | "classId" | "tahfidzGroupId" | "employeeId" | "endDate" | "enrollmentDate" | "gender" | "graduationDate" | "majorId" | "nik" | "nisn" | "parentPhone" | "position" | "relation" | "roleId" | "startDate" | "status" | "studentIds" | "email" | "name" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["userData"]>
+  export type UserDataOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "academicYearId" | "address" | "avatarUrl" | "birthDate" | "birthPlace" | "classId" | "employeeId" | "endDate" | "enrollmentDate" | "gender" | "graduationDate" | "majorId" | "nik" | "nisn" | "parentPhone" | "position" | "relation" | "roleId" | "startDate" | "status" | "studentIds" | "email" | "name" | "isActive" | "createdAt" | "updatedAt" | "tahfidzGroupId", ExtArgs["result"]["userData"]>
   export type UserDataInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Announcements?: boolean | UserData$AnnouncementsArgs<ExtArgs>
     studentSubmissions?: boolean | UserData$studentSubmissionsArgs<ExtArgs>
@@ -9214,9 +9214,9 @@ export namespace Prisma {
     teacherAttendances?: boolean | UserData$teacherAttendancesArgs<ExtArgs>
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
-    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
+    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
     violations?: boolean | UserData$violationsArgs<ExtArgs>
     _count?: boolean | UserDataCountOutputTypeDefaultArgs<ExtArgs>
@@ -9224,17 +9224,17 @@ export namespace Prisma {
   export type UserDataIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
-    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
+    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
   }
   export type UserDataIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     academicYear?: boolean | UserData$academicYearArgs<ExtArgs>
     class?: boolean | UserData$classArgs<ExtArgs>
-    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     major?: boolean | UserData$majorArgs<ExtArgs>
     role?: boolean | UserData$roleArgs<ExtArgs>
+    tahfidzGroup?: boolean | UserData$tahfidzGroupArgs<ExtArgs>
     user?: boolean | UserData$userArgs<ExtArgs>
   }
 
@@ -9256,9 +9256,9 @@ export namespace Prisma {
       teacherAttendances: Prisma.$TeacherAttendancePayload<ExtArgs>[]
       academicYear: Prisma.$AcademicYearPayload<ExtArgs> | null
       class: Prisma.$ClassPayload<ExtArgs> | null
-      tahfidzGroup: Prisma.$TahfidzGroupPayload<ExtArgs> | null
       major: Prisma.$MajorPayload<ExtArgs> | null
       role: Prisma.$RolePayload<ExtArgs> | null
+      tahfidzGroup: Prisma.$TahfidzGroupPayload<ExtArgs> | null
       user: Prisma.$UserPayload<ExtArgs> | null
       violations: Prisma.$ViolationPayload<ExtArgs>[]
     }
@@ -9271,7 +9271,6 @@ export namespace Prisma {
       birthDate: Date | null
       birthPlace: string | null
       classId: string | null
-      tahfidzGroupId: string | null
       employeeId: string | null
       endDate: Date | null
       enrollmentDate: Date | null
@@ -9292,6 +9291,7 @@ export namespace Prisma {
       isActive: boolean
       createdAt: Date | null
       updatedAt: Date | null
+      tahfidzGroupId: string | null
     }, ExtArgs["result"]["userData"]>
     composites: {}
   }
@@ -9701,9 +9701,9 @@ export namespace Prisma {
     teacherAttendances<T extends UserData$teacherAttendancesArgs<ExtArgs> = {}>(args?: Subset<T, UserData$teacherAttendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TeacherAttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     academicYear<T extends UserData$academicYearArgs<ExtArgs> = {}>(args?: Subset<T, UserData$academicYearArgs<ExtArgs>>): Prisma__AcademicYearClient<$Result.GetResult<Prisma.$AcademicYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     class<T extends UserData$classArgs<ExtArgs> = {}>(args?: Subset<T, UserData$classArgs<ExtArgs>>): Prisma__ClassClient<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    tahfidzGroup<T extends UserData$tahfidzGroupArgs<ExtArgs> = {}>(args?: Subset<T, UserData$tahfidzGroupArgs<ExtArgs>>): Prisma__TahfidzGroupClient<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     major<T extends UserData$majorArgs<ExtArgs> = {}>(args?: Subset<T, UserData$majorArgs<ExtArgs>>): Prisma__MajorClient<$Result.GetResult<Prisma.$MajorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     role<T extends UserData$roleArgs<ExtArgs> = {}>(args?: Subset<T, UserData$roleArgs<ExtArgs>>): Prisma__RoleClient<$Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    tahfidzGroup<T extends UserData$tahfidzGroupArgs<ExtArgs> = {}>(args?: Subset<T, UserData$tahfidzGroupArgs<ExtArgs>>): Prisma__TahfidzGroupClient<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     user<T extends UserData$userArgs<ExtArgs> = {}>(args?: Subset<T, UserData$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     violations<T extends UserData$violationsArgs<ExtArgs> = {}>(args?: Subset<T, UserData$violationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViolationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -9743,7 +9743,6 @@ export namespace Prisma {
     readonly birthDate: FieldRef<"UserData", 'DateTime'>
     readonly birthPlace: FieldRef<"UserData", 'String'>
     readonly classId: FieldRef<"UserData", 'String'>
-    readonly tahfidzGroupId: FieldRef<"UserData", 'String'>
     readonly employeeId: FieldRef<"UserData", 'String'>
     readonly endDate: FieldRef<"UserData", 'DateTime'>
     readonly enrollmentDate: FieldRef<"UserData", 'DateTime'>
@@ -9764,6 +9763,7 @@ export namespace Prisma {
     readonly isActive: FieldRef<"UserData", 'Boolean'>
     readonly createdAt: FieldRef<"UserData", 'DateTime'>
     readonly updatedAt: FieldRef<"UserData", 'DateTime'>
+    readonly tahfidzGroupId: FieldRef<"UserData", 'String'>
   }
     
 
@@ -10510,25 +10510,6 @@ export namespace Prisma {
   }
 
   /**
-   * UserData.tahfidzGroup
-   */
-  export type UserData$tahfidzGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TahfidzGroup
-     */
-    select?: TahfidzGroupSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TahfidzGroup
-     */
-    omit?: TahfidzGroupOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TahfidzGroupInclude<ExtArgs> | null
-    where?: TahfidzGroupWhereInput
-  }
-
-  /**
    * UserData.major
    */
   export type UserData$majorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10564,6 +10545,25 @@ export namespace Prisma {
      */
     include?: RoleInclude<ExtArgs> | null
     where?: RoleWhereInput
+  }
+
+  /**
+   * UserData.tahfidzGroup
+   */
+  export type UserData$tahfidzGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TahfidzGroup
+     */
+    select?: TahfidzGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TahfidzGroup
+     */
+    omit?: TahfidzGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TahfidzGroupInclude<ExtArgs> | null
+    where?: TahfidzGroupWhereInput
   }
 
   /**
@@ -16714,7 +16714,6 @@ export namespace Prisma {
   export type ScheduleMinAggregateOutputType = {
     id: string | null
     classId: string | null
-    tahfidzGroupId: string | null
     subjectId: string | null
     teacherId: string | null
     academicYearId: string | null
@@ -16723,12 +16722,12 @@ export namespace Prisma {
     endTime: string | null
     room: string | null
     isActive: boolean | null
+    tahfidzGroupId: string | null
   }
 
   export type ScheduleMaxAggregateOutputType = {
     id: string | null
     classId: string | null
-    tahfidzGroupId: string | null
     subjectId: string | null
     teacherId: string | null
     academicYearId: string | null
@@ -16737,12 +16736,12 @@ export namespace Prisma {
     endTime: string | null
     room: string | null
     isActive: boolean | null
+    tahfidzGroupId: string | null
   }
 
   export type ScheduleCountAggregateOutputType = {
     id: number
     classId: number
-    tahfidzGroupId: number
     subjectId: number
     teacherId: number
     academicYearId: number
@@ -16751,6 +16750,7 @@ export namespace Prisma {
     endTime: number
     room: number
     isActive: number
+    tahfidzGroupId: number
     _all: number
   }
 
@@ -16766,7 +16766,6 @@ export namespace Prisma {
   export type ScheduleMinAggregateInputType = {
     id?: true
     classId?: true
-    tahfidzGroupId?: true
     subjectId?: true
     teacherId?: true
     academicYearId?: true
@@ -16775,12 +16774,12 @@ export namespace Prisma {
     endTime?: true
     room?: true
     isActive?: true
+    tahfidzGroupId?: true
   }
 
   export type ScheduleMaxAggregateInputType = {
     id?: true
     classId?: true
-    tahfidzGroupId?: true
     subjectId?: true
     teacherId?: true
     academicYearId?: true
@@ -16789,12 +16788,12 @@ export namespace Prisma {
     endTime?: true
     room?: true
     isActive?: true
+    tahfidzGroupId?: true
   }
 
   export type ScheduleCountAggregateInputType = {
     id?: true
     classId?: true
-    tahfidzGroupId?: true
     subjectId?: true
     teacherId?: true
     academicYearId?: true
@@ -16803,6 +16802,7 @@ export namespace Prisma {
     endTime?: true
     room?: true
     isActive?: true
+    tahfidzGroupId?: true
     _all?: true
   }
 
@@ -16895,7 +16895,6 @@ export namespace Prisma {
   export type ScheduleGroupByOutputType = {
     id: string
     classId: string | null
-    tahfidzGroupId: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -16904,6 +16903,7 @@ export namespace Prisma {
     endTime: string
     room: string | null
     isActive: boolean
+    tahfidzGroupId: string | null
     _count: ScheduleCountAggregateOutputType | null
     _avg: ScheduleAvgAggregateOutputType | null
     _sum: ScheduleSumAggregateOutputType | null
@@ -16928,7 +16928,6 @@ export namespace Prisma {
   export type ScheduleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     classId?: boolean
-    tahfidzGroupId?: boolean
     subjectId?: boolean
     teacherId?: boolean
     academicYearId?: boolean
@@ -16937,13 +16936,14 @@ export namespace Prisma {
     endTime?: boolean
     room?: boolean
     isActive?: boolean
+    tahfidzGroupId?: boolean
     assignments?: boolean | Schedule$assignmentsArgs<ExtArgs>
     attendances?: boolean | Schedule$attendancesArgs<ExtArgs>
     grades?: boolean | Schedule$gradesArgs<ExtArgs>
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
     class?: boolean | Schedule$classArgs<ExtArgs>
-    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
+    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     teacher?: boolean | UserDataDefaultArgs<ExtArgs>
     _count?: boolean | ScheduleCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["schedule"]>
@@ -16951,7 +16951,6 @@ export namespace Prisma {
   export type ScheduleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     classId?: boolean
-    tahfidzGroupId?: boolean
     subjectId?: boolean
     teacherId?: boolean
     academicYearId?: boolean
@@ -16960,17 +16959,17 @@ export namespace Prisma {
     endTime?: boolean
     room?: boolean
     isActive?: boolean
+    tahfidzGroupId?: boolean
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
     class?: boolean | Schedule$classArgs<ExtArgs>
-    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
+    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     teacher?: boolean | UserDataDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["schedule"]>
 
   export type ScheduleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     classId?: boolean
-    tahfidzGroupId?: boolean
     subjectId?: boolean
     teacherId?: boolean
     academicYearId?: boolean
@@ -16979,17 +16978,17 @@ export namespace Prisma {
     endTime?: boolean
     room?: boolean
     isActive?: boolean
+    tahfidzGroupId?: boolean
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
     class?: boolean | Schedule$classArgs<ExtArgs>
-    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
+    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     teacher?: boolean | UserDataDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["schedule"]>
 
   export type ScheduleSelectScalar = {
     id?: boolean
     classId?: boolean
-    tahfidzGroupId?: boolean
     subjectId?: boolean
     teacherId?: boolean
     academicYearId?: boolean
@@ -16998,32 +16997,33 @@ export namespace Prisma {
     endTime?: boolean
     room?: boolean
     isActive?: boolean
+    tahfidzGroupId?: boolean
   }
 
-  export type ScheduleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "classId" | "tahfidzGroupId" | "subjectId" | "teacherId" | "academicYearId" | "dayOfWeek" | "startTime" | "endTime" | "room" | "isActive", ExtArgs["result"]["schedule"]>
+  export type ScheduleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "classId" | "subjectId" | "teacherId" | "academicYearId" | "dayOfWeek" | "startTime" | "endTime" | "room" | "isActive" | "tahfidzGroupId", ExtArgs["result"]["schedule"]>
   export type ScheduleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     assignments?: boolean | Schedule$assignmentsArgs<ExtArgs>
     attendances?: boolean | Schedule$attendancesArgs<ExtArgs>
     grades?: boolean | Schedule$gradesArgs<ExtArgs>
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
     class?: boolean | Schedule$classArgs<ExtArgs>
-    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
+    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     teacher?: boolean | UserDataDefaultArgs<ExtArgs>
     _count?: boolean | ScheduleCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ScheduleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
     class?: boolean | Schedule$classArgs<ExtArgs>
-    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
+    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     teacher?: boolean | UserDataDefaultArgs<ExtArgs>
   }
   export type ScheduleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     academicYear?: boolean | AcademicYearDefaultArgs<ExtArgs>
     class?: boolean | Schedule$classArgs<ExtArgs>
-    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     subject?: boolean | SubjectDefaultArgs<ExtArgs>
+    tahfidzGroup?: boolean | Schedule$tahfidzGroupArgs<ExtArgs>
     teacher?: boolean | UserDataDefaultArgs<ExtArgs>
   }
 
@@ -17035,14 +17035,13 @@ export namespace Prisma {
       grades: Prisma.$GradePayload<ExtArgs>[]
       academicYear: Prisma.$AcademicYearPayload<ExtArgs>
       class: Prisma.$ClassPayload<ExtArgs> | null
-      tahfidzGroup: Prisma.$TahfidzGroupPayload<ExtArgs> | null
       subject: Prisma.$SubjectPayload<ExtArgs>
+      tahfidzGroup: Prisma.$TahfidzGroupPayload<ExtArgs> | null
       teacher: Prisma.$UserDataPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       classId: string | null
-      tahfidzGroupId: string | null
       subjectId: string
       teacherId: string
       academicYearId: string
@@ -17051,6 +17050,7 @@ export namespace Prisma {
       endTime: string
       room: string | null
       isActive: boolean
+      tahfidzGroupId: string | null
     }, ExtArgs["result"]["schedule"]>
     composites: {}
   }
@@ -17450,8 +17450,8 @@ export namespace Prisma {
     grades<T extends Schedule$gradesArgs<ExtArgs> = {}>(args?: Subset<T, Schedule$gradesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GradePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     academicYear<T extends AcademicYearDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AcademicYearDefaultArgs<ExtArgs>>): Prisma__AcademicYearClient<$Result.GetResult<Prisma.$AcademicYearPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     class<T extends Schedule$classArgs<ExtArgs> = {}>(args?: Subset<T, Schedule$classArgs<ExtArgs>>): Prisma__ClassClient<$Result.GetResult<Prisma.$ClassPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    tahfidzGroup<T extends Schedule$tahfidzGroupArgs<ExtArgs> = {}>(args?: Subset<T, Schedule$tahfidzGroupArgs<ExtArgs>>): Prisma__TahfidzGroupClient<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     subject<T extends SubjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SubjectDefaultArgs<ExtArgs>>): Prisma__SubjectClient<$Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    tahfidzGroup<T extends Schedule$tahfidzGroupArgs<ExtArgs> = {}>(args?: Subset<T, Schedule$tahfidzGroupArgs<ExtArgs>>): Prisma__TahfidzGroupClient<$Result.GetResult<Prisma.$TahfidzGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     teacher<T extends UserDataDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDataDefaultArgs<ExtArgs>>): Prisma__UserDataClient<$Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -17484,7 +17484,6 @@ export namespace Prisma {
   interface ScheduleFieldRefs {
     readonly id: FieldRef<"Schedule", 'String'>
     readonly classId: FieldRef<"Schedule", 'String'>
-    readonly tahfidzGroupId: FieldRef<"Schedule", 'String'>
     readonly subjectId: FieldRef<"Schedule", 'String'>
     readonly teacherId: FieldRef<"Schedule", 'String'>
     readonly academicYearId: FieldRef<"Schedule", 'String'>
@@ -17493,6 +17492,7 @@ export namespace Prisma {
     readonly endTime: FieldRef<"Schedule", 'String'>
     readonly room: FieldRef<"Schedule", 'String'>
     readonly isActive: FieldRef<"Schedule", 'Boolean'>
+    readonly tahfidzGroupId: FieldRef<"Schedule", 'String'>
   }
     
 
@@ -40565,7 +40565,6 @@ export namespace Prisma {
     birthDate: 'birthDate',
     birthPlace: 'birthPlace',
     classId: 'classId',
-    tahfidzGroupId: 'tahfidzGroupId',
     employeeId: 'employeeId',
     endDate: 'endDate',
     enrollmentDate: 'enrollmentDate',
@@ -40585,7 +40584,8 @@ export namespace Prisma {
     name: 'name',
     isActive: 'isActive',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    tahfidzGroupId: 'tahfidzGroupId'
   };
 
   export type UserDataScalarFieldEnum = (typeof UserDataScalarFieldEnum)[keyof typeof UserDataScalarFieldEnum]
@@ -40655,7 +40655,6 @@ export namespace Prisma {
   export const ScheduleScalarFieldEnum: {
     id: 'id',
     classId: 'classId',
-    tahfidzGroupId: 'tahfidzGroupId',
     subjectId: 'subjectId',
     teacherId: 'teacherId',
     academicYearId: 'academicYearId',
@@ -40663,7 +40662,8 @@ export namespace Prisma {
     startTime: 'startTime',
     endTime: 'endTime',
     room: 'room',
-    isActive: 'isActive'
+    isActive: 'isActive',
+    tahfidzGroupId: 'tahfidzGroupId'
   };
 
   export type ScheduleScalarFieldEnum = (typeof ScheduleScalarFieldEnum)[keyof typeof ScheduleScalarFieldEnum]
@@ -41457,7 +41457,6 @@ export namespace Prisma {
     birthDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     birthPlace?: StringNullableFilter<"UserData"> | string | null
     classId?: StringNullableFilter<"UserData"> | string | null
-    tahfidzGroupId?: StringNullableFilter<"UserData"> | string | null
     employeeId?: StringNullableFilter<"UserData"> | string | null
     endDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     enrollmentDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
@@ -41478,6 +41477,7 @@ export namespace Prisma {
     isActive?: BoolFilter<"UserData"> | boolean
     createdAt?: DateTimeNullableFilter<"UserData"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"UserData"> | Date | string | null
+    tahfidzGroupId?: StringNullableFilter<"UserData"> | string | null
     Announcements?: AnnouncementListRelationFilter
     studentSubmissions?: AssignmentSubmissionListRelationFilter
     teacherAssignments?: AssignmentListRelationFilter
@@ -41493,9 +41493,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceListRelationFilter
     academicYear?: XOR<AcademicYearNullableScalarRelationFilter, AcademicYearWhereInput> | null
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
-    tahfidzGroup?: XOR<TahfidzGroupNullableScalarRelationFilter, TahfidzGroupWhereInput> | null
     major?: XOR<MajorNullableScalarRelationFilter, MajorWhereInput> | null
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
+    tahfidzGroup?: XOR<TahfidzGroupNullableScalarRelationFilter, TahfidzGroupWhereInput> | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     violations?: ViolationListRelationFilter
   }
@@ -41509,7 +41509,6 @@ export namespace Prisma {
     birthDate?: SortOrderInput | SortOrder
     birthPlace?: SortOrderInput | SortOrder
     classId?: SortOrderInput | SortOrder
-    tahfidzGroupId?: SortOrderInput | SortOrder
     employeeId?: SortOrderInput | SortOrder
     endDate?: SortOrderInput | SortOrder
     enrollmentDate?: SortOrderInput | SortOrder
@@ -41530,6 +41529,7 @@ export namespace Prisma {
     isActive?: SortOrder
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrderInput | SortOrder
+    tahfidzGroupId?: SortOrderInput | SortOrder
     Announcements?: AnnouncementOrderByRelationAggregateInput
     studentSubmissions?: AssignmentSubmissionOrderByRelationAggregateInput
     teacherAssignments?: AssignmentOrderByRelationAggregateInput
@@ -41545,9 +41545,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceOrderByRelationAggregateInput
     academicYear?: AcademicYearOrderByWithRelationInput
     class?: ClassOrderByWithRelationInput
-    tahfidzGroup?: TahfidzGroupOrderByWithRelationInput
     major?: MajorOrderByWithRelationInput
     role?: RoleOrderByWithRelationInput
+    tahfidzGroup?: TahfidzGroupOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
     violations?: ViolationOrderByRelationAggregateInput
   }
@@ -41564,7 +41564,6 @@ export namespace Prisma {
     birthDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     birthPlace?: StringNullableFilter<"UserData"> | string | null
     classId?: StringNullableFilter<"UserData"> | string | null
-    tahfidzGroupId?: StringNullableFilter<"UserData"> | string | null
     employeeId?: StringNullableFilter<"UserData"> | string | null
     endDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     enrollmentDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
@@ -41585,6 +41584,7 @@ export namespace Prisma {
     isActive?: BoolFilter<"UserData"> | boolean
     createdAt?: DateTimeNullableFilter<"UserData"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"UserData"> | Date | string | null
+    tahfidzGroupId?: StringNullableFilter<"UserData"> | string | null
     Announcements?: AnnouncementListRelationFilter
     studentSubmissions?: AssignmentSubmissionListRelationFilter
     teacherAssignments?: AssignmentListRelationFilter
@@ -41600,9 +41600,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceListRelationFilter
     academicYear?: XOR<AcademicYearNullableScalarRelationFilter, AcademicYearWhereInput> | null
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
-    tahfidzGroup?: XOR<TahfidzGroupNullableScalarRelationFilter, TahfidzGroupWhereInput> | null
     major?: XOR<MajorNullableScalarRelationFilter, MajorWhereInput> | null
     role?: XOR<RoleNullableScalarRelationFilter, RoleWhereInput> | null
+    tahfidzGroup?: XOR<TahfidzGroupNullableScalarRelationFilter, TahfidzGroupWhereInput> | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     violations?: ViolationListRelationFilter
   }, "id" | "id" | "userId">
@@ -41616,7 +41616,6 @@ export namespace Prisma {
     birthDate?: SortOrderInput | SortOrder
     birthPlace?: SortOrderInput | SortOrder
     classId?: SortOrderInput | SortOrder
-    tahfidzGroupId?: SortOrderInput | SortOrder
     employeeId?: SortOrderInput | SortOrder
     endDate?: SortOrderInput | SortOrder
     enrollmentDate?: SortOrderInput | SortOrder
@@ -41637,6 +41636,7 @@ export namespace Prisma {
     isActive?: SortOrder
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrderInput | SortOrder
+    tahfidzGroupId?: SortOrderInput | SortOrder
     _count?: UserDataCountOrderByAggregateInput
     _max?: UserDataMaxOrderByAggregateInput
     _min?: UserDataMinOrderByAggregateInput
@@ -41654,7 +41654,6 @@ export namespace Prisma {
     birthDate?: DateTimeNullableWithAggregatesFilter<"UserData"> | Date | string | null
     birthPlace?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     classId?: StringNullableWithAggregatesFilter<"UserData"> | string | null
-    tahfidzGroupId?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     employeeId?: StringNullableWithAggregatesFilter<"UserData"> | string | null
     endDate?: DateTimeNullableWithAggregatesFilter<"UserData"> | Date | string | null
     enrollmentDate?: DateTimeNullableWithAggregatesFilter<"UserData"> | Date | string | null
@@ -41675,6 +41674,7 @@ export namespace Prisma {
     isActive?: BoolWithAggregatesFilter<"UserData"> | boolean
     createdAt?: DateTimeNullableWithAggregatesFilter<"UserData"> | Date | string | null
     updatedAt?: DateTimeNullableWithAggregatesFilter<"UserData"> | Date | string | null
+    tahfidzGroupId?: StringNullableWithAggregatesFilter<"UserData"> | string | null
   }
 
   export type RoleWhereInput = {
@@ -42056,7 +42056,6 @@ export namespace Prisma {
     NOT?: ScheduleWhereInput | ScheduleWhereInput[]
     id?: StringFilter<"Schedule"> | string
     classId?: StringNullableFilter<"Schedule"> | string | null
-    tahfidzGroupId?: StringNullableFilter<"Schedule"> | string | null
     subjectId?: StringFilter<"Schedule"> | string
     teacherId?: StringFilter<"Schedule"> | string
     academicYearId?: StringFilter<"Schedule"> | string
@@ -42065,20 +42064,20 @@ export namespace Prisma {
     endTime?: StringFilter<"Schedule"> | string
     room?: StringNullableFilter<"Schedule"> | string | null
     isActive?: BoolFilter<"Schedule"> | boolean
+    tahfidzGroupId?: StringNullableFilter<"Schedule"> | string | null
     assignments?: AssignmentListRelationFilter
     attendances?: AttendanceListRelationFilter
     grades?: GradeListRelationFilter
     academicYear?: XOR<AcademicYearScalarRelationFilter, AcademicYearWhereInput>
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
-    tahfidzGroup?: XOR<TahfidzGroupNullableScalarRelationFilter, TahfidzGroupWhereInput> | null
     subject?: XOR<SubjectScalarRelationFilter, SubjectWhereInput>
+    tahfidzGroup?: XOR<TahfidzGroupNullableScalarRelationFilter, TahfidzGroupWhereInput> | null
     teacher?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
   }
 
   export type ScheduleOrderByWithRelationInput = {
     id?: SortOrder
     classId?: SortOrderInput | SortOrder
-    tahfidzGroupId?: SortOrderInput | SortOrder
     subjectId?: SortOrder
     teacherId?: SortOrder
     academicYearId?: SortOrder
@@ -42087,13 +42086,14 @@ export namespace Prisma {
     endTime?: SortOrder
     room?: SortOrderInput | SortOrder
     isActive?: SortOrder
+    tahfidzGroupId?: SortOrderInput | SortOrder
     assignments?: AssignmentOrderByRelationAggregateInput
     attendances?: AttendanceOrderByRelationAggregateInput
     grades?: GradeOrderByRelationAggregateInput
     academicYear?: AcademicYearOrderByWithRelationInput
     class?: ClassOrderByWithRelationInput
-    tahfidzGroup?: TahfidzGroupOrderByWithRelationInput
     subject?: SubjectOrderByWithRelationInput
+    tahfidzGroup?: TahfidzGroupOrderByWithRelationInput
     teacher?: UserDataOrderByWithRelationInput
   }
 
@@ -42104,7 +42104,6 @@ export namespace Prisma {
     OR?: ScheduleWhereInput[]
     NOT?: ScheduleWhereInput | ScheduleWhereInput[]
     classId?: StringNullableFilter<"Schedule"> | string | null
-    tahfidzGroupId?: StringNullableFilter<"Schedule"> | string | null
     subjectId?: StringFilter<"Schedule"> | string
     teacherId?: StringFilter<"Schedule"> | string
     academicYearId?: StringFilter<"Schedule"> | string
@@ -42113,20 +42112,20 @@ export namespace Prisma {
     endTime?: StringFilter<"Schedule"> | string
     room?: StringNullableFilter<"Schedule"> | string | null
     isActive?: BoolFilter<"Schedule"> | boolean
+    tahfidzGroupId?: StringNullableFilter<"Schedule"> | string | null
     assignments?: AssignmentListRelationFilter
     attendances?: AttendanceListRelationFilter
     grades?: GradeListRelationFilter
     academicYear?: XOR<AcademicYearScalarRelationFilter, AcademicYearWhereInput>
     class?: XOR<ClassNullableScalarRelationFilter, ClassWhereInput> | null
-    tahfidzGroup?: XOR<TahfidzGroupNullableScalarRelationFilter, TahfidzGroupWhereInput> | null
     subject?: XOR<SubjectScalarRelationFilter, SubjectWhereInput>
+    tahfidzGroup?: XOR<TahfidzGroupNullableScalarRelationFilter, TahfidzGroupWhereInput> | null
     teacher?: XOR<UserDataScalarRelationFilter, UserDataWhereInput>
   }, "id" | "classId_subjectId_teacherId_dayOfWeek_startTime">
 
   export type ScheduleOrderByWithAggregationInput = {
     id?: SortOrder
     classId?: SortOrderInput | SortOrder
-    tahfidzGroupId?: SortOrderInput | SortOrder
     subjectId?: SortOrder
     teacherId?: SortOrder
     academicYearId?: SortOrder
@@ -42135,6 +42134,7 @@ export namespace Prisma {
     endTime?: SortOrder
     room?: SortOrderInput | SortOrder
     isActive?: SortOrder
+    tahfidzGroupId?: SortOrderInput | SortOrder
     _count?: ScheduleCountOrderByAggregateInput
     _avg?: ScheduleAvgOrderByAggregateInput
     _max?: ScheduleMaxOrderByAggregateInput
@@ -42148,7 +42148,6 @@ export namespace Prisma {
     NOT?: ScheduleScalarWhereWithAggregatesInput | ScheduleScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Schedule"> | string
     classId?: StringNullableWithAggregatesFilter<"Schedule"> | string | null
-    tahfidzGroupId?: StringNullableWithAggregatesFilter<"Schedule"> | string | null
     subjectId?: StringWithAggregatesFilter<"Schedule"> | string
     teacherId?: StringWithAggregatesFilter<"Schedule"> | string
     academicYearId?: StringWithAggregatesFilter<"Schedule"> | string
@@ -42157,6 +42156,7 @@ export namespace Prisma {
     endTime?: StringWithAggregatesFilter<"Schedule"> | string
     room?: StringNullableWithAggregatesFilter<"Schedule"> | string | null
     isActive?: BoolWithAggregatesFilter<"Schedule"> | boolean
+    tahfidzGroupId?: StringNullableWithAggregatesFilter<"Schedule"> | string | null
   }
 
   export type AttendanceWhereInput = {
@@ -44258,9 +44258,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -44274,7 +44274,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -44295,6 +44294,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -44350,9 +44350,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -44366,7 +44366,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -44387,6 +44386,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -44412,7 +44412,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -44433,6 +44432,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
   }
 
   export type UserDataUpdateManyMutationInput = {
@@ -44470,7 +44470,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -44491,6 +44490,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RoleCreateInput = {
@@ -44916,15 +44916,14 @@ export namespace Prisma {
     grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
     class?: ClassCreateNestedOneWithoutSchedulesInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateInput = {
     id?: string
     classId?: string | null
-    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -44933,6 +44932,7 @@ export namespace Prisma {
     endTime: string
     room?: string | null
     isActive?: boolean
+    tahfidzGroupId?: string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutScheduleInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutScheduleInput
     grades?: GradeUncheckedCreateNestedManyWithoutScheduleInput
@@ -44950,15 +44950,14 @@ export namespace Prisma {
     grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
     class?: ClassUpdateOneWithoutSchedulesNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
@@ -44967,6 +44966,7 @@ export namespace Prisma {
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutScheduleNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutScheduleNestedInput
     grades?: GradeUncheckedUpdateManyWithoutScheduleNestedInput
@@ -44975,7 +44975,6 @@ export namespace Prisma {
   export type ScheduleCreateManyInput = {
     id?: string
     classId?: string | null
-    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -44984,6 +44983,7 @@ export namespace Prisma {
     endTime: string
     room?: string | null
     isActive?: boolean
+    tahfidzGroupId?: string | null
   }
 
   export type ScheduleUpdateManyMutationInput = {
@@ -44998,7 +44998,6 @@ export namespace Prisma {
   export type ScheduleUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
@@ -45007,6 +45006,7 @@ export namespace Prisma {
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AttendanceCreateInput = {
@@ -47253,11 +47253,6 @@ export namespace Prisma {
     isNot?: ClassWhereInput | null
   }
 
-  export type TahfidzGroupNullableScalarRelationFilter = {
-    is?: TahfidzGroupWhereInput | null
-    isNot?: TahfidzGroupWhereInput | null
-  }
-
   export type MajorNullableScalarRelationFilter = {
     is?: MajorWhereInput | null
     isNot?: MajorWhereInput | null
@@ -47266,6 +47261,11 @@ export namespace Prisma {
   export type RoleNullableScalarRelationFilter = {
     is?: RoleWhereInput | null
     isNot?: RoleWhereInput | null
+  }
+
+  export type TahfidzGroupNullableScalarRelationFilter = {
+    is?: TahfidzGroupWhereInput | null
+    isNot?: TahfidzGroupWhereInput | null
   }
 
   export type UserNullableScalarRelationFilter = {
@@ -47340,7 +47340,6 @@ export namespace Prisma {
     birthDate?: SortOrder
     birthPlace?: SortOrder
     classId?: SortOrder
-    tahfidzGroupId?: SortOrder
     employeeId?: SortOrder
     endDate?: SortOrder
     enrollmentDate?: SortOrder
@@ -47361,6 +47360,7 @@ export namespace Prisma {
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    tahfidzGroupId?: SortOrder
   }
 
   export type UserDataMaxOrderByAggregateInput = {
@@ -47372,7 +47372,6 @@ export namespace Prisma {
     birthDate?: SortOrder
     birthPlace?: SortOrder
     classId?: SortOrder
-    tahfidzGroupId?: SortOrder
     employeeId?: SortOrder
     endDate?: SortOrder
     enrollmentDate?: SortOrder
@@ -47392,6 +47391,7 @@ export namespace Prisma {
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    tahfidzGroupId?: SortOrder
   }
 
   export type UserDataMinOrderByAggregateInput = {
@@ -47403,7 +47403,6 @@ export namespace Prisma {
     birthDate?: SortOrder
     birthPlace?: SortOrder
     classId?: SortOrder
-    tahfidzGroupId?: SortOrder
     employeeId?: SortOrder
     endDate?: SortOrder
     enrollmentDate?: SortOrder
@@ -47423,6 +47422,7 @@ export namespace Prisma {
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    tahfidzGroupId?: SortOrder
   }
 
   export type UserDataListRelationFilter = {
@@ -47712,7 +47712,6 @@ export namespace Prisma {
   export type ScheduleCountOrderByAggregateInput = {
     id?: SortOrder
     classId?: SortOrder
-    tahfidzGroupId?: SortOrder
     subjectId?: SortOrder
     teacherId?: SortOrder
     academicYearId?: SortOrder
@@ -47721,6 +47720,7 @@ export namespace Prisma {
     endTime?: SortOrder
     room?: SortOrder
     isActive?: SortOrder
+    tahfidzGroupId?: SortOrder
   }
 
   export type ScheduleAvgOrderByAggregateInput = {
@@ -47730,7 +47730,6 @@ export namespace Prisma {
   export type ScheduleMaxOrderByAggregateInput = {
     id?: SortOrder
     classId?: SortOrder
-    tahfidzGroupId?: SortOrder
     subjectId?: SortOrder
     teacherId?: SortOrder
     academicYearId?: SortOrder
@@ -47739,12 +47738,12 @@ export namespace Prisma {
     endTime?: SortOrder
     room?: SortOrder
     isActive?: SortOrder
+    tahfidzGroupId?: SortOrder
   }
 
   export type ScheduleMinOrderByAggregateInput = {
     id?: SortOrder
     classId?: SortOrder
-    tahfidzGroupId?: SortOrder
     subjectId?: SortOrder
     teacherId?: SortOrder
     academicYearId?: SortOrder
@@ -47753,6 +47752,7 @@ export namespace Prisma {
     endTime?: SortOrder
     room?: SortOrder
     isActive?: SortOrder
+    tahfidzGroupId?: SortOrder
   }
 
   export type ScheduleSumOrderByAggregateInput = {
@@ -49139,12 +49139,6 @@ export namespace Prisma {
     connect?: ClassWhereUniqueInput
   }
 
-  export type TahfidzGroupCreateNestedOneWithoutStudentsInput = {
-    create?: XOR<TahfidzGroupCreateWithoutStudentsInput, TahfidzGroupUncheckedCreateWithoutStudentsInput>
-    connectOrCreate?: TahfidzGroupCreateOrConnectWithoutStudentsInput
-    connect?: TahfidzGroupWhereUniqueInput
-  }
-
   export type MajorCreateNestedOneWithoutStudentsInput = {
     create?: XOR<MajorCreateWithoutStudentsInput, MajorUncheckedCreateWithoutStudentsInput>
     connectOrCreate?: MajorCreateOrConnectWithoutStudentsInput
@@ -49155,6 +49149,12 @@ export namespace Prisma {
     create?: XOR<RoleCreateWithoutUserDataInput, RoleUncheckedCreateWithoutUserDataInput>
     connectOrCreate?: RoleCreateOrConnectWithoutUserDataInput
     connect?: RoleWhereUniqueInput
+  }
+
+  export type TahfidzGroupCreateNestedOneWithoutStudentsInput = {
+    create?: XOR<TahfidzGroupCreateWithoutStudentsInput, TahfidzGroupUncheckedCreateWithoutStudentsInput>
+    connectOrCreate?: TahfidzGroupCreateOrConnectWithoutStudentsInput
+    connect?: TahfidzGroupWhereUniqueInput
   }
 
   export type UserCreateNestedOneWithoutUserDataInput = {
@@ -49475,16 +49475,6 @@ export namespace Prisma {
     update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutStudentsInput, ClassUpdateWithoutStudentsInput>, ClassUncheckedUpdateWithoutStudentsInput>
   }
 
-  export type TahfidzGroupUpdateOneWithoutStudentsNestedInput = {
-    create?: XOR<TahfidzGroupCreateWithoutStudentsInput, TahfidzGroupUncheckedCreateWithoutStudentsInput>
-    connectOrCreate?: TahfidzGroupCreateOrConnectWithoutStudentsInput
-    upsert?: TahfidzGroupUpsertWithoutStudentsInput
-    disconnect?: TahfidzGroupWhereInput | boolean
-    delete?: TahfidzGroupWhereInput | boolean
-    connect?: TahfidzGroupWhereUniqueInput
-    update?: XOR<XOR<TahfidzGroupUpdateToOneWithWhereWithoutStudentsInput, TahfidzGroupUpdateWithoutStudentsInput>, TahfidzGroupUncheckedUpdateWithoutStudentsInput>
-  }
-
   export type MajorUpdateOneWithoutStudentsNestedInput = {
     create?: XOR<MajorCreateWithoutStudentsInput, MajorUncheckedCreateWithoutStudentsInput>
     connectOrCreate?: MajorCreateOrConnectWithoutStudentsInput
@@ -49503,6 +49493,16 @@ export namespace Prisma {
     delete?: RoleWhereInput | boolean
     connect?: RoleWhereUniqueInput
     update?: XOR<XOR<RoleUpdateToOneWithWhereWithoutUserDataInput, RoleUpdateWithoutUserDataInput>, RoleUncheckedUpdateWithoutUserDataInput>
+  }
+
+  export type TahfidzGroupUpdateOneWithoutStudentsNestedInput = {
+    create?: XOR<TahfidzGroupCreateWithoutStudentsInput, TahfidzGroupUncheckedCreateWithoutStudentsInput>
+    connectOrCreate?: TahfidzGroupCreateOrConnectWithoutStudentsInput
+    upsert?: TahfidzGroupUpsertWithoutStudentsInput
+    disconnect?: TahfidzGroupWhereInput | boolean
+    delete?: TahfidzGroupWhereInput | boolean
+    connect?: TahfidzGroupWhereUniqueInput
+    update?: XOR<XOR<TahfidzGroupUpdateToOneWithWhereWithoutStudentsInput, TahfidzGroupUpdateWithoutStudentsInput>, TahfidzGroupUncheckedUpdateWithoutStudentsInput>
   }
 
   export type UserUpdateOneWithoutUserDataNestedInput = {
@@ -50785,16 +50785,16 @@ export namespace Prisma {
     connect?: ClassWhereUniqueInput
   }
 
-  export type TahfidzGroupCreateNestedOneWithoutSchedulesInput = {
-    create?: XOR<TahfidzGroupCreateWithoutSchedulesInput, TahfidzGroupUncheckedCreateWithoutSchedulesInput>
-    connectOrCreate?: TahfidzGroupCreateOrConnectWithoutSchedulesInput
-    connect?: TahfidzGroupWhereUniqueInput
-  }
-
   export type SubjectCreateNestedOneWithoutSchedulesInput = {
     create?: XOR<SubjectCreateWithoutSchedulesInput, SubjectUncheckedCreateWithoutSchedulesInput>
     connectOrCreate?: SubjectCreateOrConnectWithoutSchedulesInput
     connect?: SubjectWhereUniqueInput
+  }
+
+  export type TahfidzGroupCreateNestedOneWithoutSchedulesInput = {
+    create?: XOR<TahfidzGroupCreateWithoutSchedulesInput, TahfidzGroupUncheckedCreateWithoutSchedulesInput>
+    connectOrCreate?: TahfidzGroupCreateOrConnectWithoutSchedulesInput
+    connect?: TahfidzGroupWhereUniqueInput
   }
 
   export type UserDataCreateNestedOneWithoutSchedulesInput = {
@@ -50884,6 +50884,14 @@ export namespace Prisma {
     update?: XOR<XOR<ClassUpdateToOneWithWhereWithoutSchedulesInput, ClassUpdateWithoutSchedulesInput>, ClassUncheckedUpdateWithoutSchedulesInput>
   }
 
+  export type SubjectUpdateOneRequiredWithoutSchedulesNestedInput = {
+    create?: XOR<SubjectCreateWithoutSchedulesInput, SubjectUncheckedCreateWithoutSchedulesInput>
+    connectOrCreate?: SubjectCreateOrConnectWithoutSchedulesInput
+    upsert?: SubjectUpsertWithoutSchedulesInput
+    connect?: SubjectWhereUniqueInput
+    update?: XOR<XOR<SubjectUpdateToOneWithWhereWithoutSchedulesInput, SubjectUpdateWithoutSchedulesInput>, SubjectUncheckedUpdateWithoutSchedulesInput>
+  }
+
   export type TahfidzGroupUpdateOneWithoutSchedulesNestedInput = {
     create?: XOR<TahfidzGroupCreateWithoutSchedulesInput, TahfidzGroupUncheckedCreateWithoutSchedulesInput>
     connectOrCreate?: TahfidzGroupCreateOrConnectWithoutSchedulesInput
@@ -50892,14 +50900,6 @@ export namespace Prisma {
     delete?: TahfidzGroupWhereInput | boolean
     connect?: TahfidzGroupWhereUniqueInput
     update?: XOR<XOR<TahfidzGroupUpdateToOneWithWhereWithoutSchedulesInput, TahfidzGroupUpdateWithoutSchedulesInput>, TahfidzGroupUncheckedUpdateWithoutSchedulesInput>
-  }
-
-  export type SubjectUpdateOneRequiredWithoutSchedulesNestedInput = {
-    create?: XOR<SubjectCreateWithoutSchedulesInput, SubjectUncheckedCreateWithoutSchedulesInput>
-    connectOrCreate?: SubjectCreateOrConnectWithoutSchedulesInput
-    upsert?: SubjectUpsertWithoutSchedulesInput
-    connect?: SubjectWhereUniqueInput
-    update?: XOR<XOR<SubjectUpdateToOneWithWhereWithoutSchedulesInput, SubjectUpdateWithoutSchedulesInput>, SubjectUncheckedUpdateWithoutSchedulesInput>
   }
 
   export type UserDataUpdateOneRequiredWithoutSchedulesNestedInput = {
@@ -52218,9 +52218,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
 
@@ -52232,7 +52232,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -52253,6 +52252,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -52390,9 +52390,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
 
@@ -52404,7 +52404,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -52425,6 +52424,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -52981,14 +52981,13 @@ export namespace Prisma {
     grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
     class?: ClassCreateNestedOneWithoutSchedulesInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateWithoutTeacherInput = {
     id?: string
     classId?: string | null
-    tahfidzGroupId?: string | null
     subjectId: string
     academicYearId: string
     dayOfWeek: number
@@ -52996,6 +52995,7 @@ export namespace Prisma {
     endTime: string
     room?: string | null
     isActive?: boolean
+    tahfidzGroupId?: string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutScheduleInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutScheduleInput
     grades?: GradeUncheckedCreateNestedManyWithoutScheduleInput
@@ -53187,29 +53187,6 @@ export namespace Prisma {
     create: XOR<ClassCreateWithoutStudentsInput, ClassUncheckedCreateWithoutStudentsInput>
   }
 
-  export type TahfidzGroupCreateWithoutStudentsInput = {
-    id?: string
-    name: string
-    grade: number
-    capacity?: number
-    isActive?: boolean
-    schedules?: ScheduleCreateNestedManyWithoutTahfidzGroupInput
-  }
-
-  export type TahfidzGroupUncheckedCreateWithoutStudentsInput = {
-    id?: string
-    name: string
-    grade: number
-    capacity?: number
-    isActive?: boolean
-    schedules?: ScheduleUncheckedCreateNestedManyWithoutTahfidzGroupInput
-  }
-
-  export type TahfidzGroupCreateOrConnectWithoutStudentsInput = {
-    where: TahfidzGroupWhereUniqueInput
-    create: XOR<TahfidzGroupCreateWithoutStudentsInput, TahfidzGroupUncheckedCreateWithoutStudentsInput>
-  }
-
   export type MajorCreateWithoutStudentsInput = {
     id?: string
     code: string
@@ -53254,6 +53231,29 @@ export namespace Prisma {
   export type RoleCreateOrConnectWithoutUserDataInput = {
     where: RoleWhereUniqueInput
     create: XOR<RoleCreateWithoutUserDataInput, RoleUncheckedCreateWithoutUserDataInput>
+  }
+
+  export type TahfidzGroupCreateWithoutStudentsInput = {
+    id?: string
+    name: string
+    grade: number
+    capacity?: number
+    isActive?: boolean
+    schedules?: ScheduleCreateNestedManyWithoutTahfidzGroupInput
+  }
+
+  export type TahfidzGroupUncheckedCreateWithoutStudentsInput = {
+    id?: string
+    name: string
+    grade: number
+    capacity?: number
+    isActive?: boolean
+    schedules?: ScheduleUncheckedCreateNestedManyWithoutTahfidzGroupInput
+  }
+
+  export type TahfidzGroupCreateOrConnectWithoutStudentsInput = {
+    where: TahfidzGroupWhereUniqueInput
+    create: XOR<TahfidzGroupCreateWithoutStudentsInput, TahfidzGroupUncheckedCreateWithoutStudentsInput>
   }
 
   export type UserCreateWithoutUserDataInput = {
@@ -53669,7 +53669,6 @@ export namespace Prisma {
     NOT?: ScheduleScalarWhereInput | ScheduleScalarWhereInput[]
     id?: StringFilter<"Schedule"> | string
     classId?: StringNullableFilter<"Schedule"> | string | null
-    tahfidzGroupId?: StringNullableFilter<"Schedule"> | string | null
     subjectId?: StringFilter<"Schedule"> | string
     teacherId?: StringFilter<"Schedule"> | string
     academicYearId?: StringFilter<"Schedule"> | string
@@ -53678,6 +53677,7 @@ export namespace Prisma {
     endTime?: StringFilter<"Schedule"> | string
     room?: StringNullableFilter<"Schedule"> | string | null
     isActive?: BoolFilter<"Schedule"> | boolean
+    tahfidzGroupId?: StringNullableFilter<"Schedule"> | string | null
   }
 
   export type TahfidzRecordUpsertWithWhereUniqueWithoutUserInput = {
@@ -53846,35 +53846,6 @@ export namespace Prisma {
     violations?: ViolationUncheckedUpdateManyWithoutClassNestedInput
   }
 
-  export type TahfidzGroupUpsertWithoutStudentsInput = {
-    update: XOR<TahfidzGroupUpdateWithoutStudentsInput, TahfidzGroupUncheckedUpdateWithoutStudentsInput>
-    create: XOR<TahfidzGroupCreateWithoutStudentsInput, TahfidzGroupUncheckedCreateWithoutStudentsInput>
-    where?: TahfidzGroupWhereInput
-  }
-
-  export type TahfidzGroupUpdateToOneWithWhereWithoutStudentsInput = {
-    where?: TahfidzGroupWhereInput
-    data: XOR<TahfidzGroupUpdateWithoutStudentsInput, TahfidzGroupUncheckedUpdateWithoutStudentsInput>
-  }
-
-  export type TahfidzGroupUpdateWithoutStudentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    grade?: IntFieldUpdateOperationsInput | number
-    capacity?: IntFieldUpdateOperationsInput | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    schedules?: ScheduleUpdateManyWithoutTahfidzGroupNestedInput
-  }
-
-  export type TahfidzGroupUncheckedUpdateWithoutStudentsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    grade?: IntFieldUpdateOperationsInput | number
-    capacity?: IntFieldUpdateOperationsInput | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    schedules?: ScheduleUncheckedUpdateManyWithoutTahfidzGroupNestedInput
-  }
-
   export type MajorUpsertWithoutStudentsInput = {
     update: XOR<MajorUpdateWithoutStudentsInput, MajorUncheckedUpdateWithoutStudentsInput>
     create: XOR<MajorCreateWithoutStudentsInput, MajorUncheckedCreateWithoutStudentsInput>
@@ -53931,6 +53902,35 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     permissions?: RoleUpdatepermissionsInput | string[]
     isActive?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type TahfidzGroupUpsertWithoutStudentsInput = {
+    update: XOR<TahfidzGroupUpdateWithoutStudentsInput, TahfidzGroupUncheckedUpdateWithoutStudentsInput>
+    create: XOR<TahfidzGroupCreateWithoutStudentsInput, TahfidzGroupUncheckedCreateWithoutStudentsInput>
+    where?: TahfidzGroupWhereInput
+  }
+
+  export type TahfidzGroupUpdateToOneWithWhereWithoutStudentsInput = {
+    where?: TahfidzGroupWhereInput
+    data: XOR<TahfidzGroupUpdateWithoutStudentsInput, TahfidzGroupUncheckedUpdateWithoutStudentsInput>
+  }
+
+  export type TahfidzGroupUpdateWithoutStudentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    grade?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    schedules?: ScheduleUpdateManyWithoutTahfidzGroupNestedInput
+  }
+
+  export type TahfidzGroupUncheckedUpdateWithoutStudentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    grade?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    schedules?: ScheduleUncheckedUpdateManyWithoutTahfidzGroupNestedInput
   }
 
   export type UserUpsertWithoutUserDataInput = {
@@ -54048,8 +54048,8 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -54063,7 +54063,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -54083,6 +54082,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -54137,7 +54137,6 @@ export namespace Prisma {
     birthDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     birthPlace?: StringNullableFilter<"UserData"> | string | null
     classId?: StringNullableFilter<"UserData"> | string | null
-    tahfidzGroupId?: StringNullableFilter<"UserData"> | string | null
     employeeId?: StringNullableFilter<"UserData"> | string | null
     endDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
     enrollmentDate?: DateTimeNullableFilter<"UserData"> | Date | string | null
@@ -54158,6 +54157,7 @@ export namespace Prisma {
     isActive?: BoolFilter<"UserData"> | boolean
     createdAt?: DateTimeNullableFilter<"UserData"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"UserData"> | Date | string | null
+    tahfidzGroupId?: StringNullableFilter<"UserData"> | string | null
   }
 
   export type CalendarEventCreateWithoutAcademicYearInput = {
@@ -54363,15 +54363,14 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
     grades?: GradeCreateNestedManyWithoutScheduleInput
     class?: ClassCreateNestedOneWithoutSchedulesInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateWithoutAcademicYearInput = {
     id?: string
     classId?: string | null
-    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     dayOfWeek: number
@@ -54379,6 +54378,7 @@ export namespace Prisma {
     endTime: string
     room?: string | null
     isActive?: boolean
+    tahfidzGroupId?: string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutScheduleInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutScheduleInput
     grades?: GradeUncheckedCreateNestedManyWithoutScheduleInput
@@ -54432,9 +54432,9 @@ export namespace Prisma {
     createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -54447,7 +54447,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -54468,6 +54467,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -54837,8 +54837,8 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -54852,7 +54852,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -54872,6 +54871,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -55178,14 +55178,13 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
     grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateWithoutClassInput = {
     id?: string
-    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -55194,6 +55193,7 @@ export namespace Prisma {
     endTime: string
     room?: string | null
     isActive?: boolean
+    tahfidzGroupId?: string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutScheduleInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutScheduleInput
     grades?: GradeUncheckedCreateNestedManyWithoutScheduleInput
@@ -55247,9 +55247,9 @@ export namespace Prisma {
     createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -55262,7 +55262,6 @@ export namespace Prisma {
     avatarUrl?: string | null
     birthDate?: Date | string | null
     birthPlace?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -55283,6 +55282,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -55720,7 +55720,6 @@ export namespace Prisma {
   export type ScheduleUncheckedCreateWithoutSubjectInput = {
     id?: string
     classId?: string | null
-    tahfidzGroupId?: string | null
     teacherId: string
     academicYearId: string
     dayOfWeek: number
@@ -55728,6 +55727,7 @@ export namespace Prisma {
     endTime: string
     room?: string | null
     isActive?: boolean
+    tahfidzGroupId?: string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutScheduleInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutScheduleInput
     grades?: GradeUncheckedCreateNestedManyWithoutScheduleInput
@@ -56075,29 +56075,6 @@ export namespace Prisma {
     create: XOR<ClassCreateWithoutSchedulesInput, ClassUncheckedCreateWithoutSchedulesInput>
   }
 
-  export type TahfidzGroupCreateWithoutSchedulesInput = {
-    id?: string
-    name: string
-    grade: number
-    capacity?: number
-    isActive?: boolean
-    students?: UserDataCreateNestedManyWithoutTahfidzGroupInput
-  }
-
-  export type TahfidzGroupUncheckedCreateWithoutSchedulesInput = {
-    id?: string
-    name: string
-    grade: number
-    capacity?: number
-    isActive?: boolean
-    students?: UserDataUncheckedCreateNestedManyWithoutTahfidzGroupInput
-  }
-
-  export type TahfidzGroupCreateOrConnectWithoutSchedulesInput = {
-    where: TahfidzGroupWhereUniqueInput
-    create: XOR<TahfidzGroupCreateWithoutSchedulesInput, TahfidzGroupUncheckedCreateWithoutSchedulesInput>
-  }
-
   export type SubjectCreateWithoutSchedulesInput = {
     id?: string
     code: string
@@ -56129,6 +56106,29 @@ export namespace Prisma {
   export type SubjectCreateOrConnectWithoutSchedulesInput = {
     where: SubjectWhereUniqueInput
     create: XOR<SubjectCreateWithoutSchedulesInput, SubjectUncheckedCreateWithoutSchedulesInput>
+  }
+
+  export type TahfidzGroupCreateWithoutSchedulesInput = {
+    id?: string
+    name: string
+    grade: number
+    capacity?: number
+    isActive?: boolean
+    students?: UserDataCreateNestedManyWithoutTahfidzGroupInput
+  }
+
+  export type TahfidzGroupUncheckedCreateWithoutSchedulesInput = {
+    id?: string
+    name: string
+    grade: number
+    capacity?: number
+    isActive?: boolean
+    students?: UserDataUncheckedCreateNestedManyWithoutTahfidzGroupInput
+  }
+
+  export type TahfidzGroupCreateOrConnectWithoutSchedulesInput = {
+    where: TahfidzGroupWhereUniqueInput
+    create: XOR<TahfidzGroupCreateWithoutSchedulesInput, TahfidzGroupUncheckedCreateWithoutSchedulesInput>
   }
 
   export type UserDataCreateWithoutSchedulesInput = {
@@ -56169,9 +56169,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -56185,7 +56185,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -56206,6 +56205,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -56360,35 +56360,6 @@ export namespace Prisma {
     violations?: ViolationUncheckedUpdateManyWithoutClassNestedInput
   }
 
-  export type TahfidzGroupUpsertWithoutSchedulesInput = {
-    update: XOR<TahfidzGroupUpdateWithoutSchedulesInput, TahfidzGroupUncheckedUpdateWithoutSchedulesInput>
-    create: XOR<TahfidzGroupCreateWithoutSchedulesInput, TahfidzGroupUncheckedCreateWithoutSchedulesInput>
-    where?: TahfidzGroupWhereInput
-  }
-
-  export type TahfidzGroupUpdateToOneWithWhereWithoutSchedulesInput = {
-    where?: TahfidzGroupWhereInput
-    data: XOR<TahfidzGroupUpdateWithoutSchedulesInput, TahfidzGroupUncheckedUpdateWithoutSchedulesInput>
-  }
-
-  export type TahfidzGroupUpdateWithoutSchedulesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    grade?: IntFieldUpdateOperationsInput | number
-    capacity?: IntFieldUpdateOperationsInput | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    students?: UserDataUpdateManyWithoutTahfidzGroupNestedInput
-  }
-
-  export type TahfidzGroupUncheckedUpdateWithoutSchedulesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    grade?: IntFieldUpdateOperationsInput | number
-    capacity?: IntFieldUpdateOperationsInput | number
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    students?: UserDataUncheckedUpdateManyWithoutTahfidzGroupNestedInput
-  }
-
   export type SubjectUpsertWithoutSchedulesInput = {
     update: XOR<SubjectUpdateWithoutSchedulesInput, SubjectUncheckedUpdateWithoutSchedulesInput>
     create: XOR<SubjectCreateWithoutSchedulesInput, SubjectUncheckedCreateWithoutSchedulesInput>
@@ -56426,6 +56397,35 @@ export namespace Prisma {
     gradeConfigurations?: GradeConfigurationUncheckedUpdateManyWithoutSubjectNestedInput
     grades?: GradeUncheckedUpdateManyWithoutSubjectNestedInput
     reportCards?: ReportCardUncheckedUpdateManyWithoutSubjectNestedInput
+  }
+
+  export type TahfidzGroupUpsertWithoutSchedulesInput = {
+    update: XOR<TahfidzGroupUpdateWithoutSchedulesInput, TahfidzGroupUncheckedUpdateWithoutSchedulesInput>
+    create: XOR<TahfidzGroupCreateWithoutSchedulesInput, TahfidzGroupUncheckedCreateWithoutSchedulesInput>
+    where?: TahfidzGroupWhereInput
+  }
+
+  export type TahfidzGroupUpdateToOneWithWhereWithoutSchedulesInput = {
+    where?: TahfidzGroupWhereInput
+    data: XOR<TahfidzGroupUpdateWithoutSchedulesInput, TahfidzGroupUncheckedUpdateWithoutSchedulesInput>
+  }
+
+  export type TahfidzGroupUpdateWithoutSchedulesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    grade?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    students?: UserDataUpdateManyWithoutTahfidzGroupNestedInput
+  }
+
+  export type TahfidzGroupUncheckedUpdateWithoutSchedulesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    grade?: IntFieldUpdateOperationsInput | number
+    capacity?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    students?: UserDataUncheckedUpdateManyWithoutTahfidzGroupNestedInput
   }
 
   export type UserDataUpsertWithoutSchedulesInput = {
@@ -56477,9 +56477,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -56493,7 +56493,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -56514,6 +56513,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -56540,15 +56540,14 @@ export namespace Prisma {
     grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
     class?: ClassCreateNestedOneWithoutSchedulesInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateWithoutAttendancesInput = {
     id?: string
     classId?: string | null
-    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -56557,6 +56556,7 @@ export namespace Prisma {
     endTime: string
     room?: string | null
     isActive?: boolean
+    tahfidzGroupId?: string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutScheduleInput
     grades?: GradeUncheckedCreateNestedManyWithoutScheduleInput
   }
@@ -56604,9 +56604,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -56620,7 +56620,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -56641,6 +56640,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -56683,15 +56683,14 @@ export namespace Prisma {
     grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
     class?: ClassUpdateOneWithoutSchedulesNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateWithoutAttendancesInput = {
     id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
@@ -56700,6 +56699,7 @@ export namespace Prisma {
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutScheduleNestedInput
     grades?: GradeUncheckedUpdateManyWithoutScheduleNestedInput
   }
@@ -56753,9 +56753,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -56769,7 +56769,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -56790,6 +56789,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -57015,9 +57015,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
   }
 
@@ -57030,7 +57030,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -57051,6 +57050,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -57185,9 +57185,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
   }
 
@@ -57200,7 +57200,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -57221,6 +57220,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -57376,9 +57376,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -57392,7 +57392,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -57413,6 +57412,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -57511,9 +57511,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -57527,7 +57527,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -57548,6 +57547,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -58171,15 +58171,14 @@ export namespace Prisma {
     attendances?: AttendanceCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
     class?: ClassCreateNestedOneWithoutSchedulesInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateWithoutGradesInput = {
     id?: string
     classId?: string | null
-    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -58188,6 +58187,7 @@ export namespace Prisma {
     endTime: string
     room?: string | null
     isActive?: boolean
+    tahfidzGroupId?: string | null
     assignments?: AssignmentUncheckedCreateNestedManyWithoutScheduleInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutScheduleInput
   }
@@ -58235,9 +58235,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -58251,7 +58251,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -58272,6 +58271,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -58386,15 +58386,14 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
     class?: ClassUpdateOneWithoutSchedulesNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateWithoutGradesInput = {
     id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
@@ -58403,6 +58402,7 @@ export namespace Prisma {
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutScheduleNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutScheduleNestedInput
   }
@@ -58456,9 +58456,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -58472,7 +58472,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -58493,6 +58492,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -58659,9 +58659,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -58675,7 +58675,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -58696,6 +58695,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -58884,9 +58884,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -58900,7 +58900,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -58921,6 +58920,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -59180,15 +59180,14 @@ export namespace Prisma {
     grades?: GradeCreateNestedManyWithoutScheduleInput
     academicYear: AcademicYearCreateNestedOneWithoutSchedulesInput
     class?: ClassCreateNestedOneWithoutSchedulesInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     subject: SubjectCreateNestedOneWithoutSchedulesInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutSchedulesInput
     teacher: UserDataCreateNestedOneWithoutSchedulesInput
   }
 
   export type ScheduleUncheckedCreateWithoutAssignmentsInput = {
     id?: string
     classId?: string | null
-    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -59197,6 +59196,7 @@ export namespace Prisma {
     endTime: string
     room?: string | null
     isActive?: boolean
+    tahfidzGroupId?: string | null
     attendances?: AttendanceUncheckedCreateNestedManyWithoutScheduleInput
     grades?: GradeUncheckedCreateNestedManyWithoutScheduleInput
   }
@@ -59277,9 +59277,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -59293,7 +59293,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -59314,6 +59313,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
@@ -59452,15 +59452,14 @@ export namespace Prisma {
     grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
     class?: ClassUpdateOneWithoutSchedulesNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateWithoutAssignmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
@@ -59469,6 +59468,7 @@ export namespace Prisma {
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     attendances?: AttendanceUncheckedUpdateManyWithoutScheduleNestedInput
     grades?: GradeUncheckedUpdateManyWithoutScheduleNestedInput
   }
@@ -59561,9 +59561,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -59577,7 +59577,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -59598,6 +59597,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
@@ -59700,9 +59700,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -59716,7 +59716,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -59737,6 +59736,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
@@ -59861,9 +59861,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -59877,7 +59877,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -59898,6 +59897,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
@@ -59951,9 +59951,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -59967,7 +59967,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -59988,6 +59987,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -60057,9 +60057,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -60073,7 +60073,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -60094,6 +60093,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -60147,9 +60147,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -60163,7 +60163,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -60184,6 +60183,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -60253,9 +60253,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -60269,7 +60269,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -60290,6 +60289,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -60343,9 +60343,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -60359,7 +60359,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -60380,6 +60379,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
@@ -60449,9 +60449,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -60465,7 +60465,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -60486,6 +60485,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
@@ -60539,9 +60539,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -60555,7 +60555,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -60576,6 +60575,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -60645,9 +60645,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -60661,7 +60661,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -60682,6 +60681,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -60735,9 +60735,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceCreateNestedManyWithoutTeacherInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -60751,7 +60751,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -60772,6 +60771,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -60830,9 +60830,9 @@ export namespace Prisma {
     createdAttendances?: TeacherAttendanceCreateNestedManyWithoutCreatedByUserInput
     academicYear?: AcademicYearCreateNestedOneWithoutStudentsInput
     class?: ClassCreateNestedOneWithoutStudentsInput
-    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     major?: MajorCreateNestedOneWithoutStudentsInput
     role?: RoleCreateNestedOneWithoutUserDataInput
+    tahfidzGroup?: TahfidzGroupCreateNestedOneWithoutStudentsInput
     user?: UserCreateNestedOneWithoutUserDataInput
     violations?: ViolationCreateNestedManyWithoutStudentInput
   }
@@ -60846,7 +60846,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -60867,6 +60866,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
     Announcements?: AnnouncementUncheckedCreateNestedManyWithoutUserInput
     studentSubmissions?: AssignmentSubmissionUncheckedCreateNestedManyWithoutStudentInput
     teacherAssignments?: AssignmentUncheckedCreateNestedManyWithoutTeacherInput
@@ -60936,9 +60936,9 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -60952,7 +60952,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -60973,6 +60972,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -61037,9 +61037,9 @@ export namespace Prisma {
     createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -61053,7 +61053,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -61074,6 +61073,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -61508,7 +61508,6 @@ export namespace Prisma {
   export type ScheduleCreateManyTeacherInput = {
     id?: string
     classId?: string | null
-    tahfidzGroupId?: string | null
     subjectId: string
     academicYearId: string
     dayOfWeek: number
@@ -61516,6 +61515,7 @@ export namespace Prisma {
     endTime: string
     room?: string | null
     isActive?: boolean
+    tahfidzGroupId?: string | null
   }
 
   export type TahfidzRecordCreateManyUserInput = {
@@ -61995,14 +61995,13 @@ export namespace Prisma {
     grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
     class?: ClassUpdateOneWithoutSchedulesNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateWithoutTeacherInput = {
     id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
     dayOfWeek?: IntFieldUpdateOperationsInput | number
@@ -62010,6 +62009,7 @@ export namespace Prisma {
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutScheduleNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutScheduleNestedInput
     grades?: GradeUncheckedUpdateManyWithoutScheduleNestedInput
@@ -62018,7 +62018,6 @@ export namespace Prisma {
   export type ScheduleUncheckedUpdateManyWithoutTeacherInput = {
     id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
     dayOfWeek?: IntFieldUpdateOperationsInput | number
@@ -62026,6 +62025,7 @@ export namespace Prisma {
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TahfidzRecordUpdateWithoutUserInput = {
@@ -62184,7 +62184,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -62204,6 +62203,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
   }
 
   export type UserDataUpdateWithoutRoleInput = {
@@ -62245,8 +62245,8 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -62260,7 +62260,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -62280,6 +62279,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -62305,7 +62305,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -62325,6 +62324,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type CalendarEventCreateManyAcademicYearInput = {
@@ -62395,7 +62395,6 @@ export namespace Prisma {
   export type ScheduleCreateManyAcademicYearInput = {
     id?: string
     classId?: string | null
-    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     dayOfWeek: number
@@ -62403,6 +62402,7 @@ export namespace Prisma {
     endTime: string
     room?: string | null
     isActive?: boolean
+    tahfidzGroupId?: string | null
   }
 
   export type UserDataCreateManyAcademicYearInput = {
@@ -62413,7 +62413,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -62434,6 +62433,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
   }
 
   export type ViolationTypeCreateManyAcademicYearInput = {
@@ -62662,15 +62662,14 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
     grades?: GradeUpdateManyWithoutScheduleNestedInput
     class?: ClassUpdateOneWithoutSchedulesNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateWithoutAcademicYearInput = {
     id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     dayOfWeek?: IntFieldUpdateOperationsInput | number
@@ -62678,6 +62677,7 @@ export namespace Prisma {
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutScheduleNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutScheduleNestedInput
     grades?: GradeUncheckedUpdateManyWithoutScheduleNestedInput
@@ -62686,7 +62686,6 @@ export namespace Prisma {
   export type ScheduleUncheckedUpdateManyWithoutAcademicYearInput = {
     id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     dayOfWeek?: IntFieldUpdateOperationsInput | number
@@ -62694,6 +62693,7 @@ export namespace Prisma {
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserDataUpdateWithoutAcademicYearInput = {
@@ -62734,9 +62734,9 @@ export namespace Prisma {
     createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -62749,7 +62749,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -62770,6 +62769,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -62794,7 +62794,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -62815,6 +62814,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ViolationTypeUpdateWithoutAcademicYearInput = {
@@ -62870,7 +62870,6 @@ export namespace Prisma {
     birthDate?: Date | string | null
     birthPlace?: string | null
     classId?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -62890,6 +62889,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
   }
 
   export type ClassUpdateWithoutMajorInput = {
@@ -63007,8 +63007,8 @@ export namespace Prisma {
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
     class?: ClassUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -63022,7 +63022,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -63042,6 +63041,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -63067,7 +63067,6 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -63087,6 +63086,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AssignmentCreateManyClassInput = {
@@ -63147,7 +63147,6 @@ export namespace Prisma {
 
   export type ScheduleCreateManyClassInput = {
     id?: string
-    tahfidzGroupId?: string | null
     subjectId: string
     teacherId: string
     academicYearId: string
@@ -63156,6 +63155,7 @@ export namespace Prisma {
     endTime: string
     room?: string | null
     isActive?: boolean
+    tahfidzGroupId?: string | null
   }
 
   export type UserDataCreateManyClassInput = {
@@ -63166,7 +63166,6 @@ export namespace Prisma {
     avatarUrl?: string | null
     birthDate?: Date | string | null
     birthPlace?: string | null
-    tahfidzGroupId?: string | null
     employeeId?: string | null
     endDate?: Date | string | null
     enrollmentDate?: Date | string | null
@@ -63187,6 +63186,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
+    tahfidzGroupId?: string | null
   }
 
   export type ViolationCreateManyClassInput = {
@@ -63383,14 +63383,13 @@ export namespace Prisma {
     attendances?: AttendanceUpdateManyWithoutScheduleNestedInput
     grades?: GradeUpdateManyWithoutScheduleNestedInput
     academicYear?: AcademicYearUpdateOneRequiredWithoutSchedulesNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     subject?: SubjectUpdateOneRequiredWithoutSchedulesNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutSchedulesNestedInput
     teacher?: UserDataUpdateOneRequiredWithoutSchedulesNestedInput
   }
 
   export type ScheduleUncheckedUpdateWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
@@ -63399,6 +63398,7 @@ export namespace Prisma {
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutScheduleNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutScheduleNestedInput
     grades?: GradeUncheckedUpdateManyWithoutScheduleNestedInput
@@ -63406,7 +63406,6 @@ export namespace Prisma {
 
   export type ScheduleUncheckedUpdateManyWithoutClassInput = {
     id?: StringFieldUpdateOperationsInput | string
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     subjectId?: StringFieldUpdateOperationsInput | string
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
@@ -63415,6 +63414,7 @@ export namespace Prisma {
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserDataUpdateWithoutClassInput = {
@@ -63455,9 +63455,9 @@ export namespace Prisma {
     createdAttendances?: TeacherAttendanceUpdateManyWithoutCreatedByUserNestedInput
     teacherAttendances?: TeacherAttendanceUpdateManyWithoutTeacherNestedInput
     academicYear?: AcademicYearUpdateOneWithoutStudentsNestedInput
-    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     major?: MajorUpdateOneWithoutStudentsNestedInput
     role?: RoleUpdateOneWithoutUserDataNestedInput
+    tahfidzGroup?: TahfidzGroupUpdateOneWithoutStudentsNestedInput
     user?: UserUpdateOneWithoutUserDataNestedInput
     violations?: ViolationUpdateManyWithoutStudentNestedInput
   }
@@ -63470,7 +63470,6 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -63491,6 +63490,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     Announcements?: AnnouncementUncheckedUpdateManyWithoutUserNestedInput
     studentSubmissions?: AssignmentSubmissionUncheckedUpdateManyWithoutStudentNestedInput
     teacherAssignments?: AssignmentUncheckedUpdateManyWithoutTeacherNestedInput
@@ -63515,7 +63515,6 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     birthPlace?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     enrollmentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -63536,6 +63535,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ViolationUpdateWithoutClassInput = {
@@ -63651,7 +63651,6 @@ export namespace Prisma {
   export type ScheduleCreateManySubjectInput = {
     id?: string
     classId?: string | null
-    tahfidzGroupId?: string | null
     teacherId: string
     academicYearId: string
     dayOfWeek: number
@@ -63659,6 +63658,7 @@ export namespace Prisma {
     endTime: string
     room?: string | null
     isActive?: boolean
+    tahfidzGroupId?: string | null
   }
 
   export type AssignmentUpdateWithoutSubjectInput = {
@@ -63895,7 +63895,6 @@ export namespace Prisma {
   export type ScheduleUncheckedUpdateWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
     dayOfWeek?: IntFieldUpdateOperationsInput | number
@@ -63903,6 +63902,7 @@ export namespace Prisma {
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     assignments?: AssignmentUncheckedUpdateManyWithoutScheduleNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutScheduleNestedInput
     grades?: GradeUncheckedUpdateManyWithoutScheduleNestedInput
@@ -63911,7 +63911,6 @@ export namespace Prisma {
   export type ScheduleUncheckedUpdateManyWithoutSubjectInput = {
     id?: StringFieldUpdateOperationsInput | string
     classId?: NullableStringFieldUpdateOperationsInput | string | null
-    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
     teacherId?: StringFieldUpdateOperationsInput | string
     academicYearId?: StringFieldUpdateOperationsInput | string
     dayOfWeek?: IntFieldUpdateOperationsInput | number
@@ -63919,6 +63918,7 @@ export namespace Prisma {
     endTime?: StringFieldUpdateOperationsInput | string
     room?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
+    tahfidzGroupId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AssignmentCreateManyScheduleInput = {

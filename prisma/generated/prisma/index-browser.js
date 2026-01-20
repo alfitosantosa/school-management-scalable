@@ -181,7 +181,6 @@ exports.Prisma.UserDataScalarFieldEnum = {
   birthDate: 'birthDate',
   birthPlace: 'birthPlace',
   classId: 'classId',
-  tahfidzGroupId: 'tahfidzGroupId',
   employeeId: 'employeeId',
   endDate: 'endDate',
   enrollmentDate: 'enrollmentDate',
@@ -201,7 +200,8 @@ exports.Prisma.UserDataScalarFieldEnum = {
   name: 'name',
   isActive: 'isActive',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  tahfidzGroupId: 'tahfidzGroupId'
 };
 
 exports.Prisma.RoleScalarFieldEnum = {
@@ -253,7 +253,6 @@ exports.Prisma.SubjectScalarFieldEnum = {
 exports.Prisma.ScheduleScalarFieldEnum = {
   id: 'id',
   classId: 'classId',
-  tahfidzGroupId: 'tahfidzGroupId',
   subjectId: 'subjectId',
   teacherId: 'teacherId',
   academicYearId: 'academicYearId',
@@ -261,7 +260,8 @@ exports.Prisma.ScheduleScalarFieldEnum = {
   startTime: 'startTime',
   endTime: 'endTime',
   room: 'room',
-  isActive: 'isActive'
+  isActive: 'isActive',
+  tahfidzGroupId: 'tahfidzGroupId'
 };
 
 exports.Prisma.AttendanceScalarFieldEnum = {

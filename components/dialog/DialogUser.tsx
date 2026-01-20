@@ -29,6 +29,7 @@ import { useGetTahfidzGroup } from "@/app/hooks/TahfidzGroup/useTahfidzGroup";
 
 // Type definitions
 export type UserData = {
+  tahfidzGroup: any;
   id: string;
   userId?: string;
   roleId: string;

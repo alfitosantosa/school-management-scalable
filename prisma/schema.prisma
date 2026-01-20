@@ -84,7 +84,6 @@ model UserData {
   birthDate          DateTime?
   birthPlace         String?
   classId            String?
-  tahfidzGroupId     String?
   employeeId         String?
   endDate            DateTime?
   enrollmentDate     DateTime?
@@ -105,6 +104,7 @@ model UserData {
   isActive           Boolean                @default(true)
   createdAt          DateTime?              @default(now())
   updatedAt          DateTime?              @updatedAt
+  tahfidzGroupId     String?
   Announcements      Announcement[]
   studentSubmissions AssignmentSubmission[] @relation("StudentSubmission")
   teacherAssignments Assignment[]           @relation("TeacherAssignment")
@@ -120,9 +120,9 @@ model UserData {
   teacherAttendances TeacherAttendance[]    @relation("TeacherAttendance")
   academicYear       AcademicYear?          @relation("UserAcademicYear", fields: [academicYearId], references: [id])
   class              Class?                 @relation("UserClass", fields: [classId], references: [id])
-  tahfidzGroup       TahfidzGroup?          @relation("UserTahfidzGroup", fields: [tahfidzGroupId], references: [id])
   major              Major?                 @relation("UserMajor", fields: [majorId], references: [id])
   role               Role?                  @relation(fields: [roleId], references: [id])
+  tahfidzGroup       TahfidzGroup?          @relation("UserTahfidzGroup", fields: [tahfidzGroupId], references: [id])
   user               User?                  @relation(fields: [userId], references: [id], onDelete: Cascade)
   violations         Violation[]            @relation("StudentViolation")
 
@@ -213,9 +213,8 @@ model Subject {
 }
 
 model Schedule {
-  id             String       @id @default(cuid())
+  id             String        @id @default(cuid())
   classId        String?
-  tahfidzGroupId String?
   subjectId      String
   teacherId      String
   academicYearId String
@@ -223,15 +222,16 @@ model Schedule {
   startTime      String
   endTime        String
   room           String?
-  isActive       Boolean      @default(true)
+  isActive       Boolean       @default(true)
+  tahfidzGroupId String?
   assignments    Assignment[]
   attendances    Attendance[]
   grades         Grade[]
-  academicYear   AcademicYear @relation(fields: [academicYearId], references: [id])
-  class          Class?       @relation(fields: [classId], references: [id])
-  tahfidzGroup   TahfidzGroup?  @relation("TahfidzGroupSchedule", fields: [tahfidzGroupId], references: [id]) 
-  subject        Subject      @relation(fields: [subjectId], references: [id])
-  teacher        UserData     @relation("TeacherSchedule", fields: [teacherId], references: [id])
+  academicYear   AcademicYear  @relation(fields: [academicYearId], references: [id])
+  class          Class?        @relation(fields: [classId], references: [id])
+  subject        Subject       @relation(fields: [subjectId], references: [id])
+  tahfidzGroup   TahfidzGroup? @relation("TahfidzGroupSchedule", fields: [tahfidzGroupId], references: [id])
+  teacher        UserData      @relation("TeacherSchedule", fields: [teacherId], references: [id])
 
   @@unique([classId, subjectId, teacherId, dayOfWeek, startTime])
   @@map("schedules")
@@ -599,15 +599,14 @@ model TeacherAttendance {
 }
 
 model TahfidzGroup {
-  id                  String               @id @default(cuid())
-  name                String
-  grade               Int
-  capacity            Int                  @default(40)
-  isActive            Boolean              @default(true)
-  schedules           Schedule[]           @relation("TahfidzGroupSchedule")
-  students            UserData[]           @relation("UserTahfidzGroup")
+  id        String     @id @default(cuid())
+  name      String     @unique
+  grade     Int
+  capacity  Int        @default(40)
+  isActive  Boolean    @default(true)
+  schedules Schedule[] @relation("TahfidzGroupSchedule")
+  students  UserData[] @relation("UserTahfidzGroup")
 
-  @@unique([name])
   @@index([grade])
   @@map("tahfidz_groups")
 }

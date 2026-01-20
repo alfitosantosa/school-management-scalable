@@ -9,11 +9,15 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ id: st
     const tahfidzGroup = await prisma.tahfidzGroup.findUnique({
       where: { id },
       include: {
-        students: true,
+      students: {
+          orderBy: {
+            name: "asc",
+          },
+        },
         schedules: true,
-
         _count: { select: { students: true, schedules: true } },
       },
+      
     });
     if (!tahfidzGroup) {
       return NextResponse.json({ error: "Tahfidz group not found" }, { status: 404 });

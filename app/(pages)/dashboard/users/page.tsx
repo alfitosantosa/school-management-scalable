@@ -145,6 +145,30 @@ function UserDashboard() {
         },
       },
       {
+        accessorKey: "tahfidzGroup",
+        header: ({ column }) => {
+          return (
+            <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+              <BookOpen className="mr-2 h-4 w-4" />
+              Tahfidz Group
+              <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+          );
+        },
+        cell: ({ row }) => {
+          const tahfidzGroupData = row.original.tahfidzGroup;
+          return <div>{tahfidzGroupData?.name || "-"}</div>;
+        },
+        filterFn: (row, columnId, filterValue) => {
+          if (typeof filterValue === "function") {
+            return filterValue(row);
+          }
+          if (!filterValue) return true;
+          const tahfidzGroupData = row.original.tahfidzGroup;
+          return tahfidzGroupData?.name === filterValue;
+        },
+      },
+      {
         accessorKey: "major",
         header: ({ column }) => {
           return (
@@ -463,6 +487,7 @@ function UserDashboard() {
                       email: "Email",
                       role: "Role",
                       class: "Kelas",
+                      tahfidzGroup: "Tahfidz Group",
                       major: "Jurusan",
                       status: "Status",
                       user: "BetterAuth",

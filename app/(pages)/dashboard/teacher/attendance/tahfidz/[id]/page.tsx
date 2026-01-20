@@ -139,6 +139,8 @@ Berikut adalah informasi kehadiran putra/putri Anda:
 📊 *Status:* {status}
 {notes}
 
+Anda tidak perlu membalas pesan ini.
+
 Terima kasih atas perhatiannya.
 
 ~IT Fajarsentosa
@@ -160,6 +162,8 @@ Kami menginformasikan kehadiran putra/putri Anda pada:
 {notes}
 --------------------------------
 
+Anda tidak perlu membalas pesan ini.
+
 Hormat kami,
 Tim IT Fajarsentosa
 _(Pesan Otomatis)_`,
@@ -178,6 +182,8 @@ Semoga sehat selalu. Izin menyampaikan update kehadiran ananda di sekolah hari i
 Nama: *{name}*
 Status: *{status}*
 {notes}
+
+Anda tidak perlu membalas pesan ini.
 
 Terima kasih atas kerja samanya dalam memantau pendidikan ananda. 🙏
 
@@ -199,6 +205,8 @@ Bapak/Ibu Wali Murid yang kami hormati, berikut data kehadiran siswa pada jam pe
 • Status: *{status}*
 {notes}
 
+Anda tidak perlu membalas pesan ini.
+
 Mohon dapat diterima dengan baik. Terima kasih.
 
 ~ Admin IT Fajarsentosa ~`,
@@ -214,6 +222,8 @@ Diberitahukan bahwa pada jadwal *${schedule.subject?.name || "Pelajaran"}* (${sc
 👉 *{name}*
 ✅ *{status}*
 {notes}
+
+Anda tidak perlu membalas pesan ini.
 
 Guru Pengampu: ${schedule.teacher?.name || "Guru"}
 

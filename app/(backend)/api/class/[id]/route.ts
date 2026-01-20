@@ -31,7 +31,12 @@ export async function GET(
       include: {
         academicYear: true,
         major: true,
-        students: true,
+        students: {
+          orderBy: {
+            name: "asc",
+          },
+          
+        },
         schedules: true,
         _count: {
           select: {
@@ -40,7 +45,7 @@ export async function GET(
           },
         },
       },
-    });
+    }); 
 
     if (!classData) {
       return NextResponse.json({ error: "Resource not found" }, { status: 404 });

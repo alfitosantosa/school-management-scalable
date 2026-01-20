@@ -89,6 +89,7 @@ export async function GET() {
         major: true,
         academicYear: true,
         user: true,
+        tahfidzGroup: true,
       },
       orderBy: {
         name: "asc",
