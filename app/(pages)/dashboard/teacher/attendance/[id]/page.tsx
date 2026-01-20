@@ -90,8 +90,8 @@ function AttendanceModule() {
     const schedule = scheduleDataById[0];
     if (!schedule || !classData) return;
 
-    // Filter students with parentPhone and attendance data
-    const studentsWithPhone = students.filter((s) => s.parentPhone && s.parentPhone.trim() !== "" && attendanceInfo[s.id]?.status);
+    // Filter students with parentPhone and attendance data and send if status not absent
+    const studentsWithPhone = students.filter((s) =>  s.parentPhone && s.parentPhone.trim() !== "" && attendanceInfo[s.id]?.status !== "present");
 
     if (studentsWithPhone.length === 0) {
       toast.warning("Tidak ada nomor HP orang tua yang valid untuk dikirim notifikasi.");
@@ -137,6 +137,8 @@ Berikut adalah informasi kehadiran putra/putri Anda:
 📊 *Status:* {status}
 {notes}
 
+Anda tidak perlu membalas pesan ini.
+
 Terima kasih atas perhatiannya.
 
 ~IT Fajarsentosa
@@ -158,6 +160,8 @@ Kami menginformasikan kehadiran putra/putri Anda pada:
 {notes}
 --------------------------------
 
+Anda tidak perlu membalas pesan ini.
+
 Hormat kami,
 Tim IT Fajarsentosa
 _(Pesan Otomatis)_`,
@@ -176,6 +180,8 @@ Semoga sehat selalu. Izin menyampaikan update kehadiran ananda di sekolah hari i
 Nama: *{name}*
 Status: *{status}*
 {notes}
+
+Anda tidak perlu membalas pesan ini.
 
 Terima kasih atas kerja samanya dalam memantau pendidikan ananda. 🙏
 
@@ -196,6 +202,8 @@ Bapak/Ibu Wali Murid yang kami hormati, berikut data kehadiran siswa pada jam pe
 • Nama: *{name}*
 • Status: *{status}*
 {notes}
+
+Anda tidak perlu membalas pesan ini.
 
 Mohon dapat diterima dengan baik. Terima kasih.
 

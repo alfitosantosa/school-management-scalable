@@ -92,8 +92,8 @@ function AttendanceModule() {
     const schedule = scheduleDataById[0];
     if (!schedule || !classData) return;
 
-    // Filter students with parentPhone and attendance data
-    const studentsWithPhone = students.filter((s) => s.parentPhone && s.parentPhone.trim() !== "" && attendanceInfo[s.id]?.status);
+  // Filter students with parentPhone and attendance data and send if status not absent
+    const studentsWithPhone = students.filter((s) =>  s.parentPhone && s.parentPhone.trim() !== "" && attendanceInfo[s.id]?.status !== "present");
 
     if (studentsWithPhone.length === 0) {
       toast.warning("Tidak ada nomor HP orang tua yang valid untuk dikirim notifikasi.");
