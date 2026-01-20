@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, BookOpen, GraduationCap } from "lucide-react";
+import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, BookOpen, GraduationCap, User, Mail, Shield, Image as ImageIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -23,6 +23,7 @@ import { useSession } from "@/lib/auth-client";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { unauthorized } from "next/navigation";
 import { useGetClasses } from "@/app/hooks/Classes/useClass";
+import { useGetTahfidzGroup } from "@/app/hooks/TahfidzGroup/useTahfidzGroup";
 
 // Dashboard Component - Only rendered after role verification
 function UserDashboard() {
@@ -34,6 +35,7 @@ function UserDashboard() {
   // Filter selections
   const [roleSelection, setRoleSelection] = React.useState<string | null>(null);
   const [classSelection, setClassSelection] = React.useState<string | null>(null);
+  const [tahfidzGroupSelection, setTahfidzGroupSelection] = React.useState<string | null>(null);
   const [majorSelection, setMajorSelection] = React.useState<string | null>(null);
 
   // Dialog states
@@ -66,6 +68,11 @@ function UserDashboard() {
 
   const { data: classesData, isLoading: isLoadingClasses } = useGetClasses();
 
+  const {
+    data : tahfidzGroupsData,
+    isLoading : isLoadingTahfidzGroups
+  } = useGetTahfidzGroup();
+
   const uniqueMajors = React.useMemo(() => {
     return Array.from(new Set(usersData.map((user: UserData) => user.major?.name).filter(Boolean)));
   }, [usersData]);
@@ -82,7 +89,15 @@ function UserDashboard() {
       },
       {
         accessorKey: "avatarUrl",
-        header: "Avatar",
+        header: ({ column }) => {
+          return (
+            <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+              <ImageIcon className="mr-2 h-4 w-4" />
+              Avatar
+              <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+          );
+        },
         cell: ({ row }) => {
           const avatarUrl = row.original.avatarUrl || "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png";
           return <Image src={avatarUrl} alt="Avatar" className="w-10 h-10 rounded-full object-cover" width={40} height={40} />;
@@ -90,18 +105,39 @@ function UserDashboard() {
       },
       {
         accessorKey: "name",
-        header: "Name",
+        header: ({ column }) => {
+          return (
+            <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+              <User className="mr-2 h-4 w-4" />
+              Name
+              <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+          );
+        },
         cell: ({ row }) => <div>{row.original.name ?? "-"}</div>,
       },
       {
         accessorKey: "role",
-        header: "Role",
+        header: ({ column }) => {
+          return (
+            <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+              <Shield className="mr-2 h-4 w-4" />
+              Role
+              <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+          );
+        },
         cell: ({ row }) => {
           const role = row.original.role;
           if (!role) {
             return <Badge variant="secondary">-</Badge>;
           }
           return <Badge variant="secondary">{role.name}</Badge>;
+        },
+        sortingFn: (rowA, rowB) => {
+          const roleA = rowA.original.role?.name || "";
+          const roleB = rowB.original.role?.name || "";
+          return roleA.localeCompare(roleB);
         },
         filterFn: (row, columnId, filterValue) => {
           if (typeof filterValue === "function") {
@@ -114,7 +150,15 @@ function UserDashboard() {
       },
       {
         accessorKey: "email",
-        header: "Email",
+        header: ({ column }) => {
+          return (
+            <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+              <Mail className="mr-2 h-4 w-4" />
+              Email
+              <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+          );
+        },
         cell: ({ row }) => {
           const email = row.getValue("email") as string;
           return <div className="lowercase">{email || "-"}</div>;
@@ -134,6 +178,11 @@ function UserDashboard() {
         cell: ({ row }) => {
           const classData = row.original.class;
           return <div>{classData?.name || "-"}</div>;
+        },
+        sortingFn: (rowA, rowB) => {
+          const classA = rowA.original.class?.name || "";
+          const classB = rowB.original.class?.name || "";
+          return classA.localeCompare(classB);
         },
         filterFn: (row, columnId, filterValue) => {
           if (typeof filterValue === "function") {
@@ -159,6 +208,11 @@ function UserDashboard() {
           const tahfidzGroupData = row.original.tahfidzGroup;
           return <div>{tahfidzGroupData?.name || "-"}</div>;
         },
+        sortingFn: (rowA, rowB) => {
+          const tahfidzA = rowA.original.tahfidzGroup?.name || "";
+          const tahfidzB = rowB.original.tahfidzGroup?.name || "";
+          return tahfidzA.localeCompare(tahfidzB);
+        },
         filterFn: (row, columnId, filterValue) => {
           if (typeof filterValue === "function") {
             return filterValue(row);
@@ -183,6 +237,11 @@ function UserDashboard() {
           const major = row.original.major;
           return <div>{major?.name || "-"}</div>;
         },
+        sortingFn: (rowA, rowB) => {
+          const majorA = rowA.original.major?.name || "";
+          const majorB = rowB.original.major?.name || "";
+          return majorA.localeCompare(majorB);
+        },
         filterFn: (row, columnId, filterValue) => {
           if (typeof filterValue === "function") {
             return filterValue(row);
@@ -194,7 +253,14 @@ function UserDashboard() {
       },
       {
         accessorKey: "status",
-        header: "Status",
+        header: ({ column }) => {
+          return (
+            <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+              Status
+              <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+          );
+        },
         cell: ({ row }) => {
           const status = row.original.status as string;
           const getStatusVariant = (status: string) => {
@@ -228,7 +294,14 @@ function UserDashboard() {
       },
       {
         accessorKey: "userId",
-        header: "BetterAuth",
+        header: ({ column }) => {
+          return (
+            <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+              BetterAuth
+              <ArrowUpDown className="ml-2 h-4 w-4" />
+            </Button>
+          );
+        },
         cell: ({ row }) => {
           const userId = row.getValue("userId") as string;
 
@@ -241,6 +314,14 @@ function UserDashboard() {
               <Badge variant="default">Linked</Badge>
             </div>
           );
+        },
+        sortingFn: (rowA, rowB) => {
+          const userIdA = rowA.original.userId || "";
+          const userIdB = rowB.original.userId || "";
+          // Sort: linked items first, then empty
+          if (!userIdA && userIdB) return 1;
+          if (userIdA && !userIdB) return -1;
+          return userIdA.localeCompare(userIdB);
         },
       },
       {
@@ -335,6 +416,18 @@ function UserDashboard() {
     [table]
   );
 
+  const handleTahfidzGroupFilter = React.useCallback(
+    (tahfidzGroupName: string | null) => {
+      setTahfidzGroupSelection(tahfidzGroupName);
+      if (tahfidzGroupName) {
+        table.getColumn("tahfidzGroup")?.setFilterValue(tahfidzGroupName);
+      } else {
+        table.getColumn("tahfidzGroup")?.setFilterValue("");
+      }
+    },
+    [table]
+  );
+
   const handleMajorFilter = React.useCallback(
     (majorName: string | null) => {
       setMajorSelection(majorName);
@@ -386,7 +479,7 @@ function UserDashboard() {
   }, [table]);
 
   // Loading state
-  if (isLoading) {
+  if (isLoading || isLoadingClasses || isLoadingTahfidzGroups) {
     return <Loading />;
   }
 
@@ -443,6 +536,24 @@ function UserDashboard() {
               {classesData?.map((className: any) => (
                 <DropdownMenuItem key={String(className?.name)} onClick={() => handleClassFilter(className?.name as string)}>
                   {className?.name as string}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline">
+                {tahfidzGroupSelection || "Filter Tahfidz Group"}
+                <ChevronDown className="ml-2 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem onClick={() => handleTahfidzGroupFilter(null)}>Semua Tahfidz Group</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              {tahfidzGroupsData?.map((tahfidzGroupName: any) => (
+                <DropdownMenuItem key={String(tahfidzGroupName?.name)} onClick={() => handleTahfidzGroupFilter(tahfidzGroupName?.name as string)}>
+                  {tahfidzGroupName?.name as string}
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
