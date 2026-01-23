@@ -406,7 +406,7 @@ export default function DashboardPage() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {filteredData.slice(0, 10).map(
+                    {filteredData.map(
                       (record: {
                         status: string | number;
                         id: React.Key | null | undefined;
