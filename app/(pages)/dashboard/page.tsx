@@ -213,11 +213,12 @@ export default function DashboardPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+              <div className="flex flex-wrap gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-700 ">
-                    <DatePickerWithRange date={dateRange} setDate={setDateRange} />
+                    Set Tanggal
                   </label>
+                  <DatePickerWithRange date={dateRange} setDate={setDateRange} />
                 </div>
 
                 <div className="space-y-2">
