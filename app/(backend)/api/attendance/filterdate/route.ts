@@ -15,12 +15,22 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    const startDate = new Date(fromdate);
+    const endDate = new Date(todate);
+    
+    // Add 1 day to endDate to make sure we fetch data up to the end of the strict toDate
+    endDate.setDate(endDate.getDate() + 1);
+
     const attendances = await prisma.attendance.findMany({
       where: {
         date: {
-          gte: new Date(fromdate),
-          lte: new Date(todate),
+          gte: startDate,
+          lte: endDate,
         },
+      },
+      include: {
+      student: true,
+        schedule: true,
       },
     });
     return NextResponse.json(attendances);
@@ -30,5 +40,6 @@ export async function GET(request: NextRequest) {
       { error: "Failed to fetch attendances" },
       { status: 500 }
     );
-  }
+  }  
+
 }

@@ -3,6 +3,7 @@
 import * as React from "react";
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, Calendar, Clock, Users, Search, X, CheckCircle, XCircle, AlertCircle, Download } from "lucide-react";
+import { DateRange } from "react-day-picker";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -15,19 +16,21 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Textarea } from "@/components/ui/textarea";
+import { DatePickerWithRange } from "@/components/date/datePicker";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 
 // Import hooks
-import { useGetAttendance, useCreateAttendance, useUpdateAttendance, useDeleteAttendance } from "@/app/hooks/Attendances/useAttendance";
+import { useCreateAttendance, useUpdateAttendance, useDeleteAttendance } from "@/app/hooks/Attendances/useAttendance";
 import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules";
 import { useGetStudents } from "@/app/hooks/Users/useStudents";
 import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
 import { unauthorized } from "next/navigation";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
+import { useAttendanceByDate } from "@/app/hooks/Attendances/useAttendanceByDate";
 
 // Type definitions
 export type AttendanceData = {
@@ -308,10 +311,22 @@ function AttendanceDataTable() {
   // Filter states
   const [statusFilter, setStatusFilter] = React.useState<string>("all");
   const [classFilter, setClassFilter] = React.useState<string>("all");
-  const [dateFilter, setDateFilter] = React.useState<string>("");
+  const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
+    from: new Date(),
+    to: new Date(),
+  });
   const [globalFilter, setGlobalFilter] = React.useState<string>("");
 
-  const { data: attendances = [], isLoading, refetch } = useGetAttendance();
+  // Use the attendance by date hook
+  const { data: attendanceByDate = [], isLoading: isLoadingAttendanceByDate, refetch } = useAttendanceByDate({
+    fromdate: dateRange?.from || new Date(),
+    todate: dateRange?.to || new Date(),
+  });
+
+  React.useEffect(() => {
+    refetch();
+  }, [dateRange?.from?.toISOString(), dateRange?.to?.toISOString()]);
+
   const { data: schedules = [] } = useGetSchedules();
 
   const handleSuccess = () => {
@@ -321,10 +336,7 @@ function AttendanceDataTable() {
   // Export to Excel function
   const exportToExcel = async () => {
     try {
-      // Dynamically import xlsx library
       const XLSX = await import("xlsx");
-
-      // Get selected rows
       const selectedRows = table.getFilteredSelectedRowModel().rows;
 
       if (selectedRows.length === 0) {
@@ -332,13 +344,10 @@ function AttendanceDataTable() {
         return;
       }
 
-      // Create worksheet data
       const wsData = [
-        // Header row
         ["Tanggal", "Hari", "Nama Siswa", "Email Siswa", "NISN", "Kelas", "Mata Pelajaran", "Kode Mapel", "Guru Pengajar", "Waktu Mulai", "Waktu Selesai", "Ruangan", "Status Kehadiran", "Catatan"],
       ];
 
-      // Add data rows
       selectedRows.forEach((row) => {
         const attendance = row.original;
         const schedule = schedules.find((s: any) => s.id === attendance.scheduleId);
@@ -366,35 +375,18 @@ function AttendanceDataTable() {
         ]);
       });
 
-      // Create workbook and worksheet
       const wb = XLSX.utils.book_new();
       const ws = XLSX.utils.aoa_to_sheet(wsData);
 
-      // Set column widths
       ws["!cols"] = [
-        { wch: 12 }, // Tanggal
-        { wch: 10 }, // Hari
-        { wch: 25 }, // Nama Siswa
-        { wch: 25 }, // Email Siswa
-        { wch: 12 }, // NISN
-        { wch: 15 }, // Kelas
-        { wch: 25 }, // Mata Pelajaran
-        { wch: 12 }, // Kode Mapel
-        { wch: 25 }, // Guru Pengajar
-        { wch: 12 }, // Waktu Mulai
-        { wch: 12 }, // Waktu Selesai
-        { wch: 15 }, // Ruangan
-        { wch: 15 }, // Status Kehadiran
-        { wch: 35 }, // Catatan
+        { wch: 12 }, { wch: 10 }, { wch: 25 }, { wch: 25 }, { wch: 12 }, 
+        { wch: 15 }, { wch: 25 }, { wch: 12 }, { wch: 25 }, { wch: 12 }, 
+        { wch: 12 }, { wch: 15 }, { wch: 15 }, { wch: 35 }
       ];
 
-      // Add worksheet to workbook
       XLSX.utils.book_append_sheet(wb, ws, "Data Kehadiran");
 
-      // Generate filename with current date
       const filename = `data-kehadiran-${new Date().toISOString().split("T")[0]}.xlsx`;
-
-      // Generate Excel file
       XLSX.writeFile(wb, filename);
 
       toast.success(`Berhasil mengekspor ${selectedRows.length} data kehadiran`);
@@ -404,7 +396,6 @@ function AttendanceDataTable() {
     }
   };
 
-  // Get unique classes from schedules
   const uniqueClasses = React.useMemo(() => {
     const classes = schedules
       .filter((schedule: any) => schedule.class)
@@ -413,14 +404,12 @@ function AttendanceDataTable() {
     return classes;
   }, [schedules]);
 
-  // Custom global filter function
   const globalFilterFn = React.useCallback((row: any, columnId: string, filterValue: string) => {
     if (!filterValue) return true;
 
     const searchValue = filterValue.toLowerCase();
     const attendance = row.original;
 
-    // Search in multiple fields
     const searchableText = [
       attendance.student?.name,
       attendance.schedule?.subject?.name,
@@ -437,15 +426,6 @@ function AttendanceDataTable() {
     return searchableText.includes(searchValue);
   }, []);
 
-  // Custom date filter function
-  const dateFilterFn = React.useCallback((row: any, columnId: string, filterValue: string) => {
-    if (!filterValue) return true;
-
-    const attendanceDate = new Date(row.original.date).toISOString().split("T")[0];
-    return attendanceDate === filterValue;
-  }, []);
-
-  // Custom class filter function
   const classFilterFn = React.useCallback(
     (row: any, columnId: string, filterValue: string) => {
       if (filterValue === "all") return true;
@@ -496,7 +476,6 @@ function AttendanceDataTable() {
         const dateB = new Date(rowB.original.date);
         return dateA.getTime() - dateB.getTime();
       },
-      filterFn: dateFilterFn,
     },
     {
       id: "student",
@@ -633,7 +612,7 @@ function AttendanceDataTable() {
   ];
 
   const table = useReactTable({
-    data: attendances,
+    data: attendanceByDate,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -654,7 +633,6 @@ function AttendanceDataTable() {
     },
   });
 
-  // Apply status filter
   React.useEffect(() => {
     if (statusFilter !== "all") {
       table.getColumn("status")?.setFilterValue(statusFilter);
@@ -663,7 +641,6 @@ function AttendanceDataTable() {
     }
   }, [statusFilter, table]);
 
-  // Apply class filter
   React.useEffect(() => {
     if (classFilter !== "all") {
       table.getColumn("schedule")?.setFilterValue(classFilter);
@@ -672,16 +649,6 @@ function AttendanceDataTable() {
     }
   }, [classFilter, table]);
 
-  // Apply date filter
-  React.useEffect(() => {
-    if (dateFilter) {
-      table.getColumn("date")?.setFilterValue(dateFilter);
-    } else {
-      table.getColumn("date")?.setFilterValue(undefined);
-    }
-  }, [dateFilter, table]);
-
-  // Calculate statistics
   const stats = React.useMemo(() => {
     const filteredAttendances = table.getFilteredRowModel().rows.map((row) => row.original);
 
@@ -695,7 +662,7 @@ function AttendanceDataTable() {
     };
   }, [table.getFilteredRowModel().rows]);
 
-  if (isLoading) {
+  if (isLoadingAttendanceByDate) {
     return <Loading />;
   }
 
@@ -706,15 +673,13 @@ function AttendanceDataTable() {
       <div className="mx-auto my-8 p-6 max-w-7xl">
         <div className="font-bold text-3xl mb-6">Data Kehadiran Siswa</div>
 
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-4 flex-wrap gap-4">
           <div className="flex items-center space-x-2 flex-wrap gap-y-2">
-            {/* Global Search */}
             <div className="relative">
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input placeholder="Cari siswa, mata pelajaran, atau kelas..." value={globalFilter ?? ""} onChange={(event) => setGlobalFilter(event.target.value)} className="max-w-sm pl-8" disabled={isLoading} />
+              <Input placeholder="Cari siswa, mata pelajaran, atau kelas..." value={globalFilter ?? ""} onChange={(event) => setGlobalFilter(event.target.value)} className="max-w-sm pl-8" />
             </div>
 
-            {/* Status Filter */}
             <Select value={statusFilter} onValueChange={setStatusFilter}>
               <SelectTrigger className="w-[140px]">
                 <SelectValue placeholder="Filter Status" />
@@ -732,7 +697,6 @@ function AttendanceDataTable() {
               </SelectContent>
             </Select>
 
-            {/* Class Filter */}
             <Select value={classFilter} onValueChange={setClassFilter}>
               <SelectTrigger className="w-[140px]">
                 <SelectValue placeholder="Filter Kelas" />
@@ -747,11 +711,9 @@ function AttendanceDataTable() {
               </SelectContent>
             </Select>
 
-            {/* Date Filter */}
-            <Input type="date" value={dateFilter} onChange={(e) => setDateFilter(e.target.value)} className="w-[150px]" placeholder="Filter Tanggal" />
+            <DatePickerWithRange date={dateRange} setDate={setDateRange} />
 
-            {/* Clear Filters */}
-            {(globalFilter || statusFilter !== "all" || classFilter !== "all" || dateFilter) && (
+            {(globalFilter || statusFilter !== "all" || classFilter !== "all") && (
               <Button
                 variant="outline"
                 size="sm"
@@ -759,7 +721,6 @@ function AttendanceDataTable() {
                   setGlobalFilter("");
                   setStatusFilter("all");
                   setClassFilter("all");
-                  setDateFilter("");
                   table.resetColumnFilters();
                 }}
               >
@@ -769,65 +730,59 @@ function AttendanceDataTable() {
             )}
           </div>
 
-          <div className="grid xl:grid-cols-3 sm:grid-cols-1 gap-2 items-center space-x-2">
-            <div>
-              {/* Export Excel Button - Show when rows are selected */}
-              {selectedRowsCount > 0 && (
-                <Button variant="default" onClick={exportToExcel} className="bg-green-600 hover:bg-green-700">
-                  <Download className="mr-2 h-4 w-4" />
-                  Export Excel ({selectedRowsCount})
-                </Button>
-              )}
-            </div>
-            <div>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline">
-                    Kolom <ChevronDown className="ml-2 h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  {table
-                    .getAllColumns()
-                    .filter((column) => column.getCanHide())
-                    .map((column) => {
-                      const getColumnLabel = (columnId: string) => {
-                        switch (columnId) {
-                          case "date":
-                            return "Tanggal";
-                          case "student":
-                            return "Siswa";
-                          case "schedule":
-                            return "Jadwal Pelajaran";
-                          case "status":
-                            return "Status";
-                          case "notes":
-                            return "Catatan";
-                          default:
-                            return columnId;
-                        }
-                      };
-
-                      return (
-                        <DropdownMenuCheckboxItem key={column.id} className="capitalize" checked={column.getIsVisible()} onCheckedChange={(value) => column.toggleVisibility(!!value)}>
-                          {getColumnLabel(column.id)}
-                        </DropdownMenuCheckboxItem>
-                      );
-                    })}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-            <div>
-              <Button onClick={() => setCreateDialogOpen(true)}>
-                <Plus className="mr-2 h-4 w-4" />
-                Catat Kehadiran
+          <div className="flex items-center gap-2 flex-wrap">
+            {selectedRowsCount > 0 && (
+              <Button variant="default" onClick={exportToExcel} className="bg-green-600 hover:bg-green-700">
+                <Download className="mr-2 h-4 w-4" />
+                Export Excel ({selectedRowsCount})
               </Button>
-            </div>
+            )}
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline">
+                  Kolom <ChevronDown className="ml-2 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {table
+                  .getAllColumns()
+                  .filter((column) => column.getCanHide())
+                  .map((column) => {
+                    const getColumnLabel = (columnId: string) => {
+                      switch (columnId) {
+                        case "date":
+                          return "Tanggal";
+                        case "student":
+                          return "Siswa";
+                        case "schedule":
+                          return "Jadwal Pelajaran";
+                        case "status":
+                          return "Status";
+                        case "notes":
+                          return "Catatan";
+                        default:
+                          return columnId;
+                      }
+                    };
+
+                    return (
+                      <DropdownMenuCheckboxItem key={column.id} className="capitalize" checked={column.getIsVisible()} onCheckedChange={(value) => column.toggleVisibility(!!value)}>
+                        {getColumnLabel(column.id)}
+                      </DropdownMenuCheckboxItem>
+                    );
+                  })}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <Button onClick={() => setCreateDialogOpen(true)}>
+              <Plus className="mr-2 h-4 w-4" />
+              Catat Kehadiran
+            </Button>
           </div>
         </div>
 
-        {/* Active Filters Display */}
-        {(globalFilter || statusFilter !== "all" || classFilter !== "all" || dateFilter) && (
+        {(globalFilter || statusFilter !== "all" || classFilter !== "all") && (
           <div className="flex items-center space-x-2 py-2">
             <span className="text-sm text-muted-foreground">Filter aktif:</span>
             {globalFilter && (
@@ -846,12 +801,6 @@ function AttendanceDataTable() {
               <Badge variant="secondary" className="gap-1">
                 Kelas: {uniqueClasses?.find((c: any) => c.id === classFilter)?.name}
                 <X className="h-3 w-3 cursor-pointer" onClick={() => setClassFilter("all")} />
-              </Badge>
-            )}
-            {dateFilter && (
-              <Badge variant="secondary" className="gap-1">
-                Tanggal: {new Date(dateFilter).toLocaleDateString("id-ID")}
-                <X className="h-3 w-3 cursor-pointer" onClick={() => setDateFilter("")} />
               </Badge>
             )}
           </div>
@@ -883,9 +832,9 @@ function AttendanceDataTable() {
                     <div className="flex flex-col items-center justify-center space-y-2">
                       <CheckCircle className="h-8 w-8 text-muted-foreground" />
                       <p className="text-muted-foreground">
-                        {globalFilter || statusFilter !== "all" || classFilter !== "all" || dateFilter ? "Tidak ada data kehadiran yang sesuai dengan filter." : "Tidak ada data kehadiran yang ditemukan."}
+                        {globalFilter || statusFilter !== "all" || classFilter !== "all" ? "Tidak ada data kehadiran yang sesuai dengan filter." : "Tidak ada data kehadiran yang ditemukan."}
                       </p>
-                      {(globalFilter || statusFilter !== "all" || classFilter !== "all" || dateFilter) && (
+                      {(globalFilter || statusFilter !== "all" || classFilter !== "all") && (
                         <Button
                           variant="outline"
                           size="sm"
@@ -893,7 +842,6 @@ function AttendanceDataTable() {
                             setGlobalFilter("");
                             setStatusFilter("all");
                             setClassFilter("all");
-                            setDateFilter("");
                             table.resetColumnFilters();
                           }}
                         >
@@ -911,7 +859,7 @@ function AttendanceDataTable() {
         <div className="flex items-center justify-between space-x-2 py-4">
           <div className="flex-1 text-sm text-muted-foreground">
             {table.getFilteredSelectedRowModel().rows.length} dari {table.getFilteredRowModel().rows.length} baris dipilih.
-            {table.getFilteredRowModel().rows.length !== attendances.length && <span className="ml-2">(difilter dari {attendances.length} total)</span>}
+            {table.getFilteredRowModel().rows.length !== attendanceByDate.length && <span className="ml-2">(difilter dari {attendanceByDate.length} total)</span>}
           </div>
           <div className="flex items-center space-x-2">
             <p className="text-sm font-medium">
@@ -928,7 +876,6 @@ function AttendanceDataTable() {
           </div>
         </div>
 
-        {/* Summary Statistics */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-6">
           <div className="bg-card rounded-lg border p-4">
             <div className="flex items-center space-x-2">
@@ -936,7 +883,7 @@ function AttendanceDataTable() {
               <h3 className="font-semibold">Total Kehadiran</h3>
             </div>
             <p className="text-2xl font-bold mt-2">{stats.total}</p>
-            {table.getFilteredRowModel().rows.length !== attendances.length && <p className="text-sm text-muted-foreground">({table.getFilteredRowModel().rows.length} terfilter)</p>}
+            {table.getFilteredRowModel().rows.length !== attendanceByDate.length && <p className="text-sm text-muted-foreground">({table.getFilteredRowModel().rows.length} terfilter)</p>}
           </div>
 
           <div className="bg-card rounded-lg border p-4">
@@ -976,7 +923,6 @@ function AttendanceDataTable() {
           </div>
         </div>
 
-        {/* Dialogs */}
         <AttendanceFormDialog open={createDialogOpen} onOpenChange={setCreateDialogOpen} onSuccess={handleSuccess} />
 
         <AttendanceFormDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} editData={selectedAttendance} onSuccess={handleSuccess} />
@@ -994,12 +940,10 @@ export default function UserDataTable() {
   const { data: userData, isLoading: isLoadingUserData } = useGetUserByIdBetterAuth(userId as string);
   const userRole = userData?.role?.name;
 
-  // Show loading while checking authorization
   if (isPending || isLoadingUserData) {
     return <Loading />;
   }
 
-  // Check if user is Admin
   if (userRole !== "Admin") {
     if (userRole !== "Head Of School") {
       if (userRole !== "Yayasan") {
@@ -1009,6 +953,5 @@ export default function UserDataTable() {
     }
   }
 
-  // Render dashboard only after authorization is confirmed
   return <AttendanceDataTable />;
 }

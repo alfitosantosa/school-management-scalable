@@ -11,6 +11,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Input } from "@/components/ui/input";
 import { PieChart, Pie, Cell, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import { CheckCircle, XCircle, Clock, AlertCircle, Users, Calendar, BookOpen, MapPin, Search, Filter, TrendingUp, AlertTriangle, User, UserCheck, BarChart3, PieChart as PieChartIcon } from "lucide-react";
+import { useAttendanceByDate } from "@/app/hooks/Attendances/useAttendanceByDate";
+import { DatePickerWithRange } from "@/components/date/datePicker";
+import { DateRange } from "react-day-picker";
 
 // Status mapping
 const STATUS_MAP = {
@@ -22,12 +25,20 @@ const STATUS_MAP = {
 };
 
 export default function DashboardPage() {
-  const { data: attendanceData = [], isLoading: attendanceIsLoading, isError: attendanceIsError } = useGetAttendance();
+    const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
+      from: new Date(),
+      to: new Date(),
+    });
 
-  const [dateRange, setDateRange] = useState({
-    startDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0], // 7 days ago
-    endDate: new Date().toISOString().split("T")[0], // today
+    const { data: attendanceData = [], isLoading: attendanceIsLoading, isError: attendanceIsError, refetch } = useAttendanceByDate({
+    fromdate: dateRange?.from || new Date(),
+    todate: dateRange?.to || new Date(),
   });
+
+  React.useEffect(() => {
+    refetch();
+  }, [dateRange?.from?.toISOString(), dateRange?.to?.toISOString()]);
+
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [selectedClass, setSelectedClass] = useState("all");
   const [searchStudent, setSearchStudent] = useState("");
@@ -46,13 +57,12 @@ export default function DashboardPage() {
   // Filter data based on selected filters
   const filteredData = useMemo(() => {
     return attendanceData.filter((record: { date: string | number | Date; status: string; schedule: { room: string }; student: { name: string; nisn: string | string[] } }) => {
-      const recordDate = new Date(record.date).toISOString().split("T")[0];
-      const inDateRange = recordDate >= dateRange.startDate && recordDate <= dateRange.endDate;
+
       const matchesStatus = selectedStatus === "all" || record.status === selectedStatus;
       const matchesClass = selectedClass === "all" || record.schedule?.room === selectedClass;
       const matchesSearch = searchStudent === "" || record.student?.name.toLowerCase().includes(searchStudent.toLowerCase()) || record.student?.nisn?.includes(searchStudent);
 
-      return inDateRange && matchesStatus && matchesClass && matchesSearch;
+      return matchesStatus && matchesClass && matchesSearch;
     });
   }, [attendanceData, dateRange, selectedStatus, selectedClass, searchStudent]);
 
@@ -205,19 +215,9 @@ export default function DashboardPage() {
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-700 flex items-center">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Tanggal Mulai
+                  <label className="text-sm font-medium text-slate-700 ">
+                    <DatePickerWithRange date={dateRange} setDate={setDateRange} />
                   </label>
-                  <Input type="date" value={dateRange.startDate} onChange={(e) => setDateRange((prev) => ({ ...prev, startDate: e.target.value }))} />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-700 flex items-center">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Tanggal Akhir
-                  </label>
-                  <Input type="date" value={dateRange.endDate} onChange={(e) => setDateRange((prev) => ({ ...prev, endDate: e.target.value }))} />
                 </div>
 
                 <div className="space-y-2">
