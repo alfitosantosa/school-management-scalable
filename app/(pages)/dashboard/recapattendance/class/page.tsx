@@ -29,7 +29,7 @@ const STATUS_CONFIG = {
 
 function getDefaultStartDate() {
   const date = new Date();
-  date.setDate(date.getDate() - 31);
+  date.setDate(date.getDate());
   return date.toISOString().split("T")[0];
 }
 
@@ -51,8 +51,19 @@ function RecapAttendanceByClass() {
   console.log("attendanceResponse", attendanceResponse);
 
   // Extract data from response
-  const attendanceData = attendanceResponse?.attendance || [];
+  // Extract data from response
+  const rawAttendanceData = attendanceResponse?.attendance || [];
   const classStudents = attendanceResponse?.students || [];
+
+  // Deduplicate attendance: one record per student per day
+  const uniqueAttendanceMap = new Map();
+  rawAttendanceData.forEach((attendance: any) => {
+    if (!attendance.date || !attendance.studentId) return;
+    const dateStr = format(new Date(attendance.date), "yyyy-MM-dd");
+    const key = `${attendance.studentId}-${dateStr}`;
+    uniqueAttendanceMap.set(key, attendance);
+  });
+  const attendanceData = Array.from(uniqueAttendanceMap.values());
 
   // Use students from attendance response if available, otherwise filter from all students
   const filteredStudents = classStudents.length > 0 ? classStudents : selectedClass ? students.filter((student: any) => student.classId === selectedClass.id) : [];
@@ -72,10 +83,7 @@ function RecapAttendanceByClass() {
   const totalPages = Math.ceil(sortedDates.length / itemsPerPage);
   const paginatedDates = sortedDates.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
 
-  // Debug: Log untuk melihat data
-  console.log("Total attendance data:", attendanceData.length);
-  console.log("Dates with attendance:", sortedDates);
-  console.log("Paginated dates:", paginatedDates);
+
 
   // Calculate statistics
   const stats = {

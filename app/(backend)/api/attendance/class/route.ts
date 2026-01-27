@@ -10,6 +10,8 @@ export async function GET(request: NextRequest) {
     const startDate = searchParams.get("startDate");
     const endDate = searchParams.get("endDate");
 
+
+
     if (!classId || !startDate || !endDate) {
       return NextResponse.json({ error: "Missing required parameters: classId, startDate, endDate" }, { status: 400 });
     }
@@ -29,6 +31,10 @@ export async function GET(request: NextRequest) {
     });
 
     // Get attendance records for students in this class and date range
+
+    const end = new Date(endDate);
+    end.setDate(end.getDate() + 1);
+    
     const attendanceRecords = await prisma.attendance.findMany({
       where: {
         studentId: {
@@ -36,7 +42,7 @@ export async function GET(request: NextRequest) {
         },
         date: {
           gte: new Date(startDate),
-          lte: new Date(endDate),
+          lte: end,
         },
       },
       select: {
