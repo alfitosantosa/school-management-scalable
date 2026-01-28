@@ -34,7 +34,12 @@ const STATUS_CONFIG: StatusConfigMap = {
   sakit: { label: "Sakit", bg: "bg-yellow-100", text: "text-yellow-800", icon: AlertCircle },
   izin: { label: "Izin", bg: "bg-blue-100", text: "text-blue-800", icon: Clock },
   alfa: { label: "Alfa", bg: "bg-red-100", text: "text-red-800", icon: AlertCircle },
-  terlambat: { label: "Terlambat", bg: "bg-orange-100", text: "text-orange-800", icon: AlertCircle },
+  terlambat: {
+    label: "Terlambat",
+    bg: "bg-orange-100",
+    text: "text-orange-700",
+    icon: Clock,
+  },
 };
 
 // console.log(STATUS_CONFIG);
@@ -728,6 +733,10 @@ function ReportsTab() {
                         <div className="text-center">
                           <p className="text-xs text-gray-600">Alfa</p>
                           <span className="inline-block px-2 py-1 rounded bg-red-100 text-red-800 text-xs font-semibold">{teacher.statistics?.absentDays || 0}</span>
+                        </div>
+                        <div className="text-center">
+                          <p className="text-xs text-gray-600">Terlambat</p>
+                          <span className="inline-block px-2 py-1 rounded bg-orange-100 text-orange-800 text-xs font-semibold">{teacher.statistics?.lateDays || 0}</span>
                         </div>
                       </div>
                     )}
