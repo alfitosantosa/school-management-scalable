@@ -34,7 +34,10 @@ const STATUS_CONFIG: StatusConfigMap = {
   sakit: { label: "Sakit", bg: "bg-yellow-100", text: "text-yellow-800", icon: AlertCircle },
   izin: { label: "Izin", bg: "bg-blue-100", text: "text-blue-800", icon: Clock },
   alfa: { label: "Alfa", bg: "bg-red-100", text: "text-red-800", icon: AlertCircle },
+  terlambat: { label: "Terlambat", bg: "bg-orange-100", text: "text-orange-800", icon: AlertCircle },
 };
+
+// console.log(STATUS_CONFIG);
 
 function TeacherAttendancePage() {
   const { data: session } = useSession();
@@ -384,7 +387,7 @@ function CheckinTab({ adminId }: CheckinTabProps) {
           return (
             <Card key={key}>
               <CardContent className="pt-4 sm:pt-6">
-                <div className="flex items-center gap-2 sm:gap-3">
+                <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3">
                   <div className={`p-1.5 sm:p-2 rounded-lg ${config.bg} shrink-0`}>
                     <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${config.text}`} />
                   </div>
@@ -552,14 +555,16 @@ function ReportsTab() {
         const avgPresent = totalTeachers > 0 ? Math.round(reports.reduce((sum: number, t: any) => sum + (t.statistics?.presentPercentage || 0), 0) / totalTeachers) : 0;
         const avgSick = totalTeachers > 0 ? Math.round(reports.reduce((sum: number, t: any) => sum + ((t.statistics?.sickDays || 0) / (t.statistics?.totalDays || 1)) * 100, 0) / totalTeachers) : 0;
         const avgAbsent = totalTeachers > 0 ? Math.round(reports.reduce((sum: number, t: any) => sum + ((t.statistics?.absentDays || 0) / (t.statistics?.totalDays || 1)) * 100, 0) / totalTeachers) : 0;
+        const avgLate = totalTeachers > 0 ? Math.round(reports.reduce((sum: number, t: any) => sum + ((t.statistics?.lateDays || 0) / (t.statistics?.totalDays || 1)) * 100, 0) / totalTeachers) : 0;
 
         return (
-          <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
+          <div className="flex flex-wrap justify-center w-full gap-2 sm:gap-3 lg:grid-cols-4">
             {[
               { label: "Total Guru", value: totalTeachers, color: "bg-blue-100 text-blue-800" },
               { label: "Rata-rata Hadir", value: `${avgPresent}%`, color: "bg-green-100 text-green-800" },
               { label: "Rata-rata Sakit", value: `${avgSick}%`, color: "bg-yellow-100 text-yellow-800" },
               { label: "Rata-rata Alfa", value: `${avgAbsent}%`, color: "bg-red-100 text-red-800" },
+              { label: "Rata-rata Terlambat", value: `${avgLate}%`, color: "bg-orange-100 text-orange-800" },
             ].map((stat) => (
               <Card key={stat.label}>
                 <CardContent className="pt-4 sm:pt-6">
@@ -721,6 +726,7 @@ function ReportsTab() {
                         </div>
                       </div>
                     )}
+
                   </div>
 
                   {/* Detail Attendances */}

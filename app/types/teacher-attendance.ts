@@ -138,6 +138,7 @@ export interface StatusConfigMap {
   sakit: StatusConfig;
   izin: StatusConfig;
   alfa: StatusConfig;
+  terlambat: StatusConfig;
 }
 
 // React Query Types
