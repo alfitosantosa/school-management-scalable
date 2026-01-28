@@ -31,7 +31,7 @@ import Loading from "@/components/loading";
 
 import { Check, Activity, FileText, X } from "lucide-react";
 
-export const STATUS_CONFIG: StatusConfigMap = {
+const STATUS_CONFIG: StatusConfigMap = {
   hadir: {
     label: "Hadir",
     bg: "bg-green-100",
