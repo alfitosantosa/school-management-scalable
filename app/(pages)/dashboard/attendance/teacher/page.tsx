@@ -20,7 +20,7 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CheckCircle2, Clock, AlertCircle, Search, Plus, Calendar, BarChart3, Edit2, Download, Trash2, ChevronDown, ChevronUp } from "lucide-react";
+import { Clock, Search, Plus, Calendar, BarChart3, Edit2, Download, Trash2, ChevronDown, ChevronUp } from "lucide-react";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import { exportTeacherAttendanceToExcel, exportTeacherAttendanceDetailToExcel } from "@/lib/export/exportTeacherAttendances";
@@ -29,11 +29,33 @@ import type { AttendanceStatus, TeacherAttendanceRecord, Teacher, StatusConfigMa
 import { unauthorized } from "next/navigation";
 import Loading from "@/components/loading";
 
-const STATUS_CONFIG: StatusConfigMap = {
-  hadir: { label: "Hadir", bg: "bg-green-100", text: "text-green-800", icon: CheckCircle2 },
-  sakit: { label: "Sakit", bg: "bg-yellow-100", text: "text-yellow-800", icon: AlertCircle },
-  izin: { label: "Izin", bg: "bg-blue-100", text: "text-blue-800", icon: Clock },
-  alfa: { label: "Alfa", bg: "bg-red-100", text: "text-red-800", icon: AlertCircle },
+import { Check, Activity, FileText, X } from "lucide-react";
+
+export const STATUS_CONFIG: StatusConfigMap = {
+  hadir: {
+    label: "Hadir",
+    bg: "bg-green-100",
+    text: "text-green-700",
+    icon: Check,
+  },
+  sakit: {
+    label: "Sakit",
+    bg: "bg-yellow-100",
+    text: "text-yellow-700",
+    icon: Activity,
+  },
+  izin: {
+    label: "Izin",
+    bg: "bg-blue-100",
+    text: "text-blue-700",
+    icon: FileText,
+  },
+  alfa: {
+    label: "Alfa",
+    bg: "bg-red-100",
+    text: "text-red-700",
+    icon: X,
+  },
   terlambat: {
     label: "Terlambat",
     bg: "bg-orange-100",
@@ -41,6 +63,7 @@ const STATUS_CONFIG: StatusConfigMap = {
     icon: Clock,
   },
 };
+
 
 // console.log(STATUS_CONFIG);
 
