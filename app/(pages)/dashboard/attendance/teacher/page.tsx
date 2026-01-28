@@ -194,6 +194,7 @@ function CheckinTab({ adminId }: CheckinTabProps) {
     sakit: attendance.filter((a: TeacherAttendanceRecord) => a.status === "sakit").length,
     izin: attendance.filter((a: TeacherAttendanceRecord) => a.status === "izin").length,
     alfa: attendance.filter((a: TeacherAttendanceRecord) => a.status === "alfa").length,
+    terlambat: attendance.filter((a: TeacherAttendanceRecord) => a.status === "terlambat").length,
   };
 
   return (
@@ -693,6 +694,10 @@ function ReportsTab() {
                         <div className="text-center">
                           <p className="text-xs text-gray-600">Alfa</p>
                           <span className="inline-block px-2 py-1 rounded bg-red-100 text-red-800 text-xs font-semibold">{teacher.statistics?.absentDays || 0}</span>
+                        </div>
+                        <div className="text-center">
+                          <p className="text-xs text-gray-600">Terlambat</p>
+                          <span className="inline-block px-2 py-1 rounded bg-orange-100 text-orange-800 text-xs font-semibold">{teacher.statistics?.lateDays || 0}</span>
                         </div>
                         <div className="text-right">
                           <p className="text-xs text-gray-600">Persentase</p>

@@ -3,7 +3,7 @@
  * Defines all TypeScript interfaces and types for the teacher attendance system
  */
 
-export type AttendanceStatus = "hadir" | "sakit" | "izin" | "alfa";
+export type AttendanceStatus = "hadir" | "sakit" | "izin" | "alfa" | "terlambat";
 
 export interface Teacher {
   id: string;
@@ -82,6 +82,7 @@ export interface AttendanceStats {
   sakit: number;
   izin: number;
   alfa: number;
+  terlambat: number;
 }
 
 export interface TeacherAttendanceStatistics {
