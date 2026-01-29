@@ -31,7 +31,7 @@ import Loading from "@/components/loading";
 
 import { Check, Activity, FileText, X } from "lucide-react";
 
-export const STATUS_CONFIG: StatusConfigMap = {
+const STATUS_CONFIG: StatusConfigMap = {
   hadir: {
     label: "Hadir",
     bg: "bg-green-100",
@@ -302,7 +302,7 @@ function CheckinTab({ adminId }: CheckinTabProps) {
                       <SelectContent>
                         {(Object.entries(STATUS_CONFIG) as [AttendanceStatus, (typeof STATUS_CONFIG)[keyof typeof STATUS_CONFIG]][]).map(([key, config]) => (
                           <SelectItem key={key} value={key} className="text-xs sm:text-sm">
-                            {config.label}
+                            {config?.label}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -412,17 +412,17 @@ function CheckinTab({ adminId }: CheckinTabProps) {
       <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
         {(Object.entries(stats) as [AttendanceStatus, number][]).map(([key, count]) => {
           const config = STATUS_CONFIG[key];
-          const Icon = config.icon;
+          const Icon = config?.icon;
           return (
             <Card key={key}>
               <CardContent className="pt-4 sm:pt-6">
                 <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3">
-                  <div className={`p-1.5 sm:p-2 rounded-lg ${config.bg} shrink-0`}>
-                    <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${config.text}`} />
+                  <div className={`p-1.5 sm:p-2 rounded-lg ${config?.bg} shrink-0`}>
+                    <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${config?.text}`} />
                   </div>
                   <div className="min-w-0">
                     <p className="text-xl sm:text-2xl font-bold">{count}</p>
-                    <p className="text-xs text-gray-600 truncate">{config.label}</p>
+                    <p className="text-xs text-gray-600 truncate">{config?.label}</p>
                   </div>
                 </div>
               </CardContent>
