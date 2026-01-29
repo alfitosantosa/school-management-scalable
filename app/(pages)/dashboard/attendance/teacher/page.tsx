@@ -31,7 +31,7 @@ import Loading from "@/components/loading";
 
 import { Check, Activity, FileText, X } from "lucide-react";
 
-const STATUS_CONFIG: StatusConfigMap = {
+export const STATUS_CONFIG: StatusConfigMap = {
   hadir: {
     label: "Hadir",
     bg: "bg-green-100",
@@ -727,10 +727,7 @@ function ReportsTab() {
                           <p className="text-xs text-gray-600">Terlambat</p>
                           <span className="inline-block px-2 py-1 rounded bg-orange-100 text-orange-800 text-xs font-semibold">{teacher.statistics?.lateDays || 0}</span>
                         </div>
-                        <div className="text-right">
-                          <p className="text-xs text-gray-600">Persentase</p>
-                          <span className="font-semibold text-green-600 text-sm">{teacher.statistics?.presentPercentage}%</span>
-                        </div>
+                       
                       </div>
                     </div>
 
