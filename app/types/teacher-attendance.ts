@@ -127,19 +127,19 @@ export interface AttendanceErrorResponse {
 }
 
 export interface StatusConfig {
-  label: string;
-  bg: string;
-  text: string;
+  label?: string;
+  bg?: string;
+  text?: string;
   color?: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon?: React.ComponentType<{ className?: string }>;
 }
 
 export interface StatusConfigMap {
-  hadir: StatusConfig;
-  sakit: StatusConfig;
-  izin: StatusConfig;
-  alfa: StatusConfig;
-  terlambat: StatusConfig;
+  hadir?: StatusConfig;
+  sakit?: StatusConfig;
+  izin?: StatusConfig;
+  alfa?: StatusConfig;
+  terlambat?: StatusConfig;
 }
 
 // React Query Types
