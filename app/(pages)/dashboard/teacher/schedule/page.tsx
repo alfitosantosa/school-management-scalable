@@ -40,10 +40,16 @@ const ScheduleCard = ({ schedule }: { schedule: any }) => {
   const todayDate = new Date().toISOString().split("T")[0];
 
   // Call the hook for each schedule
-  const { data: isSubmitted } = useAttendanceIsSubmitted({
+  const { data: isSubmitted, isLoading: isLoadingIsSubmitted } = useAttendanceIsSubmitted({
     date: todayDate,
     scheduleId: schedule.id
   });
+
+  if (isLoadingIsSubmitted) {
+    return <Loading />;
+  }
+
+
 
   const isButtonDisabled = isSubmitted === true || !isTodaySchedule(schedule.dayOfWeek);
 

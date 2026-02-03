@@ -17,7 +17,6 @@ import Loading from "@/components/loading";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { useAttendanceIsSubmitted } from "@/app/hooks/Attendances/useAttendanceIsSubmitted";
 
-
 const ScheduleCard = ({ schedule }: { schedule: any }) => {
   const isTodaySchedule = (dayOfWeek: number) => {
     const currentDay = new Date().getDay();
@@ -38,11 +37,14 @@ const ScheduleCard = ({ schedule }: { schedule: any }) => {
   const todayDate = new Date().toISOString().split("T")[0];
 
   // Call the hook for each schedule
-  const { data: isSubmitted } = useAttendanceIsSubmitted({
+  const { data: isSubmitted, isLoading } = useAttendanceIsSubmitted({
     date: todayDate,
     scheduleId: schedule.id
   });
 
+  if (isLoading) {
+    return <Loading />;
+  }
 
 
 
