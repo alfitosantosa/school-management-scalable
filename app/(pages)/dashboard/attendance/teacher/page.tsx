@@ -700,7 +700,8 @@ function ReportsTab() {
           reports.reduce(
             (sum: number, t: any) =>
               sum +
-              ((t.statistics?.presentDays || 0) / (t.statistics?.totalDays || 1)) *
+              ((t.statistics?.presentDays || 0) /
+                (t.statistics?.totalDays || 1)) *
                 100,
             0,
           ) / totalTeachers,
