@@ -32,7 +32,7 @@ services:
       resources:
         limits:
           cpus: "2.0"
-          memory: 4G  # Turunkan dari 7G
+          memory: 2G  # Turunkan dari 7G
         reservations:
           cpus: "0.5"
           memory: 1G  # Turunkan dari 2G

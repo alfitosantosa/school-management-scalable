@@ -72,7 +72,7 @@ export type ScheduleData = {
 const scheduleSchema = z
   .object({
     classId: z.string().min(1, "Kelas wajib dipilih"),
-    tahfidzGroupId: z.string().optional(),
+    tahfidzGroupId: z.string().min(0, "Kelompok tahfidz wajib dipilih"),
     subjectId: z.string().min(1, "Mata pelajaran wajib dipilih"),
     teacherId: z.string().min(1, "Guru wajib dipilih"),
     academicYearId: z.string().min(1, "Tahun akademik wajib dipilih"),
@@ -222,7 +222,7 @@ function ScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open:
                 </SelectTrigger>
                 <SelectContent>
                   {tahfidzGroups?.map((tahfidzGroup: any) => (
-                    <SelectItem key={tahfidzGroup.id} value={tahfidzGroup.id}>
+                    <SelectItem key={tahfidzGroup.id} value={tahfidzGroup.id || ""}>
                       {tahfidzGroup.name}
                     </SelectItem>
                   ))}
