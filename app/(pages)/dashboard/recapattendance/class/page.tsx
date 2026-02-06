@@ -51,7 +51,6 @@ function RecapAttendanceByClass() {
   console.log("attendanceResponse", attendanceResponse);
 
   // Extract data from response
-  // Extract data from response
   const rawAttendanceData = attendanceResponse?.attendance || [];
   const classStudents = attendanceResponse?.students || [];
 
@@ -133,8 +132,12 @@ function RecapAttendanceByClass() {
                 <Select
                   value={selectedClass?.id || ""}
                   onValueChange={(value) => {
-                    const classData = classes.find((c: any) => c.id === value);
-                    setSelectedClass(classData);
+                    if (value === "all") {
+                      setSelectedClass({ id: "all", name: "Semua Kelas" });
+                    } else {
+                      const classData = classes.find((c: any) => c.id === value);
+                      setSelectedClass(classData);
+                    }
                     setCurrentPage(0);
                   }}
                 >
@@ -142,6 +145,12 @@ function RecapAttendanceByClass() {
                     <SelectValue placeholder="Pilih kelas..." />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="all">
+                      <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4" />
+                        <span>Semua Kelas</span>
+                      </div>
+                    </SelectItem>
                     {classes.map((classItem: any) => (
                       <SelectItem key={classItem.id} value={classItem.id}>
                         <div className="flex items-center gap-2">
@@ -290,7 +299,7 @@ function RecapAttendanceByClass() {
                                       <ImageWithFallback src={student?.avatarUrl || DEFAULT_AVATAR} alt={student?.name || "Student"} width={40} height={40} className="rounded-full ring-2 ring-white" fallback={DEFAULT_AVATAR} />
                                       <div className="flex-1 min-w-0">
                                         <p className="text-sm font-medium text-gray-900 truncate">{student?.name || "Unknown Student"}</p>
-                                        <p className="text-xs text-gray-500 truncate">{student?.email || "-"}</p>
+                                        <p className="text-xs text-gray-500 truncate">NISN: {student?.nisn || "-"}</p>
                                       </div>
                                       <Badge className={`${config.bg} ${config.text} border-0 gap-1 flex-shrink-0`}>
                                         <Icon className="w-3 h-3" />

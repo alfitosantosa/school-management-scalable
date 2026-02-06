@@ -43,6 +43,10 @@ export default function DashboardPage() {
   const [selectedClass, setSelectedClass] = useState("all");
   const [searchStudent, setSearchStudent] = useState("");
 
+  //filter by session and filter by day 
+  const [selectedFilter, setSelectedFilter] = useState("all");
+
+
   // Get unique classes from data
   const classes = useMemo(() => {
     const classSet = new Set<string>();
@@ -261,6 +265,20 @@ export default function DashboardPage() {
                     Cari Siswa
                   </label>
                   <Input type="text" placeholder="Nama atau NISN" value={searchStudent} onChange={(e) => setSearchStudent(e.target.value)} />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-700">Filter by</label>
+                  <Select value={selectedFilter} onValueChange={setSelectedFilter}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Pilih filter" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="session">Filter by Session</SelectItem>
+                      <SelectItem value="day">Filter by Day</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  
+                 
                 </div>
               </div>
             </CardContent>
