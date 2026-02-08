@@ -3,7 +3,7 @@
 # ==========================================
 
 # Stage 1: Dependencies (Minimal cache)
-FROM oven/bun:1.1-alpine AS deps
+FROM node:24-alpine AS deps
 WORKDIR /app
 
 # Install dependencies in single layer dengan cleanup
@@ -11,15 +11,15 @@ RUN apk add --no-cache curl \
     && rm -rf /var/cache/apk/* /tmp/*
 
 # Copy package files
-COPY package.json bun.lock* ./
+COPY package.json package-lock.json* yarn.lock* bun.lock* ./
 
 # Install dependencies dan cleanup dalam satu layer
-RUN bun install \
-    && rm -rf /tmp/* ~/.bun/install/cache
+RUN npm install --frozen-lockfile \
+    && rm -rf /tmp/*
 
 # ==========================================
 # Stage 2: Builder (dengan cleanup aggressive)
-FROM oven/bun:1.1-alpine AS builder
+FROM node:24-alpine AS builder
 WORKDIR /app
 
 # Copy dependencies dari deps stage
@@ -32,8 +32,8 @@ ENV NEXT_TELEMETRY_DISABLED=1 \
     SKIP_ENV_VALIDATION=1
 
 # Generate Prisma & Build dalam single layer dengan cleanup
-RUN bunx prisma generate \
-    && bunx next build \
+RUN npx prisma generate \
+    && npm run build \
     && rm -rf /tmp/* \
     && rm -rf .next/cache \
     && rm -rf node_modules/.cache \
@@ -42,7 +42,7 @@ RUN bunx prisma generate \
 
 # ==========================================
 # Stage 3: Production Runner (Ultra minimal)
-FROM oven/bun:1.1-alpine AS runner
+FROM node:24-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production \
@@ -78,4 +78,4 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
   CMD curl -f http://localhost:${PORT:-3000}/api/health || exit 1
 
-CMD ["bun", "server.js"]
+CMD ["node", "server.js"]
