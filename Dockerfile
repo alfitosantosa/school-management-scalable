@@ -3,7 +3,7 @@
 # ==========================================
 
 # Stage 1: Dependencies
-FROM oven/bun:latest-alpine AS deps
+FROM oven/bun:canary AS deps
 WORKDIR /app
 
 # Install only essential system dependencies
@@ -17,7 +17,9 @@ COPY package.json bun.lock* ./
 
 # Install dependencies with production optimizations
 RUN bun install --frozen-lockfile \
-    && rm -rf /tmp/* ~/.bun/install/cache
+    && rm -rf /tmp/* \
+    && rm -rf ~/.bun/install/cache \
+    && rm -rf ~/.cache
 
 # ==========================================
 # Stage 2: Builder
@@ -45,6 +47,7 @@ RUN bunx prisma generate \
     && rm -rf /tmp/* \
     && rm -rf .next/cache \
     && rm -rf node_modules/.cache \
+    && rm -rf ~/.bun \
     && find . -name "*.map" -type f -delete \
     && find . -name "*.test.*" -type f -delete \
     && find . -name "*.spec.*" -type f -delete
@@ -82,6 +85,12 @@ COPY --from=builder --chown=appuser:bun /app/.next/static ./.next/static
 COPY --from=builder --chown=appuser:bun /app/prisma ./prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/pg ./node_modules/pg
+
+# Clean up unnecessary files and caches
+RUN rm -rf /tmp/* \
+    && rm -rf ~/.cache \
+    && rm -rf ~/.bun \
+    && apk del apk-tools
 
 # Switch to non-root user
 USER appuser
