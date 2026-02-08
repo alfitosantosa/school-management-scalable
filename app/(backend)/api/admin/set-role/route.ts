@@ -1,8 +1,6 @@
 import { auth } from "@/lib/auth";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-
-const prisma = new PrismaClient();
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,36 +10,24 @@ export async function POST(request: NextRequest) {
     });
 
     if (!session?.user) {
-      return NextResponse.json(
-        { error: "Unauthorized - No session found" },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized - No session found" }, { status: 401 });
     }
 
     if (session.user.role !== "admin") {
-      return NextResponse.json(
-        { error: "Unauthorized - Admin access required" },
-        { status: 403 }
-      );
+      return NextResponse.json({ error: "Unauthorized - Admin access required" }, { status: 403 });
     }
 
     // Parse request body
     const { userId, role } = await request.json();
 
     if (!userId || !role) {
-      return NextResponse.json(
-        { error: "Missing required fields: userId and role" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Missing required fields: userId and role" }, { status: 400 });
     }
 
     // Validate role
     const validRoles = ["user", "admin", "teacher", "student", "parent"];
     if (!validRoles.includes(role)) {
-      return NextResponse.json(
-        { error: `Invalid role. Must be one of: ${validRoles.join(", ")}` },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: `Invalid role. Must be one of: ${validRoles.join(", ")}` }, { status: 400 });
     }
 
     // Update user role in database
@@ -62,9 +48,6 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error("Error setting role:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

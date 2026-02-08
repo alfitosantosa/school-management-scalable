@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@/lib/prisma";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 export async function GET(request: NextRequest) {
   try {
@@ -10,13 +8,9 @@ export async function GET(request: NextRequest) {
     const startDate = searchParams.get("startDate");
     const endDate = searchParams.get("endDate");
 
-
-
     if (!classId || !startDate || !endDate) {
       return NextResponse.json({ error: "Missing required parameters: classId, startDate, endDate" }, { status: 400 });
     }
-
-  
 
     // Get students in class
     let classStudents;
@@ -52,7 +46,7 @@ export async function GET(request: NextRequest) {
 
     const end = new Date(endDate);
     end.setDate(end.getDate() + 1);
-    
+
     const attendanceRecords = await prisma.attendance.findMany({
       where: {
         studentId: {
