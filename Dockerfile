@@ -3,7 +3,7 @@
 # ==========================================
 
 # Stage 1: Dependencies
-FROM oven/bun:1.2-alpine AS deps
+FROM oven/bun:latest-alpine AS deps
 WORKDIR /app
 
 # Install only essential system dependencies
@@ -21,7 +21,7 @@ RUN bun install --frozen-lockfile \
 
 # ==========================================
 # Stage 2: Builder
-FROM oven/bun:1.2-alpine AS builder
+FROM oven/bun:latest-alpine AS builder
 WORKDIR /app
 
 # Install build dependencies
@@ -36,11 +36,12 @@ COPY . .
 # Environment variables for build
 ENV NEXT_TELEMETRY_DISABLED=1 \
     NODE_ENV=production \
-    SKIP_ENV_VALIDATION=1
+    SKIP_ENV_VALIDATION=1 \
+    NODE_OPTIONS="--no-warnings=ExperimentalWarning"
 
 # Generate Prisma client and build Next.js
 RUN bunx prisma generate \
-    && bunx next build \
+    && bun run build \
     && rm -rf /tmp/* \
     && rm -rf .next/cache \
     && rm -rf node_modules/.cache \
@@ -50,7 +51,7 @@ RUN bunx prisma generate \
 
 # ==========================================
 # Stage 3: Production Runner (Minimal)
-FROM oven/bun:1.2-alpine AS runner
+FROM oven/bun:latest-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production \
@@ -65,24 +66,25 @@ RUN apk add --no-cache \
     && rm -rf /var/cache/apk/* /tmp/*
 
 # Create non-root user
-RUN addgroup --system --gid 1001 nodejs \
-    && adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 bun \
+    && adduser --system --uid 1001 appuser
 
 # Copy only necessary files
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/bun.lock* ./
 
 # Copy standalone build
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=appuser:bun /app/.next/standalone ./
+COPY --from=builder --chown=appuser:bun /app/.next/static ./.next/static
 
 # Copy Prisma for runtime migrations
-COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+COPY --from=builder --chown=appuser:bun /app/prisma ./prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/pg ./node_modules/pg
 
 # Switch to non-root user
-USER nextjs
+USER appuser
 
 EXPOSE 3000
 
