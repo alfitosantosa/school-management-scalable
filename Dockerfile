@@ -62,12 +62,6 @@ ENV NODE_ENV=production \
     PORT=3000 \
     HOSTNAME="0.0.0.0"
 
-# Install runtime dependencies only
-RUN apk add --no-cache \
-    curl \
-    openssl \
-    && rm -rf /var/cache/apk/* /tmp/*
-
 # Create non-root user
 RUN addgroup --system --gid 1001 bun \
     && adduser --system --uid 1001 appuser
