@@ -29,7 +29,7 @@ import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAu
 import { ClassDataTypes, ClassFormValues, classSchemaForm } from "@/app/types/class-types";
 import { z } from "zod";
 import { MajorDataTypes } from "@/app/types/majors-types";
-import { AcademicYearData } from "@/app/types/academicyear-types";
+import { AcademicYearDataTypes } from "@/app/types/academicyear-types";
 
 
 
@@ -136,7 +136,7 @@ function ClassFormDialog({ open, onOpenChange, editData, onSuccess }: { open: bo
                 <SelectValue placeholder="Pilih Tahun Ajaran" />
               </SelectTrigger>
               <SelectContent>
-                {academicYears?.map((year: AcademicYearData) => (
+                {academicYears?.map((year: AcademicYearDataTypes) => (
                   <SelectItem key={year.id} value={year.id}>
                     {year.year}
                   </SelectItem>
@@ -397,7 +397,7 @@ function ClassDataTable() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">Semua Tahun Ajaran</SelectItem>
-                  {academicYears?.map((year: AcademicYearData) => (
+                  {academicYears?.map((year: AcademicYearDataTypes) => (
                     <SelectItem key={year.id} value={year.id}>
                       {year.year}
                     </SelectItem>

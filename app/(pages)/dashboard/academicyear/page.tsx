@@ -26,11 +26,11 @@ import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
 import { unauthorized } from "next/navigation";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
-import { AcademicYearForm } from "@/app/types/academicyear-types";
+import {  AcademicYearForm, AcademicYearDataTypes, academicYearSchema } from "@/app/types/academicyear-types";
 
 
 // Create/Edit Dialog Component
-function AcademicYearFormDialog({ open, onOpenChange, editData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; editData?:AcademicYearForm | null; onSuccess: () => void }) {
+function AcademicYearFormDialog({ open, onOpenChange, editData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; editData?:AcademicYearDataTypes | null; onSuccess: () => void }) {
   const createAcademicYear = useCreateAcademicYear();
   const updateAcademicYear = useUpdateAcademicYear();
 
@@ -41,8 +41,8 @@ function AcademicYearFormDialog({ open, onOpenChange, editData, onSuccess }: { o
     watch,
     formState: { errors },
     reset,
-  } = useForm<AcademicYearFormValues>({
-    resolver: zodResolver(),
+  } = useForm<AcademicYearForm>({
+    resolver: zodResolver(academicYearSchema),
     defaultValues: {
       isActive: false,
     },
@@ -63,7 +63,7 @@ function AcademicYearFormDialog({ open, onOpenChange, editData, onSuccess }: { o
     }
   }, [editData, setValue, reset]);
 
-  const onSubmit = async (data: AcademicYearFormValues) => {
+  const onSubmit = async (data: AcademicYearForm) => {
     try {
       if (editData) {
         await updateAcademicYear.mutateAsync({ id: editData.id, ...data });
@@ -126,7 +126,7 @@ function AcademicYearFormDialog({ open, onOpenChange, editData, onSuccess }: { o
 }
 
 // Delete Confirmation Dialog
-function DeleteAcademicYearDialog({ open, onOpenChange, academicYearData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; academicYearData: AcademicYearData | null; onSuccess: () => void }) {
+function DeleteAcademicYearDialog({ open, onOpenChange, academicYearData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; academicYearData: AcademicYearDataTypes | null; onSuccess: () => void }) {
   const deleteAcademicYear = useDeleteAcademicYear();
 
   const handleDelete = async () => {
@@ -174,7 +174,7 @@ function AcademicYearDataTable() {
   const [createDialogOpen, setCreateDialogOpen] = React.useState(false);
   const [editDialogOpen, setEditDialogOpen] = React.useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
-  const [selectedAcademicYear, setSelectedAcademicYear] = React.useState<AcademicYearData | null>(null);
+  const [selectedAcademicYear, setSelectedAcademicYear] = React.useState<AcademicYearDataTypes | null>(null);
 
   const { data: academicYears = [], isLoading, refetch } = useGetAcademicYears();
   console.log("Academic Years:", academicYears);
@@ -191,7 +191,7 @@ function AcademicYearDataTable() {
     });
   };
 
-  const columns: ColumnDef<AcademicYearData>[] = [
+  const columns: ColumnDef<AcademicYearDataTypes>[] = [
     {
       id: "select",
       header: ({ table }) => <Checkbox checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")} onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)} aria-label="Select all" />,

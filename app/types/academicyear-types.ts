@@ -34,7 +34,7 @@ import { z } from "zod";
 //   };
 // };
 
-const academicYearDataSchema = z.object({
+const academicYearDataTypes = z.object({
   id: z.string().uuid(),
   year: z.string().min(1, "Tahun ajaran wajib diisi"),
   startDate: z.string().min(1, "Tanggal mulai wajib diisi"),
@@ -50,15 +50,15 @@ const academicYearDataSchema = z.object({
   }),
 });
 
-export type AcademicYearData = z.infer<typeof academicYearDataSchema>;
+export type AcademicYearDataTypes = z.infer<typeof academicYearDataTypes>;
 
 // Form schema
-const academicYearSchema = z
+export const academicYearSchema = z
   .object({
     year: z.string().min(1, "Tahun ajaran wajib diisi"),
     startDate: z.string().min(1, "Tanggal mulai wajib diisi"),
     endDate: z.string().min(1, "Tanggal selesai wajib diisi"),
-    isActive: z.boolean().default(false),
+    isActive: z.boolean(),
   })
   .refine(
     (data) => {
