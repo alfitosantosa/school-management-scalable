@@ -23,7 +23,7 @@ RUN bun install --frozen-lockfile \
 
 # ==========================================
 # Stage 2: Builder
-FROM oven/bun:latest-alpine AS builder
+FROM oven/bun:canary AS builder
 WORKDIR /app
 
 # Install build dependencies
@@ -54,7 +54,7 @@ RUN bunx prisma generate \
 
 # ==========================================
 # Stage 3: Production Runner (Minimal)
-FROM oven/bun:latest-alpine AS runner
+FROM oven/bun:canary AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production \
