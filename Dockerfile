@@ -63,8 +63,7 @@ ENV NODE_ENV=production \
     HOSTNAME="0.0.0.0"
 
 # Create non-root user
-RUN addgroup --system --gid 1001 bun \
-    && adduser --system --uid 1001 appuser
+RUN adduser --system --uid 1001 appuser
 
 # Copy only necessary files
 COPY --from=builder /app/public ./public
@@ -72,11 +71,11 @@ COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/bun.lock* ./
 
 # Copy standalone build
-COPY --from=builder --chown=appuser:bun /app/.next/standalone ./
-COPY --from=builder --chown=appuser:bun /app/.next/static ./.next/static
+COPY --from=builder --chown=appuser:appuser /app/.next/standalone ./
+COPY --from=builder --chown=appuser:appuser /app/.next/static ./.next/static
 
 # Copy Prisma for runtime migrations
-COPY --from=builder --chown=appuser:bun /app/prisma ./prisma
+COPY --from=builder --chown=appuser:appuser /app/prisma ./prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/pg ./node_modules/pg
 
