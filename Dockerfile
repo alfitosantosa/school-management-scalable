@@ -3,7 +3,7 @@
 # ==========================================
 
 # Stage 1: Dependencies
-FROM oven/bun:1-alpine AS deps
+FROM oven/bun:1 AS deps
 WORKDIR /app
 
 # Install only essential system dependencies
@@ -23,7 +23,7 @@ RUN bun install --frozen-lockfile \
 
 # ==========================================
 # Stage 2: Builder
-FROM oven/bun:1-alpine AS builder
+FROM oven/bun:1 AS builder
 WORKDIR /app
 
 # Install build dependencies
@@ -54,7 +54,7 @@ RUN bunx prisma generate \
 
 # ==========================================
 # Stage 3: Production Runner (Minimal)
-FROM oven/bun:1-alpine AS runner
+FROM oven/bun:1 AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production \
