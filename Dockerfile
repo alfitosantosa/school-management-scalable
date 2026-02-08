@@ -3,7 +3,7 @@
 # ==========================================
 
 # Stage 1: Dependencies
-FROM oven/bun:latest AS deps
+FROM oven/bun:1.2-alpine AS deps
 WORKDIR /app
 
 # Install only essential system dependencies
