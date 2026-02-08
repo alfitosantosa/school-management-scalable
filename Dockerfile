@@ -1,60 +1,48 @@
 # ==========================================
-# PRODUCTION-READY DOCKERFILE - OPTIMIZED & LIGHTWEIGHT
+# PRODUCTION-READY DOCKERFILE - OPTIMIZED FOR SIZE
 # ==========================================
 
-# Stage 1: Dependencies
-FROM oven/bun:1-alpine AS deps
+# Stage 1: Dependencies (Minimal cache)
+FROM oven/bun:1.1-alpine AS deps
 WORKDIR /app
 
-# Install only essential system dependencies
-RUN apk add --no-cache \
-    curl \
-    openssl \
+# Install dependencies in single layer dengan cleanup
+RUN apk add --no-cache curl \
     && rm -rf /var/cache/apk/* /tmp/*
 
 # Copy package files
 COPY package.json bun.lock* ./
 
-# Install dependencies with production optimizations
-RUN bun install --frozen-lockfile \
-    && rm -rf /tmp/* \
-    && rm -rf ~/.bun/install/cache \
-    && rm -rf ~/.cache
+# Install dependencies dan cleanup dalam satu layer
+RUN bun install \
+    && rm -rf /tmp/* ~/.bun/install/cache
 
 # ==========================================
-# Stage 2: Builder
-FROM oven/bun:1-alpine AS builder
+# Stage 2: Builder (dengan cleanup aggressive)
+FROM oven/bun:1.1-alpine AS builder
 WORKDIR /app
 
-# Install build dependencies
-RUN apk add --no-cache \
-    openssl \
-    && rm -rf /var/cache/apk/* /tmp/*
-
-# Copy dependencies from deps stage
+# Copy dependencies dari deps stage
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Environment variables for build
+# Environment variables
 ENV NEXT_TELEMETRY_DISABLED=1 \
     NODE_ENV=production \
-    SKIP_ENV_VALIDATION=1 \
-    NODE_OPTIONS="--no-warnings=ExperimentalWarning"
+    SKIP_ENV_VALIDATION=1
 
-# Generate Prisma client and build Next.js
+# Generate Prisma & Build dalam single layer dengan cleanup
 RUN bunx prisma generate \
-    && bun run build \
+    && bunx next build \
     && rm -rf /tmp/* \
     && rm -rf .next/cache \
     && rm -rf node_modules/.cache \
-    && rm -rf ~/.bun \
     && find . -name "*.map" -type f -delete \
-    && find . -name "*.test.*" -type f -delete \
-    && find . -name "*.spec.*" -type f -delete
+    && find . -name "*.test.*" -type f -delete
 
 # ==========================================
-# Stage 3: Production Runner (Minimal)
-FROM oven/bun:1-alpine AS runner
+# Stage 3: Production Runner (Ultra minimal)
+FROM oven/bun:1.1-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production \
@@ -62,37 +50,32 @@ ENV NODE_ENV=production \
     PORT=3000 \
     HOSTNAME="0.0.0.0"
 
-# Create non-root user
-RUN adduser --system --uid 1001 appuser
+# Install curl dan cleanup dalam satu layer
+RUN apk add --no-cache curl \
+    && rm -rf /var/cache/apk/* /tmp/*
 
-# Copy only necessary files
+# Create non-root user
+RUN addgroup --system --gid 1001 nodejs \
+    && adduser --system --uid 1001 nextjs
+
+# Copy hanya file yang dibutuhkan
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/bun.lock* ./
 
 # Copy standalone build
-COPY --from=builder --chown=appuser:appuser /app/.next/standalone ./
-COPY --from=builder --chown=appuser:appuser /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Copy Prisma for runtime migrations
-COPY --from=builder --chown=appuser:appuser /app/prisma ./prisma
-COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
-COPY --from=builder /app/node_modules/pg ./node_modules/pg
-
-# Clean up unnecessary files and caches
-RUN rm -rf /tmp/* \
-    && rm -rf ~/.cache \
-    && rm -rf ~/.bun \
-    && apk del apk-tools
+# Copy Prisma (hanya yang diperlukan)
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@prisma/client ./node_modules/@prisma/client
 
 # Switch to non-root user
-USER appuser
+USER nextjs
 
 EXPOSE 3000
 
-# Healthcheck
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD curl -f http://localhost:3000/api/health || exit 1
+  CMD curl -f http://localhost:${PORT:-3000}/api/health || exit 1
 
-# Start with migration then server
-CMD ["sh", "-c", "bunx prisma migrate deploy && bun server.js"]
+CMD ["bun", "server.js"]

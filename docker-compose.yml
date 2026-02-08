@@ -11,7 +11,7 @@ services:
       # Batasi build context
       labels:
         - "com.docker.compose.project=school-management"
-    
+
     image: school-management:latest
     container_name: school-management-app
     restart: unless-stopped
@@ -31,11 +31,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "2.0"
-          memory: 4G  # Turunkan dari 7G
+          cpus: "4.0"
+          memory: 4G # Turunkan dari 7G
         reservations:
           cpus: "0.5"
-          memory: 4G  # Turunkan dari 2G
+          memory: 4G # Turunkan dari 2G
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
@@ -47,8 +47,8 @@ services:
     logging:
       driver: "json-file"
       options:
-        max-size: "5m"  # Turunkan dari 10m
-        max-file: "2"   # Turunkan dari 3
+        max-size: "5m" # Turunkan dari 10m
+        max-file: "2" # Turunkan dari 3
         compress: "true"
 
     # PENTING: Batasi tmpfs size
