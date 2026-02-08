@@ -16,7 +16,7 @@ RUN apk add --no-cache \
 COPY package.json bun.lock* ./
 
 # Install dependencies with production optimizations
-RUN bun install --frozen-lockfile --production=false \
+RUN bun install --frozen-lockfile \
     && rm -rf /tmp/* ~/.bun/install/cache
 
 # ==========================================
