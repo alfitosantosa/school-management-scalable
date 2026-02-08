@@ -13,6 +13,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { UserX, Shield, User, Mail, Phone, MapPin, Calendar, GraduationCap, Building2, Award, Clock, CheckCircle, FileText, Key, Users, BookOpen, School } from "lucide-react";
 
 const NoUserDataComponent = ({ authUser }: { authUser: any }) => {
+
   return (
     <div className="min-h-screen py-8 px-4">
       <div className="max-w-2xl mx-auto">

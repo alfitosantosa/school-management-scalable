@@ -1,22 +1,21 @@
 "use client";
 
-import * as React from "react";
+import { useEffect, useState } from "react";
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, Eye, X } from "lucide-react";
+import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import { toast } from "sonner";
 
 // Import hooks
@@ -27,44 +26,20 @@ import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
 import { unauthorized } from "next/navigation";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
+import { ClassDataTypes, ClassFormValues, classSchemaForm } from "@/app/types/class-types";
+import { z } from "zod";
+import { MajorDataTypes } from "@/app/types/majors-types";
+import { AcademicYearData } from "@/app/types/academicyear-types";
 
-// Type definitions
-export type ClassData = {
-  id: string;
-  name: string;
-  grade: number;
-  majorId: string;
-  academicYearId: string;
-  capacity: number;
-  academicYear: {
-    id: string;
-    year: string;
-  };
-  major: {
-    id: string;
-    name: string;
-  };
-  _count?: {
-    students: number;
-  };
-};
 
-// Form schema
-const classSchema = z.object({
-  name: z.string().min(1, "Nama kelas wajib diisi"),
-  grade: z.number().min(1, "Tingkat kelas minimal 1").max(12, "Tingkat kelas maksimal 12"),
-  majorId: z.string().min(1, "Jurusan wajib dipilih"),
-  academicYearId: z.string().min(1, "Tahun ajaran wajib dipilih"),
-  capacity: z.number().min(1, "Kapasitas minimal 1").max(50, "Kapasitas maksimal 50"),
-});
 
-type ClassFormValues = z.infer<typeof classSchema>;
 
 // Create/Edit Dialog Component
-function ClassFormDialog({ open, onOpenChange, editData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; editData?: ClassData | null; onSuccess: () => void }) {
+function ClassFormDialog({ open, onOpenChange, editData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; editData?: ClassDataTypes | null; onSuccess: () => void }) {
   const createClass = useCreateClass();
   const updateClass = useUpdateClass();
   const { data: majors } = useGetMajors();
+  console.log(majors);
   const { data: academicYears } = useGetAcademicYears();
 
   const {
@@ -75,7 +50,7 @@ function ClassFormDialog({ open, onOpenChange, editData, onSuccess }: { open: bo
     formState: { errors },
     reset,
   } = useForm<ClassFormValues>({
-    resolver: zodResolver(classSchema),
+    resolver: zodResolver(classSchemaForm),
     defaultValues: {
       capacity: 36,
     },
@@ -84,7 +59,7 @@ function ClassFormDialog({ open, onOpenChange, editData, onSuccess }: { open: bo
   const selectedMajorId = watch("majorId");
   const selectedAcademicYearId = watch("academicYearId");
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (editData) {
       setValue("name", editData.name);
       setValue("grade", editData.grade);
@@ -110,8 +85,10 @@ function ClassFormDialog({ open, onOpenChange, editData, onSuccess }: { open: bo
       reset();
       onOpenChange(false);
       onSuccess();
-    } catch (error: any) {
-      toast.error(error.message || "Terjadi kesalahan");
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast.error(error.message || "Terjadi kesalahan");
+      }
     }
   };
 
@@ -142,7 +119,7 @@ function ClassFormDialog({ open, onOpenChange, editData, onSuccess }: { open: bo
                 <SelectValue placeholder="Pilih Jurusan" />
               </SelectTrigger>
               <SelectContent>
-                {majors?.map((major: any) => (
+                {majors?.map((major: MajorDataTypes) => (
                   <SelectItem key={major.id} value={major.id}>
                     {major.name}
                   </SelectItem>
@@ -159,7 +136,7 @@ function ClassFormDialog({ open, onOpenChange, editData, onSuccess }: { open: bo
                 <SelectValue placeholder="Pilih Tahun Ajaran" />
               </SelectTrigger>
               <SelectContent>
-                {academicYears?.map((year: any) => (
+                {academicYears?.map((year: AcademicYearData) => (
                   <SelectItem key={year.id} value={year.id}>
                     {year.year}
                   </SelectItem>
@@ -190,7 +167,7 @@ function ClassFormDialog({ open, onOpenChange, editData, onSuccess }: { open: bo
 }
 
 // Delete Confirmation Dialog
-function DeleteClassDialog({ open, onOpenChange, classData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; classData: ClassData | null; onSuccess: () => void }) {
+function DeleteClassDialog({ open, onOpenChange, classData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; classData: ClassDataTypes | null; onSuccess: () => void }) {
   const deleteClass = useDeleteClass();
 
   const handleDelete = async () => {
@@ -201,8 +178,10 @@ function DeleteClassDialog({ open, onOpenChange, classData, onSuccess }: { open:
       toast.success("Kelas berhasil dihapus!");
       onOpenChange(false);
       onSuccess();
-    } catch (error: any) {
-      toast.error(error.message || "Gagal menghapus kelas");
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast.error(error.message || "Gagal menghapus kelas");
+      }
     }
   };
 
@@ -228,19 +207,19 @@ function DeleteClassDialog({ open, onOpenChange, classData, onSuccess }: { open:
 
 // Main DataTable Component
 function ClassDataTable() {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState({});
 
   // Dialog states
-  const [createDialogOpen, setCreateDialogOpen] = React.useState(false);
-  const [editDialogOpen, setEditDialogOpen] = React.useState(false);
-  const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
-  const [selectedClass, setSelectedClass] = React.useState<ClassData | null>(null);
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [selectedClass, setSelectedClass] = useState<ClassDataTypes | null>(null);
 
   // Filter states
-  const [academicYearFilter, setAcademicYearFilter] = React.useState<string>("all");
+  const [academicYearFilter, setAcademicYearFilter] = useState<string>("all");
 
   const { data: classes = [], isLoading, refetch } = useGetClasses();
   const { data: academicYears = [] } = useGetAcademicYears();
@@ -249,7 +228,7 @@ function ClassDataTable() {
     refetch();
   };
 
-  const columns: ColumnDef<ClassData>[] = [
+  const columns: ColumnDef<ClassDataTypes>[] = [
     {
       id: "select",
       header: ({ table }) => <Checkbox checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")} onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)} aria-label="Select all" />,
@@ -289,7 +268,7 @@ function ClassDataTable() {
       accessorKey: "major",
       header: "Jurusan",
       cell: ({ row }) => {
-        const major = row.getValue("major") as ClassData["major"];
+        const major = row.getValue("major") as ClassDataTypes["major"];
         return <div>{major.name}</div>;
       },
     },
@@ -297,7 +276,7 @@ function ClassDataTable() {
       accessorKey: "academicYear",
       header: "Tahun Ajaran",
       cell: ({ row }) => {
-        const academicYear = row.getValue("academicYear") as ClassData["academicYear"];
+        const academicYear = row.getValue("academicYear") as ClassDataTypes["academicYear"];
         return <div>{academicYear.year}</div>;
       },
       filterFn: (row, id, value) => {
@@ -390,7 +369,7 @@ function ClassDataTable() {
   });
 
   // Apply academic year filter
-  React.useEffect(() => {
+  useEffect(() => {
     if (academicYearFilter !== "all") {
       table.getColumn("academicYear")?.setFilterValue(academicYearFilter);
     } else {
@@ -418,7 +397,7 @@ function ClassDataTable() {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">Semua Tahun Ajaran</SelectItem>
-                  {academicYears?.map((year: any) => (
+                  {academicYears?.map((year: AcademicYearData) => (
                     <SelectItem key={year.id} value={year.id}>
                       {year.year}
                     </SelectItem>

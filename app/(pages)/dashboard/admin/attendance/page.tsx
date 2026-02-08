@@ -9,7 +9,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { CalendarDays, Clock, MapPin, BookOpen, Users, GraduationCap, Eye, Plus, LucidePanelTopClose } from "lucide-react";
 import Link from "next/link";
 import { useState, useMemo } from "react";
-import { useGetAttendance } from "@/app/hooks/Attendances/useAttendance";
 import { useGetScheduleAcademicYearActive } from "@/app/hooks/Schedules/useSchedules";
 import { useSession } from "@/lib/auth-client";
 import { unauthorized } from "next/navigation";
@@ -17,7 +16,7 @@ import Loading from "@/components/loading";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { useAttendanceIsSubmitted } from "@/app/hooks/Attendances/useAttendanceIsSubmitted";
 
-const ScheduleCard = ({ schedule }: { schedule: any }) => {
+const ScheduleCard = ({ schedule }: { schedule:any }) => {
   const isTodaySchedule = (dayOfWeek: number) => {
     const currentDay = new Date().getDay();
     return dayOfWeek === currentDay;

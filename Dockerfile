@@ -32,8 +32,9 @@ ENV NEXT_TELEMETRY_DISABLED=1 \
     SKIP_ENV_VALIDATION=1
 
 # Generate Prisma & Build dalam single layer dengan cleanup
-RUN bunx prisma migrate deploy \
-    && bunx prisma generate \
+# Generate Prisma & Build dalam single layer dengan cleanup
+# Removed migrate deploy from here - should be run at runtime
+RUN bunx prisma generate \
     && bunx next build \
     && rm -rf /tmp/* \
     && rm -rf .next/cache \
@@ -66,6 +67,9 @@ COPY --from=builder /app/package.json ./package.json
 # Copy standalone build
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+# Copy Prisma schema and migrations for runtime migration
+COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 
 # Copy Prisma (hanya yang diperlukan)
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma

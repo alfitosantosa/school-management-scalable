@@ -26,48 +26,11 @@ import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
 import { unauthorized } from "next/navigation";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
+import { AcademicYearForm } from "@/app/types/academicyear-types";
 
-// Type definitions
-export type AcademicYearData = {
-  id: string;
-  year: string;
-  startDate: string;
-  endDate: string;
-  isActive: boolean;
-  createdAt: string;
-  updatedAt: string;
-  _count: {
-    students: number;
-    schedules: number;
-    calendarEvents: number;
-    classes: number;
-  };
-};
-
-// Form schema
-const academicYearSchema = z
-  .object({
-    year: z.string().min(1, "Tahun ajaran wajib diisi"),
-    startDate: z.string().min(1, "Tanggal mulai wajib diisi"),
-    endDate: z.string().min(1, "Tanggal selesai wajib diisi"),
-    isActive: z.boolean().default(false),
-  })
-  .refine(
-    (data) => {
-      const start = new Date(data.startDate);
-      const end = new Date(data.endDate);
-      return start < end;
-    },
-    {
-      message: "Tanggal selesai harus setelah tanggal mulai",
-      path: ["endDate"],
-    }
-  );
-
-type AcademicYearFormValues = z.infer<typeof academicYearSchema>;
 
 // Create/Edit Dialog Component
-function AcademicYearFormDialog({ open, onOpenChange, editData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; editData?: AcademicYearData | null; onSuccess: () => void }) {
+function AcademicYearFormDialog({ open, onOpenChange, editData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; editData?:AcademicYearForm | null; onSuccess: () => void }) {
   const createAcademicYear = useCreateAcademicYear();
   const updateAcademicYear = useUpdateAcademicYear();
 
@@ -79,7 +42,7 @@ function AcademicYearFormDialog({ open, onOpenChange, editData, onSuccess }: { o
     formState: { errors },
     reset,
   } = useForm<AcademicYearFormValues>({
-    resolver: zodResolver(academicYearSchema as any),
+    resolver: zodResolver(),
     defaultValues: {
       isActive: false,
     },

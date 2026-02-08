@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
   // Enable React strict mode for better development experience
   reactStrictMode: true,
 
+  // Enable Turbopack (Next.js 16 default, config required if webpack present)
+  turbopack: {},
+
   // ============================================================================
   // IMAGE OPTIMIZATION
   // ============================================================================
