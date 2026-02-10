@@ -165,7 +165,7 @@ export default function Navbar() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative h-10 w-10 rounded-full">
                   <Avatar className="h-10 w-10">
-                    <Image width={40} height={40} src={userData.avatarUrl || "/default-avatar.png"} alt={userData.name || "User"} />
+                    <Image width={40} height={40} src={userData.avatarUrl || "https://icons.veryicon.com/png/o/miscellaneous/rookie-official-icon-gallery/225-default-avatar.png"} alt={userData.name || "User"} />
                     <AvatarFallback>{getUserInitials(userData.name)}</AvatarFallback>
                   </Avatar>
                 </Button>
