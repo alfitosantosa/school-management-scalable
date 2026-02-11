@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
           error: "All users must have a name",
           invalidCount: invalidUsers.length,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -59,6 +59,7 @@ export async function POST(request: NextRequest) {
         parentPhone: user.parentPhone || null,
         academicYearId: user.academicYearId || null,
         classId: user.classId || null,
+        tahfidzGroupId: user.tahfidzGroupId || null,
         majorId: user.majorId || null,
         enrollmentDate: user.enrollmentDate || null,
         graduationDate: user.graduationDate || null,
@@ -83,10 +84,12 @@ export async function POST(request: NextRequest) {
 
     const classIds = cleanedUsers.map((u) => u.classId).filter((id): id is string => id !== null);
 
+    const tahfidzGroupIds = cleanedUsers.map((u) => u.tahfidzGroupId).filter((id): id is string => id !== null);
+
     const majorIds = cleanedUsers.map((u) => u.majorId).filter((id): id is string => id !== null);
 
     // Check if referenced records exist
-    const [roles, academicYears, classes, majors] = await Promise.all([
+    const [roles, academicYears, classes, majors, tahfidzGroups] = await Promise.all([
       roleIds.length > 0
         ? prisma.role.findMany({
             where: { id: { in: roleIds } },
@@ -105,6 +108,12 @@ export async function POST(request: NextRequest) {
             select: { id: true },
           })
         : [],
+      tahfidzGroupIds.length > 0
+        ? prisma.tahfidzGroup.findMany({
+            where: { id: { in: tahfidzGroupIds } },
+            select: { id: true },
+          })
+        : [],
       majorIds.length > 0
         ? prisma.major.findMany({
             where: { id: { in: majorIds } },
@@ -117,14 +126,16 @@ export async function POST(request: NextRequest) {
     const foundRoleIds = new Set(roles.map((r) => r.id));
     const foundAcademicYearIds = new Set(academicYears.map((a) => a.id));
     const foundClassIds = new Set(classes.map((c) => c.id));
+    const foundTahfidzGroupIds = new Set(tahfidzGroups.map((t) => t.id));
     const foundMajorIds = new Set(majors.map((m) => m.id));
 
     const invalidRoles = roleIds.filter((id) => !foundRoleIds.has(id));
     const invalidAcademicYears = academicYearIds.filter((id) => !foundAcademicYearIds.has(id));
     const invalidClasses = classIds.filter((id) => !foundClassIds.has(id));
+    const invalidTahfidzGroups = tahfidzGroupIds.filter((id) => !foundTahfidzGroupIds.has(id));
     const invalidMajors = majorIds.filter((id) => !foundMajorIds.has(id));
 
-    if (invalidRoles.length > 0 || invalidAcademicYears.length > 0 || invalidClasses.length > 0 || invalidMajors.length > 0) {
+    if (invalidRoles.length > 0 || invalidAcademicYears.length > 0 || invalidClasses.length > 0 || invalidTahfidzGroups.length > 0 || invalidMajors.length > 0) {
       return NextResponse.json(
         {
           error: "Invalid foreign key references found",
@@ -132,10 +143,11 @@ export async function POST(request: NextRequest) {
             invalidRoles: invalidRoles.length > 0 ? invalidRoles : undefined,
             invalidAcademicYears: invalidAcademicYears.length > 0 ? invalidAcademicYears : undefined,
             invalidClasses: invalidClasses.length > 0 ? invalidClasses : undefined,
+            invalidTahfidzGroups: invalidTahfidzGroups.length > 0 ? invalidTahfidzGroups : undefined,
             invalidMajors: invalidMajors.length > 0 ? invalidMajors : undefined,
           },
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -151,7 +163,7 @@ export async function POST(request: NextRequest) {
         count: result.count,
         total: users.length,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error: any) {
     console.error("Error creating users:", error);
@@ -164,7 +176,7 @@ export async function POST(request: NextRequest) {
           details: "Some users may already exist with the same unique fields (email, NIK, NISN, etc.)",
           field: error.meta?.target,
         },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
@@ -175,7 +187,7 @@ export async function POST(request: NextRequest) {
           details: "Invalid reference to role, class, major, or academic year",
           field: error.meta?.field_name,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -185,7 +197,7 @@ export async function POST(request: NextRequest) {
           error: "Value too long for column",
           details: error.meta?.column_name,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -195,7 +207,7 @@ export async function POST(request: NextRequest) {
         details: error.message,
         code: error.code,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

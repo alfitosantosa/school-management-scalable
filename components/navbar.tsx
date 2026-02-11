@@ -140,7 +140,7 @@ export default function Navbar() {
             {/* Navigation Select */}
             {navigationItems.length > 0 && (
               <Select onValueChange={handleNavigate} value={pathname}>
-                <SelectTrigger className="w-[200px]">
+                <SelectTrigger className="w-50">
                   <SelectValue placeholder="Pilih Menu" />
                 </SelectTrigger>
                 <SelectContent>

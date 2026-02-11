@@ -17,6 +17,7 @@ import { useSession } from "@/lib/auth-client";
 import { unauthorized } from "next/navigation";
 import Loading from "@/components/loading";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
+import { useGetTahfidzGroup } from "@/app/hooks/TahfidzGroup/useTahfidzGroup";
 
 export type typeData = {
   id: string;
@@ -33,6 +34,7 @@ function UploadUsers() {
   const { data: academicYearData = [] } = useGetAcademicYears();
   const { data: classData = [] } = useGetClasses();
   const { data: majorsData = [] } = useGetMajors();
+  const { data: tahfidzGroupData = [] } = useGetTahfidzGroup();
 
   const bulkCreateMutation = useBulkCreateUserData();
 
@@ -185,24 +187,25 @@ function UploadUsers() {
             // Academic info
             academicYearId: row[10]?.toString() || null,
             classId: row[11]?.toString() || null,
-            majorId: row[12]?.toString() || null,
+            tahfidzGroupId: row[12]?.toString() || null,
+            majorId: row[13]?.toString() || null,
 
             // Dates
-            enrollmentDate: parseDate(row[13]),
-            graduationDate: parseDate(row[14]),
+            enrollmentDate: parseDate(row[14]),
+            graduationDate: parseDate(row[15]),
 
             // Employee specific (for staff/teacher)
-            employeeId: row[15]?.toString() || null,
-            position: row[16]?.toString() || null,
-            startDate: parseDate(row[17]),
-            endDate: parseDate(row[18]),
+            employeeId: row[16]?.toString() || null,
+            position: row[17]?.toString() || null,
+            startDate: parseDate(row[18]),
+            endDate: parseDate(row[19]),
 
             // Status
-            status: row[19]?.toString() || "active",
-            isActive: row[20] === "true" || row[20] === true || row[20] === 1 || true,
+            status: row[20]?.toString() || "active",
+            isActive: row[21] === "true" || row[21] === true || row[21] === 1 || true,
 
             // Relations (optional)
-            relation: row[21]?.toString() || null,
+            relation: row[22]?.toString() || null,
           };
 
           // Validate required field
@@ -261,6 +264,7 @@ function UploadUsers() {
           "Parent Phone",
           "Academic Year ID",
           "Class ID",
+          "Tahfidz Group ID",
           "Major ID",
           "Enrollment Date",
           "Graduation Date",
@@ -286,6 +290,7 @@ function UploadUsers() {
           "081234567890",
           academicYearData[0]?.id || "academic-year-id",
           classData[0]?.id || "class-id",
+          tahfidzGroupData[0]?.id || "tahfidz-group-id",
           majorsData[0]?.id || "major-id",
           "01/07/2023",
           "",
@@ -311,6 +316,7 @@ function UploadUsers() {
           "082345678901",
           academicYearData[0]?.id || "academic-year-id",
           classData[0]?.id || "class-id",
+          tahfidzGroupData[0]?.id || "tahfidz-group-id",
           majorsData[0]?.id || "major-id",
           "01/07/2023",
           "",
@@ -342,6 +348,7 @@ function UploadUsers() {
         { wch: 15 }, // Parent Phone
         { wch: 30 }, // Academic Year ID
         { wch: 30 }, // Class ID
+        { wch: 30 }, // Tahfidz Group ID
         { wch: 30 }, // Major ID
         { wch: 15 }, // Enrollment Date
         { wch: 15 }, // Graduation Date
@@ -552,6 +559,30 @@ function UploadUsers() {
             </TableHeader>
             <TableBody>
               {classData.map((data: typeData) => (
+                <TableRow key={data.id}>
+                  <TableCell>{data.name}</TableCell>
+                  <TableCell className="font-mono text-xs">{data.id}</TableCell>
+                  <TableCell>
+                    <CopyButton variant="secondary" onClick={() => toast.success("ID berhasil dicopy")} content={data.id} />
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Card>
+        <Card className="p-4">
+          <div className="text-xl font-bold mb-2">Data Tahfidz Group</div>
+          <Table>
+            <TableCaption>Semua Data Tahfidz Group - Copy ID untuk digunakan di Excel</TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>ID</TableHead>
+                <TableHead>Action</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {tahfidzGroupData.map((data: typeData) => (
                 <TableRow key={data.id}>
                   <TableCell>{data.name}</TableCell>
                   <TableCell className="font-mono text-xs">{data.id}</TableCell>

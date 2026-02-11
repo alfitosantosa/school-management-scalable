@@ -410,7 +410,7 @@ function BetterAuthSelector({ onSelect, selecteduserId, disabled = false }: { on
   const [open, setOpen] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState("");
   const { data: betterAuths = [], isLoading: betterAuthsLoading } = useGetBetterAuthWithoutUserData();
-  
+
   const filteredbetterAuths = React.useMemo(() => {
     if (!searchTerm) return betterAuths;
 
@@ -574,8 +574,8 @@ export function UserFormDialog({ open, onOpenChange, editData, onSuccess }: { op
     if (betterAuth) {
       setValue("userId", betterAuth.id);
       setValue("email", betterAuth.email || "");
-      setValue("name", betterAuth.name || "");
-      setValue("avatarUrl", betterAuth.image || "");
+      // setValue("name", betterAuth.name || "");
+      // setValue("avatarUrl", betterAuth.image || "");
     } else {
       setValue("userId", "");
     }
