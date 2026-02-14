@@ -68,7 +68,7 @@ const availablePermissions = [
   { id: "/dashboard/violations", label: "Violation Management" },
   { id: "/dashboard/violations/teacher", label: "Violation for Teacher" },
   { id: "/dashboard/violations/student", label: "Violation for Student" },
-  { id: "/dashboard/payments", label: "Payment for Student" },
+  { id: "/dashboard/payments", label: "Payment Management" },
   { id: "/dashboard/specialschedule", label: "Special Schedule" },
   { id: "/dashboard/calender", label: "Calendar for User" },
   { id: "/dashboard/calender/teacher", label: "Calendar for Teacher" },
@@ -92,6 +92,10 @@ const availablePermissions = [
   {
     id: "/dashboard/recapattendance/class",
     label: "Recap Attendance Class",
+  },
+  {
+    id: "/dashboard/paymenttypes",
+    label: "Payment Types Management",
   },
 ];
 

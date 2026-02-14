@@ -27,7 +27,7 @@ const permissionLabels: Record<string, string> = {
   "/dashboard/attendance": "Absensi Management",
   "/dashboard/typeviolations": "Jenis Pelanggaran Management",
   "/dashboard/violations": "Pelanggaran Management",
-  "/dashboard/payments": "Pembayaran",
+  "/dashboard/payments": "Pembayaran Management",
   "/dashboard/specialschedule": "Jadwal Khusus",
   "/dashboard/calender": "Kalender",
   "/dashboard/calender/teacher": "Kalender untuk Guru",
@@ -48,6 +48,7 @@ const permissionLabels: Record<string, string> = {
   "/dashboard/upload/schedules": "Upload Jadwal",
   "/dashboard/recapattendance/class": "Rekap Absensi Kelas",
   "/dashboard/classes/tahfidz": "Tahfidz Group Management",
+  "/dashboard/paymenttypes": "Payment Types Management",
 };
 
 export default function Navbar() {
