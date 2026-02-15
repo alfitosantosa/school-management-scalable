@@ -48,7 +48,8 @@ const permissionLabels: Record<string, string> = {
   "/dashboard/upload/schedules": "Upload Jadwal",
   "/dashboard/recapattendance/class": "Rekap Absensi Kelas",
   "/dashboard/classes/tahfidz": "Tahfidz Group Management",
-  "/dashboard/paymenttypes": "Payment Types Management",
+  "/dashboard/paymenttypes": "Tipe Pembayaran Management",
+  "/dashboard/student/payment": "Pembayaran untuk Siswa",
 };
 
 export default function Navbar() {

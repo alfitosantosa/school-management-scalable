@@ -97,6 +97,10 @@ const availablePermissions = [
     id: "/dashboard/paymenttypes",
     label: "Payment Types Management",
   },
+  {
+    id: "/dashboard/student/payment",
+    label: "Payment for Student",
+  },
 ];
 
 // Create/Edit Dialog Component

@@ -69,16 +69,16 @@ export const useGetPaymentById = (id: string) => {
   });
 };
 
-// export const useGetPaymentByStudentId = (studentId: string) => {
-//   return useQuery({
-//     queryKey: ["payment", "student", studentId],
-//     queryFn: async () => {
-//       try {
-//         const res = await apiGet(`/api/payment?studentId=${studentId}`);
-//         return res.data;
-//       } catch (error: any) {
-//         throw new Error(error?.response?.data?.message || "Failed to fetch payment");
-//       }
-//     },
-//   });
-// };
+export const useGetPaymentByStudentId = (studentId: string) => {
+  return useQuery({
+    queryKey: ["payment-by-id"],
+    queryFn: async () => {
+      try {
+        const res = await apiGet(`/api/payment?studentId=${studentId}`);
+        return res.data;
+      } catch (error: any) {
+        throw new Error(error?.response?.data?.message || "Failed to fetch payment");
+      }
+    },
+  });
+};

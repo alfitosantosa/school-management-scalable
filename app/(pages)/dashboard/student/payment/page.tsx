@@ -20,10 +20,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
-import base64id from "base64id";
 
 // Import hooks
-import { useGetPayments, useCreatePayment, useUpdatePayment, useDeletePayment } from "@/app/hooks/Payments/usePayment";
+import { useGetPayments, useCreatePayment, useUpdatePayment, useDeletePayment, useGetPaymentByStudentId } from "@/app/hooks/Payments/usePayment";
 import { useGetPaymentTypes } from "@/app/hooks/Payments/usePaymentType";
 import { useGetUsers } from "@/app/hooks/Users/useUsers";
 import Loading from "@/components/loading";
@@ -150,7 +149,6 @@ function PaymentFormDialog({ open, onOpenChange, editData, onSuccess }: { open: 
   const updatePayment = useUpdatePayment();
   const { data: paymentTypes = [] } = useGetPaymentTypes();
   const { data: users = [] } = useGetUsers();
-  const base64idGenerated = base64id.generateId();
 
   // Filter only students
   const students = users.filter((user: any) => user.role?.name === "Student");
@@ -281,7 +279,7 @@ function PaymentFormDialog({ open, onOpenChange, editData, onSuccess }: { open: 
 
             <div className="space-y-2">
               <Label htmlFor="receiptNumber">Nomor Kwitansi</Label>
-              <Input id="receiptNumber" value={`KWT-${base64idGenerated}`} {...register("receiptNumber")} />
+              <Input id="receiptNumber" placeholder="KWT-001" {...register("receiptNumber")} />
               {errors.receiptNumber && <p className="text-sm text-red-500">{errors.receiptNumber.message}</p>}
             </div>
           </div>
@@ -375,7 +373,7 @@ function DeletePaymentDialog({ open, onOpenChange, paymentData, onSuccess }: { o
 }
 
 // Main DataTable Component
-function PaymentDashboard() {
+function PaymentDashboard({ userId }: { userId: string }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
@@ -387,7 +385,7 @@ function PaymentDashboard() {
   const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
   const [selectedPayment, setSelectedPayment] = React.useState<PaymentData | null>(null);
 
-  const { data: payments = [], isLoading, refetch } = useGetPayments();
+  const { data: payments = [], isLoading, refetch } = useGetPaymentByStudentId(userId);
 
   const handleSuccess = () => {
     refetch();
@@ -636,33 +634,6 @@ function PaymentDashboard() {
                 </SelectContent>
               </Select>
             </div>
-
-            <div className="flex flex-wrap items-center justify-end gap-2">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline">
-                    Kolom <ChevronDown className="ml-2 h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  {table
-                    .getAllColumns()
-                    .filter((column) => column.getCanHide())
-                    .map((column) => {
-                      return (
-                        <DropdownMenuCheckboxItem key={column.id} className="capitalize" checked={column.getIsVisible()} onCheckedChange={(value) => column.toggleVisibility(!!value)}>
-                          {column.id}
-                        </DropdownMenuCheckboxItem>
-                      );
-                    })}
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              <Button onClick={() => setCreateDialogOpen(true)}>
-                <Plus className="mr-2 h-4 w-4" />
-                Tambah Pembayaran
-              </Button>
-            </div>
           </div>
 
           <div className="rounded-md border w-max-7xl">
@@ -728,6 +699,7 @@ export default function PaymentDashboardPage() {
 
   const { data: userData, isLoading: isLoadingUserData } = useGetUserByIdBetterAuth(userId as string);
   const userRole = userData?.role?.name;
+  const userDataId = userData?.id;
 
   // Show loading while checking authorization
   if (isPending || isLoadingUserData) {
@@ -736,10 +708,13 @@ export default function PaymentDashboardPage() {
 
   // Check if user is Admin
   if (userRole !== "Admin") {
-    unauthorized();
-    return null;
+    if (userRole !== "Student") {
+      unauthorized();
+      return null;
+    }
   }
+  // type UserRole = "Admin" | "Student" | "Teacher" | "Parent" | "Staff";
 
   // Render dashboard only after authorization is confirmed
-  return <PaymentDashboard />;
+  return <PaymentDashboard userId={userDataId as string} />;
 }
