@@ -2,7 +2,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiGet, apiPost, apiPut, apiDelete } from "@/lib/api-client";
 
-export const useCreateSnapMidtransTransaction = () => {
+export const useCreateSnapMidtransTransaction = (data: object) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {

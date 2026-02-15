@@ -29,6 +29,7 @@ import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
 import { unauthorized } from "next/navigation";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
+import { useCreateSnapMidtransTransaction } from "@/app/hooks/Midtrans/useMidtrans";
 
 // Type definitions
 export type PaymentData = {
@@ -143,232 +144,41 @@ function StatisticsCards({ payments }: { payments: PaymentData[] }) {
   );
 }
 
-// Create/Edit Dialog Component
-function PaymentFormDialog({ open, onOpenChange, editData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; editData?: PaymentData | null; onSuccess: () => void }) {
-  const createPayment = useCreatePayment();
-  const updatePayment = useUpdatePayment();
-  const { data: paymentTypes = [] } = useGetPaymentTypes();
-  const { data: users = [] } = useGetUsers();
-
-  // Filter only students
-  const students = users.filter((user: any) => user.role?.name === "Student");
-
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
-    reset,
-  } = useForm<PaymentFormValues>({
-    resolver: zodResolver(paymentSchema),
-    defaultValues: {
-      amount: 0,
-      status: "pending",
-      paymentDate: new Date().toISOString().split("T")[0],
-    },
-  });
-
-  const selectedStudentId = watch("studentId");
-  const selectedPaymentTypeId = watch("paymentTypeId");
-  const selectedStatus = watch("status");
-
-  React.useEffect(() => {
-    if (editData) {
-      setValue("studentId", editData.studentId);
-      setValue("paymentTypeId", editData.paymentTypeId);
-      setValue("amount", editData.amount);
-      setValue("dueDate", editData.dueDate ? new Date(editData.dueDate).toISOString().split("T")[0] : "");
-      setValue("status", editData.status);
-      setValue("notes", editData.notes || "");
-      setValue("paymentDate", new Date(editData.paymentDate).toISOString().split("T")[0]);
-      setValue("receiptNumber", editData.receiptNumber || "");
-    } else {
-      reset({
-        amount: 0,
-        status: "pending",
-        paymentDate: new Date().toISOString().split("T")[0],
-      });
-    }
-  }, [editData, setValue, reset]);
-
-  // Auto-fill amount when payment type is selected
-  React.useEffect(() => {
-    if (selectedPaymentTypeId && !editData) {
-      const selectedType = paymentTypes.find((type: any) => type.id === selectedPaymentTypeId);
-      if (selectedType) {
-        setValue("amount", Number(selectedType.amount));
-      }
-    }
-  }, [selectedPaymentTypeId, paymentTypes, editData, setValue]);
-
-  const onSubmit = async (data: PaymentFormValues) => {
-    try {
-      const payload = {
-        ...data,
-        dueDate: data.dueDate || undefined,
-        notes: data.notes || undefined,
-        receiptNumber: data.receiptNumber || undefined,
-      };
-
-      if (editData) {
-        await updatePayment.mutateAsync({ id: editData.id, ...payload } as any);
-        toast.success("Pembayaran berhasil diperbarui!");
-      } else {
-        await createPayment.mutateAsync(payload as any);
-        toast.success("Pembayaran berhasil dibuat!");
-      }
-      reset();
-      onOpenChange(false);
-      onSuccess();
-    } catch (error: any) {
-      toast.error(error.message || "Terjadi kesalahan");
-    }
-  };
-
+//payment dialog components midtrans integration
+function MidtransPaymentDialog({ open, onOpenChange, paymentData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; paymentData?: PaymentData | null; onSuccess: () => void }) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <DialogTitle>{editData ? "Edit Pembayaran" : "Tambah Pembayaran Baru"}</DialogTitle>
+          <DialogTitle>Pembayaran Midtrans</DialogTitle>
         </DialogHeader>
-
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label>Siswa</Label>
-              <Select value={selectedStudentId} onValueChange={(value) => setValue("studentId", value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Pilih Siswa" />
-                </SelectTrigger>
-                <SelectContent>
-                  {students.map((student: any) => (
-                    <SelectItem key={student.id} value={student.id}>
-                      {student.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.studentId && <p className="text-sm text-red-500">{errors.studentId.message}</p>}
-            </div>
-
-            <div className="space-y-2">
-              <Label>Jenis Pembayaran</Label>
-              <Select value={selectedPaymentTypeId} onValueChange={(value) => setValue("paymentTypeId", value)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Pilih Jenis Pembayaran" />
-                </SelectTrigger>
-                <SelectContent>
-                  {paymentTypes.map((type: any) => (
-                    <SelectItem key={type.id} value={type.id}>
-                      {type.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.paymentTypeId && <p className="text-sm text-red-500">{errors.paymentTypeId.message}</p>}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="amount">Jumlah Pembayaran (Rp)</Label>
-              <Input id="amount" type="number" placeholder="0" {...register("amount", { valueAsNumber: true })} />
-              {errors.amount && <p className="text-sm text-red-500">{errors.amount.message}</p>}
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="receiptNumber">Nomor Kwitansi</Label>
-              <Input id="receiptNumber" placeholder="KWT-001" {...register("receiptNumber")} />
-              {errors.receiptNumber && <p className="text-sm text-red-500">{errors.receiptNumber.message}</p>}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="paymentDate">Tanggal Pembayaran</Label>
-              <Input id="paymentDate" type="date" {...register("paymentDate")} />
-              {errors.paymentDate && <p className="text-sm text-red-500">{errors.paymentDate.message}</p>}
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="dueDate">Jatuh Tempo (Opsional)</Label>
-              <Input id="dueDate" type="date" {...register("dueDate")} />
-              {errors.dueDate && <p className="text-sm text-red-500">{errors.dueDate.message}</p>}
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label>Status Pembayaran</Label>
-            <Select value={selectedStatus} onValueChange={(value) => setValue("status", value)}>
-              <SelectTrigger>
-                <SelectValue placeholder="Pilih Status" />
-              </SelectTrigger>
-              <SelectContent>
-                {paymentStatuses.map((status) => (
-                  <SelectItem key={status.value} value={status.value}>
-                    {status.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {errors.status && <p className="text-sm text-red-500">{errors.status.message}</p>}
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="notes">Catatan (Opsional)</Label>
-            <Textarea id="notes" placeholder="Tambahkan catatan..." rows={3} {...register("notes")} />
-            {errors.notes && <p className="text-sm text-red-500">{errors.notes.message}</p>}
-          </div>
-
-          <div className="flex justify-end gap-2 pt-4">
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-              Batal
+        <div className="grid items-center justify-center mb-4">
+          <div className="font-bold">Detail Tagihan</div>
+          <Card className="w-full p-10">
+            <div>No Kwitansi : {paymentData?.receiptNumber}</div>
+            <div>Pembayaran : {paymentData?.paymentType?.name}</div>
+            <div>Nama Siswa : {paymentData?.student?.name}</div>
+          </Card>
+          {paymentData ? (
+            <Button
+              className="mt-4"
+              onClick={() => {
+                // Here you would call the Midtrans payment function, passing the necessary data
+                // For example: createMidtransTransaction({ paymentId: paymentData.id, amount: paymentData.amount, ... })
+                toast.success("Fungsi pembayaran Midtrans dipanggil (simulasi)");
+                onSuccess();
+                onOpenChange(false);
+                useCreateSnapMidtransTransaction(paymentData);
+              }}
+            >
+              Bayar dengan Midtrans
             </Button>
-            <Button type="submit" disabled={createPayment.isPending || updatePayment.isPending}>
-              {createPayment.isPending || updatePayment.isPending ? "Menyimpan..." : editData ? "Perbarui" : "Simpan"}
-            </Button>
-          </div>
-        </form>
+          ) : (
+            <p className="text-red-600 mt-4">Tidak dapat memproses pembayaran karena data tidak lengkap.</p>
+          )}
+        </div>
       </DialogContent>
     </Dialog>
-  );
-}
-
-// Delete Confirmation Dialog
-function DeletePaymentDialog({ open, onOpenChange, paymentData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; paymentData: PaymentData | null; onSuccess: () => void }) {
-  const deletePayment = useDeletePayment();
-
-  const handleDelete = async () => {
-    if (!paymentData) return;
-
-    try {
-      await deletePayment.mutateAsync({ id: paymentData.id } as any);
-      toast.success("Pembayaran berhasil dihapus!");
-      onOpenChange(false);
-      onSuccess();
-    } catch (error: any) {
-      toast.error(error.message || "Gagal menghapus pembayaran");
-    }
-  };
-
-  return (
-    <AlertDialog open={open} onOpenChange={onOpenChange}>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Hapus Pembayaran</AlertDialogTitle>
-          <AlertDialogDescription>
-            Apakah Anda yakin ingin menghapus pembayaran untuk <strong>{paymentData?.student?.name}</strong>? Tindakan ini tidak dapat dibatalkan.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Batal</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDelete} disabled={deletePayment.isPending} className="bg-red-600 hover:bg-red-700">
-            {deletePayment.isPending ? "Menghapus..." : "Hapus"}
-          </AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
   );
 }
 
@@ -380,9 +190,10 @@ function PaymentDashboard({ userId }: { userId: string }) {
   const [rowSelection, setRowSelection] = React.useState({});
 
   // Dialog states
-  const [createDialogOpen, setCreateDialogOpen] = React.useState(false);
-  const [editDialogOpen, setEditDialogOpen] = React.useState(false);
-  const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
+  // const [createDialogOpen, setCreateDialogOpen] = React.useState(false);
+  // const [editDialogOpen, setEditDialogOpen] = React.useState(false);
+  // const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
+  const [midtransDialogOpen, setMidtransDialogOpen] = React.useState(false);
   const [selectedPayment, setSelectedPayment] = React.useState<PaymentData | null>(null);
 
   const { data: payments = [], isLoading, refetch } = useGetPaymentByStudentId(userId);
@@ -546,6 +357,15 @@ function PaymentDashboard({ userId }: { userId: string }) {
               <DropdownMenuItem
                 onClick={() => {
                   setSelectedPayment(paymentData);
+                  setMidtransDialogOpen(true);
+                }}
+              >
+                <DollarSign className="mr-2 h-4 w-4" />
+                Bayar
+              </DropdownMenuItem>
+              {/* <DropdownMenuItem
+                onClick={() => {
+                  setSelectedPayment(paymentData);
                   setEditDialogOpen(true);
                 }}
               >
@@ -561,7 +381,7 @@ function PaymentDashboard({ userId }: { userId: string }) {
               >
                 <Trash2 className="mr-2 h-4 w-4" />
                 Hapus
-              </DropdownMenuItem>
+              </DropdownMenuItem> */}
             </DropdownMenuContent>
           </DropdownMenu>
         );
@@ -606,15 +426,6 @@ function PaymentDashboard({ userId }: { userId: string }) {
         <div className="mx-auto">
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center space-x-2">
-              <Input
-                placeholder="Cari nama siswa..."
-                value={(table.getColumn("student")?.getFilterValue() as string) ?? ""}
-                onChange={(event) => {
-                  const value = event.target.value;
-                  table.getColumn("student")?.setFilterValue(value);
-                }}
-                className="max-w-sm"
-              />
               <Select
                 value={(table.getColumn("status")?.getFilterValue() as string) ?? "all"}
                 onValueChange={(value) => {
@@ -683,11 +494,13 @@ function PaymentDashboard({ userId }: { userId: string }) {
         </div>
 
         {/* Dialogs */}
-        <PaymentFormDialog open={createDialogOpen} onOpenChange={setCreateDialogOpen} onSuccess={handleSuccess} />
+        {/* <PaymentFormDialog open={createDialogOpen} onOpenChange={setCreateDialogOpen} onSuccess={handleSuccess} />
 
-        <PaymentFormDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} editData={selectedPayment} onSuccess={handleSuccess} />
+        <PaymentFormDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} editData={selectedPayment} onSuccess={handleSuccess} /> */}
 
-        <DeletePaymentDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen} paymentData={selectedPayment} onSuccess={handleSuccess} />
+        <MidtransPaymentDialog open={midtransDialogOpen} onOpenChange={setMidtransDialogOpen} paymentData={selectedPayment} onSuccess={handleSuccess} />
+
+        {/* <DeletePaymentDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen} paymentData={selectedPayment} onSuccess={handleSuccess} /> */}
       </div>
     </>
   );

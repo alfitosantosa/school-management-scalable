@@ -74,7 +74,7 @@ export const useGetPaymentByStudentId = (studentId: string) => {
     queryKey: ["payment-by-id"],
     queryFn: async () => {
       try {
-        const res = await apiGet(`/api/payment?studentId=${studentId}`);
+        const res = await apiGet(`/api/payment/student/${studentId}`);
         return res.data;
       } catch (error: any) {
         throw new Error(error?.response?.data?.message || "Failed to fetch payment");
