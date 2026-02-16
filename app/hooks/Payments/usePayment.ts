@@ -71,7 +71,7 @@ export const useGetPaymentById = (id: string) => {
 
 export const useGetPaymentByStudentId = (studentId: string) => {
   return useQuery({
-    queryKey: ["payment-by-id"],
+    queryKey: ["payment-by-id", "midtransTransaction"],
     queryFn: async () => {
       try {
         const res = await apiGet(`/api/payment/student/${studentId}`);

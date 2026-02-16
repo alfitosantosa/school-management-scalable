@@ -79,14 +79,13 @@ const scheduleSchema = z
     dayOfWeek: z.number().min(0).max(6, "Hari tidak valid"),
     startTime: z
       .string()
-      .min(1,   "Waktu mulai wajib diisi")
+      .min(1, "Waktu mulai wajib diisi")
       .regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "Format waktu tidak valid (HH:MM)"),
     endTime: z
       .string()
       .min(1, "Waktu selesai wajib diisi")
       .regex(/^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/, "Format waktu tidak valid (HH:MM)"),
     room: z.string().optional(),
-   
   })
   .refine(
     (data) => {
@@ -97,7 +96,7 @@ const scheduleSchema = z
     {
       message: "Waktu selesai harus lebih besar dari waktu mulai",
       path: ["endTime"],
-    }
+    },
   );
 
 type ScheduleFormValues = z.infer<typeof scheduleSchema>;
@@ -347,8 +346,8 @@ function DeleteScheduleDialog({ open, onOpenChange, scheduleData, onSuccess }: {
         <AlertDialogHeader>
           <AlertDialogTitle>Hapus Jadwal</AlertDialogTitle>
           <AlertDialogDescription>
-            Apakah Anda yakin ingin menghapus jadwal "{scheduleData?.subject?.name}" untuk kelas "{scheduleData?.class?.name ? scheduleData?.class?.name : scheduleData?.tahfidzGroup?.name}" pada hari {scheduleData ? DAYS_MAP[scheduleData.dayOfWeek as keyof typeof DAYS_MAP] : ""}? Tindakan ini tidak
-            dapat dibatalkan.
+            Apakah Anda yakin ingin menghapus jadwal "{scheduleData?.subject?.name}" untuk kelas "{scheduleData?.class?.name ? scheduleData?.class?.name : scheduleData?.tahfidzGroup?.name}" pada hari{" "}
+            {scheduleData ? DAYS_MAP[scheduleData.dayOfWeek as keyof typeof DAYS_MAP] : ""}? Tindakan ini tidak dapat dibatalkan.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -683,7 +682,7 @@ function ScheduleDataTable() {
 
             {/* Class Filter */}
             <Select value={classFilter} onValueChange={setClassFilter}>
-              <SelectTrigger className="w-[140px]">
+              <SelectTrigger className="w-35">
                 <SelectValue placeholder="Filter Kelas" />
               </SelectTrigger>
               <SelectContent>
@@ -698,7 +697,7 @@ function ScheduleDataTable() {
 
             {/* tahfidz group filter */}
             <Select value={tahfidzGroupFilter} onValueChange={setTahfidzGroupFilter}>
-              <SelectTrigger className="w-[140px]">
+              <SelectTrigger className="w-35">
                 <SelectValue placeholder="Filter Kelompok Tahfidz" />
               </SelectTrigger>
               <SelectContent>
@@ -713,7 +712,7 @@ function ScheduleDataTable() {
 
             {/* teacher filter  */}
             <Select value={teacherFilter} onValueChange={setTeacherFilter}>
-              <SelectTrigger className="w-[140px]">
+              <SelectTrigger className="w-35">
                 <SelectValue placeholder="Filter Guru" />
               </SelectTrigger>
               <SelectContent>
@@ -728,7 +727,7 @@ function ScheduleDataTable() {
 
             {/* Day Filter */}
             <Select value={dayFilter} onValueChange={setDayFilter}>
-              <SelectTrigger className="w-[120px]">
+              <SelectTrigger className="w-35">
                 <SelectValue placeholder="Hari" />
               </SelectTrigger>
               <SelectContent>
@@ -743,7 +742,7 @@ function ScheduleDataTable() {
 
             {/* Academic Year Filter */}
             <Select value={academicYearFilter} onValueChange={setAcademicYearFilter}>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-45">
                 <SelectValue placeholder="Tahun Ajaran" />
               </SelectTrigger>
               <SelectContent>

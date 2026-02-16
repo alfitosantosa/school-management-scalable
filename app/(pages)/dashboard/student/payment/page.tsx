@@ -3,6 +3,7 @@
 import * as React from "react";
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, DollarSign, CheckCircle, Clock, XCircle, TrendingUp, Users, Calendar } from "lucide-react";
+import Script from "next/script";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -31,6 +32,23 @@ import { unauthorized } from "next/navigation";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { useCreateSnapMidtransTransaction } from "@/app/hooks/Midtrans/useMidtrans";
 
+// Declare Snap type for TypeScript
+declare global {
+  interface Window {
+    snap: {
+      pay: (
+        token: string,
+        options?: {
+          onSuccess?: (result: any) => void;
+          onPending?: (result: any) => void;
+          onError?: (result: any) => void;
+          onClose?: () => void;
+        },
+      ) => void;
+    };
+  }
+}
+
 // Type definitions
 export type PaymentData = {
   id: string;
@@ -48,6 +66,7 @@ export type PaymentData = {
     id: string;
     name: string;
     email?: string;
+    phone?: string;
   };
   paymentType?: {
     id: string;
@@ -121,7 +140,7 @@ function StatisticsCards({ payments }: { payments: PaymentData[] }) {
 
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Tertunda</CardTitle>
+          <CardTitle className="text-sm font-medium">Belum Lunas</CardTitle>
           <Clock className="h-4 w-4 text-yellow-600" />
         </CardHeader>
         <CardContent>
@@ -146,32 +165,138 @@ function StatisticsCards({ payments }: { payments: PaymentData[] }) {
 
 //payment dialog components midtrans integration
 function MidtransPaymentDialog({ open, onOpenChange, paymentData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; paymentData?: PaymentData | null; onSuccess: () => void }) {
+  const [isProcessing, setIsProcessing] = React.useState(false);
+  const mutation = useCreateSnapMidtransTransaction();
+
+  const handlePayment = () => {
+    if (!paymentData) {
+      toast.error("Data pembayaran tidak tersedia");
+      return;
+    }
+
+    setIsProcessing(true);
+
+    const transactionData = {
+      transaction_details: {
+        order_id: paymentData.receiptNumber && paymentData.receiptNumber.trim() !== "" ? paymentData.receiptNumber : `ORD-${paymentData.id}-${Date.now()}`,
+        gross_amount: Number(paymentData.amount),
+      },
+      customer_details: {
+        first_name: paymentData.student?.name || "Siswa",
+        email: paymentData.student?.email || "student@example.com",
+        phone: paymentData.student?.phone || "08123456789",
+      },
+      credit_card: {
+        secure: true,
+      },
+      item_details: [
+        {
+          id: paymentData.paymentTypeId,
+          price: Number(paymentData.amount),
+          quantity: 1,
+          name: paymentData.paymentType?.name || "Pembayaran Sekolah",
+        },
+      ],
+      page_expiry: {
+        duration: 3,
+        unit: "hours",
+      },
+    };
+
+    mutation.mutate(transactionData, {
+      onSuccess: (response) => {
+        console.log("Snap token received:", response);
+
+        // Check if snap is loaded
+        if (typeof window.snap === "undefined") {
+          toast.error("Midtrans belum siap. Silakan coba lagi.");
+          setIsProcessing(false);
+          return;
+        }
+
+        // Open Snap payment popup
+        window.snap.pay(response.token, {
+          onSuccess: function (result) {
+            console.log("Payment success:", result);
+            toast.success("Pembayaran berhasil!");
+            onSuccess();
+            onOpenChange(false);
+            setIsProcessing(false);
+          },
+          onPending: function (result) {
+            console.log("Payment pending:", result);
+            toast.info("Pembayaran menunggu konfirmasi");
+            onSuccess();
+            onOpenChange(false);
+            setIsProcessing(false);
+          },
+          onError: function (result) {
+            console.log("Payment error:", result);
+            toast.error("Pembayaran gagal. Silakan coba lagi.");
+            setIsProcessing(false);
+          },
+          onClose: function () {
+            console.log("Payment popup closed");
+            toast.info("Pembayaran dibatalkan");
+            setIsProcessing(false);
+          },
+        });
+      },
+      onError: (error) => {
+        console.error("Error creating transaction:", error);
+        toast.error("Gagal membuat transaksi. Silakan coba lagi.");
+        setIsProcessing(false);
+      },
+    });
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
           <DialogTitle>Pembayaran Midtrans</DialogTitle>
         </DialogHeader>
-        <div className="grid items-center justify-center mb-4">
+        <div className="grid mb-4">
           <div className="font-bold">Detail Tagihan</div>
-          <Card className="w-full p-10">
-            <div>No Kwitansi : {paymentData?.receiptNumber}</div>
-            <div>Pembayaran : {paymentData?.paymentType?.name}</div>
-            <div>Nama Siswa : {paymentData?.student?.name}</div>
-          </Card>
+          <Table className="w-full mt-2">
+            <TableBody>
+              <TableRow>
+                <TableCell>No Kwitansi</TableCell>
+                <TableCell>{paymentData?.receiptNumber || "-"}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Nama Siswa</TableCell>
+                <TableCell>{paymentData?.student?.name || "-"}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Jenis Pembayaran</TableCell>
+                <TableCell>{paymentData?.paymentType?.name || "-"}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Jumlah</TableCell>
+                <TableCell>{paymentData ? new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(paymentData.amount) : "-"}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Jatuh Tempo</TableCell>
+                <TableCell>{paymentData?.dueDate ? new Date(paymentData.dueDate).toLocaleDateString("id-ID", { day: "2-digit", month: "short", year: "numeric" }) : "-"}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Status</TableCell>
+                <TableCell>
+                  {paymentData ? (
+                    <Badge className={`text-white ${paymentData.status === "paid" ? "bg-green-600" : paymentData.status === "pending" ? "bg-yellow-600" : paymentData.status === "overdue" ? "bg-red-600" : "bg-gray-600"}`}>
+                      {paymentData.status === "paid" ? "Lunas" : paymentData.status === "pending" ? "Belum Lunas" : paymentData.status === "overdue" ? "Terlambat" : "-"}
+                    </Badge>
+                  ) : (
+                    "-"
+                  )}
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
           {paymentData ? (
-            <Button
-              className="mt-4"
-              onClick={() => {
-                // Here you would call the Midtrans payment function, passing the necessary data
-                // For example: createMidtransTransaction({ paymentId: paymentData.id, amount: paymentData.amount, ... })
-                toast.success("Fungsi pembayaran Midtrans dipanggil (simulasi)");
-                onSuccess();
-                onOpenChange(false);
-                useCreateSnapMidtransTransaction(paymentData);
-              }}
-            >
-              Bayar dengan Midtrans
+            <Button className="mt-4" onClick={handlePayment} disabled={isProcessing}>
+              {isProcessing ? "Memproses..." : "Bayar dengan Midtrans"}
             </Button>
           ) : (
             <p className="text-red-600 mt-4">Tidak dapat memproses pembayaran karena data tidak lengkap.</p>
@@ -190,9 +315,6 @@ function PaymentDashboard({ userId }: { userId: string }) {
   const [rowSelection, setRowSelection] = React.useState({});
 
   // Dialog states
-  // const [createDialogOpen, setCreateDialogOpen] = React.useState(false);
-  // const [editDialogOpen, setEditDialogOpen] = React.useState(false);
-  // const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
   const [midtransDialogOpen, setMidtransDialogOpen] = React.useState(false);
   const [selectedPayment, setSelectedPayment] = React.useState<PaymentData | null>(null);
 
@@ -363,25 +485,6 @@ function PaymentDashboard({ userId }: { userId: string }) {
                 <DollarSign className="mr-2 h-4 w-4" />
                 Bayar
               </DropdownMenuItem>
-              {/* <DropdownMenuItem
-                onClick={() => {
-                  setSelectedPayment(paymentData);
-                  setEditDialogOpen(true);
-                }}
-              >
-                <Pencil className="mr-2 h-4 w-4" />
-                Edit
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => {
-                  setSelectedPayment(paymentData);
-                  setDeleteDialogOpen(true);
-                }}
-                className="text-red-600"
-              >
-                <Trash2 className="mr-2 h-4 w-4" />
-                Hapus
-              </DropdownMenuItem> */}
             </DropdownMenuContent>
           </DropdownMenu>
         );
@@ -494,13 +597,7 @@ function PaymentDashboard({ userId }: { userId: string }) {
         </div>
 
         {/* Dialogs */}
-        {/* <PaymentFormDialog open={createDialogOpen} onOpenChange={setCreateDialogOpen} onSuccess={handleSuccess} />
-
-        <PaymentFormDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} editData={selectedPayment} onSuccess={handleSuccess} /> */}
-
         <MidtransPaymentDialog open={midtransDialogOpen} onOpenChange={setMidtransDialogOpen} paymentData={selectedPayment} onSuccess={handleSuccess} />
-
-        {/* <DeletePaymentDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen} paymentData={selectedPayment} onSuccess={handleSuccess} /> */}
       </div>
     </>
   );
@@ -526,8 +623,13 @@ export default function PaymentDashboardPage() {
       return null;
     }
   }
-  // type UserRole = "Admin" | "Student" | "Teacher" | "Parent" | "Staff";
 
   // Render dashboard only after authorization is confirmed
-  return <PaymentDashboard userId={userDataId as string} />;
+  return (
+    <>
+      {/* Load Midtrans Snap script */}
+      <Script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY || "YOUR_CLIENT_KEY_HERE"} strategy="afterInteractive" />
+      <PaymentDashboard userId={userDataId as string} />
+    </>
+  );
 }

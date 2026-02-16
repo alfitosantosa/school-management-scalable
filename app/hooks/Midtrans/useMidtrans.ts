@@ -2,7 +2,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiGet, apiPost, apiPut, apiDelete } from "@/lib/api-client";
 
-export const useCreateSnapMidtransTransaction = (data: object) => {
+export const useCreateSnapMidtransTransaction = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (data: any) => {
@@ -15,5 +15,16 @@ export const useCreateSnapMidtransTransaction = (data: object) => {
     onError: (error) => {
       console.error(error);
     },
+  });
+};
+
+export const useCheckMidtransTransactionStatus = (orderId: string) => {
+  return useQuery({
+    queryKey: ["midtransTransactionStatus", orderId],
+    queryFn: async () => {
+      const res = await apiGet(`/api/midtrans/status/${orderId}`);
+      return res.data;
+    },
+    enabled: !!orderId,
   });
 };
