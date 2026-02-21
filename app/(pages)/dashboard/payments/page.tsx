@@ -281,7 +281,7 @@ function PaymentFormDialog({ open, onOpenChange, editData, onSuccess }: { open: 
 
             <div className="space-y-2">
               <Label htmlFor="receiptNumber">Nomor Kwitansi</Label>
-              <Input id="receiptNumber" value={`KWT-${base64idGenerated}`} {...register("receiptNumber")} />
+              <Input id="receiptNumber" value={``} {...register("receiptNumber")} />
               {errors.receiptNumber && <p className="text-sm text-red-500">{errors.receiptNumber.message}</p>}
             </div>
           </div>
@@ -345,7 +345,7 @@ function DeletePaymentDialog({ open, onOpenChange, paymentData, onSuccess }: { o
     if (!paymentData) return;
 
     try {
-      await deletePayment.mutateAsync({ id: paymentData.id } as any);
+      await deletePayment.mutateAsync(paymentData.id);
       toast.success("Pembayaran berhasil dihapus!");
       onOpenChange(false);
       onSuccess();

@@ -31,9 +31,6 @@ import { z } from "zod";
 import { MajorDataTypes } from "@/app/types/majors-types";
 import { AcademicYearDataTypes } from "@/app/types/academicyear-types";
 
-
-
-
 // Create/Edit Dialog Component
 function ClassFormDialog({ open, onOpenChange, editData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; editData?: ClassDataTypes | null; onSuccess: () => void }) {
   const createClass = useCreateClass();
@@ -392,7 +389,7 @@ function ClassDataTable() {
 
               {/* Academic Year Filter */}
               <Select value={academicYearFilter} onValueChange={setAcademicYearFilter}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-45">
                   <SelectValue placeholder="Filter Tahun Ajaran" />
                 </SelectTrigger>
                 <SelectContent>

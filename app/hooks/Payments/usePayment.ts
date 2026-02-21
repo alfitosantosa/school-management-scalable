@@ -45,12 +45,21 @@ export const useUpdatePayment = () => {
 export const useDeletePayment = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (data: any) => {
-      const res = await apiDelete("/api/payment", data);
-      return res.data;
+    mutationFn: async (id: string) => {
+      const response = await apiDelete(`/api/payment/`, {
+        body: JSON.stringify({ id }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["payments"] });
+    },
+    onError: (error: any) => {
+      console.error("Error deleting payment:", error);
+      throw new Error(error?.response?.data?.message || "Failed to delete payment");
     },
   });
 };

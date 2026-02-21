@@ -21,6 +21,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
+import base64id from "base64id";
 
 // Import hooks
 import { useGetPayments, useCreatePayment, useUpdatePayment, useDeletePayment, useGetPaymentByStudentId } from "@/app/hooks/Payments/usePayment";
@@ -164,7 +165,7 @@ function StatisticsCards({ payments }: { payments: PaymentData[] }) {
 }
 
 //payment dialog components midtrans integration
-function MidtransPaymentDialog({ open, onOpenChange, paymentData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; paymentData?: PaymentData | null; onSuccess: () => void }) {
+function MidtransPaymentDialog({ open, onOpenChange, paymentData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; paymentData?: PaymentData | null; onSuccess: () => void; setMidtransDialogOpen?: (open: boolean) => void }) {
   const [isProcessing, setIsProcessing] = React.useState(false);
   const mutation = useCreateSnapMidtransTransaction();
 
@@ -178,7 +179,7 @@ function MidtransPaymentDialog({ open, onOpenChange, paymentData, onSuccess }: {
 
     const transactionData = {
       transaction_details: {
-        order_id: paymentData.receiptNumber && paymentData.receiptNumber.trim() !== "" ? paymentData.receiptNumber : `ORD-${paymentData.id}-${Date.now()}`,
+        order_id: `KWT-${base64id.generateId()}`,
         gross_amount: Number(paymentData.amount),
       },
       customer_details: {
@@ -295,7 +296,14 @@ function MidtransPaymentDialog({ open, onOpenChange, paymentData, onSuccess }: {
             </TableBody>
           </Table>
           {paymentData ? (
-            <Button className="mt-4" onClick={handlePayment} disabled={isProcessing}>
+            <Button
+              className="mt-4"
+              onClick={() => {
+                handlePayment();
+                onOpenChange(false);
+              }}
+              disabled={isProcessing}
+            >
               {isProcessing ? "Memproses..." : "Bayar dengan Midtrans"}
             </Button>
           ) : (
@@ -478,9 +486,9 @@ function PaymentDashboard({ userId }: { userId: string }) {
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={() => {
-                  setSelectedPayment(paymentData);
-                  setMidtransDialogOpen(true);
-                }}
+                      setSelectedPayment(paymentData);
+                      setMidtransDialogOpen(true);
+                    }}
               >
                 <DollarSign className="mr-2 h-4 w-4" />
                 Bayar
