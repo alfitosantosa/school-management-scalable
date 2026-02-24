@@ -659,13 +659,13 @@ export default function PaymentDashboardPage() {
     }
   }
 
-  const snapURL = process.env.NEXT_PUBLIC_MIDTRANS_SNAP_URL || "https://app.midtrans.com/snap/snap.js";
+  const snapURL = new URL(process.env.NEXT_PUBLIC_MIDTRANS_SNAP_URL || "https://app.midtrans.com/snap/snap.js");
 
   // Render dashboard only after authorization is confirmed
   return (
     <>
       {/* Load Midtrans Snap script */}
-      <Script src={snapURL} data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY} strategy="afterInteractive" />
+      <Script src={snapURL.toString()} data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY} strategy="afterInteractive" />
       <PaymentDashboard userId={userDataId as string} />
     </>
   );
