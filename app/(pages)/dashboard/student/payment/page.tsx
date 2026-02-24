@@ -2,21 +2,18 @@
 
 import * as React from "react";
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, DollarSign, CheckCircle, Clock, XCircle, TrendingUp, Users, Calendar } from "lucide-react";
+import { ArrowUpDown, MoreHorizontal, DollarSign, CheckCircle, Clock, XCircle } from "lucide-react";
 import Script from "next/script";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -31,7 +28,8 @@ import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
 import { unauthorized } from "next/navigation";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
-import { useCreateSnapMidtransTransaction } from "@/app/hooks/Midtrans/useMidtrans";
+import { useCreateSnapMidtransTransaction, useUpdateMidtransSuccessTransaction } from "@/app/hooks/Midtrans/useMidtrans";
+import { useUpdatePaymentTransaction } from "@/app/hooks/Payments/usePaymentTransaction";
 
 // Declare Snap type for TypeScript
 declare global {
@@ -87,8 +85,6 @@ const paymentSchema = z.object({
   paymentDate: z.string().min(1, "Tanggal pembayaran wajib diisi"),
   receiptNumber: z.string().optional(),
 });
-
-type PaymentFormValues = z.infer<typeof paymentSchema>;
 
 // Payment status options
 const paymentStatuses = [
@@ -165,9 +161,22 @@ function StatisticsCards({ payments }: { payments: PaymentData[] }) {
 }
 
 //payment dialog components midtrans integration
-function MidtransPaymentDialog({ open, onOpenChange, paymentData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; paymentData?: PaymentData | null; onSuccess: () => void; setMidtransDialogOpen?: (open: boolean) => void }) {
+function MidtransPaymentDialog({
+  open,
+  onOpenChange,
+  paymentData,
+  onSuccess,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  paymentData?: PaymentData | null;
+  onSuccess: () => void;
+  setMidtransDialogOpen?: (open: boolean) => void;
+}) {
   const [isProcessing, setIsProcessing] = React.useState(false);
-  const mutation = useCreateSnapMidtransTransaction();
+  const mutationSnapMidtrans = useCreateSnapMidtransTransaction();
+  const mutationUpdatePaymentTransaction = useUpdatePaymentTransaction();
+  const mutationPaymentSuccess = useUpdateMidtransSuccessTransaction();
 
   const handlePayment = () => {
     if (!paymentData) {
@@ -177,9 +186,10 @@ function MidtransPaymentDialog({ open, onOpenChange, paymentData, onSuccess }: {
 
     setIsProcessing(true);
 
+    const idUppercase = base64id.generateId().toUpperCase();
     const transactionData = {
       transaction_details: {
-        order_id: `KWT-${base64id.generateId()}`,
+        order_id: `KWT-${idUppercase}`,
         gross_amount: Number(paymentData.amount),
       },
       customer_details: {
@@ -204,7 +214,7 @@ function MidtransPaymentDialog({ open, onOpenChange, paymentData, onSuccess }: {
       },
     };
 
-    mutation.mutate(transactionData, {
+    mutationSnapMidtrans.mutate(transactionData, {
       onSuccess: (response) => {
         console.log("Snap token received:", response);
 
@@ -219,6 +229,23 @@ function MidtransPaymentDialog({ open, onOpenChange, paymentData, onSuccess }: {
         window.snap.pay(response.token, {
           onSuccess: function (result) {
             console.log("Payment success:", result);
+            console.log("Payment Data:", paymentData);
+            mutationPaymentSuccess.mutate({
+              id: paymentData.id,
+              receiptNumber: result.order_id,
+              status: "paid",
+            });
+            mutationUpdatePaymentTransaction.mutate({
+              paymentId: paymentData.id,
+              transactionId: result.transaction_id,
+              orderId: result.order_id,
+              grossAmount: result.gross_amount,
+              paymentType: result.payment_type,
+              transactionTime: result.transaction_time,
+              transactionStatus: result.transaction_status,
+              fraudStatus: result.fraud_status,
+              finishRedirectUrl: result.finish_redirect_url,
+            });
             toast.success("Pembayaran berhasil!");
             onSuccess();
             onOpenChange(false);
@@ -486,9 +513,9 @@ function PaymentDashboard({ userId }: { userId: string }) {
               <DropdownMenuSeparator />
               <DropdownMenuItem
                 onClick={() => {
-                      setSelectedPayment(paymentData);
-                      setMidtransDialogOpen(true);
-                    }}
+                  setSelectedPayment(paymentData);
+                  setMidtransDialogOpen(true);
+                }}
               >
                 <DollarSign className="mr-2 h-4 w-4" />
                 Bayar
@@ -632,11 +659,13 @@ export default function PaymentDashboardPage() {
     }
   }
 
+  const snapURL = process.env.NEXT_PUBLIC_MIDTRANS_SNAP_URL || "https://app.midtrans.com/snap/snap.js";
+
   // Render dashboard only after authorization is confirmed
   return (
     <>
       {/* Load Midtrans Snap script */}
-      <Script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY || "YOUR_CLIENT_KEY_HERE"} strategy="afterInteractive" />
+      <Script src={snapURL} data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY} strategy="afterInteractive" />
       <PaymentDashboard userId={userDataId as string} />
     </>
   );

@@ -67,6 +67,7 @@ export const ModelName = {
   Violation: 'Violation',
   PaymentType: 'PaymentType',
   Payment: 'Payment',
+  PaymentTransaction: 'PaymentTransaction',
   CalendarEvent: 'CalendarEvent',
   GradeType: 'GradeType',
   GradeConfiguration: 'GradeConfiguration',
@@ -343,6 +344,23 @@ export const PaymentScalarFieldEnum = {
 } as const
 
 export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+export const PaymentTransactionScalarFieldEnum = {
+  id: 'id',
+  paymentId: 'paymentId',
+  transactionId: 'transactionId',
+  orderId: 'orderId',
+  grossAmount: 'grossAmount',
+  paymentType: 'paymentType',
+  transactionTime: 'transactionTime',
+  transactionStatus: 'transactionStatus',
+  fraudStatus: 'fraudStatus',
+  finishRedirectUrl: 'finishRedirectUrl',
+  createdAt: 'createdAt'
+} as const
+
+export type PaymentTransactionScalarFieldEnum = (typeof PaymentTransactionScalarFieldEnum)[keyof typeof PaymentTransactionScalarFieldEnum]
 
 
 export const CalendarEventScalarFieldEnum = {

@@ -1,8 +1,8 @@
 generator client {
-  provider = "prisma-client"
-  output   = "./generated"
+  provider   = "prisma-client"
+  output     = "./generated"
   engineType = "client"
-  runtime = "bun"
+  runtime    = "bun"
 }
 
 datasource db {
@@ -298,20 +298,38 @@ model PaymentType {
 }
 
 model Payment {
-  id            String      @id @default(cuid())
-  studentId     String
-  paymentTypeId String
-  amount        Decimal
-  dueDate       DateTime?
-  status        String      @default("pending")
-  notes         String?
-  createdAt     DateTime    @default(now())
-  paymentDate   DateTime
-  receiptNumber String?
-  paymentType   PaymentType @relation(fields: [paymentTypeId], references: [id])
-  student       UserData    @relation("StudentPayment", fields: [studentId], references: [id], onDelete: Cascade)
+  id                 String              @id @default(cuid())
+  studentId          String
+  paymentTypeId      String
+  amount             Decimal
+  dueDate            DateTime?
+  status             String              @default("pending")
+  notes              String?
+  createdAt          DateTime            @default(now())
+  paymentDate        DateTime
+  receiptNumber      String?
+  paymentTransaction PaymentTransaction?
+  paymentType        PaymentType         @relation(fields: [paymentTypeId], references: [id])
+  student            UserData            @relation("StudentPayment", fields: [studentId], references: [id], onDelete: Cascade)
 
   @@map("payments")
+}
+
+model PaymentTransaction {
+  id                String   @id @default(cuid())
+  paymentId         String   @unique
+  transactionId     String   @unique
+  orderId           String   @unique
+  grossAmount       Decimal
+  paymentType       String
+  transactionTime   DateTime
+  transactionStatus String
+  fraudStatus       String
+  finishRedirectUrl String
+  createdAt         DateTime @default(now())
+  payment           Payment  @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+
+  @@map("payment_transactions")
 }
 
 model CalendarEvent {

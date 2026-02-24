@@ -25,6 +25,7 @@ export async function GET() {
       include: {
         student: true,
         paymentType: true,
+        paymentTransaction: true,
       },
       orderBy: {
         createdAt: "desc",

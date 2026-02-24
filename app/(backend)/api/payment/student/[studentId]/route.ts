@@ -14,6 +14,7 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ studen
       include: {
         student: true,
         paymentType: true,
+        paymentTransaction: true,
       },
       orderBy: { dueDate: "asc" },
     });

@@ -11,7 +11,7 @@ docker compose up -d
 docker system prune -af --volumes
 
 # Khusus cleanup build cache
-docker builder prune -af
+docker builder prune --all
 
 # Cleanup containerd
 ctr -n moby images prune
