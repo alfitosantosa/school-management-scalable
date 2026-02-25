@@ -1,5 +1,5 @@
 # Hapus image lama
-docker rmi school-management:latest
+docker rmi school-management:latest --force
 
 # Build ulang dengan optimasi
 docker compose build --no-cache
@@ -8,13 +8,13 @@ docker compose build --no-cache
 docker compose up -d
 
 # Hapus semua yang tidak terpakai
-docker system prune -af --volumes
+docker system prune -af --volumes --force
 
 # Khusus cleanup build cache
-docker builder prune --all
+docker builder prune --all --force
 
 # Cleanup containerd
-ctr -n moby images prune
+ctr -n moby images prune --force
 
 # Cek ukuran image
 docker images

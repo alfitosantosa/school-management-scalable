@@ -72,6 +72,18 @@ export type PaymentData = {
     name: string;
     amount: number;
   };
+  paymentTransaction?: {
+    id: string;
+    paymentId: string;
+    transactionId: string;
+    orderId: string;
+    grossAmount: number;
+    paymentType: string;
+    transactionTime: string;
+    transactionStatus: string;
+    fraudStatus: string;
+    finishRedirectUrl: string;
+  };
 };
 
 // Form schema
@@ -293,6 +305,10 @@ function MidtransPaymentDialog({
                 <TableCell>{paymentData?.receiptNumber || "-"}</TableCell>
               </TableRow>
               <TableRow>
+                <TableCell>ID Pembayaran</TableCell>
+                <TableCell>{paymentData?.paymentTransaction?.transactionId || "-"}</TableCell>
+              </TableRow>
+              <TableRow>
                 <TableCell>Nama Siswa</TableCell>
                 <TableCell>{paymentData?.student?.name || "-"}</TableCell>
               </TableRow>
@@ -320,9 +336,17 @@ function MidtransPaymentDialog({
                   )}
                 </TableCell>
               </TableRow>
+              <TableRow>
+                <TableCell>Pembayaran Via</TableCell>
+                <TableCell>{paymentData?.paymentTransaction?.paymentType || "-"}</TableCell>
+              </TableRow>
             </TableBody>
           </Table>
-          {paymentData ? (
+          {paymentData && paymentData.status === "paid" ? (
+            <Button disabled={true} className=" mt-4">
+              Pembayaran sudah lunas
+            </Button>
+          ) : paymentData ? (
             <Button
               className="mt-4"
               onClick={() => {

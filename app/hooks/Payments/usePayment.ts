@@ -29,6 +29,20 @@ export const useCreatePayment = () => {
   });
 };
 
+export const useCreatePaymentBulk = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (data: any) => {
+      const res = await apiPost("/api/payment/student/bulk", data);
+      console.log(data);
+      return res.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["payments"] });
+    },
+  });
+};
+
 export const useUpdatePayment = () => {
   const queryClient = useQueryClient();
   return useMutation({

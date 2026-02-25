@@ -23,18 +23,21 @@ import { toast } from "sonner";
 import base64id from "base64id";
 
 // Import hooks
-import { useGetPayments, useCreatePayment, useUpdatePayment, useDeletePayment } from "@/app/hooks/Payments/usePayment";
+import { useGetPayments, useCreatePayment, useUpdatePayment, useDeletePayment, useCreatePaymentBulk } from "@/app/hooks/Payments/usePayment";
 import { useGetPaymentTypes } from "@/app/hooks/Payments/usePaymentType";
 import { useGetUsers } from "@/app/hooks/Users/useUsers";
 import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
 import { unauthorized } from "next/navigation";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
+import { useGetStudents } from "@/app/hooks/Users/useStudents";
+import { useGetClasses } from "@/app/hooks/Classes/useClass";
 
 // Type definitions
 export type PaymentData = {
   id: string;
   studentId: string;
+  classId?: string;
   paymentTypeId: string;
   amount: number;
   dueDate?: Date | string;
@@ -58,7 +61,8 @@ export type PaymentData = {
 
 // Form schema
 const paymentSchema = z.object({
-  studentId: z.string().min(1, "Siswa wajib dipilih"),
+  studentId: z.string().optional(),
+  classId: z.string().optional(),
   paymentTypeId: z.string().min(1, "Jenis pembayaran wajib dipilih"),
   amount: z.number().min(0, "Jumlah minimal 0"),
   dueDate: z.string().optional(),
@@ -147,13 +151,11 @@ function StatisticsCards({ payments }: { payments: PaymentData[] }) {
 // Create/Edit Dialog Component
 function PaymentFormDialog({ open, onOpenChange, editData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; editData?: PaymentData | null; onSuccess: () => void }) {
   const createPayment = useCreatePayment();
+  const createPaymentBulk = useCreatePaymentBulk();
   const updatePayment = useUpdatePayment();
   const { data: paymentTypes = [] } = useGetPaymentTypes();
-  const { data: users = [] } = useGetUsers();
-  const base64idGenerated = base64id.generateId();
-
-  // Filter only students
-  const students = users.filter((user: any) => user.role?.name === "Student");
+  const { data: students = [] } = useGetStudents();
+  const { data: classes = [] } = useGetClasses();
 
   const {
     register,
@@ -172,12 +174,14 @@ function PaymentFormDialog({ open, onOpenChange, editData, onSuccess }: { open: 
   });
 
   const selectedStudentId = watch("studentId");
+  const selectedClassId = watch("classId");
   const selectedPaymentTypeId = watch("paymentTypeId");
   const selectedStatus = watch("status");
 
   React.useEffect(() => {
     if (editData) {
-      setValue("studentId", editData.studentId);
+      setValue("studentId", editData.studentId || "");
+      setValue("classId", editData.classId || "");
       setValue("paymentTypeId", editData.paymentTypeId);
       setValue("amount", editData.amount);
       setValue("dueDate", editData.dueDate ? new Date(editData.dueDate).toISOString().split("T")[0] : "");
@@ -217,7 +221,11 @@ function PaymentFormDialog({ open, onOpenChange, editData, onSuccess }: { open: 
         await updatePayment.mutateAsync({ id: editData.id, ...payload } as any);
         toast.success("Pembayaran berhasil diperbarui!");
       } else {
-        await createPayment.mutateAsync(payload as any);
+        if(payload.classId && !payload.studentId) {
+          await createPaymentBulk.mutateAsync(payload as any);
+        } else {
+          await createPayment.mutateAsync(payload as any);
+        }
         toast.success("Pembayaran berhasil dibuat!");
       }
       reset();
@@ -252,6 +260,23 @@ function PaymentFormDialog({ open, onOpenChange, editData, onSuccess }: { open: 
                 </SelectContent>
               </Select>
               {errors.studentId && <p className="text-sm text-red-500">{errors.studentId.message}</p>}
+            </div>
+            <div className="space-y-2">
+              <Label>Kelas</Label>
+              <Select value={selectedClassId} onValueChange={(value) => setValue("classId", value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Pilih Kelas" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Semua Kelas</SelectItem>
+                  {classes.map((classItem: any) => (
+                    <SelectItem key={classItem.id} value={classItem.id}>
+                      {classItem.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.classId && <p className="text-sm text-red-500">{errors.classId.message}</p>}
             </div>
 
             <div className="space-y-2">
@@ -456,6 +481,11 @@ function PaymentDashboard() {
         const student = row.getValue("student") as PaymentData["student"];
         return <div className="font-medium">{student?.name || "-"}</div>;
       },
+      filterFn: (row, columnId, filterValue) => {
+        const student = row.getValue(columnId) as PaymentData["student"];
+        if (!student?.name) return false;
+        return student.name.toLowerCase().includes(filterValue.toLowerCase());
+      },
     },
     {
       accessorKey: "paymentType",
@@ -606,17 +636,18 @@ function PaymentDashboard() {
         <StatisticsCards payments={payments} />
 
         <div className="mx-auto">
-          <div className="flex items-center justify-between py-4">
-            <div className="flex items-center space-x-2">
-              <Input
-                placeholder="Cari nama siswa..."
-                value={(table.getColumn("student")?.getFilterValue() as string) ?? ""}
+          <div className="flex  items-center justify-between py-4">
+            <div className="flex flex-wrap items-center gap-2">
+              {/* <Input
+                placeholder="Cari nama siswa atau no. kwitansi..."
+                value={(table.getColumn("receiptNumber")?.getFilterValue() as string) || ""}
                 onChange={(event) => {
                   const value = event.target.value;
-                  table.getColumn("student")?.setFilterValue(value);
+                  table.getColumn("receiptNumber")?.setFilterValue(value);
                 }}
                 className="max-w-sm"
-              />
+              /> */}
+              <Input placeholder="Cari nama murid..." value={(table.getColumn("student")?.getFilterValue() as string) ?? ""} onChange={(event) => table.getColumn("student")?.setFilterValue(event.target.value)} className="max-w-sm" />
               <Select
                 value={(table.getColumn("status")?.getFilterValue() as string) ?? "all"}
                 onValueChange={(value) => {
