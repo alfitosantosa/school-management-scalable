@@ -36,6 +36,19 @@ services:
         reservations:
           cpus: "2.0"
           memory: 4G # Turunkan dari 2G
+  prisma-studio:
+    container_name: prisma-studio
+    build:
+      context: .
+      dockerfile: Dockerfile.prisma # Kita buat Dockerfile khusus studio
+    ports:
+      - "5555:5555"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    networks:
+      - app-network-studio
+    depends_on:
+      - app
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
@@ -58,9 +71,6 @@ services:
 
     security_opt:
       - no-new-privileges:true
-
-    networks:
-      - app-network
 
     labels:
       - "com.smkfajarsentosa-web.service=app"

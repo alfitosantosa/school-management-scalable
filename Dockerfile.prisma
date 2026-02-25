@@ -1,0 +1,16 @@
+# ==========================================
+# PRISMA STUDIO DOCKERFILE
+# ==========================================
+FROM node:24-alpine
+WORKDIR /app
+
+COPY package.json package-lock.json* ./
+RUN npm install --omit=dev
+
+COPY prisma ./prisma
+COPY node_modules/@prisma ./node_modules/@prisma
+
+ENV PORT=5555
+EXPOSE 5555
+
+CMD ["npx", "prisma", "studio", "--port", "5555", "--browser", "none"]
