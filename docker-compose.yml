@@ -43,8 +43,8 @@ services:
       dockerfile: Dockerfile.prisma # Kita buat Dockerfile khusus studio
     ports:
       - "5555:5555"
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
+    env_file:
+      - .env.production
     networks:
       - app-network-studio
     depends_on:
