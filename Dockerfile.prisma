@@ -1,7 +1,7 @@
 # ==========================================
 # PRISMA STUDIO DOCKERFILE
 # ==========================================
-FROM node:24-lts-alpine
+FROM node:24-alpine
 WORKDIR /app
 
 COPY package.json package-lock.json* ./
