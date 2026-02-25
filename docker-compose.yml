@@ -46,7 +46,7 @@ services:
     env_file:
       - .env.production
     networks:
-      - app-network-studio
+      - app-network
     depends_on:
       - app
 
