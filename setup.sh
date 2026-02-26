@@ -3,14 +3,14 @@
 echo "=== FORCE REMOVE IMAGE OLD ==="
 docker rmi school-management:latest --force || true
 
-echo "=== REMOVE ALL STOPPED CONTAINERS ==="
-docker rm -f $(docker ps -aq) 2>/dev/null || true
+# echo "=== REMOVE ALL STOPPED CONTAINERS ==="
+# docker rm -f $(docker ps -aq) 2>/dev/null || true
 
-echo "=== REMOVE ALL IMAGES FORCE ==="
-docker rmi -f $(docker images -aq) 2>/dev/null || true
+# echo "=== REMOVE ALL IMAGES FORCE ==="
+# docker rmi -f $(docker images -aq) 2>/dev/null || true
 
-echo "=== REMOVE ALL VOLUMES ==="
-docker volume rm $(docker volume ls -q) 2>/dev/null || true
+# echo "=== REMOVE ALL VOLUMES ==="
+# docker volume rm $(docker volume ls -q) 2>/dev/null || true
 
 echo "=== PRUNE ALL SYSTEM (FULL) ==="
 docker system prune -af --volumes
