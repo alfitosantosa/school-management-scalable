@@ -30,6 +30,7 @@ import { unauthorized } from "next/navigation";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { useCreateSnapMidtransTransaction, useUpdateMidtransSuccessTransaction } from "@/app/hooks/Midtrans/useMidtrans";
 import { useUpdatePaymentTransaction } from "@/app/hooks/Payments/usePaymentTransaction";
+import { useBulkSendWhatsApp } from "@/app/hooks/BotWA/useBotWA";
 
 // Declare Snap type for TypeScript
 declare global {
@@ -65,7 +66,7 @@ export type PaymentData = {
     id: string;
     name: string;
     email?: string;
-    phone?: string;
+    parentPhone?: string;
   };
   paymentType?: {
     id: string;
@@ -189,6 +190,7 @@ function MidtransPaymentDialog({
   const mutationSnapMidtrans = useCreateSnapMidtransTransaction();
   const mutationUpdatePaymentTransaction = useUpdatePaymentTransaction();
   const mutationPaymentSuccess = useUpdateMidtransSuccessTransaction();
+  const mutationSendWhatsapp = useBulkSendWhatsApp();
 
   const handlePayment = () => {
     if (!paymentData) {
@@ -207,7 +209,7 @@ function MidtransPaymentDialog({
       customer_details: {
         first_name: paymentData.student?.name || "Siswa",
         email: paymentData.student?.email || "student@example.com",
-        phone: paymentData.student?.phone || "08123456789",
+        phone: paymentData.student?.parentPhone || "null",
       },
       credit_card: {
         secure: true,
@@ -257,6 +259,24 @@ function MidtransPaymentDialog({
               transactionStatus: result.transaction_status,
               fraudStatus: result.fraud_status,
               finishRedirectUrl: result.finish_redirect_url,
+            });
+            mutationSendWhatsapp.mutate({
+              //               interface Recipient {
+              //   number: string;
+              //   name?: string;
+              // }
+              //               interface BulkSendRequest {
+              //   recipients: Recipient[];
+              //   message: string;
+              //   delayMs?: number;
+              // }
+              message: `Pembayaran berhasil untuk ${paymentData.paymentType?.name} dengan jumlah ${new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(paymentData.amount)}. Terima kasih telah melakukan pembayaran.`,
+              recipients: [
+                {
+                  number: paymentData.student?.parentPhone || "",
+                  name: paymentData.student?.name || "Orang Tua Siswa",
+                },
+              ],
             });
             toast.success("Pembayaran berhasil!");
             onSuccess();

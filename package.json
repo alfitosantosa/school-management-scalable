@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev:hmr": "NODE_ENV=development WATCHPACK_POLLING=false next dev",
-    "dev": "next dev --webpack",
+    "dev": "next dev --turbopack",
     "dev:fast": "NODE_ENV=development WATCHPACK_POLLING=false FAST_REFRESH=true next dev",
     "dev:clean": "rm -rf .next && npm run dev",
     "prebuild": "rm -rf node_modules/.cache && rm -rf .next",
