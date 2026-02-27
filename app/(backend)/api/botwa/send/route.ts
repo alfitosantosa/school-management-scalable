@@ -17,11 +17,6 @@ function formatPhoneNumber(phone: string): string {
   return cleaned;
 }
 
-type SendWhatsAppRequest = {
-  number: string;
-  text: string;
-};
-
 export async function POST(request: NextRequest) {
   const EVO_URL = process.env.NEXT_PUBLIC_EVO_URL;
   const EVO_APIKEY = process.env.NEXT_PUBLIC_EVO_APIKEY;
