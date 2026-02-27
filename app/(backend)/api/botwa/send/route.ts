@@ -17,6 +17,11 @@ function formatPhoneNumber(phone: string): string {
   return cleaned;
 }
 
+type SendWhatsAppRequest = {
+  number: string;
+  text: string;
+};
+
 export async function POST(request: NextRequest) {
   const EVO_URL = process.env.NEXT_PUBLIC_EVO_URL;
   const EVO_APIKEY = process.env.NEXT_PUBLIC_EVO_APIKEY;
@@ -28,7 +33,7 @@ export async function POST(request: NextRequest) {
   const { number, text } = await request.json();
 
   if (!number || !text) {
-    return { success: false, error: "Number and text are required" };
+    return NextResponse.json({ success: false, error: "Number and text are required" }, { status: 400 });
   }
 
   try {
