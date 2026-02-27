@@ -1,44 +1,28 @@
-#!/bin/bash
+# 
 
-echo "=== FORCE REMOVE IMAGE OLD ==="
-docker rmi school-management:latest --force || true
+# Hapus image lama
+docker rmi smkfajarsentosa-web:latest
 
-# echo "=== REMOVE ALL STOPPED CONTAINERS ==="
-# docker rm -f $(docker ps -aq) 2>/dev/null || true
-
-# echo "=== REMOVE ALL IMAGES FORCE ==="
-# docker rmi -f $(docker images -aq) 2>/dev/null || true
-
-# echo "=== REMOVE ALL VOLUMES ==="
-# docker volume rm $(docker volume ls -q) 2>/dev/null || true
-
-# echo "=== PRUNE ALL SYSTEM (FULL) ==="
-# docker system prune -af --volumes
-
-
-# echo "=== CLEANUP CONTAINERD PRUNE ==="
-# ctr -n moby images prune --force || true
-
-echo "=== PRUNE DOCKER BUILDER CACHE ==="
-docker builder prune --all --force
-
-echo "=== CLEANUP CONTAINERD SNAPSHOTS (MANUAL WARNING) ==="
-# HATI-HATI: Ini hanya untuk deep clean — uncomment jika benar-benar perlu
-rm -rf /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/*
-
-echo "=== REBUILD DOCKER COMPOSE (NO CACHE) ==="
+# Build ulang dengan optimasi
 docker compose build --no-cache
 
-echo "=== START PROJECT ==="
+# Jalankan
 docker compose up -d
 
-echo "=== DOCKER IMAGES ==="
+# Hapus semua yang tidak terpakai
+docker system prune -af --volumes
+
+# Khusus cleanup build cache
+docker builder prune -af
+
+# Cleanup containerd
+ctr -n moby images prune
+
+# Cek ukuran image
 docker images
 
-echo "=== DISK USAGE DOCKER ==="
+# Cek disk usage docker
 docker system df -v
 
-echo "=== DISK USAGE CONTAINERD SNAPSHOTS ==="
-du -sh /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs || true
-
-echo "=== DONE : CLEAN & REBUILD COMPLETED ==="
+# Cek ukuran containerd
+du -sh /var/lib/containerd/io.containerd.snapshotter.v1.overlayfs
