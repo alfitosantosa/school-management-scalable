@@ -162,7 +162,7 @@ const DataRow = ({ label, value }: { label: string; value: any }) => {
 
   return (
     <TableRow>
-      <TableHead className="w-[200px] font-medium">{label}</TableHead>
+      <TableHead className="w-50 font-medium">{label}</TableHead>
       <TableCell>{formatValue(value)}</TableCell>
     </TableRow>
   );

@@ -16,7 +16,7 @@ export function ReactQueryProvider({ children }: { children: ReactNode }) {
             // Retry failed requests 2 times
             retry: 2,
             // Don't refetch on window focus in production
-            refetchOnWindowFocus: process.env.NODE_ENV === "development",
+            refetchOnWindowFocus: false,
             // Don't refetch on mount if data is fresh
             refetchOnMount: false,
           },
@@ -25,7 +25,7 @@ export function ReactQueryProvider({ children }: { children: ReactNode }) {
             retry: 1,
           },
         },
-      })
+      }),
   );
 
   return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
