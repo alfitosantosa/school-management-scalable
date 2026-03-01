@@ -25,12 +25,17 @@ const STATUS_MAP = {
 };
 
 export default function DashboardPage() {
-    const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
-      from: new Date(),
-      to: new Date(),
-    });
+  const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
+    from: new Date(),
+    to: new Date(),
+  });
 
-    const { data: attendanceData = [], isLoading: attendanceIsLoading, isError: attendanceIsError, refetch } = useAttendanceByDate({
+  const {
+    data: attendanceData = [],
+    isLoading: attendanceIsLoading,
+    isError: attendanceIsError,
+    refetch,
+  } = useAttendanceByDate({
     fromdate: dateRange?.from || new Date(),
     todate: dateRange?.to || new Date(),
   });
@@ -42,10 +47,7 @@ export default function DashboardPage() {
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [selectedClass, setSelectedClass] = useState("all");
   const [searchStudent, setSearchStudent] = useState("");
-
-  //filter by session and filter by day 
-  const [selectedFilter, setSelectedFilter] = useState("all");
-
+  const [selectedSubject, setSelectedSubject] = useState("all");
 
   // Get unique classes from data
   const classes = useMemo(() => {
@@ -58,17 +60,37 @@ export default function DashboardPage() {
     return Array.from(classSet);
   }, [attendanceData]);
 
+  // Get unique subjects from data
+  const subjects = useMemo(() => {
+    const subjectSet = new Set<string>();
+    attendanceData.forEach(
+      (record: {
+        schedule: {
+          subject: {
+            name: string;
+            id: string;
+          };
+        };
+      }) => {
+        if (record.schedule?.subject?.name) {
+          subjectSet.add(record.schedule.subject.name);
+        }
+      },
+    );
+    return Array.from(subjectSet);
+  }, [attendanceData]);
+
   // Filter data based on selected filters
   const filteredData = useMemo(() => {
-    return attendanceData.filter((record: { date: string | number | Date; status: string; schedule: { room: string }; student: { name: string; nisn: string | string[] } }) => {
-
+    return attendanceData.filter((record: { date: string | number | Date; status: string; schedule: { room: string; subject: { name: string } }; student: { name: string; nisn: string | string[] } }) => {
       const matchesStatus = selectedStatus === "all" || record.status === selectedStatus;
       const matchesClass = selectedClass === "all" || record.schedule?.room === selectedClass;
+      const matchesSubject = selectedSubject === "all" || record.schedule?.subject?.name === selectedSubject;
       const matchesSearch = searchStudent === "" || record.student?.name.toLowerCase().includes(searchStudent.toLowerCase()) || record.student?.nisn?.includes(searchStudent);
 
-      return matchesStatus && matchesClass && matchesSearch;
+      return matchesStatus && matchesClass && matchesSubject && matchesSearch;
     });
-  }, [attendanceData, dateRange, selectedStatus, selectedClass, searchStudent]);
+  }, [attendanceData, dateRange, selectedStatus, selectedClass, selectedSubject, searchStudent]);
 
   // Calculate statistics
   const stats = useMemo(() => {
@@ -219,9 +241,7 @@ export default function DashboardPage() {
             <CardContent>
               <div className="flex flex-wrap gap-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-700 ">
-                    Set Tanggal
-                  </label>
+                  <label className="text-sm font-medium text-slate-700 ">Set Tanggal</label>
                   <DatePickerWithRange date={dateRange} setDate={setDateRange} />
                 </div>
 
@@ -260,25 +280,28 @@ export default function DashboardPage() {
                 </div>
 
                 <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-700">Mata Pelajaran</label>
+                  <Select value={selectedSubject} onValueChange={setSelectedSubject}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Pilih mata pelajaran" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">Semua Mata Pelajaran</SelectItem>
+                      {subjects.map((subject) => (
+                        <SelectItem key={subject} value={subject}>
+                          {subject}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-700 flex items-center">
                     <Search className="w-4 h-4 mr-2" />
                     Cari Siswa
                   </label>
                   <Input type="text" placeholder="Nama atau NISN" value={searchStudent} onChange={(e) => setSearchStudent(e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-700">Filter by</label>
-                  <Select value={selectedFilter} onValueChange={setSelectedFilter}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Pilih filter" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="session">Filter by Session</SelectItem>
-                      <SelectItem value="day">Filter by Day</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  
-                 
                 </div>
               </div>
             </CardContent>
@@ -366,6 +389,8 @@ export default function DashboardPage() {
                       <Line type="monotone" dataKey="present" stroke="#10B981" strokeWidth={2} name="Hadir" />
                       <Line type="monotone" dataKey="late" stroke="#F59E0B" strokeWidth={2} name="Terlambat" />
                       <Line type="monotone" dataKey="absent" stroke="#EF4444" strokeWidth={2} name="Tidak Hadir" />
+                      <Line type="monotone" dataKey="sick" stroke="#8B5CF6" strokeWidth={2} name="Sakit" />
+                      <Line type="monotone" dataKey="excused" stroke="#06B6D4" strokeWidth={2} name="Izin" />
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
@@ -419,6 +444,7 @@ export default function DashboardPage() {
                       <TableHead>Siswa</TableHead>
                       <TableHead>NISN</TableHead>
                       <TableHead>Kelas</TableHead>
+                      <TableHead>Mata Pelajaran</TableHead>
                       <TableHead>Status</TableHead>
                       <TableHead>Tanggal</TableHead>
                       <TableHead>Catatan</TableHead>
@@ -443,7 +469,10 @@ export default function DashboardPage() {
                             | undefined;
                           nisn: any;
                         };
-                        schedule: { room: any };
+                        schedule: {
+                          subject: any;
+                          room: any;
+                        };
                         date: string | number | Date;
                         notes: any;
                       }) => {
@@ -470,6 +499,12 @@ export default function DashboardPage() {
                               </div>
                             </TableCell>
                             <TableCell>
+                              <div className="flex items-center gap-1">
+                                <BookOpen className="w-3 h-3 text-gray-400" />
+                                {record.schedule?.subject?.name || "N/A"}
+                              </div>
+                            </TableCell>
+                            <TableCell>
                               <Badge className={statusConfig.color}>
                                 <StatusIcon className="w-3 h-3 mr-1" />
                                 {statusConfig.label}
@@ -479,7 +514,7 @@ export default function DashboardPage() {
                             <TableCell className="max-w-xs truncate">{record.notes || "-"}</TableCell>
                           </TableRow>
                         );
-                      }
+                      },
                     )}
                   </TableBody>
                 </Table>

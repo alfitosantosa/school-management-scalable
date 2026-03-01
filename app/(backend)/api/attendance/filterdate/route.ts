@@ -8,16 +8,13 @@ export async function GET(request: NextRequest) {
   const todate = request.nextUrl.searchParams.get("todate");
 
   if (!fromdate || !todate) {
-    return NextResponse.json(
-      { error: "Missing fromdate or todate query parameters" },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: "Missing fromdate or todate query parameters" }, { status: 400 });
   }
 
   try {
     const startDate = new Date(fromdate);
     const endDate = new Date(todate);
-    
+
     // Add 1 day to endDate to make sure we fetch data up to the end of the strict toDate
     endDate.setDate(endDate.getDate() + 1);
 
@@ -29,17 +26,17 @@ export async function GET(request: NextRequest) {
         },
       },
       include: {
-      student: true,
-        schedule: true,
+        student: true,
+        schedule: {
+          include: {
+            subject: true,
+          },
+        },
       },
     });
     return NextResponse.json(attendances);
   } catch (error) {
     console.error("Error fetching attendances:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch attendances" },
-      { status: 500 }
-    );
-  }  
-
+    return NextResponse.json({ error: "Failed to fetch attendances" }, { status: 500 });
+  }
 }
