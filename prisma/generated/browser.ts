@@ -163,6 +163,11 @@ export type Announcement = Prisma.AnnouncementModel
  */
 export type TahfidzRecord = Prisma.TahfidzRecordModel
 /**
+ * Model SurahQuran
+ * 
+ */
+export type SurahQuran = Prisma.SurahQuranModel
+/**
  * Model TeacherAttendance
  * 
  */

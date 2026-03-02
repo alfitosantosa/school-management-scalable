@@ -80,6 +80,7 @@ export const ModelName = {
   DashboardContent: 'DashboardContent',
   Announcement: 'Announcement',
   TahfidzRecord: 'TahfidzRecord',
+  SurahQuran: 'SurahQuran',
   TeacherAttendance: 'TeacherAttendance',
   TahfidzGroup: 'TahfidzGroup'
 } as const
@@ -570,18 +571,30 @@ export type AnnouncementScalarFieldEnum = (typeof AnnouncementScalarFieldEnum)[k
 
 export const TahfidzRecordScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
-  surah: 'surah',
   startVerse: 'startVerse',
   endVerse: 'endVerse',
   grade: 'grade',
   date: 'date',
   notes: 'notes',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  studentId: 'studentId',
+  teacherId: 'teacherId',
+  surahQuranId: 'surahQuranId'
 } as const
 
 export type TahfidzRecordScalarFieldEnum = (typeof TahfidzRecordScalarFieldEnum)[keyof typeof TahfidzRecordScalarFieldEnum]
+
+
+export const SurahQuranScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  nameLatin: 'nameLatin',
+  verseCount: 'verseCount',
+  revelationPlace: 'revelationPlace'
+} as const
+
+export type SurahQuranScalarFieldEnum = (typeof SurahQuranScalarFieldEnum)[keyof typeof SurahQuranScalarFieldEnum]
 
 
 export const TeacherAttendanceScalarFieldEnum = {

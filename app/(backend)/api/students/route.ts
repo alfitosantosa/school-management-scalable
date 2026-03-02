@@ -73,6 +73,7 @@ export async function GET() {
           name: "Student",
         },
       },
+      orderBy: { name: "asc" },
     });
     return NextResponse.json(users);
   } catch (error) {

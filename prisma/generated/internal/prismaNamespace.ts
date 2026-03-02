@@ -413,6 +413,7 @@ export const ModelName = {
   DashboardContent: 'DashboardContent',
   Announcement: 'Announcement',
   TahfidzRecord: 'TahfidzRecord',
+  SurahQuran: 'SurahQuran',
   TeacherAttendance: 'TeacherAttendance',
   TahfidzGroup: 'TahfidzGroup'
 } as const
@@ -430,7 +431,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "userData" | "role" | "academicYear" | "major" | "class" | "subject" | "schedule" | "attendance" | "violationType" | "violation" | "paymentType" | "payment" | "paymentTransaction" | "calendarEvent" | "gradeType" | "gradeConfiguration" | "grade" | "reportCard" | "gradeScale" | "assignment" | "assignmentSubmission" | "notification" | "dashboardContent" | "announcement" | "tahfidzRecord" | "teacherAttendance" | "tahfidzGroup"
+    modelProps: "user" | "session" | "account" | "verification" | "userData" | "role" | "academicYear" | "major" | "class" | "subject" | "schedule" | "attendance" | "violationType" | "violation" | "paymentType" | "payment" | "paymentTransaction" | "calendarEvent" | "gradeType" | "gradeConfiguration" | "grade" | "reportCard" | "gradeScale" | "assignment" | "assignmentSubmission" | "notification" | "dashboardContent" | "announcement" | "tahfidzRecord" | "surahQuran" | "teacherAttendance" | "tahfidzGroup"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2580,6 +2581,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SurahQuran: {
+      payload: Prisma.$SurahQuranPayload<ExtArgs>
+      fields: Prisma.SurahQuranFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SurahQuranFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SurahQuranPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SurahQuranFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SurahQuranPayload>
+        }
+        findFirst: {
+          args: Prisma.SurahQuranFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SurahQuranPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SurahQuranFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SurahQuranPayload>
+        }
+        findMany: {
+          args: Prisma.SurahQuranFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SurahQuranPayload>[]
+        }
+        create: {
+          args: Prisma.SurahQuranCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SurahQuranPayload>
+        }
+        createMany: {
+          args: Prisma.SurahQuranCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SurahQuranCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SurahQuranPayload>[]
+        }
+        delete: {
+          args: Prisma.SurahQuranDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SurahQuranPayload>
+        }
+        update: {
+          args: Prisma.SurahQuranUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SurahQuranPayload>
+        }
+        deleteMany: {
+          args: Prisma.SurahQuranDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SurahQuranUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SurahQuranUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SurahQuranPayload>[]
+        }
+        upsert: {
+          args: Prisma.SurahQuranUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SurahQuranPayload>
+        }
+        aggregate: {
+          args: Prisma.SurahQuranAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSurahQuran>
+        }
+        groupBy: {
+          args: Prisma.SurahQuranGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SurahQuranGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SurahQuranCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SurahQuranCountAggregateOutputType> | number
+        }
+      }
+    }
     TeacherAttendance: {
       payload: Prisma.$TeacherAttendancePayload<ExtArgs>
       fields: Prisma.TeacherAttendanceFieldRefs
@@ -3237,18 +3312,30 @@ export type AnnouncementScalarFieldEnum = (typeof AnnouncementScalarFieldEnum)[k
 
 export const TahfidzRecordScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
-  surah: 'surah',
   startVerse: 'startVerse',
   endVerse: 'endVerse',
   grade: 'grade',
   date: 'date',
   notes: 'notes',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  studentId: 'studentId',
+  teacherId: 'teacherId',
+  surahQuranId: 'surahQuranId'
 } as const
 
 export type TahfidzRecordScalarFieldEnum = (typeof TahfidzRecordScalarFieldEnum)[keyof typeof TahfidzRecordScalarFieldEnum]
+
+
+export const SurahQuranScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  nameLatin: 'nameLatin',
+  verseCount: 'verseCount',
+  revelationPlace: 'revelationPlace'
+} as const
+
+export type SurahQuranScalarFieldEnum = (typeof SurahQuranScalarFieldEnum)[keyof typeof SurahQuranScalarFieldEnum]
 
 
 export const TeacherAttendanceScalarFieldEnum = {
@@ -3539,6 +3626,7 @@ export type GlobalOmitConfig = {
   dashboardContent?: Prisma.DashboardContentOmit
   announcement?: Prisma.AnnouncementOmit
   tahfidzRecord?: Prisma.TahfidzRecordOmit
+  surahQuran?: Prisma.SurahQuranOmit
   teacherAttendance?: Prisma.TeacherAttendanceOmit
   tahfidzGroup?: Prisma.TahfidzGroupOmit
 }

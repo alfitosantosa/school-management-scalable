@@ -101,6 +101,10 @@ const availablePermissions = [
     id: "/dashboard/student/payment",
     label: "Payment for Student",
   },
+  {
+    id: "/dashboard/tahfidzrecord",
+    label: "Tahfidz Record Management",
+  },
 ];
 
 // Create/Edit Dialog Component

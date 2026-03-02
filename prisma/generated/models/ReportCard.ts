@@ -404,7 +404,6 @@ export type ReportCardOrderByWithRelationInput = {
 
 export type ReportCardWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  studentId_subjectId_academicYearId_semester?: Prisma.ReportCardStudentIdSubjectIdAcademicYearIdSemesterCompoundUniqueInput
   AND?: Prisma.ReportCardWhereInput | Prisma.ReportCardWhereInput[]
   OR?: Prisma.ReportCardWhereInput[]
   NOT?: Prisma.ReportCardWhereInput | Prisma.ReportCardWhereInput[]
@@ -432,7 +431,7 @@ export type ReportCardWhereUniqueInput = Prisma.AtLeast<{
   class?: Prisma.XOR<Prisma.ClassScalarRelationFilter, Prisma.ClassWhereInput>
   student?: Prisma.XOR<Prisma.UserDataScalarRelationFilter, Prisma.UserDataWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
-}, "id" | "studentId_subjectId_academicYearId_semester">
+}, "id">
 
 export type ReportCardOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -662,13 +661,6 @@ export type ReportCardListRelationFilter = {
 
 export type ReportCardOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type ReportCardStudentIdSubjectIdAcademicYearIdSemesterCompoundUniqueInput = {
-  studentId: string
-  subjectId: string
-  academicYearId: string
-  semester: number
 }
 
 export type ReportCardCountOrderByAggregateInput = {

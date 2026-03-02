@@ -77,55 +77,56 @@ model Verification {
 }
 
 model UserData {
-  id                 String                 @id @unique @default(cuid())
-  userId             String?                @unique
-  academicYearId     String?
-  address            String?
-  avatarUrl          String?
-  birthDate          DateTime?
-  birthPlace         String?
-  classId            String?
-  employeeId         String?
-  endDate            DateTime?
-  enrollmentDate     DateTime?
-  gender             String?
-  graduationDate     DateTime?
-  majorId            String?
-  nik                String?
-  nisn               String?
-  parentPhone        String?
-  position           String?
-  relation           String?
-  roleId             String?
-  startDate          DateTime?
-  status             String?                @default("active")
-  studentIds         String[]
-  email              String?
-  name               String
-  isActive           Boolean                @default(true)
-  createdAt          DateTime?              @default(now())
-  updatedAt          DateTime?              @updatedAt
-  tahfidzGroupId     String?
-  Announcements      Announcement[]
-  studentSubmissions AssignmentSubmission[] @relation("StudentSubmission")
-  teacherAssignments Assignment[]           @relation("TeacherAssignment")
-  attendances        Attendance[]           @relation("StudentAttendance")
-  DashboardContents  DashboardContent[]
-  grades             Grade[]                @relation("StudentGrade")
-  notifications      Notification[]
-  payments           Payment[]              @relation("StudentPayment")
-  reportCards        ReportCard[]           @relation("StudentReportCard")
-  schedules          Schedule[]             @relation("TeacherSchedule")
-  tahfidzRecords     TahfidzRecord[]
-  createdAttendances TeacherAttendance[]    @relation("CreatedAttendance")
-  teacherAttendances TeacherAttendance[]    @relation("TeacherAttendance")
-  academicYear       AcademicYear?          @relation("UserAcademicYear", fields: [academicYearId], references: [id])
-  class              Class?                 @relation("UserClass", fields: [classId], references: [id])
-  major              Major?                 @relation("UserMajor", fields: [majorId], references: [id])
-  role               Role?                  @relation(fields: [roleId], references: [id])
-  tahfidzGroup       TahfidzGroup?          @relation("UserTahfidzGroup", fields: [tahfidzGroupId], references: [id])
-  user               User?                  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  violations         Violation[]            @relation("StudentViolation")
+  id                      String                 @id @unique @default(cuid())
+  userId                  String?                @unique
+  academicYearId          String?
+  address                 String?
+  avatarUrl               String?
+  birthDate               DateTime?
+  birthPlace              String?
+  classId                 String?
+  employeeId              String?
+  endDate                 DateTime?
+  enrollmentDate          DateTime?
+  gender                  String?
+  graduationDate          DateTime?
+  majorId                 String?
+  nik                     String?
+  nisn                    String?
+  parentPhone             String?
+  position                String?
+  relation                String?
+  roleId                  String?
+  startDate               DateTime?
+  status                  String?                @default("active")
+  studentIds              String[]
+  email                   String?
+  name                    String
+  isActive                Boolean                @default(true)
+  createdAt               DateTime?              @default(now())
+  updatedAt               DateTime?              @updatedAt
+  tahfidzGroupId          String?
+  Announcements           Announcement[]
+  studentSubmissions      AssignmentSubmission[] @relation("StudentSubmission")
+  teacherAssignments      Assignment[]           @relation("TeacherAssignment")
+  attendances             Attendance[]           @relation("StudentAttendance")
+  DashboardContents       DashboardContent[]
+  grades                  Grade[]                @relation("StudentGrade")
+  notifications           Notification[]
+  payments                Payment[]              @relation("StudentPayment")
+  reportCards             ReportCard[]           @relation("StudentReportCard")
+  schedules               Schedule[]             @relation("TeacherSchedule")
+  tahfidzRecords          TahfidzRecord[]        @relation("TahfidzStudent")
+  tahfidzRecordsAsTeacher TahfidzRecord[]        @relation("TahfidzTeacher")
+  createdAttendances      TeacherAttendance[]    @relation("CreatedAttendance")
+  teacherAttendances      TeacherAttendance[]    @relation("TeacherAttendance")
+  academicYear            AcademicYear?          @relation("UserAcademicYear", fields: [academicYearId], references: [id])
+  class                   Class?                 @relation("UserClass", fields: [classId], references: [id])
+  major                   Major?                 @relation("UserMajor", fields: [majorId], references: [id])
+  role                    Role?                  @relation(fields: [roleId], references: [id])
+  tahfidzGroup            TahfidzGroup?          @relation("UserTahfidzGroup", fields: [tahfidzGroupId], references: [id])
+  user                    User?                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  violations              Violation[]            @relation("StudentViolation")
 
   @@map("user_data")
 }
@@ -441,7 +442,6 @@ model ReportCard {
   student          UserData     @relation("StudentReportCard", fields: [studentId], references: [id], onDelete: Cascade)
   subject          Subject      @relation(fields: [subjectId], references: [id])
 
-  @@unique([studentId, subjectId, academicYearId, semester])
   @@index([studentId])
   @@index([subjectId])
   @@index([classId])
@@ -582,19 +582,33 @@ model Announcement {
 }
 
 model TahfidzRecord {
-  id         String    @id @default(cuid())
-  userId     String?
-  surah      String?
+  id         String      @id @default(cuid())
   startVerse Int?
   endVerse   Int?
   grade      String?
   date       DateTime
   notes      String?
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  user       UserData? @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  studentId  String?
+  teacherId  String?
+  surahQuranId String?
+  student    UserData?   @relation("TahfidzStudent", fields: [studentId], references: [id], onDelete: Cascade)
+  surah      SurahQuran? @relation(fields: [surahQuranId], references: [id])
+  teacher    UserData?   @relation("TahfidzTeacher", fields: [teacherId], references: [id], onDelete: Cascade)
 
   @@map("tahfidz_records")
+}
+
+model SurahQuran {
+  id              String          @id @default(cuid())
+  name            String
+  nameLatin       String
+  verseCount      Int
+  revelationPlace String
+  tahfidzRecords  TahfidzRecord[]
+
+  @@map("surah_quran")
 }
 
 model TeacherAttendance {
@@ -608,7 +622,7 @@ model TeacherAttendance {
   createdBy     String
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
-  createdByUser UserData  @relation("CreatedAttendance", fields: [createdBy], references: [id], onDelete: SetNull)
+  createdByUser UserData  @relation("CreatedAttendance", fields: [createdBy], references: [id], onDelete: Cascade)
   teacher       UserData  @relation("TeacherAttendance", fields: [teacherId], references: [id], onDelete: Cascade)
 
   @@unique([teacherId, date])

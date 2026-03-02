@@ -38,8 +38,6 @@ export type TahfidzRecordSumAggregateOutputType = {
 
 export type TahfidzRecordMinAggregateOutputType = {
   id: string | null
-  userId: string | null
-  surah: string | null
   startVerse: number | null
   endVerse: number | null
   grade: string | null
@@ -47,12 +45,13 @@ export type TahfidzRecordMinAggregateOutputType = {
   notes: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  studentId: string | null
+  teacherId: string | null
+  surahQuranId: string | null
 }
 
 export type TahfidzRecordMaxAggregateOutputType = {
   id: string | null
-  userId: string | null
-  surah: string | null
   startVerse: number | null
   endVerse: number | null
   grade: string | null
@@ -60,12 +59,13 @@ export type TahfidzRecordMaxAggregateOutputType = {
   notes: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  studentId: string | null
+  teacherId: string | null
+  surahQuranId: string | null
 }
 
 export type TahfidzRecordCountAggregateOutputType = {
   id: number
-  userId: number
-  surah: number
   startVerse: number
   endVerse: number
   grade: number
@@ -73,6 +73,9 @@ export type TahfidzRecordCountAggregateOutputType = {
   notes: number
   createdAt: number
   updatedAt: number
+  studentId: number
+  teacherId: number
+  surahQuranId: number
   _all: number
 }
 
@@ -89,8 +92,6 @@ export type TahfidzRecordSumAggregateInputType = {
 
 export type TahfidzRecordMinAggregateInputType = {
   id?: true
-  userId?: true
-  surah?: true
   startVerse?: true
   endVerse?: true
   grade?: true
@@ -98,12 +99,13 @@ export type TahfidzRecordMinAggregateInputType = {
   notes?: true
   createdAt?: true
   updatedAt?: true
+  studentId?: true
+  teacherId?: true
+  surahQuranId?: true
 }
 
 export type TahfidzRecordMaxAggregateInputType = {
   id?: true
-  userId?: true
-  surah?: true
   startVerse?: true
   endVerse?: true
   grade?: true
@@ -111,12 +113,13 @@ export type TahfidzRecordMaxAggregateInputType = {
   notes?: true
   createdAt?: true
   updatedAt?: true
+  studentId?: true
+  teacherId?: true
+  surahQuranId?: true
 }
 
 export type TahfidzRecordCountAggregateInputType = {
   id?: true
-  userId?: true
-  surah?: true
   startVerse?: true
   endVerse?: true
   grade?: true
@@ -124,6 +127,9 @@ export type TahfidzRecordCountAggregateInputType = {
   notes?: true
   createdAt?: true
   updatedAt?: true
+  studentId?: true
+  teacherId?: true
+  surahQuranId?: true
   _all?: true
 }
 
@@ -215,8 +221,6 @@ export type TahfidzRecordGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 
 export type TahfidzRecordGroupByOutputType = {
   id: string
-  userId: string | null
-  surah: string | null
   startVerse: number | null
   endVerse: number | null
   grade: string | null
@@ -224,6 +228,9 @@ export type TahfidzRecordGroupByOutputType = {
   notes: string | null
   createdAt: Date
   updatedAt: Date
+  studentId: string | null
+  teacherId: string | null
+  surahQuranId: string | null
   _count: TahfidzRecordCountAggregateOutputType | null
   _avg: TahfidzRecordAvgAggregateOutputType | null
   _sum: TahfidzRecordSumAggregateOutputType | null
@@ -251,8 +258,6 @@ export type TahfidzRecordWhereInput = {
   OR?: Prisma.TahfidzRecordWhereInput[]
   NOT?: Prisma.TahfidzRecordWhereInput | Prisma.TahfidzRecordWhereInput[]
   id?: Prisma.StringFilter<"TahfidzRecord"> | string
-  userId?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
-  surah?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
   startVerse?: Prisma.IntNullableFilter<"TahfidzRecord"> | number | null
   endVerse?: Prisma.IntNullableFilter<"TahfidzRecord"> | number | null
   grade?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
@@ -260,13 +265,16 @@ export type TahfidzRecordWhereInput = {
   notes?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
   createdAt?: Prisma.DateTimeFilter<"TahfidzRecord"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TahfidzRecord"> | Date | string
-  user?: Prisma.XOR<Prisma.UserDataNullableScalarRelationFilter, Prisma.UserDataWhereInput> | null
+  studentId?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
+  teacherId?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
+  surahQuranId?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
+  student?: Prisma.XOR<Prisma.UserDataNullableScalarRelationFilter, Prisma.UserDataWhereInput> | null
+  surah?: Prisma.XOR<Prisma.SurahQuranNullableScalarRelationFilter, Prisma.SurahQuranWhereInput> | null
+  teacher?: Prisma.XOR<Prisma.UserDataNullableScalarRelationFilter, Prisma.UserDataWhereInput> | null
 }
 
 export type TahfidzRecordOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
-  surah?: Prisma.SortOrderInput | Prisma.SortOrder
   startVerse?: Prisma.SortOrderInput | Prisma.SortOrder
   endVerse?: Prisma.SortOrderInput | Prisma.SortOrder
   grade?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -274,7 +282,12 @@ export type TahfidzRecordOrderByWithRelationInput = {
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  user?: Prisma.UserDataOrderByWithRelationInput
+  studentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  teacherId?: Prisma.SortOrderInput | Prisma.SortOrder
+  surahQuranId?: Prisma.SortOrderInput | Prisma.SortOrder
+  student?: Prisma.UserDataOrderByWithRelationInput
+  surah?: Prisma.SurahQuranOrderByWithRelationInput
+  teacher?: Prisma.UserDataOrderByWithRelationInput
 }
 
 export type TahfidzRecordWhereUniqueInput = Prisma.AtLeast<{
@@ -282,8 +295,6 @@ export type TahfidzRecordWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TahfidzRecordWhereInput | Prisma.TahfidzRecordWhereInput[]
   OR?: Prisma.TahfidzRecordWhereInput[]
   NOT?: Prisma.TahfidzRecordWhereInput | Prisma.TahfidzRecordWhereInput[]
-  userId?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
-  surah?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
   startVerse?: Prisma.IntNullableFilter<"TahfidzRecord"> | number | null
   endVerse?: Prisma.IntNullableFilter<"TahfidzRecord"> | number | null
   grade?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
@@ -291,13 +302,16 @@ export type TahfidzRecordWhereUniqueInput = Prisma.AtLeast<{
   notes?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
   createdAt?: Prisma.DateTimeFilter<"TahfidzRecord"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TahfidzRecord"> | Date | string
-  user?: Prisma.XOR<Prisma.UserDataNullableScalarRelationFilter, Prisma.UserDataWhereInput> | null
+  studentId?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
+  teacherId?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
+  surahQuranId?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
+  student?: Prisma.XOR<Prisma.UserDataNullableScalarRelationFilter, Prisma.UserDataWhereInput> | null
+  surah?: Prisma.XOR<Prisma.SurahQuranNullableScalarRelationFilter, Prisma.SurahQuranWhereInput> | null
+  teacher?: Prisma.XOR<Prisma.UserDataNullableScalarRelationFilter, Prisma.UserDataWhereInput> | null
 }, "id">
 
 export type TahfidzRecordOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
-  surah?: Prisma.SortOrderInput | Prisma.SortOrder
   startVerse?: Prisma.SortOrderInput | Prisma.SortOrder
   endVerse?: Prisma.SortOrderInput | Prisma.SortOrder
   grade?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -305,6 +319,9 @@ export type TahfidzRecordOrderByWithAggregationInput = {
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  studentId?: Prisma.SortOrderInput | Prisma.SortOrder
+  teacherId?: Prisma.SortOrderInput | Prisma.SortOrder
+  surahQuranId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TahfidzRecordCountOrderByAggregateInput
   _avg?: Prisma.TahfidzRecordAvgOrderByAggregateInput
   _max?: Prisma.TahfidzRecordMaxOrderByAggregateInput
@@ -317,8 +334,6 @@ export type TahfidzRecordScalarWhereWithAggregatesInput = {
   OR?: Prisma.TahfidzRecordScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TahfidzRecordScalarWhereWithAggregatesInput | Prisma.TahfidzRecordScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"TahfidzRecord"> | string
-  userId?: Prisma.StringNullableWithAggregatesFilter<"TahfidzRecord"> | string | null
-  surah?: Prisma.StringNullableWithAggregatesFilter<"TahfidzRecord"> | string | null
   startVerse?: Prisma.IntNullableWithAggregatesFilter<"TahfidzRecord"> | number | null
   endVerse?: Prisma.IntNullableWithAggregatesFilter<"TahfidzRecord"> | number | null
   grade?: Prisma.StringNullableWithAggregatesFilter<"TahfidzRecord"> | string | null
@@ -326,11 +341,13 @@ export type TahfidzRecordScalarWhereWithAggregatesInput = {
   notes?: Prisma.StringNullableWithAggregatesFilter<"TahfidzRecord"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"TahfidzRecord"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"TahfidzRecord"> | Date | string
+  studentId?: Prisma.StringNullableWithAggregatesFilter<"TahfidzRecord"> | string | null
+  teacherId?: Prisma.StringNullableWithAggregatesFilter<"TahfidzRecord"> | string | null
+  surahQuranId?: Prisma.StringNullableWithAggregatesFilter<"TahfidzRecord"> | string | null
 }
 
 export type TahfidzRecordCreateInput = {
   id?: string
-  surah?: string | null
   startVerse?: number | null
   endVerse?: number | null
   grade?: string | null
@@ -338,13 +355,13 @@ export type TahfidzRecordCreateInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user?: Prisma.UserDataCreateNestedOneWithoutTahfidzRecordsInput
+  student?: Prisma.UserDataCreateNestedOneWithoutTahfidzRecordsInput
+  surah?: Prisma.SurahQuranCreateNestedOneWithoutTahfidzRecordsInput
+  teacher?: Prisma.UserDataCreateNestedOneWithoutTahfidzRecordsAsTeacherInput
 }
 
 export type TahfidzRecordUncheckedCreateInput = {
   id?: string
-  userId?: string | null
-  surah?: string | null
   startVerse?: number | null
   endVerse?: number | null
   grade?: string | null
@@ -352,11 +369,13 @@ export type TahfidzRecordUncheckedCreateInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  studentId?: string | null
+  teacherId?: string | null
+  surahQuranId?: string | null
 }
 
 export type TahfidzRecordUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  surah?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   endVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -364,13 +383,13 @@ export type TahfidzRecordUpdateInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserDataUpdateOneWithoutTahfidzRecordsNestedInput
+  student?: Prisma.UserDataUpdateOneWithoutTahfidzRecordsNestedInput
+  surah?: Prisma.SurahQuranUpdateOneWithoutTahfidzRecordsNestedInput
+  teacher?: Prisma.UserDataUpdateOneWithoutTahfidzRecordsAsTeacherNestedInput
 }
 
 export type TahfidzRecordUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  surah?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   endVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -378,12 +397,13 @@ export type TahfidzRecordUncheckedUpdateInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  surahQuranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TahfidzRecordCreateManyInput = {
   id?: string
-  userId?: string | null
-  surah?: string | null
   startVerse?: number | null
   endVerse?: number | null
   grade?: string | null
@@ -391,11 +411,13 @@ export type TahfidzRecordCreateManyInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  studentId?: string | null
+  teacherId?: string | null
+  surahQuranId?: string | null
 }
 
 export type TahfidzRecordUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  surah?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   endVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -407,8 +429,6 @@ export type TahfidzRecordUpdateManyMutationInput = {
 
 export type TahfidzRecordUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  surah?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   endVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -416,6 +436,9 @@ export type TahfidzRecordUncheckedUpdateManyInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  surahQuranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type TahfidzRecordListRelationFilter = {
@@ -430,8 +453,6 @@ export type TahfidzRecordOrderByRelationAggregateInput = {
 
 export type TahfidzRecordCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  surah?: Prisma.SortOrder
   startVerse?: Prisma.SortOrder
   endVerse?: Prisma.SortOrder
   grade?: Prisma.SortOrder
@@ -439,6 +460,9 @@ export type TahfidzRecordCountOrderByAggregateInput = {
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  studentId?: Prisma.SortOrder
+  teacherId?: Prisma.SortOrder
+  surahQuranId?: Prisma.SortOrder
 }
 
 export type TahfidzRecordAvgOrderByAggregateInput = {
@@ -448,8 +472,6 @@ export type TahfidzRecordAvgOrderByAggregateInput = {
 
 export type TahfidzRecordMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  surah?: Prisma.SortOrder
   startVerse?: Prisma.SortOrder
   endVerse?: Prisma.SortOrder
   grade?: Prisma.SortOrder
@@ -457,12 +479,13 @@ export type TahfidzRecordMaxOrderByAggregateInput = {
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  studentId?: Prisma.SortOrder
+  teacherId?: Prisma.SortOrder
+  surahQuranId?: Prisma.SortOrder
 }
 
 export type TahfidzRecordMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  surah?: Prisma.SortOrder
   startVerse?: Prisma.SortOrder
   endVerse?: Prisma.SortOrder
   grade?: Prisma.SortOrder
@@ -470,6 +493,9 @@ export type TahfidzRecordMinOrderByAggregateInput = {
   notes?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  studentId?: Prisma.SortOrder
+  teacherId?: Prisma.SortOrder
+  surahQuranId?: Prisma.SortOrder
 }
 
 export type TahfidzRecordSumOrderByAggregateInput = {
@@ -477,45 +503,87 @@ export type TahfidzRecordSumOrderByAggregateInput = {
   endVerse?: Prisma.SortOrder
 }
 
-export type TahfidzRecordCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutUserInput, Prisma.TahfidzRecordUncheckedCreateWithoutUserInput> | Prisma.TahfidzRecordCreateWithoutUserInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutUserInput | Prisma.TahfidzRecordCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.TahfidzRecordCreateManyUserInputEnvelope
+export type TahfidzRecordCreateNestedManyWithoutStudentInput = {
+  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutStudentInput, Prisma.TahfidzRecordUncheckedCreateWithoutStudentInput> | Prisma.TahfidzRecordCreateWithoutStudentInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutStudentInput[]
+  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutStudentInput | Prisma.TahfidzRecordCreateOrConnectWithoutStudentInput[]
+  createMany?: Prisma.TahfidzRecordCreateManyStudentInputEnvelope
   connect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
 }
 
-export type TahfidzRecordUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutUserInput, Prisma.TahfidzRecordUncheckedCreateWithoutUserInput> | Prisma.TahfidzRecordCreateWithoutUserInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutUserInput | Prisma.TahfidzRecordCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.TahfidzRecordCreateManyUserInputEnvelope
+export type TahfidzRecordCreateNestedManyWithoutTeacherInput = {
+  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutTeacherInput, Prisma.TahfidzRecordUncheckedCreateWithoutTeacherInput> | Prisma.TahfidzRecordCreateWithoutTeacherInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutTeacherInput[]
+  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutTeacherInput | Prisma.TahfidzRecordCreateOrConnectWithoutTeacherInput[]
+  createMany?: Prisma.TahfidzRecordCreateManyTeacherInputEnvelope
   connect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
 }
 
-export type TahfidzRecordUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutUserInput, Prisma.TahfidzRecordUncheckedCreateWithoutUserInput> | Prisma.TahfidzRecordCreateWithoutUserInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutUserInput | Prisma.TahfidzRecordCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutUserInput | Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.TahfidzRecordCreateManyUserInputEnvelope
+export type TahfidzRecordUncheckedCreateNestedManyWithoutStudentInput = {
+  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutStudentInput, Prisma.TahfidzRecordUncheckedCreateWithoutStudentInput> | Prisma.TahfidzRecordCreateWithoutStudentInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutStudentInput[]
+  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutStudentInput | Prisma.TahfidzRecordCreateOrConnectWithoutStudentInput[]
+  createMany?: Prisma.TahfidzRecordCreateManyStudentInputEnvelope
+  connect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+}
+
+export type TahfidzRecordUncheckedCreateNestedManyWithoutTeacherInput = {
+  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutTeacherInput, Prisma.TahfidzRecordUncheckedCreateWithoutTeacherInput> | Prisma.TahfidzRecordCreateWithoutTeacherInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutTeacherInput[]
+  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutTeacherInput | Prisma.TahfidzRecordCreateOrConnectWithoutTeacherInput[]
+  createMany?: Prisma.TahfidzRecordCreateManyTeacherInputEnvelope
+  connect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+}
+
+export type TahfidzRecordUpdateManyWithoutStudentNestedInput = {
+  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutStudentInput, Prisma.TahfidzRecordUncheckedCreateWithoutStudentInput> | Prisma.TahfidzRecordCreateWithoutStudentInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutStudentInput[]
+  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutStudentInput | Prisma.TahfidzRecordCreateOrConnectWithoutStudentInput[]
+  upsert?: Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutStudentInput | Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutStudentInput[]
+  createMany?: Prisma.TahfidzRecordCreateManyStudentInputEnvelope
   set?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
   disconnect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
   delete?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
   connect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
-  update?: Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutUserInput | Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.TahfidzRecordUpdateManyWithWhereWithoutUserInput | Prisma.TahfidzRecordUpdateManyWithWhereWithoutUserInput[]
+  update?: Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutStudentInput | Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutStudentInput[]
+  updateMany?: Prisma.TahfidzRecordUpdateManyWithWhereWithoutStudentInput | Prisma.TahfidzRecordUpdateManyWithWhereWithoutStudentInput[]
   deleteMany?: Prisma.TahfidzRecordScalarWhereInput | Prisma.TahfidzRecordScalarWhereInput[]
 }
 
-export type TahfidzRecordUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutUserInput, Prisma.TahfidzRecordUncheckedCreateWithoutUserInput> | Prisma.TahfidzRecordCreateWithoutUserInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutUserInput | Prisma.TahfidzRecordCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutUserInput | Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.TahfidzRecordCreateManyUserInputEnvelope
+export type TahfidzRecordUpdateManyWithoutTeacherNestedInput = {
+  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutTeacherInput, Prisma.TahfidzRecordUncheckedCreateWithoutTeacherInput> | Prisma.TahfidzRecordCreateWithoutTeacherInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutTeacherInput[]
+  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutTeacherInput | Prisma.TahfidzRecordCreateOrConnectWithoutTeacherInput[]
+  upsert?: Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutTeacherInput | Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutTeacherInput[]
+  createMany?: Prisma.TahfidzRecordCreateManyTeacherInputEnvelope
   set?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
   disconnect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
   delete?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
   connect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
-  update?: Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutUserInput | Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.TahfidzRecordUpdateManyWithWhereWithoutUserInput | Prisma.TahfidzRecordUpdateManyWithWhereWithoutUserInput[]
+  update?: Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutTeacherInput | Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutTeacherInput[]
+  updateMany?: Prisma.TahfidzRecordUpdateManyWithWhereWithoutTeacherInput | Prisma.TahfidzRecordUpdateManyWithWhereWithoutTeacherInput[]
+  deleteMany?: Prisma.TahfidzRecordScalarWhereInput | Prisma.TahfidzRecordScalarWhereInput[]
+}
+
+export type TahfidzRecordUncheckedUpdateManyWithoutStudentNestedInput = {
+  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutStudentInput, Prisma.TahfidzRecordUncheckedCreateWithoutStudentInput> | Prisma.TahfidzRecordCreateWithoutStudentInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutStudentInput[]
+  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutStudentInput | Prisma.TahfidzRecordCreateOrConnectWithoutStudentInput[]
+  upsert?: Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutStudentInput | Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutStudentInput[]
+  createMany?: Prisma.TahfidzRecordCreateManyStudentInputEnvelope
+  set?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  disconnect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  delete?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  connect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  update?: Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutStudentInput | Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutStudentInput[]
+  updateMany?: Prisma.TahfidzRecordUpdateManyWithWhereWithoutStudentInput | Prisma.TahfidzRecordUpdateManyWithWhereWithoutStudentInput[]
+  deleteMany?: Prisma.TahfidzRecordScalarWhereInput | Prisma.TahfidzRecordScalarWhereInput[]
+}
+
+export type TahfidzRecordUncheckedUpdateManyWithoutTeacherNestedInput = {
+  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutTeacherInput, Prisma.TahfidzRecordUncheckedCreateWithoutTeacherInput> | Prisma.TahfidzRecordCreateWithoutTeacherInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutTeacherInput[]
+  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutTeacherInput | Prisma.TahfidzRecordCreateOrConnectWithoutTeacherInput[]
+  upsert?: Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutTeacherInput | Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutTeacherInput[]
+  createMany?: Prisma.TahfidzRecordCreateManyTeacherInputEnvelope
+  set?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  disconnect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  delete?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  connect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  update?: Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutTeacherInput | Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutTeacherInput[]
+  updateMany?: Prisma.TahfidzRecordUpdateManyWithWhereWithoutTeacherInput | Prisma.TahfidzRecordUpdateManyWithWhereWithoutTeacherInput[]
   deleteMany?: Prisma.TahfidzRecordScalarWhereInput | Prisma.TahfidzRecordScalarWhereInput[]
 }
 
@@ -527,9 +595,50 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type TahfidzRecordCreateWithoutUserInput = {
+export type TahfidzRecordCreateNestedManyWithoutSurahInput = {
+  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutSurahInput, Prisma.TahfidzRecordUncheckedCreateWithoutSurahInput> | Prisma.TahfidzRecordCreateWithoutSurahInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutSurahInput[]
+  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutSurahInput | Prisma.TahfidzRecordCreateOrConnectWithoutSurahInput[]
+  createMany?: Prisma.TahfidzRecordCreateManySurahInputEnvelope
+  connect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+}
+
+export type TahfidzRecordUncheckedCreateNestedManyWithoutSurahInput = {
+  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutSurahInput, Prisma.TahfidzRecordUncheckedCreateWithoutSurahInput> | Prisma.TahfidzRecordCreateWithoutSurahInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutSurahInput[]
+  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutSurahInput | Prisma.TahfidzRecordCreateOrConnectWithoutSurahInput[]
+  createMany?: Prisma.TahfidzRecordCreateManySurahInputEnvelope
+  connect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+}
+
+export type TahfidzRecordUpdateManyWithoutSurahNestedInput = {
+  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutSurahInput, Prisma.TahfidzRecordUncheckedCreateWithoutSurahInput> | Prisma.TahfidzRecordCreateWithoutSurahInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutSurahInput[]
+  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutSurahInput | Prisma.TahfidzRecordCreateOrConnectWithoutSurahInput[]
+  upsert?: Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutSurahInput | Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutSurahInput[]
+  createMany?: Prisma.TahfidzRecordCreateManySurahInputEnvelope
+  set?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  disconnect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  delete?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  connect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  update?: Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutSurahInput | Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutSurahInput[]
+  updateMany?: Prisma.TahfidzRecordUpdateManyWithWhereWithoutSurahInput | Prisma.TahfidzRecordUpdateManyWithWhereWithoutSurahInput[]
+  deleteMany?: Prisma.TahfidzRecordScalarWhereInput | Prisma.TahfidzRecordScalarWhereInput[]
+}
+
+export type TahfidzRecordUncheckedUpdateManyWithoutSurahNestedInput = {
+  create?: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutSurahInput, Prisma.TahfidzRecordUncheckedCreateWithoutSurahInput> | Prisma.TahfidzRecordCreateWithoutSurahInput[] | Prisma.TahfidzRecordUncheckedCreateWithoutSurahInput[]
+  connectOrCreate?: Prisma.TahfidzRecordCreateOrConnectWithoutSurahInput | Prisma.TahfidzRecordCreateOrConnectWithoutSurahInput[]
+  upsert?: Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutSurahInput | Prisma.TahfidzRecordUpsertWithWhereUniqueWithoutSurahInput[]
+  createMany?: Prisma.TahfidzRecordCreateManySurahInputEnvelope
+  set?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  disconnect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  delete?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  connect?: Prisma.TahfidzRecordWhereUniqueInput | Prisma.TahfidzRecordWhereUniqueInput[]
+  update?: Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutSurahInput | Prisma.TahfidzRecordUpdateWithWhereUniqueWithoutSurahInput[]
+  updateMany?: Prisma.TahfidzRecordUpdateManyWithWhereWithoutSurahInput | Prisma.TahfidzRecordUpdateManyWithWhereWithoutSurahInput[]
+  deleteMany?: Prisma.TahfidzRecordScalarWhereInput | Prisma.TahfidzRecordScalarWhereInput[]
+}
+
+export type TahfidzRecordCreateWithoutStudentInput = {
   id?: string
-  surah?: string | null
   startVerse?: number | null
   endVerse?: number | null
   grade?: string | null
@@ -537,11 +646,12 @@ export type TahfidzRecordCreateWithoutUserInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  surah?: Prisma.SurahQuranCreateNestedOneWithoutTahfidzRecordsInput
+  teacher?: Prisma.UserDataCreateNestedOneWithoutTahfidzRecordsAsTeacherInput
 }
 
-export type TahfidzRecordUncheckedCreateWithoutUserInput = {
+export type TahfidzRecordUncheckedCreateWithoutStudentInput = {
   id?: string
-  surah?: string | null
   startVerse?: number | null
   endVerse?: number | null
   grade?: string | null
@@ -549,32 +659,70 @@ export type TahfidzRecordUncheckedCreateWithoutUserInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  teacherId?: string | null
+  surahQuranId?: string | null
 }
 
-export type TahfidzRecordCreateOrConnectWithoutUserInput = {
+export type TahfidzRecordCreateOrConnectWithoutStudentInput = {
   where: Prisma.TahfidzRecordWhereUniqueInput
-  create: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutUserInput, Prisma.TahfidzRecordUncheckedCreateWithoutUserInput>
+  create: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutStudentInput, Prisma.TahfidzRecordUncheckedCreateWithoutStudentInput>
 }
 
-export type TahfidzRecordCreateManyUserInputEnvelope = {
-  data: Prisma.TahfidzRecordCreateManyUserInput | Prisma.TahfidzRecordCreateManyUserInput[]
+export type TahfidzRecordCreateManyStudentInputEnvelope = {
+  data: Prisma.TahfidzRecordCreateManyStudentInput | Prisma.TahfidzRecordCreateManyStudentInput[]
   skipDuplicates?: boolean
 }
 
-export type TahfidzRecordUpsertWithWhereUniqueWithoutUserInput = {
-  where: Prisma.TahfidzRecordWhereUniqueInput
-  update: Prisma.XOR<Prisma.TahfidzRecordUpdateWithoutUserInput, Prisma.TahfidzRecordUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutUserInput, Prisma.TahfidzRecordUncheckedCreateWithoutUserInput>
+export type TahfidzRecordCreateWithoutTeacherInput = {
+  id?: string
+  startVerse?: number | null
+  endVerse?: number | null
+  grade?: string | null
+  date: Date | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  student?: Prisma.UserDataCreateNestedOneWithoutTahfidzRecordsInput
+  surah?: Prisma.SurahQuranCreateNestedOneWithoutTahfidzRecordsInput
 }
 
-export type TahfidzRecordUpdateWithWhereUniqueWithoutUserInput = {
-  where: Prisma.TahfidzRecordWhereUniqueInput
-  data: Prisma.XOR<Prisma.TahfidzRecordUpdateWithoutUserInput, Prisma.TahfidzRecordUncheckedUpdateWithoutUserInput>
+export type TahfidzRecordUncheckedCreateWithoutTeacherInput = {
+  id?: string
+  startVerse?: number | null
+  endVerse?: number | null
+  grade?: string | null
+  date: Date | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  studentId?: string | null
+  surahQuranId?: string | null
 }
 
-export type TahfidzRecordUpdateManyWithWhereWithoutUserInput = {
+export type TahfidzRecordCreateOrConnectWithoutTeacherInput = {
+  where: Prisma.TahfidzRecordWhereUniqueInput
+  create: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutTeacherInput, Prisma.TahfidzRecordUncheckedCreateWithoutTeacherInput>
+}
+
+export type TahfidzRecordCreateManyTeacherInputEnvelope = {
+  data: Prisma.TahfidzRecordCreateManyTeacherInput | Prisma.TahfidzRecordCreateManyTeacherInput[]
+  skipDuplicates?: boolean
+}
+
+export type TahfidzRecordUpsertWithWhereUniqueWithoutStudentInput = {
+  where: Prisma.TahfidzRecordWhereUniqueInput
+  update: Prisma.XOR<Prisma.TahfidzRecordUpdateWithoutStudentInput, Prisma.TahfidzRecordUncheckedUpdateWithoutStudentInput>
+  create: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutStudentInput, Prisma.TahfidzRecordUncheckedCreateWithoutStudentInput>
+}
+
+export type TahfidzRecordUpdateWithWhereUniqueWithoutStudentInput = {
+  where: Prisma.TahfidzRecordWhereUniqueInput
+  data: Prisma.XOR<Prisma.TahfidzRecordUpdateWithoutStudentInput, Prisma.TahfidzRecordUncheckedUpdateWithoutStudentInput>
+}
+
+export type TahfidzRecordUpdateManyWithWhereWithoutStudentInput = {
   where: Prisma.TahfidzRecordScalarWhereInput
-  data: Prisma.XOR<Prisma.TahfidzRecordUpdateManyMutationInput, Prisma.TahfidzRecordUncheckedUpdateManyWithoutUserInput>
+  data: Prisma.XOR<Prisma.TahfidzRecordUpdateManyMutationInput, Prisma.TahfidzRecordUncheckedUpdateManyWithoutStudentInput>
 }
 
 export type TahfidzRecordScalarWhereInput = {
@@ -582,8 +730,6 @@ export type TahfidzRecordScalarWhereInput = {
   OR?: Prisma.TahfidzRecordScalarWhereInput[]
   NOT?: Prisma.TahfidzRecordScalarWhereInput | Prisma.TahfidzRecordScalarWhereInput[]
   id?: Prisma.StringFilter<"TahfidzRecord"> | string
-  userId?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
-  surah?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
   startVerse?: Prisma.IntNullableFilter<"TahfidzRecord"> | number | null
   endVerse?: Prisma.IntNullableFilter<"TahfidzRecord"> | number | null
   grade?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
@@ -591,11 +737,29 @@ export type TahfidzRecordScalarWhereInput = {
   notes?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
   createdAt?: Prisma.DateTimeFilter<"TahfidzRecord"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TahfidzRecord"> | Date | string
+  studentId?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
+  teacherId?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
+  surahQuranId?: Prisma.StringNullableFilter<"TahfidzRecord"> | string | null
 }
 
-export type TahfidzRecordCreateManyUserInput = {
+export type TahfidzRecordUpsertWithWhereUniqueWithoutTeacherInput = {
+  where: Prisma.TahfidzRecordWhereUniqueInput
+  update: Prisma.XOR<Prisma.TahfidzRecordUpdateWithoutTeacherInput, Prisma.TahfidzRecordUncheckedUpdateWithoutTeacherInput>
+  create: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutTeacherInput, Prisma.TahfidzRecordUncheckedCreateWithoutTeacherInput>
+}
+
+export type TahfidzRecordUpdateWithWhereUniqueWithoutTeacherInput = {
+  where: Prisma.TahfidzRecordWhereUniqueInput
+  data: Prisma.XOR<Prisma.TahfidzRecordUpdateWithoutTeacherInput, Prisma.TahfidzRecordUncheckedUpdateWithoutTeacherInput>
+}
+
+export type TahfidzRecordUpdateManyWithWhereWithoutTeacherInput = {
+  where: Prisma.TahfidzRecordScalarWhereInput
+  data: Prisma.XOR<Prisma.TahfidzRecordUpdateManyMutationInput, Prisma.TahfidzRecordUncheckedUpdateManyWithoutTeacherInput>
+}
+
+export type TahfidzRecordCreateWithoutSurahInput = {
   id?: string
-  surah?: string | null
   startVerse?: number | null
   endVerse?: number | null
   grade?: string | null
@@ -603,11 +767,77 @@ export type TahfidzRecordCreateManyUserInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  student?: Prisma.UserDataCreateNestedOneWithoutTahfidzRecordsInput
+  teacher?: Prisma.UserDataCreateNestedOneWithoutTahfidzRecordsAsTeacherInput
 }
 
-export type TahfidzRecordUpdateWithoutUserInput = {
+export type TahfidzRecordUncheckedCreateWithoutSurahInput = {
+  id?: string
+  startVerse?: number | null
+  endVerse?: number | null
+  grade?: string | null
+  date: Date | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  studentId?: string | null
+  teacherId?: string | null
+}
+
+export type TahfidzRecordCreateOrConnectWithoutSurahInput = {
+  where: Prisma.TahfidzRecordWhereUniqueInput
+  create: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutSurahInput, Prisma.TahfidzRecordUncheckedCreateWithoutSurahInput>
+}
+
+export type TahfidzRecordCreateManySurahInputEnvelope = {
+  data: Prisma.TahfidzRecordCreateManySurahInput | Prisma.TahfidzRecordCreateManySurahInput[]
+  skipDuplicates?: boolean
+}
+
+export type TahfidzRecordUpsertWithWhereUniqueWithoutSurahInput = {
+  where: Prisma.TahfidzRecordWhereUniqueInput
+  update: Prisma.XOR<Prisma.TahfidzRecordUpdateWithoutSurahInput, Prisma.TahfidzRecordUncheckedUpdateWithoutSurahInput>
+  create: Prisma.XOR<Prisma.TahfidzRecordCreateWithoutSurahInput, Prisma.TahfidzRecordUncheckedCreateWithoutSurahInput>
+}
+
+export type TahfidzRecordUpdateWithWhereUniqueWithoutSurahInput = {
+  where: Prisma.TahfidzRecordWhereUniqueInput
+  data: Prisma.XOR<Prisma.TahfidzRecordUpdateWithoutSurahInput, Prisma.TahfidzRecordUncheckedUpdateWithoutSurahInput>
+}
+
+export type TahfidzRecordUpdateManyWithWhereWithoutSurahInput = {
+  where: Prisma.TahfidzRecordScalarWhereInput
+  data: Prisma.XOR<Prisma.TahfidzRecordUpdateManyMutationInput, Prisma.TahfidzRecordUncheckedUpdateManyWithoutSurahInput>
+}
+
+export type TahfidzRecordCreateManyStudentInput = {
+  id?: string
+  startVerse?: number | null
+  endVerse?: number | null
+  grade?: string | null
+  date: Date | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  teacherId?: string | null
+  surahQuranId?: string | null
+}
+
+export type TahfidzRecordCreateManyTeacherInput = {
+  id?: string
+  startVerse?: number | null
+  endVerse?: number | null
+  grade?: string | null
+  date: Date | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  studentId?: string | null
+  surahQuranId?: string | null
+}
+
+export type TahfidzRecordUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  surah?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   endVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -615,11 +845,12 @@ export type TahfidzRecordUpdateWithoutUserInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  surah?: Prisma.SurahQuranUpdateOneWithoutTahfidzRecordsNestedInput
+  teacher?: Prisma.UserDataUpdateOneWithoutTahfidzRecordsAsTeacherNestedInput
 }
 
-export type TahfidzRecordUncheckedUpdateWithoutUserInput = {
+export type TahfidzRecordUncheckedUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  surah?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   endVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -627,11 +858,12 @@ export type TahfidzRecordUncheckedUpdateWithoutUserInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  teacherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  surahQuranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type TahfidzRecordUncheckedUpdateManyWithoutUserInput = {
+export type TahfidzRecordUncheckedUpdateManyWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  surah?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   endVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -639,14 +871,105 @@ export type TahfidzRecordUncheckedUpdateManyWithoutUserInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  teacherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  surahQuranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type TahfidzRecordUpdateWithoutTeacherInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  startVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  endVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  student?: Prisma.UserDataUpdateOneWithoutTahfidzRecordsNestedInput
+  surah?: Prisma.SurahQuranUpdateOneWithoutTahfidzRecordsNestedInput
+}
+
+export type TahfidzRecordUncheckedUpdateWithoutTeacherInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  startVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  endVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  surahQuranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type TahfidzRecordUncheckedUpdateManyWithoutTeacherInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  startVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  endVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  surahQuranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type TahfidzRecordCreateManySurahInput = {
+  id?: string
+  startVerse?: number | null
+  endVerse?: number | null
+  grade?: string | null
+  date: Date | string
+  notes?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  studentId?: string | null
+  teacherId?: string | null
+}
+
+export type TahfidzRecordUpdateWithoutSurahInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  startVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  endVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  student?: Prisma.UserDataUpdateOneWithoutTahfidzRecordsNestedInput
+  teacher?: Prisma.UserDataUpdateOneWithoutTahfidzRecordsAsTeacherNestedInput
+}
+
+export type TahfidzRecordUncheckedUpdateWithoutSurahInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  startVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  endVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type TahfidzRecordUncheckedUpdateManyWithoutSurahInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  startVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  endVerse?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grade?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  studentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teacherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
 
 export type TahfidzRecordSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
-  surah?: boolean
   startVerse?: boolean
   endVerse?: boolean
   grade?: boolean
@@ -654,13 +977,16 @@ export type TahfidzRecordSelect<ExtArgs extends runtime.Types.Extensions.Interna
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.TahfidzRecord$userArgs<ExtArgs>
+  studentId?: boolean
+  teacherId?: boolean
+  surahQuranId?: boolean
+  student?: boolean | Prisma.TahfidzRecord$studentArgs<ExtArgs>
+  surah?: boolean | Prisma.TahfidzRecord$surahArgs<ExtArgs>
+  teacher?: boolean | Prisma.TahfidzRecord$teacherArgs<ExtArgs>
 }, ExtArgs["result"]["tahfidzRecord"]>
 
 export type TahfidzRecordSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
-  surah?: boolean
   startVerse?: boolean
   endVerse?: boolean
   grade?: boolean
@@ -668,13 +994,16 @@ export type TahfidzRecordSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.TahfidzRecord$userArgs<ExtArgs>
+  studentId?: boolean
+  teacherId?: boolean
+  surahQuranId?: boolean
+  student?: boolean | Prisma.TahfidzRecord$studentArgs<ExtArgs>
+  surah?: boolean | Prisma.TahfidzRecord$surahArgs<ExtArgs>
+  teacher?: boolean | Prisma.TahfidzRecord$teacherArgs<ExtArgs>
 }, ExtArgs["result"]["tahfidzRecord"]>
 
 export type TahfidzRecordSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
-  surah?: boolean
   startVerse?: boolean
   endVerse?: boolean
   grade?: boolean
@@ -682,13 +1011,16 @@ export type TahfidzRecordSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.TahfidzRecord$userArgs<ExtArgs>
+  studentId?: boolean
+  teacherId?: boolean
+  surahQuranId?: boolean
+  student?: boolean | Prisma.TahfidzRecord$studentArgs<ExtArgs>
+  surah?: boolean | Prisma.TahfidzRecord$surahArgs<ExtArgs>
+  teacher?: boolean | Prisma.TahfidzRecord$teacherArgs<ExtArgs>
 }, ExtArgs["result"]["tahfidzRecord"]>
 
 export type TahfidzRecordSelectScalar = {
   id?: boolean
-  userId?: boolean
-  surah?: boolean
   startVerse?: boolean
   endVerse?: boolean
   grade?: boolean
@@ -696,28 +1028,37 @@ export type TahfidzRecordSelectScalar = {
   notes?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  studentId?: boolean
+  teacherId?: boolean
+  surahQuranId?: boolean
 }
 
-export type TahfidzRecordOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "surah" | "startVerse" | "endVerse" | "grade" | "date" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["tahfidzRecord"]>
+export type TahfidzRecordOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "startVerse" | "endVerse" | "grade" | "date" | "notes" | "createdAt" | "updatedAt" | "studentId" | "teacherId" | "surahQuranId", ExtArgs["result"]["tahfidzRecord"]>
 export type TahfidzRecordInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.TahfidzRecord$userArgs<ExtArgs>
+  student?: boolean | Prisma.TahfidzRecord$studentArgs<ExtArgs>
+  surah?: boolean | Prisma.TahfidzRecord$surahArgs<ExtArgs>
+  teacher?: boolean | Prisma.TahfidzRecord$teacherArgs<ExtArgs>
 }
 export type TahfidzRecordIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.TahfidzRecord$userArgs<ExtArgs>
+  student?: boolean | Prisma.TahfidzRecord$studentArgs<ExtArgs>
+  surah?: boolean | Prisma.TahfidzRecord$surahArgs<ExtArgs>
+  teacher?: boolean | Prisma.TahfidzRecord$teacherArgs<ExtArgs>
 }
 export type TahfidzRecordIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.TahfidzRecord$userArgs<ExtArgs>
+  student?: boolean | Prisma.TahfidzRecord$studentArgs<ExtArgs>
+  surah?: boolean | Prisma.TahfidzRecord$surahArgs<ExtArgs>
+  teacher?: boolean | Prisma.TahfidzRecord$teacherArgs<ExtArgs>
 }
 
 export type $TahfidzRecordPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TahfidzRecord"
   objects: {
-    user: Prisma.$UserDataPayload<ExtArgs> | null
+    student: Prisma.$UserDataPayload<ExtArgs> | null
+    surah: Prisma.$SurahQuranPayload<ExtArgs> | null
+    teacher: Prisma.$UserDataPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    userId: string | null
-    surah: string | null
     startVerse: number | null
     endVerse: number | null
     grade: string | null
@@ -725,6 +1066,9 @@ export type $TahfidzRecordPayload<ExtArgs extends runtime.Types.Extensions.Inter
     notes: string | null
     createdAt: Date
     updatedAt: Date
+    studentId: string | null
+    teacherId: string | null
+    surahQuranId: string | null
   }, ExtArgs["result"]["tahfidzRecord"]>
   composites: {}
 }
@@ -1119,7 +1463,9 @@ readonly fields: TahfidzRecordFieldRefs;
  */
 export interface Prisma__TahfidzRecordClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.TahfidzRecord$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TahfidzRecord$userArgs<ExtArgs>>): Prisma.Prisma__UserDataClient<runtime.Types.Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  student<T extends Prisma.TahfidzRecord$studentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TahfidzRecord$studentArgs<ExtArgs>>): Prisma.Prisma__UserDataClient<runtime.Types.Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  surah<T extends Prisma.TahfidzRecord$surahArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TahfidzRecord$surahArgs<ExtArgs>>): Prisma.Prisma__SurahQuranClient<runtime.Types.Result.GetResult<Prisma.$SurahQuranPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  teacher<T extends Prisma.TahfidzRecord$teacherArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TahfidzRecord$teacherArgs<ExtArgs>>): Prisma.Prisma__UserDataClient<runtime.Types.Result.GetResult<Prisma.$UserDataPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1150,8 +1496,6 @@ export interface Prisma__TahfidzRecordClient<T, Null = never, ExtArgs extends ru
  */
 export interface TahfidzRecordFieldRefs {
   readonly id: Prisma.FieldRef<"TahfidzRecord", 'String'>
-  readonly userId: Prisma.FieldRef<"TahfidzRecord", 'String'>
-  readonly surah: Prisma.FieldRef<"TahfidzRecord", 'String'>
   readonly startVerse: Prisma.FieldRef<"TahfidzRecord", 'Int'>
   readonly endVerse: Prisma.FieldRef<"TahfidzRecord", 'Int'>
   readonly grade: Prisma.FieldRef<"TahfidzRecord", 'String'>
@@ -1159,6 +1503,9 @@ export interface TahfidzRecordFieldRefs {
   readonly notes: Prisma.FieldRef<"TahfidzRecord", 'String'>
   readonly createdAt: Prisma.FieldRef<"TahfidzRecord", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"TahfidzRecord", 'DateTime'>
+  readonly studentId: Prisma.FieldRef<"TahfidzRecord", 'String'>
+  readonly teacherId: Prisma.FieldRef<"TahfidzRecord", 'String'>
+  readonly surahQuranId: Prisma.FieldRef<"TahfidzRecord", 'String'>
 }
     
 
@@ -1555,9 +1902,47 @@ export type TahfidzRecordDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
- * TahfidzRecord.user
+ * TahfidzRecord.student
  */
-export type TahfidzRecord$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TahfidzRecord$studentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserData
+   */
+  select?: Prisma.UserDataSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserData
+   */
+  omit?: Prisma.UserDataOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserDataInclude<ExtArgs> | null
+  where?: Prisma.UserDataWhereInput
+}
+
+/**
+ * TahfidzRecord.surah
+ */
+export type TahfidzRecord$surahArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SurahQuran
+   */
+  select?: Prisma.SurahQuranSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SurahQuran
+   */
+  omit?: Prisma.SurahQuranOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SurahQuranInclude<ExtArgs> | null
+  where?: Prisma.SurahQuranWhereInput
+}
+
+/**
+ * TahfidzRecord.teacher
+ */
+export type TahfidzRecord$teacherArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the UserData
    */

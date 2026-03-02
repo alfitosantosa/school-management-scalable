@@ -10,7 +10,7 @@
     "prebuild": "rm -rf node_modules/.cache && rm -rf .next",
     "build": "next build",
     "start": "NODE_ENV=production next start",
-    "lint": "next lint --fix"
+    "lint": "next lint"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",
