@@ -19,7 +19,6 @@ import { unauthorized } from "next/navigation";
 import Loading from "@/components/loading";
 import { useAttendanceIsSubmitted } from "@/app/hooks/Attendances/useAttendanceIsSubmitted";
 
-
 const ScheduleCard = ({ schedule }: { schedule: any }) => {
   const getDayName = (dayOfWeek: number) => {
     const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
@@ -42,22 +41,19 @@ const ScheduleCard = ({ schedule }: { schedule: any }) => {
   // Call the hook for each schedule
   const { data: isSubmitted, isLoading: isLoadingIsSubmitted } = useAttendanceIsSubmitted({
     date: todayDate,
-    scheduleId: schedule.id
+    scheduleId: schedule.id,
   });
 
   if (isLoadingIsSubmitted) {
     return <Loading />;
   }
 
-
-
   const isButtonDisabled = isSubmitted === true || !isTodaySchedule(schedule.dayOfWeek);
 
-  const getButtonText = isSubmitted
-    ? "Sudah Diabsen"
-    : !isTodaySchedule(schedule.dayOfWeek)
-      ? "Bukan Hari Ini"
-      : "Buat Absensi";
+  const getButtonText =
+    isSubmitted ? "Sudah Diabsen"
+    : !isTodaySchedule(schedule.dayOfWeek) ? "Bukan Hari Ini"
+    : "Buat Absensi";
 
   return (
     <Card className="hover:shadow-lg transition-shadow duration-200">
@@ -128,7 +124,6 @@ const ScheduleCard = ({ schedule }: { schedule: any }) => {
             className={`flex items-center gap-2 ${isButtonDisabled ? "opacity-10 cursor-not-allowed bg-gray-300 text-gray-1000 hover:bg-gray-300" : ""}`}
             onClick={() => {
               if (!isButtonDisabled) {
-
                 if (schedule.tahfidzGroup?.name) {
                   window.location.href = `/dashboard/teacher/attendance/tahfidz/${schedule.id}`;
                 } else {
@@ -171,8 +166,6 @@ function TeacherAttendancePage() {
   ];
   //filtered base on hour entry student at start time
   const filteredScheduleData = selectedDay === "all" ? scheduleData : scheduleData.filter((schedule: any) => schedule.dayOfWeek.toString() === selectedDay && schedule.startTime === schedule.startTime);
-
-  console.log("filteredScheduleData", filteredScheduleData);
 
   const ScheduleCardSkeleton = () => (
     <Card>
@@ -236,19 +229,18 @@ function TeacherAttendancePage() {
           </Card>
 
           {/* Content Section */}
-          {isLoadingSchedule ? (
+          {isLoadingSchedule ?
             <div className="space-y-6">
               {[1, 2, 3].map((i) => (
                 <ScheduleCardSkeleton key={i} />
               ))}
             </div>
-          ) : scheduleError ? (
+          : scheduleError ?
             <Alert variant="destructive">
               <AlertDescription>Terjadi kesalahan saat memuat jadwal: {(scheduleError as Error).message}</AlertDescription>
             </Alert>
-          ) : (
-            <div className="space-y-6">
-              {filteredScheduleData.length === 0 ? (
+          : <div className="space-y-6">
+              {filteredScheduleData.length === 0 ?
                 <Card className="text-center py-12">
                   <CardContent>
                     <CalendarDays className="mx-auto h-12 w-12 text-slate-400 mb-4" />
@@ -256,8 +248,7 @@ function TeacherAttendancePage() {
                     <p className="text-slate-600">Tidak ada jadwal untuk hari yang dipilih.</p>
                   </CardContent>
                 </Card>
-              ) : (
-                <>
+              : <>
                   {/* Summary Badge */}
                   <div className="flex items-center gap-2 mb-4">
                     <Badge variant="secondary" className="px-3 py-1">
@@ -270,9 +261,9 @@ function TeacherAttendancePage() {
                     <ScheduleCard key={schedule.id} schedule={schedule} />
                   ))}
                 </>
-              )}
+              }
             </div>
-          )}
+          }
         </div>
       </div>
     </>
@@ -281,8 +272,6 @@ function TeacherAttendancePage() {
 
 export default function UserDataTable() {
   const { data: session, isPending } = useSession();
-
-  console.log(session);
   const userId = session?.user?.id;
 
   const { data: userData, isLoading: isLoadingUserData } = useGetUserByIdBetterAuth(userId as string);

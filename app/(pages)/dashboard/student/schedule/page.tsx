@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal, Calendar, Clock, Users, Search, X, MapPin, GraduationCap, BookOpen, } from "lucide-react";
+import { ArrowUpDown, ChevronDown, MoreHorizontal, Calendar, Clock, Users, Search, X, MapPin, GraduationCap, BookOpen } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -78,7 +78,7 @@ const scheduleSchema = z
     {
       message: "Waktu selesai harus lebih besar dari waktu mulai",
       path: ["endTime"],
-    }
+    },
   );
 
 type ScheduleFormValues = z.infer<typeof scheduleSchema>;
@@ -93,8 +93,6 @@ const DAYS_MAP = {
   5: "Jumat",
   6: "Sabtu",
 };
-
-
 
 // Main DataTable Component
 export default function ScheduleDataTable() {
@@ -119,12 +117,10 @@ export default function ScheduleDataTable() {
 
   // Get the class id from classData
   const classId = classData?.id;
-  console.log(classId);
 
   // Fetch schedules by class id if available
 
   const { data: schedules = [], isLoading: isLoadingSchedules } = useGetSchedulesByIdClass(classId ?? "");
-  console.log("schedules :", schedules);
 
   const globalFilterFn = React.useCallback((row: any, filterValue: string) => {
     if (!filterValue) return true;
@@ -469,7 +465,7 @@ export default function ScheduleDataTable() {
               ))}
             </TableHeader>
             <TableBody>
-              {table.getRowModel().rows?.length ? (
+              {table.getRowModel().rows?.length ?
                 table.getRowModel().rows.map((row) => (
                   <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                     {row.getVisibleCells().map((cell) => (
@@ -477,8 +473,7 @@ export default function ScheduleDataTable() {
                     ))}
                   </TableRow>
                 ))
-              ) : (
-                <TableRow>
+              : <TableRow>
                   <TableCell colSpan={columns.length} className="h-24 text-center">
                     <div className="flex flex-col items-center justify-center space-y-2">
                       <Calendar className="h-8 w-8 text-muted-foreground" />
@@ -500,7 +495,7 @@ export default function ScheduleDataTable() {
                     </div>
                   </TableCell>
                 </TableRow>
-              )}
+              }
             </TableBody>
           </Table>
         </div>
@@ -560,8 +555,6 @@ export default function ScheduleDataTable() {
             <p className="text-2xl font-bold mt-2">{new Set(table.getFilteredRowModel().rows.map((row) => row.original.teacherId)).size}</p>
           </div>
         </div>
-
-  
       </div>
     </>
   );

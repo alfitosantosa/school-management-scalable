@@ -36,7 +36,6 @@ function ClassFormDialog({ open, onOpenChange, editData, onSuccess }: { open: bo
   const createClass = useCreateClass();
   const updateClass = useUpdateClass();
   const { data: majors } = useGetMajors();
-  console.log(majors);
   const { data: academicYears } = useGetAcademicYears();
 
   const {
@@ -154,7 +153,11 @@ function ClassFormDialog({ open, onOpenChange, editData, onSuccess }: { open: bo
               Batal
             </Button>
             <Button type="submit" disabled={createClass.isPending || updateClass.isPending}>
-              {createClass.isPending || updateClass.isPending ? "Menyimpan..." : editData ? "Perbarui" : "Simpan"}
+              {createClass.isPending || updateClass.isPending ?
+                "Menyimpan..."
+              : editData ?
+                "Perbarui"
+              : "Simpan"}
             </Button>
           </div>
         </form>
@@ -458,7 +461,7 @@ function ClassDataTable() {
                 ))}
               </TableHeader>
               <TableBody>
-                {table.getRowModel().rows?.length ? (
+                {table.getRowModel().rows?.length ?
                   table.getRowModel().rows.map((row) => (
                     <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                       {row.getVisibleCells().map((cell) => (
@@ -466,13 +469,12 @@ function ClassDataTable() {
                       ))}
                     </TableRow>
                   ))
-                ) : (
-                  <TableRow>
+                : <TableRow>
                     <TableCell colSpan={columns.length} className="h-24 text-center">
                       Tidak ada data kelas.
                     </TableCell>
                   </TableRow>
-                )}
+                }
               </TableBody>
             </Table>
           </div>

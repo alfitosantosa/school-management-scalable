@@ -17,7 +17,6 @@ export const useCreateTahfidzRecord = () => {
   return useMutation({
     mutationFn: async (data) => {
       const response = await apiPost("/api/tahfidzrecord", data);
-      console.log("Create data:", data);
       return response.data;
     },
     onSuccess: (data) => {

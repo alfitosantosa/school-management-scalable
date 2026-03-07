@@ -63,7 +63,7 @@ function RecapAttendance() {
       student.name.toLowerCase().includes(search.toLowerCase()) ||
       student.email?.toLowerCase().includes(search.toLowerCase()) ||
       student.nisn?.toLowerCase().includes(search.toLowerCase()) ||
-      student.avatarUrl?.toLowerCase().includes(search.toLowerCase())
+      student.avatarUrl?.toLowerCase().includes(search.toLowerCase()),
   );
 
   // Sort attendances by date (newest first)
@@ -90,24 +90,12 @@ function RecapAttendance() {
     if (!selectedStudent || filteredAttendances.length === 0) return;
 
     const result = await exportStudentAttendanceDailyToExcel(selectedStudent, filteredAttendances, startDate, endDate);
-
-    if (result.success) {
-      console.log(result.message);
-    } else {
-      console.error(result.message);
-    }
   };
 
   const handleExportSummary = async () => {
     if (!selectedStudent || filteredAttendances.length === 0) return;
 
-    const result = await exportStudentAttendanceToExcel(selectedStudent, filteredAttendances, startDate, endDate);
-
-    if (result.success) {
-      console.log(result.message);
-    } else {
-      console.error(result.message);
-    }
+    // const result = await exportStudentAttendanceToExcel(selectedStudent, filteredAttendances, startDate, endDate);
   };
 
   const handleExportDetail = async () => {
@@ -273,24 +261,23 @@ function RecapAttendance() {
             </div>
           </CardHeader>
           <CardContent>
-            {isLoadingAttendances ? (
+            {isLoadingAttendances ?
               <div className="space-y-2 sm:space-y-3">
                 {[...Array(5)].map((_, i) => (
                   <div key={i} className="h-12 sm:h-14 bg-gray-100 rounded-lg animate-pulse" />
                 ))}
               </div>
-            ) : !selectedStudent ? (
+            : !selectedStudent ?
               <div className="py-6 sm:py-8 text-center text-gray-500">
                 <User className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 opacity-20" />
                 <p className="text-xs sm:text-sm">Silakan pilih siswa terlebih dahulu</p>
               </div>
-            ) : filteredAttendances.length === 0 ? (
+            : filteredAttendances.length === 0 ?
               <div className="py-6 sm:py-8 text-center text-gray-500">
                 <Calendar className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-2 opacity-20" />
                 <p className="text-xs sm:text-sm">Tidak ada data absensi untuk periode ini</p>
               </div>
-            ) : (
-              <>
+            : <>
                 <div className="space-y-2 sm:space-y-3">
                   {paginatedAttendances.map((attendance: any) => {
                     const statusConfig = STATUS_CONFIG[attendance.status as keyof typeof STATUS_CONFIG];
@@ -314,7 +301,11 @@ function RecapAttendance() {
                                 <StatusIcon className="w-3 h-3" />
                                 {statusConfig.label}
                               </Badge>
-                              <button className="p-1">{isExpanded ? <ChevronUp className="w-4 h-4 text-gray-500" /> : <ChevronDown className="w-4 h-4 text-gray-500" />}</button>
+                              <button className="p-1">
+                                {isExpanded ?
+                                  <ChevronUp className="w-4 h-4 text-gray-500" />
+                                : <ChevronDown className="w-4 h-4 text-gray-500" />}
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -386,7 +377,7 @@ function RecapAttendance() {
                   </div>
                 )}
               </>
-            )}
+            }
           </CardContent>
         </Card>
       </div>
@@ -396,12 +387,10 @@ function RecapAttendance() {
 
 export default function UserDataTable() {
   const { data: session, isPending } = useSession();
-  console.log(session);
   const userId = session?.user?.id;
 
   const { data: userData, isLoading: isLoadingUserData } = useGetUserByIdBetterAuth(userId as string);
   const userRole = userData?.role?.name;
-  console.log(userRole);
 
   // Show loading while checking authorization
   if (isPending || isLoadingUserData) {

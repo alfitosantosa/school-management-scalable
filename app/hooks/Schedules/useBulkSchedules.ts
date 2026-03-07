@@ -12,7 +12,6 @@ export const useBulkCreateSchedulesData = () => {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["schedules"] });
-      console.log("Bulk schedules created successfully:", data);
     },
     onError: (error: any) => {
       console.error("Error creating bulk schedules:", error);

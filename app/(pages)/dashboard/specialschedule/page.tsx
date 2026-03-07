@@ -217,7 +217,11 @@ function SpecialScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: 
               Batal
             </Button>
             <Button type="submit" disabled={createSpecialSchedule.isPending || updateSpecialSchedule.isPending}>
-              {createSpecialSchedule.isPending || updateSpecialSchedule.isPending ? "Menyimpan..." : editData ? "Perbarui" : "Simpan"}
+              {createSpecialSchedule.isPending || updateSpecialSchedule.isPending ?
+                "Menyimpan..."
+              : editData ?
+                "Perbarui"
+              : "Simpan"}
             </Button>
           </div>
         </form>
@@ -279,7 +283,6 @@ function SpecialScheduleDataTable() {
   const [globalFilter, setGlobalFilter] = React.useState<string>("");
 
   const { data: specialSchedules = [], isLoading, refetch } = useGetSpecialSchedules();
-  console.log(specialSchedules);
 
   const handleSuccess = () => {
     refetch();
@@ -412,17 +415,16 @@ function SpecialScheduleDataTable() {
         const isPublished = row.getValue("isPublished");
         return (
           <Badge variant={isPublished ? "default" : "secondary"}>
-            {isPublished ? (
+            {isPublished ?
               <>
                 <Eye className="mr-1 h-3 w-3" />
                 Dipublikasi
               </>
-            ) : (
-              <>
+            : <>
                 <EyeOff className="mr-1 h-3 w-3" />
                 Draft
               </>
-            )}
+            }
           </Badge>
         );
       },
@@ -558,7 +560,12 @@ function SpecialScheduleDataTable() {
 
             {/* Publish Status Filter */}
             <Select
-              value={publishStatusFilter === null ? "all" : publishStatusFilter ? "published" : "draft"}
+              value={
+                publishStatusFilter === null ? "all"
+                : publishStatusFilter ?
+                  "published"
+                : "draft"
+              }
               onValueChange={(value) => {
                 if (value === "all") {
                   setPublishStatusFilter(null);
@@ -680,7 +687,7 @@ function SpecialScheduleDataTable() {
               ))}
             </TableHeader>
             <TableBody>
-              {table.getRowModel().rows?.length ? (
+              {table.getRowModel().rows?.length ?
                 table.getRowModel().rows.map((row) => (
                   <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                     {row.getVisibleCells().map((cell) => (
@@ -688,8 +695,7 @@ function SpecialScheduleDataTable() {
                     ))}
                   </TableRow>
                 ))
-              ) : (
-                <TableRow>
+              : <TableRow>
                   <TableCell colSpan={columns.length} className="h-24 text-center">
                     <div className="flex flex-col items-center justify-center space-y-2">
                       <Calendar className="h-8 w-8 text-muted-foreground" />
@@ -711,7 +717,7 @@ function SpecialScheduleDataTable() {
                     </div>
                   </TableCell>
                 </TableRow>
-              )}
+              }
             </TableBody>
           </Table>
         </div>

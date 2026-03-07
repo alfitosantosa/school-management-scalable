@@ -48,8 +48,6 @@ function RecapAttendanceByClass() {
 
   const { data: attendanceResponse, isLoading } = useGetAttendanceByClass(selectedClass?.id, startDate, endDate);
 
-  console.log("attendanceResponse", attendanceResponse);
-
   // Extract data from response
   const rawAttendanceData = attendanceResponse?.attendance || [];
   const classStudents = attendanceResponse?.students || [];
@@ -65,7 +63,10 @@ function RecapAttendanceByClass() {
   const attendanceData = Array.from(uniqueAttendanceMap.values());
 
   // Use students from attendance response if available, otherwise filter from all students
-  const filteredStudents = classStudents.length > 0 ? classStudents : selectedClass ? students.filter((student: any) => student.classId === selectedClass.id) : [];
+  const filteredStudents =
+    classStudents.length > 0 ? classStudents
+    : selectedClass ? students.filter((student: any) => student.classId === selectedClass.id)
+    : [];
 
   // Group attendance by date
   const attendanceByDate: Record<string, any[]> = {};
@@ -81,8 +82,6 @@ function RecapAttendanceByClass() {
   const sortedDates = Object.keys(attendanceByDate).sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
   const totalPages = Math.ceil(sortedDates.length / itemsPerPage);
   const paginatedDates = sortedDates.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
-
-
 
   // Calculate statistics
   const stats = {
@@ -243,20 +242,19 @@ function RecapAttendanceByClass() {
                 </div>
               </CardHeader>
               <CardContent className="pt-6">
-                {isLoading ? (
+                {isLoading ?
                   <div className="space-y-4">
                     {[...Array(5)].map((_, i) => (
                       <div key={i} className="h-24 bg-gray-100 rounded-lg animate-pulse" />
                     ))}
                   </div>
-                ) : paginatedDates.length === 0 ? (
+                : paginatedDates.length === 0 ?
                   <div className="py-12 text-center">
                     <Calendar className="w-16 h-16 mx-auto mb-4 text-gray-300" />
                     <p className="text-gray-500 font-medium">Tidak ada data absensi</p>
                     <p className="text-sm text-gray-400 mt-1">Silakan pilih periode lain</p>
                   </div>
-                ) : (
-                  <div className="space-y-4">
+                : <div className="space-y-4">
                     {paginatedDates.map((date) => {
                       const dailyAttendances = attendanceByDate[date] || [];
 
@@ -282,10 +280,9 @@ function RecapAttendanceByClass() {
                           </div>
 
                           <div className="p-4 bg-white">
-                            {dailyAttendances.length === 0 ? (
+                            {dailyAttendances.length === 0 ?
                               <p className="text-sm text-gray-500 text-center py-4">Tidak ada data kehadiran</p>
-                            ) : (
-                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                            : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                                 {dailyAttendances.map((attendance: any) => {
                                   const student = filteredStudents.find((s: any) => s.id === attendance.studentId);
                                   const config = STATUS_CONFIG[attendance.status as keyof typeof STATUS_CONFIG];
@@ -309,13 +306,13 @@ function RecapAttendanceByClass() {
                                   );
                                 })}
                               </div>
-                            )}
+                            }
                           </div>
                         </div>
                       );
                     })}
                   </div>
-                )}
+                }
 
                 {/* Pagination */}
                 {totalPages > 1 && (

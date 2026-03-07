@@ -230,8 +230,6 @@ function MidtransPaymentDialog({
 
     mutationSnapMidtrans.mutate(transactionData, {
       onSuccess: (response) => {
-        console.log("Snap token received:", response);
-
         // Check if snap is loaded
         if (typeof window.snap === "undefined") {
           toast.error("Midtrans belum siap. Silakan coba lagi.");
@@ -242,8 +240,6 @@ function MidtransPaymentDialog({
         // Open Snap payment popup
         window.snap.pay(response.token, {
           onSuccess: function (result) {
-            console.log("Payment success:", result);
-            console.log("Payment Data:", paymentData);
             mutationPaymentSuccess.mutate({
               id: paymentData.id,
               receiptNumber: result.order_id,
@@ -284,19 +280,16 @@ function MidtransPaymentDialog({
             setIsProcessing(false);
           },
           onPending: function (result) {
-            console.log("Payment pending:", result);
             toast.info("Pembayaran menunggu konfirmasi");
             onSuccess();
             onOpenChange(false);
             setIsProcessing(false);
           },
           onError: function (result) {
-            console.log("Payment error:", result);
             toast.error("Pembayaran gagal. Silakan coba lagi.");
             setIsProcessing(false);
           },
           onClose: function () {
-            console.log("Payment popup closed");
             toast.info("Pembayaran dibatalkan");
             setIsProcessing(false);
           },
@@ -347,13 +340,24 @@ function MidtransPaymentDialog({
               <TableRow>
                 <TableCell>Status</TableCell>
                 <TableCell>
-                  {paymentData ? (
-                    <Badge className={`text-white ${paymentData.status === "paid" ? "bg-green-600" : paymentData.status === "pending" ? "bg-yellow-600" : paymentData.status === "overdue" ? "bg-red-600" : "bg-gray-600"}`}>
-                      {paymentData.status === "paid" ? "Lunas" : paymentData.status === "pending" ? "Belum Lunas" : paymentData.status === "overdue" ? "Terlambat" : "-"}
+                  {paymentData ?
+                    <Badge
+                      className={`text-white ${
+                        paymentData.status === "paid" ? "bg-green-600"
+                        : paymentData.status === "pending" ? "bg-yellow-600"
+                        : paymentData.status === "overdue" ? "bg-red-600"
+                        : "bg-gray-600"
+                      }`}
+                    >
+                      {paymentData.status === "paid" ?
+                        "Lunas"
+                      : paymentData.status === "pending" ?
+                        "Belum Lunas"
+                      : paymentData.status === "overdue" ?
+                        "Terlambat"
+                      : "-"}
                     </Badge>
-                  ) : (
-                    "-"
-                  )}
+                  : "-"}
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -362,11 +366,11 @@ function MidtransPaymentDialog({
               </TableRow>
             </TableBody>
           </Table>
-          {paymentData && paymentData.status === "paid" ? (
+          {paymentData && paymentData.status === "paid" ?
             <Button disabled={true} className=" mt-4">
               Pembayaran sudah lunas
             </Button>
-          ) : paymentData ? (
+          : paymentData ?
             <Button
               className="mt-4"
               onClick={() => {
@@ -377,9 +381,7 @@ function MidtransPaymentDialog({
             >
               {isProcessing ? "Memproses..." : "Bayar dengan Midtrans"}
             </Button>
-          ) : (
-            <p className="text-red-600 mt-4">Tidak dapat memproses pembayaran karena data tidak lengkap.</p>
-          )}
+          : <p className="text-red-600 mt-4">Tidak dapat memproses pembayaran karena data tidak lengkap.</p>}
         </div>
       </DialogContent>
     </Dialog>
@@ -641,7 +643,7 @@ function PaymentDashboard({ userId }: { userId: string }) {
                 ))}
               </TableHeader>
               <TableBody>
-                {table.getRowModel().rows?.length ? (
+                {table.getRowModel().rows?.length ?
                   table.getRowModel().rows.map((row) => (
                     <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                       {row.getVisibleCells().map((cell) => (
@@ -649,13 +651,12 @@ function PaymentDashboard({ userId }: { userId: string }) {
                       ))}
                     </TableRow>
                   ))
-                ) : (
-                  <TableRow>
+                : <TableRow>
                     <TableCell colSpan={columns.length} className="h-24 text-center">
                       Tidak ada data pembayaran.
                     </TableCell>
                   </TableRow>
-                )}
+                }
               </TableBody>
             </Table>
           </div>

@@ -34,7 +34,6 @@ export const useCreatePaymentBulk = () => {
   return useMutation({
     mutationFn: async (data: any) => {
       const res = await apiPost("/api/payment/student/bulk", data);
-      console.log(data);
       return res.data;
     },
     onSuccess: () => {
