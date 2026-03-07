@@ -5,15 +5,17 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { addDays, format } from "date-fns";
+import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { type DateRange } from "react-day-picker";
 
 export function DatePickerWithRange({ date: controlledDate, setDate: setControlledDate }: { date?: DateRange; setDate?: (date: DateRange | undefined) => void }) {
   const [internalDate, setInternalDate] = React.useState<DateRange | undefined>({
-    from: new Date(new Date().getFullYear(), 0, 20),
-    to: addDays(new Date(new Date().getFullYear(), 0, 20), 20),
+    from: new Date(),
+    to: new Date(),
   });
+
+  console.log("internalDate:", internalDate);
 
   const date = controlledDate !== undefined ? controlledDate : internalDate;
   const setDate = setControlledDate || setInternalDate;

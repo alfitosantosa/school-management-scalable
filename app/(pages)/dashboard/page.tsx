@@ -30,6 +30,8 @@ export default function DashboardPage() {
     to: new Date(),
   });
 
+  console.log(dateRange);
+
   const {
     data: attendanceData = [],
     isLoading: attendanceIsLoading,

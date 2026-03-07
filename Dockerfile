@@ -14,7 +14,7 @@ RUN apk add --no-cache curl \
 COPY package.json package-lock.json* yarn.lock* bun.lock* ./
 
 # Install dependencies dan cleanup dalam satu layer
-RUN npm install --frozen-lockfile \
+RUN npm install  \
     && rm -rf /tmp/*
 
 # ==========================================

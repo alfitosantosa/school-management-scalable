@@ -16,7 +16,9 @@ export async function GET(request: NextRequest) {
     const endDate = new Date(todate);
 
     // Add 1 day to endDate to make sure we fetch data up to the end of the strict toDate
-    endDate.setDate(endDate.getDate() + 1);
+    // set start date only from 00:00:00 and end date only until 23:59:59
+    startDate.setHours(0, 0, 0, 0);
+    endDate.setHours(23, 59, 59, 999);
 
     const attendances = await prisma.attendance.findMany({
       where: {
