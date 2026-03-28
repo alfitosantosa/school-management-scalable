@@ -120,7 +120,6 @@ function ScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open:
   const { data: subjects = [] } = useGetSubjects();
   const { data: teachers = [] } = useGetTeachers();
   const { data: tahfidzGroups = [] } = useGetTahfidzGroup();
-
   const { data: academicYears = [] } = useGetAcademicYears();
 
   const {
