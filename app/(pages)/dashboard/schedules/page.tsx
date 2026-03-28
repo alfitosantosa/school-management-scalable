@@ -71,8 +71,8 @@ export type ScheduleData = {
 // Form schema
 const scheduleSchema = z
   .object({
-    classId: z.string().min(1, "Kelas wajib dipilih"),
-    tahfidzGroupId: z.string().min(0, "Kelompok tahfidz wajib dipilih"),
+    classId: z.string().optional(),
+    tahfidzGroupId: z.string().optional(),
     subjectId: z.string().min(1, "Mata pelajaran wajib dipilih"),
     teacherId: z.string().min(1, "Guru wajib dipilih"),
     academicYearId: z.string().min(1, "Tahun akademik wajib dipilih"),
@@ -131,7 +131,7 @@ function ScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open:
     formState: { errors },
     reset,
   } = useForm<ScheduleFormValues>({
-    resolver: zodResolver(scheduleSchema as any),
+    resolver: zodResolver(scheduleSchema),
     defaultValues: {
       dayOfWeek: 1,
       startTime: "08:00",
@@ -170,6 +170,8 @@ function ScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open:
     try {
       const submitData = {
         ...data,
+        classId: data.classId || null,
+        tahfidzGroupId: data.tahfidzGroupId || null,
         room: data.room || null,
       };
 
@@ -198,12 +200,15 @@ function ScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open:
         <form onSubmit={handleSubmit(onSubmit as any)} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label>Kelas</Label>
-              <Select value={selectedClassId || ""} onValueChange={(value) => setValue("classId", value)}>
+              <Label>
+                Kelas <span className="text-slate-400 text-xs">(opsional)</span>
+              </Label>
+              <Select value={selectedClassId || "none"} onValueChange={(value) => setValue("classId", value === "none" ? undefined : value)}>
                 <SelectTrigger>
                   <SelectValue placeholder="Pilih Kelas" />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="none">— Tidak ada —</SelectItem>
                   {classes?.map((cls: any) => (
                     <SelectItem key={cls.id} value={cls.id}>
                       {cls.name}
@@ -214,12 +219,15 @@ function ScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open:
               {errors.classId && <p className="text-sm text-red-500">{errors.classId.message}</p>}
             </div>
             <div className="space-y-2">
-              <Label>Kelompok Tahfidz</Label>
-              <Select value={selectedTahfidzGroupId || ""} onValueChange={(value) => setValue("tahfidzGroupId", value)}>
+              <Label>
+                Kelompok Tahfidz <span className="text-slate-400 text-xs">(opsional)</span>
+              </Label>
+              <Select value={selectedTahfidzGroupId || "none"} onValueChange={(value) => setValue("tahfidzGroupId", value === "none" ? undefined : value)}>
                 <SelectTrigger>
                   <SelectValue placeholder="Pilih Kelompok Tahfidz" />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="none">— Tidak ada —</SelectItem>
                   {tahfidzGroups?.map((tahfidzGroup: any) => (
                     <SelectItem key={tahfidzGroup.id} value={tahfidzGroup.id || ""}>
                       {tahfidzGroup.name}
@@ -314,7 +322,11 @@ function ScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open:
               Batal
             </Button>
             <Button type="submit" disabled={createSchedule.isPending || updateSchedule.isPending}>
-              {createSchedule.isPending || updateSchedule.isPending ? "Menyimpan..." : editData ? "Perbarui" : "Simpan"}
+              {createSchedule.isPending || updateSchedule.isPending ?
+                "Menyimpan..."
+              : editData ?
+                "Perbarui"
+              : "Simpan"}
             </Button>
           </div>
         </form>
@@ -872,7 +884,7 @@ function ScheduleDataTable() {
               ))}
             </TableHeader>
             <TableBody>
-              {table.getRowModel().rows?.length ? (
+              {table.getRowModel().rows?.length ?
                 table.getRowModel().rows.map((row) => (
                   <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                     {row.getVisibleCells().map((cell) => (
@@ -880,8 +892,7 @@ function ScheduleDataTable() {
                     ))}
                   </TableRow>
                 ))
-              ) : (
-                <TableRow>
+              : <TableRow>
                   <TableCell colSpan={columns.length} className="h-24 text-center">
                     <div className="flex flex-col items-center justify-center space-y-2">
                       <Calendar className="h-8 w-8 text-muted-foreground" />
@@ -906,7 +917,7 @@ function ScheduleDataTable() {
                     </div>
                   </TableCell>
                 </TableRow>
-              )}
+              }
             </TableBody>
           </Table>
         </div>
