@@ -53,26 +53,27 @@ type RoleFormValues = z.infer<typeof roleSchema>;
 // Available permissions (sesuaikan dengan sistem Anda)
 const availablePermissions = [
   { id: "/", label: "Home" },
-  { id: "/dashboard", label: "Dashboard Management" },
   { id: "/dashboard/profile", label: "Profile" },
+  { id: "/dashboard/academicyear", label: "Academic Year Management" },
   { id: "/dashboard/roles", label: "Roles Management" },
   { id: "/dashboard/betterauth", label: "BetterAuth Management" },
   { id: "/dashboard/users", label: "Users Management" },
-  { id: "/dashboard/academicyear", label: "Academic Year Management" },
   { id: "/dashboard/majors", label: "Major Management" },
   { id: "/dashboard/classes", label: "Class Management" },
   { id: "/dashboard/subjects", label: "Subject Management" },
   { id: "/dashboard/schedules", label: "Schedule Management" },
+  { id: "/dashboard", label: "Dashboard Management" },
   { id: "/dashboard/attendance", label: "Attendance Management" },
-  { id: "/dashboard/typeviolations", label: "Type Violation Management" },
-  { id: "/dashboard/violations", label: "Violation Management" },
-  { id: "/dashboard/violations/teacher", label: "Violation for Teacher" },
-  { id: "/dashboard/violations/student", label: "Violation for Student" },
+  {
+    id: "/dashboard/student/payment",
+    label: "Payment for Student",
+  },
+  {
+    id: "/dashboard/paymenttypes",
+    label: "Payment Types Management",
+  },
   { id: "/dashboard/payments", label: "Payment Management" },
-  { id: "/dashboard/specialschedule", label: "Special Schedule" },
-  { id: "/dashboard/calender", label: "Calendar for User" },
-  { id: "/dashboard/calender/teacher", label: "Calendar for Teacher" },
-  { id: "/dashboard/calender/student", label: "Calendar for Student" },
+
   { id: "/dashboard/teacher/schedule", label: "Schedule for Teacher" },
   { id: "/dashboard/student/attendance", label: "Attendance for Student" },
   { id: "/dashboard/student/schedule", label: "Schedule for Student" },
@@ -93,18 +94,19 @@ const availablePermissions = [
     id: "/dashboard/recapattendance/class",
     label: "Recap Attendance Class",
   },
-  {
-    id: "/dashboard/paymenttypes",
-    label: "Payment Types Management",
-  },
-  {
-    id: "/dashboard/student/payment",
-    label: "Payment for Student",
-  },
+
   {
     id: "/dashboard/tahfidzrecord",
     label: "Tahfidz Record Management",
   },
+  { id: "/dashboard/specialschedule", label: "Special Schedule" },
+  { id: "/dashboard/calender", label: "Calendar for User" },
+  { id: "/dashboard/calender/teacher", label: "Calendar for Teacher" },
+  { id: "/dashboard/calender/student", label: "Calendar for Student" },
+  { id: "/dashboard/typeviolations", label: "Type Violation Management" },
+  { id: "/dashboard/violations", label: "Violation Management" },
+  { id: "/dashboard/violations/teacher", label: "Violation for Teacher" },
+  { id: "/dashboard/violations/student", label: "Violation for Student" },
 ];
 
 // Create/Edit Dialog Component
@@ -220,7 +222,11 @@ function RoleFormDialog({ open, onOpenChange, editData, onSuccess }: { open: boo
               Batal
             </Button>
             <Button type="submit" disabled={createRole.isPending || updateRole.isPending}>
-              {createRole.isPending || updateRole.isPending ? "Menyimpan..." : editData ? "Perbarui" : "Simpan"}
+              {createRole.isPending || updateRole.isPending ?
+                "Menyimpan..."
+              : editData ?
+                "Perbarui"
+              : "Simpan"}
             </Button>
           </div>
         </form>
@@ -335,15 +341,13 @@ function RoleDataTable() {
         const permissions = (row.getValue("permissions") as string[]) || [];
         return (
           <div className="flex flex-wrap gap-1">
-            {permissions.length > 0 ? (
+            {permissions.length > 0 ?
               permissions.slice(0, 3).map((permission) => (
                 <Badge key={permission} variant="outline" className="text-xs">
                   {availablePermissions.find((p) => p.id === permission)?.label || permission}
                 </Badge>
               ))
-            ) : (
-              <span className="text-muted-foreground text-sm">Tidak ada</span>
-            )}
+            : <span className="text-muted-foreground text-sm">Tidak ada</span>}
             {permissions.length > 3 && (
               <Badge variant="outline" className="text-xs">
                 +{permissions.length - 3} lainnya
@@ -491,7 +495,7 @@ function RoleDataTable() {
               ))}
             </TableHeader>
             <TableBody>
-              {table.getRowModel().rows?.length ? (
+              {table.getRowModel().rows?.length ?
                 table.getRowModel().rows.map((row) => (
                   <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                     {row.getVisibleCells().map((cell) => (
@@ -499,13 +503,12 @@ function RoleDataTable() {
                     ))}
                   </TableRow>
                 ))
-              ) : (
-                <TableRow>
+              : <TableRow>
                   <TableCell colSpan={columns.length} className="h-24 text-center">
                     Tidak ada data role.
                   </TableCell>
                 </TableRow>
-              )}
+              }
             </TableBody>
           </Table>
         </div>

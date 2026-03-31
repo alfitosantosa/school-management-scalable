@@ -45,10 +45,6 @@ export async function apiGet<T = any>(url: string, options?: FetchOptions): Prom
     ...options,
   });
 
-  if (!response.ok) {
-    console.error(`API Error: ${response.status} ${response.statusText}`);
-  }
-
   const data = await response.json();
   return {
     data,
@@ -70,10 +66,6 @@ export async function apiPost<T = any>(url: string, body?: any, options?: FetchO
     body: body ? JSON.stringify(body) : undefined,
     ...options,
   });
-
-  if (!response.ok) {
-    console.error(`API Error: ${response.status} ${response.statusText}`);
-  }
 
   const data = await response.json();
   return {
@@ -97,10 +89,6 @@ export async function apiPut<T = any>(url: string, body?: any, options?: FetchOp
     ...options,
   });
 
-  if (!response.ok) {
-    console.error(`API Error: ${response.status} ${response.statusText}`);
-  }
-
   const data = await response.json();
   return {
     data,
@@ -121,10 +109,6 @@ export async function apiDelete<T = any>(url: string, options?: FetchOptions): P
     },
     ...options,
   });
-
-  if (!response.ok) {
-    console.error(`API Error: ${response.status} ${response.statusText}`);
-  }
 
   const data = await response.json();
   return {
@@ -147,10 +131,6 @@ export async function apiPatch<T = any>(url: string, body?: any, options?: Fetch
     body: body ? JSON.stringify(body) : undefined,
     ...options,
   });
-
-  if (!response.ok) {
-    console.error(`API Error: ${response.status} ${response.statusText}`);
-  }
 
   const data = await response.json();
   return {

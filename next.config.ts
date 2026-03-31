@@ -1,4 +1,3 @@
-
 import type { NextConfig } from "next";
 
 // Determine environment: development or production
@@ -40,63 +39,69 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: isDev ? undefined : "default-src 'self'; script-src 'none'; sandbox;",
     // Production optimizations
-    ...(isDev
-      ? {}
-      : {
-          disableStaticImages: false,
-        }),
+    ...(isDev ?
+      {}
+    : {
+        disableStaticImages: false,
+      }),
     // Add timeout configuration for external images
-    ...(isDev
-      ? {}
-      : {
-          // Increase timeout for external images in production
-          // timeout: 10000, // 10 seconds
-        }),
+    ...(isDev ?
+      {}
+      // Increase timeout for external images in production
+      // timeout: 10000, // 10 seconds// Increase timeout for external images in production
+      // timeout: 10000, // 10 seconds// Increase timeout for external images in production
+      // timeout: 10000, // 10 seconds// Increase timeout for external images in production
+      // timeout: 10000, // 10 seconds// Increase timeout for external images in production
+      // timeout: 10000, // 10 seconds
+    : {
+        // Increase timeout for external images in production
+        // timeout: 10000, // 10 seconds
+      }),
   },
 
   // ============================================================================
   // PRODUCTION OPTIMIZATIONS
   // ============================================================================
-  ...(isProduction
-    ? {
-        // Remove console.log in production for cleaner bundles
-        compiler: {
-          removeConsole: {
-            exclude: ["error", "warn"], // Keep errors and warnings
-          },
+  ...(isProduction ?
+    {
+      // Remove console.log in production for cleaner bundles
+      compiler: {
+        removeConsole: {
+          exclude: ["error", "warn"], // Keep errors and warnings
         },
+      },
 
-        // Optimize package imports for tree-shaking
-        experimental: {
-          optimizePackageImports: [
-            "lucide-react",
-            "recharts",
-            "date-fns",
-            "@radix-ui/react-alert-dialog",
-            "@radix-ui/react-avatar",
-            "@radix-ui/react-checkbox",
-            "@radix-ui/react-dialog",
-            "@radix-ui/react-dropdown-menu",
-            "@radix-ui/react-label",
-            "@radix-ui/react-popover",
-            "@radix-ui/react-progress",
-            "@radix-ui/react-select",
-            "@radix-ui/react-separator",
-            "@radix-ui/react-slot",
-            "@radix-ui/react-switch",
-            "@radix-ui/react-tabs",
-            "@tanstack/react-query",
-            "@tanstack/react-table",
-          ],
-          // Enable server actions for better performance
-          serverActions: {
-            bodySizeLimit: "2mb",
-          },
-          authInterrupts: true,
-          serverComponentsHmrCache: true,
+      // Optimize package imports for tree-shaking
+      experimental: {
+        optimizePackageImports: [
+          "lucide-react",
+          "recharts",
+          "date-fns",
+          "@radix-ui/react-alert-dialog",
+          "@radix-ui/react-avatar",
+          "@radix-ui/react-checkbox",
+          "@radix-ui/react-dialog",
+          "@radix-ui/react-dropdown-menu",
+          "@radix-ui/react-label",
+          "@radix-ui/react-popover",
+          "@radix-ui/react-progress",
+          "@radix-ui/react-select",
+          "@radix-ui/react-separator",
+          "@radix-ui/react-slot",
+          "@radix-ui/react-switch",
+          "@radix-ui/react-tabs",
+          "@tanstack/react-query",
+          "@tanstack/react-table",
+        ],
+        // Enable server actions for better performance
+        serverActions: {
+          bodySizeLimit: "2mb",
         },
-      }
-    : {}),
+        authInterrupts: true,
+        serverComponentsHmrCache: true,
+      },
+    }
+  : {}),
 
   // ============================================================================
   // SECURITY HEADERS
@@ -188,15 +193,15 @@ const nextConfig: NextConfig = {
   // ============================================================================
   // REDIRECTS & REWRITES (if needed)
   // ============================================================================
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: "/old-path",
-  //       destination: "/new-path",
-  //       permanent: true,
-  //     },
-  //   ];
-  // },
+  async redirects() {
+    return [
+      {
+        source: "/api/",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
 
   // ============================================================================
   // DEVELOPMENT-SPECIFIC
@@ -237,7 +242,7 @@ const nextConfig: NextConfig = {
       config.plugins.push(
         new webpack.IgnorePlugin({
           resourceRegExp: /^(xlsx|read-excel-file)$/,
-        })
+        }),
       );
     }
 

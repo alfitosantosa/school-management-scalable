@@ -18,7 +18,7 @@ import { prisma } from "@/lib/prisma";
 export async function GET() {
   try {
     const subjects = await prisma.subject.findMany({
-      include: { major: true, schedules: true },
+      include: { major: true },
       orderBy: { name: "asc" },
     });
     return NextResponse.json(subjects);

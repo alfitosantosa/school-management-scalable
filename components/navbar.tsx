@@ -16,7 +16,6 @@ const permissionLabels: Record<string, string> = {
   "/": "Home",
   "/dashboard": "Dashboard ",
   "/dashboard/betterauth": "BetterAuth Management",
-  "/dashboard/profile": "Profile",
   "/dashboard/roles": "Roles Management",
   "/dashboard/users": "Users Management",
   "/dashboard/academicyear": "Tahun Ajaran Management",
@@ -27,6 +26,7 @@ const permissionLabels: Record<string, string> = {
   "/dashboard/attendance": "Absensi Management",
   "/dashboard/typeviolations": "Jenis Pelanggaran Management",
   "/dashboard/violations": "Pelanggaran Management",
+  "/dashboard/paymenttypes": "Tipe Pembayaran Management",
   "/dashboard/payments": "Pembayaran Management",
   "/dashboard/specialschedule": "Jadwal Khusus",
   "/dashboard/calender": "Kalender",
@@ -48,9 +48,8 @@ const permissionLabels: Record<string, string> = {
   "/dashboard/upload/schedules": "Upload Jadwal",
   "/dashboard/recapattendance/class": "Rekap Absensi Kelas",
   "/dashboard/classes/tahfidz": "Tahfidz Group Management",
-  "/dashboard/paymenttypes": "Tipe Pembayaran Management",
   "/dashboard/student/payment": "Pembayaran untuk Siswa",
-  "/dashboard/tahfidzrecord": "Tahfidz Record Management",
+  "/dashboard/tahfidzrecord": "Setoran Tahfidz Management",
 };
 
 export default function Navbar() {
