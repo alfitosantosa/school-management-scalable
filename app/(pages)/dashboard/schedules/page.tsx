@@ -1002,10 +1002,11 @@ export default function UserDataTable() {
 
   // Check if user is Admin
   if (userRole !== "Admin") {
-    unauthorized();
-    return null;
+    if (userRole !== "Head Of School") {
+      unauthorized();
+      return null;
+    }
   }
-
   // Render dashboard only after authorization is confirmed
   return <ScheduleDataTable />;
 }
