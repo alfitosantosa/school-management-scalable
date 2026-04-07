@@ -58,6 +58,10 @@ const nextConfig: NextConfig = {
       // timeout: 10000, // 10 seconds// Increase timeout for external images in production
       // timeout: 10000, // 10 seconds// Increase timeout for external images in production
       // timeout: 10000, // 10 seconds// Increase timeout for external images in production
+      // timeout: 10000, // 10 seconds// Increase timeout for external images in production
+      // timeout: 10000, // 10 seconds// Increase timeout for external images in production
+      // timeout: 10000, // 10 seconds// Increase timeout for external images in production
+      // timeout: 10000, // 10 seconds// Increase timeout for external images in production
       // timeout: 10000, // 10 seconds
     : {
         // Increase timeout for external images in production
@@ -199,15 +203,15 @@ const nextConfig: NextConfig = {
   // ============================================================================
   // REDIRECTS & REWRITES (if needed)
   // ============================================================================
-  async redirects() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: "/",
-        permanent: false,
-      },
-    ];
-  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: "/api/:path*",
+  //       destination: "/",
+  //       permanent: false,
+  //     },
+  //   ];
+  // },
 
   // ============================================================================
   // DEVELOPMENT-SPECIFIC
