@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { ColumnDef, ColumnFiltersState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable, VisibilityState } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, Calendar, Clock, Users, Search, X, MapPin, GraduationCap, BookOpen, CheckCircle, XCircle, AlertCircle, Download } from "lucide-react";
+import { ArrowUpDown, ChevronDown, MoreHorizontal, Plus, Pencil, Trash2, Calendar, Clock, Users, Search, X, CheckCircle, XCircle, AlertCircle, Download } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -21,7 +21,7 @@ import * as z from "zod";
 import { toast } from "sonner";
 
 // Import hooks
-import { useGetAttendance, useCreateAttendance, useUpdateAttendance, useDeleteAttendance } from "@/app/hooks/Attendances/useAttendance";
+import { useCreateAttendance, useUpdateAttendance, useDeleteAttendance } from "@/app/hooks/Attendances/useAttendance";
 import { useGetSchedules } from "@/app/hooks/Schedules/useSchedules";
 import { useGetStudents } from "@/app/hooks/Users/useStudents";
 import { useGetAttendanceByIdSchedule } from "@/app/hooks/Attendances/useAttendanceByIdShcedule";
@@ -104,7 +104,6 @@ const DAYS_MAP = {
 function AttendanceFormDialog({ open, onOpenChange, editData, onSuccess }: { open: boolean; onOpenChange: (open: boolean) => void; editData?: AttendanceData | null; onSuccess: () => void }) {
   const createAttendance = useCreateAttendance();
   const updateAttendance = useUpdateAttendance();
-  const { data: schedules = [] } = useGetSchedules();
 
   const { data: students = [] } = useGetStudents();
 
@@ -248,7 +247,11 @@ function AttendanceFormDialog({ open, onOpenChange, editData, onSuccess }: { ope
               Batal
             </Button>
             <Button type="submit" disabled={createAttendance.isPending || updateAttendance.isPending}>
-              {createAttendance.isPending || updateAttendance.isPending ? "Menyimpan..." : editData ? "Perbarui" : "Simpan"}
+              {createAttendance.isPending || updateAttendance.isPending ?
+                "Menyimpan..."
+              : editData ?
+                "Perbarui"
+              : "Simpan"}
             </Button>
           </div>
         </form>
@@ -461,7 +464,7 @@ function AttendanceDataTable() {
 
       return schedule?.class?.id === filterValue;
     },
-    [schedules]
+    [schedules],
   );
 
   const columns: ColumnDef<AttendanceData>[] = [
@@ -584,13 +587,11 @@ function AttendanceDataTable() {
         const notes = row.getValue("notes") as string;
         return (
           <div className="max-w-[200px]">
-            {notes ? (
+            {notes ?
               <div className="text-sm truncate" title={notes}>
                 {notes}
               </div>
-            ) : (
-              <span className="text-muted-foreground">-</span>
-            )}
+            : <span className="text-muted-foreground">-</span>}
           </div>
         );
       },
@@ -883,7 +884,7 @@ function AttendanceDataTable() {
               ))}
             </TableHeader>
             <TableBody>
-              {table.getRowModel().rows?.length ? (
+              {table.getRowModel().rows?.length ?
                 table.getRowModel().rows.map((row) => (
                   <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                     {row.getVisibleCells().map((cell) => (
@@ -891,8 +892,7 @@ function AttendanceDataTable() {
                     ))}
                   </TableRow>
                 ))
-              ) : (
-                <TableRow>
+              : <TableRow>
                   <TableCell colSpan={columns.length} className="h-24 text-center">
                     <div className="flex flex-col items-center justify-center space-y-2">
                       <CheckCircle className="h-8 w-8 text-muted-foreground" />
@@ -917,7 +917,7 @@ function AttendanceDataTable() {
                     </div>
                   </TableCell>
                 </TableRow>
-              )}
+              }
             </TableBody>
           </Table>
         </div>

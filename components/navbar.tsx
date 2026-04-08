@@ -50,6 +50,7 @@ const permissionLabels: Record<string, string> = {
   "/dashboard/classes/tahfidz": "Tahfidz Group Management",
   "/dashboard/student/payment": "Pembayaran untuk Siswa",
   "/dashboard/tahfidzrecord": "Setoran Tahfidz Management",
+  "/dashboard/student/tahfidzrecord": "Setoran Tahfidz untuk Siswa",
 };
 
 export default function Navbar() {

@@ -15,7 +15,7 @@
 //   grades         Grade[]
 //   academicYear   AcademicYear @relation(fields: [academicYearId], references: [id])
 //   class          Class?       @relation(fields: [classId], references: [id])
-//   tahfidzGroup   TahfidzGroup?  @relation("TahfidzGroupSchedule", fields: [tahfidzGroupId], references: [id]) 
+//   tahfidzGroup   TahfidzGroup?  @relation("TahfidzGroupSchedule", fields: [tahfidzGroupId], references: [id])
 //   subject        Subject      @relation(fields: [subjectId], references: [id])
 //   teacher        UserData     @relation("TeacherSchedule", fields: [teacherId], references: [id])
 
@@ -25,17 +25,18 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 
 export async function GET() {
   try {
     const schedules = await prisma.schedule.findMany({
       include: { class: true, subject: true, teacher: true, academicYear: true, tahfidzGroup: true },
-      orderBy: {startTime: "asc"},
+      orderBy: { startTime: "asc" },
     });
     return NextResponse.json(schedules);
   } catch (error) {
     console.error("Error fetching schedules:", error);
-    return NextResponse.error();
+    return NextResponse.json({ error: "Failed to fetch schedules" }, { status: 500 });
   }
 }
 
@@ -57,8 +58,11 @@ export async function POST(request: NextRequest) {
     });
     return NextResponse.json(schedule);
   } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+      return NextResponse.json({ error: "Jadwal dengan kombinasi kelas, mata pelajaran, guru, hari, dan jam yang sama sudah ada." }, { status: 409 });
+    }
     console.error("Error creating schedule:", error);
-    return NextResponse.error();
+    return NextResponse.json({ error: "Failed to create schedule" }, { status: 500 });
   }
 }
 
@@ -81,8 +85,11 @@ export async function PUT(request: NextRequest) {
     });
     return NextResponse.json(schedule);
   } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
+      return NextResponse.json({ error: "Jadwal dengan kombinasi kelas, mata pelajaran, guru, hari, dan jam yang sama sudah ada." }, { status: 409 });
+    }
     console.error("Error updating schedule:", error);
-    return NextResponse.error();
+    return NextResponse.json({ error: "Failed to update schedule" }, { status: 500 });
   }
 }
 
@@ -95,6 +102,6 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ message: "Schedule deleted successfully" });
   } catch (error) {
     console.error("Error deleting schedule:", error);
-    return NextResponse.error();
+    return NextResponse.json({ error: "Failed to delete schedule" }, { status: 500 });
   }
 }

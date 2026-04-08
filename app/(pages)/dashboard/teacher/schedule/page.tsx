@@ -135,6 +135,14 @@ const ScheduleCard = ({ schedule }: { schedule: any }) => {
             <Plus className="h-4 w-4" />
             {getButtonText}
           </Button>
+          {schedule.tahfidzGroupId && (
+            <Link href={`/dashboard/teacher/tahfidzrecord/${schedule.tahfidzGroupId}`} passHref>
+              <Button variant="outline" className="flex items-center gap-2">
+                <BookOpen className="h-4 w-4" />
+                Setoran Hafalan
+              </Button>
+            </Link>
+          )}
         </div>
       </CardFooter>
     </Card>

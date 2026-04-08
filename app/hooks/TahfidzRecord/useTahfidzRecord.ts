@@ -75,12 +75,14 @@ export const useGetTahfidzRecordByStudentId = (studentId: string) => {
   });
 };
 
-export const useGetTahfidzRecordByIdTeacherFromClass = (teacherId: string, classId: string) => {
+export const useGetTahfidzRecordByIdTeacher = (teacherId:string) => {
   return useQuery({
-    queryKey: ["tahfidzRecord", teacherId, classId],
+    queryKey: ["tahfidzRecordByTeacher", teacherId],
     queryFn: async () => {
-      const response = await apiGet(`/api/tahfidzrecord/teacher/${teacherId}/class/${classId}`);
+      const response = await apiGet(`/api/tahfidzrecord/teacher/${teacherId}`);
       return response.data;
     },
   });
-};
+}
+
+

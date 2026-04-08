@@ -6,12 +6,9 @@ export const useGetTeachers = () => {
   return useQuery({
     queryKey: ["teachers"],
     queryFn: async () => {
-      try {
-        const res = await apiGet("/api/teachers");
-        return res.data;
-      } catch (error) {
-        console.error(error);
-      }
+      const res = await apiGet("/api/teachers");
+      if (res.status >= 400) throw new Error(res.data?.error || "Failed to fetch teachers");
+      return res.data;
     },
   });
 };

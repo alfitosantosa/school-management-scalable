@@ -99,6 +99,10 @@ const availablePermissions = [
     id: "/dashboard/tahfidzrecord",
     label: "Tahfidz Record Management",
   },
+  {
+    id: "/dashboard/student/tahfidzrecord",
+    label: "Tahfidz Record For Student",
+  },
   { id: "/dashboard/specialschedule", label: "Special Schedule" },
   { id: "/dashboard/calender", label: "Calendar for User" },
   { id: "/dashboard/calender/teacher", label: "Calendar for Teacher" },

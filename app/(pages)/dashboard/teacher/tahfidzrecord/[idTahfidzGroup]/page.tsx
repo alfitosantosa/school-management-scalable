@@ -21,13 +21,12 @@ import { toast } from "sonner";
 import { format } from "date-fns";
 import { id as localeId } from "date-fns/locale";
 
-import { useGetTahfidzRecords, useCreateTahfidzRecord, useUpdateTahfidzRecord, useDeleteTahfidzRecord } from "@/app/hooks/TahfidzRecord/useTahfidzRecord";
+import { useCreateTahfidzRecord, useUpdateTahfidzRecord, useDeleteTahfidzRecord, useGetTahfidzRecordByIdTeacher } from "@/app/hooks/TahfidzRecord/useTahfidzRecord";
 import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
-import { unauthorized } from "next/navigation";
+import { unauthorized, useParams } from "next/navigation";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
-import { useGetStudents } from "@/app/hooks/Users/useStudents";
-import { useGetTeachers } from "@/app/hooks/Users/useTeachers";
+import { useGetStudentByIdTahfidzGroup } from "@/app/hooks/Users/useStudents";
 import { useGetQuranSurah } from "@/app/hooks/TahfidzRecord/useQuranSurah";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -100,7 +99,6 @@ function TahfidzFormDialog({
   editData,
   onSuccess,
   allStudents,
-  allTeachers,
   quranSurah,
 }: {
   open: boolean;
@@ -108,11 +106,13 @@ function TahfidzFormDialog({
   editData?: TahfidzRecordData | null;
   onSuccess: () => void;
   allStudents: StudentData[];
-  allTeachers: TeacherData[];
   quranSurah: SurahQuranData[];
 }) {
   const createRecord = useCreateTahfidzRecord();
   const updateRecord = useUpdateTahfidzRecord();
+  const { data: session } = useSession();
+  const { data: teacherUserData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
+  const teacherId = teacherUserData?.id;
 
   const {
     register,
@@ -131,7 +131,6 @@ function TahfidzFormDialog({
   });
 
   const selectedStudentId = watch("studentId");
-  const selectedTeacherId = watch("teacherId");
   const selectedSurahId = watch("surahQuranId");
   const selectedGrade = watch("grade");
 
@@ -141,7 +140,7 @@ function TahfidzFormDialog({
   React.useEffect(() => {
     if (editData) {
       setValue("studentId", editData.studentId || "");
-      setValue("teacherId", editData.teacherId || "");
+      setValue("teacherId", editData.teacherId || teacherId || "");
       setValue("surahQuranId", editData.surahQuranId || "");
       setValue("startVerse", editData.startVerse ?? 1);
       setValue("endVerse", editData.endVerse ?? 1);
@@ -149,9 +148,9 @@ function TahfidzFormDialog({
       setValue("date", editData.date ? new Date(editData.date).toISOString().split("T")[0] : new Date().toISOString().split("T")[0]);
       setValue("notes", editData.notes || "");
     } else {
-      reset({ date: new Date().toISOString().split("T")[0], startVerse: 1, endVerse: 1 });
+      reset({ date: new Date().toISOString().split("T")[0], startVerse: 1, endVerse: 1, teacherId: teacherId || "" });
     }
-  }, [editData, setValue, reset]);
+  }, [editData, setValue, reset, teacherId]);
 
   const onSubmit = async (data: TahfidzFormValues) => {
     try {
@@ -222,19 +221,8 @@ function TahfidzFormDialog({
 
             <div className="space-y-2">
               <Label>Guru</Label>
-              <Select value={selectedTeacherId || "none"} onValueChange={(v) => setValue("teacherId", v === "none" ? "" : v)}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Pilih Guru (Opsional)" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none">Tidak ada</SelectItem>
-                  {allTeachers?.map((t) => (
-                    <SelectItem key={t.id} value={t.id}>
-                      {t.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <Input value={session?.user?.name || "Memuat..."} disabled className="bg-muted" />
+              <input type="hidden" {...register("teacherId")} value={teacherId || ""} />
             </div>
           </div>
 
@@ -391,9 +379,16 @@ function TahfidzRecordDataTable() {
   const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
   const [selectedRecord, setSelectedRecord] = React.useState<TahfidzRecordData | null>(null);
 
-  const { data: records = [], isLoading, refetch } = useGetTahfidzRecords("");
-  const { data: allStudents = [] } = useGetStudents();
-  const { data: allTeachers = [] } = useGetTeachers();
+  const { data: session, isPending } = useSession();
+  const { data: userData } = useGetUserByIdBetterAuth(session?.user?.id ?? "");
+
+  const { data: records = [], isLoading, refetch } = useGetTahfidzRecordByIdTeacher(userData?.id as string);
+  // get data tahfidz by tahfidz group
+  console.log(records);
+
+  const params = useParams();
+  const { data: allStudents = [] } = useGetStudentByIdTahfidzGroup(params.idTahfidzGroup as string);
+  // const { data: allStudents = [] } = useGetStudents();
   const { data: quranSurah = [] } = useGetQuranSurah();
 
   const handleSuccess = () => refetch();
@@ -794,8 +789,8 @@ function TahfidzRecordDataTable() {
       </div>
 
       {/* Dialogs */}
-      <TahfidzFormDialog open={createDialogOpen} onOpenChange={setCreateDialogOpen} onSuccess={handleSuccess} allStudents={allStudents} allTeachers={allTeachers} quranSurah={quranSurah} />
-      <TahfidzFormDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} editData={selectedRecord} onSuccess={handleSuccess} allStudents={allStudents} allTeachers={allTeachers} quranSurah={quranSurah} />
+      <TahfidzFormDialog open={createDialogOpen} onOpenChange={setCreateDialogOpen} onSuccess={handleSuccess} allStudents={allStudents} quranSurah={quranSurah} />
+      <TahfidzFormDialog open={editDialogOpen} onOpenChange={setEditDialogOpen} editData={selectedRecord} onSuccess={handleSuccess} allStudents={allStudents} quranSurah={quranSurah} />
       <DeleteTahfidzDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen} recordData={selectedRecord} onSuccess={handleSuccess} />
     </div>
   );
@@ -810,9 +805,10 @@ export default function TahfidzRecordPage() {
 
   if (isPending || isLoadingUserData) return <Loading />;
   if (userRole !== "Admin") {
-    unauthorized();
-    return null;
+    if (userRole !== "Teacher") {
+      unauthorized();
+      return null;
+    }
   }
-
   return <TahfidzRecordDataTable />;
 }
