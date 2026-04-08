@@ -58,11 +58,7 @@ export async function POST(request: NextRequest) {
     });
     return NextResponse.json(schedule);
   } catch (error) {
-    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
-      return NextResponse.json({ error: "Jadwal dengan kombinasi kelas, mata pelajaran, guru, hari, dan jam yang sama sudah ada." }, { status: 409 });
-    }
-    console.error("Error creating schedule:", error);
-    return NextResponse.json({ error: "Failed to create schedule" }, { status: 500 });
+    return NextResponse.json({ error: "Jadwal dengan kombinasi kelas, mata pelajaran, guru, hari, dan jam yang sam a sudah ada." }, { status: 409 });
   }
 }
 
@@ -85,11 +81,7 @@ export async function PUT(request: NextRequest) {
     });
     return NextResponse.json(schedule);
   } catch (error) {
-    if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002") {
-      return NextResponse.json({ error: "Jadwal dengan kombinasi kelas, mata pelajaran, guru, hari, dan jam yang sama sudah ada." }, { status: 409 });
-    }
-    console.error("Error updating schedule:", error);
-    return NextResponse.json({ error: "Failed to update schedule" }, { status: 500 });
+    return NextResponse.json({ error: "Jadwal dengan kombinasi kelas, mata pelajaran, guru, hari, dan jam yang sama sudah ada." }, { status: 409 });
   }
 }
 
