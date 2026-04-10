@@ -13,7 +13,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { UserX, Shield, User, Mail, Phone, MapPin, Calendar, GraduationCap, Building2, Award, Clock, CheckCircle, FileText, Key, Users, BookOpen, School } from "lucide-react";
 
 const NoUserDataComponent = ({ authUser }: { authUser: any }) => {
-
   return (
     <div className="min-h-screen py-8 px-4">
       <div className="max-w-2xl mx-auto">
@@ -163,7 +162,7 @@ const DataRow = ({ label, value }: { label: string; value: any }) => {
 
   return (
     <TableRow>
-      <TableHead className="w-[200px] font-medium">{label}</TableHead>
+      <TableHead className="w-50 font-medium">{label}</TableHead>
       <TableCell>{formatValue(value)}</TableCell>
     </TableRow>
   );
@@ -238,11 +237,11 @@ export default function Home() {
                       {user.role.name}
                     </Badge>
                   )}
-                  {user?.status && (
+                  {/* {user?.status && (
                     <Badge variant={user.status === "active" ? "default" : "secondary"} className="text-sm px-3 py-1">
                       {user.status}
                     </Badge>
-                  )}
+                  )} */}
                   {user?.isActive !== undefined && (
                     <Badge variant={user.isActive ? "default" : "destructive"} className="text-sm px-3 py-1">
                       {user.isActive ? "Active" : "Inactive"}
@@ -325,7 +324,7 @@ export default function Home() {
         )}
 
         {/* System Information */}
-        <Card>
+        {/* <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <FileText className="h-5 w-5" />
@@ -347,18 +346,18 @@ export default function Home() {
               </TableBody>
             </Table>
           </CardContent>
-        </Card>
+        </Card> */}
 
         {/* Detailed Sections */}
-        <div className="grid md:grid-cols-2 gap-6">
+        {/* <div className="grid md:grid-cols-2 gap-6">
           <ObjectSection title="Class Details" data={classData} description="Complete class information" icon={School} />
           <ObjectSection title="Major Details" data={major} description="Complete major information" icon={BookOpen} />
           <ObjectSection title="Academic Year Details" data={academicYear} description="Academic year information" icon={Calendar} />
           <ObjectSection title="Role & Permissions" data={role} description="Role details and permissions" icon={Shield} />
-        </div>
+        </div> */}
 
         {/* Better Auth User */}
-        <ObjectSection title="Better Auth User" data={userData} description="Better Auth user information" icon={User} />
+        {/* <ObjectSection title="Better Auth User" data={userData} description="Better Auth user information" icon={User} /> */}
       </div>
     </div>
   );
