@@ -12,18 +12,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 import base64id from "base64id";
 
 // Import hooks
-import { useGetPayments, useCreatePayment, useUpdatePayment, useDeletePayment, useGetPaymentByStudentId } from "@/app/hooks/Payments/usePayment";
-import { useGetPaymentTypes } from "@/app/hooks/Payments/usePaymentType";
-import { useGetUsers } from "@/app/hooks/Users/useUsers";
+import { useGetPaymentByStudentId } from "@/app/hooks/Payments/usePayment";
 import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
 import { unauthorized } from "next/navigation";
@@ -237,6 +232,8 @@ function MidtransPaymentDialog({
           return;
         }
 
+        console.log(response);
+
         // Open Snap payment popup
         window.snap.pay(response.token, {
           onSuccess: function (result) {
@@ -257,15 +254,6 @@ function MidtransPaymentDialog({
               finishRedirectUrl: result.finish_redirect_url,
             });
             mutationSendWhatsapp.mutate({
-              //               interface Recipient {
-              //   number: string;
-              //   name?: string;
-              // }
-              //               interface BulkSendRequest {
-              //   recipients: Recipient[];
-              //   message: string;
-              //   delayMs?: number;
-              // }
               message: `Pembayaran berhasil untuk ${paymentData.paymentType?.name} dengan jumlah ${new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(paymentData.amount)}. Terima kasih telah melakukan pembayaran.`,
               recipients: [
                 {

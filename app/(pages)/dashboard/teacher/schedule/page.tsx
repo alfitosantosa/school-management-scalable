@@ -110,40 +110,37 @@ const ScheduleCard = ({ schedule }: { schedule: any }) => {
         </div>
       </CardContent>
 
-      <CardFooter className="bg-slate-50/50 flex gap-3">
+      <CardFooter className="bg-slate-50/50 flex items-center gap-2 flex-wrap">
         <Link href={`/dashboard/teacher/schedule/${schedule.id}`} passHref>
           <Button variant="outline" className="flex items-center gap-2">
             <Eye className="h-4 w-4" />
             Lihat Absensi
           </Button>
         </Link>
-
-        <div className="flex items-center gap-2">
-          <Button
-            disabled={isButtonDisabled}
-            className={`flex items-center gap-2 ${isButtonDisabled ? "opacity-10 cursor-not-allowed bg-gray-300 text-gray-1000 hover:bg-gray-300" : ""}`}
-            onClick={() => {
-              if (!isButtonDisabled) {
-                if (schedule.tahfidzGroup?.name) {
-                  window.location.href = `/dashboard/teacher/attendance/tahfidz/${schedule.id}`;
-                } else {
-                  window.location.href = `/dashboard/teacher/attendance/${schedule.id}`;
-                }
+        <Button
+          disabled={isButtonDisabled}
+          className={`flex items-center gap-2 ${isButtonDisabled ? "opacity-10 cursor-not-allowed bg-gray-300 text-gray-1000 hover:bg-gray-300" : ""}`}
+          onClick={() => {
+            if (!isButtonDisabled) {
+              if (schedule.tahfidzGroup?.name) {
+                window.location.href = `/dashboard/teacher/attendance/tahfidz/${schedule.id}`;
+              } else {
+                window.location.href = `/dashboard/teacher/attendance/${schedule.id}`;
               }
-            }}
-          >
-            <Plus className="h-4 w-4" />
-            {getButtonText}
-          </Button>
-          {schedule.tahfidzGroupId && (
-            <Link href={`/dashboard/teacher/tahfidzrecord/${schedule.tahfidzGroupId}`} passHref>
-              <Button variant="outline" className="flex items-center gap-2">
-                <BookOpen className="h-4 w-4" />
-                Setoran Hafalan
-              </Button>
-            </Link>
-          )}
-        </div>
+            }
+          }}
+        >
+          <Plus className="h-4 w-4" />
+          {getButtonText}
+        </Button>
+        {(schedule.tahfidzGroupId || schedule.tahfidzGroup?.id) && (
+          <Link href={`/dashboard/teacher/tahfidzrecord/${schedule.tahfidzGroupId ?? schedule.tahfidzGroup?.id}`} passHref>
+            <Button variant="outline" className="flex items-center gap-2">
+              <BookOpen className="h-4 w-4" />
+              Setoran Hafalan
+            </Button>
+          </Link>
+        )}
       </CardFooter>
     </Card>
   );
