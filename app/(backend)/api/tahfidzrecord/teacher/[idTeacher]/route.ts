@@ -18,6 +18,9 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ idTeac
         teacher: true,
         surah: true,
       },
+      orderBy: {
+        date: "desc",
+      },
     });
     return NextResponse.json(tahfidzRecordByIdTeacher);
   } catch (error) {
