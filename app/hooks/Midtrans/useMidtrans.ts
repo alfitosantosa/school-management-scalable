@@ -44,3 +44,12 @@ export const useUpdateMidtransSuccessTransaction = () => {
     },
   });
 };
+
+export const useMidtransCheckStatusOderId = () => {
+  return useMutation({
+    mutationFn: async (orderId: string) => {
+      const res = await apiGet(`/api/midtrans/status/${orderId}`);
+      return res.data;
+    },
+  });
+};

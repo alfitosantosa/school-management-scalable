@@ -221,7 +221,7 @@ function PaymentFormDialog({ open, onOpenChange, editData, onSuccess }: { open: 
         await updatePayment.mutateAsync({ id: editData.id, ...payload } as any);
         toast.success("Pembayaran berhasil diperbarui!");
       } else {
-        if(payload.classId && !payload.studentId) {
+        if (payload.classId && !payload.studentId) {
           await createPaymentBulk.mutateAsync(payload as any);
         } else {
           await createPayment.mutateAsync(payload as any);
@@ -306,7 +306,7 @@ function PaymentFormDialog({ open, onOpenChange, editData, onSuccess }: { open: 
 
             <div className="space-y-2">
               <Label htmlFor="receiptNumber">Nomor Kwitansi</Label>
-              <Input id="receiptNumber" value={``} {...register("receiptNumber")} />
+              <Input id="receiptNumber" disabled={true} value={``} {...register("receiptNumber")} />
               {errors.receiptNumber && <p className="text-sm text-red-500">{errors.receiptNumber.message}</p>}
             </div>
           </div>
@@ -353,7 +353,11 @@ function PaymentFormDialog({ open, onOpenChange, editData, onSuccess }: { open: 
               Batal
             </Button>
             <Button type="submit" disabled={createPayment.isPending || updatePayment.isPending}>
-              {createPayment.isPending || updatePayment.isPending ? "Menyimpan..." : editData ? "Perbarui" : "Simpan"}
+              {createPayment.isPending || updatePayment.isPending ?
+                "Menyimpan..."
+              : editData ?
+                "Perbarui"
+              : "Simpan"}
             </Button>
           </div>
         </form>
@@ -708,7 +712,7 @@ function PaymentDashboard() {
                 ))}
               </TableHeader>
               <TableBody>
-                {table.getRowModel().rows?.length ? (
+                {table.getRowModel().rows?.length ?
                   table.getRowModel().rows.map((row) => (
                     <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                       {row.getVisibleCells().map((cell) => (
@@ -716,13 +720,12 @@ function PaymentDashboard() {
                       ))}
                     </TableRow>
                   ))
-                ) : (
-                  <TableRow>
+                : <TableRow>
                     <TableCell colSpan={columns.length} className="h-24 text-center">
                       Tidak ada data pembayaran.
                     </TableCell>
                   </TableRow>
-                )}
+                }
               </TableBody>
             </Table>
           </div>
@@ -767,7 +770,7 @@ export default function PaymentDashboardPage() {
 
   // Check if user is Admin
   if (userRole !== "Admin") {
-    unauthorized();
+    unauthorized()
     return null;
   }
 

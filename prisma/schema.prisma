@@ -308,8 +308,8 @@ model Payment {
   notes              String?
   createdAt          DateTime            @default(now())
   paymentDate        DateTime
-  receiptNumber      String?
-  paymentTransaction PaymentTransaction?
+  receiptNumber      String              @unique 
+  paymentTransaction PaymentTransaction? 
   paymentType        PaymentType         @relation(fields: [paymentTypeId], references: [id])
   student            UserData            @relation("StudentPayment", fields: [studentId], references: [id], onDelete: Cascade)
 

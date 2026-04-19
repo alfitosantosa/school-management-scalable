@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 // cara pakai GET /api/midtrans/status?orderId=KWT-X2O4AIFK5NVUGR9LAAAA
 
-
 const getCoreApi = () =>
   new midtransClient.CoreApi({
     isProduction: process.env.NEXT_PUBLIC_MIDTRANS_IS_PRODUCTION === "true",
@@ -31,40 +30,40 @@ export async function GET(request: NextRequest) {
 
 // POST for actions: approve | deny | cancel | expire | refund
 // Body: { orderId, action, amount?, reason? }
-export async function POST(request: NextRequest) {
-  try {
-    const { orderId, action, amount, reason } = await request.json();
+// export async function POST(request: NextRequest) {
+//   try {
+//     const { orderId, action, amount, reason } = await request.json();
 
-    if (!orderId || !action) {
-      return NextResponse.json({ error: "orderId and action are required" }, { status: 400 });
-    }
+//     if (!orderId || !action) {
+//       return NextResponse.json({ error: "orderId and action are required" }, { status: 400 });
+//     }
 
-    const coreApi = getCoreApi();
-    let response;
+//     const coreApi = getCoreApi();
+//     let response;
 
-    switch (action) {
-      case "approve":
-        response = await coreApi.transaction.approve(orderId);
-        break;
-      case "deny":
-        response = await coreApi.transaction.deny(orderId);
-        break;
-      case "cancel":
-        response = await coreApi.transaction.cancel(orderId);
-        break;
-      case "expire":
-        response = await coreApi.transaction.expire(orderId);
-        break;
-      case "refund":
-        response = await coreApi.transaction.refund(orderId, { amount, reason });
-        break;
-      default:
-        return NextResponse.json({ error: `Unknown action: ${action}` }, { status: 400 });
-    }
+//     switch (action) {
+//       case "approve":
+//         response = await coreApi.transaction.approve(orderId);
+//         break;
+//       case "deny":
+//         response = await coreApi.transaction.deny(orderId);
+//         break;
+//       case "cancel":
+//         response = await coreApi.transaction.cancel(orderId);
+//         break;
+//       case "expire":
+//         response = await coreApi.transaction.expire(orderId);
+//         break;
+//       case "refund":
+//         response = await coreApi.transaction.refund(orderId, { amount, reason });
+//         break;
+//       default:
+//         return NextResponse.json({ error: `Unknown action: ${action}` }, { status: 400 });
+//     }
 
-    return NextResponse.json(response);
-  } catch (error: any) {
-    console.error("Error processing transaction action:", error);
-    return NextResponse.json({ error: error.message || "Failed to process transaction action" }, { status: 500 });
-  }
-}
+//     return NextResponse.json(response);
+//   } catch (error: any) {
+//     console.error("Error processing transaction action:", error);
+//     return NextResponse.json({ error: error.message || "Failed to process transaction action" }, { status: 500 });
+//   }
+// }

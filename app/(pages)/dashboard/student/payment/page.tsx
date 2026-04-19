@@ -15,7 +15,6 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import * as z from "zod";
 import { toast } from "sonner";
-import base64id from "base64id";
 
 // Import hooks
 import { useGetPaymentByStudentId } from "@/app/hooks/Payments/usePayment";
@@ -23,7 +22,7 @@ import Loading from "@/components/loading";
 import { useSession } from "@/lib/auth-client";
 import { unauthorized } from "next/navigation";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
-import { useCreateSnapMidtransTransaction, useUpdateMidtransSuccessTransaction } from "@/app/hooks/Midtrans/useMidtrans";
+import { useCreateSnapMidtransTransaction, useMidtransCheckStatusOderId, useUpdateMidtransSuccessTransaction } from "@/app/hooks/Midtrans/useMidtrans";
 import { useUpdatePaymentTransaction } from "@/app/hooks/Payments/usePaymentTransaction";
 import { useBulkSendWhatsApp } from "@/app/hooks/BotWA/useBotWA";
 
@@ -62,6 +61,7 @@ export type PaymentData = {
     name: string;
     email?: string;
     parentPhone?: string;
+    address?: string;
   };
   paymentType?: {
     id: string;
@@ -186,25 +186,42 @@ function MidtransPaymentDialog({
   const mutationUpdatePaymentTransaction = useUpdatePaymentTransaction();
   const mutationPaymentSuccess = useUpdateMidtransSuccessTransaction();
   const mutationSendWhatsapp = useBulkSendWhatsApp();
+  const mutationCheckStatusPayment = useMidtransCheckStatusOderId();
 
   const handlePayment = () => {
     if (!paymentData) {
       toast.error("Data pembayaran tidak tersedia");
       return;
     }
-
     setIsProcessing(true);
+    //check status payment
+    //     mutationSnapMidtrans.mutate(paymentData.receiptNumber, {
+    //       onSuccess: (response) => {
+    //         if (response. "pending"){
 
-    const idUppercase = base64id.generateId().toUpperCase();
+    //         }if(response == "expired "){
+    // //generated again for the token midtrans and generate again for order id
+    //         }else(response == " settlement") {
+    // // create transaction succes and payment success
+    //         }
+    // if (respones === "capture") {
+    // bahwa payment sudah pernah dilakukan dan statusnya capture maka tidak bisa dilakukan pembayaran ulang
+    // }
+    //       },
+    //     });
+
     const transactionData = {
       transaction_details: {
-        order_id: `KWT-${idUppercase}`,
+        order_id: paymentData.receiptNumber,
         gross_amount: Number(paymentData.amount),
       },
       customer_details: {
         first_name: paymentData.student?.name || "Siswa",
         email: paymentData.student?.email || "student@example.com",
         phone: paymentData.student?.parentPhone || "null",
+        billing_address: {
+          address: paymentData.student?.address,
+        },
       },
       credit_card: {
         secure: true,

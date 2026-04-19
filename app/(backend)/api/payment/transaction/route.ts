@@ -18,6 +18,11 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
+export async function GET() {
+  const transactions = await prisma.paymentTransaction.findMany();
+  return NextResponse.json(transactions);
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { paymentId, transactionId, orderId, grossAmount, paymentType, transactionTime, transactionStatus, fraudStatus, finishRedirectUrl } = await request.json();
