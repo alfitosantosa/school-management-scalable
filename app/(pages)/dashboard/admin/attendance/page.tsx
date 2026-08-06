@@ -16,7 +16,7 @@ import Loading from "@/components/loading";
 import { useGetUserByIdBetterAuth } from "@/app/hooks/Users/useUsersByIdBetterAuth";
 import { useAttendanceIsSubmitted } from "@/app/hooks/Attendances/useAttendanceIsSubmitted";
 
-const ScheduleCard = ({ schedule }: { schedule:any }) => {
+const ScheduleCard = ({ schedule }: { schedule: any }) => {
   const isTodaySchedule = (dayOfWeek: number) => {
     const currentDay = new Date().getDay();
     return dayOfWeek === currentDay;
@@ -38,25 +38,18 @@ const ScheduleCard = ({ schedule }: { schedule:any }) => {
   // Call the hook for each schedule
   const { data: isSubmitted, isLoading } = useAttendanceIsSubmitted({
     date: todayDate,
-    scheduleId: schedule.id
+    scheduleId: schedule.id,
   });
 
   if (isLoading) {
     return <Loading />;
   }
 
-
-
-
   // Check if button should be disabled
   const isDisabled = isSubmitted === true || !isTodaySchedule(schedule.dayOfWeek);
 
   // Get button text
-  const buttonText = isSubmitted
-    ? "Sudah Diabsen"
-    : !isTodaySchedule(schedule.dayOfWeek)
-      ? "Bukan Hari Ini"
-      : "Buat Absensi";
+  const buttonText = isSubmitted ? "Sudah Diabsen" : !isTodaySchedule(schedule.dayOfWeek) ? "Bukan Hari Ini" : "Buat Absensi";
 
   return (
     <Card className="hover:shadow-lg transition-shadow duration-200">
@@ -82,7 +75,6 @@ const ScheduleCard = ({ schedule }: { schedule:any }) => {
               </span>
               <div>{schedule.id}</div>
             </div>
-
 
             <div className="flex items-center gap-3">
               <MapPin className="h-4 w-4 text-slate-500" />
@@ -340,8 +332,12 @@ export default function UserDataTable() {
 
   // Check if user is Admin
   if (userRole !== "Admin") {
-    unauthorized();
-    return null;
+    if (userRole !== "Guru Piket") {
+      if (userRole !== "Waka Kurikulum") {
+        unauthorized();
+        return null;
+      }
+    }
   }
 
   // Render dashboard only after authorization is confirmed

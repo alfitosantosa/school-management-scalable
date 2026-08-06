@@ -54,7 +54,7 @@ function UserDashboard() {
     (userId: string): BetterAuthUser | undefined => {
       return betterAuthUsers.find((user: any) => user.id === userId);
     },
-    [betterAuthUsers]
+    [betterAuthUsers],
   );
 
   // Get unique values for filters
@@ -68,10 +68,7 @@ function UserDashboard() {
 
   const { data: classesData, isLoading: isLoadingClasses } = useGetClasses();
 
-  const {
-    data : tahfidzGroupsData,
-    isLoading : isLoadingTahfidzGroups
-  } = useGetTahfidzGroup();
+  const { data: tahfidzGroupsData, isLoading: isLoadingTahfidzGroups } = useGetTahfidzGroup();
 
   const uniqueMajors = React.useMemo(() => {
     return Array.from(new Set(usersData.map((user: UserData) => user.major?.name).filter(Boolean)));
@@ -368,7 +365,7 @@ function UserDashboard() {
         },
       },
     ],
-    [getBetterAuthUserInfo, setSelectedUser, setEditDialogOpen, setDeleteDialogOpen]
+    [getBetterAuthUserInfo, setSelectedUser, setEditDialogOpen, setDeleteDialogOpen],
   );
 
   // Initialize table
@@ -401,7 +398,7 @@ function UserDashboard() {
         table.getColumn("role")?.setFilterValue("");
       }
     },
-    [table]
+    [table],
   );
 
   const handleClassFilter = React.useCallback(
@@ -413,7 +410,7 @@ function UserDashboard() {
         table.getColumn("class")?.setFilterValue("");
       }
     },
-    [table]
+    [table],
   );
 
   const handleTahfidzGroupFilter = React.useCallback(
@@ -425,7 +422,7 @@ function UserDashboard() {
         table.getColumn("tahfidzGroup")?.setFilterValue("");
       }
     },
-    [table]
+    [table],
   );
 
   const handleMajorFilter = React.useCallback(
@@ -437,7 +434,7 @@ function UserDashboard() {
         table.getColumn("major")?.setFilterValue("");
       }
     },
-    [table]
+    [table],
   );
 
   const handleSuccess = React.useCallback(async () => {
@@ -697,8 +694,10 @@ export default function UserDataTable() {
 
   // Check if user is Admin
   if (userRole !== "Admin") {
-    unauthorized();
-    return null;
+    if (userRole !== "Waka Kurikulum") {
+      unauthorized();
+      return null;
+    }
   }
 
   // Render dashboard only after authorization is confirmed

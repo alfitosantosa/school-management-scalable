@@ -321,11 +321,7 @@ function ScheduleFormDialog({ open, onOpenChange, editData, onSuccess }: { open:
               Batal
             </Button>
             <Button type="submit" disabled={createSchedule.isPending || updateSchedule.isPending}>
-              {createSchedule.isPending || updateSchedule.isPending ?
-                "Menyimpan..."
-              : editData ?
-                "Perbarui"
-              : "Simpan"}
+              {createSchedule.isPending || updateSchedule.isPending ? "Menyimpan..." : editData ? "Perbarui" : "Simpan"}
             </Button>
           </div>
         </form>
@@ -883,7 +879,7 @@ function ScheduleDataTable() {
               ))}
             </TableHeader>
             <TableBody>
-              {table.getRowModel().rows?.length ?
+              {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => (
                   <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                     {row.getVisibleCells().map((cell) => (
@@ -891,7 +887,8 @@ function ScheduleDataTable() {
                     ))}
                   </TableRow>
                 ))
-              : <TableRow>
+              ) : (
+                <TableRow>
                   <TableCell colSpan={columns.length} className="h-24 text-center">
                     <div className="flex flex-col items-center justify-center space-y-2">
                       <Calendar className="h-8 w-8 text-muted-foreground" />
@@ -916,7 +913,7 @@ function ScheduleDataTable() {
                     </div>
                   </TableCell>
                 </TableRow>
-              }
+              )}
             </TableBody>
           </Table>
         </div>
@@ -1003,8 +1000,10 @@ export default function UserDataTable() {
   // Check if user is Admin
   if (userRole !== "Admin") {
     if (userRole !== "Head Of School") {
-      unauthorized();
-      return null;
+      if (userRole !== "Waka Kurikulum") {
+        unauthorized();
+        return null;
+      }
     }
   }
   // Render dashboard only after authorization is confirmed

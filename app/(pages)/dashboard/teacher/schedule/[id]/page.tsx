@@ -247,11 +247,7 @@ function AttendanceFormDialog({ open, onOpenChange, editData, onSuccess }: { ope
               Batal
             </Button>
             <Button type="submit" disabled={createAttendance.isPending || updateAttendance.isPending}>
-              {createAttendance.isPending || updateAttendance.isPending ?
-                "Menyimpan..."
-              : editData ?
-                "Perbarui"
-              : "Simpan"}
+              {createAttendance.isPending || updateAttendance.isPending ? "Menyimpan..." : editData ? "Perbarui" : "Simpan"}
             </Button>
           </div>
         </form>
@@ -587,11 +583,13 @@ function AttendanceDataTable() {
         const notes = row.getValue("notes") as string;
         return (
           <div className="max-w-[200px]">
-            {notes ?
+            {notes ? (
               <div className="text-sm truncate" title={notes}>
                 {notes}
               </div>
-            : <span className="text-muted-foreground">-</span>}
+            ) : (
+              <span className="text-muted-foreground">-</span>
+            )}
           </div>
         );
       },
@@ -884,7 +882,7 @@ function AttendanceDataTable() {
               ))}
             </TableHeader>
             <TableBody>
-              {table.getRowModel().rows?.length ?
+              {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => (
                   <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                     {row.getVisibleCells().map((cell) => (
@@ -892,7 +890,8 @@ function AttendanceDataTable() {
                     ))}
                   </TableRow>
                 ))
-              : <TableRow>
+              ) : (
+                <TableRow>
                   <TableCell colSpan={columns.length} className="h-24 text-center">
                     <div className="flex flex-col items-center justify-center space-y-2">
                       <CheckCircle className="h-8 w-8 text-muted-foreground" />
@@ -917,7 +916,7 @@ function AttendanceDataTable() {
                     </div>
                   </TableCell>
                 </TableRow>
-              }
+              )}
             </TableBody>
           </Table>
         </div>
@@ -1016,8 +1015,10 @@ export default function UserDataTable() {
   // Check if user is Admin and Teacher
   if (userRole !== "Teacher") {
     if (userRole !== "Admin") {
-      return null;
-      unauthorized();
+      if (userRole !== "Waka Kurikulum") {
+        unauthorized();
+        return null;
+      }
     }
   }
 
