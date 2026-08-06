@@ -1,4 +1,6 @@
 # 
+# pull repository
+git pull
 
 # Hapus image lama
 docker rmi smkfajarsentosa-web:latest
