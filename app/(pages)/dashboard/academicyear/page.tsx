@@ -115,11 +115,7 @@ function AcademicYearFormDialog({ open, onOpenChange, editData, onSuccess }: { o
               Batal
             </Button>
             <Button type="submit" disabled={createAcademicYear.isPending || updateAcademicYear.isPending}>
-              {createAcademicYear.isPending || updateAcademicYear.isPending ?
-                "Menyimpan..."
-              : editData ?
-                "Perbarui"
-              : "Simpan"}
+              {createAcademicYear.isPending || updateAcademicYear.isPending ? "Menyimpan..." : editData ? "Perbarui" : "Simpan"}
             </Button>
           </div>
         </form>
@@ -372,19 +368,19 @@ function AcademicYearDataTable() {
                     .map((column) => {
                       return (
                         <DropdownMenuCheckboxItem key={column.id} className="capitalize" checked={column.getIsVisible()} onCheckedChange={(value) => column.toggleVisibility(!!value)}>
-                          {column.id === "year" ?
-                            "Tahun Ajaran"
-                          : column.id === "startDate" ?
-                            "Tanggal Mulai"
-                          : column.id === "endDate" ?
-                            "Tanggal Selesai"
-                          : column.id === "isActive" ?
-                            "Status"
-                          : column.id === "classes" ?
-                            "Jumlah Kelas"
-                          : column.id === "students" ?
-                            "Jumlah Siswa"
-                          : column.id}
+                          {column.id === "year"
+                            ? "Tahun Ajaran"
+                            : column.id === "startDate"
+                              ? "Tanggal Mulai"
+                              : column.id === "endDate"
+                                ? "Tanggal Selesai"
+                                : column.id === "isActive"
+                                  ? "Status"
+                                  : column.id === "classes"
+                                    ? "Jumlah Kelas"
+                                    : column.id === "students"
+                                      ? "Jumlah Siswa"
+                                      : column.id}
                         </DropdownMenuCheckboxItem>
                       );
                     })}
@@ -410,7 +406,7 @@ function AcademicYearDataTable() {
                 ))}
               </TableHeader>
               <TableBody>
-                {table.getRowModel().rows?.length ?
+                {table.getRowModel().rows?.length ? (
                   table.getRowModel().rows.map((row) => (
                     <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                       {row.getVisibleCells().map((cell) => (
@@ -418,12 +414,13 @@ function AcademicYearDataTable() {
                       ))}
                     </TableRow>
                   ))
-                : <TableRow>
+                ) : (
+                  <TableRow>
                     <TableCell colSpan={columns.length} className="h-24 text-center">
                       Tidak ada data tahun ajaran.
                     </TableCell>
                   </TableRow>
-                }
+                )}
               </TableBody>
             </Table>
           </div>
@@ -468,8 +465,10 @@ export default function UserDataTable() {
 
   // Check if user is Admin
   if (userRole !== "Admin") {
-    unauthorized();
-    return null;
+    if (userRole !== "Waka Kurikulum") {
+      unauthorized();
+      return null;
+    }
   }
 
   // Render dashboard only after authorization is confirmed

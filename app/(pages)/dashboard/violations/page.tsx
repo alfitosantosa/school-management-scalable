@@ -701,11 +701,9 @@ function ViolationDataTable() {
         <div className="font-bold text-3xl mb-6">Data Pelanggaran</div>
         <div className="mx-auto">
           <div className="flex items-center justify-between gap-2 py-4">
-          
             <div className="flex flex-wrap gap-2 ">
-              
               <Input placeholder="Cari siswa, kelas, pelanggaran..." value={globalFilter ?? ""} onChange={(event) => setGlobalFilter(event.target.value)} className="" disabled={isLoading} />
-         
+
               <div>
                 <Select value={statusFilter} onValueChange={setStatusFilter}>
                   <SelectTrigger className="w-[140px]">
@@ -774,18 +772,18 @@ function ViolationDataTable() {
                             {column.id === "student"
                               ? "Siswa"
                               : column.id === "class"
-                              ? "Kelas"
-                              : column.id === "violationType"
-                              ? "Jenis Pelanggaran"
-                              : column.id === "date"
-                              ? "Tanggal"
-                              : column.id === "status"
-                              ? "Status"
-                              : column.id === "reportedBy"
-                              ? "Dilaporkan Oleh"
-                              : column.id === "description"
-                              ? "Deskripsi"
-                              : column.id}
+                                ? "Kelas"
+                                : column.id === "violationType"
+                                  ? "Jenis Pelanggaran"
+                                  : column.id === "date"
+                                    ? "Tanggal"
+                                    : column.id === "status"
+                                      ? "Status"
+                                      : column.id === "reportedBy"
+                                        ? "Dilaporkan Oleh"
+                                        : column.id === "description"
+                                          ? "Deskripsi"
+                                          : column.id}
                           </DropdownMenuCheckboxItem>
                         );
                       })}
@@ -956,8 +954,12 @@ export default function UserDataTable() {
 
   // Check if user is Admin
   if (userRole !== "Admin") {
-    unauthorized();
-    return null;
+    if (userRole !== "Kesiswaan") {
+      if (userRole !== "Waka Kurikulum") {
+        unauthorized();
+        return null;
+      }
+    }
   }
 
   // Render dashboard only after authorization is confirmed

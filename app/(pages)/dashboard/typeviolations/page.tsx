@@ -438,14 +438,14 @@ function ViolationTypeDataTable() {
                           {column.id === "name"
                             ? "Nama Pelanggaran"
                             : column.id === "description"
-                            ? "Deskripsi"
-                            : column.id === "category"
-                            ? "Kategori"
-                            : column.id === "points"
-                            ? "Poin"
-                            : column.id === "academicYear"
-                            ? "Tahun Ajaran"
-                            : column.id}
+                              ? "Deskripsi"
+                              : column.id === "category"
+                                ? "Kategori"
+                                : column.id === "points"
+                                  ? "Poin"
+                                  : column.id === "academicYear"
+                                    ? "Tahun Ajaran"
+                                    : column.id}
                         </DropdownMenuCheckboxItem>
                       );
                     })}
@@ -529,8 +529,10 @@ export default function UserDataTable() {
 
   // Check if user is Admin
   if (userRole !== "Admin") {
-    unauthorized();
-    return null;
+    if (userRole !== "Kesiswaan") {
+      unauthorized();
+      return null;
+    }
   }
 
   // Render dashboard only after authorization is confirmed
