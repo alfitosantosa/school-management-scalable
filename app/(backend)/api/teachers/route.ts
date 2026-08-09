@@ -71,7 +71,7 @@ export async function GET() {
       where: {
         role: {
           name: {
-            in: ["Teacher", "Head Of School"],
+            in: ["Teacher", "Head Of School", "Guru Piket", "Kesiswaan", "Waka Kurikulum"],
           },
         },
       },
